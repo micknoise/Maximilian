@@ -1,0 +1,28 @@
+                      .__        .__.__  .__               
+  _____ _____  ___  __|__| _____ |__|  | |__|____    ____  
+ /     \\__  \ \  \/  /  |/     \|  |  | |  \__  \  /    \ 
+|  Y Y  \/ __ \_>    <|  |  Y Y  \  |  |_|  |/ __ \|   |  \
+|__|_|  (____  /__/\_ \__|__|_|  /__|____/__(____  /___|  /
+      \/     \/      \/        \/                \/     \/ 
+
+
+:::::::::::::::::::::::::::BASIC EXAMPLES
+
+You can choose between using RTAudio and PortAudio drivers in player.h by uncommenting the appropriate line.  To use PortAudio, you will need to compile the portAudio library from http://http://www.portaudio.com/ and link it with your executable.
+
+Examples demonstrating different features can be found in the maximilian_examples folder.  To try them, replace the contents of main.cpp with the contents of a tutorial file and compile.
+
+
+:::MAC OSX XCODE PROJECT
+
+You can run the examples using the 'maximilianTest' XCode 3 project provided.
+
+
+:::COMMAND LINE COMPILATION IN MACOSX/LINUX etc
+
+> g++ -Wall -D__MACOSX_CORE__ -o maximilian main.cpp RtAudio.cpp player.cpp maximilian.cpp -framework CoreAudio -lpthread
+
+> ./maximilian
+
+
+

@@ -18,11 +18,24 @@ Examples demonstrating different features can be found in the maximilian_example
 You can run the examples using the 'maximilianTest' XCode 3 project provided.
 
 
-:::COMMAND LINE COMPILATION IN MACOSX/LINUX etc
+:::COMMAND LINE COMPILATION IN MACOSX
 
 > g++ -Wall -D__MACOSX_CORE__ -o maximilian main.cpp RtAudio.cpp player.cpp maximilian.cpp -framework CoreAudio -lpthread
 
 > ./maximilian
 
 
+::COMMAND LINE COMPILATION IN LINUX
+
+With OSS:
+> g++ -Wall -D__LINUX_OSS__ -o maximilian main.cpp RtAudio.cpp player.cpp maximilian.cpp -lpthread
+
+With ALSA:
+> g++ -Wall -D__LINUX_ALSA__ -o maximilian main.cpp RtAudio.cpp player.cpp maximilian.cpp -lasound -lpthread
+
+With Jack:
+> g++ -Wall -D__UNIX_JACK__ -o maximilian main.cpp RtAudio.cpp player.cpp maximilian.cpp `pkg-config --cflags --libs jack` -lpthread
+
+then:
+> ./maximilian
 

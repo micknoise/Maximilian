@@ -16,6 +16,7 @@
 #include "portaudio.h"
 //#include "pa_mac_core.h"
 #elif defined(MAXIMILIAN_RT_AUDIO)
+#include <dsound.h>
 #include "RtAudio.h"
 #endif
 
@@ -109,9 +110,11 @@ int main()
 		std::cout <<  "PortAudio error: "<< Pa_GetErrorText( err ) << std::endl;
 	
 #elif defined(MAXIMILIAN_RT_AUDIO)
-	RtAudio dac;
+	RtAudio dac(RtAudio::WINDOWS_DS);
 	if ( dac.getDeviceCount() < 1 ) {
 		std::cout << "\nNo audio devices found!\n";
+		char input;
+		std::cin.get( input );
 		exit( 0 );
 	}
 	
@@ -121,11 +124,12 @@ int main()
 	parameters.firstChannel = 0;
 	unsigned int sampleRate = maxiSettings::sampleRate;
 	unsigned int bufferFrames = maxiSettings::bufferSize; 
-	double data[parameters.nChannels];
+	//double data[maxiSettings::channels];
+	vector<double> data(maxiSettings::channels,0);
 	
 	try {
 		dac.openStream( &parameters, NULL, RTAUDIO_FLOAT64,
-					   sampleRate, &bufferFrames, &routing, (void *)&data);
+					   sampleRate, &bufferFrames, &routing, (void *)&(data[0]));
 		
 		dac.startStream();
 	}

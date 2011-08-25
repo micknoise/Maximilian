@@ -16,7 +16,9 @@
 #include "portaudio.h"
 //#include "pa_mac_core.h"
 #elif defined(MAXIMILIAN_RT_AUDIO)
-#include <dsound.h>
+	#if defined( __WIN32__ ) || defined( _WIN32 )
+		#include <dsound.h>
+	#endif
 #include "RtAudio.h"
 #endif
 

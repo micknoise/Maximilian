@@ -36,6 +36,7 @@
 #include "maximilian.h"
 #include "maxiFFT.h"
 #include "maxiGrains.h"
+#include "maxiMFCC.h"
 
 
 typedef maxiMix ofxMaxiMix;
@@ -48,6 +49,7 @@ typedef maxiFFT ofxMaxiFFT;
 typedef maxiIFFT ofxMaxiIFFT;
 typedef maxiFFTOctaveAnalyzer ofxMaxiFFTOctaveAnalyzer;
 typedef maxiSettings ofxMaxiSettings;
+typedef maxiMFCC ofxMaxiMFCC;
 
 
 #endif

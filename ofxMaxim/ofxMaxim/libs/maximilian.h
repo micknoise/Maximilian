@@ -170,12 +170,12 @@ private:
 	int   	myByteRate;
 	short 	myBlockAlign;
 	short 	myBitsPerSample;
-	int	myDataSize;
 	double position;
 	double speed;
 	double output;
 	
 public:
+	int	myDataSize;
 	short 	myChannels;
 	int   	mySampleRate;
 	long length;

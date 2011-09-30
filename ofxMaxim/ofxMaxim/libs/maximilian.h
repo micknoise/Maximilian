@@ -187,7 +187,7 @@ public:
 
 	~maxiSample()
 	{
-		delete myData;
+		if (myData) delete[] myData;
 		myChunkSize = NULL;
 		mySubChunk1Size = NULL;
 		myFormat = NULL;
@@ -199,7 +199,7 @@ public:
 		myDataSize = NULL;
 	}
 	
-//	maxiSample();
+	maxiSample():myData(NULL){};
 
 	bool load(string fileName);
 	

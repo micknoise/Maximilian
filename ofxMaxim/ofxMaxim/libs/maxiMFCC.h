@@ -16,7 +16,7 @@
 
 class maxiMFCC {
 public:
-	maxiMFCC(){};
+	maxiMFCC():melFilters(NULL),dctMatrix(NULL), melBands(NULL){};
 	~maxiMFCC();
 	void setup(unsigned int numBins, unsigned int numFilters, unsigned int numCoeffs, double minFreq, double maxFreq, unsigned int sampleRate);
 	void mfcc(float* powerSpectrum, double *mfccs);

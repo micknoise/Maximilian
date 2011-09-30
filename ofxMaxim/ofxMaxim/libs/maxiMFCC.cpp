@@ -193,13 +193,14 @@ void maxiMFCC::calcMelFilterBank(double sampleRate, int numBins){
 
 
 maxiMFCC::~maxiMFCC() {
-	delete[] melFilters;
-	delete[] melBands;
-	delete[] dctMatrix;
+	if (melFilters) {
+		delete[] melFilters;
+		delete[] melBands;
+		delete[] dctMatrix;
 #ifdef __APPLE_CC__
-    delete doubleSpec;
+		delete doubleSpec;
 #endif
-	
+	}
 }
 
 

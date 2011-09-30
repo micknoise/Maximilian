@@ -42,7 +42,8 @@ class maxiFFT {
 	
 public:
 	maxiFFT(){
-		_fft = 0;
+		_fft = NULL; 
+		buffer = magnitudes = phases  = window = avgPower = NULL;
 	};
 	~maxiFFT();
 	void setup(int fftSize, int windowSize, int hopSize);

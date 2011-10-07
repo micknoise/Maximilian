@@ -134,6 +134,7 @@ class maxiFilter {
 	double z;//pole
 	double c;//filter coefficient
 public:
+	maxiFilter():x(0.0), y(0.0), z(0.0), c(0.0){};
 	double cutoff;
 	double resonance;
 	double lores(double input,double cutoff1, double resonance);

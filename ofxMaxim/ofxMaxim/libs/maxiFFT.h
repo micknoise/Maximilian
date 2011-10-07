@@ -37,6 +37,7 @@
 
 
 #include "fft.h"
+#include "stddef.h"
 
 class maxiFFT {
 	

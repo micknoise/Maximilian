@@ -177,7 +177,7 @@ double maxiOsc::triangle(double frequency, double phase) {
 
 //I like this.
 double maxiEnvelope::line(int numberofsegments,double segments[1000]) {
-	if (isPlaying==1) {
+	if (isPlaying==1) {//only make a sound once you've been triggered
 		
 	period=2./(segments[valindex+1]*0.004);
 	nextval=segments[valindex+2];
@@ -204,7 +204,7 @@ double maxiEnvelope::line(int numberofsegments,double segments[1000]) {
 
 //and this
 void maxiEnvelope::trigger(int index, double amp) {
-	isPlaying=1;
+	isPlaying=1;//ok the envelope is being used now.
 	valindex=index;
 	amplitude=amp;
 	

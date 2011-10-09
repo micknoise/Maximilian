@@ -1,35 +1,59 @@
 #include "maximilian.h"
 
-maxiOsc myCounter,mySwitchableOsc;//
-int CurrentCount;//
-double myOscOutput,myFilteredOutput;//
-double myEnvelopeData[6] = {500,0,1000,500,0,500};//this data will be used to make an envelope. Value and time to value in ms.
-maxiEnvelope myEnvelope;
-maxiFilter myFilter;
+//This shows how to use maximilian to build a monophonic synth
+
+//This is the synthesiser bits
+maxiOsc VCO1,VCO2,LFO1,LFO2;
+maxiFilter VCF;
+maxiEnvelope ADSR;
+
+//These are the control values for the envelope
+
+double adsrEnv[8]={1,5,0.125,250,0.125,125,0,500};
+
+//This is a bunch of control signals so that we can here something
+
+maxiOsc timer;//this is the metronome
+int currentCount,lastCount;//these values are used to check if we have a new beat this sample
+
+//and these are some variables we can use to pass stuff around
+
+double VCO1out,VCO2out,LFO1out,LFO2out,VCFout,ADSRout;
+
 
 void setup() {//some inits
-	myEnvelope.amplitude=myEnvelopeData[0]; //initialise the envelope
+	
+	
 }
 
 void play(double *output) {
 	
-	CurrentCount=myCounter.phasor(1, 1, 9);//phasor can take three arguments; frequency, start value and end value.
+	//so this first bit is just a basic metronome so we can hear what we're doing.
 	
-	if (CurrentCount<5)//simple if statement
+	currentCount=(int)timer.phasor(0.5);//this sets up a metronome that ticks every 2 seconds
+	
+	if (lastCount!=currentCount) {//if we have a new timer int this sample, play the sound
+				
+		ADSR.trigger(0, adsrEnv[0]);//trigger the envelope from the start
 		
-		myOscOutput=mySwitchableOsc.square(CurrentCount*100);
+		cout << "tick\n";//ticking twice for some reason
 	
-	else if (CurrentCount>=5)//and the 'else' bit.
+		lastCount=currentCount;//set the last count to the current count
+	}
+	
+	//and this is where we build the synth
+	
 		
-		myOscOutput=mySwitchableOsc.saw(CurrentCount*50);//one osc object can produce whichever waveform you want. 
+	ADSRout=ADSR.line(8,adsrEnv);//our ADSR env has 8 value/time pairs.
 	
-	if (CurrentCount==1) 
-		
-		myEnvelope.trigger(0,myEnvelopeData[0]); //trigger the envelope
+	LFO1out=LFO1.sinebuf(0.2);//this lfo is a sinewave at 0.2 hz
 	
-	myFilteredOutput=myFilter.lores(myOscOutput,(myEnvelope.line(6, myEnvelopeData)),10);//lores takes an audio input, a frequency and a resonance factor (1-100)
+	VCO1out=VCO1.pulse(55,0.6);//here's VCO1. it's a pulse wave at 55 hz, with a pulse width of 0.6
+	VCO2out=VCO2.pulse(110+LFO1out,0.2);//here's VCO2. it's a pulse wave at 110hz with LFO modulation on the frequency, and width of 0.2
+
+
+	VCFout=VCF.lores((VCO1out+VCO2out)*0.5, 250+(ADSRout*15000), 10);//now we stick the VCO's into the VCF, using the ADSR as the filter cutoff 
 	
-	*output=myFilteredOutput;//point me at your speakers and fire.
+	*output=VCFout*ADSRout;//finally we add the ADSR as an amplitude modulator 
+	
 }
-
-

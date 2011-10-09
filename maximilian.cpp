@@ -177,6 +177,8 @@ double maxiOsc::triangle(double frequency, double phase) {
 
 //I like this.
 double maxiEnvelope::line(int numberofsegments,double segments[1000]) {
+	if (isPlaying==1) {
+		
 	period=2./(segments[valindex+1]*0.004);
 	nextval=segments[valindex+2];
 	currentval=segments[valindex];
@@ -191,11 +193,18 @@ double maxiEnvelope::line(int numberofsegments,double segments[1000]) {
 		startval=currentval;
 	}
 	output=amplitude;
-	return(output);	
+		
+	}
+	else {
+		output=0;
+
+	}
+	return(output);
 }
 
 //and this
 void maxiEnvelope::trigger(int index, double amp) {
+	isPlaying=1;
 	valindex=index;
 	amplitude=amp;
 	

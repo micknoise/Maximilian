@@ -96,6 +96,7 @@ class maxiEnvelope {
 	double startval;
 	double currentval;
 	double nextval;
+	int isPlaying;
 	
 public:	
 	double line(int numberofsegments,double segments[100]);

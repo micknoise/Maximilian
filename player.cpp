@@ -25,7 +25,7 @@
 
 void setup();//use this to do any initialisation if you want.
 
-void play(double *channels);//run dac! Very very often. Too often in fact. er...
+void play(double *output);//run dac! Very very often. Too often in fact. er...
 
 
 
@@ -58,7 +58,7 @@ int routing	(void *outputBuffer, void *inputBuffer, unsigned int nBufferFrames,
 	for ( i=0; i<nBufferFrames; i++ ) {
 		play(lastValues);			
 		for ( j=0; j<maxiSettings::channels; j++ ) {
-			*buffer++=lastValues[0];
+			*buffer++=lastValues[j];
 		}
 	}
 	return 0;

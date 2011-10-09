@@ -2,7 +2,7 @@
 
 //This shows how to use maximilian to build a monophonic synth
 
-//This is the synthesiser bits
+//These are the synthesiser bits
 maxiOsc VCO1,VCO2,LFO1,LFO2;
 maxiFilter VCF;
 maxiEnvelope ADSR;
@@ -11,7 +11,7 @@ maxiEnvelope ADSR;
 
 double adsrEnv[8]={1,5,0.125,250,0.125,125,0,500};
 
-//This is a bunch of control signals so that we can here something
+//This is a bunch of control signals so that we can hear something
 
 maxiOsc timer;//this is the metronome
 int currentCount,lastCount;//these values are used to check if we have a new beat this sample

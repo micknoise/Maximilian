@@ -1,6 +1,8 @@
 #include "maximilian.h"
 
 //This shows how to use maximilian to build a polyphonic synth.
+//Basically it's the same as the monsynth example only with arrays of objects
+//and a voice allocation system
 
 //These are the synthesiser bits
 maxiOsc VCO1[6],VCO2[6],LFO1[6],LFO2[6];
@@ -42,7 +44,7 @@ void play(double *output) {
 		pitch[voice]=voice+1;
 		voice++;
 
-		lastCount=0;
+		lastCount=0;//set lastCount to 0
 
 	}
 

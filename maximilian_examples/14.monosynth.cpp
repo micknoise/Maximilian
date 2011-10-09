@@ -36,9 +36,9 @@ void play(double *output) {
 				
 		ADSR.trigger(0, adsrEnv[0]);//trigger the envelope from the start
 		
-		cout << "tick\n";//ticking twice for some reason
+		cout << "tick\n";//the clock ticks
 	
-		lastCount=currentCount;//set the last count to the current count
+		lastCount=0;//set lastCount to 0
 	}
 	
 	//and this is where we build the synth

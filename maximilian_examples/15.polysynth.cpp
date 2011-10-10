@@ -1,8 +1,6 @@
 #include "maximilian.h"
 
 //This shows how to use maximilian to build a polyphonic synth.
-//Basically it's the same as the monsynth example only with arrays of objects
-//and a voice allocation system
 
 //These are the synthesiser bits
 maxiOsc VCO1[6],VCO2[6],LFO1[6],LFO2[6];
@@ -30,6 +28,8 @@ void setup() {//some inits
 
 void play(double *output) {
 	
+	mix=0;//we're adding up the samples each update and it makes sense to clear them each time first.
+	
 	//so this first bit is just a basic metronome so we can hear what we're doing.
 	
 	currentCount=(int)timer.phasor(8);//this sets up a metronome that ticks 8 times a second
@@ -44,14 +44,14 @@ void play(double *output) {
 		pitch[voice]=voice+1;
 		voice++;
 
-		lastCount=0;//set lastCount to 0
+		lastCount=0;
 
 	}
 
 	//and this is where we build the synth
 	
 	for (int i=0; i<6; i++) {
-
+		
 	
 	ADSRout[i]=ADSR[i].line(8,adsrEnv);//our ADSR env has 8 value/time pairs.
 	
@@ -61,12 +61,14 @@ void play(double *output) {
 	VCO2out[i]=VCO2[i].pulse((110*pitch[i])+LFO1out[i],0.2);//here's VCO2. it's a pulse wave at 110hz with LFO modulation on the frequency, and width of 0.2
 	
 	
-	VCFout[i]=VCF[i].lores((VCO1out[i]+VCO2out[i])*0.5, 250+(ADSRout[i]*15000), 10);//now we stick the VCO's into the VCF, using the ADSR as the filter cutoff 
+	VCFout[i]=VCF[i].lores((VCO1out[i]+VCO2out[i])*0.5, 250+((pitch[i]+LFO1out[i])*1000), 10);//now we stick the VCO's into the VCF, using the ADSR as the filter cutoff 
 	
 	mix+=VCFout[i]*ADSRout[i]/6;//finally we add the ADSR as an amplitude modulator 
 
 		
 	}
 	
-	*output=mix;
+	output[0]=mix*0.5;//left channel
+	output[1]=mix*0.5;//right channel
+
 }

@@ -28,6 +28,8 @@ void setup() {//some inits
 
 void play(double *output) {
 	
+	mix=0;//we're adding up the samples each update and it makes sense to clear them each time first.
+	
 	//so this first bit is just a basic metronome so we can hear what we're doing.
 	
 	currentCount=(int)timer.phasor(8);//this sets up a metronome that ticks 8 times a second
@@ -49,7 +51,7 @@ void play(double *output) {
 	//and this is where we build the synth
 	
 	for (int i=0; i<6; i++) {
-
+		
 	
 	ADSRout[i]=ADSR[i].line(8,adsrEnv);//our ADSR env has 8 value/time pairs.
 	
@@ -59,12 +61,14 @@ void play(double *output) {
 	VCO2out[i]=VCO2[i].pulse((110*pitch[i])+LFO1out[i],0.2);//here's VCO2. it's a pulse wave at 110hz with LFO modulation on the frequency, and width of 0.2
 	
 	
-	VCFout[i]=VCF[i].lores((VCO1out[i]+VCO2out[i])*0.5, 250+(ADSRout[i]*15000), 10);//now we stick the VCO's into the VCF, using the ADSR as the filter cutoff 
+	VCFout[i]=VCF[i].lores((VCO1out[i]+VCO2out[i])*0.5, 250+((pitch[i]+LFO1out[i])*1000), 10);//now we stick the VCO's into the VCF, using the ADSR as the filter cutoff 
 	
 	mix+=VCFout[i]*ADSRout[i]/6;//finally we add the ADSR as an amplitude modulator 
 
 		
 	}
 	
-	*output=mix;
+	output[0]=mix*0.5;
+	output[1]=mix*0.5;
+
 }

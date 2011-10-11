@@ -167,6 +167,7 @@ private:
 	string 	myPath;
 	int 	myChunkSize;
 	int	mySubChunk1Size;
+	int		readChannel;
 	short 	myFormat;
 	int   	myByteRate;
 	short 	myBlockAlign;
@@ -202,7 +203,7 @@ public:
 	
 //	maxiSample();
 
-	bool load(string fileName);
+	bool load(string fileName, int channel=0);
 	
 	void trigger();
 	

@@ -332,8 +332,9 @@ double *maxiMix::ambisonic(double input,double eight[8],double x,double y,double
 }
 
 
-bool maxiSample::load(string fileName) {
+bool maxiSample::load(string fileName, int channel) {
 	myPath = fileName;
+	readChannel=channel;
 	return read();
 }
 
@@ -395,6 +396,16 @@ bool maxiSample::read()
 		inFile.read(myData, myDataSize);
 		length=myDataSize*(0.5/myChannels);
 		inFile.close(); // close the input file
+		
+		if (myChannels>1) {
+			int position=0;
+			int channel=readChannel*2;
+			for (int i=channel;i<myDataSize;i+=(myChannels*2)) {
+				myData[position]=myData[i];
+				myData[position+1]=myData[i+1];
+				position+=2;
+			}
+		}
 		
 	}else {
 		cout << "ERROR: Could not load sample: " <<myPath << endl;

@@ -1,21 +1,27 @@
 #include "maximilian.h"
 
-maxiSample beats; //We give our sample a name. It's called beats this time. We could have loads of them, but they have to have different names.
+
+maxiOsc timer;//this is the metronome
+int currentCount,lastCount,blob;//these values are used to check if we have a new beat this sample
 
 void setup() {//some inits
+	//nothing to go here this time	
 	
-	beats.load("/Users/mickgrierson/Documents/workspace/Maximilian/beat2Stereo.wav");//load in your samples. Provide the full path to a wav file.
-	printf("Summary:\n%s", beats.getSummary());//get info on samples if you like.
-	
+	blob=0;
 }
 
-void play(double *output) {//this is where the magic happens. Very slow magic.
-	
-	*output=beats.play();//just play the file. Looping is default for all play functions.
-	//	*output=beats.play(0.69);//play the file with a speed setting. 1. is normal speed.
-	//	*output=beats.play(0.5,0,beats.length);//linear interpolationplay with a frequency input, start point and end point. Useful for syncing.
-	//	*output=beats.play4(0.5,0,beats.length);//cubic interpolation play with a frequency input, start point and end point. Useful for syncing.
+void play(double *output) {
 	
 	
+	currentCount=(int)timer.phasor(1000);//this sets up a metronome that ticks every 2 seconds
+	
+	if (lastCount!=currentCount) {//if we have a new timer int this sample, play the sound
+				
+		cout << "tick\n";//the clock ticks
+		blob++;
+		cout << blob;
+		cout << "\n";
+		lastCount=0;//set lastCount to 0
+	}
+		
 }
-

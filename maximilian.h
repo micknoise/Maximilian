@@ -160,7 +160,6 @@ public:
 	
 };
 
-
 class maxiSample  {
 	
 private:

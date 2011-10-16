@@ -1,27 +1,26 @@
 #include "maximilian.h"
 
+maxiSample beats;//We give our sample a name. It's called beats this time. We could have loads of them, but they have to have different names.
+maxiDyn compressor;
+double beat;
 
-maxiOsc timer;//this is the metronome
-int currentCount,lastCount,blob;//these values are used to check if we have a new beat this sample
 
 void setup() {//some inits
-	//nothing to go here this time	
 	
-	blob=0;
+	beats.load("/Users/mickgrierson/Documents/audio/59210__suonho__abstract_electrofunkbreakbeats_124bpm_mono.wav");//load in your samples. Provide the full path to a wav file.
+	printf("Summary:\n%s", beats.getSummary());//get info on samples if you like.
+	
 }
 
-void play(double *output) {
+void play(double *output) {//this is where the magic happens. Very slow magic.
+	
+	beat=beats.play();//just play the file. Looping is default for all play functions.
+	*output=compressor.compress(beat,100,0.01)*10;//OMG an evil compressor
+
+	//	*output=beats.play(0.69);//play the file with a speed setting. 1. is normal speed.
+	//	*output=beats.play(0.5,0,44100);//linear interpolationplay with a frequency input, start point and end point. Useful for syncing.
+	//	*output=beats.play4(0.5,0,44100);//cubic interpolation play with a frequency input, start point and end point. Useful for syncing.
 	
 	
-	currentCount=(int)timer.phasor(1000);//this sets up a metronome that ticks every 2 seconds
-	
-	if (lastCount!=currentCount) {//if we have a new timer int this sample, play the sound
-				
-		cout << "tick\n";//the clock ticks
-		blob++;
-		cout << blob;
-		cout << "\n";
-		lastCount=0;//set lastCount to 0
-	}
-		
 }
+

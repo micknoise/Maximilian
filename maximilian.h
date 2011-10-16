@@ -314,4 +314,22 @@ public:
 };
 
 
+class maxiDyn {
+
+	
+public:
+	double gate(double input, double threshold=0.9, long hold=1, double attack=1, double release=0.9995);
+	double compress(double input, double ratio=2.0, double threshold=0.5);
+	double input;
+	double ratio;
+	double threshold;
+	double output;
+	long attack;
+	long release;
+	double amplitude;
+	long hold;
+	long holdcount;
+	int attackphase,holdphase,releasephase;
+};
+
 #endif

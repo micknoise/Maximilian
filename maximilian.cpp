@@ -842,11 +842,11 @@ double maxiDyn::compress(double input, double ratio, double threshold) {
 }
 
 /*reasonably happy with this. input is the input signal to gate, threshold is the threshold of the gate (default 0.9),
- hold is how long you want to hold after the attack finishes (default 1 sample). The envelopes are old school digital.
+ holdtime is how long you want to hold after the attack finishes (default 1 sample). The envelopes are old school digital.
  An attack of 1 is instant (default). An attack of 0.0015 is a few hundred ms. Likewise, a release 
  of 0. is instant and a release of 0.9995 (default) is a few hundred ms. When I can be arsed I'll work out
  what this ends up as in seconds and do the conversion. I may never be arsed. It seems a waste. */
-double maxiDyn::gate(double input, double threshold, long hold, double attack, double release) {
+double maxiDyn::gate(double input, double threshold, long holdtime, double attack, double release) {
 		
 	if (fabs(input)>threshold && attackphase!=1){ 
 		holdcount=0;
@@ -865,12 +865,12 @@ double maxiDyn::gate(double input, double threshold, long hold, double attack, d
 		holdphase=1;
 	}
 	
-	if (holdcount<hold && holdphase==1) {
+	if (holdcount<holdtime && holdphase==1) {
 		output=input;
 		holdcount++;
 	}
 	
-	if (holdcount==hold) {
+	if (holdcount==holdtime) {
 		holdphase=0;
 		releasephase=1;
 	}
@@ -883,3 +883,95 @@ double maxiDyn::gate(double input, double threshold, long hold, double attack, d
 	return output;
 }
 
+/* Lots of people struggle with the envelope generators so here's a new easy one. It takes mental numbers for attack and release tho */
+double maxiEnv::ar(double input, double attack, double release, long holdtime, int trigger) {
+	
+	if (trigger==1 && attackphase!=1 && holdphase!=1){ 
+		holdcount=0;
+		releasephase=0;
+		attackphase=1;
+	}
+	
+	if (attackphase==1) {
+		amplitude+=(1*attack);
+		output=input*amplitude;
+	}
+	
+	if (amplitude>=1) {
+		amplitude=1;
+		attackphase=0;
+		holdphase=1;
+	}
+	
+	if (holdcount<holdtime && holdphase==1) {
+		output=input;
+		holdcount++;
+	}
+	
+	if (holdcount==holdtime && trigger==1) {
+		output=input;
+	}
+	
+	if (holdcount==holdtime && trigger!=1) {
+		holdphase=0;
+		releasephase=1;
+	}
+
+	if (releasephase==1 && amplitude>0.) {
+		output=input*(amplitude*=release);
+		
+	}
+	
+	return output;
+}
+
+double maxiEnv::adsr(double input, double attack, double decay, double sustain, double release, long holdtime, int trigger) {
+	
+	if (trigger==1 && attackphase!=1 && holdphase!=1 && decayphase!=1){ 
+		holdcount=0;
+		decayphase=0;
+		sustainphase=0;
+		releasephase=0;
+		attackphase=1;
+	}
+	
+	if (attackphase==1) {
+		amplitude+=(1*attack);
+		output=input*amplitude;
+	}
+	
+	if (amplitude>=1) {
+		amplitude=1;
+		attackphase=0;
+		decayphase=1;
+	}
+	
+	if (decayphase==1) {
+		output=input*(amplitude*=decay);	
+		if (amplitude<=sustain) {
+			decayphase=0;
+			holdphase=1;
+		}
+	}
+	
+	if (holdcount<holdtime && holdphase==1) {
+		output=input*amplitude;
+		holdcount++;
+	}
+	
+	if (holdcount==holdtime && trigger==1) {
+		output=input*amplitude;
+	}
+	
+	if (holdcount==holdtime && trigger!=1) {
+		holdphase=0;
+		releasephase=1;
+	}
+	
+	if (releasephase==1 && amplitude>0.) {
+		output=input*(amplitude*=release);
+		
+	}
+	
+	return output;
+}

@@ -318,18 +318,37 @@ class maxiDyn {
 
 	
 public:
-	double gate(double input, double threshold=0.9, long hold=1, double attack=1, double release=0.9995);
+	double gate(double input, double threshold=0.9, long holdtime=1, double attack=1, double release=0.9995);
 	double compress(double input, double ratio=2.0, double threshold=0.5);
 	double input;
 	double ratio;
 	double threshold;
 	double output;
-	long attack;
-	long release;
+	double attack;
+	double release;
 	double amplitude;
-	long hold;
+	long holdtime;
 	long holdcount;
 	int attackphase,holdphase,releasephase;
+};
+
+class maxiEnv {
+	
+	
+public:
+	double ar(double input, double attack=1, double release=0.9, long holdtime=1, int trigger=0);
+	double adsr(double input, double attack=1, double decay=0.99, double sustain=0.125, double release=0.9, long holdtime=1, int trigger=0);
+	double input;
+	double output;
+	double attack;
+	double decay;
+	double sustain;
+	double release;
+	double amplitude;
+	int trigger;
+	long holdtime;
+	long holdcount;
+	int attackphase,decayphase,sustainphase,holdphase,releasephase;
 };
 
 #endif

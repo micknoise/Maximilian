@@ -925,6 +925,8 @@ double maxiEnv::ar(double input, double attack, double release, long holdtime, i
 	return output;
 }
 
+/* and here's a new adsr. It's not bad, very simple to use*/
+
 double maxiEnv::adsr(double input, double attack, double decay, double sustain, double release, long holdtime, int trigger) {
 	
 	if (trigger==1 && attackphase!=1 && holdphase!=1 && decayphase!=1){ 

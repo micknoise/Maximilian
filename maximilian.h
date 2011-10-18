@@ -116,6 +116,7 @@ class maxiDelayline {
 	double memory[88200];
 	
 public:
+	maxiDelayline();
 	double dl(double input, int size, double feedback);
 	double dl(double input, int size, double feedback, int position);
 
@@ -349,6 +350,11 @@ public:
 	long holdtime;
 	long holdcount;
 	int attackphase,decayphase,sustainphase,holdphase,releasephase;
+};
+
+class convert {
+	public:
+	double mtof(int midinote);
 };
 
 #endif

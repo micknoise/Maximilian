@@ -820,9 +820,7 @@ void maxiSample::getLength() {
 	length=myDataSize*0.5;	
 }
 
-/* This is a basic compressor. Can also do expansion. It takes standard args for ratio and threshold
- although threshold is in linear amplitude at the moment. It has some crotchety old excuse for gain compensation
- which will do for now, but if you do choose to use it for expansion, watch out as it will bite you in the bum*/
+/* This is a basic compressor. don't use it until the enveloping is finished */
 
 double maxiDyn::compress(double input, double ratio, double threshold) {
 	
@@ -841,11 +839,7 @@ double maxiDyn::compress(double input, double ratio, double threshold) {
 	return output;
 }
 
-/*reasonably happy with this. input is the input signal to gate, threshold is the threshold of the gate (default 0.9),
- holdtime is how long you want to hold after the attack finishes (default 1 sample). The envelopes are old school digital.
- An attack of 1 is instant (default). An attack of 0.0015 is a few hundred ms. Likewise, a release 
- of 0. is instant and a release of 0.9995 (default) is a few hundred ms. When I can be arsed I'll work out
- what this ends up as in seconds and do the conversion. I may never be arsed. It seems a waste. */
+/* ok this isn't quite ready */
 double maxiDyn::gate(double input, double threshold, long holdtime, double attack, double release) {
 		
 	if (fabs(input)>threshold && attackphase!=1){ 

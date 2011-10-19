@@ -13,7 +13,7 @@ void setup() {//some inits
 
 void play(double *output) {//this is where the magic happens. Very slow magic.
 	
-	out=compressor.compressor(beats.play(),30,0.5,0.0005,0.995);//just play the file. Looping is default for all play functions.
+	out=compressor.compressor(beats.play(),50,0.5,0.0005,0.995);//just play the file. Looping is default for all play functions.
 
 	output[0]=out;	
 	output[1]=out;	

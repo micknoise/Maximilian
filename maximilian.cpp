@@ -870,7 +870,9 @@ double maxiDyn::gate(double input, double threshold, long holdtime, double attac
 	return output;
 }
 
-/* this is evil. leave it alone*/
+/* OK this compressor is now ready to use. The envelopes, like all the envelopes in this recent update, use stupid algorithms for 
+ incrementing - consequently a long attack is something like 0.0001 and a long release is like 0.9999.
+ Annoyingly, a short attack is 0.1, and a short release is 0.99. I'll sort this out laters */
 
 double maxiDyn::compressor(double input, double ratio, double threshold, double attack, double release) {
 	

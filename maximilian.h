@@ -320,9 +320,10 @@ class maxiDyn {
 	
 public:
 	double gate(double input, double threshold=0.9, long holdtime=1, double attack=1, double release=0.9995);
-	double compress(double input, double ratio=2.0, double threshold=0.5);
+	double compressor(double input, double ratio, double threshold=0.9, double attack=1, double release=0.9995);
 	double input;
 	double ratio;
+	double currentRatio;
 	double threshold;
 	double output;
 	double attack;

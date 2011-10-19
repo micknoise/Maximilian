@@ -831,26 +831,8 @@ void maxiSample::getLength() {
 	length=myDataSize*0.5;	
 }
 
-/* This is a basic compressor. don't use it until the enveloping is finished */
 
-double maxiDyn::compress(double input, double ratio, double threshold) {
-	
-	if (fabs(input)>threshold) {
-		if (input>0.) {
-			output = 1-threshold+(((input-threshold)/ratio)+threshold);
-		} else {
-			output = 1-threshold+(((input+threshold)/ratio)-threshold);
-		}
-
-	}
-	
-	else {
-		output=input+(1-threshold);
-	}
-	return output;
-}
-
-/* ok this isn't quite ready */
+/* working */
 double maxiDyn::gate(double input, double threshold, long holdtime, double attack, double release) {
 		
 	if (fabs(input)>threshold && attackphase!=1){ 
@@ -888,7 +870,44 @@ double maxiDyn::gate(double input, double threshold, long holdtime, double attac
 	return output;
 }
 
-/* Lots of people struggle with the envelope generators so here's a new easy one. It takes mental numbers for attack and release tho */
+/* this is evil. leave it alone*/
+
+double maxiDyn::compressor(double input, double ratio, double threshold, double attack, double release) {
+	
+	if (fabs(input)>threshold && attackphase!=1){ 
+		holdcount=0;
+		releasephase=0;
+		attackphase=1;
+		if(currentRatio==0) currentRatio=0.01;
+	}
+	
+	if (attackphase==1 && currentRatio<ratio-1) {
+		currentRatio*=(1+attack);
+	}
+	
+	if (currentRatio>=ratio-1) {
+		attackphase=0;
+		releasephase=1;
+	}
+	
+	if (releasephase==1 && currentRatio>0.) {
+		currentRatio*=release;
+		
+	}
+	
+	if (input>0.) {
+		output = ((input-threshold)/1.+currentRatio)+threshold;
+	} else {
+		output = ((input+threshold)/1.+currentRatio)-threshold;
+	}
+	
+	return output;
+}
+
+
+/* Lots of people struggle with the envelope generators so here's a new easy one.
+ It takes mental numbers for attack and release tho. Basically, they're exponentials.
+ I'll map them out later so that it's a bit more intuitive */
 double maxiEnv::ar(double input, double attack, double release, long holdtime, int trigger) {
 	
 	if (trigger==1 && attackphase!=1 && holdphase!=1){ 

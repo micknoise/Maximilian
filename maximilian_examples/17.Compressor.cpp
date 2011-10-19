@@ -6,7 +6,7 @@ double out;
 
 void setup() {//some inits
 	
-	beats.load("/Users/mick/Desktop/schub.wav");//load in your samples. Provide the full path to a wav file.
+	beats.load("/Users/yourusername/somewhere/schub.wav");//load in your samples. Provide the full path to a wav file.
 	printf("Summary:\n%s", beats.getSummary());//get info on samples if you like.
 	
 }
@@ -15,8 +15,8 @@ void play(double *output) {//this is where the magic happens. Very slow magic.
 	
 	
 	//here, we're just compressing the file in real-time
-	//arguments are input,ratio,threshold,attack,release. a long attack is something like 0.0001 and a long release is like 0.9999.
-	out=compressor.compressor(beats.play(),20,0.25,0.0005,0.9999);
+	//arguments are input,ratio,threshold,attack,release
+	out=compressor.compressor(beats.play(),5,0.25,0.0001,0.9999);
 
 	output[0]=out;	
 	output[1]=out;	

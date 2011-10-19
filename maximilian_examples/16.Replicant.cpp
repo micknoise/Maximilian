@@ -21,13 +21,13 @@ int leadLinePitch[15]={69,67,65,64,67,66,64,62,65,64,62,57,55,60,57};
 
 
 void setup() {//some inits
-	
+
 }
 
 void play(double *output) {//this is where the magic happens. Very slow magic.
-	
+
 	currentCount=(int)timer.phasor(9);//this sets up a metronome that ticks every so often
-	
+
 	if (lastCount!=currentCount) {//if we have a new timer int this sample, play the sound
 		trigger=1;//play the arpeggiator line
 		trigger2=leadLineTrigger[playHead%256];//play the lead line
@@ -46,17 +46,16 @@ void play(double *output) {//this is where the magic happens. Very slow magic.
 		//cout << "tick\n";//the clock ticks
 		lastCount=0;//set lastCount to 0
 	}
-	
+
 	bassout=filter2.lores(envelope.adsr(bass.saw(currentPitch*0.5)+sound.pulse(currentPitch*0.5,mod.phasor(1)),1,0.9995, 0.25, 0.9995, 1, trigger),9250,2);//new, simple ADSR. 
 	leadout=filter.lores(leadenvelope.ar(lead2.saw(leadPitch*4)+lead.pulse(leadPitch+(leadmod.sinebuf(1.9)*1.5), 0.6), 0.00005, 0.999975, 50000, trigger2),5900,10);//leadline
-	
+
 	delayout=(leadout+(delay.dl(leadout, 14000, 0.8)*0.5))/2;//add some delay
-	
+
 	if(trigger!=0)trigger=0;//set the trigger to off if you want it to trigger immediately next time.
 
-	
+
 	output[0]=(bassout+delayout)/2;//sum output
 	output[1]=(bassout+delayout)/2;
 
 }
-

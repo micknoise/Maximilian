@@ -13,16 +13,14 @@ void setup() {//some inits
 
 void play(double *output) {//this is where the magic happens. Very slow magic.
 	
-	out=compressor.compressor(beats.play(),1,0.02,0.0005,0.9995);//just play the file. Looping is default for all play functions.
+	out=compressor.compressor(beats.play(),30,0.5,0.0005,0.995);//just play the file. Looping is default for all play functions.
 
-	
 	output[0]=out;	
 	output[1]=out;	
 	
 	//	*output=beats.play(0.69);//play the file with a speed setting. 1. is normal speed.
 	//	*output=beats.play(0.5,0,44100);//linear interpolationplay with a frequency input, start point and end point. Useful for syncing.
 	//	*output=beats.play4(0.5,0,44100);//cubic interpolation play with a frequency input, start point and end point. Useful for syncing.
-	
-	
+
 }
 

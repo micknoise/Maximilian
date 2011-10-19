@@ -896,12 +896,12 @@ double maxiDyn::compressor(double input, double ratio, double threshold, double 
 	}
 	
 	if (input>0.) {
-		output = ((input-threshold)/1.+currentRatio)+threshold;
+		output = input/(1.+currentRatio);
 	} else {
-		output = ((input+threshold)/1.+currentRatio)-threshold;
+		output = input/(1.+currentRatio);
 	}
 	
-	return output;
+	return output*ratio;
 }
 
 

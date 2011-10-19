@@ -857,11 +857,11 @@ double maxiDyn::gate(double input, double threshold, long holdtime, double attac
 		holdcount=0;
 		releasephase=0;
 		attackphase=1;
-		amplitude=0;
+		if(amplitude==0) amplitude=0.01;
 	}
 	
 	if (attackphase==1 && amplitude<1) {
-		amplitude+=(1*attack);
+		amplitude*=(1+attack);
 		output=input*amplitude;
 	}
 	

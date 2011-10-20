@@ -881,7 +881,7 @@ double maxiDyn::compressor(double input, double ratio, double threshold, double 
 		holdcount=0;
 		releasephase=0;
 		attackphase=1;
-		if(currentRatio==0) currentRatio=0.01;
+		if(currentRatio==0) currentRatio=ratio;
 	}
 	
 	if (attackphase==1 && currentRatio<ratio-1) {
@@ -894,8 +894,7 @@ double maxiDyn::compressor(double input, double ratio, double threshold, double 
 	}
 	
 	if (releasephase==1 && currentRatio>0.) {
-		currentRatio*=release;
-		
+		currentRatio*=release;		
 	}
 	
 	if (input>0.) {
@@ -904,7 +903,7 @@ double maxiDyn::compressor(double input, double ratio, double threshold, double 
 		output = input/(1.+currentRatio);
 	}
 	
-	return output*ratio;
+	return output*(1+log(ratio));
 }
 
 

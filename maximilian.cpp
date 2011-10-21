@@ -257,7 +257,7 @@ double maxiFilter::hipass(double input, double cutoff) {
 double maxiFilter::lores(double input,double cutoff1, double resonance) {
 	cutoff=cutoff1*0.5;
 	if (cutoff<10) cutoff=10;
-	if (cutoff>(maxiSettings::sampleRate*0.25)) cutoff=(maxiSettings::sampleRate*0.25);
+	if (cutoff>(maxiSettings::sampleRate*0.5)) cutoff=(maxiSettings::sampleRate*0.5);
 	if (resonance<1.) resonance = 1.;
 	z=cos(TWOPI*cutoff/maxiSettings::sampleRate);
 	c=2-2*z;
@@ -273,7 +273,7 @@ double maxiFilter::lores(double input,double cutoff1, double resonance) {
 double maxiFilter::hires(double input,double cutoff1, double resonance) {
 	cutoff=cutoff1*0.5;
 	if (cutoff<10) cutoff=10;
-	if (cutoff>(maxiSettings::sampleRate*0.25)) cutoff=(maxiSettings::sampleRate*0.25);
+	if (cutoff>(maxiSettings::sampleRate*0.5)) cutoff=(maxiSettings::sampleRate*0.5);
 	if (resonance<1.) resonance = 1.;
 	z=cos(TWOPI*cutoff/maxiSettings::sampleRate);
 	c=2-2*z;
@@ -434,7 +434,8 @@ double maxiSample::play() {
 	position=(position+1);
 	remainder = position - (long) position;
 	if ((long) position>length) position=0;
-	output = (double) ((1-remainder) * buffer[1+ (long) position] + remainder * buffer[2+(long) position])/32767;//linear interpolation
+	output =
+	(double) ((1-remainder) * buffer[1+ (long) position] + remainder * buffer[2+(long) position])/32767;//linear interpolation
 	return(output);
 }
 
@@ -830,7 +831,6 @@ double maxiSample::bufferPlay4(unsigned char &bufferin,double frequency, double 
 void maxiSample::getLength() {
 	length=myDataSize*0.5;	
 }
-
 
 
 /* OK this compressor and gate are now ready to use. The envelopes, like all the envelopes in this recent update, use stupid algorithms for 

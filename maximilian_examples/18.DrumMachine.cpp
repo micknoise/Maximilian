@@ -15,7 +15,7 @@ void setup() {//some inits
 	
 	kick.load("/Users/mickgrierson/Documents/audio/blip.wav");//load in your samples. Provide the full path to a wav file.
 	snare.load("/Users/mickgrierson/Documents/audio/snare.wav");//load in your samples. Provide the full path to a wav file.
-
+	
 	
 	printf("Summary:\n%s", kick.getSummary());//get info on samples if you like.
 	//beats.getLength();
@@ -35,9 +35,9 @@ void play(double *output) {//this is where the magic happens. Very slow magic.
 	}
 	
 	if (kicktrigger==1) {
-	
+		
 		kick.trigger();
-	
+		
 	}
 	
 	if (snaretrigger==1) {
@@ -46,8 +46,8 @@ void play(double *output) {//this is where the magic happens. Very slow magic.
 		
 	}
 	
-		sampleOut=kick.playOnce()+snare.playOnce();//just play the file. Looping is default for all play functions.
-
-		*output=sampleOut;
+	sampleOut=kick.playOnce()+snare.playOnce();//just play the file. Looping is default for all play functions.
+	
+	*output=sampleOut;
 	
 }

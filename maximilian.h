@@ -183,6 +183,7 @@ public:
 	long length;
 	void getLength();
 
+
 	char* 	myData;
 	
 	// get/set for the Path property

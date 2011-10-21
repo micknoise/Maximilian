@@ -1,11 +1,11 @@
 #include "maximilian.h"
 
-maxiSample kick,snare; //We give our sample a name. It's called beats this time. We could have loads of them, but they have to have different names.
+maxiSample kick,snare; //we've got two sampleplayers
 
-maxiOsc timer;
+maxiOsc timer; //and a timer
 
-int currentCount,lastCount,playHead,hit[16]={1,0,0,1,0,0,1,0,0,1,0,0,1,0,0,0};
-int snarehit[16]={0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0};
+int currentCount,lastCount,playHead,hit[16]={1,0,0,1,0,0,1,0,0,1,0,0,1,0,0,1}; //This is the sequence for the kick
+int snarehit[16]={0,0,0,0,1,0,0,0,0,0,0,0,1,1,0,0};//This is the sequence for the snare
 
 int kicktrigger,snaretrigger;
 
@@ -13,8 +13,10 @@ double sampleOut;
 
 void setup() {//some inits
 	
-	kick.load("/Users/mickgrierson/Documents/audio/blip.wav");//load in your samples. Provide the full path to a wav file.
-	snare.load("/Users/mickgrierson/Documents/audio/snare.wav");//load in your samples. Provide the full path to a wav file.
+    //YOU HAVE TO PROVIDE THE SAMPLES....
+    
+	kick.load("/Users/yourusername/somewhere/kick.wav");//load in your samples. Provide the full path to a wav file.
+	snare.load("/Users/yourusername/somewhere/snare.wav");//load in your samples. Provide the full path to a wav file.
 	
 	
 	printf("Summary:\n%s", kick.getSummary());//get info on samples if you like.
@@ -23,31 +25,34 @@ void setup() {//some inits
 
 void play(double *output) {//this is where the magic happens. Very slow magic.
 	
-	currentCount=(int)timer.phasor(4);//this sets up a metronome that ticks 8 times a second
+	currentCount=(int)timer.phasor(8);//this sets up a metronome that ticks 8 times a second
 	
 	
 	if (lastCount!=currentCount) {//if we have a new timer int this sample, play the sound
 		
-		kicktrigger=hit[playHead%16];
-		snaretrigger=snarehit[playHead%16];
-		playHead++;
-		lastCount=0;
+		kicktrigger=hit[playHead%16];//get the value out of the array for the kick
+		snaretrigger=snarehit[playHead%16];//same for the snare
+		playHead++;//iterate the playhead
+		lastCount=0;//reset the metrotest
 	}
 	
-	if (kicktrigger==1) {
+	if (kicktrigger==1) {//if the sequence has a 1 in it
 		
-		kick.trigger();
+		kick.trigger();//reset the playback position of the sample to 0 (the beginning)
 		
 	}
 	
 	if (snaretrigger==1) {
 		
-		snare.trigger();
+		snare.trigger();//likewise for the snare
 		
 	}
 	
-	sampleOut=kick.playOnce()+snare.playOnce();//just play the file. Looping is default for all play functions.
+	sampleOut=kick.playOnce()+snare.playOnce();//just play the file. No looping.
 	
-	*output=sampleOut;
+	output[0]=sampleOut;//left channel
+	output[1]=sampleOut;//right channel
 	
+	kicktrigger = 0;//set trigger to 0 at the end of each sample to guarantee retriggering.
+	snaretrigger = 0;
 }

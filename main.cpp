@@ -33,7 +33,6 @@ void setup() {//some inits
 
 void play(double *output) {//this is where the magic happens. Very slow magic.
 	
-	bassout=0;
 	
 	currentCount=(int)timer.phasor(8);//this sets up a metronome that ticks 8 times a second
 	
@@ -59,7 +58,7 @@ void play(double *output) {//this is where the magic happens. Very slow magic.
 	}
 	
 
-		bassout+=basscompress.compressor(sound1.pulse(slew.lopass(bassfreq/2,0.001), sound2.phasor(8)*0.25),10,0.5,0.0001,0.995)*0.25;		
+		bassout=basscompress.compressor(sound1.pulse(slew.lopass(bassfreq/2,0.001), sound2.phasor(8)*0.25),10,0.5,0.0001,0.995)*0.25;		
 		
 		sampleOut=compress.compressor(kick.playOnce()+snare.playOnce(),5,0.5),0.0001,0.9995;//just play the file. No looping.
 

@@ -79,12 +79,13 @@ public:
 	double phasor(double frequency);
 	double phasor(double frequency, double startphase, double endphase);
 	double saw(double frequency);
-	double triangle(double frequency,double phase);
+	double triangle(double frequency);
 	double square(double frequency);
 	double pulse(double frequency, double duty);
 	double noise();
 	double sinebuf(double frequency);
 	double sinebuf4(double frequency);
+	void phaseReset(double phaseIn);
 	
 };
 

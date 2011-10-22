@@ -66,6 +66,11 @@ double maxiOsc::noise() {
 	return(output);
 }
 
+void maxiOsc::phaseReset(double phaseIn) {
+	phase=phaseIn;
+	
+}
+
 double maxiOsc::sinewave(double frequency) {
 	output=sin (phase*(TWOPI));
 	if ( phase >= 1.0 ) phase -= 1.0;
@@ -164,14 +169,13 @@ double maxiOsc::saw(double frequency) {
 	
 } 
 
-double maxiOsc::triangle(double frequency, double phase) {
-	output=tri*2;
+double maxiOsc::triangle(double frequency) {
 	if ( phase >= 1.0 ) phase -= 1.0;
-	phase += (1./(maxiSettings::sampleRate/(frequency*chandiv)));
+	phase += (1./(maxiSettings::sampleRate/(frequency)));
 	if (phase <= 0.5 ) {
-		tri = phase;
-	} else {	
-		tri =(1-phase);
+		output =((phase)*4)-1;
+	} else {
+		output =((0.5-phase)*4)-1;
 	}
 	return(output);
 	

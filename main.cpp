@@ -6,7 +6,7 @@ maxiDyn compress,basscompress;
 
 maxiOsc sound1,sound2,sound3;
 
-maxiFilter slew;//we'regoing to use this low pass filter for portamentor
+maxiFilter slew;//we're going to use this low pass filter for portamento
 
 maxiOsc timer; //and a timer
 

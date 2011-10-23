@@ -20,12 +20,10 @@ int kicktrigger,snaretrigger,basslinetrigger;
 double sampleOut,bassout,bassfreq,temp;
 
 void setup() {//some inits
-	
-    //YOU HAVE TO PROVIDE THE SAMPLES....
-    
+	    
 	kick.load("../../blip.wav");//load in your samples. Provide the full path to a wav file.
 	snare.load("../../snare.wav");//load in your samples. Provide the full path to a wav file.
-
+	
 	
 	printf("Summary:\n%s", kick.getSummary());//get info on samples if you like.
 	//beats.getLength();
@@ -47,9 +45,9 @@ void play(double *output) {//this is where the magic happens. Very slow magic.
 	}
 	
 	if (kicktrigger==1 && playHead>64) {//if the sequence has a 1 in it
-	
+		
 		kick.trigger();//reset the playback position of the sample to 0 (the beginning)
-	
+		
 	}
 	
 	if (snaretrigger==1 &&playHead>32) {
@@ -57,14 +55,14 @@ void play(double *output) {//this is where the magic happens. Very slow magic.
 		
 	}
 	
-
-		bassout=basscompress.compressor(sound1.pulse(slew.lopass(bassfreq/2,0.001), sound2.phasor(8)*0.25),10,0.5,0.0001,0.995)*0.25;		
-		
-		sampleOut=compress.compressor(kick.playOnce()+snare.playOnce(),5,0.5),0.0001,0.9995;//just play the file. No looping.
-
-		output[0]=sampleOut+bassout;//left channel
-        output[1]=sampleOut+bassout;//right channel
-
-        kicktrigger = 0;//set trigger to 0 at the end of each sample to guarantee retriggering.
-        snaretrigger = 0;
+	
+	bassout=basscompress.compressor(sound1.pulse(slew.lopass(bassfreq/2,0.001), sound2.phasor(8)*0.25),10,0.5,0.0001,0.995)*0.25;		
+	
+	sampleOut=compress.compressor(kick.playOnce()+snare.playOnce(),5,0.5),0.0001,0.9995;//just play the file. No looping.
+	
+	output[0]=sampleOut+bassout;//left channel
+	output[1]=sampleOut+bassout;//right channel
+	
+	kicktrigger = 0;//set trigger to 0 at the end of each sample to guarantee retriggering.
+	snaretrigger = 0;
 }

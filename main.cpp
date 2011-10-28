@@ -58,7 +58,7 @@ void play(double *output) {//this is where the magic happens. Very slow magic.
 	
 	bassout=basscompress.compressor(sound1.pulse(slew.lopass(bassfreq/2,0.001), sound2.phasor(8)*0.25),5,0.5,0.0001,0.995)*0.125;		
 	
-	sampleOut=compress.compressor(kick.playOnce(0.5)+snare.playOnce(0.5),1,0.5),0.01,0.9995;//just play the file. No looping.
+	sampleOut=compress.compressor(kick.playOnce(1)+snare.playOnce(0.5),1,0.5),0.01,0.9995;//just play the file. No looping.
 	
 	output[0]=sampleOut+bassout;//left channel
 	output[1]=sampleOut+bassout;//right channel

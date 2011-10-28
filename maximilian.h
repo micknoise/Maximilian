@@ -216,6 +216,8 @@ public:
 	
 	double playOnce();
 	
+	double playOnce(double speed);
+	
 	double play(double speed);
 	
 	double play(double frequency, double start, double end, double &pos);

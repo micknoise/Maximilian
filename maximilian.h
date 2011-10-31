@@ -137,6 +137,7 @@ class maxiFilter {
 	double z;//pole
 	double c;//filter coefficient
 public:
+	maxiFilter():x(0.0), y(0.0), z(0.0), c(0.0){};
 	double cutoff;
 	double resonance;
 	double lores(double input,double cutoff1, double resonance);
@@ -173,12 +174,12 @@ private:
 	int   	myByteRate;
 	short 	myBlockAlign;
 	short 	myBitsPerSample;
-	int	myDataSize;
 	double position;
 	double speed;
 	double output;
 	
 public:
+	int	myDataSize;
 	short 	myChannels;
 	int   	mySampleRate;
 	long length;
@@ -191,7 +192,7 @@ public:
 
 	~maxiSample()
 	{
-		delete myData;
+		if (myData) delete[] myData;
 		myChunkSize = NULL;
 		mySubChunk1Size = NULL;
 		myFormat = NULL;
@@ -203,7 +204,7 @@ public:
 		myDataSize = NULL;
 	}
 	
-//	maxiSample();
+	maxiSample():myData(NULL){};
 
 	bool load(string fileName, int channel=0);
 	

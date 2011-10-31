@@ -1,55 +1,61 @@
 #include "maximilian.h"
 
-//this tutorial explains how to use the maxiEnv
+//Bizarelly, this sounds a little bit like Kraftwerk's 'Metropolis', although it isn't. Funny that. 
 
-maxiSample sound1;
+maxiOsc sound,bass,timer,mod,lead,lead2,leadmod;//here are the synth bits
+maxiEnv envelope, leadenvelope;//some envelopes
+maxiFilter filter, filter2;//some filters
+maxiDelayline delay;//a delay
+convert mtof;//a method for converting midi notes to frequency
+double bassout,leadout, delayout;//some variables to hold the data and pass it around
+int trigger, trigger2, newnote;//some control variables
+int currentCount,lastCount,playHead=0, currentChord=0;//some other control variables
+int pitch[8]={57,57,59,60};//the bassline for the arpeggio
+int chord[8]={0,0,7,2,5,5,0,0};//the root chords for the arpeggio
+float currentPitch,leadPitch;//the final pitch variables
 
-maxiOsc timer,snarePhase; //and a timer
+//here's the lead line trigger array, followed by the pitches
+int leadLineTrigger[256]={1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+int leadLinePitch[15]={69,67,65,64,67,66,64,62,65,64,62,57,55,60,57};
 
-maxiEnv envelope;//this is going to be an envelope
 
-int currentCount,lastCount,playHead,
-
-sequence[16]={1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0}; //This is the sequence for the kick
-
-int sampleTrigger;
-
-double sampleOut;
 
 void setup() {//some inits
 	
-    //YOU HAVE TO PROVIDE THE SAMPLES....
-    
-	sound1.load("/Users/mickgrierson/Documents/audio/68373__juskiddink__Cello_open_string_bowed.wav");//load in your samples. Provide the full path to a wav file.
-	
-	
-	printf("Summary:\n%s", sound1.getSummary());//get info on samples if you like.
-	//beats.getLength();
 }
 
 void play(double *output) {//this is where the magic happens. Very slow magic.
 	
-	currentCount=(int)timer.phasor(8);//this sets up a metronome that ticks 8 times a second
-	
+	currentCount=(int)timer.phasor(9);//this sets up a metronome that ticks every so often
 	
 	if (lastCount!=currentCount) {//if we have a new timer int this sample, play the sound
-		
-		sampleTrigger=sequence[playHead%16];
+		trigger=1;//play the arpeggiator line
+		trigger2=leadLineTrigger[playHead%256];//play the lead line
+		if (trigger2==1) {//if we are going to play a note
+			leadPitch=mtof.mtof(leadLinePitch[newnote]);//get the next pitch val
+			newnote++;//and iterate
+			if (newnote>14) {
+				newnote=0;//make sure we don't go over the edge of the array
+			}
+		}
+		currentPitch=mtof.mtof(pitch[(playHead%4)]+chord[currentChord%8]);//write the frequency val into currentPitch
 		playHead++;//iterate the playhead
-		lastCount=0;//reset the metrotest
-	
+		if (playHead%32==0) {//wrap every 4 bars
+			currentChord++;//change the chord
+		}
+		//cout << "tick\n";//the clock ticks
+		lastCount=0;//set lastCount to 0
 	}
 	
-	//the envelope we're using here is an AR envelope.
-	//It has an input (which in this case is a sound)
-	//It has an attack coefficient, a hold val (in samples)
-	//and a release coefficient. Finally, it has a trigger input.
-	//If you stick a 1 in the trigger input, it retriggers the envelope
-	sampleOut=envelope.ar(sound1.play(1.), 0.1, 0.9999, 1, sampleTrigger); //
-		
-	output[0]=sampleOut;//left channel
-	output[1]=sampleOut;//right channel
+	bassout=filter2.lores(envelope.adsr(bass.saw(currentPitch*0.5)+sound.pulse(currentPitch*0.5,mod.phasor(1)),1,0.9995, 0.25, 0.9995, 1, trigger),9250,2);//new, simple ADSR. 
+	leadout=filter.lores(leadenvelope.ar(lead2.saw(leadPitch*4)+lead.pulse(leadPitch+(leadmod.sinebuf(1.9)*1.5), 0.6), 0.00005, 0.999975, 50000, trigger2),5900,10);//leadline
 	
-	sampleTrigger = 0;//set trigger to 0 at the end of each sample to guarantee retriggering.
-
+	delayout=(leadout+(delay.dl(leadout, 14000, 0.8)*0.5))/2;//add some delay
+	
+	if(trigger!=0)trigger=0;//set the trigger to off if you want it to trigger immediately next time.
+	
+	
+	output[0]=(bassout+delayout)/2;//sum output
+	output[1]=(bassout+delayout)/2;
+	
 }

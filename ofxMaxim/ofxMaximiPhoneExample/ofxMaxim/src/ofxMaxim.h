@@ -34,7 +34,9 @@
 #define _OFMAXIM_H
 
 #include "maximilian.h"
-//#include "maxiFFT.h"
+#include "maxiFFT.h"
+#include "maxiGrains.h"
+#include "maxiMFCC.h"
 
 
 typedef maxiMix ofxMaxiMix;
@@ -43,8 +45,11 @@ typedef maxiEnvelope ofxMaxiEnvelope;
 typedef maxiDelayline ofxMaxiDelayline;
 typedef maxiFilter ofxMaxiFilter;
 typedef maxiSample ofxMaxiSample;
-//typedef maxiFFT ofxMaxiFFT;
-//typedef maxiIFFT ofxMaxiIFFT;
-//typedef maxiFFTOctaveAnalyzer ofxMaxiFFTOctaveAnalyzer;
+typedef maxiFFT ofxMaxiFFT;
+typedef maxiIFFT ofxMaxiIFFT;
+typedef maxiFFTOctaveAnalyzer ofxMaxiFFTOctaveAnalyzer;
+typedef maxiSettings ofxMaxiSettings;
+typedef maxiMFCC ofxMaxiMFCC;
+
 
 #endif

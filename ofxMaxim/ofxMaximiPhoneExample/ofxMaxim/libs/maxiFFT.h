@@ -37,29 +37,37 @@
 
 
 #include "fft.h"
+#include "stddef.h"
 
 class maxiFFT {
 	
 public:
 	maxiFFT(){
-		_fft = 0;
+		_fft = NULL; 
+		buffer = magnitudes = phases  = window = avgPower = NULL;
 	};
 	~maxiFFT();
 	void setup(int fftSize, int windowSize, int hopSize);
 	bool process(float value);
-	float *magnitudes, *phases, *powers;
+	float* magsToDB();
+	float *magnitudes, *phases, *magnitudesDB;
 	float *avgPower;
 	int windowSize;
 	int hopSize;
+	int bins;
+	
+	//features
+	float spectralFlatness();
+	float spectralCentroid();
 
 private:
 	float *buffer, *window;
-	int bins;
 	int pos;
 	float nextValue;
 	int fftSize;
 	fft *_fft;
 	bool newFFT;
+
 };
 
 class maxiIFFT {

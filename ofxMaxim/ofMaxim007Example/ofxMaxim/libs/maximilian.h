@@ -70,7 +70,7 @@ class maxiOsc {
 	double endphase;
 	double output;
 	double tri;
-
+	
 	
 public:
 	maxiOsc();
@@ -79,12 +79,13 @@ public:
 	double phasor(double frequency);
 	double phasor(double frequency, double startphase, double endphase);
 	double saw(double frequency);
-	double triangle(double frequency,double phase);
+	double triangle(double frequency);
 	double square(double frequency);
 	double pulse(double frequency, double duty);
 	double noise();
 	double sinebuf(double frequency);
 	double sinebuf4(double frequency);
+	void phaseReset(double phaseIn);
 	
 };
 
@@ -96,6 +97,7 @@ class maxiEnvelope {
 	double startval;
 	double currentval;
 	double nextval;
+	int isPlaying;
 	
 public:	
 	double line(int numberofsegments,double segments[100]);
@@ -115,9 +117,10 @@ class maxiDelayline {
 	double memory[88200];
 	
 public:
+	maxiDelayline();
 	double dl(double input, int size, double feedback);
 	double dl(double input, int size, double feedback, int position);
-
+	
 	
 };
 
@@ -134,6 +137,7 @@ class maxiFilter {
 	double z;//pole
 	double c;//filter coefficient
 public:
+	maxiFilter():x(0.0), y(0.0), z(0.0), c(0.0){};
 	double cutoff;
 	double resonance;
 	double lores(double input,double cutoff1, double resonance);
@@ -159,35 +163,36 @@ public:
 	
 };
 
-
 class maxiSample  {
 	
 private:
 	string 	myPath;
 	int 	myChunkSize;
 	int	mySubChunk1Size;
+	int		readChannel;
 	short 	myFormat;
 	int   	myByteRate;
 	short 	myBlockAlign;
 	short 	myBitsPerSample;
-	int	myDataSize;
 	double position;
 	double speed;
 	double output;
 	
 public:
+	int	myDataSize;
 	short 	myChannels;
 	int   	mySampleRate;
 	long length;
 	void getLength();
-
+	
+	
 	char* 	myData;
 	
 	// get/set for the Path property
-
+	
 	~maxiSample()
 	{
-		delete myData;
+		if (myData) delete[] myData;
 		myChunkSize = NULL;
 		mySubChunk1Size = NULL;
 		myFormat = NULL;
@@ -199,9 +204,9 @@ public:
 		myDataSize = NULL;
 	}
 	
-//	maxiSample();
-
-	bool load(string fileName);
+	maxiSample():myData(NULL){};
+	
+	bool load(string fileName, int channel=0);
 	
 	void trigger();
 	
@@ -212,12 +217,14 @@ public:
 	
 	double playOnce();
 	
+	double playOnce(double speed);
+	
 	double play(double speed);
 	
 	double play(double frequency, double start, double end, double &pos);
 	
 	double play(double frequency, double start, double end);
-		
+	
 	double play4(double frequency, double start, double end);
 	
 	double bufferPlay(unsigned char &bufferin,long length);
@@ -303,7 +310,7 @@ public:
 		val = max(min(val, inMax), inMin);
 		return pow((outMax / outMin), (val - inMin) / (inMax - inMin)) * outMin;
 	}
-
+	
 	static double inline explin(double val, double inMin, double inMax, double outMin, double outMax) {
 		//clipping
 		val = max(min(val, inMax), inMin);
@@ -312,5 +319,48 @@ public:
 	
 };
 
+
+class maxiDyn {
+	
+	
+public:
+	double gate(double input, double threshold=0.9, long holdtime=1, double attack=1, double release=0.9995);
+	double compressor(double input, double ratio, double threshold=0.9, double attack=1, double release=0.9995);
+	double input;
+	double ratio;
+	double currentRatio;
+	double threshold;
+	double output;
+	double attack;
+	double release;
+	double amplitude;
+	long holdtime;
+	long holdcount;
+	int attackphase,holdphase,releasephase;
+};
+
+class maxiEnv {
+	
+	
+public:
+	double ar(double input, double attack=1, double release=0.9, long holdtime=1, int trigger=0);
+	double adsr(double input, double attack=1, double decay=0.99, double sustain=0.125, double release=0.9, long holdtime=1, int trigger=0);
+	double input;
+	double output;
+	double attack;
+	double decay;
+	double sustain;
+	double release;
+	double amplitude;
+	int trigger;
+	long holdtime;
+	long holdcount;
+	int attackphase,decayphase,sustainphase,holdphase,releasephase;
+};
+
+class convert {
+public:
+	double mtof(int midinote);
+};
 
 #endif

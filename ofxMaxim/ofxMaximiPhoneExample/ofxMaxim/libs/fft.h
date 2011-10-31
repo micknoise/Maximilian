@@ -38,8 +38,10 @@
 #endif
 
 #ifdef __APPLE_CC__
-#include <Accelerate/Accelerate.h>
+	#include <Accelerate/Accelerate.h>
+	#warning Please link against the Accelerate framework
 #endif
+
 
 
 class fft {
@@ -61,12 +63,14 @@ public:
 	float *polar;
 	void powerSpectrum_vdsp(int start, float *data, float *window, float *magnitude,float *phase);	
 	void inversePowerSpectrum_vdsp(int start, float *finalOut, float *window, float *magnitude,float *phase);	
+	void convToDB_vdsp(float *in, float *out);
 #endif;
 	
 	/* Calculate the power spectrum */
-	void powerSpectrum(int start, float *data, float *window, float *magnitude, float *phase, float *power, float *avg_power);
+	void powerSpectrum(int start, float *data, float *window, float *magnitude, float *phase);
 	/* ... the inverse */
 	void inversePowerSpectrum(int start, float *finalOut, float *window, float *magnitude,float *phase);	
+	void convToDB(float *in, float *out);
 		
 	static void genWindow(int whichFunction, int NumSamples, float *window);
 	

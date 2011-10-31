@@ -31,6 +31,7 @@
  */
 
 #include "maxiFFT.h"
+#include "maximilian.h"
 #include <iostream>
 #include "math.h"
 
@@ -49,13 +50,13 @@ void maxiFFT::setup(int _fftSize, int _windowSize, int _hopSize) {
 	hopSize = _hopSize;
 	buffer = (float *) malloc(fftSize * sizeof(float));
 	magnitudes = (float *) malloc(bins * sizeof(float));
+	magnitudesDB = (float *) malloc(bins * sizeof(float));
 	phases = (float *) malloc(bins * sizeof(float));
-	powers = (float *) malloc(bins * sizeof(float));
 	avgPower = new float;
 	memset(buffer, 0, fftSize * sizeof(float));
 	memset(magnitudes, 0, bins * sizeof(float));
+	memset(magnitudesDB, 0, bins * sizeof(float));
 	memset(phases, 0, bins * sizeof(float));
-	memset(powers, 0, bins * sizeof(float));
 	*avgPower = 0;
 	pos =windowSize - hopSize;
 	newFFT = 0;
@@ -73,7 +74,7 @@ bool maxiFFT::process(float value) {
 #if defined(__APPLE_CC__) && !defined(_NO_VDSP)
 		_fft->powerSpectrum_vdsp(0, buffer, window, magnitudes, phases);
 #else
-		_fft->powerSpectrum(0, buffer, window, magnitudes, phases, powers, avgPower);		
+		_fft->powerSpectrum(0, buffer, window, magnitudes, phases);		
 #endif
 		//shift buffer back by one hop size
 		memcpy(buffer, buffer + hopSize, (windowSize - hopSize) * sizeof(float));
@@ -85,10 +86,42 @@ bool maxiFFT::process(float value) {
 	return newFFT;
 }
 
+float* maxiFFT::magsToDB() {
+#if defined(__APPLE_CC__) && !defined(_NO_VDSP)
+	_fft->convToDB_vdsp(magnitudes, magnitudesDB);
+#else
+	_fft->convToDB(magnitudes, magnitudesDB);
+#endif	
+	return magnitudesDB;
+}
+
+float maxiFFT::spectralFlatness() {
+	float geometricMean=0, arithmaticMean=0;
+	for(int i=0; i < bins; i++) {
+		if (magnitudes[i] != 0)
+			geometricMean += log(magnitudes[i]);
+		arithmaticMean += magnitudes[i];
+	}
+	geometricMean = exp(geometricMean / (float)bins);
+	arithmaticMean /= (float)bins;
+	return arithmaticMean !=0 ?  geometricMean / arithmaticMean : 0;
+}
+
+float maxiFFT::spectralCentroid() {
+	float x=0, y=0;
+	for(int i=0; i < bins; i++) {
+		x += fabs(magnitudes[i]) * (i+1);
+		y += fabs(magnitudes[i]);
+	}
+	return y != 0 ? x / y * ((float) maxiSettings::sampleRate / fftSize) : 0;
+}
+
+
+
 maxiFFT::~maxiFFT() {
 	delete _fft;
-	delete[] buffer,magnitudes,phases,powers, window;
-	delete avgPower;
+	if (buffer)
+		delete[] buffer,magnitudes,phases,window, avgPower;
 }
 
 

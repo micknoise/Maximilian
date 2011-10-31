@@ -469,10 +469,8 @@ fft::~fft() {
 }
 
 /* Calculate the power spectrum */
-void fft::powerSpectrum(int start, float *data, float *window, float *magnitude,float *phase, float *power, float *avg_power) {
+void fft::powerSpectrum(int start, float *data, float *window, float *magnitude,float *phase) {
 	int i;
-	float total_power = 0.0f;
-	
 	
 	//windowing
 	for (i = 0; i < n; i++) {
@@ -484,22 +482,30 @@ void fft::powerSpectrum(int start, float *data, float *window, float *magnitude,
 	
 	for (i = 0; i < half; i++) {
 		/* compute power */
-		power[i] = out_real[i]*out_real[i] + out_img[i]*out_img[i];
-		total_power += power[i];
+		float power = out_real[i]*out_real[i] + out_img[i]*out_img[i];
 		/* compute magnitude and phase */
-		magnitude[i] = 2.0*sqrt(power[i]);
-		
-		if (magnitude[i] < 0.000001){ // less than 0.1 nV
-			magnitude[i] = 0; // out of range
-		} else {
-			magnitude[i] = 20.0*log10(magnitude[i] + 1);  // get to to db scale
-		}
+		magnitude[i] = sqrt(power);
 		phase[i] = atan2(out_img[i],out_real[i]);
+		
+//		if (magnitude[i] < 0.000001){ // less than 0.1 nV
+//			magnitude[i] = 0; // out of range
+//		} else {
+//			magnitude[i] = 20.0*log10(magnitude[i] + 1);  // get to to db scale
+//		}
 	}
-	/* calculate average power */
-	*(avg_power) = total_power / (float) half;
 	
 }
+
+void fft::convToDB(float *in, float *out) {
+	for (int i = 0; i < half; i++) {
+		if (in[i] < 0.000001){ // less than 0.1 nV
+			out[i] = 0; // out of range
+		} else {
+			out[i] = 20.0*log10(in[i] + 1);  // get to to db scale
+		}		
+	}
+}
+
 
 #ifdef __APPLE_CC__
 
@@ -519,7 +525,7 @@ void fft::powerSpectrum_vdsp(int start, float *data, float *window, float *magni
 	vDSP_fft_zrip(setupReal, &A, 1, log2n, FFT_FORWARD);
 	
 	//scale by 2 (see vDSP docs)
-	static float scale=0.5;
+	static float scale=0.5 ;
 	vDSP_vsmul(A.realp, 1, &scale, A.realp, 1, half);
 	vDSP_vsmul(A.imagp, 1, &scale, A.imagp, 1, half);
 
@@ -533,11 +539,18 @@ void fft::powerSpectrum_vdsp(int start, float *data, float *window, float *magni
 		magnitude[i]=polar[2*i]+1.0;
 		phase[i]=polar[2*i + 1];
 	}
+	
+	
+	
+}
+
+void fft::convToDB_vdsp(float *in, float *out) {
 	float ref = 1.0;
-	vDSP_vdbcon(magnitude, 1, &ref, magnitude, 1, half, 1);
-	
-	
-	
+	vDSP_vdbcon(in, 1, &ref, out, 1, half, 1);
+	//get rid of any -infs
+	float vmin=0.0;
+	float vmax=9999999.0;
+	vDSP_vclip(out, 1, &vmin, &vmax, out, 1, half);
 }
 
 #endif
@@ -547,9 +560,11 @@ void fft::inversePowerSpectrum(int start, float *finalOut, float *window, float 
 	
 	/* get real and imag part */
 	for (i = 0; i < half; i++) {
-		float mag = pow(10.0, magnitude[i] / 20.0) - 1.0;
-		in_real[i] = mag *cos(phase[i]);
-		in_img[i]  = mag *sin(phase[i]);
+//		float mag = pow(10.0, magnitude[i] / 20.0) - 1.0;
+//		in_real[i] = mag *cos(phase[i]);
+//		in_img[i]  = mag *sin(phase[i]);
+		in_real[i] = magnitude[i] *cos(phase[i]);
+		in_img[i]  = magnitude[i] *sin(phase[i]);
 	}
 	
 	/* zero negative frequencies */
@@ -571,7 +586,8 @@ void fft::inversePowerSpectrum_vdsp(int start, float *finalOut, float *window, f
 	uint32_t i;
 	
 	for (i = 0; i < half; i++) {
-		polar[2*i] = pow(10.0, magnitude[i] / 20.0) - 1.0;
+//		polar[2*i] = pow(10.0, magnitude[i] / 20.0) - 1.0;
+		polar[2*i] = magnitude[i] - 1.0;
 		polar[2*i + 1] = phase[i];
 	}	
 	
@@ -581,7 +597,7 @@ void fft::inversePowerSpectrum_vdsp(int start, float *finalOut, float *window, f
 	vDSP_fft_zrip(setupReal, &A, 1, log2n, FFT_INVERSE);
 	vDSP_ztoc(&A, 1, (COMPLEX*) out_real, 2, half);
 	
-	static float scale = 1./(2. * n);
+	static float scale = 1./n;
 	vDSP_vsmul(out_real, 1, &scale, out_real, 1, n);
 
 	//multiply by window

@@ -25,7 +25,8 @@ class mp : public ofBaseApp{
 		void audioRequested 	(float * input, int bufferSize, int nChannels); /* output method */
 
 //	pyOSCDebug pyd;
-	maxiAtomStream atStream;
+	maxiAccelerator atomStream;
+	maxiAtomBook book;
 	
 	flArr atomBuffer;
 

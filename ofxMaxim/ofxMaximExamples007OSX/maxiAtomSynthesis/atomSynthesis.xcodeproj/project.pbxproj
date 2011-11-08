@@ -17,6 +17,10 @@
 		8320A5311462EF5100D1BD32 /* ofxOscSender.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8320A52A1462EF5100D1BD32 /* ofxOscSender.cpp */; };
 		8320A65914630D3F00D1BD32 /* maxiAtoms.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8320A65714630D3F00D1BD32 /* maxiAtoms.cpp */; };
 		8320A66B14630D8B00D1BD32 /* btAlignedAllocator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8320A66614630D8B00D1BD32 /* btAlignedAllocator.cpp */; };
+		8320A9691469813200D1BD32 /* tinyxml.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8320A9621469813200D1BD32 /* tinyxml.cpp */; };
+		8320A96A1469813200D1BD32 /* tinyxmlerror.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8320A9641469813200D1BD32 /* tinyxmlerror.cpp */; };
+		8320A96B1469813200D1BD32 /* tinyxmlparser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8320A9651469813200D1BD32 /* tinyxmlparser.cpp */; };
+		8320A96C1469813200D1BD32 /* ofxXmlSettings.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8320A9671469813200D1BD32 /* ofxXmlSettings.cpp */; };
 		8354488F140CFBC900D16314 /* fft.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 83544883140CFBC900D16314 /* fft.cpp */; };
 		83544890140CFBC900D16314 /* maxiFFT.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 83544885140CFBC900D16314 /* maxiFFT.cpp */; };
 		83544891140CFBC900D16314 /* maxiGrains.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 83544887140CFBC900D16314 /* maxiGrains.cpp */; };
@@ -108,6 +112,13 @@
 		8320A66814630D8B00D1BD32 /* btAlignedObjectArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = btAlignedObjectArray.h; sourceTree = "<group>"; };
 		8320A66914630D8B00D1BD32 /* btScalar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = btScalar.h; sourceTree = "<group>"; };
 		8320A66A14630D8B00D1BD32 /* someTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = someTypes.h; sourceTree = "<group>"; };
+		8320A9601469813200D1BD32 /* install.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = install.xml; sourceTree = "<group>"; };
+		8320A9621469813200D1BD32 /* tinyxml.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tinyxml.cpp; sourceTree = "<group>"; };
+		8320A9631469813200D1BD32 /* tinyxml.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tinyxml.h; sourceTree = "<group>"; };
+		8320A9641469813200D1BD32 /* tinyxmlerror.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tinyxmlerror.cpp; sourceTree = "<group>"; };
+		8320A9651469813200D1BD32 /* tinyxmlparser.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tinyxmlparser.cpp; sourceTree = "<group>"; };
+		8320A9671469813200D1BD32 /* ofxXmlSettings.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxXmlSettings.cpp; sourceTree = "<group>"; };
+		8320A9681469813200D1BD32 /* ofxXmlSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxXmlSettings.h; sourceTree = "<group>"; };
 		83544881140CFBC900D16314 /* install.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = install.xml; sourceTree = "<group>"; };
 		83544883140CFBC900D16314 /* fft.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = fft.cpp; sourceTree = "<group>"; };
 		83544884140CFBC900D16314 /* fft.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fft.h; sourceTree = "<group>"; };
@@ -296,6 +307,37 @@
 			path = ../../../../../src/Maximilian/ofxMaxim/ofxMaxim/libs/storage;
 			sourceTree = SOURCE_ROOT;
 		};
+		8320A95F1469813200D1BD32 /* ofxXmlSettings */ = {
+			isa = PBXGroup;
+			children = (
+				8320A9601469813200D1BD32 /* install.xml */,
+				8320A9611469813200D1BD32 /* libs */,
+				8320A9661469813200D1BD32 /* src */,
+			);
+			name = ofxXmlSettings;
+			path = ../../../addons/ofxXmlSettings;
+			sourceTree = SOURCE_ROOT;
+		};
+		8320A9611469813200D1BD32 /* libs */ = {
+			isa = PBXGroup;
+			children = (
+				8320A9621469813200D1BD32 /* tinyxml.cpp */,
+				8320A9631469813200D1BD32 /* tinyxml.h */,
+				8320A9641469813200D1BD32 /* tinyxmlerror.cpp */,
+				8320A9651469813200D1BD32 /* tinyxmlparser.cpp */,
+			);
+			path = libs;
+			sourceTree = "<group>";
+		};
+		8320A9661469813200D1BD32 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				8320A9671469813200D1BD32 /* ofxXmlSettings.cpp */,
+				8320A9681469813200D1BD32 /* ofxXmlSettings.h */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
 		83544880140CFBC900D16314 /* ofxMaxim */ = {
 			isa = PBXGroup;
 			children = (
@@ -338,6 +380,7 @@
 		BB4B014C10F69532006C3DED /* addons */ = {
 			isa = PBXGroup;
 			children = (
+				8320A95F1469813200D1BD32 /* ofxXmlSettings */,
 				8320A5081462EF5000D1BD32 /* ofxOsc */,
 				83544880140CFBC900D16314 /* ofxMaxim */,
 			);
@@ -519,6 +562,10 @@
 				8320A5311462EF5100D1BD32 /* ofxOscSender.cpp in Sources */,
 				8320A65914630D3F00D1BD32 /* maxiAtoms.cpp in Sources */,
 				8320A66B14630D8B00D1BD32 /* btAlignedAllocator.cpp in Sources */,
+				8320A9691469813200D1BD32 /* tinyxml.cpp in Sources */,
+				8320A96A1469813200D1BD32 /* tinyxmlerror.cpp in Sources */,
+				8320A96B1469813200D1BD32 /* tinyxmlparser.cpp in Sources */,
+				8320A96C1469813200D1BD32 /* ofxXmlSettings.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

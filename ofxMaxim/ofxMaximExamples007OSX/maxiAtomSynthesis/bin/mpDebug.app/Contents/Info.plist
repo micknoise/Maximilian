@@ -7,7 +7,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>English</string>
 	<key>CFBundleExecutable</key>
-	<string>atomSynthesisDebug</string>
+	<string>mpDebug</string>
 	<key>CFBundleIdentifier</key>
 	<string>com.yourcompany.openFrameworks</string>
 	<key>CFBundleInfoDictionaryVersion</key>

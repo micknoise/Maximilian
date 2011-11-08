@@ -29,5 +29,7 @@ class mp : public ofBaseApp{
 	maxiAtomBook book;
 	
 	flArr atomBuffer;
+	flArr atomData;
+
 
 };

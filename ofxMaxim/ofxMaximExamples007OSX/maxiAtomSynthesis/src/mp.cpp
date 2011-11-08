@@ -11,10 +11,11 @@ void mp::setup(){
 //	pyd.clear();
 	
 	
-	atomBuffer.resize(512);
 	
 	maxiAtomBook::loadMPTKXmlBook(ofToDataPath("/tmp/book.xml"), book);
 	sort(book.atoms.begin(), book.atoms.end(), maxiAtom::atomSortPositionAsc);
+	atomBuffer.resize(512);
+	atomData.resize(book.atoms[0]->length);
 
 	ofxMaxiSettings::setup(44100, 2, 512);
 	ofSoundStreamSetup(maxiSettings::channels,0,this, maxiSettings::sampleRate, maxiSettings::bufferSize, 4);/* Call this last ! */
@@ -31,14 +32,11 @@ void mp::update(){
 //					   maxiMap::linlin((float)mouseY / ofGetHeight(), 0, 1, 2000, 40000) * (1.0 + (ofRandomuf() * 0.3)), 
 //					   ofRandomf() * PI, 0.3, 0.05);
 //	atomStream.addAtom(test);
+
 	static int atomIdx=0;
-//	static void createGabor(flArr &atom, const float freq, const float sampleRate, const uint length, 
-//							const float phase, const float kurtotis, const float amp);
 	maxiGaborAtom *atom = (maxiGaborAtom*) book.atoms[atomIdx % book.atoms.size()];
-	cout << atom->frequency << endl;
 	maxiCollider::createGabor(test, maxiMap::linexp(atom->frequency, 0, 0.2, 20, 20000), 44100, atom->length, atom->phase, 0.3, atom->amp / 40.0);
-	atomStream.addAtom(test);
-	
+	atomStream.addAtom(test);	
 	atomIdx++;
 }
 
@@ -48,6 +46,16 @@ void mp::draw(){
 }
 
 void mp::audioRequested 	(float * output, int bufferSize, int nChannels){
+//	long idx = atomStream.getSampleIdx();
+//	static int atomIdx = 0;
+//	maxiGaborAtom *atom = (maxiGaborAtom*) book.atoms[atomIdx % book.atoms.size()];
+//	while(atom->position < (idx + bufferSize) % book.numSamples) {
+//		maxiCollider::createGabor(atomData, maxiMap::linexp(atom->frequency, 0, 0.2, 20, 20000), 44100, atom->length, atom->phase, 0.3, atom->amp / 40.0);
+//		atomStream.addAtom(atomData);		
+//		atomIdx++;
+//		atom = (maxiGaborAtom*) book.atoms[atomIdx % book.atoms.size()];
+//	}
+	
 	memset(&atomBuffer[0], 0, sizeof(float) * bufferSize);
 	atomStream.fillNextBuffer(&(atomBuffer[0]), bufferSize);
 	for (int i = 0; i < bufferSize; i++){

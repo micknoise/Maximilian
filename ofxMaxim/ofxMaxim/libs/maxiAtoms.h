@@ -45,6 +45,7 @@ public:
 	maxiAccelerator();
 	void addAtom(flArr &atom);
 	void fillNextBuffer(float *buffer, unsigned int bufferLength);
+	inline long getSampleIdx(){return sampleIdx;}
 private:
 	long sampleIdx;
 	struct queuedAtom {

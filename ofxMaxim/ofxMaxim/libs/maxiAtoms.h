@@ -11,18 +11,38 @@
 #include <iostream>
 #include "maximilian.h"
 #include <list>
+#include <vector>
 
 using namespace std;
 
-class maxiAtoms {
+enum maxiAtomTypes {
+	GABOR
+};
+
+struct maxiAtom {
+	maxiAtomTypes atomType;
+	float length;
+	float position;
+	float amp;
+	static bool atomSortPositionAsc(maxiAtom* a, maxiAtom* b) {return a->position < b->position;}
+};
+
+struct maxiGaborAtom : maxiAtom {
+	float frequency;
+	float phase;
+};
+
+//create atoms
+class maxiCollider {
 public:
 	static void createGabor(flArr &atom, const float freq, const float sampleRate, const uint length, 
 							const float phase, const float kurtotis, const float amp);
 };
 
-class maxiAtomStream {
+//queue atoms into an audio stream
+class maxiAccelerator {
 public:
-	maxiAtomStream();
+	maxiAccelerator();
 	void addAtom(flArr &atom);
 	void fillNextBuffer(float *buffer, unsigned int bufferLength);
 private:
@@ -35,3 +55,18 @@ private:
 	typedef list<queuedAtom> queuedAtomList;
 	queuedAtomList atomQueue;
 };
+
+//load a book in MPTK XML format
+//http://mptk.irisa.fr/
+
+class maxiAtomBook {
+public:
+	~maxiAtomBook();
+	typedef vector<maxiAtom*> maxiAtomBookData;
+	unsigned int numSamples;
+	unsigned int sampleRate;
+	maxiAtomBookData atoms;
+	static bool loadMPTKXmlBook(string filename, maxiAtomBook &book);
+	
+};
+

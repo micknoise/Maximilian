@@ -35,7 +35,7 @@ struct maxiGaborAtom : maxiAtom {
 //create atoms
 class maxiCollider {
 public:
-	static void createGabor(flArr &atom, const float freq, const float sampleRate, const uint length, 
+	static inline void createGabor(flArr &atom, const float freq, const float sampleRate, const uint length, 
 							const float phase, const float kurtotis, const float amp);
 };
 

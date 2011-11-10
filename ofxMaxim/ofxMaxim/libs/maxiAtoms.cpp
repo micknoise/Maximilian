@@ -11,8 +11,14 @@
 #include <iostream>
 #include <fstream>
 #include "tinyxml.h"
+#include "sineTable.h"
+#ifdef __APPLE_CC__
+#include <Accelerate/Accelerate.h>
+#endif
 
-void maxiCollider::createGabor(flArr &atom, const float freq, const float sampleRate, const uint length, 
+
+
+inline void maxiCollider::createGabor(flArr &atom, const float freq, const float sampleRate, const uint length, 
 						const float startPhase, const float kurtotis, const float amp) {
 	atom.resize(length);
 	float inc = 1.0 / length * 2.0;
@@ -31,9 +37,13 @@ void maxiCollider::createGabor(flArr &atom, const float freq, const float sample
 		
 		atom[i] *= sin((x * maxPhase) + startPhase);
 	}
+#ifdef __APPLE_CC__	
+	vDSP_vsmul(&atom[0], 1, &amp, &atom[0], 1, length);
+#else
 	for(uint i=0; i < length; i++) {
 		atom[i] *= amp;
 	}
+#endif
 }
 
 

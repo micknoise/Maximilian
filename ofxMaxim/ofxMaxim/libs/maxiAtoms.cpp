@@ -42,10 +42,10 @@ maxiAccelerator::maxiAccelerator() {
 	sampleIdx = 0;
 }
 
-void maxiAccelerator::addAtom(flArr &atom) {
+void maxiAccelerator::addAtom(flArr &atom, unsigned int offset) {
 	queuedAtom quAtom;
 	quAtom.atom.copyFromArray(atom);
-	quAtom.startTime = sampleIdx;
+	quAtom.startTime = sampleIdx + offset;
 	quAtom.pos = 0;
 	atomQueue.push_back(quAtom);
 }
@@ -89,7 +89,6 @@ bool maxiAtomBook::loadMPTKXmlBook(string filename, maxiAtomBook &book) {
 		while("</dict>" != line) {
 			f.getline(lineBuffer, lineBufferSize);
 			line = lineBuffer;
-			cout << line << endl;
 		}
 		//this should be "txt"
 		f.getline(lineBuffer, lineBufferSize);
@@ -138,4 +137,31 @@ bool maxiAtomBook::loadMPTKXmlBook(string filename, maxiAtomBook &book) {
 
 maxiAtomBook::~maxiAtomBook() {
 	for(int i=0; i < atoms.size(); i++) delete atoms[i];
+}
+
+maxiAtomBookPlayer::maxiAtomBookPlayer() {
+	atomIdx = 0;
+}
+
+float maxiAtomBookPlayer::play(maxiAtomBook &book, maxiAccelerator &atomStream, float *output, int bufferSize) {
+	//positions
+	long idx = atomStream.getSampleIdx();
+	int loopedSamplePos = idx % book.numSamples;
+
+	//reset loop?
+	if (loopedSamplePos < bufferSize)
+		atomIdx = 0;
+	
+	if (atomIdx < book.atoms.size()) {
+		maxiGaborAtom *atom = (maxiGaborAtom*) book.atoms[atomIdx];
+		while(atom->position < (idx + bufferSize) % book.numSamples) {
+			flArr atomData;
+			maxiCollider::createGabor(atomData, maxiMap::linlin(atom->frequency, 0.0, 1.0, 20, 20000), 44100, atom->length, atom->phase, 0.3, atom->amp / 40.0);
+			atomStream.addAtom(atomData, loopedSamplePos - atom->position);		
+			atomIdx++;
+			if (book.atoms.size() == atomIdx)
+				break;
+			atom = (maxiGaborAtom*) book.atoms[atomIdx];
+		}
+	}
 }

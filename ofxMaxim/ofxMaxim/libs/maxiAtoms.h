@@ -43,7 +43,7 @@ public:
 class maxiAccelerator {
 public:
 	maxiAccelerator();
-	void addAtom(flArr &atom);
+	void addAtom(flArr &atom, unsigned int offset=0);
 	void fillNextBuffer(float *buffer, unsigned int bufferLength);
 	inline long getSampleIdx(){return sampleIdx;}
 private:
@@ -57,9 +57,12 @@ private:
 	queuedAtomList atomQueue;
 };
 
-//load a book in MPTK XML format
-//http://mptk.irisa.fr/
-
+/*load a book in MPTK XML format
+ http://mptk.irisa.fr/
+ 
+ how to create a book:
+ mpd -n 1000 -R 10 -d ./dic_gabor_two_scales.xml glockenspiel.wav book.xml
+*/
 class maxiAtomBook {
 public:
 	~maxiAtomBook();
@@ -69,5 +72,13 @@ public:
 	maxiAtomBookData atoms;
 	static bool loadMPTKXmlBook(string filename, maxiAtomBook &book);
 	
+};
+
+class maxiAtomBookPlayer {
+public:
+	maxiAtomBookPlayer();
+	float play(maxiAtomBook &book, maxiAccelerator &atomStream, float *output, int bufferSize);
+private:
+	unsigned int atomIdx;
 };
 

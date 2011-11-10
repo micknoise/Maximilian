@@ -27,9 +27,11 @@ class mp : public ofBaseApp{
 //	pyOSCDebug pyd;
 	maxiAccelerator atomStream;
 	maxiAtomBook book;
+	maxiAtomBookPlayer atomPlayer;
 	
 	flArr atomBuffer;
 	flArr atomData;
+	
 
 
 };

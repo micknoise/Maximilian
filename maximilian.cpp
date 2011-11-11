@@ -219,8 +219,7 @@ void maxiEnvelope::trigger(int index, double amp) {
 //and this
 
 maxiDelayline::maxiDelayline() {
-	memory[88200]=NULL;	
-	
+	memset( memory, 0, 88200*sizeof (double) );	
 }
 
 

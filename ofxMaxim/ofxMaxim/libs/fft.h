@@ -39,7 +39,6 @@
 
 #ifdef __APPLE_CC__
 	#include <Accelerate/Accelerate.h>
-	#warning Please link against the Accelerate framework
 #endif
 
 

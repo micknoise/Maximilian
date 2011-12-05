@@ -101,7 +101,7 @@ class maxiEnvelope {
 	double currentval;
 	double nextval;
 	int isPlaying;
-	
+
 public:	
 	double line(int numberofsegments,double segments[100]);
 	void trigger(int index,double amp);

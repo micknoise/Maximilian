@@ -372,8 +372,8 @@ class maxiDistortion {
 public:
     /*atan distortion, see http://www.musicdsp.org/showArchiveComment.php?ArchiveID=104*/
     /*shape from 1 (soft clipping) to infinity (hard clipping)*/
-    double atanDist(double in, double shape);
-    double fastAtanDist(double in, double shape);
+    double atanDist(const double in, const double shape);
+    double fastAtanDist(const double in, const double shape);
     double fastatan( double x );
 };
 
@@ -382,17 +382,30 @@ inline double maxiDistortion::fastatan(double x)
     return (x / (1.0 + 0.28 * (x * x)));
 }
 
-inline double maxiDistortion::atanDist(double in, double shape) {
+inline double maxiDistortion::atanDist(const double in, const double shape) {
     double out;
     out = (1.0 / atan(shape)) * atan(in * shape);
     return out;
 }
 
-inline double maxiDistortion::fastAtanDist(double in, double shape) {
+inline double maxiDistortion::fastAtanDist(const double in, const double shape) {
     double out;
     out = (1.0 / fastatan(shape)) * fastatan(in * shape);
     return out;
 }
 
+
+class maxiDelayEffect {
+public:
+    maxiDelayline dl;
+    maxiOsc lfo;
+    double chorus(const double input, const unsigned int delay, const double feedback, const double speed, const double depth);
+};
+
+inline double maxiDelayEffect::chorus(const double input, const unsigned int delay, const double feedback, const double speed, const double depth) {
+    double output;
+    output = dl.dl(input, delay + (lfo.triangle(speed) * depth * delay) + 1, feedback) + input;    
+    return output;
+}
 
 #endif

@@ -515,7 +515,7 @@ double maxiSample::play4(double frequency, double start, double end) {
 
 double maxiSample::bufferPlay(unsigned char &bufferin,long length) {
 	double remainder;
-	short* buffer = (short *)bufferin;
+	short* buffer = (short *)&bufferin;
 	position=(position+1);
 	remainder = position - (long) position;
 	if ((long) position>length) position=0;
@@ -526,7 +526,7 @@ double maxiSample::bufferPlay(unsigned char &bufferin,long length) {
 double maxiSample::bufferPlay(unsigned char &bufferin,double speed,long length) {
 	double remainder;
 	long a,b;
-	short* buffer = (short *)bufferin;
+	short* buffer = (short *)&bufferin;
 	position=position+((speed*chandiv*myChannels)/(samplerate/mySampleRate));
 	if (speed >=0) {
 		
@@ -573,7 +573,7 @@ double maxiSample::bufferPlay(unsigned char &bufferin,double frequency, double s
 	double remainder;
 	length=end;
 	long a,b;
-	short* buffer = (short *)bufferin;
+	short* buffer = (short *)&bufferin;
 	if (frequency >0.) {
 		if (position<start) {
 			position=start;
@@ -629,7 +629,7 @@ double maxiSample::bufferPlay(unsigned char &bufferin,double frequency, double s
 double maxiSample::bufferPlay4(unsigned char &bufferin,double frequency, double start, double end) {
 	double remainder;
 	double a,b,c,d,a1,a2,a3;
-	short* buffer = (short*)bufferin;
+	short* buffer = (short*)&bufferin;
 	if (frequency >0.) {
 		if (position<start) {
 			position=start;

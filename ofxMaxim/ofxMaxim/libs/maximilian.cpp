@@ -82,7 +82,7 @@ double maxiOsc::sinewave(double frequency) {
 double maxiOsc::sinebuf4(double frequency) {
 	double remainder;
 	double a,b,c,d,a1,a2,a3;
-	phase += 512./(maxiSettings::sampleRate/(frequency));
+	phase += 512./(maxiSettings::sampleRate/(freq§uency));
 	if ( phase >= 511 ) phase -=512;
 	remainder = phase - floor(phase);
 	
@@ -1025,3 +1025,4 @@ double convert::mtof(int midinote) {
 	
 	return mtofarray[midinote];
 }
+

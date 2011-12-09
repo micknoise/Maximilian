@@ -207,7 +207,7 @@ public:
 		myDataSize = NULL;
 	}
 	
-	maxiSample():myData(NULL){};
+	maxiSample():myData(NULL),position(0){};
 	
 	bool load(string fileName, int channel=0);
 	
@@ -365,5 +365,34 @@ class convert {
 public:
 	double mtof(int midinote);
 };
+
+
+
+class maxiDistortion {
+public:
+    /*atan distortion, see http://www.musicdsp.org/showArchiveComment.php?ArchiveID=104*/
+    /*shape from 1 (soft clipping) to infinity (hard clipping)*/
+    double atanDist(double in, double shape);
+    double fastAtanDist(double in, double shape);
+    double fastatan( double x );
+};
+
+inline double maxiDistortion::fastatan(double x)
+{
+    return (x / (1.0 + 0.28 * (x * x)));
+}
+
+inline double maxiDistortion::atanDist(double in, double shape) {
+    double out;
+    out = (1.0 / atan(shape)) * atan(in * shape);
+    return out;
+}
+
+inline double maxiDistortion::fastAtanDist(double in, double shape) {
+    double out;
+    out = (1.0 / fastatan(shape)) * fastatan(in * shape);
+    return out;
+}
+
 
 #endif

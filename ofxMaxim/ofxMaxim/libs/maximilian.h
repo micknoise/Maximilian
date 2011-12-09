@@ -397,9 +397,14 @@ inline double maxiDistortion::fastAtanDist(const double in, const double shape) 
 
 class maxiDelayEffect {
 public:
+    //delay = delay time - ~800 sounds good
+    //feedback = 0 - 1
+    //speed = lfo speed in Hz, 0.0001 - 10 sounds good
+    //depth = 0 - 1
+    double chorus(const double input, const unsigned int delay, const double feedback, const double speed, const double depth);
     maxiDelayline dl;
     maxiOsc lfo;
-    double chorus(const double input, const unsigned int delay, const double feedback, const double speed, const double depth);
+
 };
 
 inline double maxiDelayEffect::chorus(const double input, const unsigned int delay, const double feedback, const double speed, const double depth) {

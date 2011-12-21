@@ -173,9 +173,9 @@ double maxiOsc::triangle(double frequency) {
 	if ( phase >= 1.0 ) phase -= 1.0;
 	phase += (1./(maxiSettings::sampleRate/(frequency)));
 	if (phase <= 0.5 ) {
-		output =((phase)*4)-1;
+		output =(phase - 0.25) * 4;
 	} else {
-		output =((0.5-phase)*4)-1;
+		output =((1.0-phase) - 0.25) * 4;
 	}
 	return(output);
 	

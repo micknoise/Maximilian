@@ -139,6 +139,7 @@ class maxiFilter {
 	double y;//pos
 	double z;//pole
 	double c;//filter coefficient
+    
 public:
 	maxiFilter():x(0.0), y(0.0), z(0.0), c(0.0){};
 	double cutoff;
@@ -409,7 +410,8 @@ public:
 
 inline double maxiDelayEffect::chorus(const double input, const unsigned int delay, const double feedback, const double speed, const double depth) {
     double output;
-    output = dl.dl(input, delay + (lfo.triangle(speed) * depth * delay) + 1, feedback) + input;    
+    double lfoVal = lfo.triangle(speed);
+    output = dl.dl(input, delay + (lfoVal * depth * delay) + 1, feedback) + input;    
     return output;
 }
 

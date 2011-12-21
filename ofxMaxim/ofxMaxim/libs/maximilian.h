@@ -396,23 +396,53 @@ inline double maxiDistortion::fastAtanDist(const double in, const double shape) 
 }
 
 
-class maxiDelayEffect {
+class maxiFlanger {
+public:
+    //delay = delay time - ~800 sounds good
+    //feedback = 0 - 1
+    //speed = lfo speed in Hz, 0.0001 - 10 sounds good
+    //depth = 0 - 1
+    double flange(const double input, const unsigned int delay, const double feedback, const double speed, const double depth);
+    maxiDelayline dl;
+    maxiOsc lfo;
+
+};
+
+inline double maxiFlanger::flange(const double input, const unsigned int delay, const double feedback, const double speed, const double depth)
+{
+    //todo: needs fixing
+    double output;
+    double lfoVal = lfo.triangle(speed);
+    output = dl.dl(input, delay + (lfoVal * depth * delay) + 1, feedback) ;    
+    double normalise = (1 - fabs(output));
+    output *= normalise;
+    return (output + input) / 2.0;
+}
+
+class maxiChorus {
 public:
     //delay = delay time - ~800 sounds good
     //feedback = 0 - 1
     //speed = lfo speed in Hz, 0.0001 - 10 sounds good
     //depth = 0 - 1
     double chorus(const double input, const unsigned int delay, const double feedback, const double speed, const double depth);
-    maxiDelayline dl;
+    maxiDelayline dl, dl2;
     maxiOsc lfo;
-
+    maxiFilter lopass;
+    
 };
 
-inline double maxiDelayEffect::chorus(const double input, const unsigned int delay, const double feedback, const double speed, const double depth) {
-    double output;
-    double lfoVal = lfo.triangle(speed);
-    output = dl.dl(input, delay + (lfoVal * depth * delay) + 1, feedback) + input;    
-    return output;
+inline double maxiChorus::chorus(const double input, const unsigned int delay, const double feedback, const double speed, const double depth)
+{
+    //this needs fixing
+    double output1, output2;
+    double lfoVal = lfo.noise();
+    lfoVal = lopass.lores(lfoVal, speed, 1.0) * 2.0;
+    output1 = dl.dl(input, delay + (lfoVal * depth * delay) + 1, feedback) ;    
+    output2 = dl2.dl(input, (delay + (lfoVal * depth * delay * 1.02) + 1) * 0.98, feedback * 0.99) ;    
+    output1 *= (1.0 - fabs(output1));
+    output2 *= (1.0 - fabs(output2));
+    return (output1 + output2 + input) / 3.0;
 }
 
 #endif

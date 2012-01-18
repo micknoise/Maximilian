@@ -42,7 +42,7 @@
 
 #include <iostream>
 #include <fstream>
-#include <string>
+#include <string.h>
 #include <cstdlib>
 #include "math.h"
 
@@ -193,15 +193,6 @@ public:
 	~maxiSample()
 	{
 		if (myData) delete[] myData;
-		myChunkSize = NULL;
-		mySubChunk1Size = NULL;
-		myFormat = NULL;
-		myChannels = NULL;
-		mySampleRate = NULL;
-		myByteRate = NULL;
-		myBlockAlign = NULL;
-		myBitsPerSample = NULL;
-		myDataSize = NULL;
 	}
 	
 	maxiSample():myData(NULL){};

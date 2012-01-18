@@ -445,10 +445,9 @@ double maxiSample::play() {
 
 double maxiSample::playOnce() {
 //	long length=myDataSize*(0.5/myChannels);
-	double remainder;
 	short* buffer = (short *)myData;
 	position=(position+1);
-	remainder = position - (long) position;
+	double remainder = position - (long) position;
 	if ((long) position<length)
 		output = (double) ((1-remainder) * buffer[1+ (long) position] + remainder * buffer[2+(long) position])/32767;//linear interpolation
 	else 
@@ -458,11 +457,11 @@ double maxiSample::playOnce() {
 }
 
 double maxiSample::playOnce(double speed) {
-	double remainder;
 	//long a,b;
 	//	long length=myDataSize*0.5;	
 	short* buffer = (short *)myData;
 	position=position+((speed*chandiv*myChannels)/(maxiSettings::sampleRate/mySampleRate));
+	double remainder = position - (long) position;
 	if ((long) position<length)
 		output = (double) ((1-remainder) * buffer[1+ (long) position] + remainder * buffer[2+(long) position])/32767;//linear interpolation
 	else 

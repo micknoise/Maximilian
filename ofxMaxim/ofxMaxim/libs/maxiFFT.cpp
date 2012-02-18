@@ -121,7 +121,7 @@ float maxiFFT::spectralCentroid() {
 maxiFFT::~maxiFFT() {
 	delete _fft;
 	if (buffer)
-		delete[] buffer,magnitudes,phases,window, avgPower;
+		delete[] buffer,magnitudes,phases,window, avgPower, magnitudesDB;
 }
 
 

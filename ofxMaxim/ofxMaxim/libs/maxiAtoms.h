@@ -74,7 +74,8 @@ public:
 	unsigned int numSamples;
 	unsigned int sampleRate;
 	maxiAtomBookData atoms;
-	static bool loadMPTKXmlBook(string filename, maxiAtomBook &book);
+    //commented out for now, need to resolve tinyxml linker issues
+//	static bool loadMPTKXmlBook(string filename, maxiAtomBook &book);  
 	
 };
 

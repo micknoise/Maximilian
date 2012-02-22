@@ -73,6 +73,24 @@ struct blackmanNutallWinFunctor {
 	}
 };
 
+struct gaussianWinFunctor {
+    double gausDivisor;
+    gaussianWinFunctor() {
+        init(0.3);
+    }
+    gaussianWinFunctor(double kurtosis) {
+        init(kurtosis);
+    }
+    void init(double kurtosis) {
+        gausDivisor = (-2.0 * kurtosis * kurtosis);
+    }
+	inline double operator()(ulong windowLength, ulong windowPos) {
+        double phase = ((windowPos / (double) windowLength) - 0.5) * 2.0;
+        return exp((phase * phase) / gausDivisor);
+	}
+};
+
+
 template<typename F>
 class maxiGrainWindowCache {
 public:

@@ -238,12 +238,13 @@ double maxiDelayline::dl(double input, int size, double feedback)  {
 double maxiDelayline::dl(double input, int size, double feedback, int position)  {
 	if ( phase >=size ) phase = 0;
 	if ( position >=size ) position = 0;
-	output=memory[position];
-	memory[phase]=(memory[phase]*feedback)+(input*feedback)*chandiv;
+    output=memory[position];
+    memory[phase]=(memory[phase]*feedback)+(input*feedback)*chandiv;
 	phase+=1;
 	return(output);
 	
 }
+
 
 //I particularly like these. cutoff between 0 and 1
 double maxiFilter::lopass(double input, double cutoff) {

@@ -245,6 +245,7 @@ double maxiDelayline::dl(double input, int size, double feedback, int position) 
 	
 }
 
+
 //I particularly like these. cutoff between 0 and 1
 double maxiFilter::lopass(double input, double cutoff) {
 	output=outputs[0] + cutoff*(input-outputs[0]);

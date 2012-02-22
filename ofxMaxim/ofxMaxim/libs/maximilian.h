@@ -312,6 +312,12 @@ public:
 		return (log(val/inMin) / log(inMax/inMin) * (outMax - outMin)) + outMin;
 	}
 	
+	static int inline clamp(int v, const int low, const int high) {
+		v = min(high, v);
+		v = max(low, v);
+		return v;
+	}
+	
 };
 
 

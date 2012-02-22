@@ -1,0 +1,916 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<dict>
+    <libVersion>0.6.0</libVersion>
+    <block>
+        <param name="blockOffset" value="0" />
+        <param name="fftSize" value="16384" />
+        <param name="type" value="gabor" />
+        <param name="windowLen" value="16384" />
+        <param name="windowShift" value="256" />
+        <param name="windowopt" value="0" />
+        <param name="windowtype" value="gauss" />
+    </block>
+</dict>
+txt
+<book nAtom="100" numChans="1" numSamples="262144" sampleRate="44100" libVersion="0.6.0">
+	<atom type="gabor">
+		<par type="numChans">1</par>
+		<support chan="0"><p>135168</p><l>16384</l></support>
+		<par type="amp" chan="0">26.0189</par>
+		<window type="gauss" opt="0"></window>
+		<par type="freq">0.0854492</par>
+		<par type="chirp">0</par>
+		<par type="phase" chan="0">1.15969</par>
+	</atom>
+	<atom type="gabor">
+		<par type="numChans">1</par>
+		<support chan="0"><p>86784</p><l>16384</l></support>
+		<par type="amp" chan="0">20.5322</par>
+		<window type="gauss" opt="0"></window>
+		<par type="freq">0.0477905</par>
+		<par type="chirp">0</par>
+		<par type="phase" chan="0">2.43945</par>
+	</atom>
+	<atom type="gabor">
+		<par type="numChans">1</par>
+		<support chan="0"><p>167936</p><l>16384</l></support>
+		<par type="amp" chan="0">19.554</par>
+		<window type="gauss" opt="0"></window>
+		<par type="freq">0.0855103</par>
+		<par type="chirp">0</par>
+		<par type="phase" chan="0">2.75989</par>
+	</atom>
+	<atom type="gabor">
+		<par type="numChans">1</par>
+		<support chan="0"><p>72704</p><l>16384</l></support>
+		<par type="amp" chan="0">17.5268</par>
+		<window type="gauss" opt="0"></window>
+		<par type="freq">0.0477905</par>
+		<par type="chirp">0</par>
+		<par type="phase" chan="0">-2.55619</par>
+	</atom>
+	<atom type="gabor">
+		<par type="numChans">1</par>
+		<support chan="0"><p>94976</p><l>16384</l></support>
+		<par type="amp" chan="0">16.0119</par>
+		<window type="gauss" opt="0"></window>
+		<par type="freq">0.0477905</par>
+		<par type="chirp">0</par>
+		<par type="phase" chan="0">-1.30836</par>
+	</atom>
+	<atom type="gabor">
+		<par type="numChans">1</par>
+		<support chan="0"><p>141312</p><l>16384</l></support>
+		<par type="amp" chan="0">13.2025</par>
+		<window type="gauss" opt="0"></window>
+		<par type="freq">0.0854492</par>
+		<par type="chirp">0</par>
+		<par type="phase" chan="0">2.65261</par>
+	</atom>
+	<atom type="gabor">
+		<par type="numChans">1</par>
+		<support chan="0"><p>58880</p><l>16384</l></support>
+		<par type="amp" chan="0">13.0109</par>
+		<window type="gauss" opt="0"></window>
+		<par type="freq">0.0477905</par>
+		<par type="chirp">0</par>
+		<par type="phase" chan="0">1.54316</par>
+	</atom>
+	<atom type="gabor">
+		<par type="numChans">1</par>
+		<support chan="0"><p>186624</p><l>16384</l></support>
+		<par type="amp" chan="0">12.3891</par>
+		<window type="gauss" opt="0"></window>
+		<par type="freq">0.0717163</par>
+		<par type="chirp">0</par>
+		<par type="phase" chan="0">2.70505</par>
+	</atom>
+	<atom type="gabor">
+		<par type="numChans">1</par>
+		<support chan="0"><p>153088</p><l>16384</l></support>
+		<par type="amp" chan="0">12.2593</par>
+		<window type="gauss" opt="0"></window>
+		<par type="freq">0.0717163</par>
+		<par type="chirp">0</par>
+		<par type="phase" chan="0">-2.12939</par>
+	</atom>
+	<atom type="gabor">
+		<par type="numChans">1</par>
+		<support chan="0"><p>103680</p><l>16384</l></support>
+		<par type="amp" chan="0">12.2301</par>
+		<window type="gauss" opt="0"></window>
+		<par type="freq">0.0477905</par>
+		<par type="chirp">0</par>
+		<par type="phase" chan="0">-2.03522</par>
+	</atom>
+	<atom type="gabor">
+		<par type="numChans">1</par>
+		<support chan="0"><p>79360</p><l>16384</l></support>
+		<par type="amp" chan="0">11.5196</par>
+		<window type="gauss" opt="0"></window>
+		<par type="freq">0.0477905</par>
+		<par type="chirp">0</par>
+		<par type="phase" chan="0">-2.48171</par>
+	</atom>
+	<atom type="gabor">
+		<par type="numChans">1</par>
+		<support chan="0"><p>174592</p><l>16384</l></support>
+		<par type="amp" chan="0">10.9684</par>
+		<window type="gauss" opt="0"></window>
+		<par type="freq">0.0855103</par>
+		<par type="chirp">0</par>
+		<par type="phase" chan="0">2.56084</par>
+	</atom>
+	<atom type="gabor">
+		<par type="numChans">1</par>
+		<support chan="0"><p>120064</p><l>16384</l></support>
+		<par type="amp" chan="0">10.4784</par>
+		<window type="gauss" opt="0"></window>
+		<par type="freq">0.0717163</par>
+		<par type="chirp">0</par>
+		<par type="phase" chan="0">-1.45061</par>
+	</atom>
+	<atom type="gabor">
+		<par type="numChans">1</par>
+		<support chan="0"><p>66048</p><l>16384</l></support>
+		<par type="amp" chan="0">9.06363</par>
+		<window type="gauss" opt="0"></window>
+		<par type="freq">0.0477905</par>
+		<par type="chirp">0</par>
+		<par type="phase" chan="0">-1.77221</par>
+	</atom>
+	<atom type="gabor">
+		<par type="numChans">1</par>
+		<support chan="0"><p>194304</p><l>16384</l></support>
+		<par type="amp" chan="0">8.98598</par>
+		<window type="gauss" opt="0"></window>
+		<par type="freq">0.0717163</par>
+		<par type="chirp">0</par>
+		<par type="phase" chan="0">1.66759</par>
+	</atom>
+	<atom type="gabor">
+		<par type="numChans">1</par>
+		<support chan="0"><p>28160</p><l>16384</l></support>
+		<par type="amp" chan="0">8.97007</par>
+		<window type="gauss" opt="0"></window>
+		<par type="freq">0.0357666</par>
+		<par type="chirp">0</par>
+		<par type="phase" chan="0">2.83991</par>
+	</atom>
+	<atom type="gabor">
+		<par type="numChans">1</par>
+		<support chan="0"><p>111360</p><l>16384</l></support>
+		<par type="amp" chan="0">8.44993</par>
+		<window type="gauss" opt="0"></window>
+		<par type="freq">0.0477905</par>
+		<par type="chirp">0</par>
+		<par type="phase" chan="0">-2.29297</par>
+	</atom>
+	<atom type="gabor">
+		<par type="numChans">1</par>
+		<support chan="0"><p>160512</p><l>16384</l></support>
+		<par type="amp" chan="0">7.981</par>
+		<window type="gauss" opt="0"></window>
+		<par type="freq">0.0717163</par>
+		<par type="chirp">0</par>
+		<par type="phase" chan="0">0.909795</par>
+	</atom>
+	<atom type="gabor">
+		<par type="numChans">1</par>
+		<support chan="0"><p>148480</p><l>16384</l></support>
+		<par type="amp" chan="0">7.96474</par>
+		<window type="gauss" opt="0"></window>
+		<par type="freq">0.0855103</par>
+		<par type="chirp">0</par>
+		<par type="phase" chan="0">-2.00777</par>
+	</atom>
+	<atom type="gabor">
+		<par type="numChans">1</par>
+		<support chan="0"><p>127744</p><l>16384</l></support>
+		<par type="amp" chan="0">7.39775</par>
+		<window type="gauss" opt="0"></window>
+		<par type="freq">0.0717163</par>
+		<par type="chirp">0</par>
+		<par type="phase" chan="0">-2.39619</par>
+	</atom>
+	<atom type="gabor">
+		<par type="numChans">1</par>
+		<support chan="0"><p>36096</p><l>16384</l></support>
+		<par type="amp" chan="0">6.96097</par>
+		<window type="gauss" opt="0"></window>
+		<par type="freq">0.0357666</par>
+		<par type="chirp">0</par>
+		<par type="phase" chan="0">1.39349</par>
+	</atom>
+	<atom type="gabor">
+		<par type="numChans">1</par>
+		<support chan="0"><p>181504</p><l>16384</l></support>
+		<par type="amp" chan="0">6.49765</par>
+		<window type="gauss" opt="0"></window>
+		<par type="freq">0.0855103</par>
+		<par type="chirp">0</par>
+		<par type="phase" chan="0">1.97801</par>
+	</atom>
+	<atom type="gabor">
+		<par type="numChans">1</par>
+		<support chan="0"><p>164608</p><l>16384</l></support>
+		<par type="amp" chan="0">6.44259</par>
+		<window type="gauss" opt="0"></window>
+		<par type="freq">0.0853882</par>
+		<par type="chirp">0</par>
+		<par type="phase" chan="0">0.964036</par>
+	</atom>
+	<atom type="gabor">
+		<par type="numChans">1</par>
+		<support chan="0"><p>132608</p><l>16384</l></support>
+		<par type="amp" chan="0">6.06468</par>
+		<window type="gauss" opt="0"></window>
+		<par type="freq">0.0855713</par>
+		<par type="chirp">0</par>
+		<par type="phase" chan="0">1.0816</par>
+	</atom>
+	<atom type="gabor">
+		<par type="numChans">1</par>
+		<support chan="0"><p>119552</p><l>16384</l></support>
+		<par type="amp" chan="0">5.90846</par>
+		<window type="gauss" opt="0"></window>
+		<par type="freq">0.0477905</par>
+		<par type="chirp">0</par>
+		<par type="phase" chan="0">0.28169</par>
+	</atom>
+	<atom type="gabor">
+		<par type="numChans">1</par>
+		<support chan="0"><p>135936</p><l>16384</l></support>
+		<par type="amp" chan="0">5.57815</par>
+		<window type="gauss" opt="0"></window>
+		<par type="freq">0.0853271</par>
+		<par type="chirp">0</par>
+		<par type="phase" chan="0">2.02588</par>
+	</atom>
+	<atom type="gabor">
+		<par type="numChans">1</par>
+		<support chan="0"><p>202240</p><l>16384</l></support>
+		<par type="amp" chan="0">5.5681</par>
+		<window type="gauss" opt="0"></window>
+		<par type="freq">0.0717163</par>
+		<par type="chirp">0</par>
+		<par type="phase" chan="0">2.85064</par>
+	</atom>
+	<atom type="gabor">
+		<par type="numChans">1</par>
+		<support chan="0"><p>88576</p><l>16384</l></support>
+		<par type="amp" chan="0">5.41866</par>
+		<window type="gauss" opt="0"></window>
+		<par type="freq">0.0479126</par>
+		<par type="chirp">0</par>
+		<par type="phase" chan="0">-1.77019</par>
+	</atom>
+	<atom type="gabor">
+		<par type="numChans">1</par>
+		<support chan="0"><p>155136</p><l>16384</l></support>
+		<par type="amp" chan="0">5.08626</par>
+		<window type="gauss" opt="0"></window>
+		<par type="freq">0.0855103</par>
+		<par type="chirp">0</par>
+		<par type="phase" chan="0">-2.03802</par>
+	</atom>
+	<atom type="gabor">
+		<par type="numChans">1</par>
+		<support chan="0"><p>167680</p><l>16384</l></support>
+		<par type="amp" chan="0">5.04517</par>
+		<window type="gauss" opt="0"></window>
+		<par type="freq">0.0856323</par>
+		<par type="chirp">0</par>
+		<par type="phase" chan="0">-0.270848</par>
+	</atom>
+	<atom type="gabor">
+		<par type="numChans">1</par>
+		<support chan="0"><p>12544</p><l>16384</l></support>
+		<par type="amp" chan="0">5.02568</par>
+		<window type="gauss" opt="0"></window>
+		<par type="freq">0.0283813</par>
+		<par type="chirp">0</par>
+		<par type="phase" chan="0">1.4924</par>
+	</atom>
+	<atom type="gabor">
+		<par type="numChans">1</par>
+		<support chan="0"><p>101632</p><l>16384</l></support>
+		<par type="amp" chan="0">4.75109</par>
+		<window type="gauss" opt="0"></window>
+		<par type="freq">0.155151</par>
+		<par type="chirp">0</par>
+		<par type="phase" chan="0">1.3656</par>
+	</atom>
+	<atom type="gabor">
+		<par type="numChans">1</par>
+		<support chan="0"><p>44544</p><l>16384</l></support>
+		<par type="amp" chan="0">4.70776</par>
+		<window type="gauss" opt="0"></window>
+		<par type="freq">0.0357666</par>
+		<par type="chirp">0</par>
+		<par type="phase" chan="0">1.87036</par>
+	</atom>
+	<atom type="gabor">
+		<par type="numChans">1</par>
+		<support chan="0"><p>168704</p><l>16384</l></support>
+		<par type="amp" chan="0">4.7011</par>
+		<window type="gauss" opt="0"></window>
+		<par type="freq">0.0717163</par>
+		<par type="chirp">0</par>
+		<par type="phase" chan="0">-1.68328</par>
+	</atom>
+	<atom type="gabor">
+		<par type="numChans">1</par>
+		<support chan="0"><p>56064</p><l>16384</l></support>
+		<par type="amp" chan="0">4.53199</par>
+		<window type="gauss" opt="0"></window>
+		<par type="freq">0.13147</par>
+		<par type="chirp">0</par>
+		<par type="phase" chan="0">-0.568767</par>
+	</atom>
+	<atom type="gabor">
+		<par type="numChans">1</par>
+		<support chan="0"><p>128256</p><l>16384</l></support>
+		<par type="amp" chan="0">4.3238</par>
+		<window type="gauss" opt="0"></window>
+		<par type="freq">0.0477905</par>
+		<par type="chirp">0</par>
+		<par type="phase" chan="0">-0.305773</par>
+	</atom>
+	<atom type="gabor">
+		<par type="numChans">1</par>
+		<support chan="0"><p>56320</p><l>16384</l></support>
+		<par type="amp" chan="0">4.17438</par>
+		<window type="gauss" opt="0"></window>
+		<par type="freq">0.0479126</par>
+		<par type="chirp">0</par>
+		<par type="phase" chan="0">0.717708</par>
+	</atom>
+	<atom type="gabor">
+		<par type="numChans">1</par>
+		<support chan="0"><p>135168</p><l>16384</l></support>
+		<par type="amp" chan="0">4.14528</par>
+		<window type="gauss" opt="0"></window>
+		<par type="freq">0.0717163</par>
+		<par type="chirp">0</par>
+		<par type="phase" chan="0">0.702656</par>
+	</atom>
+	<atom type="gabor">
+		<par type="numChans">1</par>
+		<support chan="0"><p>103424</p><l>16384</l></support>
+		<par type="amp" chan="0">4.14369</par>
+		<window type="gauss" opt="0"></window>
+		<par type="freq">0.0568237</par>
+		<par type="chirp">0</par>
+		<par type="phase" chan="0">0.279084</par>
+	</atom>
+	<atom type="gabor">
+		<par type="numChans">1</par>
+		<support chan="0"><p>70912</p><l>16384</l></support>
+		<par type="amp" chan="0">4.14141</par>
+		<window type="gauss" opt="0"></window>
+		<par type="freq">0.0479126</par>
+		<par type="chirp">0</par>
+		<par type="phase" chan="0">1.22423</par>
+	</atom>
+	<atom type="gabor">
+		<par type="numChans">1</par>
+		<support chan="0"><p>184832</p><l>16384</l></support>
+		<par type="amp" chan="0">4.00139</par>
+		<window type="gauss" opt="0"></window>
+		<par type="freq">0.0715942</par>
+		<par type="chirp">0</par>
+		<par type="phase" chan="0">-2.14471</par>
+	</atom>
+	<atom type="gabor">
+		<par type="numChans">1</par>
+		<support chan="0"><p>99072</p><l>16384</l></support>
+		<par type="amp" chan="0">3.98131</par>
+		<window type="gauss" opt="0"></window>
+		<par type="freq">0.0478516</par>
+		<par type="chirp">0</par>
+		<par type="phase" chan="0">-0.344621</par>
+	</atom>
+	<atom type="gabor">
+		<par type="numChans">1</par>
+		<support chan="0"><p>20992</p><l>16384</l></support>
+		<par type="amp" chan="0">3.97886</par>
+		<window type="gauss" opt="0"></window>
+		<par type="freq">0.0283813</par>
+		<par type="chirp">0</par>
+		<par type="phase" chan="0">-0.890681</par>
+	</atom>
+	<atom type="gabor">
+		<par type="numChans">1</par>
+		<support chan="0"><p>54016</p><l>16384</l></support>
+		<par type="amp" chan="0">3.88838</par>
+		<window type="gauss" opt="0"></window>
+		<par type="freq">0.0357666</par>
+		<par type="chirp">0</par>
+		<par type="phase" chan="0">0.00895346</par>
+	</atom>
+	<atom type="gabor">
+		<par type="numChans">1</par>
+		<support chan="0"><p>70400</p><l>16384</l></support>
+		<par type="amp" chan="0">3.86896</par>
+		<window type="gauss" opt="0"></window>
+		<par type="freq">0.13147</par>
+		<par type="chirp">0</par>
+		<par type="phase" chan="0">-2.04228</par>
+	</atom>
+	<atom type="gabor">
+		<par type="numChans">1</par>
+		<support chan="0"><p>148224</p><l>16384</l></support>
+		<par type="amp" chan="0">3.82024</par>
+		<window type="gauss" opt="0"></window>
+		<par type="freq">0.0717773</par>
+		<par type="chirp">0</par>
+		<par type="phase" chan="0">1.24195</par>
+	</atom>
+	<atom type="gabor">
+		<par type="numChans">1</par>
+		<support chan="0"><p>44544</p><l>16384</l></support>
+		<par type="amp" chan="0">3.76933</par>
+		<window type="gauss" opt="0"></window>
+		<par type="freq">0.0426025</par>
+		<par type="chirp">0</par>
+		<par type="phase" chan="0">-0.354877</par>
+	</atom>
+	<atom type="gabor">
+		<par type="numChans">1</par>
+		<support chan="0"><p>188416</p><l>16384</l></support>
+		<par type="amp" chan="0">3.70544</par>
+		<window type="gauss" opt="0"></window>
+		<par type="freq">0.0855103</par>
+		<par type="chirp">0</par>
+		<par type="phase" chan="0">1.32775</par>
+	</atom>
+	<atom type="gabor">
+		<par type="numChans">1</par>
+		<support chan="0"><p>166144</p><l>16384</l></support>
+		<par type="amp" chan="0">3.69175</par>
+		<window type="gauss" opt="0"></window>
+		<par type="freq">0.157349</par>
+		<par type="chirp">0</par>
+		<par type="phase" chan="0">-2.60915</par>
+	</atom>
+	<atom type="gabor">
+		<par type="numChans">1</par>
+		<support chan="0"><p>210176</p><l>16384</l></support>
+		<par type="amp" chan="0">3.52952</par>
+		<window type="gauss" opt="0"></window>
+		<par type="freq">0.0717163</par>
+		<par type="chirp">0</par>
+		<par type="phase" chan="0">-2.16791</par>
+	</atom>
+	<atom type="gabor">
+		<par type="numChans">1</par>
+		<support chan="0"><p>176640</p><l>16384</l></support>
+		<par type="amp" chan="0">3.49681</par>
+		<window type="gauss" opt="0"></window>
+		<par type="freq">0.0717163</par>
+		<par type="chirp">0</par>
+		<par type="phase" chan="0">-0.292969</par>
+	</atom>
+	<atom type="gabor">
+		<par type="numChans">1</par>
+		<support chan="0"><p>151808</p><l>16384</l></support>
+		<par type="amp" chan="0">3.40332</par>
+		<window type="gauss" opt="0"></window>
+		<par type="freq">0.0715942</par>
+		<par type="chirp">0</par>
+		<par type="phase" chan="0">-3.09356</par>
+	</atom>
+	<atom type="gabor">
+		<par type="numChans">1</par>
+		<support chan="0"><p>184064</p><l>16384</l></support>
+		<par type="amp" chan="0">3.31885</par>
+		<window type="gauss" opt="0"></window>
+		<par type="freq">0.19397</par>
+		<par type="chirp">0</par>
+		<par type="phase" chan="0">-2.59835</par>
+	</atom>
+	<atom type="gabor">
+		<par type="numChans">1</par>
+		<support chan="0"><p>136448</p><l>16384</l></support>
+		<par type="amp" chan="0">3.31517</par>
+		<window type="gauss" opt="0"></window>
+		<par type="freq">0.0477905</par>
+		<par type="chirp">0</par>
+		<par type="phase" chan="0">2.33944</par>
+	</atom>
+	<atom type="gabor">
+		<par type="numChans">1</par>
+		<support chan="0"><p>143872</p><l>16384</l></support>
+		<par type="amp" chan="0">3.26476</par>
+		<window type="gauss" opt="0"></window>
+		<par type="freq">0.0853882</par>
+		<par type="chirp">0</par>
+		<par type="phase" chan="0">-0.0875053</par>
+	</atom>
+	<atom type="gabor">
+		<par type="numChans">1</par>
+		<support chan="0"><p>90112</p><l>16384</l></support>
+		<par type="amp" chan="0">3.25881</par>
+		<window type="gauss" opt="0"></window>
+		<par type="freq">0.0476685</par>
+		<par type="chirp">0</par>
+		<par type="phase" chan="0">3.1339</par>
+	</atom>
+	<atom type="gabor">
+		<par type="numChans">1</par>
+		<support chan="0"><p>183040</p><l>16384</l></support>
+		<par type="amp" chan="0">3.19368</par>
+		<window type="gauss" opt="0"></window>
+		<par type="freq">0.0718384</par>
+		<par type="chirp">0</par>
+		<par type="phase" chan="0">2.06974</par>
+	</atom>
+	<atom type="gabor">
+		<par type="numChans">1</par>
+		<support chan="0"><p>150272</p><l>16384</l></support>
+		<par type="amp" chan="0">3.18732</par>
+		<window type="gauss" opt="0"></window>
+		<par type="freq">0.19397</par>
+		<par type="chirp">0</par>
+		<par type="phase" chan="0">-2.22968</par>
+	</atom>
+	<atom type="gabor">
+		<par type="numChans">1</par>
+		<support chan="0"><p>29440</p><l>16384</l></support>
+		<par type="amp" chan="0">3.14471</par>
+		<window type="gauss" opt="0"></window>
+		<par type="freq">0.0283813</par>
+		<par type="chirp">0</par>
+		<par type="phase" chan="0">-3.125</par>
+	</atom>
+	<atom type="gabor">
+		<par type="numChans">1</par>
+		<support chan="0"><p>25344</p><l>16384</l></support>
+		<par type="amp" chan="0">3.08804</par>
+		<window type="gauss" opt="0"></window>
+		<par type="freq">0.0358887</par>
+		<par type="chirp">0</par>
+		<par type="phase" chan="0">-0.630158</par>
+	</atom>
+	<atom type="gabor">
+		<par type="numChans">1</par>
+		<support chan="0"><p>55296</p><l>16384</l></support>
+		<par type="amp" chan="0">3.08673</par>
+		<window type="gauss" opt="0"></window>
+		<par type="freq">0.0476685</par>
+		<par type="chirp">0</par>
+		<par type="phase" chan="0">0.0991984</par>
+	</atom>
+	<atom type="gabor">
+		<par type="numChans">1</par>
+		<support chan="0"><p>132608</p><l>16384</l></support>
+		<par type="amp" chan="0">3.08609</par>
+		<window type="gauss" opt="0"></window>
+		<par type="freq">0.085144</par>
+		<par type="chirp">0</par>
+		<par type="phase" chan="0">0.149929</par>
+	</atom>
+	<atom type="gabor">
+		<par type="numChans">1</par>
+		<support chan="0"><p>70656</p><l>16384</l></support>
+		<par type="amp" chan="0">3.08529</par>
+		<window type="gauss" opt="0"></window>
+		<par type="freq">0.0476685</par>
+		<par type="chirp">0</par>
+		<par type="phase" chan="0">-2.77954</par>
+	</atom>
+	<atom type="gabor">
+		<par type="numChans">1</par>
+		<support chan="0"><p>52992</p><l>16384</l></support>
+		<par type="amp" chan="0">3.06124</par>
+		<window type="gauss" opt="0"></window>
+		<par type="freq">0.0426025</par>
+		<par type="chirp">0</par>
+		<par type="phase" chan="0">-1.59572</par>
+	</atom>
+	<atom type="gabor">
+		<par type="numChans">1</par>
+		<support chan="0"><p>83456</p><l>16384</l></support>
+		<par type="amp" chan="0">3.044</par>
+		<window type="gauss" opt="0"></window>
+		<par type="freq">0.0479736</par>
+		<par type="chirp">0</par>
+		<par type="phase" chan="0">-0.44463</par>
+	</atom>
+	<atom type="gabor">
+		<par type="numChans">1</par>
+		<support chan="0"><p>164608</p><l>16384</l></support>
+		<par type="amp" chan="0">2.9603</par>
+		<window type="gauss" opt="0"></window>
+		<par type="freq">0.0852051</par>
+		<par type="chirp">0</par>
+		<par type="phase" chan="0">-1.62232</par>
+	</atom>
+	<atom type="gabor">
+		<par type="numChans">1</par>
+		<support chan="0"><p>62208</p><l>16384</l></support>
+		<par type="amp" chan="0">2.89534</par>
+		<window type="gauss" opt="0"></window>
+		<par type="freq">0.0357666</par>
+		<par type="chirp">0</par>
+		<par type="phase" chan="0">-0.414024</par>
+	</atom>
+	<atom type="gabor">
+		<par type="numChans">1</par>
+		<support chan="0"><p>110848</p><l>16384</l></support>
+		<par type="amp" chan="0">2.8546</par>
+		<window type="gauss" opt="0"></window>
+		<par type="freq">0.0568237</par>
+		<par type="chirp">0</par>
+		<par type="phase" chan="0">0.249117</par>
+	</atom>
+	<atom type="gabor">
+		<par type="numChans">1</par>
+		<support chan="0"><p>39936</p><l>16384</l></support>
+		<par type="amp" chan="0">2.79786</par>
+		<window type="gauss" opt="0"></window>
+		<par type="freq">0.116455</par>
+		<par type="chirp">0</par>
+		<par type="phase" chan="0">-3.02242</par>
+	</atom>
+	<atom type="gabor">
+		<par type="numChans">1</par>
+		<support chan="0"><p>132352</p><l>16384</l></support>
+		<par type="amp" chan="0">2.75827</par>
+		<window type="gauss" opt="0"></window>
+		<par type="freq">0.0858154</par>
+		<par type="chirp">0</par>
+		<par type="phase" chan="0">1.6784</par>
+	</atom>
+	<atom type="gabor">
+		<par type="numChans">1</par>
+		<support chan="0"><p>118784</p><l>16384</l></support>
+		<par type="amp" chan="0">2.74463</par>
+		<window type="gauss" opt="0"></window>
+		<par type="freq">0.0715942</par>
+		<par type="chirp">0</par>
+		<par type="phase" chan="0">-1.98835</par>
+	</atom>
+	<atom type="gabor">
+		<par type="numChans">1</par>
+		<support chan="0"><p>80640</p><l>16384</l></support>
+		<par type="amp" chan="0">2.73543</par>
+		<window type="gauss" opt="0"></window>
+		<par type="freq">0.0426025</par>
+		<par type="chirp">0</par>
+		<par type="phase" chan="0">0.795074</par>
+	</atom>
+	<atom type="gabor">
+		<par type="numChans">1</par>
+		<support chan="0"><p>76288</p><l>16384</l></support>
+		<par type="amp" chan="0">2.63282</par>
+		<window type="gauss" opt="0"></window>
+		<par type="freq">0.116394</par>
+		<par type="chirp">0</par>
+		<par type="phase" chan="0">2.75524</par>
+	</atom>
+	<atom type="gabor">
+		<par type="numChans">1</par>
+		<support chan="0"><p>93696</p><l>16384</l></support>
+		<par type="amp" chan="0">2.60329</par>
+		<window type="gauss" opt="0"></window>
+		<par type="freq">0.0479126</par>
+		<par type="chirp">0</par>
+		<par type="phase" chan="0">-0.746746</par>
+	</atom>
+	<atom type="gabor">
+		<par type="numChans">1</par>
+		<support chan="0"><p>145152</p><l>16384</l></support>
+		<par type="amp" chan="0">2.53417</par>
+		<window type="gauss" opt="0"></window>
+		<par type="freq">0.0477905</par>
+		<par type="chirp">0</par>
+		<par type="phase" chan="0">1.70589</par>
+	</atom>
+	<atom type="gabor">
+		<par type="numChans">1</par>
+		<support chan="0"><p>37888</p><l>16384</l></support>
+		<par type="amp" chan="0">2.49165</par>
+		<window type="gauss" opt="0"></window>
+		<par type="freq">0.0283813</par>
+		<par type="chirp">0</par>
+		<par type="phase" chan="0">0.903997</par>
+	</atom>
+	<atom type="gabor">
+		<par type="numChans">1</par>
+		<support chan="0"><p>107776</p><l>16384</l></support>
+		<par type="amp" chan="0">2.42332</par>
+		<window type="gauss" opt="0"></window>
+		<par type="freq">0.0479126</par>
+		<par type="chirp">0</par>
+		<par type="phase" chan="0">2.55134</par>
+	</atom>
+	<atom type="gabor">
+		<par type="numChans">1</par>
+		<support chan="0"><p>103168</p><l>16384</l></support>
+		<par type="amp" chan="0">2.42999</par>
+		<window type="gauss" opt="0"></window>
+		<par type="freq">0.0476685</par>
+		<par type="chirp">0</par>
+		<par type="phase" chan="0">-1.41955</par>
+	</atom>
+	<atom type="gabor">
+		<par type="numChans">1</par>
+		<support chan="0"><p>70912</p><l>16384</l></support>
+		<par type="amp" chan="0">2.42048</par>
+		<window type="gauss" opt="0"></window>
+		<par type="freq">0.0357666</par>
+		<par type="chirp">0</par>
+		<par type="phase" chan="0">1.0897</par>
+	</atom>
+	<atom type="gabor">
+		<par type="numChans">1</par>
+		<support chan="0"><p>62720</p><l>16384</l></support>
+		<par type="amp" chan="0">2.41233</par>
+		<window type="gauss" opt="0"></window>
+		<par type="freq">0.116455</par>
+		<par type="chirp">0</par>
+		<par type="phase" chan="0">-0.289183</par>
+	</atom>
+	<atom type="gabor">
+		<par type="numChans">1</par>
+		<support chan="0"><p>165120</p><l>16384</l></support>
+		<par type="amp" chan="0">2.38774</par>
+		<window type="gauss" opt="0"></window>
+		<par type="freq">0.0858154</par>
+		<par type="chirp">0</par>
+		<par type="phase" chan="0">1.42328</par>
+	</atom>
+	<atom type="gabor">
+		<par type="numChans">1</par>
+		<support chan="0"><p>118016</p><l>16384</l></support>
+		<par type="amp" chan="0">2.37495</par>
+		<window type="gauss" opt="0"></window>
+		<par type="freq">0.19397</par>
+		<par type="chirp">0</par>
+		<par type="phase" chan="0">2.79835</par>
+	</atom>
+	<atom type="gabor">
+		<par type="numChans">1</par>
+		<support chan="0"><p>218112</p><l>16384</l></support>
+		<par type="amp" chan="0">2.36021</par>
+		<window type="gauss" opt="0"></window>
+		<par type="freq">0.0717163</par>
+		<par type="chirp">0</par>
+		<par type="phase" chan="0">-0.875408</par>
+	</atom>
+	<atom type="gabor">
+		<par type="numChans">1</par>
+		<support chan="0"><p>195840</p><l>16384</l></support>
+		<par type="amp" chan="0">2.25953</par>
+		<window type="gauss" opt="0"></window>
+		<par type="freq">0.0855103</par>
+		<par type="chirp">0</par>
+		<par type="phase" chan="0">-0.671357</par>
+	</atom>
+	<atom type="gabor">
+		<par type="numChans">1</par>
+		<support chan="0"><p>141312</p><l>16384</l></support>
+		<par type="amp" chan="0">2.23297</par>
+		<window type="gauss" opt="0"></window>
+		<par type="freq">0.0717163</par>
+		<par type="chirp">0</par>
+		<par type="phase" chan="0">-1.06781</par>
+	</atom>
+	<atom type="gabor">
+		<par type="numChans">1</par>
+		<support chan="0"><p>174848</p><l>16384</l></support>
+		<par type="amp" chan="0">2.22261</par>
+		<window type="gauss" opt="0"></window>
+		<par type="freq">0.0856323</par>
+		<par type="chirp">0</par>
+		<par type="phase" chan="0">-1.52798</par>
+	</atom>
+	<atom type="gabor">
+		<par type="numChans">1</par>
+		<support chan="0"><p>133888</p><l>16384</l></support>
+		<par type="amp" chan="0">2.18704</par>
+		<window type="gauss" opt="0"></window>
+		<par type="freq">0.157349</par>
+		<par type="chirp">0</par>
+		<par type="phase" chan="0">-0.388891</par>
+	</atom>
+	<atom type="gabor">
+		<par type="numChans">1</par>
+		<support chan="0"><p>24832</p><l>16384</l></support>
+		<par type="amp" chan="0">2.17993</par>
+		<window type="gauss" opt="0"></window>
+		<par type="freq">0.0356445</par>
+		<par type="chirp">0</par>
+		<par type="phase" chan="0">2.4899</par>
+	</atom>
+	<atom type="gabor">
+		<par type="numChans">1</par>
+		<support chan="0"><p>144896</p><l>16384</l></support>
+		<par type="amp" chan="0">2.14394</par>
+		<window type="gauss" opt="0"></window>
+		<par type="freq">0.0855713</par>
+		<par type="chirp">0</par>
+		<par type="phase" chan="0">-0.784211</par>
+	</atom>
+	<atom type="gabor">
+		<par type="numChans">1</par>
+		<support chan="0"><p>191744</p><l>16384</l></support>
+		<par type="amp" chan="0">2.033</par>
+		<window type="gauss" opt="0"></window>
+		<par type="freq">0.0715942</par>
+		<par type="chirp">0</par>
+		<par type="phase" chan="0">-2.86264</par>
+	</atom>
+	<atom type="gabor">
+		<par type="numChans">1</par>
+		<support chan="0"><p>100352</p><l>16384</l></support>
+		<par type="amp" chan="0">2.02453</par>
+		<window type="gauss" opt="0"></window>
+		<par type="freq">0.154907</par>
+		<par type="chirp">0</par>
+		<par type="phase" chan="0">-2.05005</par>
+	</atom>
+	<atom type="gabor">
+		<par type="numChans">1</par>
+		<support chan="0"><p>10752</p><l>16384</l></support>
+		<par type="amp" chan="0">2.00247</par>
+		<window type="gauss" opt="0"></window>
+		<par type="freq">0.0775757</par>
+		<par type="chirp">0</par>
+		<par type="phase" chan="0">-0.903881</par>
+	</atom>
+	<atom type="gabor">
+		<par type="numChans">1</par>
+		<support chan="0"><p>46336</p><l>16384</l></support>
+		<par type="amp" chan="0">1.99907</par>
+		<window type="gauss" opt="0"></window>
+		<par type="freq">0.0283813</par>
+		<par type="chirp">0</par>
+		<par type="phase" chan="0">-1.30574</par>
+	</atom>
+	<atom type="gabor">
+		<par type="numChans">1</par>
+		<support chan="0"><p>116992</p><l>16384</l></support>
+		<par type="amp" chan="0">1.9705</par>
+		<window type="gauss" opt="0"></window>
+		<par type="freq">0.0718994</par>
+		<par type="chirp">0</par>
+		<par type="phase" chan="0">-0.425363</par>
+	</atom>
+	<atom type="gabor">
+		<par type="numChans">1</par>
+		<support chan="0"><p>153600</p><l>16384</l></support>
+		<par type="amp" chan="0">1.96808</par>
+		<window type="gauss" opt="0"></window>
+		<par type="freq">0.0477905</par>
+		<par type="chirp">0</par>
+		<par type="phase" chan="0">-0.319844</par>
+	</atom>
+	<atom type="gabor">
+		<par type="numChans">1</par>
+		<support chan="0"><p>76288</p><l>16384</l></support>
+		<par type="amp" chan="0">1.95967</par>
+		<window type="gauss" opt="0"></window>
+		<par type="freq">0.116638</par>
+		<par type="chirp">0</par>
+		<par type="phase" chan="0">3.02426</par>
+	</atom>
+	<atom type="gabor">
+		<par type="numChans">1</par>
+		<support chan="0"><p>80640</p><l>16384</l></support>
+		<par type="amp" chan="0">1.87439</par>
+		<window type="gauss" opt="0"></window>
+		<par type="freq">0.0357666</par>
+		<par type="chirp">0</par>
+		<par type="phase" chan="0">0.180875</par>
+	</atom>
+	<atom type="gabor">
+		<par type="numChans">1</par>
+		<support chan="0"><p>118528</p><l>16384</l></support>
+		<par type="amp" chan="0">1.85171</par>
+		<window type="gauss" opt="0"></window>
+		<par type="freq">0.0568237</par>
+		<par type="chirp">0</par>
+		<par type="phase" chan="0">3.01636</par>
+	</atom>
+	<atom type="gabor">
+		<par type="numChans">1</par>
+		<support chan="0"><p>115456</p><l>16384</l></support>
+		<par type="amp" chan="0">1.83483</par>
+		<window type="gauss" opt="0"></window>
+		<par type="freq">0.0479126</par>
+		<par type="chirp">0</par>
+		<par type="phase" chan="0">1.82863</par>
+	</atom>
+	<atom type="gabor">
+		<par type="numChans">1</par>
+		<support chan="0"><p>33024</p><l>16384</l></support>
+		<par type="amp" chan="0">1.82902</par>
+		<window type="gauss" opt="0"></window>
+		<par type="freq">0.0358887</par>
+		<par type="chirp">0</par>
+		<par type="phase" chan="0">2.78572</par>
+	</atom>
+</book>

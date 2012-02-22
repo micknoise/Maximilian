@@ -361,25 +361,25 @@ void PowerSpectrum(int NumSamples, float *In, float *Out)
  * Windowing Functions
  */
 
-int NumWindowFuncs()
-{
-	return 4;
-}
+//int NumWindowFuncs()
+//{
+//	return 4;
+//}
 
-char *WindowFuncName(int whichFunction)
-{
-	switch (whichFunction) {
-		default:
-		case 0:
-			return "Rectangular";
-		case 1:
-			return "Bartlett";
-		case 2:
-			return "Hamming";
-		case 3:
-			return "Hanning";
-	}
-}
+//char *WindowFuncName(int whichFunction)
+//{
+//	switch (whichFunction) {
+//		default:
+//		case 0:
+//			return "Rectangular";
+//		case 1:
+//			return "Bartlett";
+//		case 2:
+//			return "Hamming";
+//		case 3:
+//			return "Hanning";
+//	}
+//}
 
 void WindowFunc(int whichFunction, int NumSamples, float *in)
 {

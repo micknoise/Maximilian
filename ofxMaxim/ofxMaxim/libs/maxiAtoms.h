@@ -12,6 +12,8 @@
 #include "maximilian.h"
 #include <list>
 #include <vector>
+#include "maxiGrains.h"
+
 
 using namespace std;
 
@@ -37,7 +39,9 @@ class maxiCollider {
 public:
 	static inline void createGabor(flArr &atom, const float freq, const float sampleRate, const uint length, 
                                 float phase, const float kurtotis, const float amp);
+    static maxiGrainWindowCache<gaussianWinFunctor> envCache;
 };
+
 
 //queue atoms into an audio stream
 class maxiAccelerator {

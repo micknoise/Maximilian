@@ -54,3 +54,4 @@ In the ofxMaxim directory you will find examples to run in Windows, OSX and iOS,
 
 You can install the ofxMaxim addon by copying the ofxMaxim/ofxMaxim folder into your openframeworks addons directory.
 
+Important: when using Maximilian on OSX, link against the Accelerate framework.

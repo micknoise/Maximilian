@@ -13,6 +13,7 @@
 #include "sineTable.h"
 #ifdef __APPLE_CC__
 #include <Accelerate/Accelerate.h>
+#warning ofxMaxim: Please link against the accelerate framework.
 #endif
 
 //#include "tinyxml.h"
@@ -68,7 +69,7 @@ inline void maxiCollider::createGabor(flArr &atom, const float freq, const float
     float waveTableLength = 512;
     vDSP_vsmul(&interpConstants[0], 1, &waveTableLength, &interpConstants[0], 1, length);
     for(uint i=0; i < length; i++) {
-        interpConstants[i] = fmod(interpConstants[i], 512.0); 
+        interpConstants[i] = fmod(interpConstants[i], 512.0f); 
     }
     vDSP_vlint(sineBuffer2, &interpConstants[0], 1, &sine[0], 1, length, 514);
     vDSP_vmul(&atom[0], 1, &sine[0], 1, &atom[0], 1,  length);

@@ -74,7 +74,7 @@ public:
 	unsigned int numSamples;
 	unsigned int sampleRate;
 	maxiAtomBookData atoms;
-    //commented out for now, need to resolve tinyxml linker issues
+    //commented out for now, need to resolve tinyxml linker issues - we need tinyxml in the distrib, but it clashes if you also import ofxXmlSettings
 //	static bool loadMPTKXmlBook(string filename, maxiAtomBook &book);  
 	
 };

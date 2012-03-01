@@ -48,7 +48,7 @@ then:
 
 :::::::::::::::::::::::::::OPENFRAMEWORKS
 
-Maximilian works will with the OpenFrameworks C++ creative coding toolkit (http://www.openframeworks.cc).
+Maximilian works well with the OpenFrameworks C++ creative coding toolkit (http://www.openframeworks.cc).
 
 In the ofxMaxim directory you will find examples to run in Windows, OSX and iOS, including FFT analysis and granular synthesis.  
 

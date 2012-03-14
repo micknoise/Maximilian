@@ -433,15 +433,11 @@ bool maxiSample::read()
 
 
 double maxiSample::play() {
-	//	long length=myDataSize*(1./myChannels);
-	double remainder;
 	short* buffer = (short *)myData;
-	position=(position+1);
-	remainder = position - (long) position;
-	if ((long) position>length) position=0;
-	output =
-	(double) ((1-remainder) * buffer[1+ (long) position] + remainder * buffer[2+(long) position])/32767;//linear interpolation
-	return(output);
+	position++;
+	if ((long) position == length) position=0;
+	output = (double) buffer[(long)position]/32767.0;
+	return output;
 }
 
 double maxiSample::playOnce() {

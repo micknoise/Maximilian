@@ -59,7 +59,7 @@ public:
 	//features
 	float spectralFlatness();
 	float spectralCentroid();
-
+    
 private:
 	float *buffer, *window;
 	int pos;
@@ -67,7 +67,7 @@ private:
 	int fftSize;
 	fft *_fft;
 	bool newFFT;
-
+    
 };
 
 class maxiIFFT {
@@ -93,8 +93,8 @@ private:
 
 
 class maxiFFTOctaveAnalyzer {
-/*based on code by David Bollinger, http://www.davebollinger.com/
- */
+    /*based on code by David Bollinger, http://www.davebollinger.com/
+     */
 public:
 	
 	float samplingRate; // sampling rate in Hz (needed to calculate frequency spans)

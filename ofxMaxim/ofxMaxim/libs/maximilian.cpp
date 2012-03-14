@@ -1026,3 +1026,12 @@ double convert::mtof(int midinote) {
 	return mtofarray[midinote];
 }
 
+
+void maxiEnvelopeFollower::setAttack(double attackMS) {
+    attack = pow( 0.01, 1.0 / ( attackMS * maxiSettings::sampleRate * 0.001 ) );
+}
+
+void maxiEnvelopeFollower::setRelease(double releaseMS) {
+    release = pow( 0.01, 1.0 / ( releaseMS * maxiSettings::sampleRate * 0.001 ) );    
+}
+

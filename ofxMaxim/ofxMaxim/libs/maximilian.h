@@ -442,4 +442,25 @@ inline double maxiChorus::chorus(const double input, const unsigned int delay, c
     return (output1 + output2 + input) / 3.0;
 }
 
+class maxiEnvelopeFollower {
+public:
+    maxiEnvelopeFollower() {
+        setAttack(100);
+        setRelease(100);
+        env = 0;
+    }
+    void setAttack(double attackMS);
+    void setRelease(double releaseMS);
+    inline double play(double input) {
+        input = fabs(input);
+        if (input>env)
+            env = attack * (env - input) + input;
+        else
+            env = release * (env - input) + input;        
+        return env;
+    }
+private:
+    double attack, release, env;
+};
+
 #endif

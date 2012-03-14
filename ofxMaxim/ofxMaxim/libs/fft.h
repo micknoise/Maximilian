@@ -38,7 +38,7 @@
 #endif
 
 #ifdef __APPLE_CC__
-	#include <Accelerate/Accelerate.h>
+#include <Accelerate/Accelerate.h>
 #endif
 
 
@@ -54,7 +54,7 @@ public:
 	int half; //halfFFTSize
 	
 	float			*in_real, *out_real, *in_img, *out_img;
-
+    
 #ifdef __APPLE_CC__
 	int log2n; //log2(n);
     FFTSetup        setupReal;
@@ -70,7 +70,7 @@ public:
 	/* ... the inverse */
 	void inversePowerSpectrum(int start, float *finalOut, float *window, float *magnitude,float *phase);	
 	void convToDB(float *in, float *out);
-		
+    
 	static void genWindow(int whichFunction, int NumSamples, float *window);
 	
 };

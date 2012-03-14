@@ -85,14 +85,14 @@ int ReverseBits(int index, int NumBits)
 
 void InitFFT()
 {
-//	gFFTBitTable = new int *[MaxFastBits];
+    //	gFFTBitTable = new int *[MaxFastBits];
 	//use malloc for 16 byte alignment
 	gFFTBitTable = (int**) malloc(MaxFastBits * sizeof(int*));
 	
 	int len = 2;
 	for (int b = 1; b <= MaxFastBits; b++) {
 		
-//		gFFTBitTable[b - 1] = new int[len];
+        //		gFFTBitTable[b - 1] = new int[len];
 		gFFTBitTable[b - 1] = (int*) malloc(len * sizeof(int));
 		
 		for (int i = 0; i < len; i++)
@@ -442,7 +442,7 @@ fft::fft(int fftSize) {
 	in_img = (float *) malloc(n * sizeof(float));
 	out_real = (float *) malloc(n * sizeof(float));
 	out_img = (float *) malloc(n * sizeof(float));
-
+    
 #ifdef __APPLE_CC__
 	log2n = log2(n);
 	A.realp = (float *) malloc(half * sizeof(float));
@@ -487,11 +487,11 @@ void fft::powerSpectrum(int start, float *data, float *window, float *magnitude,
 		magnitude[i] = sqrt(power);
 		phase[i] = atan2(out_img[i],out_real[i]);
 		
-//		if (magnitude[i] < 0.000001){ // less than 0.1 nV
-//			magnitude[i] = 0; // out of range
-//		} else {
-//			magnitude[i] = 20.0*log10(magnitude[i] + 1);  // get to to db scale
-//		}
+        //		if (magnitude[i] < 0.000001){ // less than 0.1 nV
+        //			magnitude[i] = 0; // out of range
+        //		} else {
+        //			magnitude[i] = 20.0*log10(magnitude[i] + 1);  // get to to db scale
+        //		}
 	}
 	
 }
@@ -516,7 +516,7 @@ void fft::powerSpectrum_vdsp(int start, float *data, float *window, float *magni
 	
 	//multiply by window
 	vDSP_vmul(data, 1, window, 1, in_real, 1, n);
-
+    
 	//convert to split complex format - evens and odds
 	vDSP_ctoz((COMPLEX *) in_real, 2, &A, 1, half);
 	
@@ -528,7 +528,7 @@ void fft::powerSpectrum_vdsp(int start, float *data, float *window, float *magni
 	static float scale=0.5 ;
 	vDSP_vsmul(A.realp, 1, &scale, A.realp, 1, half);
 	vDSP_vsmul(A.imagp, 1, &scale, A.imagp, 1, half);
-
+    
 	//back to split complex format
 	vDSP_ztoc(&A, 1, (COMPLEX*) out_real, 2, half);
 	
@@ -536,7 +536,7 @@ void fft::powerSpectrum_vdsp(int start, float *data, float *window, float *magni
 	vDSP_polar(out_real, 2, polar, 2, half);
 	
 	for (i = 0; i < half; i++) {
-		magnitude[i]=polar[2*i]+1.0;
+		magnitude[i]=polar[2*i];
 		phase[i]=polar[2*i + 1];
 	}
 	
@@ -560,9 +560,9 @@ void fft::inversePowerSpectrum(int start, float *finalOut, float *window, float 
 	
 	/* get real and imag part */
 	for (i = 0; i < half; i++) {
-//		float mag = pow(10.0, magnitude[i] / 20.0) - 1.0;
-//		in_real[i] = mag *cos(phase[i]);
-//		in_img[i]  = mag *sin(phase[i]);
+        //		float mag = pow(10.0, magnitude[i] / 20.0) - 1.0;
+        //		in_real[i] = mag *cos(phase[i]);
+        //		in_img[i]  = mag *sin(phase[i]);
 		in_real[i] = magnitude[i] *cos(phase[i]);
 		in_img[i]  = magnitude[i] *sin(phase[i]);
 	}
@@ -586,8 +586,8 @@ void fft::inversePowerSpectrum_vdsp(int start, float *finalOut, float *window, f
 	uint32_t i;
 	
 	for (i = 0; i < half; i++) {
-//		polar[2*i] = pow(10.0, magnitude[i] / 20.0) - 1.0;
-		polar[2*i] = magnitude[i] - 1.0;
+        //		polar[2*i] = pow(10.0, magnitude[i] / 20.0) - 1.0;
+		polar[2*i] = magnitude[i];
 		polar[2*i + 1] = phase[i];
 	}	
 	
@@ -599,7 +599,7 @@ void fft::inversePowerSpectrum_vdsp(int start, float *finalOut, float *window, f
 	
 	static float scale = 1./n;
 	vDSP_vsmul(out_real, 1, &scale, out_real, 1, n);
-
+    
 	//multiply by window
 	vDSP_vmul(out_real, 1, window, 1, finalOut, 1, n);
 	

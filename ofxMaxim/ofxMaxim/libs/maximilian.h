@@ -167,6 +167,38 @@ public:
 	
 };
 
+//lagging with an exponential moving average
+//a lower alpha value gives a slower lag
+template <class T> 
+class maxiLagExp {
+public:
+	T alpha, alphaReciprocal;
+	T val;
+	
+	maxiLagExp() {
+		init(0.5, 0.0);
+	};
+	
+	maxiLagExp(T initAlpha, T initVal) {
+		init(initAlpha, initVal);
+	}
+	
+	void init(T initAlpha, T initVal) {
+		alpha = initAlpha;
+		alphaReciprocal = 1.0 - alpha;
+		val = initVal;
+	}
+	
+	inline void addSample(T newVal) {
+		val = (alpha * newVal) + (alphaReciprocal * val);
+	}
+	
+	inline T value() {
+		return val;
+	}
+};
+
+
 class maxiSample  {
 	
 private:
@@ -178,9 +210,10 @@ private:
 	int   	myByteRate;
 	short 	myBlockAlign;
 	short 	myBitsPerSample;
-	double position;
+	double position, recordPosition;
 	double speed;
 	double output;
+    maxiLagExp<double> loopRecordLag;
 	
 public:
 	int	myDataSize;
@@ -188,6 +221,7 @@ public:
 	int   	mySampleRate;
 	long length;
 	void getLength();
+    void setLength(unsigned long numSamples);  
 	
 	
 	char* 	myData;
@@ -199,7 +233,7 @@ public:
 		if (myData) delete[] myData;
 	}
 	
-	maxiSample():myData(NULL),position(0){};
+	maxiSample():myData(NULL),position(0), recordPosition(0), myChannels(1), mySampleRate(maxiSettings::sampleRate) {};
 	
 	bool load(string fileName, int channel=0);
 	
@@ -207,6 +241,21 @@ public:
 	
 	// read a wav file into this class
 	bool read();
+    
+    void loopRecord(double newSample, const bool recordEnabled, const double recordMix) {
+        loopRecordLag.addSample(recordEnabled);
+        if(recordEnabled) {
+            double currentSample = ((short*)myData)[(unsigned long)recordPosition] / 32767.0;
+            newSample = (recordMix * currentSample) + ((1.0 - recordMix) * newSample);
+            newSample *= loopRecordLag.value();
+            ((short*)myData)[(unsigned long)recordPosition] = newSample * 32767;
+        }
+        ++recordPosition;
+        if (recordPosition == length)
+            recordPosition=0;
+    }
+    
+    void clear();
 	
 	double play();
 	
@@ -462,5 +511,6 @@ public:
 private:
     double attack, release, env;
 };
+
 
 #endif

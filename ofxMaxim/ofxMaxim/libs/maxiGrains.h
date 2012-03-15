@@ -219,6 +219,7 @@ public:
 			short* buffer = (short *)sample->myData;
 			if (frequency >0.) {
 				pos += inc;
+                if (pos >= sample->length) pos -= sample->length;
 				long posl = static_cast<long>(pos);
 				remainder = pos - posl;
 				a=posl++;
@@ -234,6 +235,7 @@ public:
 			} else {
 				frequency=frequency-(frequency+frequency);
 				pos += inc;
+                if (pos < 0) pos += sample->length;
 				long posl = static_cast<long>(pos);
 				remainder = pos - posl;
 				if (posl-1>=0) {

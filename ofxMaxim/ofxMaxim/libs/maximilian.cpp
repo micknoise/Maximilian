@@ -845,6 +845,26 @@ void maxiSample::getLength() {
 	length=myDataSize*0.5;	
 }
 
+void maxiSample::setLength(unsigned long numSamples) {
+    char *newData = (char*) malloc(sizeof(short) * numSamples);
+    if (NULL!=myData) {
+        unsigned long copyLength = min((unsigned long)length, numSamples);
+        memcpy(newData, myData, sizeof(short) * copyLength);
+    }
+    myData = newData;
+    myDataSize = numSamples * 2;
+    length=numSamples;
+    position=0;
+    recordPosition=0;
+
+}
+
+void maxiSample::clear() {
+    memset(myData, 0, myDataSize);
+}
+
+
+
 
 /* OK this compressor and gate are now ready to use. The envelopes, like all the envelopes in this recent update, use stupid algorithms for 
  incrementing - consequently a long attack is something like 0.0001 and a long release is like 0.9999.

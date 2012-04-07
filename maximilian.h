@@ -187,22 +187,30 @@ public:
 
 
 	char* 	myData;
+    short* temp;
 	
 	// get/set for the Path property
 
 	~maxiSample()
 	{
 		if (myData) delete[] myData;
+        if (temp) delete[] temp;
+
 	}
 	
 	maxiSample():myData(NULL){};
 
 	bool load(string fileName, int channel=0);
+    
+    bool loadOgg(char *filename,int channel=0);
 	
 	void trigger();
 	
 	// read a wav file into this class
 	bool read();
+    
+    //read an ogg file into this class using stb_vorbis
+    bool readOgg();
 	
 	double play();
 	

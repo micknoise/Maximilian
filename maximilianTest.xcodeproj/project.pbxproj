@@ -14,6 +14,7 @@
 		4C1D998D10FA773D00D5E940 /* AudioUnit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C1D998C10FA773D00D5E940 /* AudioUnit.framework */; };
 		4C1D999110FA774A00D5E940 /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C1D999010FA774A00D5E940 /* CoreServices.framework */; };
 		833289281403E9C4003DF5D6 /* player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 833289271403E9C4003DF5D6 /* player.cpp */; };
+		8D7601A5152BDB5200EAE4B0 /* stb_vorbis.c in Sources */ = {isa = PBXBuildFile; fileRef = 8D7601A3152BDB5200EAE4B0 /* stb_vorbis.c */; };
 		8DD76F650486A84900D96B5E /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 08FB7796FE84155DC02AAC07 /* main.cpp */; settings = {ATTRIBUTES = (); }; };
 		8DD76F6A0486A84900D96B5E /* rtaudiotest.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = C6859E8B029090EE04C91782 /* rtaudiotest.1 */; };
 /* End PBXBuildFile section */
@@ -45,6 +46,8 @@
 		4C1D999010FA774A00D5E940 /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = System/Library/Frameworks/CoreServices.framework; sourceTree = SDKROOT; };
 		833289261403E9C4003DF5D6 /* player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = player.h; sourceTree = "<group>"; };
 		833289271403E9C4003DF5D6 /* player.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = player.cpp; sourceTree = "<group>"; };
+		8D7601A3152BDB5200EAE4B0 /* stb_vorbis.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = stb_vorbis.c; sourceTree = "<group>"; };
+		8D7601A4152BDB5200EAE4B0 /* stb_vorbis.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stb_vorbis.h; sourceTree = "<group>"; };
 		8DD76F6C0486A84900D96B5E /* rtaudiotest */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = rtaudiotest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C6859E8B029090EE04C91782 /* rtaudiotest.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = rtaudiotest.1; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -81,6 +84,8 @@
 		08FB7795FE84155DC02AAC07 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				8D7601A3152BDB5200EAE4B0 /* stb_vorbis.c */,
+				8D7601A4152BDB5200EAE4B0 /* stb_vorbis.h */,
 				833289261403E9C4003DF5D6 /* player.h */,
 				833289271403E9C4003DF5D6 /* player.cpp */,
 				00B5A18510F54EF50011B459 /* maximilian.cpp */,
@@ -172,6 +177,7 @@
 				00FD794410CF325D00EA9294 /* RtAudio.cpp in Sources */,
 				00B5A18610F54EF50011B459 /* maximilian.cpp in Sources */,
 				833289281403E9C4003DF5D6 /* player.cpp in Sources */,
+				8D7601A5152BDB5200EAE4B0 /* stb_vorbis.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

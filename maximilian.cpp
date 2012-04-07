@@ -31,9 +31,19 @@
  *
  */
 
+
 #include "maximilian.h"
 #include "math.h"
 
+/*  Maximilian can be configured to load ogg vorbis format files using the 
+*   loadOgg() method.
+*   Uncomment the following to include Sean Barrett's Ogg Vorbis decoder.*/
+
+//#define VORBIS
+
+#ifdef VORBIS
+#include "stb_vorbis.h"
+#endif
 
 //int channels=2;
 //int samplerate=44100; 
@@ -352,6 +362,31 @@ bool maxiSample::load(string fileName, int channel) {
 	return read();
 }
 
+bool maxiSample::loadOgg(char *fileName, int channel) {
+#ifdef VORBIS
+    bool result;
+    result=fileName;
+	readChannel=channel;
+    int channelx;
+    myDataSize = stb_vorbis_decode_filename(fileName, &channelx, &temp);
+    printf("\nchannels = %d\nlength = %d",channelx,myDataSize);
+    printf("\n");
+    myChannels=(short)channelx;
+    length=myDataSize;
+    mySampleRate=44100;
+    
+    if (myChannels>1) {
+        int position=0;
+        int channel=readChannel;
+        for (int i=channel;i<myDataSize*2;i+=myChannels) {
+            temp[position]=temp[i];
+            position++;
+        }
+    }
+	return result; // this should probably be something more descriptive
+#endif
+}
+
 void maxiSample::trigger() {
 	position = 0;
 }
@@ -420,20 +455,25 @@ bool maxiSample::read()
 				position+=2;
 			}
 		}
+        temp = (short*) malloc(myDataSize * sizeof(char));
+
+        temp=(short*)myData;
 		
 	}else {
-		cout << "ERROR: Could not load sample: " <<myPath << endl;
+//		cout << "ERROR: Could not load sample: " <<myPath << endl; //This line seems to be hated by windows 
+        printf("ERROR: Could not load sample.");
+
 	}
 	
 	
 	return result; // this should probably be something more descriptive
 }
 
-
 double maxiSample::play() {
 //	long length=myDataSize*(1./myChannels);
 	double remainder;
-	short* buffer = (short *)myData;
+	//short* buffer = (short *)myData;
+    short* buffer = temp;
 	position=(position+1);
 	remainder = position - (long) position;
 	if ((long) position>length) position=0;
@@ -444,7 +484,8 @@ double maxiSample::play() {
 
 double maxiSample::playOnce() {
 //	long length=myDataSize*(0.5/myChannels);
-	short* buffer = (short *)myData;
+	//	short* buffer = (short *)myData;
+	short* buffer = temp;
 	position=(position+1);
 	double remainder = position - (long) position;
 	if ((long) position<length)
@@ -458,8 +499,9 @@ double maxiSample::playOnce() {
 double maxiSample::playOnce(double speed) {
 	//long a,b;
 	//	long length=myDataSize*0.5;	
-	short* buffer = (short *)myData;
-	position=position+((speed*chandiv*myChannels)/(maxiSettings::sampleRate/mySampleRate));
+	//	short* buffer = (short *)myData;
+	short* buffer = temp;
+	position=position+((speed*chandiv)/(maxiSettings::sampleRate/mySampleRate));
 	double remainder = position - (long) position;
 	if ((long) position<length)
 		output = (double) ((1-remainder) * buffer[1+ (long) position] + remainder * buffer[2+(long) position])/32767;//linear interpolation
@@ -472,8 +514,8 @@ double maxiSample::play(double speed) {
 	double remainder;
 	long a,b;
 //	long length=myDataSize*0.5;	
-	short* buffer = (short *)myData;
-	position=position+((speed*chandiv*myChannels)/(maxiSettings::sampleRate/mySampleRate));
+	short* buffer = temp;
+	position=position+((speed*chandiv)/(maxiSettings::sampleRate/mySampleRate));
 	if (speed >=0) {
 		
 		if ((long) position>=length-1) position=1;
@@ -525,7 +567,9 @@ double maxiSample::play(double frequency, double start, double end, double &pos)
 
 	if (end>=length) end=length-1;
 	long a,b;
-	short* buffer = (short *)myData;
+//	short* buffer = (short *)myData;
+	short* buffer = temp;
+
 	if (frequency >0.) {
 		if (pos<start) {
 			pos=start;
@@ -582,7 +626,8 @@ double maxiSample::play(double frequency, double start, double end, double &pos)
 double maxiSample::play4(double frequency, double start, double end) {
 	double remainder;
 	double a,b,c,d,a1,a2,a3;
-	short* buffer = (short*)myData;
+	//	short* buffer = (short *)myData;
+	short* buffer = temp;
 	if (frequency >0.) {
 		if (position<start) {
 			position=start;
@@ -668,7 +713,7 @@ double maxiSample::bufferPlay(unsigned char &bufferin,double speed,long length) 
 	double remainder;
 	long a,b;
 	short* buffer = (short *)&bufferin;
-	position=position+((speed*chandiv*myChannels)/(maxiSettings::sampleRate/mySampleRate));
+	position=position+((speed*chandiv)/(maxiSettings::sampleRate/mySampleRate));
 	if (speed >=0) {
 		
 		if ((long) position>=length-1) position=1;

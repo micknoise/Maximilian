@@ -36,9 +36,6 @@
 //#define MAXIMILIAN_PORTAUDIO
 #define MAXIMILIAN_RT_AUDIO
 
-//#include "ofMain.h"
-//#include "ofUtils.h"
-
 
 #include <iostream>
 #include <fstream>
@@ -233,36 +230,7 @@ public:
 	double bufferPlay(unsigned char &bufferin,double frequency, double start, double end);
 	
 	double bufferPlay4(unsigned char &bufferin,double frequency, double start, double end);
-	
-	//int open(char *filename) {
-	//		// open the wav file
-	//		char *path = new char[50];
-	//		strcpy(path, filename);
-	//		sample *myWav = new sample(path);
-	//		return 0;
-	//	}	
-	//		// print a summary of the wav file
-	//	int info() {
-	//		char *summary = myWav->getSummary();
-	//		printf("Summary:\n%s", summary);	
-	//		return 0;
-	//	}
-	//	int savefile() {	
-	//		// write the summary back out
-	//		strcpy(path, "testout.wav");
-	//		myWav->setPath(path);
-	//		myWav->save();
-	//		return 0:
-	//	}
-	//	int close() {
-	//		// collect the garbage
-	//		delete summary;
-	//		delete path;
-	//		delete myWav;
-	//		
-	//		return 0;
-	//	}		
-	// write out the wav file
+
 	bool save()
 	{
 		fstream myFile (myPath.c_str(), ios::out | ios::binary);

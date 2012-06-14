@@ -190,8 +190,9 @@ public:
 
 	~maxiSample()
 	{
-		if (myData) delete[] myData;
-        if (temp) delete[] temp;
+		if (myData) free(myData);
+        if (temp) free(temp);
+        printf("freeing SampleData");
 
 	}
 	

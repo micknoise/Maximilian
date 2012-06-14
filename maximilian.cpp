@@ -39,7 +39,7 @@
 *   loadOgg() method.
 *   Uncomment the following to include Sean Barrett's Ogg Vorbis decoder.*/
 
-//#define VORBIS
+#define VORBIS
 
 #ifdef VORBIS
 #include "stb_vorbis.h"
@@ -466,8 +466,8 @@ bool maxiSample::read()
 			}
 		}
         temp = (short*) malloc(myDataSize * sizeof(char));
-
-        temp=(short*)myData;
+//        temp=(short*)myData;
+        memcpy(temp, myData, myDataSize * sizeof(char));
 		
 	}else {
 //		cout << "ERROR: Could not load sample: " <<myPath << endl; //This line seems to be hated by windows 

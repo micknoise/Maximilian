@@ -6,7 +6,7 @@ void setup() {//some inits
 	
 //	beats.loadOgg("/Users/mickgrierson/Documents/workspace/vorbis_test/ogg_test/thingy2.ogg");//load in your samples. Provide the full path to a wav file.
 	
-   beats.load("/Users/mickgrierson/Documents/workspace/vorbis_test/ogg_test/thingy.wav");//load in your samples. Provide the full path to a wav file.
+//   beats.load("/Users/mickgrierson/Documents/workspace/vorbis_test/ogg_test/thingy.wav");//load in your samples. Provide the full path to a wav file.
 
     printf("Summary:\n%s", beats.getSummary());//get info on samples if you like.
 	
@@ -14,8 +14,8 @@ void setup() {//some inits
 
 void play(double *output) {//this is where the magic happens. Very slow magic.
 	
-	    output[0]=beats.play();//just play the file. Looping is default for all play functions.
-//      output[0]=beats.play(1.0);//play the file with a speed setting. 1. is normal speed.
+//	    output[0]=beats.play();//just play the file. Looping is default for all play functions.
+        output[0]=beats.play(0.5);//play the file with a speed setting. 1. is normal speed.
 //		*output=beats.play(0.5,0,44100);//linear interpolationplay with a frequency input, start point and end point. Useful for syncing.
 //      *output=beats.play4(0.5,0,100000);//cubic interpolation play with a frequency input, start point and end point. Useful for syncing.
 	

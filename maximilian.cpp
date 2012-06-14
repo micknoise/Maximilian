@@ -37,9 +37,10 @@
 
 /*  Maximilian can be configured to load ogg vorbis format files using the 
 *   loadOgg() method.
-*   Uncomment the following to include Sean Barrett's Ogg Vorbis decoder.*/
+*   Uncomment the following to include Sean Barrett's Ogg Vorbis decoder.
+*   If you're on windows, make sure to add the files std_vorbis.c and std_vorbis.h to your project*/
 
-#define VORBIS
+//#define VORBIS
 
 #ifdef VORBIS
 #include "stb_vorbis.h"
@@ -395,6 +396,7 @@ bool maxiSample::loadOgg(char *fileName, int channel) {
     }
 	return result; // this should probably be something more descriptive
 #endif
+    return 0;
 }
 
 void maxiSample::trigger() {

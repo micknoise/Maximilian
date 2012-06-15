@@ -468,7 +468,6 @@ bool maxiSample::read()
 			}
 		}
         temp = (short*) malloc(myDataSize * sizeof(char));
-//        temp=(short*)myData;
         memcpy(temp, myData, myDataSize * sizeof(char));
 		
 	}else {
@@ -482,26 +481,20 @@ bool maxiSample::read()
 }
 
 double maxiSample::play() {
-//	long length=myDataSize*(1./myChannels);
 	double remainder;
-	//short* buffer = (short *)myData;
-    short* buffer = temp;
 	position=(position+1);
 	remainder = position - (long) position;
 	if ((long) position>length) position=0;
 	output =
-	(double) ((1-remainder) * buffer[1+ (long) position] + remainder * buffer[2+(long) position])/32767;//linear interpolation
+	(double) ((1-remainder) * temp[1+ (long) position] + remainder * temp[2+(long) position])/32767;//linear interpolation
 	return(output);
 }
 
 double maxiSample::playOnce() {
-//	long length=myDataSize*(0.5/myChannels);
-	//	short* buffer = (short *)myData;
-	short* buffer = temp;
 	position=(position+1);
 	double remainder = position - (long) position;
 	if ((long) position<length)
-		output = (double) ((1-remainder) * buffer[1+ (long) position] + remainder * buffer[2+(long) position])/32767;//linear interpolation
+		output = (double) ((1-remainder) * temp[1+ (long) position] + remainder * temp[2+(long) position])/32767;//linear interpolation
 	else 
 		output=0;
 
@@ -509,14 +502,10 @@ double maxiSample::playOnce() {
 }
 
 double maxiSample::playOnce(double speed) {
-	//long a,b;
-	//	long length=myDataSize*0.5;	
-	//	short* buffer = (short *)myData;
-	short* buffer = temp;
 	position=position+((speed*chandiv)/(maxiSettings::sampleRate/mySampleRate));
 	double remainder = position - (long) position;
 	if ((long) position<length)
-		output = (double) ((1-remainder) * buffer[1+ (long) position] + remainder * buffer[2+(long) position])/32767;//linear interpolation
+		output = (double) ((1-remainder) * temp[1+ (long) position] + remainder * temp[2+(long) position])/32767;//linear interpolation
 	else 
 		output=0;
 	return(output);
@@ -525,8 +514,6 @@ double maxiSample::playOnce(double speed) {
 double maxiSample::play(double speed) {
 	double remainder;
 	long a,b;
-//	long length=myDataSize*0.5;	
-	short* buffer = temp;
 	position=position+((speed*chandiv)/(maxiSettings::sampleRate/mySampleRate));
 	if (speed >=0) {
 		
@@ -547,7 +534,7 @@ double maxiSample::play(double speed) {
 		b=length-1;
 		}
 		
-		output = (double) ((1-remainder) * buffer[a] + remainder * buffer[b])/32767;//linear interpolation
+		output = (double) ((1-remainder) * temp[a] + remainder * temp[b])/32767;//linear interpolation
 } else {
 		if ((long) position<0) position=length;
 		remainder = position - floor(position);
@@ -564,7 +551,7 @@ double maxiSample::play(double speed) {
 			else {
 				b=0;
 			}
-		output = (double) ((-1-remainder) * buffer[a] + remainder * buffer[b])/32767;//linear interpolation
+		output = (double) ((-1-remainder) * temp[a] + remainder * temp[b])/32767;//linear interpolation
 	}	
 	return(output);
 }
@@ -575,12 +562,8 @@ double maxiSample::play(double frequency, double start, double end) {
 
 double maxiSample::play(double frequency, double start, double end, double &pos) {
 	double remainder;
-	//	long length=myDataSize;
-
 	if (end>=length) end=length-1;
 	long a,b;
-//	short* buffer = (short *)myData;
-	short* buffer = temp;
 
 	if (frequency >0.) {
 		if (pos<start) {
@@ -605,8 +588,8 @@ double maxiSample::play(double frequency, double start, double end, double &pos)
 			b=length-1;
 		}
 
-		output = (double) ((1-remainder) * buffer[a] +
-						   remainder * buffer[b])/32767;//linear interpolation
+		output = (double) ((1-remainder) * temp[a] +
+						   remainder * temp[b])/32767;//linear interpolation
 	} else {
 		frequency=frequency-(frequency+frequency);
 		if ( pos <= start ) pos = end;
@@ -625,8 +608,8 @@ double maxiSample::play(double frequency, double start, double end, double &pos)
 		else {
 			b=0;
 		}		
-		output = (double) ((-1-remainder) * buffer[a] +
-						   remainder * buffer[b])/32767;//linear interpolation
+		output = (double) ((-1-remainder) * temp[a] +
+						   remainder * temp[b])/32767;//linear interpolation
 		
 	}
 	
@@ -638,8 +621,6 @@ double maxiSample::play(double frequency, double start, double end, double &pos)
 double maxiSample::play4(double frequency, double start, double end) {
 	double remainder;
 	double a,b,c,d,a1,a2,a3;
-	//	short* buffer = (short *)myData;
-	short* buffer = temp;
 	if (frequency >0.) {
 		if (position<start) {
 			position=start;
@@ -648,26 +629,26 @@ double maxiSample::play4(double frequency, double start, double end) {
 		position += ((end-start)/(maxiSettings::sampleRate/(frequency*chandiv)));
 		remainder = position - floor(position);
 		if (position>0) {
-			a=buffer[(int)(floor(position))-1];
+			a=temp[(int)(floor(position))-1];
 
 		} else {
-			a=buffer[0];
+			a=temp[0];
 			
 		}
 		
-		b=buffer[(long) position];
+		b=temp[(long) position];
 		if (position<end-2) {
-			c=buffer[(long) position+1];
+			c=temp[(long) position+1];
 
 		} else {
-			c=buffer[0];
+			c=temp[0];
 
 		}
 		if (position<end-3) {
-			d=buffer[(long) position+2];
+			d=temp[(long) position+2];
 
 		} else {
-			d=buffer[0];
+			d=temp[0];
 		}
 		a1 = 0.5f * (c - a);
 		a2 = a - 2.5 * b + 2.f * c - 0.5f * d;
@@ -680,26 +661,26 @@ double maxiSample::play4(double frequency, double start, double end) {
 		position -= ((end-start)/(maxiSettings::sampleRate/(frequency*chandiv)));
 		remainder = position - floor(position);
 		if (position>start && position < end-1) {
-			a=buffer[(long) position+1];
+			a=temp[(long) position+1];
 			
 		} else {
-			a=buffer[0];
+			a=temp[0];
 			
 		}
 		
-		b=buffer[(long) position];
+		b=temp[(long) position];
 		if (position>start) {
-			c=buffer[(long) position-1];
+			c=temp[(long) position-1];
 			
 		} else {
-			c=buffer[0];
+			c=temp[0];
 			
 		}
 		if (position>start+1) {
-			d=buffer[(long) position-2];
+			d=temp[(long) position-2];
 			
 		} else {
-			d=buffer[0];
+			d=temp[0];
 		}
 		a1 = 0.5f * (c - a);
 		a2 = a - 2.5 * b + 2.f * c - 0.5f * d;

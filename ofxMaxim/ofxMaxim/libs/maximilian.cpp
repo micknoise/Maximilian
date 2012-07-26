@@ -34,19 +34,30 @@
 #include "maximilian.h"
 #include "math.h"
 
+/*  Maximilian can be configured to load ogg vorbis format files using the 
+*   loadOgg() method.
+*   Uncomment the following to include Sean Barrett's Ogg Vorbis decoder.
+*   If you're on windows, make sure to add the files std_vorbis.c and std_vorbis.h to your project*/
 
-//int channels=2;
-//int samplerate=44100; 
-//int buffersize=1024;
+//#define VORBIS
+
+#ifdef VORBIS
+#include "stb_vorbis.h"
+#endif
+
+//This used to be important for dealing with multichannel playback
 float chandiv= 1;
 
 int maxiSettings::sampleRate = 44100;
 int maxiSettings::channels = 2;
 int maxiSettings::bufferSize = 1024;
 
+
+//this is a 514-point sinewave table that has many uses. 
 double sineBuffer[514]={0,0.012268,0.024536,0.036804,0.049042,0.06131,0.073547,0.085785,0.097992,0.1102,0.12241,0.13455,0.1467,0.15884,0.17093,0.18301,0.19507,0.20709,0.21909,0.23105,0.24295,0.25485,0.26669,0.2785,0.29025,0.30197,0.31366,0.32529,0.33685,0.34839,0.35986,0.37128,0.38266,0.39395,0.40521,0.41641,0.42752,0.4386,0.44958,0.46051,0.47137,0.48215,0.49286,0.50351,0.51407,0.52457,0.53497,0.54529,0.55554,0.5657,0.57578,0.58575,0.59567,0.60547,0.6152,0.62482,0.63437,0.6438,0.65314,0.66238,0.67151,0.68057,0.68951,0.69833,0.70706,0.7157,0.72421,0.7326,0.74091,0.74908,0.75717,0.76514,0.77298,0.7807,0.7883,0.79581,0.80316,0.81042,0.81754,0.82455,0.83142,0.8382,0.84482,0.85132,0.8577,0.86392,0.87006,0.87604,0.88187,0.8876,0.89319,0.89862,0.90396,0.90912,0.91415,0.91907,0.92383,0.92847,0.93295,0.93729,0.9415,0.94556,0.94949,0.95325,0.95691,0.96039,0.96375,0.96692,0.97,0.9729,0.97565,0.97827,0.98074,0.98306,0.98523,0.98724,0.98914,0.99084,0.99243,0.99387,0.99515,0.99628,0.99725,0.99808,0.99875,0.99927,0.99966,0.99988,0.99997,0.99988,0.99966,0.99927,0.99875,0.99808,0.99725,0.99628,0.99515,0.99387,0.99243,0.99084,0.98914,0.98724,0.98523,0.98306,0.98074,0.97827,0.97565,0.9729,0.97,0.96692,0.96375,0.96039,0.95691,0.95325,0.94949,0.94556,0.9415,0.93729,0.93295,0.92847,0.92383,0.91907,0.91415,0.90912,0.90396,0.89862,0.89319,0.8876,0.88187,0.87604,0.87006,0.86392,0.8577,0.85132,0.84482,0.8382,0.83142,0.82455,0.81754,0.81042,0.80316,0.79581,0.7883,0.7807,0.77298,0.76514,0.75717,0.74908,0.74091,0.7326,0.72421,0.7157,0.70706,0.69833,0.68951,0.68057,0.67151,0.66238,0.65314,0.6438,0.63437,0.62482,0.6152,0.60547,0.59567,0.58575,0.57578,0.5657,0.55554,0.54529,0.53497,0.52457,0.51407,0.50351,0.49286,0.48215,0.47137,0.46051,0.44958,0.4386,0.42752,0.41641,0.40521,0.39395,0.38266,0.37128,0.35986,0.34839,0.33685,0.32529,0.31366,0.30197,0.29025,0.2785,0.26669,0.25485,0.24295,0.23105,0.21909,0.20709,0.19507,0.18301,0.17093,0.15884,0.1467,0.13455,0.12241,0.1102,0.097992,0.085785,0.073547,0.06131,0.049042,0.036804,0.024536,0.012268,0,-0.012268,-0.024536,-0.036804,-0.049042,-0.06131,-0.073547,-0.085785,-0.097992,-0.1102,-0.12241,-0.13455,-0.1467,-0.15884,-0.17093,-0.18301,-0.19507,-0.20709,-0.21909,-0.23105,-0.24295,-0.25485,-0.26669,-0.2785,-0.29025,-0.30197,-0.31366,-0.32529,-0.33685,-0.34839,-0.35986,-0.37128,-0.38266,-0.39395,-0.40521,-0.41641,-0.42752,-0.4386,-0.44958,-0.46051,-0.47137,-0.48215,-0.49286,-0.50351,-0.51407,-0.52457,-0.53497,-0.54529,-0.55554,-0.5657,-0.57578,-0.58575,-0.59567,-0.60547,-0.6152,-0.62482,-0.63437,-0.6438,-0.65314,-0.66238,-0.67151,-0.68057,-0.68951,-0.69833,-0.70706,-0.7157,-0.72421,-0.7326,-0.74091,-0.74908,-0.75717,-0.76514,-0.77298,-0.7807,-0.7883,-0.79581,-0.80316,-0.81042,-0.81754,-0.82455,-0.83142,-0.8382,-0.84482,-0.85132,-0.8577,-0.86392,-0.87006,-0.87604,-0.88187,-0.8876,-0.89319,-0.89862,-0.90396,-0.90912,-0.91415,-0.91907,-0.92383,-0.92847,-0.93295,-0.93729,-0.9415,-0.94556,-0.94949,-0.95325,-0.95691,-0.96039,-0.96375,-0.96692,-0.97,-0.9729,-0.97565,-0.97827,-0.98074,-0.98306,-0.98523,-0.98724,-0.98914,-0.99084,-0.99243,-0.99387,-0.99515,-0.99628,-0.99725,-0.99808,-0.99875,-0.99927,-0.99966,-0.99988,-0.99997,-0.99988,-0.99966,-0.99927,-0.99875,-0.99808,-0.99725,-0.99628,-0.99515,-0.99387,-0.99243,-0.99084,-0.98914,-0.98724,-0.98523,-0.98306,-0.98074,-0.97827,-0.97565,-0.9729,-0.97,-0.96692,-0.96375,-0.96039,-0.95691,-0.95325,-0.94949,-0.94556,-0.9415,-0.93729,-0.93295,-0.92847,-0.92383,-0.91907,-0.91415,-0.90912,-0.90396,-0.89862,-0.89319,-0.8876,-0.88187,-0.87604,-0.87006,-0.86392,-0.8577,-0.85132,-0.84482,-0.8382,-0.83142,-0.82455,-0.81754,-0.81042,-0.80316,-0.79581,-0.7883,-0.7807,-0.77298,-0.76514,-0.75717,-0.74908,-0.74091,-0.7326,-0.72421,-0.7157,-0.70706,-0.69833,-0.68951,-0.68057,-0.67151,-0.66238,-0.65314,-0.6438,-0.63437,-0.62482,-0.6152,-0.60547,-0.59567,-0.58575,-0.57578,-0.5657,-0.55554,-0.54529,-0.53497,-0.52457,-0.51407,-0.50351,-0.49286,-0.48215,-0.47137,-0.46051,-0.44958,-0.4386,-0.42752,-0.41641,-0.40521,-0.39395,-0.38266,-0.37128,-0.35986,-0.34839,-0.33685,-0.32529,-0.31366,-0.30197,-0.29025,-0.2785,-0.26669,-0.25485,-0.24295,-0.23105,-0.21909,-0.20709,-0.19507,-0.18301,-0.17093,-0.15884,-0.1467,-0.13455,-0.12241,-0.1102,-0.097992,-0.085785,-0.073547,-0.06131,-0.049042,-0.036804,-0.024536,-0.012268,0,0.012268
 };
 
+//This is a lookup table for converting midi to frequency
 double mtofarray[129]={0, 8.661957, 9.177024, 9.722718, 10.3, 10.913383, 11.562325, 12.25, 12.978271, 13.75, 14.567617, 15.433853, 16.351599, 17.323914, 18.354048, 19.445436, 20.601723, 21.826765, 23.124651, 24.5, 25.956543, 27.5, 29.135235, 30.867706, 32.703197, 34.647827, 36.708096, 38.890873, 41.203445, 43.65353, 46.249302, 49., 51.913086, 55., 58.27047, 61.735413, 65.406395, 69.295654, 73.416191, 77.781746, 82.406891, 87.30706, 92.498604, 97.998856, 103.826172, 110., 116.540939, 123.470825, 130.81279, 138.591309, 146.832382, 155.563492, 164.813782, 174.61412, 184.997208, 195.997711, 207.652344, 220., 233.081879, 246.94165, 261.62558, 277.182617,293.664764, 311.126984, 329.627563, 349.228241, 369.994415, 391.995422, 415.304688, 440., 466.163757, 493.883301, 523.25116, 554.365234, 587.329529, 622.253967, 659.255127, 698.456482, 739.988831, 783.990845, 830.609375, 880., 932.327515, 987.766602, 1046.502319, 1108.730469, 1174.659058, 1244.507935, 1318.510254, 1396.912964, 1479.977661, 1567.981689, 1661.21875, 1760., 1864.655029, 1975.533203, 2093.004639, 2217.460938, 2349.318115, 2489.015869, 2637.020508, 2793.825928, 2959.955322, 3135.963379, 3322.4375, 3520., 3729.31, 3951.066406, 4186.009277, 4434.921875, 4698.63623, 4978.031738, 5274.041016, 5587.651855, 5919.910645, 6271.926758, 6644.875, 7040., 7458.620117, 7902.132812, 8372.018555, 8869.84375, 9397.272461, 9956.063477, 10548.082031, 11175.303711, 11839.821289, 12543.853516, 13289.75};
 
 void setup();//use this to do any initialisation if you want.
@@ -54,12 +65,12 @@ void setup();//use this to do any initialisation if you want.
 void play(double *channels);//run dac! 
 
 maxiOsc::maxiOsc(){
+    //When you create an oscillator, the constructor sets the phase of the oscillator to 0.
 	phase = 0.0;
-	//	memset(phases,0,500);
-	//	memset(freqs,0,500);
 }
 
 double maxiOsc::noise() {
+    //White Noise
 	//always the same unless you seed it.
 	float r = rand()/(float)RAND_MAX;
 	output=r*2-1;
@@ -67,11 +78,13 @@ double maxiOsc::noise() {
 }
 
 void maxiOsc::phaseReset(double phaseIn) {
+    //This allows you to set the phase of the oscillator to anything you like.
 	phase=phaseIn;
 	
 }
 
 double maxiOsc::sinewave(double frequency) {
+    //This is a sinewave oscillator
 	output=sin (phase*(TWOPI));
 	if ( phase >= 1.0 ) phase -= 1.0;
 	phase += (1./(maxiSettings::sampleRate/(frequency)));
@@ -80,6 +93,7 @@ double maxiOsc::sinewave(double frequency) {
 }
 
 double maxiOsc::sinebuf4(double frequency) {
+    //This is a sinewave oscillator that uses 4 point interpolation on a 514 point buffer
 	double remainder;
 	double a,b,c,d,a1,a2,a3;
 	phase += 512./(maxiSettings::sampleRate/(frequency));
@@ -107,7 +121,8 @@ double maxiOsc::sinebuf4(double frequency) {
 	return(output);
 }
 
-double maxiOsc::sinebuf(double frequency) {
+double maxiOsc::sinebuf(double frequency) { //specify the frequency of the oscillator in Hz / cps etc.
+    //This is a sinewave oscillator that uses linear interpolation on a 514 point buffer
 	double remainder;
  	phase += 512./(maxiSettings::sampleRate/(frequency*chandiv));
 	if ( phase >= 511 ) phase -=512;
@@ -117,6 +132,7 @@ double maxiOsc::sinebuf(double frequency) {
 }
 
 double maxiOsc::coswave(double frequency) {
+    //This is a cosine oscillator
 	output=cos (phase*(TWOPI));
 	if ( phase >= 1.0 ) phase -= 1.0;
 	phase += (1./(maxiSettings::sampleRate/(frequency)));
@@ -125,6 +141,7 @@ double maxiOsc::coswave(double frequency) {
 }
 
 double maxiOsc::phasor(double frequency) {
+    //This produces a floating point linear ramp between 0 and 1 at the desired frequency 
 	output=phase;
 	if ( phase >= 1.0 ) phase -= 1.0;
 	phase += (1./(maxiSettings::sampleRate/(frequency)));
@@ -132,6 +149,7 @@ double maxiOsc::phasor(double frequency) {
 } 
 
 double maxiOsc::square(double frequency) {
+    //This is a square wave
 	if (phase<0.5) output=-1;
 	if (phase>0.5) output=1;
 	if ( phase >= 1.0 ) phase -= 1.0;
@@ -140,6 +158,7 @@ double maxiOsc::square(double frequency) {
 }
 
 double maxiOsc::pulse(double frequency, double duty) {
+    //This is a pulse generator that creates a signal between -1 and 1.
 	if (duty<0.) duty=0;
 	if (duty>1.) duty=1;
 	if ( phase >= 1.0 ) phase -= 1.0;
@@ -150,6 +169,7 @@ double maxiOsc::pulse(double frequency, double duty) {
 }
 
 double maxiOsc::phasor(double frequency, double startphase, double endphase) {
+    //This is a phasor that takes a value for the start and end of the ramp. 
 	output=phase;
 	if (phase<startphase) {
 		phase=startphase;
@@ -161,7 +181,7 @@ double maxiOsc::phasor(double frequency, double startphase, double endphase) {
 
 
 double maxiOsc::saw(double frequency) {
-	
+	//Sawtooth generator. This is like a phasor but goes between -1 and 1
 	output=phase;
 	if ( phase >= 1.0 ) phase -= 2.0;
 	phase += (1./(maxiSettings::sampleRate/(frequency)));
@@ -170,6 +190,7 @@ double maxiOsc::saw(double frequency) {
 } 
 
 double maxiOsc::triangle(double frequency) {
+    //This is a triangle wave.
 	if ( phase >= 1.0 ) phase -= 1.0;
 	phase += (1./(maxiSettings::sampleRate/(frequency)));
 	if (phase <= 0.5 ) {
@@ -181,24 +202,24 @@ double maxiOsc::triangle(double frequency) {
 	
 } 
 
-//I like this.
 double maxiEnvelope::line(int numberofsegments,double segments[1000]) {
-	if (isPlaying==1) {//only make a sound once you've been triggered
-		
-		period=2./(segments[valindex+1]*0.004);
-		nextval=segments[valindex+2];
-		currentval=segments[valindex];
-		if (currentval-amplitude > 0.0000001 && valindex < numberofsegments) {
-			amplitude += ((currentval-startval)/(maxiSettings::sampleRate/period));
-		} else if (currentval-amplitude < -0.0000001 && valindex < numberofsegments) {
-			amplitude -= (((currentval-startval)*(-1))/(maxiSettings::sampleRate/period));
-		} else if (valindex >numberofsegments-1) {
-			valindex=numberofsegments-2;
-		} else {
-			valindex=valindex+2;
-			startval=currentval;
-		}
-		output=amplitude;
+	//This is a basic multi-segment ramp generator that you can use for more or less anything.
+    //However, it's not that intuitive.
+    if (isPlaying==1) {//only make a sound once you've been triggered
+	period=2./(segments[valindex+1]*0.004);
+	nextval=segments[valindex+2];
+	currentval=segments[valindex];
+	if (currentval-amplitude > 0.0000001 && valindex < numberofsegments) {
+		amplitude += ((currentval-startval)/(maxiSettings::sampleRate/period));
+	} else if (currentval-amplitude < -0.0000001 && valindex < numberofsegments) {
+		amplitude -= (((currentval-startval)*(-1))/(maxiSettings::sampleRate/period));
+	} else if (valindex >numberofsegments-1) {
+		valindex=numberofsegments-2;
+	} else {
+		valindex=valindex+2;
+		startval=currentval;
+	}
+	output=amplitude;
 		
 	}
 	else {
@@ -216,11 +237,9 @@ void maxiEnvelope::trigger(int index, double amp) {
 	
 }
 
-//and this
-
+//Delay with feedback
 maxiDelayline::maxiDelayline() {
 	memset( memory, 0, 88200*sizeof (double) );	
-	
 }
 
 
@@ -238,13 +257,12 @@ double maxiDelayline::dl(double input, int size, double feedback)  {
 double maxiDelayline::dl(double input, int size, double feedback, int position)  {
 	if ( phase >=size ) phase = 0;
 	if ( position >=size ) position = 0;
-    output=memory[position];
-    memory[phase]=(memory[phase]*feedback)+(input*feedback)*chandiv;
+	output=memory[position];
+	memory[phase]=(memory[phase]*feedback)+(input*feedback)*chandiv;
 	phase+=1;
 	return(output);
 	
 }
-
 
 //I particularly like these. cutoff between 0 and 1
 double maxiFilter::lopass(double input, double cutoff) {
@@ -354,6 +372,32 @@ bool maxiSample::load(string fileName, int channel) {
 	return read();
 }
 
+bool maxiSample::loadOgg(char *fileName, int channel) {
+#ifdef VORBIS
+    bool result;
+    result=fileName;
+	readChannel=channel;
+    int channelx;
+    myDataSize = stb_vorbis_decode_filename(fileName, &channelx, &temp);
+    printf("\nchannels = %d\nlength = %d",channelx,myDataSize);
+    printf("\n");
+    myChannels=(short)channelx;
+    length=myDataSize;
+    mySampleRate=44100;
+    
+    if (myChannels>1) {
+        int position=0;
+        int channel=readChannel;
+        for (int i=channel;i<myDataSize*2;i+=myChannels) {
+            temp[position]=temp[i];
+            position++;
+        }
+    }
+	return result; // this should probably be something more descriptive
+#endif
+    return 0;
+}
+
 void maxiSample::trigger() {
 	position = 0;
 }
@@ -422,15 +466,18 @@ bool maxiSample::read()
 				position+=2;
 			}
 		}
+        temp = (short*) malloc(myDataSize * sizeof(char));
+        memcpy(temp, myData, myDataSize * sizeof(char));
 		
 	}else {
-		cout << "ERROR: Could not load sample: " <<myPath << endl;
+//		cout << "ERROR: Could not load sample: " <<myPath << endl; //This line seems to be hated by windows 
+        printf("ERROR: Could not load sample.");
+
 	}
 	
 	
 	return result; // this should probably be something more descriptive
 }
-
 
 double maxiSample::play() {
 	short* buffer = (short *)myData;
@@ -441,26 +488,21 @@ double maxiSample::play() {
 }
 
 double maxiSample::playOnce() {
-	//	long length=myDataSize*(0.5/myChannels);
-	short* buffer = (short *)myData;
 	position=(position+1);
 	double remainder = position - (long) position;
 	if ((long) position<length)
-		output = (double) ((1-remainder) * buffer[1+ (long) position] + remainder * buffer[2+(long) position])/32767;//linear interpolation
+		output = (double) ((1-remainder) * temp[1+ (long) position] + remainder * temp[2+(long) position])/32767;//linear interpolation
 	else 
 		output=0;
-	
+
 	return(output);
 }
 
 double maxiSample::playOnce(double speed) {
-	//long a,b;
-	//	long length=myDataSize*0.5;	
-	short* buffer = (short *)myData;
-	position=position+((speed*chandiv*myChannels)/(maxiSettings::sampleRate/mySampleRate));
+	position=position+((speed*chandiv)/(maxiSettings::sampleRate/mySampleRate));
 	double remainder = position - (long) position;
 	if ((long) position<length)
-		output = (double) ((1-remainder) * buffer[1+ (long) position] + remainder * buffer[2+(long) position])/32767;//linear interpolation
+		output = (double) ((1-remainder) * temp[1+ (long) position] + remainder * temp[2+(long) position])/32767;//linear interpolation
 	else 
 		output=0;
 	return(output);
@@ -469,9 +511,7 @@ double maxiSample::playOnce(double speed) {
 double maxiSample::play(double speed) {
 	double remainder;
 	long a,b;
-	//	long length=myDataSize*0.5;	
-	short* buffer = (short *)myData;
-	position=position+((speed*chandiv*myChannels)/(maxiSettings::sampleRate/mySampleRate));
+	position=position+((speed*chandiv)/(maxiSettings::sampleRate/mySampleRate));
 	if (speed >=0) {
 		
 		if ((long) position>=length-1) position=1;
@@ -485,30 +525,30 @@ double maxiSample::play(double speed) {
 		}
 		if (position+2<length)
 		{
-			b=position+2;
+		b=position+2;
 		}
 		else {
-			b=length-1;
+		b=length-1;
 		}
 		
-		output = (double) ((1-remainder) * buffer[a] + remainder * buffer[b])/32767;//linear interpolation
-	} else {
+		output = (double) ((1-remainder) * temp[a] + remainder * temp[b])/32767;//linear interpolation
+} else {
 		if ((long) position<0) position=length;
 		remainder = position - floor(position);
 		if (position-1>=0) {
 			a=position-1;
-			
-		}
-		else {
-			a=0;
-		}
-		if (position-2>=0) {
-			b=position-2;
-		}
-		else {
-			b=0;
-		}
-		output = (double) ((-1-remainder) * buffer[a] + remainder * buffer[b])/32767;//linear interpolation
+				
+			}
+			else {
+				a=0;
+			}
+	if (position-2>=0) {
+		b=position-2;
+			}
+			else {
+				b=0;
+			}
+		output = (double) ((-1-remainder) * temp[a] + remainder * temp[b])/32767;//linear interpolation
 	}	
 	return(output);
 }
@@ -519,11 +559,9 @@ double maxiSample::play(double frequency, double start, double end) {
 
 double maxiSample::play(double frequency, double start, double end, double &pos) {
 	double remainder;
-	//	long length=myDataSize;
-	
 	if (end>=length) end=length-1;
 	long a,b;
-	short* buffer = (short *)myData;
+
 	if (frequency >0.) {
 		if (pos<start) {
 			pos=start;
@@ -546,9 +584,9 @@ double maxiSample::play(double frequency, double start, double end, double &pos)
 		else {
 			b=length-1;
 		}
-		
-		output = (double) ((1-remainder) * buffer[a] +
-						   remainder * buffer[b])/32767;//linear interpolation
+
+		output = (double) ((1-remainder) * temp[a] +
+						   remainder * temp[b])/32767;//linear interpolation
 	} else {
 		frequency=frequency-(frequency+frequency);
 		if ( pos <= start ) pos = end;
@@ -567,8 +605,8 @@ double maxiSample::play(double frequency, double start, double end, double &pos)
 		else {
 			b=0;
 		}		
-		output = (double) ((-1-remainder) * buffer[a] +
-						   remainder * buffer[b])/32767;//linear interpolation
+		output = (double) ((-1-remainder) * temp[a] +
+						   remainder * temp[b])/32767;//linear interpolation
 		
 	}
 	
@@ -580,7 +618,6 @@ double maxiSample::play(double frequency, double start, double end, double &pos)
 double maxiSample::play4(double frequency, double start, double end) {
 	double remainder;
 	double a,b,c,d,a1,a2,a3;
-	short* buffer = (short*)myData;
 	if (frequency >0.) {
 		if (position<start) {
 			position=start;
@@ -589,26 +626,26 @@ double maxiSample::play4(double frequency, double start, double end) {
 		position += ((end-start)/(maxiSettings::sampleRate/(frequency*chandiv)));
 		remainder = position - floor(position);
 		if (position>0) {
-			a=buffer[(int)(floor(position))-1];
-			
+			a=temp[(int)(floor(position))-1];
+
 		} else {
-			a=buffer[0];
+			a=temp[0];
 			
 		}
 		
-		b=buffer[(long) position];
+		b=temp[(long) position];
 		if (position<end-2) {
-			c=buffer[(long) position+1];
-			
+			c=temp[(long) position+1];
+
 		} else {
-			c=buffer[0];
-			
+			c=temp[0];
+
 		}
 		if (position<end-3) {
-			d=buffer[(long) position+2];
-			
+			d=temp[(long) position+2];
+
 		} else {
-			d=buffer[0];
+			d=temp[0];
 		}
 		a1 = 0.5f * (c - a);
 		a2 = a - 2.5 * b + 2.f * c - 0.5f * d;
@@ -621,26 +658,26 @@ double maxiSample::play4(double frequency, double start, double end) {
 		position -= ((end-start)/(maxiSettings::sampleRate/(frequency*chandiv)));
 		remainder = position - floor(position);
 		if (position>start && position < end-1) {
-			a=buffer[(long) position+1];
+			a=temp[(long) position+1];
 			
 		} else {
-			a=buffer[0];
+			a=temp[0];
 			
 		}
 		
-		b=buffer[(long) position];
+		b=temp[(long) position];
 		if (position>start) {
-			c=buffer[(long) position-1];
+			c=temp[(long) position-1];
 			
 		} else {
-			c=buffer[0];
+			c=temp[0];
 			
 		}
 		if (position>start+1) {
-			d=buffer[(long) position-2];
+			d=temp[(long) position-2];
 			
 		} else {
-			d=buffer[0];
+			d=temp[0];
 		}
 		a1 = 0.5f * (c - a);
 		a2 = a - 2.5 * b + 2.f * c - 0.5f * d;
@@ -666,7 +703,7 @@ double maxiSample::bufferPlay(unsigned char &bufferin,double speed,long length) 
 	double remainder;
 	long a,b;
 	short* buffer = (short *)&bufferin;
-	position=position+((speed*chandiv*myChannels)/(maxiSettings::sampleRate/mySampleRate));
+	position=position+((speed*chandiv)/(maxiSettings::sampleRate/mySampleRate));
 	if (speed >=0) {
 		
 		if ((long) position>=length-1) position=1;

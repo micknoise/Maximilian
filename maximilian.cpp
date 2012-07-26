@@ -31,7 +31,6 @@
  *
  */
 
-
 #include "maximilian.h"
 #include "math.h"
 
@@ -195,9 +194,9 @@ double maxiOsc::triangle(double frequency) {
 	if ( phase >= 1.0 ) phase -= 1.0;
 	phase += (1./(maxiSettings::sampleRate/(frequency)));
 	if (phase <= 0.5 ) {
-		output =((phase)*4)-1;
+		output =(phase - 0.25) * 4;
 	} else {
-		output =((0.5-phase)*4)-1;
+		output =((1.0-phase) - 0.25) * 4;
 	}
 	return(output);
 	
@@ -225,7 +224,7 @@ double maxiEnvelope::line(int numberofsegments,double segments[1000]) {
 	}
 	else {
 		output=0;
-
+		
 	}
 	return(output);
 }
@@ -481,13 +480,11 @@ bool maxiSample::read()
 }
 
 double maxiSample::play() {
-	double remainder;
-	position=(position+1);
-	remainder = position - (long) position;
-	if ((long) position>length) position=0;
-	output =
-	(double) ((1-remainder) * temp[1+ (long) position] + remainder * temp[2+(long) position])/32767;//linear interpolation
-	return(output);
+	short* buffer = (short *)myData;
+	position++;
+	if ((long) position == length) position=0;
+	output = (double) buffer[(long)position]/32767.0;
+	return output;
 }
 
 double maxiSample::playOnce() {
@@ -885,6 +882,26 @@ void maxiSample::getLength() {
 	length=myDataSize*0.5;	
 }
 
+void maxiSample::setLength(unsigned long numSamples) {
+    char *newData = (char*) malloc(sizeof(short) * numSamples);
+    if (NULL!=myData) {
+        unsigned long copyLength = min((unsigned long)length, numSamples);
+        memcpy(newData, myData, sizeof(short) * copyLength);
+    }
+    myData = newData;
+    myDataSize = numSamples * 2;
+    length=numSamples;
+    position=0;
+    recordPosition=0;
+
+}
+
+void maxiSample::clear() {
+    memset(myData, 0, myDataSize);
+}
+
+
+
 
 /* OK this compressor and gate are now ready to use. The envelopes, like all the envelopes in this recent update, use stupid algorithms for 
  incrementing - consequently a long attack is something like 0.0001 and a long release is like 0.9999.
@@ -1061,3 +1078,12 @@ double convert::mtof(int midinote) {
 
 	return mtofarray[midinote];
 }
+
+void maxiEnvelopeFollower::setAttack(double attackMS) {
+    attack = pow( 0.01, 1.0 / ( attackMS * maxiSettings::sampleRate * 0.001 ) );
+}
+
+void maxiEnvelopeFollower::setRelease(double releaseMS) {
+    release = pow( 0.01, 1.0 / ( releaseMS * maxiSettings::sampleRate * 0.001 ) );    
+}
+

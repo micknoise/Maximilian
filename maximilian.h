@@ -44,7 +44,10 @@
 #include "math.h"
 
 using namespace std;
-#define TWOPI (3.14159*2)
+#ifndef PI
+#define PI  3.1415926535897932384626433832795
+#endif
+#define TWOPI 6.283185307179586476925286766559
 
 class maxiSettings {
 public:
@@ -160,6 +163,38 @@ public:
 	
 };
 
+//lagging with an exponential moving average
+//a lower alpha value gives a slower lag
+template <class T> 
+class maxiLagExp {
+public:
+	T alpha, alphaReciprocal;
+	T val;
+	
+	maxiLagExp() {
+		init(0.5, 0.0);
+	};
+	
+	maxiLagExp(T initAlpha, T initVal) {
+		init(initAlpha, initVal);
+	}
+	
+	void init(T initAlpha, T initVal) {
+		alpha = initAlpha;
+		alphaReciprocal = 1.0 - alpha;
+		val = initVal;
+	}
+	
+	inline void addSample(T newVal) {
+		val = (alpha * newVal) + (alphaReciprocal * val);
+	}
+	
+	inline T value() {
+		return val;
+	}
+};
+
+
 class maxiSample  {
 	
 private:
@@ -171,9 +206,10 @@ private:
 	int   	myByteRate;
 	short 	myBlockAlign;
 	short 	myBitsPerSample;
-	double position;
+	double position, recordPosition;
 	double speed;
 	double output;
+    maxiLagExp<double> loopRecordLag;
 	
 public:
 	int	myDataSize;
@@ -181,8 +217,9 @@ public:
 	int   	mySampleRate;
 	long length;
 	void getLength();
-
-
+    void setLength(unsigned long numSamples);  
+	
+	
 	char* 	myData;
     short* temp;
 	
@@ -196,8 +233,8 @@ public:
 
 	}
 	
-	maxiSample():myData(NULL){};
-
+	maxiSample():myData(NULL),position(0), recordPosition(0), myChannels(1), mySampleRate(maxiSettings::sampleRate) {};
+	
 	bool load(string fileName, int channel=0);
     
     bool loadOgg(char *filename,int channel=0);
@@ -209,6 +246,22 @@ public:
     
     //read an ogg file into this class using stb_vorbis
     bool readOgg();
+	
+	void loopRecord(double newSample, const bool recordEnabled, const double recordMix) {
+        loopRecordLag.addSample(recordEnabled);
+        if(recordEnabled) {
+            double currentSample = ((short*)myData)[(unsigned long)recordPosition] / 32767.0;
+            newSample = (recordMix * currentSample) + ((1.0 - recordMix) * newSample);
+            newSample *= loopRecordLag.value();
+            ((short*)myData)[(unsigned long)recordPosition] = newSample * 32767;
+        }
+        ++recordPosition;
+        if (recordPosition == length)
+            recordPosition=0;
+    }
+    
+    void clear();
+
 	
 	double play();
 	
@@ -285,6 +338,12 @@ public:
 		return (log(val/inMin) / log(inMax/inMin) * (outMax - outMin)) + outMin;
 	}
 	
+	static int inline clamp(int v, const int low, const int high) {
+		v = min(high, v);
+		v = max(low, v);
+		return v;
+	}
+	
 };
 
 
@@ -330,5 +389,105 @@ class convert {
 	public:
 	double mtof(int midinote);
 };
+
+
+
+class maxiDistortion {
+public:
+    /*atan distortion, see http://www.musicdsp.org/showArchiveComment.php?ArchiveID=104*/
+    /*shape from 1 (soft clipping) to infinity (hard clipping)*/
+    double atanDist(const double in, const double shape);
+    double fastAtanDist(const double in, const double shape);
+    double fastatan( double x );
+};
+
+inline double maxiDistortion::fastatan(double x)
+{
+    return (x / (1.0 + 0.28 * (x * x)));
+}
+
+inline double maxiDistortion::atanDist(const double in, const double shape) {
+    double out;
+    out = (1.0 / atan(shape)) * atan(in * shape);
+    return out;
+}
+
+inline double maxiDistortion::fastAtanDist(const double in, const double shape) {
+    double out;
+    out = (1.0 / fastatan(shape)) * fastatan(in * shape);
+    return out;
+}
+
+
+class maxiFlanger {
+public:
+    //delay = delay time - ~800 sounds good
+    //feedback = 0 - 1
+    //speed = lfo speed in Hz, 0.0001 - 10 sounds good
+    //depth = 0 - 1
+    double flange(const double input, const unsigned int delay, const double feedback, const double speed, const double depth);
+    maxiDelayline dl;
+    maxiOsc lfo;
+
+};
+
+inline double maxiFlanger::flange(const double input, const unsigned int delay, const double feedback, const double speed, const double depth)
+{
+    //todo: needs fixing
+    double output;
+    double lfoVal = lfo.triangle(speed);
+    output = dl.dl(input, delay + (lfoVal * depth * delay) + 1, feedback) ;    
+    double normalise = (1 - fabs(output));
+    output *= normalise;
+    return (output + input) / 2.0;
+}
+
+class maxiChorus {
+public:
+    //delay = delay time - ~800 sounds good
+    //feedback = 0 - 1
+    //speed = lfo speed in Hz, 0.0001 - 10 sounds good
+    //depth = 0 - 1
+    double chorus(const double input, const unsigned int delay, const double feedback, const double speed, const double depth);
+    maxiDelayline dl, dl2;
+    maxiOsc lfo;
+    maxiFilter lopass;
+    
+};
+
+inline double maxiChorus::chorus(const double input, const unsigned int delay, const double feedback, const double speed, const double depth)
+{
+    //this needs fixing
+    double output1, output2;
+    double lfoVal = lfo.noise();
+    lfoVal = lopass.lores(lfoVal, speed, 1.0) * 2.0;
+    output1 = dl.dl(input, delay + (lfoVal * depth * delay) + 1, feedback) ;    
+    output2 = dl2.dl(input, (delay + (lfoVal * depth * delay * 1.02) + 1) * 0.98, feedback * 0.99) ;    
+    output1 *= (1.0 - fabs(output1));
+    output2 *= (1.0 - fabs(output2));
+    return (output1 + output2 + input) / 3.0;
+}
+
+class maxiEnvelopeFollower {
+public:
+    maxiEnvelopeFollower() {
+        setAttack(100);
+        setRelease(100);
+        env = 0;
+    }
+    void setAttack(double attackMS);
+    void setRelease(double releaseMS);
+    inline double play(double input) {
+        input = fabs(input);
+        if (input>env)
+            env = attack * (env - input) + input;
+        else
+            env = release * (env - input) + input;        
+        return env;
+    }
+private:
+    double attack, release, env;
+};
+
 
 #endif

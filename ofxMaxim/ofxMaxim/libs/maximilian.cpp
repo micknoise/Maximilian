@@ -413,6 +413,7 @@ bool maxiSample::read()
 		length=myDataSize*(0.5/myChannels);
 		inFile.close(); // close the input file
 		
+        cout << "Ch: " << myChannels << ", len: " << length << endl;
 		if (myChannels>1) {
 			int position=0;
 			int channel=readChannel*2;
@@ -441,16 +442,25 @@ double maxiSample::play() {
 }
 
 double maxiSample::playOnce() {
-	//	long length=myDataSize*(0.5/myChannels);
 	short* buffer = (short *)myData;
-	position=(position+1);
-	double remainder = position - (long) position;
+	position++;
 	if ((long) position<length)
-		output = (double) ((1-remainder) * buffer[1+ (long) position] + remainder * buffer[2+(long) position])/32767;//linear interpolation
-	else 
-		output=0;
-	
-	return(output);
+        output = (double) buffer[(long)position]/32767.0;
+    else {
+        output=0;
+    }
+	return output;
+
+	//	long length=myDataSize*(0.5/myChannels);
+//	short* buffer = (short *)myData;
+//	position=(position+1);
+//	double remainder = position - (long) position;
+//	if ((long) position<length)
+//		output = (double) ((1-remainder) * buffer[1+ (long) position] + remainder * buffer[2+(long) position])/32767;//linear interpolation
+//	else 
+//		output=0;
+//	
+//	return(output);
 }
 
 double maxiSample::playOnce(double speed) {
@@ -862,6 +872,11 @@ void maxiSample::setLength(unsigned long numSamples) {
 void maxiSample::clear() {
     memset(myData, 0, myDataSize);
 }
+
+void maxiSample::reset() {
+    position=0;
+}
+
 
 
 

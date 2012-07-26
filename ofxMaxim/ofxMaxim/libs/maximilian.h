@@ -256,6 +256,8 @@ public:
     }
     
     void clear();
+    
+    void reset();
 	
 	double play();
 	
@@ -308,9 +310,13 @@ public:
 	//		return 0;
 	//	}		
 	// write out the wav file
-	bool save()
+    bool save() {
+        save(myPath);
+    }
+    
+	bool save(string filename)
 	{
-		fstream myFile (myPath.c_str(), ios::out | ios::binary);
+		fstream myFile (filename.c_str(), ios::out | ios::binary);
 		
 		// write the wav file per the wav file format
 		myFile.seekp (0, ios::beg); 
@@ -508,6 +514,7 @@ public:
             env = release * (env - input) + input;        
         return env;
     }
+	void reset() {env=0;}
 private:
     double attack, release, env;
 };

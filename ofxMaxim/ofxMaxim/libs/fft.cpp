@@ -597,7 +597,7 @@ void fft::inversePowerSpectrum_vdsp(int start, float *finalOut, float *window, f
 	vDSP_fft_zrip(setupReal, &A, 1, log2n, FFT_INVERSE);
 	vDSP_ztoc(&A, 1, (COMPLEX*) out_real, 2, half);
 	
-	static float scale = 1./n;
+    float scale = 1./n;
 	vDSP_vsmul(out_real, 1, &scale, out_real, 1, n);
     
 	//multiply by window

@@ -203,7 +203,7 @@ void maxiFFTOctaveAnalyzer::setup(float samplingRate, int nBandsInTheFFT, int nA
     // fe:  2f for octave bands, sqrt(2) for half-octave bands, cuberoot(2) for third-octave bands, etc
     if (nAveragesPerOctave==0) // um, wtf?
 		nAveragesPerOctave = 1;
-    nAveragesPerOctave = nAveragesPerOctave;
+//    nAveragesPerOctave = nAveragesPerOctave;
     averageFrequencyIncrement = pow(2.0f, 1.0f/(float)(nAveragesPerOctave));
     // this isn't currently configurable (used once here then no effect), but here's some reasoning:
     // 43 is a good value if you want to approximate "computer" octaves: 44100/2/2/2/2/2/2/2/2/2/2

@@ -238,7 +238,7 @@ public:
 	
 	bool load(string fileName, int channel=0);
     
-    bool loadOgg(char *filename,int channel=0);
+    bool loadOgg(string filename,int channel=0);
 	
 	void trigger();
 	

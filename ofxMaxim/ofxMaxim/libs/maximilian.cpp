@@ -39,10 +39,12 @@
 *   Uncomment the following to include Sean Barrett's Ogg Vorbis decoder.
 *   If you're on windows, make sure to add the files std_vorbis.c and std_vorbis.h to your project*/
 
-//#define VORBIS
+#define VORBIS
 
 #ifdef VORBIS
-#include "stb_vorbis.h"
+extern "C" {
+    #include "stb_vorbis.h"
+}
 #endif
 
 //This used to be important for dealing with multichannel playback
@@ -372,13 +374,14 @@ bool maxiSample::load(string fileName, int channel) {
 	return read();
 }
 
-bool maxiSample::loadOgg(char *fileName, int channel) {
+bool maxiSample::loadOgg(string fileName, int channel) {
 #ifdef VORBIS
     bool result;
-    result=fileName;
 	readChannel=channel;
     int channelx;
-    myDataSize = stb_vorbis_decode_filename(fileName, &channelx, &temp);
+    cout << fileName << endl;
+    myDataSize = stb_vorbis_decode_filename(const_cast<char*>(fileName.c_str()), &channelx, &temp);
+    result = myDataSize > 0;
     printf("\nchannels = %d\nlength = %d",channelx,myDataSize);
     printf("\n");
     myChannels=(short)channelx;
@@ -469,6 +472,8 @@ bool maxiSample::read()
 		}
         temp = (short*) malloc(myDataSize * sizeof(char));
         memcpy(temp, myData, myDataSize * sizeof(char));
+        
+        free(myData);
 		
 	}else {
 //		cout << "ERROR: Could not load sample: " <<myPath << endl; //This line seems to be hated by windows 
@@ -481,18 +486,16 @@ bool maxiSample::read()
 }
 
 double maxiSample::play() {
-	short* buffer = (short *)myData;
 	position++;
 	if ((long) position == length) position=0;
-	output = (double) buffer[(long)position]/32767.0;
+	output = (double) temp[(long)position]/32767.0;
 	return output;
 }
 
 double maxiSample::playOnce() {
-	short* buffer = (short *)myData;
 	position++;
 	if ((long) position<length)
-        output = (double) buffer[(long)position]/32767.0;
+        output = (double) temp[(long)position]/32767.0;
     else {
         output=0;
     }
@@ -885,17 +888,17 @@ void maxiSample::getLength() {
 }
 
 void maxiSample::setLength(unsigned long numSamples) {
-    char *newData = (char*) malloc(sizeof(short) * numSamples);
-    if (NULL!=myData) {
+    cout << "Length: " << numSamples << endl;
+    short *newData = (short*) malloc(sizeof(short) * numSamples);
+    if (NULL!=temp) {
         unsigned long copyLength = min((unsigned long)length, numSamples);
-        memcpy(newData, myData, sizeof(short) * copyLength);
+        memcpy(newData, temp, sizeof(short) * copyLength);
     }
-    myData = newData;
+    temp = newData;
     myDataSize = numSamples * 2;
     length=numSamples;
     position=0;
     recordPosition=0;
-
 }
 
 void maxiSample::clear() {

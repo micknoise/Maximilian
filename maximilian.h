@@ -70,7 +70,7 @@ class maxiOsc {
 	double endphase;
 	double output;
 	double tri;
-
+	
 	
 public:
 	maxiOsc();
@@ -98,7 +98,7 @@ class maxiEnvelope {
 	double currentval;
 	double nextval;
 	int isPlaying;
-	
+
 public:	
 	double line(int numberofsegments,double segments[100]);
 	void trigger(int index,double amp);
@@ -120,7 +120,7 @@ public:
 	maxiDelayline();
 	double dl(double input, int size, double feedback);
 	double dl(double input, int size, double feedback, int position);
-
+	
 	
 };
 
@@ -136,6 +136,7 @@ class maxiFilter {
 	double y;//pos
 	double z;//pole
 	double c;//filter coefficient
+    
 public:
 	maxiFilter():x(0.0), y(0.0), z(0.0), c(0.0){};
 	double cutoff;
@@ -224,7 +225,7 @@ public:
     short* temp;
 	
 	// get/set for the Path property
-
+	
 	~maxiSample()
 	{
 		if (myData) free(myData);
@@ -233,21 +234,21 @@ public:
 
 	}
 	
-	maxiSample():myData(NULL),position(0), recordPosition(0), myChannels(1), mySampleRate(maxiSettings::sampleRate) {};
+	maxiSample():myData(NULL),temp(NULL),position(0), recordPosition(0), myChannels(1), mySampleRate(maxiSettings::sampleRate) {};
 	
 	bool load(string fileName, int channel=0);
     
-    bool loadOgg(char *filename,int channel=0);
+    bool loadOgg(string filename,int channel=0);
 	
 	void trigger();
 	
 	// read a wav file into this class
 	bool read();
-    
-    //read an ogg file into this class using stb_vorbis
-    bool readOgg();
 	
-	void loopRecord(double newSample, const bool recordEnabled, const double recordMix) {
+	//read an ogg file into this class using stb_vorbis
+    bool readOgg();
+    
+    void loopRecord(double newSample, const bool recordEnabled, const double recordMix) {
         loopRecordLag.addSample(recordEnabled);
         if(recordEnabled) {
             double currentSample = ((short*)myData)[(unsigned long)recordPosition] / 32767.0;
@@ -261,7 +262,8 @@ public:
     }
     
     void clear();
-
+    
+    void reset();
 	
 	double play();
 	
@@ -274,7 +276,7 @@ public:
 	double play(double frequency, double start, double end, double &pos);
 	
 	double play(double frequency, double start, double end);
-		
+	
 	double play4(double frequency, double start, double end);
 	
 	double bufferPlay(unsigned char &bufferin,long length);
@@ -284,10 +286,13 @@ public:
 	double bufferPlay(unsigned char &bufferin,double frequency, double start, double end);
 	
 	double bufferPlay4(unsigned char &bufferin,double frequency, double start, double end);
-
-	bool save()
+    bool save() {
+        save(myPath);
+    }
+    
+	bool save(string filename)
 	{
-		fstream myFile (myPath.c_str(), ios::out | ios::binary);
+		fstream myFile (filename.c_str(), ios::out | ios::binary);
 		
 		// write the wav file per the wav file format
 		myFile.seekp (0, ios::beg); 
@@ -331,7 +336,7 @@ public:
 		val = max(min(val, inMax), inMin);
 		return pow((outMax / outMin), (val - inMin) / (inMax - inMin)) * outMin;
 	}
-
+	
 	static double inline explin(double val, double inMin, double inMax, double outMin, double outMax) {
 		//clipping
 		val = max(min(val, inMax), inMin);
@@ -348,7 +353,7 @@ public:
 
 
 class maxiDyn {
-
+	
 	
 public:
 	double gate(double input, double threshold=0.9, long holdtime=1, double attack=1, double release=0.9995);
@@ -386,7 +391,7 @@ public:
 };
 
 class convert {
-	public:
+public:
 	double mtof(int midinote);
 };
 
@@ -485,6 +490,7 @@ public:
             env = release * (env - input) + input;        
         return env;
     }
+	void reset() {env=0;}
 private:
     double attack, release, env;
 };

@@ -39,10 +39,12 @@
 *   Uncomment the following to include Sean Barrett's Ogg Vorbis decoder.
 *   If you're on windows, make sure to add the files std_vorbis.c and std_vorbis.h to your project*/
 
-//#define VORBIS
+#define VORBIS
 
 #ifdef VORBIS
-#include "stb_vorbis.h"
+extern "C" {
+    #include "stb_vorbis.h"
+}
 #endif
 
 //This used to be important for dealing with multichannel playback
@@ -372,13 +374,14 @@ bool maxiSample::load(string fileName, int channel) {
 	return read();
 }
 
-bool maxiSample::loadOgg(char *fileName, int channel) {
+bool maxiSample::loadOgg(string fileName, int channel) {
 #ifdef VORBIS
     bool result;
-    result=fileName;
 	readChannel=channel;
     int channelx;
-    myDataSize = stb_vorbis_decode_filename(fileName, &channelx, &temp);
+    cout << fileName << endl;
+    myDataSize = stb_vorbis_decode_filename(const_cast<char*>(fileName.c_str()), &channelx, &temp);
+    result = myDataSize > 0;
     printf("\nchannels = %d\nlength = %d",channelx,myDataSize);
     printf("\n");
     myChannels=(short)channelx;
@@ -457,6 +460,7 @@ bool maxiSample::read()
 		length=myDataSize*(0.5/myChannels);
 		inFile.close(); // close the input file
 		
+        cout << "Ch: " << myChannels << ", len: " << length << endl;
 		if (myChannels>1) {
 			int position=0;
 			int channel=readChannel*2;
@@ -468,6 +472,8 @@ bool maxiSample::read()
 		}
         temp = (short*) malloc(myDataSize * sizeof(char));
         memcpy(temp, myData, myDataSize * sizeof(char));
+        
+        free(myData);
 		
 	}else {
 //		cout << "ERROR: Could not load sample: " <<myPath << endl; //This line seems to be hated by windows 
@@ -480,22 +486,21 @@ bool maxiSample::read()
 }
 
 double maxiSample::play() {
-	short* buffer = (short *)myData;
 	position++;
 	if ((long) position == length) position=0;
-	output = (double) buffer[(long)position]/32767.0;
+	output = (double) temp[(long)position]/32767.0;
 	return output;
 }
 
 double maxiSample::playOnce() {
-	position=(position+1);
-	double remainder = position - (long) position;
+	position++;
 	if ((long) position<length)
-		output = (double) ((1-remainder) * temp[1+ (long) position] + remainder * temp[2+(long) position])/32767;//linear interpolation
-	else 
-		output=0;
+        output = (double) temp[(long)position]/32767.0;
+    else {
+        output=0;
+    }
+	return output;
 
-	return(output);
 }
 
 double maxiSample::playOnce(double speed) {
@@ -883,22 +888,27 @@ void maxiSample::getLength() {
 }
 
 void maxiSample::setLength(unsigned long numSamples) {
-    char *newData = (char*) malloc(sizeof(short) * numSamples);
-    if (NULL!=myData) {
+    cout << "Length: " << numSamples << endl;
+    short *newData = (short*) malloc(sizeof(short) * numSamples);
+    if (NULL!=temp) {
         unsigned long copyLength = min((unsigned long)length, numSamples);
-        memcpy(newData, myData, sizeof(short) * copyLength);
+        memcpy(newData, temp, sizeof(short) * copyLength);
     }
-    myData = newData;
+    temp = newData;
     myDataSize = numSamples * 2;
     length=numSamples;
     position=0;
     recordPosition=0;
-
 }
 
 void maxiSample::clear() {
     memset(myData, 0, myDataSize);
 }
+
+void maxiSample::reset() {
+    position=0;
+}
+
 
 
 
@@ -908,7 +918,7 @@ void maxiSample::clear() {
  Annoyingly, a short attack is 0.1, and a short release is 0.99. I'll sort this out laters */
 
 double maxiDyn::gate(double input, double threshold, long holdtime, double attack, double release) {
-		
+	
 	if (fabs(input)>threshold && attackphase!=1){ 
 		holdcount=0;
 		releasephase=0;
@@ -938,7 +948,7 @@ double maxiDyn::gate(double input, double threshold, long holdtime, double attac
 	
 	if (releasephase==1 && amplitude>0.) {
 		output=input*(amplitude*=release);
-
+		
 	}
 	
 	return output;
@@ -1012,7 +1022,7 @@ double maxiEnv::ar(double input, double attack, double release, long holdtime, i
 		holdphase=0;
 		releasephase=1;
 	}
-
+	
 	if (releasephase==1 && amplitude>0.) {
 		output=input*(amplitude*=release);
 		
@@ -1075,9 +1085,10 @@ double maxiEnv::adsr(double input, double attack, double decay, double sustain, 
 }
 
 double convert::mtof(int midinote) {
-
+	
 	return mtofarray[midinote];
 }
+
 
 void maxiEnvelopeFollower::setAttack(double attackMS) {
     attack = pow( 0.01, 1.0 / ( attackMS * maxiSettings::sampleRate * 0.001 ) );

@@ -221,20 +221,35 @@ public:
     void setLength(unsigned long numSamples);  
 	
 	
-	char* 	myData;
+//	char* 	myData;
     short* temp;
 	
 	// get/set for the Path property
 	
 	~maxiSample()
 	{
-		if (myData) free(myData);
+//		if (myData) free(myData);
         if (temp) free(temp);
         printf("freeing SampleData");
 
 	}
 	
-	maxiSample():myData(NULL),temp(NULL),position(0), recordPosition(0), myChannels(1), mySampleRate(maxiSettings::sampleRate) {};
+	maxiSample():temp(NULL),position(0), recordPosition(0), myChannels(1), mySampleRate(maxiSettings::sampleRate) {};
+    
+    maxiSample& operator=(const maxiSample &source) {
+        if (this == &source)
+            return *this;
+        position=0;
+        recordPosition = 0;
+        myChannels = source.myChannels;
+        mySampleRate = maxiSettings::sampleRate;
+        free(temp);
+        myDataSize = source.myDataSize;
+        temp = (short*) malloc(myDataSize * sizeof(char));
+        memcpy(temp, source.temp, myDataSize * sizeof(char));
+        length = source.length;
+        return *this;
+    }
 	
 	bool load(string fileName, int channel=0);
     
@@ -251,10 +266,10 @@ public:
     void loopRecord(double newSample, const bool recordEnabled, const double recordMix) {
         loopRecordLag.addSample(recordEnabled);
         if(recordEnabled) {
-            double currentSample = ((short*)myData)[(unsigned long)recordPosition] / 32767.0;
+            double currentSample = temp[(unsigned long)recordPosition] / 32767.0;
             newSample = (recordMix * currentSample) + ((1.0 - recordMix) * newSample);
             newSample *= loopRecordLag.value();
-            ((short*)myData)[(unsigned long)recordPosition] = newSample * 32767;
+            temp[(unsigned long)recordPosition] = newSample * 32767;
         }
         ++recordPosition;
         if (recordPosition == length)
@@ -309,7 +324,7 @@ public:
 		myFile.write ((char*) &myBitsPerSample, 2);
 		myFile.write ("data", 4);
 		myFile.write ((char*) &myDataSize, 4);
-		myFile.write (myData, myDataSize);
+		myFile.write ((char*) temp, myDataSize);
 		
 		return true;
 	}
@@ -491,6 +506,7 @@ public:
         return env;
     }
 	void reset() {env=0;}
+    inline double getEnv(){return env;}
 private:
     double attack, release, env;
 };

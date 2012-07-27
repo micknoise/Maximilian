@@ -454,7 +454,7 @@ bool maxiSample::read()
 		}
 		
 		// read the data chunk
-		myData = (char*) malloc(myDataSize * sizeof(char));
+		char *myData = (char*) malloc(myDataSize * sizeof(char));
 		inFile.seekg(filePos, ios::beg);
 		inFile.read(myData, myDataSize);
 		length=myDataSize*(0.5/myChannels);
@@ -888,7 +888,6 @@ void maxiSample::getLength() {
 }
 
 void maxiSample::setLength(unsigned long numSamples) {
-    cout << "Length: " << numSamples << endl;
     short *newData = (short*) malloc(sizeof(short) * numSamples);
     if (NULL!=temp) {
         unsigned long copyLength = min((unsigned long)length, numSamples);
@@ -902,7 +901,7 @@ void maxiSample::setLength(unsigned long numSamples) {
 }
 
 void maxiSample::clear() {
-    memset(myData, 0, myDataSize);
+    memset(temp, 0, myDataSize);
 }
 
 void maxiSample::reset() {

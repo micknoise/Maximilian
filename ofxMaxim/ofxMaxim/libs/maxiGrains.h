@@ -216,7 +216,7 @@ public:
 			envValue = window[sampleIdx];
 			double remainder;
 			long a,b;
-			short* buffer = (short *)sample->myData;
+			short* buffer = sample->temp;
 			if (frequency >0.) {
 				pos += inc;
                 if (pos >= sample->length) pos -= sample->length;

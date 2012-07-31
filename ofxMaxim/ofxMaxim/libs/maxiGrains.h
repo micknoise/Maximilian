@@ -5,7 +5,7 @@
 #include "maximilian.h"
 
 #if defined(__APPLE_CC__)
-#include "accelerate/accelerate.h";
+#include "accelerate/accelerate.h"
 //Mac users can uncommment the line below to use Apple's accelerate framework for calculating grains. This gives ~300% speed improvement and better sound quality, but doesn't work well on all machines.
 //#define MAXIGRAINFAST  
 #endif

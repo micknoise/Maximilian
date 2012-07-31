@@ -63,7 +63,7 @@ public:
 	void powerSpectrum_vdsp(int start, float *data, float *window, float *magnitude,float *phase);	
 	void inversePowerSpectrum_vdsp(int start, float *finalOut, float *window, float *magnitude,float *phase);	
 	void convToDB_vdsp(float *in, float *out);
-#endif;
+#endif
 	
 	/* Calculate the power spectrum */
 	void powerSpectrum(int start, float *data, float *window, float *magnitude, float *phase);

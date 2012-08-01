@@ -15,7 +15,7 @@ void setup() {//some inits
 void play(double *output) {//this is where the magic happens. Very slow magic.
 	
 //	    output[0]=beats.play();//just play the file. Looping is default for all play functions.
-        output[0]=beats.play(1.0);//play the file with a speed setting. 1. is normal speed.
+        output[0]=beats.playOnce();//play the file with a speed setting. 1. is normal speed.
 //		*output=beats.play(0.5,0,44100);//linear interpolationplay with a frequency input, start point and end point. Useful for syncing.
 //      *output=beats.play4(0.5,0,100000);//cubic interpolation play with a frequency input, start point and end point. Useful for syncing.
 	

@@ -4,9 +4,9 @@ maxiSample beats; //We give our sample a name. It's called beats this time. We c
 
 void setup() {//some inits
 	
-//	beats.loadOgg("/Users/mickgrierson/Documents/workspace/vorbis_test/ogg_test/thingy2.ogg");//load in your samples. Provide the full path to an ogg file if ogg enabled (uncomment #define VORBIS and add the stb_vorbis files).
+	beats.loadOgg("/Users/mickgrierson/Documents/workspace/vorbis_test/ogg_test/thingy2.ogg");//load in your samples. Provide the full path to an ogg file if ogg enabled (uncomment #define VORBIS and add the stb_vorbis files).
 	
-    beats.load("/Users/mickgrierson/Documents/workspace/vorbis_test/ogg_test/thingy.wav");//load in your samples. Provide the full path to a wav file.
+//    beats.load("/Users/mickgrierson/Documents/workspace/vorbis_test/ogg_test/thingy.wav");//load in your samples. Provide the full path to a wav file.
 
     printf("Summary:\n%s", beats.getSummary());//get info on samples if you like.
 	

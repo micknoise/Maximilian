@@ -888,12 +888,14 @@ void maxiSample::getLength() {
 }
 
 void maxiSample::setLength(unsigned long numSamples) {
-    short *newData = (short*) malloc(sizeof(short) * numSamples);
-    if (NULL!=temp) {
-        unsigned long copyLength = min((unsigned long)length, numSamples);
-        memcpy(newData, temp, sizeof(short) * copyLength);
-    }
-    temp = newData;
+    temp = (short*) realloc(temp, sizeof(short) * numSamples);
+//    short *newData = (short*) malloc(sizeof(short) * numSamples);
+//    if (NULL!=temp) {
+//        unsigned long copyLength = min((unsigned long)length, numSamples);
+//        memcpy(newData, temp, sizeof(short) * copyLength);
+//        free(temp);
+//    }
+//    temp = newData;
     myDataSize = numSamples * 2;
     length=numSamples;
     position=0;

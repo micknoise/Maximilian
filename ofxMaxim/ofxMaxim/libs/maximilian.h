@@ -207,12 +207,12 @@ private:
 	int   	myByteRate;
 	short 	myBlockAlign;
 	short 	myBitsPerSample;
-	double position, recordPosition;
 	double speed;
 	double output;
     maxiLagExp<double> loopRecordLag;
 	
 public:
+	double position, recordPosition;
 	int	myDataSize;
 	short 	myChannels;
 	int   	mySampleRate;
@@ -230,8 +230,6 @@ public:
 	{
 //		if (myData) free(myData);
         if (temp) free(temp);
-        printf("freeing SampleData");
-
 	}
 	
 	maxiSample():temp(NULL),position(0), recordPosition(0), myChannels(1), mySampleRate(maxiSettings::sampleRate) {};
@@ -334,7 +332,6 @@ public:
 	{
 		char *summary = new char[250];
 		sprintf(summary, " Format: %d\n Channels: %d\n SampleRate: %d\n ByteRate: %d\n BlockAlign: %d\n BitsPerSample: %d\n DataSize: %d\n", myFormat, myChannels, mySampleRate, myByteRate, myBlockAlign, myBitsPerSample, myDataSize);
-		std::cout << myDataSize;
 		return summary;
 	}
 };

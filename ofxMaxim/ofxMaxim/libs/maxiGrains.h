@@ -274,7 +274,7 @@ public:
 				delete(*it);
 				it = grains.erase(it);
 			}else{
-                ++it;
+                it++;
             }
 		}
 		return total;

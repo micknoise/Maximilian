@@ -139,7 +139,7 @@ template<typename F>
 class maxiGrain : public maxiGrainBase {
 public:
 	maxiSample *sample;
-	long double pos;
+    double pos;
 	double dur;
 	long sampleStartPos;
 	long sampleIdx;
@@ -150,6 +150,7 @@ public:
 	double inc;
 	double frequency;
 	double* window;
+    short* buffer;
 #if defined(__APPLE_CC__) && defined(MAXIGRAINFAST)
 	double* grainSamples;
 #endif
@@ -159,6 +160,7 @@ public:
 	 */
 	maxiGrain(maxiSample *sample, const double position, const double duration, const double speed, maxiGrainWindowCache<F> *windowCache) :sample(sample), pos(position), dur(duration), speed(speed) 
 	{
+        buffer = sample->temp;
 		sampleStartPos = sample->length * pos;
 		sampleDur = dur * (double)sample->mySampleRate;
 		sampleDurMinusOne = sampleDur - 1;
@@ -211,7 +213,7 @@ public:
 #endif
 	}
 	
-	double play() {
+	inline double play() {
 		double output = 0.0;
 		if (!finished) {
 #if defined(__APPLE_CC__) && defined(MAXIGRAINFAST)
@@ -219,7 +221,6 @@ public:
 #else
 			envValue = window[sampleIdx];
 			double remainder;
-			short* buffer = sample->temp;
             pos += inc;
             if (pos >= sample->length) 
                 pos -= sample->length;
@@ -239,7 +240,7 @@ public:
 #endif
 		}
 		sampleIdx++;
-		if (sampleIdx == sampleDur) finished = 1;
+		if (sampleIdx == sampleDur) finished = true;
 		return output;
 	}
 	
@@ -264,14 +265,17 @@ public:
 		grains.push_back(g);
 	}
 	
-	double play() {
+	inline double play() {
 		double total = 0.0;		
-		for(grainList::iterator it = grains.begin();  it != grains.end(); ++it) {
+        grainList::iterator it = grains.begin();
+		while(it != grains.end()) {
 			total += (*it)->play();
 			if ((*it)->finished) {
 				delete(*it);
-				grains.erase(it);
-			}
+				it = grains.erase(it);
+			}else{
+                ++it;
+            }
 		}
 		return total;
 	}
@@ -303,7 +307,8 @@ public:
         position = pos;
     }
 	
-	double play(double speed, double grainLength, int overlaps, double posMod=0.0) {
+	//play at a speed
+    double play(double speed, double grainLength, int overlaps, double posMod=0.0) {
 		position = position + speed;
 		cycles++;
 		if (position > sample->length) position=0;
@@ -319,6 +324,8 @@ public:
 		return grainPlayer->play();
 	}
 	
+    
+    //provide your own position iteration
 	double play2(double pos, double grainLength, int overlaps) {
 		cycles++;
 		pos *= sample->length;
@@ -375,15 +382,6 @@ public:
 		return grainPlayer->play();
 	}
 	
-	double play2(double pos, double grainLength, int overlaps) {
-		cycles++;
-		pos *= sample->length;
-		if (0 == floor(fmod(cycles, grainLength * maxiSettings::sampleRate / overlaps))) {
-			maxiGrain<F> *g = new maxiGrain<F>(sample, max(min(1.0,(pos / sample->length)),0.0), grainLength, 1, &windowCache);			
-			grainPlayer->addGrain(g);
-		}
-		return grainPlayer->play();
-	}
 };
 
 //and here's maxiPitchStretch. Args to the play function are basically speed for 'pitch' and rate for playback rate.
@@ -393,20 +391,22 @@ template<typename F>
 class maxiPitchStretch {
 public:
 	double position;
-	long cycles;
 	maxiSample *sample;
 	maxiGrainPlayer *grainPlayer;
 	maxiGrainWindowCache<F> windowCache;
 	double randomOffset;
-    double loopStart, loopEnd;
+    long loopStart, loopEnd, loopLength;
+    double looper;
+    long cycles;
 	
 	maxiPitchStretch(maxiSample *sample) : sample(sample) {
-		cycles=0;
 		grainPlayer = new maxiGrainPlayer(sample);
 		randomOffset=0;
         loopStart = 0.0;
         loopEnd = sample->length;
+        loopLength =sample->length;
 		position=0;
+        looper = 0;
 	}
     
     double getNormalisedPosition() {
@@ -415,15 +415,17 @@ public:
     
     void setPosition(double pos) {
         position = pos * sample->length;
-        position = maxiMap::clamp(position, 0, sample->length-1);
+        position = maxiMap::clamp<double>(position, 0, sample->length-1);
     }
     
     void setLoopStart(double val) {
         loopStart = val * sample->length;
+        loopLength = loopEnd - loopStart;
     }
     
     void setLoopEnd(double val) {
         loopEnd = val * sample->length;
+        loopLength = loopEnd - loopStart;
     }
 	
 	~maxiPitchStretch() {
@@ -432,13 +434,12 @@ public:
 	
 	inline double play(double speed, double rate, double grainLength, int overlaps, double posMod=0.0) {
 		position = position + (1 * rate);
-		cycles++;
-		if (position > loopEnd) position=loopStart;
-		if (position < loopStart) position = loopEnd;
+        looper++;
+		if (position >= loopEnd) position-= loopLength;
+		if (position < loopStart) position += loopLength;
 		double cycleLength = grainLength * maxiSettings::sampleRate  / overlaps;
-		double cycleMod = fmod(cycles, cycleLength + randomOffset);
-		if (0 == floor(cycleMod)) {
-//			speed = speed - ((cycleMod / cycleLength) * 0.1);
+        if (looper > cycleLength + randomOffset) {
+            looper -= (cycleLength + randomOffset);
 			maxiGrain<F> *g = new maxiGrain<F>(sample, max(min(1.0,(position / sample->length) + posMod),0.0), grainLength, speed, &windowCache);			
 			grainPlayer->addGrain(g);
             randomOffset = rand() % 10;
@@ -446,15 +447,6 @@ public:
 		return grainPlayer->play();
 	}
 	
-	double play2(double pos, double grainLength, int overlaps) {
-		cycles++;
-		pos *= sample->length;
-		if (0 == floor(fmod(cycles, grainLength * maxiSettings::sampleRate / overlaps))) {
-			maxiGrain<F> *g = new maxiGrain<F>(sample, max(min(1.0,(pos / sample->length)),0.0), grainLength, 1, &windowCache);			
-			grainPlayer->addGrain(g);
-		}
-		return grainPlayer->play();
-	}
 };
 
 #endif

@@ -355,14 +355,18 @@ public:
 		return (log(val/inMin) / log(inMax/inMin) * (outMax - outMin)) + outMin;
 	}
 	
-	static int inline clamp(int v, const int low, const int high) {
-		v = min(high, v);
-		v = max(low, v);
+    //changed to templated function, e.g. maxiMap::maxiClamp<int>(v, l, h);
+    template<typename T>
+	static T inline clamp(T v, const T low, const T high) {
+        if (v > high)
+            v = high;
+        else if (v < low) {
+            v = low;
+        }
 		return v;
 	}
 	
 };
-
 
 class maxiDyn {
 	

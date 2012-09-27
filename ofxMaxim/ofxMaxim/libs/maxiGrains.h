@@ -183,7 +183,7 @@ public:
 #if defined(__APPLE_CC__) && defined(MAXIGRAINFAST)
 		//premake the grain using fast vector functions, and quadratic interpolation
 		double *sourceData = (double*)malloc(sampleDur * sizeof(double));
-		short* buffer = (short *)sample->myData;
+		short* buffer = (short *)sample->temp;
 		//convert sample to double data
 		vDSP_vflt16D(buffer + sampleStartPos, 1, sourceData, 1, min(sampleDur, sample->length - sampleStartPos));
 		//todo: wraping code

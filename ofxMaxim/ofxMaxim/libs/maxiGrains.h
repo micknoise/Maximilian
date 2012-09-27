@@ -286,15 +286,17 @@ class maxiTimestretch {
 protected:
     double position;
 public:
-	long cycles;
 	maxiSample *sample;
 	maxiGrainPlayer *grainPlayer;
 	maxiGrainWindowCache<F> windowCache;
 	double randomOffset;
+    double looper;
+	
+
 	
 	maxiTimestretch(maxiSample *sample) : sample(sample) {
 		position=0;
-		cycles=0;
+        looper = 0;
 		grainPlayer = new maxiGrainPlayer(sample);
 		randomOffset=0;
 	}
@@ -303,19 +305,29 @@ public:
 		delete grainPlayer;
 	}
     
-    void setPosition(double pos) {
-        position = pos;
+    double getNormalisedPosition() {
+        return position / (double) sample->length;
     }
+    
+    double getPosition() {
+        return position;
+    }
+    
+    void setPosition(double pos) {
+        position = pos * sample->length;
+        position = maxiMap::clamp<double>(position, 0, sample->length-1);
+    }
+
 	
 	//play at a speed
-    double play(double speed, double grainLength, int overlaps, double posMod=0.0) {
+    inline double play(double speed, double grainLength, int overlaps, double posMod=0.0) {
 		position = position + speed;
-		cycles++;
-		if (position > sample->length) position=0;
-		if (position < 0) position = sample->length;
+        looper++;
+		if (position > sample->length) position-= sample->length;
+		if (position < 0) position += sample->length;
 		double cycleLength = grainLength * maxiSettings::sampleRate  / overlaps;
-		double cycleMod = fmod(cycles, cycleLength + randomOffset);
-		if (0 == floor(cycleMod)) {
+        if (looper > cycleLength + randomOffset) {
+            looper -= (cycleLength + randomOffset);
 			speed = (speed > 0 ? 1 : -1);
 			maxiGrain<F> *g = new maxiGrain<F>(sample, max(min(1.0,(position / sample->length) + posMod),0.0), grainLength, speed, &windowCache);			
 			grainPlayer->addGrain(g);
@@ -326,10 +338,10 @@ public:
 	
     
     //provide your own position iteration
-	double play2(double pos, double grainLength, int overlaps) {
-		cycles++;
+	inline double play2(double pos, double grainLength, int overlaps) {
+		looper++;
 		pos *= sample->length;
-		if (0 == floor(fmod(cycles, grainLength * maxiSettings::sampleRate / overlaps))) {
+		if (0 == floor(fmod(looper, grainLength * maxiSettings::sampleRate / overlaps))) {
 			maxiGrain<F> *g = new maxiGrain<F>(sample, max(min(1.0,(pos / sample->length)),0.0), grainLength, 1, &windowCache);			
 			grainPlayer->addGrain(g);
 		}
@@ -397,7 +409,6 @@ public:
 	double randomOffset;
     long loopStart, loopEnd, loopLength;
     double looper;
-    long cycles;
 	
 	maxiPitchStretch(maxiSample *sample) : sample(sample) {
 		grainPlayer = new maxiGrainPlayer(sample);
@@ -411,6 +422,10 @@ public:
     
     double getNormalisedPosition() {
         return position / (double) sample->length;
+    }
+    
+    double getPosition() {
+        return position;
     }
     
     void setPosition(double pos) {

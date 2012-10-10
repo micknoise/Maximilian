@@ -39,7 +39,7 @@
 *   Uncomment the following to include Sean Barrett's Ogg Vorbis decoder.
 *   If you're on windows, make sure to add the files std_vorbis.c and std_vorbis.h to your project*/
 
-#define VORBIS
+//#define VORBIS
 
 #ifdef VORBIS
 extern "C" {

@@ -104,7 +104,7 @@ private:
 #endif
 	
 	void melFilterAndLogSquare(float* powerSpectrum);
-	void melFilterAndLogSq_Part2();
+	void melFilterAndLogSq_Part2(float *powerSpectrum);
 
 	
 	void calcMelFilterBank(double sampleRate, int numBins) {

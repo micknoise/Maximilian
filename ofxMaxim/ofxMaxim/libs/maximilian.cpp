@@ -39,7 +39,7 @@
 *   Uncomment the following to include Sean Barrett's Ogg Vorbis decoder.
 *   If you're on windows, make sure to add the files std_vorbis.c and std_vorbis.h to your project*/
 
-#define VORBIS
+//#define VORBIS
 
 #ifdef VORBIS
 extern "C" {
@@ -379,7 +379,6 @@ bool maxiSample::loadOgg(string fileName, int channel) {
     bool result;
 	readChannel=channel;
     int channelx;
-    cout << fileName << endl;
     myDataSize = stb_vorbis_decode_filename(const_cast<char*>(fileName.c_str()), &channelx, &temp);
     result = myDataSize > 0;
     printf("\nchannels = %d\nlength = %d",channelx,myDataSize);

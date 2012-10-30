@@ -7,7 +7,7 @@
  *
  */
 
-#include "someTypes.h"
+
 #include <iostream>
 #include "maximilian.h"
 #include <list>
@@ -16,6 +16,8 @@
 
 
 using namespace std;
+
+typedef vector<float> flArr;
 
 enum maxiAtomTypes {
 	GABOR
@@ -37,7 +39,7 @@ struct maxiGaborAtom : maxiAtom {
 //create atoms
 class maxiCollider {
 public:
-	static inline void createGabor(flArr &atom, const float freq, const float sampleRate, const uint length, 
+	static inline void createGabor(flArr &atom, const float freq, const float sampleRate, const unsigned int length, 
                                 float phase, const float kurtotis, const float amp);
     static maxiGrainWindowCache<gaussianWinFunctor> envCache;
 };
@@ -82,7 +84,7 @@ public:
 class maxiAtomBookPlayer {
 public:
 	maxiAtomBookPlayer();
-	float play(maxiAtomBook &book, maxiAccelerator &atomStream, float *output, int bufferSize);
+	void play(maxiAtomBook &book, maxiAccelerator &atomStream, float *output, int bufferSize);
 private:
 	unsigned int atomIdx;
 };

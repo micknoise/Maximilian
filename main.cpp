@@ -18,7 +18,7 @@ void setup() {//some inits
 void play(double *output) {
 
 //      no noise here
-      out=VCO1.sawn(ramp.phasor(0.1,50,8000));
+//      out=VCO1.sawn(ramp.phasor(0.1,50,8000));
 
     
 //      Band limited square using two band limited saws. Comment the above and uncomment the below.
@@ -27,7 +27,7 @@ void play(double *output) {
 //        out=VCO1.sawn(ramp.phasor(0.1,50,8000))-VCO2.sawn(ramp2.phasor(0.1,50,8000));
     
 //      When you're done testing with the ramps, see here for an easy PWM hack with this approach
-//      out=VCO1.sawn(100)-(VCO2.sawn(100.1)*0.9);
+      out=VCO1.sawn(100)-(VCO2.sawn(100.1)*0.9);
 
     
 	output[0]=out*0.5;//left channel

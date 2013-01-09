@@ -244,7 +244,7 @@ public:
 		return output;
 	}
 	
-private:	   
+protected:	   
 	maxiGrain();	
 	double envValue;
 	ulong sampleDurMinusOne;

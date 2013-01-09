@@ -86,6 +86,7 @@ public:
 	double sinebuf(double frequency);
 	double sinebuf4(double frequency);
 	void phaseReset(double phaseIn);
+    double sawn(double frequency);    
 	
 };
 

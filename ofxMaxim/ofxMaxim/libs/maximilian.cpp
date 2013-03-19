@@ -535,6 +535,7 @@ bool maxiSample::loadOgg(string fileName, int channel) {
     bool result;
 	readChannel=channel;
     int channelx;
+    free(temp);
     myDataSize = stb_vorbis_decode_filename(const_cast<char*>(fileName.c_str()), &channelx, &temp);
     result = myDataSize > 0;
     printf("\nchannels = %d\nlength = %d",channelx,myDataSize);
@@ -625,6 +626,7 @@ bool maxiSample::read()
 				position+=2;
 			}
 		}
+        free(temp);
         temp = (short*) malloc(myDataSize * sizeof(char));
         memcpy(temp, myData, myDataSize * sizeof(char));
         
@@ -1247,10 +1249,10 @@ double convert::mtof(int midinote) {
 
 
 void maxiEnvelopeFollower::setAttack(double attackMS) {
-    attack = pow( 0.01, 1.0 / ( attackMS * maxiSettings::sampleRate * 0.001 ) );
+    attack = pow( 0.01, 1.0 / (attackMS * maxiSettings::sampleRate * 0.001 ) );
 }
 
 void maxiEnvelopeFollower::setRelease(double releaseMS) {
-    release = pow( 0.01, 1.0 / ( releaseMS * maxiSettings::sampleRate * 0.001 ) );    
+    release = pow( 0.01, 1.0 / (releaseMS * maxiSettings::sampleRate * 0.001 ) );    
 }
 

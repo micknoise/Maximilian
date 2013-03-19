@@ -99,10 +99,10 @@ float maxiFFT::spectralFlatness() {
 	float geometricMean=0, arithmaticMean=0;
 	for(int i=0; i < bins; i++) {
 		if (magnitudes[i] != 0)
-			geometricMean += log(magnitudes[i]);
+			geometricMean += logf(magnitudes[i]);
 		arithmaticMean += magnitudes[i];
 	}
-	geometricMean = exp(geometricMean / (float)bins);
+	geometricMean = expf(geometricMean / (float)bins);
 	arithmaticMean /= (float)bins;
 	return arithmaticMean !=0 ?  geometricMean / arithmaticMean : 0;
 }

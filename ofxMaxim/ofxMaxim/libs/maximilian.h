@@ -509,6 +509,7 @@ public:
     }
 	void reset() {env=0;}
     inline double getEnv(){return env;}
+    inline void setEnv(double val){env = val;}
 private:
     double attack, release, env;
 };

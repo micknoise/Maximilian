@@ -637,6 +637,7 @@ bool maxiSample::read()
         memcpy(temp, myData, myDataSize * sizeof(char));
         
         free(myData);
+        myData = NULL;
 		
 	}else {
 //		cout << "ERROR: Could not load sample: " <<myPath << endl; //This line seems to be hated by windows 

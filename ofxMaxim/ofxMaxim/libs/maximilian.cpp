@@ -397,7 +397,8 @@ void maxiEnvelope::trigger(int index, double amp) {
 
 //Delay with feedback
 maxiDelayline::maxiDelayline() {
-	memset( memory, 0, 88200*sizeof (double) );	
+	memset( memory, 0, 88200*sizeof (double) );
+    phase=0;
 }
 
 

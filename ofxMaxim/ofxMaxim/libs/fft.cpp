@@ -273,8 +273,8 @@ void RealFFT(int NumSamples, float *RealIn, float *RealOut, float *ImagOut)
 	RealOut[0] = (h1r = RealOut[0]) + ImagOut[0];
 	ImagOut[0] = h1r - ImagOut[0];
 	
-	delete[]tmpReal;
-	delete[]tmpImag;
+	free(tmpReal);
+	free(tmpImag);
 }
 
 /*

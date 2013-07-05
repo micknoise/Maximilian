@@ -566,8 +566,8 @@ bool maxiSample::read()
 {
 	bool result;
 	ifstream inFile( myPath.c_str(), ios::in | ios::binary);
-	result = inFile;
-	if (inFile) {
+	result = inFile.is_open();
+	if (result) {
 		bool datafound = false;
 		inFile.seekg(4, ios::beg);
 		inFile.read( (char*) &myChunkSize, 4 ); // read the ChunkSize
@@ -645,7 +645,16 @@ bool maxiSample::read()
 
 double maxiSample::play() {
 	position++;
-	if ((long) position == length) position=0;
+	if ((long) position >= length) position=0;
+	output = (double) temp[(long)position]/32767.0;
+	return output;
+}
+
+//start end and points are between 0 and 1
+double maxiSample::playLoop(double start, double end) {
+	position++;
+    if (position < length * start) position = length * start;
+	if ((long) position >= length * end) position = length * start;
 	output = (double) temp[(long)position]/32767.0;
 	return output;
 }
@@ -659,6 +668,20 @@ double maxiSample::playOnce() {
     }
 	return output;
 
+}
+
+void maxiSample::setPosition(double newPos) {
+    position = maxiMap::clamp<double>(newPos, 0.0, 1.0) * length;
+}
+
+double maxiSample::playUntil(double end) {
+	position++;
+	if ((long) position<length * end)
+        output = (double) temp[(long)position]/32767.0;
+    else {
+        output=0;
+    }
+	return output;
 }
 
 double maxiSample::playOnce(double speed) {
@@ -1069,6 +1092,74 @@ void maxiSample::reset() {
 }
 
 
+void maxiSample::normalise(float maxLevel) {
+    short maxValue = 0;
+    for(int i=0; i < length; i++) {
+        if (abs(temp[i]) > maxValue) {
+            maxValue = abs(temp[i]);
+        }
+    }
+    float scale = 32767.0 * maxLevel / (float) maxValue;
+    for(int i=0; i < length; i++) {
+        temp[i] = round(scale * (float) temp[i]);
+    }
+}
+
+void maxiSample::autoTrim(float alpha, float threshold, bool trimStart, bool trimEnd) {
+    
+    int startMarker=0;
+    if(trimStart) {
+        maxiLagExp<float> startLag(alpha, 0);
+        while(startMarker < length) {
+            startLag.addSample(abs(temp[startMarker]));
+            if (startLag.value() > threshold) {
+                break;
+            }
+            startMarker++;
+        }
+    }
+    
+    int endMarker = length-1;
+    if(trimEnd) {
+        maxiLagExp<float> endLag(alpha, 0);
+        while(endMarker > 0) {
+            endLag.addSample(abs(temp[endMarker]));
+            if (endLag.value() > threshold) {
+                break;
+            }
+            endMarker--;
+        }
+    }
+    
+    cout << "Autotrim: start: " << startMarker << ", end: " << endMarker << endl;
+    
+    int newLength = endMarker - startMarker;
+    if (newLength > 0) {
+        short *newData = (short*) malloc(sizeof(short) * newLength);
+        for(int i=0; i < newLength; i++) {
+            newData[i] = temp[i+startMarker];
+        }
+        free(temp);
+        temp = newData;
+        myDataSize = newLength * 2;
+        length=newLength;
+        position=0;
+        recordPosition=0;
+        //envelope the start
+        int fadeSize=min((long)100, length);
+        for(int i=0; i < fadeSize; i++) {
+            float factor = i / (float) fadeSize;
+            temp[i] = round(temp[i] * factor);
+            temp[length - 1 - i] = round(temp[length - 1 - i] * factor);
+        }
+    }
+}
+
+
+
+
+
+
 
 
 
@@ -1246,14 +1337,5 @@ double maxiEnv::adsr(double input, double attack, double decay, double sustain, 
 double convert::mtof(int midinote) {
 	
 	return mtofarray[midinote];
-}
-
-
-void maxiEnvelopeFollower::setAttack(double attackMS) {
-    attack = pow( 0.01, 1.0 / (attackMS * maxiSettings::sampleRate * 0.001 ) );
-}
-
-void maxiEnvelopeFollower::setRelease(double releaseMS) {
-    release = pow( 0.01, 1.0 / (releaseMS * maxiSettings::sampleRate * 0.001 ) );    
 }
 

@@ -30,6 +30,12 @@
  *
  */
 
+/*
+ Feature request:
+ maxiNANINFAlarm
+ maxiLimiter
+ */
+
 #ifndef MAXIMILIAN_H
 #define MAXIMILIAN_H
 
@@ -262,8 +268,9 @@ public:
 	//read an ogg file into this class using stb_vorbis
     bool readOgg();
     
-    void loopRecord(double newSample, const bool recordEnabled, const double recordMix) {
+    void loopRecord(double newSample, const bool recordEnabled, const double recordMix, double start = 0.0, double end = 1.0) {
         loopRecordLag.addSample(recordEnabled);
+        if (recordPosition < start * length) recordPosition = start * length;
         if(recordEnabled) {
             double currentSample = temp[(unsigned long)recordPosition] / 32767.0;
             newSample = (recordMix * currentSample) + ((1.0 - recordMix) * newSample);
@@ -271,8 +278,8 @@ public:
             temp[(unsigned long)recordPosition] = newSample * 32767;
         }
         ++recordPosition;
-        if (recordPosition == length)
-            recordPosition=0;
+        if (recordPosition >= end * length)
+            recordPosition= start * length;
     }
     
     void clear();
@@ -280,10 +287,16 @@ public:
     void reset();
 	
 	double play();
+
+    double playLoop(double start, double end); // start and end are between 0.0 and 1.0
 	
 	double playOnce();
 	
 	double playOnce(double speed);
+
+    void setPosition(double newPos); // between 0.0 and 1.0
+    
+    double playUntil(double end);
 	
 	double play(double speed);
 	
@@ -335,12 +348,16 @@ public:
 		sprintf(summary, " Format: %d\n Channels: %d\n SampleRate: %d\n ByteRate: %d\n BlockAlign: %d\n BitsPerSample: %d\n DataSize: %d\n", myFormat, myChannels, mySampleRate, myByteRate, myBlockAlign, myBitsPerSample, myDataSize);
 		return summary;
 	}
+    
+    void normalise(float maxLevel = 0.99);  //0 < maxLevel < 1.0
+    void autoTrim(float alpha = 0.3, float threshold = 6000, bool trimStart = true, bool trimEnd = true); //alpha of lag filter (lower == slower reaction), threshold to mark start and end, < 32767
 };
 
 
 class maxiMap {
 public:
 	static double inline linlin(double val, double inMin, double inMax, double outMin, double outMax) {
+		val = max(min(val, inMax), inMin);
 		return ((val - inMin) / (inMax - inMin) * (outMax - outMin)) + outMin;
 	}
 	
@@ -490,16 +507,21 @@ inline double maxiChorus::chorus(const double input, const unsigned int delay, c
     return (output1 + output2 + input) / 3.0;
 }
 
-class maxiEnvelopeFollower {
+template<typename T>
+class maxiEnvelopeFollowerType {
 public:
-    maxiEnvelopeFollower() {
+    maxiEnvelopeFollowerType() {
         setAttack(100);
         setRelease(100);
         env = 0;
     }
-    void setAttack(double attackMS);
-    void setRelease(double releaseMS);
-    inline double play(double input) {
+    void setAttack(T attackMS) {
+        attack = pow( 0.01, 1.0 / (attackMS * maxiSettings::sampleRate * 0.001 ) );        
+    }
+    void setRelease(T releaseMS) {
+        release = pow( 0.01, 1.0 / (releaseMS * maxiSettings::sampleRate * 0.001 ) );            
+    }
+    inline T play(T input) {
         input = fabs(input);
         if (input>env)
             env = attack * (env - input) + input;
@@ -508,11 +530,14 @@ public:
         return env;
     }
 	void reset() {env=0;}
-    inline double getEnv(){return env;}
-    inline void setEnv(double val){env = val;}
+    inline T getEnv(){return env;}
+    inline void setEnv(T val){env = val;}
 private:
-    double attack, release, env;
+    T attack, release, env;
 };
+
+typedef maxiEnvelopeFollowerType<double> maxiEnvelopeFollower;
+typedef maxiEnvelopeFollowerType<float> maxiEnvelopeFollowerF;
 
 //from https://ccrma.stanford.edu/~jos/filters/DC_Blocker_Software_Implementations.html
 class maxiDCBlocker {

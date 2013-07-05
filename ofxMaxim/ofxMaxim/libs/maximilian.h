@@ -605,7 +605,7 @@ private:
         freq = _freq;
         res = _res;
         g = tan(PI * freq / maxiSettings::sampleRate);
-        damping = 1.0 / res;
+        damping = res == 0 ? 0 : 1.0 / res;
         k = damping;
         ginv = g / (1.0 + g * (g + k));
         g1 = ginv;

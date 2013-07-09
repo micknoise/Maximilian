@@ -560,6 +560,7 @@ bool maxiSample::loadOgg(string fileName, int channel) {
 
 void maxiSample::trigger() {
 	position = 0;
+    recordPosition = 0;
 }
 
 bool maxiSample::read()

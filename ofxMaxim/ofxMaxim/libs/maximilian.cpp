@@ -33,6 +33,7 @@
 
 #include "maximilian.h"
 #include "math.h"
+#include <sstream>
 
 /*  Maximilian can be configured to load ogg vorbis format files using the 
 *   loadOgg() method.
@@ -526,34 +527,35 @@ double *maxiMix::ambisonic(double input,double eight[8],double x,double y,double
 
 
 bool maxiSample::load(string fileName, int channel) {
-	myPath = fileName;
-	readChannel=channel;
-	return read();
+    return samples.load(fileName, channel);
+//	myPath = fileName;
+//	readChannel=channel;
+//	return read();
 }
 
 bool maxiSample::loadOgg(string fileName, int channel) {
 #ifdef VORBIS
-    bool result;
-	readChannel=channel;
-    int channelx;
-    free(temp);
-    myDataSize = stb_vorbis_decode_filename(const_cast<char*>(fileName.c_str()), &channelx, &temp);
-    result = myDataSize > 0;
-    printf("\nchannels = %d\nlength = %d",channelx,myDataSize);
-    printf("\n");
-    myChannels=(short)channelx;
-    length=myDataSize;
-    mySampleRate=44100;
-    
-    if (myChannels>1) {
-        int position=0;
-        int channel=readChannel;
-        for (int i=channel;i<myDataSize*2;i+=myChannels) {
-            temp[position]=temp[i];
-            position++;
-        }
-    }
-	return result; // this should probably be something more descriptive
+//    bool result;
+//	readChannel=channel;
+//    int channelx;
+//    free(temp);
+//    myDataSize = stb_vorbis_decode_filename(const_cast<char*>(fileName.c_str()), &channelx, &temp);
+//    result = myDataSize > 0;
+//    printf("\nchannels = %d\nlength = %d",channelx,myDataSize);
+//    printf("\n");
+//    myChannels=(short)channelx;
+//    length=myDataSize;
+//    mySampleRate=44100;
+//    
+//    if (myChannels>1) {
+//        int position=0;
+//        int channel=readChannel;
+//        for (int i=channel;i<myDataSize*2;i+=myChannels) {
+//            temp[position]=temp[i];
+//            position++;
+//        }
+//    }
+//	return result; // this should probably be something more descriptive
 #endif
     return 0;
 }
@@ -563,107 +565,108 @@ void maxiSample::trigger() {
     recordPosition = 0;
 }
 
-bool maxiSample::read()
-{
-	bool result;
-	ifstream inFile( myPath.c_str(), ios::in | ios::binary);
-	result = inFile.is_open();
-	if (result) {
-		bool datafound = false;
-		inFile.seekg(4, ios::beg);
-		inFile.read( (char*) &myChunkSize, 4 ); // read the ChunkSize
-		
-		inFile.seekg(16, ios::beg);
-		inFile.read( (char*) &mySubChunk1Size, 4 ); // read the SubChunk1Size
-		
-		//inFile.seekg(20, ios::beg);
-		inFile.read( (char*) &myFormat, sizeof(short) ); // read the file format.  This should be 1 for PCM
-		
-		//inFile.seekg(22, ios::beg);
-		inFile.read( (char*) &myChannels, sizeof(short) ); // read the # of channels (1 or 2)
-		
-		//inFile.seekg(24, ios::beg);
-		inFile.read( (char*) &mySampleRate, sizeof(int) ); // read the samplerate
-		
-		//inFile.seekg(28, ios::beg);
-		inFile.read( (char*) &myByteRate, sizeof(int) ); // read the byterate
-		
-		//inFile.seekg(32, ios::beg);
-		inFile.read( (char*) &myBlockAlign, sizeof(short) ); // read the blockalign
-		
-		//inFile.seekg(34, ios::beg);
-		inFile.read( (char*) &myBitsPerSample, sizeof(short) ); // read the bitspersample
-		
-		//ignore any extra chunks
-		char chunkID[5]="";
-		chunkID[4] = 0;
-		int filePos = 36;
-		while(!datafound && !inFile.eof()) {
-			inFile.seekg(filePos, ios::beg);
-			inFile.read((char*) &chunkID, sizeof(char) * 4);
-			inFile.seekg(filePos + 4, ios::beg);
-			inFile.read( (char*) &myDataSize, sizeof(int) ); // read the size of the data
-			filePos += 8;
-			if (strcmp(chunkID,"data") == 0) {
-				datafound = true;
-			}else{
-				filePos += myDataSize;
-			}
-		}
-		
-		// read the data chunk
-		char *myData = (char*) malloc(myDataSize * sizeof(char));
-		inFile.seekg(filePos, ios::beg);
-		inFile.read(myData, myDataSize);
-		length=myDataSize*(0.5/myChannels);
-		inFile.close(); // close the input file
-		
-        cout << "Ch: " << myChannels << ", len: " << length << endl;
-		if (myChannels>1) {
-			int position=0;
-			int channel=readChannel*2;
-			for (int i=channel;i<myDataSize+6;i+=(myChannels*2)) {
-				myData[position]=myData[i];
-				myData[position+1]=myData[i+1];
-				position+=2;
-			}
-		}
-        free(temp);
-        temp = (short*) malloc(myDataSize * sizeof(char));
-        memcpy(temp, myData, myDataSize * sizeof(char));
-        
-        free(myData);
-		
-	}else {
-//		cout << "ERROR: Could not load sample: " <<myPath << endl; //This line seems to be hated by windows 
-        printf("ERROR: Could not load sample.");
-
-	}
-	
-	
-	return result; // this should probably be something more descriptive
-}
+//bool maxiSample::read()
+//{
+//    return samples.
+//	bool result;
+//	ifstream inFile( myPath.c_str(), ios::in | ios::binary);
+//	result = inFile.is_open();
+//	if (result) {
+//		bool datafound = false;
+//		inFile.seekg(4, ios::beg);
+//		inFile.read( (char*) &myChunkSize, 4 ); // read the ChunkSize
+//		
+//		inFile.seekg(16, ios::beg);
+//		inFile.read( (char*) &mySubChunk1Size, 4 ); // read the SubChunk1Size
+//		
+//		//inFile.seekg(20, ios::beg);
+//		inFile.read( (char*) &myFormat, sizeof(short) ); // read the file format.  This should be 1 for PCM
+//		
+//		//inFile.seekg(22, ios::beg);
+//		inFile.read( (char*) &myChannels, sizeof(short) ); // read the # of channels (1 or 2)
+//		
+//		//inFile.seekg(24, ios::beg);
+//		inFile.read( (char*) &mySampleRate, sizeof(int) ); // read the samplerate
+//		
+//		//inFile.seekg(28, ios::beg);
+//		inFile.read( (char*) &myByteRate, sizeof(int) ); // read the byterate
+//		
+//		//inFile.seekg(32, ios::beg);
+//		inFile.read( (char*) &myBlockAlign, sizeof(short) ); // read the blockalign
+//		
+//		//inFile.seekg(34, ios::beg);
+//		inFile.read( (char*) &myBitsPerSample, sizeof(short) ); // read the bitspersample
+//		
+//		//ignore any extra chunks
+//		char chunkID[5]="";
+//		chunkID[4] = 0;
+//		int filePos = 36;
+//		while(!datafound && !inFile.eof()) {
+//			inFile.seekg(filePos, ios::beg);
+//			inFile.read((char*) &chunkID, sizeof(char) * 4);
+//			inFile.seekg(filePos + 4, ios::beg);
+//			inFile.read( (char*) &myDataSize, sizeof(int) ); // read the size of the data
+//			filePos += 8;
+//			if (strcmp(chunkID,"data") == 0) {
+//				datafound = true;
+//			}else{
+//				filePos += myDataSize;
+//			}
+//		}
+//		
+//		// read the data chunk
+//		char *myData = (char*) malloc(myDataSize * sizeof(char));
+//		inFile.seekg(filePos, ios::beg);
+//		inFile.read(myData, myDataSize);
+//		length=myDataSize*(0.5/myChannels);
+//		inFile.close(); // close the input file
+//		
+//        cout << "Ch: " << myChannels << ", len: " << length << endl;
+//		if (myChannels>1) {
+//			int position=0;
+//			int channel=readChannel*2;
+//			for (int i=channel;i<myDataSize+6;i+=(myChannels*2)) {
+//				myData[position]=myData[i];
+//				myData[position+1]=myData[i+1];
+//				position+=2;
+//			}
+//		}
+//        free(temp);
+//        temp = (short*) malloc(myDataSize * sizeof(char));
+//        memcpy(temp, myData, myDataSize * sizeof(char));
+//        
+//        free(myData);
+//		
+//	}else {
+////		cout << "ERROR: Could not load sample: " <<myPath << endl; //This line seems to be hated by windows 
+//        printf("ERROR: Could not load sample.");
+//
+//	}
+//	
+//	
+//	return result; // this should probably be something more descriptive
+//}
 
 double maxiSample::play() {
 	position++;
-	if ((long) position >= length) position=0;
-	output = (double) temp[(long)position]/32767.0;
+	if ((long) position >= samples.getLength()) position=0;
+	output = (double) samples[(long)position]/32767.0;
 	return output;
 }
 
 //start end and points are between 0 and 1
 double maxiSample::playLoop(double start, double end) {
 	position++;
-    if (position < length * start) position = length * start;
-	if ((long) position >= length * end) position = length * start;
-	output = (double) temp[(long)position]/32767.0;
+    if (position < samples.getLength() * start) position = samples.getLength() * start;
+	if ((long) position >= samples.getLength() * end) position = samples.getLength() * start;
+	output = (double) samples[(long)position]/32767.0;
 	return output;
 }
 
 double maxiSample::playOnce() {
 	position++;
-	if ((long) position<length)
-        output = (double) temp[(long)position]/32767.0;
+	if ((long) position< samples.getLength())
+        output = (double) samples[(long)position]/32767.0;
     else {
         output=0;
     }
@@ -672,13 +675,13 @@ double maxiSample::playOnce() {
 }
 
 void maxiSample::setPosition(double newPos) {
-    position = maxiMap::clamp<double>(newPos, 0.0, 1.0) * length;
+    position = maxiMap::clamp<double>(newPos, 0.0, 1.0) * samples.getLength();
 }
 
 double maxiSample::playUntil(double end) {
 	position++;
-	if ((long) position<length * end)
-        output = (double) temp[(long)position]/32767.0;
+	if ((long) position < samples.getLength() * end)
+        output = (double) samples[(long)position]/32767.0;
     else {
         output=0;
     }
@@ -686,10 +689,10 @@ double maxiSample::playUntil(double end) {
 }
 
 double maxiSample::playOnce(double speed) {
-	position=position+((speed*chandiv)/(maxiSettings::sampleRate/mySampleRate));
+	position=position+((speed*chandiv)/(maxiSettings::sampleRate/samples.getSampleRate()));
 	double remainder = position - (long) position;
-	if ((long) position<length)
-		output = (double) ((1-remainder) * temp[1+ (long) position] + remainder * temp[2+(long) position])/32767;//linear interpolation
+	if ((long) position < samples.getLength())
+		output = (double) ((1-remainder) * samples[1+ (long) position] + remainder * samples[2+(long) position])/32767;//linear interpolation
 	else 
 		output=0;
 	return(output);
@@ -698,29 +701,29 @@ double maxiSample::playOnce(double speed) {
 double maxiSample::play(double speed) {
 	double remainder;
 	long a,b;
-	position=position+((speed*chandiv)/(maxiSettings::sampleRate/mySampleRate));
+	position=position+((speed*chandiv)/(maxiSettings::sampleRate/samples.getSampleRate()));
 	if (speed >=0) {
 		
-		if ((long) position>=length-1) position=1;
+		if ((long) position>= samples.getLength()-1) position=1;
 		remainder = position - floor(position);
-		if (position+1<length) {
+		if (position+1 < samples.getLength()) {
 			a=position+1;
 			
 		}
 		else {
-			a=length-1;
+			a=samples.getLength()-1;
 		}
-		if (position+2<length)
+		if (position+2<samples.getLength())
 		{
 		b=position+2;
 		}
 		else {
-		b=length-1;
+		b=samples.getLength()-1;
 		}
 		
-		output = (double) ((1-remainder) * temp[a] + remainder * temp[b])/32767;//linear interpolation
+		output = (double) ((1-remainder) * samples[a] + remainder * samples[b])/32767;//linear interpolation
 } else {
-		if ((long) position<0) position=length;
+		if ((long) position<0) position= samples.getLength();
 		remainder = position - floor(position);
 		if (position-1>=0) {
 			a=position-1;
@@ -735,7 +738,7 @@ double maxiSample::play(double speed) {
 			else {
 				b=0;
 			}
-		output = (double) ((-1-remainder) * temp[a] + remainder * temp[b])/32767;//linear interpolation
+		output = (double) ((-1-remainder) * samples[a] + remainder * samples[b])/32767;//linear interpolation
 	}	
 	return(output);
 }
@@ -746,7 +749,7 @@ double maxiSample::play(double frequency, double start, double end) {
 
 double maxiSample::play(double frequency, double start, double end, double &pos) {
 	double remainder;
-	if (end>=length) end=length-1;
+	if (end>=samples.getLength()) end=samples.getLength()-1;
 	long a,b;
 
 	if (frequency >0.) {
@@ -758,22 +761,22 @@ double maxiSample::play(double frequency, double start, double end, double &pos)
 		pos += ((end-start)/(maxiSettings::sampleRate/(frequency*chandiv)));
 		remainder = pos - floor(pos);
 		long posl = floor(pos);
-		if (posl+1<length) {
+		if (posl+1 < samples.getLength()) {
 			a=posl+1;
 			
 		}
 		else {
 			a=posl-1;
 		}
-		if (posl+2<length) {
+		if (posl+2 < samples.getLength()) {
 			b=posl+2;
 		}
 		else {
-			b=length-1;
+			b=samples.getLength()-1;
 		}
 
-		output = (double) ((1-remainder) * temp[a] +
-						   remainder * temp[b])/32767;//linear interpolation
+		output = (double) ((1-remainder) * samples[a] +
+						   remainder * samples[b])/32767;//linear interpolation
 	} else {
 		frequency=frequency-(frequency+frequency);
 		if ( pos <= start ) pos = end;
@@ -792,8 +795,8 @@ double maxiSample::play(double frequency, double start, double end, double &pos)
 		else {
 			b=0;
 		}		
-		output = (double) ((-1-remainder) * temp[a] +
-						   remainder * temp[b])/32767;//linear interpolation
+		output = (double) ((-1-remainder) * samples[a] +
+						   remainder * samples[b])/32767;//linear interpolation
 		
 	}
 	
@@ -813,26 +816,26 @@ double maxiSample::play4(double frequency, double start, double end) {
 		position += ((end-start)/(maxiSettings::sampleRate/(frequency*chandiv)));
 		remainder = position - floor(position);
 		if (position>0) {
-			a=temp[(int)(floor(position))-1];
+			a=samples[(int)(floor(position))-1];
 
 		} else {
-			a=temp[0];
+			a=samples[0];
 			
 		}
 		
-		b=temp[(long) position];
+		b=samples[(long) position];
 		if (position<end-2) {
-			c=temp[(long) position+1];
+			c=samples[(long) position+1];
 
 		} else {
-			c=temp[0];
+			c=samples[0];
 
 		}
 		if (position<end-3) {
-			d=temp[(long) position+2];
+			d=samples[(long) position+2];
 
 		} else {
-			d=temp[0];
+			d=samples[0];
 		}
 		a1 = 0.5f * (c - a);
 		a2 = a - 2.5 * b + 2.f * c - 0.5f * d;
@@ -845,26 +848,26 @@ double maxiSample::play4(double frequency, double start, double end) {
 		position -= ((end-start)/(maxiSettings::sampleRate/(frequency*chandiv)));
 		remainder = position - floor(position);
 		if (position>start && position < end-1) {
-			a=temp[(long) position+1];
+			a=samples[(long) position+1];
 			
 		} else {
-			a=temp[0];
+			a=samples[0];
 			
 		}
 		
-		b=temp[(long) position];
+		b=samples[(long) position];
 		if (position>start) {
-			c=temp[(long) position-1];
+			c=samples[(long) position-1];
 			
 		} else {
-			c=temp[0];
+			c=samples[0];
 			
 		}
 		if (position>start+1) {
-			d=temp[(long) position-2];
+			d=samples[(long) position-2];
 			
 		} else {
-			d=temp[0];
+			d=samples[0];
 		}
 		a1 = 0.5f * (c - a);
 		a2 = a - 2.5 * b + 2.f * c - 0.5f * d;
@@ -890,7 +893,7 @@ double maxiSample::bufferPlay(unsigned char &bufferin,double speed,long length) 
 	double remainder;
 	long a,b;
 	short* buffer = (short *)&bufferin;
-	position=position+((speed*chandiv)/(maxiSettings::sampleRate/mySampleRate));
+	position=position+((speed*chandiv)/(maxiSettings::sampleRate/samples.getSampleRate()));
 	if (speed >=0) {
 		
 		if ((long) position>=length-1) position=1;
@@ -934,7 +937,7 @@ double maxiSample::bufferPlay(unsigned char &bufferin,double speed,long length) 
 
 double maxiSample::bufferPlay(unsigned char &bufferin,double frequency, double start, double end) {
 	double remainder;
-	length=end;
+	long length=end;
 	long a,b;
 	short* buffer = (short *)&bufferin;
 	if (frequency >0.) {
@@ -1065,27 +1068,18 @@ double maxiSample::bufferPlay4(unsigned char &bufferin,double frequency, double 
 }
 
 
-void maxiSample::getLength() {
-	length=myDataSize*0.5;	
-}
-
 void maxiSample::setLength(unsigned long numSamples) {
-    temp = (short*) realloc(temp, sizeof(short) * numSamples);
-//    short *newData = (short*) malloc(sizeof(short) * numSamples);
-//    if (NULL!=temp) {
-//        unsigned long copyLength = min((unsigned long)length, numSamples);
-//        memcpy(newData, temp, sizeof(short) * copyLength);
-//        free(temp);
-//    }
-//    temp = newData;
-    myDataSize = numSamples * 2;
-    length=numSamples;
+//    temp = (short*) realloc(temp, sizeof(short) * numSamples);
+//    myDataSize = numSamples * 2;
+//    length=numSamples;
+    samples.setLength(numSamples);
     position=0;
     recordPosition=0;
 }
 
 void maxiSample::clear() {
-    memset(temp, 0, myDataSize);
+//    memset(temp, 0, myDataSize);
+    samples.clear();
 }
 
 void maxiSample::reset() {
@@ -1095,14 +1089,14 @@ void maxiSample::reset() {
 
 void maxiSample::normalise(float maxLevel) {
     short maxValue = 0;
-    for(int i=0; i < length; i++) {
-        if (abs(temp[i]) > maxValue) {
-            maxValue = abs(temp[i]);
+    for(int i=0; i < samples.getLength(); i++) {
+        if (abs(samples[i]) > maxValue) {
+            maxValue = abs(samples[i]);
         }
     }
     float scale = 32767.0 * maxLevel / (float) maxValue;
-    for(int i=0; i < length; i++) {
-        temp[i] = round(scale * (float) temp[i]);
+    for(int i=0; i < samples.getLength(); i++) {
+        samples[i] = round(scale * (float) samples[i]);
     }
 }
 
@@ -1111,8 +1105,8 @@ void maxiSample::autoTrim(float alpha, float threshold, bool trimStart, bool tri
     int startMarker=0;
     if(trimStart) {
         maxiLagExp<float> startLag(alpha, 0);
-        while(startMarker < length) {
-            startLag.addSample(abs(temp[startMarker]));
+        while(startMarker < samples.getLength()) {
+            startLag.addSample(abs(samples[startMarker]));
             if (startLag.value() > threshold) {
                 break;
             }
@@ -1120,11 +1114,11 @@ void maxiSample::autoTrim(float alpha, float threshold, bool trimStart, bool tri
         }
     }
     
-    int endMarker = length-1;
+    int endMarker = samples.getLength()-1;
     if(trimEnd) {
         maxiLagExp<float> endLag(alpha, 0);
         while(endMarker > 0) {
-            endLag.addSample(abs(temp[endMarker]));
+            endLag.addSample(abs(samples[endMarker]));
             if (endLag.value() > threshold) {
                 break;
             }
@@ -1136,22 +1130,23 @@ void maxiSample::autoTrim(float alpha, float threshold, bool trimStart, bool tri
     
     int newLength = endMarker - startMarker;
     if (newLength > 0) {
-        short *newData = (short*) malloc(sizeof(short) * newLength);
-        for(int i=0; i < newLength; i++) {
-            newData[i] = temp[i+startMarker];
-        }
-        free(temp);
-        temp = newData;
-        myDataSize = newLength * 2;
-        length=newLength;
+        samples.trim(startMarker, endMarker);
+//        short *newData = (short*) malloc(sizeof(short) * newLength);
+//        for(int i=0; i < newLength; i++) {
+//            newData[i] = temp[i+startMarker];
+//        }
+//        free(temp);
+//        temp = newData;
+//        myDataSize = newLength * 2;
+//        length=newLength;
         position=0;
         recordPosition=0;
         //envelope the start
-        int fadeSize=min((long)100, length);
+        int fadeSize=min((long)100, samples.getLength());
         for(int i=0; i < fadeSize; i++) {
             float factor = i / (float) fadeSize;
-            temp[i] = round(temp[i] * factor);
-            temp[length - 1 - i] = round(temp[length - 1 - i] * factor);
+            samples[i] = round(samples[i] * factor);
+            samples[samples.getLength() - 1 - i] = round(samples[samples.getLength() - 1 - i] * factor);
         }
     }
 }
@@ -1340,3 +1335,166 @@ double convert::mtof(int midinote) {
 	return mtofarray[midinote];
 }
 
+
+bool sampleSource::load(string filename, int channel) {
+    cout << "sampleSource: operation not supported\n";
+    return false;
+}
+
+bool sampleSource::save(string filename) {
+    cout << "sampleSource: operation not supported\n";
+    return false;
+}
+
+void sampleSource::unload() {
+    cout << "sampleSource: operation not supported\n";
+    return false;
+}
+
+string sampleSource::getSummary() {
+    cout << "sampleSource: operation not supported\n";
+    return "";
+}
+
+long sampleSource::getLength() {
+    return 0;
+}
+
+void sampleSource::setLength(unsigned long newLength) {
+    cout << "sampleSource: operation not supported\n";
+}
+
+void sampleSource::clear() {
+    cout << "sampleSource: operation not supported\n";
+}
+
+void sampleSource::trim(unsigned long start, unsigned long end) {
+    cout << "sampleSource: operation not supported\n";
+}
+
+int sampleSource::getSampleRate() {
+    return 1;
+}
+
+bool memSampleSource::load(const string filename, const int channel) {
+	bool result;
+	ifstream inFile( filename.c_str(), ios::in | ios::binary);
+	result = inFile.is_open();
+	if (result) {
+		bool datafound = false;
+		inFile.seekg(4, ios::beg);
+		inFile.read( (char*) &myChunkSize, 4 ); // read the ChunkSize
+		
+		inFile.seekg(16, ios::beg);
+		inFile.read( (char*) &mySubChunk1Size, 4 ); // read the SubChunk1Size
+		
+		//inFile.seekg(20, ios::beg);
+		inFile.read( (char*) &myFormat, sizeof(short) ); // read the file format.  This should be 1 for PCM
+		
+		//inFile.seekg(22, ios::beg);
+		inFile.read( (char*) &myChannels, sizeof(short) ); // read the # of channels (1 or 2)
+		
+		//inFile.seekg(24, ios::beg);
+		inFile.read( (char*) &mySampleRate, sizeof(int) ); // read the samplerate
+		
+		//inFile.seekg(28, ios::beg);
+		inFile.read( (char*) &myByteRate, sizeof(int) ); // read the byterate
+		
+		//inFile.seekg(32, ios::beg);
+		inFile.read( (char*) &myBlockAlign, sizeof(short) ); // read the blockalign
+		
+		//inFile.seekg(34, ios::beg);
+		inFile.read( (char*) &myBitsPerSample, sizeof(short) ); // read the bitspersample
+		
+		//ignore any extra chunks
+		char chunkID[5]="";
+		chunkID[4] = 0;
+		int filePos = 36;
+		while(!datafound && !inFile.eof()) {
+			inFile.seekg(filePos, ios::beg);
+			inFile.read((char*) &chunkID, sizeof(char) * 4);
+			inFile.seekg(filePos + 4, ios::beg);
+			inFile.read( (char*) &myDataSize, sizeof(int) ); // read the size of the data
+			filePos += 8;
+			if (strcmp(chunkID,"data") == 0) {
+				datafound = true;
+			}else{
+				filePos += myDataSize;
+			}
+		}
+		
+		// read the data chunk
+        data.resize(myDataSize / 2.0); //data is <short>
+		inFile.seekg(filePos, ios::beg);
+		inFile.read((char*)(&data[0]), myDataSize);
+		inFile.close(); // close the input file
+		length=data.size();
+		
+        //keep one channel, discard the rest
+		if (myChannels>1) {
+			int pos=0;
+			for (int i=channel;i<length;i+=myChannels) {
+				data[pos]=data[i];
+				pos++;
+			}
+            data = data[slice(0, length, 1)];
+		}
+        cout << "Channels: " << myChannels << ", length: " << length << ", loaded channel: " << channel << endl;
+	}else {
+        cout << "ERROR: Could not load sample." << endl;
+        
+	}
+	
+	
+	return result;
+    
+}
+
+bool memSampleSource::save(const string filename) {
+    fstream myFile (filename.c_str(), ios::out | ios::binary);
+    // write the wav file per the wav file format
+    myFile.seekp (0, ios::beg);
+    myFile.write ("RIFF", 4);
+    myFile.write ((char*) &myChunkSize, 4);
+    myFile.write ("WAVE", 4);
+    myFile.write ("fmt ", 4);
+    myFile.write ((char*) &mySubChunk1Size, 4);
+    myFile.write ((char*) &myFormat, 2);
+    myFile.write ((char*) &myChannels, 2);
+    myFile.write ((char*) &mySampleRate, 4);
+    myFile.write ((char*) &myByteRate, 4);
+    myFile.write ((char*) &myBlockAlign, 2);
+    myFile.write ((char*) &myBitsPerSample, 2);
+    myFile.write ("data", 4);
+    myFile.write ((char*) &myDataSize, 4);
+    myFile.write ((char*) &data[0], myDataSize);
+    return true;
+}
+
+void memSampleSource::unload() {
+    data.resize(0);
+}
+
+memSampleSource::~memSampleSource() {
+    unload();
+}
+
+string memSampleSource::getSummary() {
+    stringstream s;
+    s << " Format: " << myFormat << "\n Channels: " << myChannels << "\n SampleRate: " << mySampleRate << "\n ByteRate: " << myByteRate << "\n BlockAlign: " << myBlockAlign << "\n BitsPerSample: " << myBitsPerSample << "\n DataSize: " << myDataSize << endl;
+    return s.str();
+    
+}
+
+void memSampleSource::setLength(unsigned long newLength) {
+    trim(0, newLength);
+}
+
+void memSampleSource::clear() {
+    data *= 0;
+}
+
+void memSampleSource::trim(unsigned long start, unsigned long end) {
+    data = data[slice(start, end, 1)];
+    length = data.size();
+}

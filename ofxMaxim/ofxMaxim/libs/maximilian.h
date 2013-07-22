@@ -48,6 +48,7 @@
 #include <string.h>
 #include <cstdlib>
 #include "math.h"
+#include <valarray>
 
 using namespace std;
 #ifndef PI
@@ -202,60 +203,125 @@ public:
 	}
 };
 
+class sampleSource {
+public:
+    virtual bool load(string filename, int channel);
+    virtual bool save(string filename);
+    virtual void unload();
+    virtual short& operator[](const int idx) = 0;
+    virtual string getSummary();
+    virtual long getLength();
+    virtual void setLength(unsigned long newLength) ;
+    virtual void clear();
+    virtual void trim(unsigned long start, unsigned long end);
+    virtual int getSampleRate();
+    virtual ~sampleSource() {};
+};
+
+class memSampleSource : public sampleSource {
+public:
+    memSampleSource() : mySampleRate(maxiSettings::sampleRate), length(0), myChannels(1) {}
+    bool load(const string filename, const int channel = 0);
+    bool save(const string filename);
+    void unload();
+    short& operator[](const int idx);
+    string getSummary();
+    long getLength();
+    void setLength(unsigned long newLength);
+    void clear();
+    void trim(unsigned long start, unsigned long end);
+    virtual int getSampleRate();
+    ~memSampleSource();
+protected:
+    std::valarray<short> data;
+	int myChunkSize;
+	int	mySubChunk1Size;
+	short myFormat;
+	int myByteRate;
+	short myBlockAlign;
+	short myBitsPerSample;
+	int	myDataSize;
+	short myChannels;
+	int mySampleRate;
+    long length;
+    
+    
+};
+
+inline short& memSampleSource::operator[](const int idx) {
+    return data[idx];
+};
+
+inline long memSampleSource::getLength() {
+    return length;
+};
+
+inline int memSampleSource::getSampleRate() {
+    return mySampleRate;
+}
 
 class maxiSample  {
 	
 private:
 	string 	myPath;
-	int 	myChunkSize;
-	int	mySubChunk1Size;
-	int		readChannel;
-	short 	myFormat;
-	int   	myByteRate;
-	short 	myBlockAlign;
-	short 	myBitsPerSample;
-	double speed;
+//	int		readChannel;
+//	int 	myChunkSize;
+//	int	mySubChunk1Size;
+//	short 	myFormat;
+//	int   	myByteRate;
+//	short 	myBlockAlign;
+//	short 	myBitsPerSample;
+	
+    double speed;
 	double output;
     maxiLagExp<double> loopRecordLag;
+    
+    memSampleSource samples;
 	
 public:
 	double position, recordPosition;
-	int	myDataSize;
-	short 	myChannels;
-	int   	mySampleRate;
-	long length;
-	void getLength();
+	
+//    int	myDataSize;
+//	short 	myChannels;
+//	int   	mySampleRate;
+//	long length;
+    
+	inline long getLength() {
+        return samples.getLength();
+    }
     void setLength(unsigned long numSamples);  
 	
 	
 //	char* 	myData;
-    short* temp;
+//    short* temp;
 	
 	// get/set for the Path property
 	
 	~maxiSample()
 	{
 //		if (myData) free(myData);
-        if (temp) free(temp);
+//        if (temp) free(temp);
 	}
 	
-	maxiSample():temp(NULL),position(0), recordPosition(0), myChannels(1), mySampleRate(maxiSettings::sampleRate) {};
+//	maxiSample():temp(NULL),position(0), recordPosition(0), myChannels(1), mySampleRate(maxiSettings::sampleRate) {};
+	maxiSample() : position(0), recordPosition(0), myPath("sample.wav") {};
     
     maxiSample& operator=(const maxiSample &source) {
         if (this == &source)
             return *this;
         position=0;
         recordPosition = 0;
-        myChannels = source.myChannels;
-        mySampleRate = maxiSettings::sampleRate;
-        free(temp);
-        myDataSize = source.myDataSize;
-        temp = (short*) malloc(myDataSize * sizeof(char));
-        memcpy(temp, source.temp, myDataSize * sizeof(char));
-        length = source.length;
+        samples = source.samples;
+//        myChannels = source.myChannels;
+//        mySampleRate = maxiSettings::sampleRate;
+//        free(temp);
+//        myDataSize = source.myDataSize;
+//        temp = (short*) malloc(myDataSize * sizeof(char));
+//        memcpy(temp, source.temp, myDataSize * sizeof(char));
+//        length = source.length;
         return *this;
     }
-	
+    
 	bool load(string fileName, int channel=0);
     
     bool loadOgg(string filename,int channel=0);
@@ -263,23 +329,23 @@ public:
 	void trigger();
 	
 	// read a wav file into this class
-	bool read();
+//	bool read();
 	
 	//read an ogg file into this class using stb_vorbis
     bool readOgg();
     
     void loopRecord(double newSample, const bool recordEnabled, const double recordMix, double start = 0.0, double end = 1.0) {
         loopRecordLag.addSample(recordEnabled);
-        if (recordPosition < start * length) recordPosition = start * length;
+        if (recordPosition < start * samples.getLength()) recordPosition = start * samples.getLength();
         if(recordEnabled) {
-            double currentSample = temp[(unsigned long)recordPosition] / 32767.0;
+            double currentSample = samples[(unsigned long)recordPosition] / 32767.0;
             newSample = (recordMix * currentSample) + ((1.0 - recordMix) * newSample);
             newSample *= loopRecordLag.value();
-            temp[(unsigned long)recordPosition] = newSample * 32767;
+            samples[(unsigned long)recordPosition] = newSample * 32767;
         }
         ++recordPosition;
-        if (recordPosition >= end * length)
-            recordPosition= start * length;
+        if (recordPosition >= end * samples.getLength())
+            recordPosition= start * samples.getLength();
     }
     
     void clear();
@@ -319,34 +385,36 @@ public:
     
 	bool save(string filename)
 	{
-		fstream myFile (filename.c_str(), ios::out | ios::binary);
+        myPath = filename;
+        return samples.save(filename);
+//		fstream myFile (filename.c_str(), ios::out | ios::binary);
+//		
+//		// write the wav file per the wav file format
+//		myFile.seekp (0, ios::beg); 
+//		myFile.write ("RIFF", 4);
+//		myFile.write ((char*) &myChunkSize, 4);
+//		myFile.write ("WAVE", 4);
+//		myFile.write ("fmt ", 4);
+//		myFile.write ((char*) &mySubChunk1Size, 4);
+//		myFile.write ((char*) &myFormat, 2);
+//		myFile.write ((char*) &myChannels, 2);
+//		myFile.write ((char*) &mySampleRate, 4);
+//		myFile.write ((char*) &myByteRate, 4);
+//		myFile.write ((char*) &myBlockAlign, 2);
+//		myFile.write ((char*) &myBitsPerSample, 2);
+//		myFile.write ("data", 4);
+//		myFile.write ((char*) &myDataSize, 4);
+//		myFile.write ((char*) temp, myDataSize);
 		
-		// write the wav file per the wav file format
-		myFile.seekp (0, ios::beg); 
-		myFile.write ("RIFF", 4);
-		myFile.write ((char*) &myChunkSize, 4);
-		myFile.write ("WAVE", 4);
-		myFile.write ("fmt ", 4);
-		myFile.write ((char*) &mySubChunk1Size, 4);
-		myFile.write ((char*) &myFormat, 2);
-		myFile.write ((char*) &myChannels, 2);
-		myFile.write ((char*) &mySampleRate, 4);
-		myFile.write ((char*) &myByteRate, 4);
-		myFile.write ((char*) &myBlockAlign, 2);
-		myFile.write ((char*) &myBitsPerSample, 2);
-		myFile.write ("data", 4);
-		myFile.write ((char*) &myDataSize, 4);
-		myFile.write ((char*) temp, myDataSize);
-		
-		return true;
+//		return true;
 	}
 	
 	// return a printable summary of the wav file
-	char *getSummary()
+	string getSummary()
 	{
-		char *summary = new char[250];
-		sprintf(summary, " Format: %d\n Channels: %d\n SampleRate: %d\n ByteRate: %d\n BlockAlign: %d\n BitsPerSample: %d\n DataSize: %d\n", myFormat, myChannels, mySampleRate, myByteRate, myBlockAlign, myBitsPerSample, myDataSize);
-		return summary;
+//		char *summary = new char[250];
+//		sprintf(summary, " Format: %d\n Channels: %d\n SampleRate: %d\n ByteRate: %d\n BlockAlign: %d\n BitsPerSample: %d\n DataSize: %d\n", myFormat, myChannels, mySampleRate, myByteRate, myBlockAlign, myBitsPerSample, myDataSize);
+		return samples.getSummary();
 	}
     
     void normalise(float maxLevel = 0.99);  //0 < maxLevel < 1.0
@@ -618,6 +686,9 @@ private:
     double freq, res;
     
 };
+
+
+
 
 
 #endif

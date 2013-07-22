@@ -52,67 +52,6 @@ typedef maxiSettings ofxMaxiSettings;
 typedef maxiMFCC ofxMaxiMFCC;
 
 
-//typedef maxiSignal vector<double>;
-//
-//class maxiBase {
-//    virtual maxiSignal play() = {};
-//};
-//
-//class ofMaxiSine : public maxiBase {
-//    maxiOsc osc;
-//    double freq;
-//    
-//    void update(double freq) {
-//        freq = freq;
-//    }
-//    void play() {
-//        osc.sine(freq);
-//    }
-//}
-//
-//
-//class maxiNoise : public maxiBase {
-//    maxiBase* update() {
-//        //do something?
-//    };
-//    
-//    double play() {
-//        return rand() / (float)RAND_MAX;
-//    }
-//};
-//
-//class maxiAnotherUGen : public maxiBase {
-//    maxiBase* update(double param1, bool param2);
-//};
-//
-//class maxiYetAnotherUGen : public maxiBase {
-//    maxiBase* update(int something, float somethingElse);
-//};
-//
-//void maxiProcess(maxiSignal &signal, maxiBase *ugen) {
-//    double val = ugen->play();
-//    for(int i=0; i < signal.size(); i++) {
-//        signal[i] = val;
-//    }
-//}
-//
-//void maxiBlock(maxiSignal &signal, maxiBase *ugen) {
-//    for (int i=0; i < 64; i++) {
-//        maxiProcess(signal, ugen);
-//    }
-//}
-//
-//typedef maxiUGens vector<maxiBase>
-//
-//maxiNoise ugen1;
-//maxiAnotherUGen ugen2;
-//maxiUGens ugen1 = createUGens(maxiNoise, 2);
-//
-//maxiSignal sig(2);
-//maxiProcess(sig, ugen1.update());
-//maxiProcess(sig, ugen2.update(8.2, false));
-//
-//ugen.update(2,3)->play();
             
 
 #endif

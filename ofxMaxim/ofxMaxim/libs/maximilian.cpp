@@ -525,15 +525,13 @@ double *maxiMix::ambisonic(double input,double eight[8],double x,double y,double
 	return(eight);
 }
 
-
-bool maxiSample::load(string fileName, int channel) {
+template<class source>
+bool maxiSampler<source>::load(string fileName, int channel) {
     return samples.load(fileName, channel);
-//	myPath = fileName;
-//	readChannel=channel;
-//	return read();
 }
 
-bool maxiSample::loadOgg(string fileName, int channel) {
+template<class source>
+bool maxiSampler<source>::loadOgg(string fileName, int channel) {
 #ifdef VORBIS
 //    bool result;
 //	readChannel=channel;
@@ -560,94 +558,15 @@ bool maxiSample::loadOgg(string fileName, int channel) {
     return 0;
 }
 
-void maxiSample::trigger() {
+template<class source>
+void maxiSampler<source>::trigger() {
 	position = 0;
     recordPosition = 0;
 }
 
-//bool maxiSample::read()
-//{
-//    return samples.
-//	bool result;
-//	ifstream inFile( myPath.c_str(), ios::in | ios::binary);
-//	result = inFile.is_open();
-//	if (result) {
-//		bool datafound = false;
-//		inFile.seekg(4, ios::beg);
-//		inFile.read( (char*) &myChunkSize, 4 ); // read the ChunkSize
-//		
-//		inFile.seekg(16, ios::beg);
-//		inFile.read( (char*) &mySubChunk1Size, 4 ); // read the SubChunk1Size
-//		
-//		//inFile.seekg(20, ios::beg);
-//		inFile.read( (char*) &myFormat, sizeof(short) ); // read the file format.  This should be 1 for PCM
-//		
-//		//inFile.seekg(22, ios::beg);
-//		inFile.read( (char*) &myChannels, sizeof(short) ); // read the # of channels (1 or 2)
-//		
-//		//inFile.seekg(24, ios::beg);
-//		inFile.read( (char*) &mySampleRate, sizeof(int) ); // read the samplerate
-//		
-//		//inFile.seekg(28, ios::beg);
-//		inFile.read( (char*) &myByteRate, sizeof(int) ); // read the byterate
-//		
-//		//inFile.seekg(32, ios::beg);
-//		inFile.read( (char*) &myBlockAlign, sizeof(short) ); // read the blockalign
-//		
-//		//inFile.seekg(34, ios::beg);
-//		inFile.read( (char*) &myBitsPerSample, sizeof(short) ); // read the bitspersample
-//		
-//		//ignore any extra chunks
-//		char chunkID[5]="";
-//		chunkID[4] = 0;
-//		int filePos = 36;
-//		while(!datafound && !inFile.eof()) {
-//			inFile.seekg(filePos, ios::beg);
-//			inFile.read((char*) &chunkID, sizeof(char) * 4);
-//			inFile.seekg(filePos + 4, ios::beg);
-//			inFile.read( (char*) &myDataSize, sizeof(int) ); // read the size of the data
-//			filePos += 8;
-//			if (strcmp(chunkID,"data") == 0) {
-//				datafound = true;
-//			}else{
-//				filePos += myDataSize;
-//			}
-//		}
-//		
-//		// read the data chunk
-//		char *myData = (char*) malloc(myDataSize * sizeof(char));
-//		inFile.seekg(filePos, ios::beg);
-//		inFile.read(myData, myDataSize);
-//		length=myDataSize*(0.5/myChannels);
-//		inFile.close(); // close the input file
-//		
-//        cout << "Ch: " << myChannels << ", len: " << length << endl;
-//		if (myChannels>1) {
-//			int position=0;
-//			int channel=readChannel*2;
-//			for (int i=channel;i<myDataSize+6;i+=(myChannels*2)) {
-//				myData[position]=myData[i];
-//				myData[position+1]=myData[i+1];
-//				position+=2;
-//			}
-//		}
-//        free(temp);
-//        temp = (short*) malloc(myDataSize * sizeof(char));
-//        memcpy(temp, myData, myDataSize * sizeof(char));
-//        
-//        free(myData);
-//		
-//	}else {
-////		cout << "ERROR: Could not load sample: " <<myPath << endl; //This line seems to be hated by windows 
-//        printf("ERROR: Could not load sample.");
-//
-//	}
-//	
-//	
-//	return result; // this should probably be something more descriptive
-//}
 
-double maxiSample::play() {
+template<class source>
+double maxiSampler<source>::play() {
 	position++;
 	if ((long) position >= samples.getLength()) position=0;
 	output = (double) samples[(long)position]/32767.0;
@@ -655,7 +574,8 @@ double maxiSample::play() {
 }
 
 //start end and points are between 0 and 1
-double maxiSample::playLoop(double start, double end) {
+template<class source>
+double maxiSampler<source>::playLoop(double start, double end) {
 	position++;
     if (position < samples.getLength() * start) position = samples.getLength() * start;
 	if ((long) position >= samples.getLength() * end) position = samples.getLength() * start;
@@ -663,7 +583,8 @@ double maxiSample::playLoop(double start, double end) {
 	return output;
 }
 
-double maxiSample::playOnce() {
+template<class source>
+double maxiSampler<source>::playOnce() {
 	position++;
 	if ((long) position< samples.getLength())
         output = (double) samples[(long)position]/32767.0;
@@ -674,11 +595,13 @@ double maxiSample::playOnce() {
 
 }
 
-void maxiSample::setPosition(double newPos) {
+template<class source>
+void maxiSampler<source>::setPosition(double newPos) {
     position = maxiMap::clamp<double>(newPos, 0.0, 1.0) * samples.getLength();
 }
 
-double maxiSample::playUntil(double end) {
+template<class source>
+double maxiSampler<source>::playUntil(double end) {
 	position++;
 	if ((long) position < samples.getLength() * end)
         output = (double) samples[(long)position]/32767.0;
@@ -688,7 +611,8 @@ double maxiSample::playUntil(double end) {
 	return output;
 }
 
-double maxiSample::playOnce(double speed) {
+template<class source>
+double maxiSampler<source>::playOnce(double speed) {
 	position=position+((speed*chandiv)/(maxiSettings::sampleRate/samples.getSampleRate()));
 	double remainder = position - (long) position;
 	if ((long) position < samples.getLength())
@@ -698,7 +622,8 @@ double maxiSample::playOnce(double speed) {
 	return(output);
 }
 
-double maxiSample::play(double speed) {
+template<class source>
+double maxiSampler<source>::play(double speed) {
 	double remainder;
 	long a,b;
 	position=position+((speed*chandiv)/(maxiSettings::sampleRate/samples.getSampleRate()));
@@ -743,11 +668,13 @@ double maxiSample::play(double speed) {
 	return(output);
 }
 
-double maxiSample::play(double frequency, double start, double end) {
+template<class source>
+double maxiSampler<source>::play(double frequency, double start, double end) {
 	return play(frequency, start, end, position);
 }
 
-double maxiSample::play(double frequency, double start, double end, double &pos) {
+template<class source>
+double maxiSampler<source>::play(double frequency, double start, double end, double &pos) {
 	double remainder;
 	if (end>=samples.getLength()) end=samples.getLength()-1;
 	long a,b;
@@ -805,7 +732,8 @@ double maxiSample::play(double frequency, double start, double end, double &pos)
 
 
 //better cubic inerpolation. Cobbled together from various (pd externals, yehar, other places).
-double maxiSample::play4(double frequency, double start, double end) {
+template<class source>
+double maxiSampler<source>::play4(double frequency, double start, double end) {
 	double remainder;
 	double a,b,c,d,a1,a2,a3;
 	if (frequency >0.) {
@@ -879,7 +807,8 @@ double maxiSample::play4(double frequency, double start, double end) {
 	return(output);
 }
 
-double maxiSample::bufferPlay(unsigned char &bufferin,long length) {
+template<class source>
+double maxiSampler<source>::bufferPlay(unsigned char &bufferin,long length) {
 	double remainder;
 	short* buffer = (short *)&bufferin;
 	position=(position+1);
@@ -889,7 +818,8 @@ double maxiSample::bufferPlay(unsigned char &bufferin,long length) {
 	return(output);
 }
 
-double maxiSample::bufferPlay(unsigned char &bufferin,double speed,long length) {
+template<class source>
+double maxiSampler<source>::bufferPlay(unsigned char &bufferin,double speed,long length) {
 	double remainder;
 	long a,b;
 	short* buffer = (short *)&bufferin;
@@ -935,7 +865,8 @@ double maxiSample::bufferPlay(unsigned char &bufferin,double speed,long length) 
 	return(output);
 }
 
-double maxiSample::bufferPlay(unsigned char &bufferin,double frequency, double start, double end) {
+template<class source>
+double maxiSampler<source>::bufferPlay(unsigned char &bufferin,double frequency, double start, double end) {
 	double remainder;
 	long length=end;
 	long a,b;
@@ -992,7 +923,8 @@ double maxiSample::bufferPlay(unsigned char &bufferin,double frequency, double s
 }
 
 //better cubic inerpolation. Cobbled together from various (pd externals, yehar, other places).
-double maxiSample::bufferPlay4(unsigned char &bufferin,double frequency, double start, double end) {
+template<class source>
+double maxiSampler<source>::bufferPlay4(unsigned char &bufferin,double frequency, double start, double end) {
 	double remainder;
 	double a,b,c,d,a1,a2,a3;
 	short* buffer = (short*)&bufferin;
@@ -1068,26 +1000,25 @@ double maxiSample::bufferPlay4(unsigned char &bufferin,double frequency, double 
 }
 
 
-void maxiSample::setLength(unsigned long numSamples) {
-//    temp = (short*) realloc(temp, sizeof(short) * numSamples);
-//    myDataSize = numSamples * 2;
-//    length=numSamples;
+template<class source>
+void maxiSampler<source>::setLength(unsigned long numSamples) {
     samples.setLength(numSamples);
     position=0;
     recordPosition=0;
 }
 
-void maxiSample::clear() {
-//    memset(temp, 0, myDataSize);
+template<class source>
+void maxiSampler<source>::clear() {
     samples.clear();
 }
 
-void maxiSample::reset() {
+template<class source>
+void maxiSampler<source>::reset() {
     position=0;
 }
 
-
-void maxiSample::normalise(float maxLevel) {
+template<class source>
+void maxiSampler<source>::normalise(float maxLevel) {
     short maxValue = 0;
     for(int i=0; i < samples.getLength(); i++) {
         if (abs(samples[i]) > maxValue) {
@@ -1100,8 +1031,8 @@ void maxiSample::normalise(float maxLevel) {
     }
 }
 
-void maxiSample::autoTrim(float alpha, float threshold, bool trimStart, bool trimEnd) {
-    
+template<class source>
+void maxiSampler<source>::autoTrim(float alpha, float threshold, bool trimStart, bool trimEnd) {
     int startMarker=0;
     if(trimStart) {
         maxiLagExp<float> startLag(alpha, 0);
@@ -1113,7 +1044,6 @@ void maxiSample::autoTrim(float alpha, float threshold, bool trimStart, bool tri
             startMarker++;
         }
     }
-    
     int endMarker = samples.getLength()-1;
     if(trimEnd) {
         maxiLagExp<float> endLag(alpha, 0);
@@ -1127,18 +1057,9 @@ void maxiSample::autoTrim(float alpha, float threshold, bool trimStart, bool tri
     }
     
     cout << "Autotrim: start: " << startMarker << ", end: " << endMarker << endl;
-    
     int newLength = endMarker - startMarker;
     if (newLength > 0) {
         samples.trim(startMarker, endMarker);
-//        short *newData = (short*) malloc(sizeof(short) * newLength);
-//        for(int i=0; i < newLength; i++) {
-//            newData[i] = temp[i+startMarker];
-//        }
-//        free(temp);
-//        temp = newData;
-//        myDataSize = newLength * 2;
-//        length=newLength;
         position=0;
         recordPosition=0;
         //envelope the start
@@ -1151,15 +1072,54 @@ void maxiSample::autoTrim(float alpha, float threshold, bool trimStart, bool tri
     }
 }
 
+template<class source>
+bool maxiSampler<source>::save() {
+    return save(myPath);
+}
+
+template<class source>
+bool maxiSampler<source>::save(string filename)
+{
+    myPath = filename;
+    return samples.save(filename);
+}
+
+template<class source>
+string maxiSampler<source>::getSummary()
+{
+    return samples.getSummary();
+}
+
+template<class source>
+void maxiSampler<source>::loopRecord(double newSample, const bool recordEnabled, const double recordMix, double start, double end) {
+    loopRecordLag.addSample(recordEnabled);
+    if (recordPosition < start * samples.getLength()) recordPosition = start * samples.getLength();
+    if(recordEnabled) {
+        double currentSample = samples[(unsigned long)recordPosition] / 32767.0;
+        newSample = (recordMix * currentSample) + ((1.0 - recordMix) * newSample);
+        newSample *= loopRecordLag.value();
+        samples[(unsigned long)recordPosition] = newSample * 32767;
+    }
+    ++recordPosition;
+    if (recordPosition >= end * samples.getLength())
+        recordPosition= start * samples.getLength();
+}
+
+template<class source>
+maxiSampler<source>& maxiSampler<source>::operator=(const maxiSampler<source> &src) {
+    if (this == &src)
+        return *this;
+    position=0;
+    recordPosition = 0;
+    samples = src.samples;
+    return *this;
+}
+
+//pre instantiation, so the code can stay here in the .cpp file
+template class maxiSampler<memSampleSource>;
 
 
-
-
-
-
-
-
-/* OK this compressor and gate are now ready to use. The envelopes, like all the envelopes in this recent update, use stupid algorithms for 
+/* OK this compressor and gate are now ready to use. The envelopes, like all the envelopes in this recent update, use stupid algorithms for
  incrementing - consequently a long attack is something like 0.0001 and a long release is like 0.9999.
  Annoyingly, a short attack is 0.1, and a short release is 0.99. I'll sort this out laters */
 
@@ -1498,3 +1458,10 @@ void memSampleSource::trim(unsigned long start, unsigned long end) {
     data = data[slice(start, end, 1)];
     length = data.size();
 }
+
+template<class T>
+void templateTest<T>::foo(T x) {
+    cout << "Foo\n";
+}
+
+template class templateTest<double>;

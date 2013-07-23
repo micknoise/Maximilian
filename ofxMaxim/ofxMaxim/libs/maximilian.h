@@ -42,7 +42,6 @@
 //#define MAXIMILIAN_PORTAUDIO
 #define MAXIMILIAN_RT_AUDIO
 
-
 #include <iostream>
 #include <fstream>
 #include <string.h>
@@ -260,67 +259,28 @@ inline int memSampleSource::getSampleRate() {
     return mySampleRate;
 }
 
-class maxiSample  {
+template<class source = memSampleSource>
+class maxiSampler  {
 	
 private:
 	string 	myPath;
-//	int		readChannel;
-//	int 	myChunkSize;
-//	int	mySubChunk1Size;
-//	short 	myFormat;
-//	int   	myByteRate;
-//	short 	myBlockAlign;
-//	short 	myBitsPerSample;
-	
     double speed;
 	double output;
     maxiLagExp<double> loopRecordLag;
-    
-    memSampleSource samples;
+    source samples;
 	
 public:
 	double position, recordPosition;
-	
-//    int	myDataSize;
-//	short 	myChannels;
-//	int   	mySampleRate;
-//	long length;
+
+	inline long getLength() {return samples.getLength();}
     
-	inline long getLength() {
-        return samples.getLength();
-    }
     void setLength(unsigned long numSamples);  
 	
+	~maxiSampler(){}
 	
-//	char* 	myData;
-//    short* temp;
-	
-	// get/set for the Path property
-	
-	~maxiSample()
-	{
-//		if (myData) free(myData);
-//        if (temp) free(temp);
-	}
-	
-//	maxiSample():temp(NULL),position(0), recordPosition(0), myChannels(1), mySampleRate(maxiSettings::sampleRate) {};
-	maxiSample() : position(0), recordPosition(0), myPath("sample.wav") {};
+	maxiSampler() : position(0), recordPosition(0), myPath("sample.wav") {};
     
-    maxiSample& operator=(const maxiSample &source) {
-        if (this == &source)
-            return *this;
-        position=0;
-        recordPosition = 0;
-        samples = source.samples;
-//        myChannels = source.myChannels;
-//        mySampleRate = maxiSettings::sampleRate;
-//        free(temp);
-//        myDataSize = source.myDataSize;
-//        temp = (short*) malloc(myDataSize * sizeof(char));
-//        memcpy(temp, source.temp, myDataSize * sizeof(char));
-//        length = source.length;
-        return *this;
-    }
+    maxiSampler<source>& operator=(const maxiSampler<source> &src);
     
 	bool load(string fileName, int channel=0);
     
@@ -328,25 +288,9 @@ public:
 	
 	void trigger();
 	
-	// read a wav file into this class
-//	bool read();
-	
-	//read an ogg file into this class using stb_vorbis
     bool readOgg();
     
-    void loopRecord(double newSample, const bool recordEnabled, const double recordMix, double start = 0.0, double end = 1.0) {
-        loopRecordLag.addSample(recordEnabled);
-        if (recordPosition < start * samples.getLength()) recordPosition = start * samples.getLength();
-        if(recordEnabled) {
-            double currentSample = samples[(unsigned long)recordPosition] / 32767.0;
-            newSample = (recordMix * currentSample) + ((1.0 - recordMix) * newSample);
-            newSample *= loopRecordLag.value();
-            samples[(unsigned long)recordPosition] = newSample * 32767;
-        }
-        ++recordPosition;
-        if (recordPosition >= end * samples.getLength())
-            recordPosition= start * samples.getLength();
-    }
+    void loopRecord(double newSample, const bool recordEnabled, const double recordMix, double start = 0.0, double end = 1.0);
     
     void clear();
     
@@ -379,48 +323,18 @@ public:
 	double bufferPlay(unsigned char &bufferin,double frequency, double start, double end);
 	
 	double bufferPlay4(unsigned char &bufferin,double frequency, double start, double end);
-    bool save() {
-        return save(myPath);
-    }
+
+    bool save();
+	bool save(string filename);
     
-	bool save(string filename)
-	{
-        myPath = filename;
-        return samples.save(filename);
-//		fstream myFile (filename.c_str(), ios::out | ios::binary);
-//		
-//		// write the wav file per the wav file format
-//		myFile.seekp (0, ios::beg); 
-//		myFile.write ("RIFF", 4);
-//		myFile.write ((char*) &myChunkSize, 4);
-//		myFile.write ("WAVE", 4);
-//		myFile.write ("fmt ", 4);
-//		myFile.write ((char*) &mySubChunk1Size, 4);
-//		myFile.write ((char*) &myFormat, 2);
-//		myFile.write ((char*) &myChannels, 2);
-//		myFile.write ((char*) &mySampleRate, 4);
-//		myFile.write ((char*) &myByteRate, 4);
-//		myFile.write ((char*) &myBlockAlign, 2);
-//		myFile.write ((char*) &myBitsPerSample, 2);
-//		myFile.write ("data", 4);
-//		myFile.write ((char*) &myDataSize, 4);
-//		myFile.write ((char*) temp, myDataSize);
-		
-//		return true;
-	}
-	
 	// return a printable summary of the wav file
-	string getSummary()
-	{
-//		char *summary = new char[250];
-//		sprintf(summary, " Format: %d\n Channels: %d\n SampleRate: %d\n ByteRate: %d\n BlockAlign: %d\n BitsPerSample: %d\n DataSize: %d\n", myFormat, myChannels, mySampleRate, myByteRate, myBlockAlign, myBitsPerSample, myDataSize);
-		return samples.getSummary();
-	}
+	string getSummary();
     
     void normalise(float maxLevel = 0.99);  //0 < maxLevel < 1.0
     void autoTrim(float alpha = 0.3, float threshold = 6000, bool trimStart = true, bool trimEnd = true); //alpha of lag filter (lower == slower reaction), threshold to mark start and end, < 32767
 };
 
+typedef maxiSampler<memSampleSource> maxiSample;
 
 class maxiMap {
 public:
@@ -688,6 +602,12 @@ private:
 };
 
 
+template<class T>
+class templateTest {
+public:
+    T x;
+    void foo(T y);
+};
 
 
 

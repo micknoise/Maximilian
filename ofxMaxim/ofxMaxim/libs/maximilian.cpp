@@ -1081,12 +1081,6 @@ maxiSampler<source>& maxiSampler<source>::operator=(const maxiSampler<source> &s
     return *this;
 }
 
-//pre instantiation, so the code can stay here in the .cpp file
-template class maxiSampler<memSampleSource>;
-#ifdef VORBIS
-template class maxiSampler<oggSampleSource>;
-#endif
-
 
 /* OK this compressor and gate are now ready to use. The envelopes, like all the envelopes in this recent update, use stupid algorithms for
  incrementing - consequently a long attack is something like 0.0001 and a long release is like 0.9999.
@@ -1464,3 +1458,159 @@ bool oggSampleSource::save(const string filename) {
     memSampleSource::save(filename);
 }
 #endif
+
+bool fileSampleSource::load(const string _filename, const int _channel) {
+    filename = _filename;
+	bool result;
+	int myChunkSize;
+	int	mySubChunk1Size;
+	short myFormat;
+	int myByteRate;
+	short myBlockAlign;
+	short myBitsPerSample;
+	int	myDataSize;
+    channel = _channel;
+	inFile.open(filename.c_str(), ios::in | ios::binary);
+	result = inFile.is_open();
+	if (result) {
+		bool datafound = false;
+		inFile.seekg(4, ios::beg);
+		inFile.read( (char*) &myChunkSize, 4 ); // read the ChunkSize
+		inFile.seekg(16, ios::beg);
+		inFile.read( (char*) &mySubChunk1Size, 4 ); // read the SubChunk1Size
+		inFile.read( (char*) &myFormat, sizeof(short) ); // read the file format.  This should be 1 for PCM
+		inFile.read( (char*) &numChannels, sizeof(short) ); // read the # of channels (1 or 2)
+		inFile.read( (char*) &mySampleRate, sizeof(int) ); // read the samplerate
+		inFile.read( (char*) &myByteRate, sizeof(int) ); // read the byterate
+		inFile.read( (char*) &myBlockAlign, sizeof(short) ); // read the blockalign
+		inFile.read( (char*) &myBitsPerSample, sizeof(short) ); // read the bitspersample
+
+		//ignore any extra chunks
+		char chunkID[5]="";
+		chunkID[4] = 0;
+		filePos = 36;
+		while(!datafound && !inFile.eof()) {
+			inFile.seekg(filePos, ios::beg);
+			inFile.read((char*) &chunkID, sizeof(char) * 4);
+			inFile.seekg(filePos + 4, ios::beg);
+			inFile.read( (char*) &myDataSize, sizeof(int) ); // read the size of the data
+			filePos += 8;
+			if (strcmp(chunkID,"data") == 0) {
+				datafound = true;
+			}else{
+				filePos += myDataSize;
+			}
+		}
+		
+		// read the data chunk
+        length = myDataSize / 2.0;
+        fileStartPos = filePos;
+        fileLength = myDataSize;
+        fileEndPos = fileStartPos + fileLength;
+        
+        if (bufferSize > length / 2.0) {
+            bufferSize = length / 2.0;
+        }
+        bufferSize -= (bufferSize % 2); //even out the number
+        data.resize(bufferSize);
+        bufferPos = bufferSize / 2;
+        filePos = 0;
+        frame.resize(numChannels);
+        fileWinEndPos = fileStartPos + ((bufferSize / 2) * 2 * numChannels);
+        fileWinStartPos = fileEndPos - ((bufferSize / 2) * 2 * numChannels);
+        //fill up the buffer
+        //read ahead
+        for(int i=0; i < bufferSize/2; i++) {
+            inFile.seekg(fileStartPos + (i * numChannels * 2), ios::beg);
+            inFile.read((char*)(&frame[0]), numChannels * 2);
+            data[bufferPos + i] = frame[channel];
+        }
+        //read from behind
+        for(int i=0; i < bufferSize/2; i++) {
+            inFile.seekg(fileWinStartPos + (i * numChannels * 2));
+            inFile.read((char*)(&frame[0]), numChannels * 2);
+            data[i] = frame[channel];
+        }
+        blockSize = 1024;
+        bufferCenter = bufferPos;
+        //start off producer thread
+        startThread(false, false);
+        
+        cout << "fileSampleSource cued\n";
+	}else {
+        cout << "ERROR: Could not load sample." << endl;
+        
+	}
+	return result;
+}
+
+void fileSampleSource::unload() {
+    stopThread();
+    inFile.close(); // close the input file    
+}
+
+fileSampleSource::~fileSampleSource() {
+    unload();
+}
+
+void fileSampleSource::threadedFunction() {
+    cout << "Thread running\n";
+    while(isThreadRunning()) {
+        int diff = 0;
+        if (bufferPos >= bufferCenter) {
+            diff = bufferPos - bufferCenter;
+        }else{
+            diff = bufferPos + (bufferSize - bufferCenter);
+        }
+        cout << diff << endl;
+        if (abs(diff) >= blockSize) {
+            //going forward?
+            if (diff > 0) {
+                //grab blocksize worth of data from file, wrapping if needed
+                int bufferWinEndPos = bufferCenter + (bufferSize / 2);
+                for(int i=0; i < diff; i++) {
+                    if (bufferWinEndPos == bufferSize) {
+                        bufferWinEndPos = 0;
+                    }
+                    inFile.seekg(fileWinEndPos + (i * numChannels * 2), ios::beg);
+                    inFile.read((char*)(&frame[0]), numChannels * 2);
+                    data[bufferWinEndPos] = frame[channel];
+                    bufferWinEndPos++;
+                }
+                //sort out variables
+                bufferCenter += diff;
+                if (bufferCenter > bufferSize) {
+                    bufferCenter -= bufferSize;
+                }                
+                fileWinEndPos += diff * 2 * numChannels;
+                if (fileWinEndPos > fileEndPos) {
+                    fileWinEndPos -= fileLength;
+                }
+                fileWinStartPos += diff * 2 * numChannels;
+                if (fileWinStartPos > fileEndPos) {
+                    fileWinStartPos -= fileLength;
+                }
+                cout << "Buf center: " << bufferCenter << ", buf pos: " << bufferPos << ", file win start: " << fileWinStartPos << ", file win end: " << fileWinEndPos << endl;
+            }else{
+                
+            }
+        }
+        sleep(20);
+    }
+}
+
+fileSampleSource& fileSampleSource::operator=(const fileSampleSource &src) {
+    load(src.filename, src.channel);
+    bufferPos = src.bufferPos;
+    data = src.data;
+    return *this;
+}
+
+
+//pre instantiation, so the code can stay here in the .cpp file
+template class maxiSampler<memSampleSource>;
+template class maxiSampler<fileSampleSource>;
+#ifdef VORBIS
+template class maxiSampler<oggSampleSource>;
+#endif
+

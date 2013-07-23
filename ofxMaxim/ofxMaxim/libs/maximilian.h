@@ -46,7 +46,7 @@
  *   loadOgg() method.
  *   Uncomment the following to include Sean Barrett's Ogg Vorbis decoder.
  *   If you're on windows, make sure to add the files std_vorbis.c and std_vorbis.h to your project*/
-#define VORBIS
+//#define VORBIS
 
 
 #include <iostream>
@@ -55,6 +55,7 @@
 #include <cstdlib>
 #include "math.h"
 #include <valarray>
+#include "ofMain.h" //using ofThread in fileSampleSource
 
 using namespace std;
 #ifndef PI
@@ -226,7 +227,7 @@ public:
 
 class memSampleSource : public sampleSource {
 public:
-    memSampleSource() : mySampleRate(maxiSettings::sampleRate), length(0), myChannels(1) {}
+    memSampleSource() : sampleSource(), mySampleRate(maxiSettings::sampleRate), length(0), myChannels(1) {}
     bool load(const string filename, const int channel = 0);
     bool save(const string filename);
     void unload();
@@ -275,6 +276,55 @@ public:
 protected:
 };
 #endif
+
+class fileSampleSource : public sampleSource, private ofThread {
+public:
+    fileSampleSource() : sampleSource(), length(1), bufferSize(maxiSettings::sampleRate), lastIdx(0) {}
+    bool load(const string filename, const int channel = 0);
+    void unload();
+    short& operator[](const int idx);
+    long getLength();
+    virtual int getSampleRate();
+    fileSampleSource& operator=(const fileSampleSource &src);
+    ~fileSampleSource();
+protected:
+    void threadedFunction();
+    std::valarray<short> data, frame;
+    ifstream inFile;
+	short numChannels;
+    int channel;
+    int bufferSize;
+    unsigned long filePos, fileStartPos, fileEndPos, fileLength, fileWinStartPos, fileWinEndPos;
+    int bufferPos;
+    int bufferCenter;
+    int lastIdx;
+
+	int mySampleRate;
+    long length;
+    string filename;
+    int blockSize;
+};
+
+inline long fileSampleSource::getLength() {
+    return length;
+};
+
+inline int fileSampleSource::getSampleRate() {
+    return mySampleRate;
+}
+
+inline short& fileSampleSource::operator[](const int idx) {
+    int diff = idx - lastIdx;
+    bufferPos += diff;
+    if (bufferPos < 0) {
+        bufferPos += bufferSize;
+    }else if (bufferPos >= bufferSize) {
+        bufferPos -= bufferSize;
+    }
+    lastIdx = idx;
+    return data[bufferPos];
+}
+
 
 
 template<class source = memSampleSource>
@@ -349,7 +399,10 @@ public:
 };
 
 typedef maxiSampler<memSampleSource> maxiSample;
+#ifdef VORBIS
 typedef maxiSampler<oggSampleSource> maxiOggSample;
+#endif
+typedef maxiSampler<fileSampleSource> maxiFileSample;
 
 class maxiMap {
 public:

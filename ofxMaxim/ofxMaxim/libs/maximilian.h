@@ -302,12 +302,8 @@ public:
     
 	bool load(string fileName, int channel=0);
     
-    bool loadOgg(string filename,int channel=0);
-	
 	void trigger();
 	
-    bool readOgg();
-    
     void loopRecord(double newSample, const bool recordEnabled, const double recordMix, double start = 0.0, double end = 1.0);
     
     void clear();

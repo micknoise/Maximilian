@@ -42,6 +42,13 @@
 //#define MAXIMILIAN_PORTAUDIO
 #define MAXIMILIAN_RT_AUDIO
 
+/*  Maximilian can be configured to load ogg vorbis format files using the
+ *   loadOgg() method.
+ *   Uncomment the following to include Sean Barrett's Ogg Vorbis decoder.
+ *   If you're on windows, make sure to add the files std_vorbis.c and std_vorbis.h to your project*/
+#define VORBIS
+
+
 #include <iostream>
 #include <fstream>
 #include <string.h>
@@ -259,6 +266,17 @@ inline int memSampleSource::getSampleRate() {
     return mySampleRate;
 }
 
+
+#ifdef VORBIS
+class oggSampleSource : public memSampleSource {
+public:
+    bool load(const string filename, const int channel = 0);
+    bool save(const string filename);
+protected:
+};
+#endif
+
+
 template<class source = memSampleSource>
 class maxiSampler  {
 	
@@ -335,6 +353,7 @@ public:
 };
 
 typedef maxiSampler<memSampleSource> maxiSample;
+typedef maxiSampler<oggSampleSource> maxiOggSample;
 
 class maxiMap {
 public:
@@ -600,15 +619,5 @@ private:
     double freq, res;
     
 };
-
-
-template<class T>
-class templateTest {
-public:
-    T x;
-    void foo(T y);
-};
-
-
 
 #endif

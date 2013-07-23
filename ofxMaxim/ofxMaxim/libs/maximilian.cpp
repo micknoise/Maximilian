@@ -35,12 +35,6 @@
 #include "math.h"
 #include <sstream>
 
-/*  Maximilian can be configured to load ogg vorbis format files using the 
-*   loadOgg() method.
-*   Uncomment the following to include Sean Barrett's Ogg Vorbis decoder.
-*   If you're on windows, make sure to add the files std_vorbis.c and std_vorbis.h to your project*/
-
-//#define VORBIS
 
 #ifdef VORBIS
 extern "C" {
@@ -528,34 +522,6 @@ double *maxiMix::ambisonic(double input,double eight[8],double x,double y,double
 template<class source>
 bool maxiSampler<source>::load(string fileName, int channel) {
     return samples.load(fileName, channel);
-}
-
-template<class source>
-bool maxiSampler<source>::loadOgg(string fileName, int channel) {
-#ifdef VORBIS
-//    bool result;
-//	readChannel=channel;
-//    int channelx;
-//    free(temp);
-//    myDataSize = stb_vorbis_decode_filename(const_cast<char*>(fileName.c_str()), &channelx, &temp);
-//    result = myDataSize > 0;
-//    printf("\nchannels = %d\nlength = %d",channelx,myDataSize);
-//    printf("\n");
-//    myChannels=(short)channelx;
-//    length=myDataSize;
-//    mySampleRate=44100;
-//    
-//    if (myChannels>1) {
-//        int position=0;
-//        int channel=readChannel;
-//        for (int i=channel;i<myDataSize*2;i+=myChannels) {
-//            temp[position]=temp[i];
-//            position++;
-//        }
-//    }
-//	return result; // this should probably be something more descriptive
-#endif
-    return 0;
 }
 
 template<class source>
@@ -1117,6 +1083,9 @@ maxiSampler<source>& maxiSampler<source>::operator=(const maxiSampler<source> &s
 
 //pre instantiation, so the code can stay here in the .cpp file
 template class maxiSampler<memSampleSource>;
+#ifdef VORBIS
+template class maxiSampler<oggSampleSource>;
+#endif
 
 
 /* OK this compressor and gate are now ready to use. The envelopes, like all the envelopes in this recent update, use stupid algorithms for
@@ -1389,7 +1358,7 @@ bool memSampleSource::load(const string filename, const int channel) {
 		inFile.read((char*)(&data[0]), myDataSize);
 		inFile.close(); // close the input file
 		length=data.size();
-		
+        
         //keep one channel, discard the rest
 		if (myChannels>1) {
 			int pos=0;
@@ -1397,7 +1366,7 @@ bool memSampleSource::load(const string filename, const int channel) {
 				data[pos]=data[i];
 				pos++;
 			}
-            data = data[slice(0, length, 1)];
+            trim(0, length/myChannels);
 		}
         cout << "Channels: " << myChannels << ", length: " << length << ", loaded channel: " << channel << endl;
 	}else {
@@ -1455,13 +1424,43 @@ void memSampleSource::clear() {
 }
 
 void memSampleSource::trim(unsigned long start, unsigned long end) {
-    data = data[slice(start, end, 1)];
+    std::valarray<short> temp(end - start);
+    temp = data[slice(start, end, 1)];
+    data.resize(temp.size());
+    data = temp;
     length = data.size();
 }
 
-template<class T>
-void templateTest<T>::foo(T x) {
-    cout << "Foo\n";
+#ifdef VORBIS
+bool oggSampleSource::load(const string filename, const int channel) {
+    bool result;
+    int channelx;
+    short * oggdata;
+    myDataSize = stb_vorbis_decode_filename(const_cast<char*>(filename.c_str()), &channelx, &oggdata);
+    result = myDataSize > 0;
+    printf("\nchannels = %d\nlength = %d",channelx,myDataSize);
+    printf("\n");
+    myChannels=(short)channelx;
+    length=myDataSize;
+    mySampleRate=44100;
+    data.resize(length);
+    for(int i=0; i < length; i++) data[i] = oggdata[i];
+    free(oggdata);
+    
+    //keep one channel, discard the rest
+    if (myChannels>1) {
+        int pos=0;
+        for (int i=channel;i<length;i+=myChannels) {
+            data[pos]=data[i];
+            pos++;
+        }
+        trim(0, length/myChannels);
+    }
+	return result;
 }
 
-template class templateTest<double>;
+bool oggSampleSource::save(const string filename) {
+    cout << "Warning: ogg is being saved in .wav format\n";
+    memSampleSource::save(filename);
+}
+#endif

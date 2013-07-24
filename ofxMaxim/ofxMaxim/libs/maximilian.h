@@ -303,7 +303,9 @@ protected:
     long length;
     string filename;
     int blockSize;
+private:
 };
+
 
 inline long fileSampleSource::getLength() {
     return length;
@@ -422,7 +424,7 @@ public:
 		val = max(min(val, inMax), inMin);
 		return (log(val/inMin) / log(inMax/inMin) * (outMax - outMin)) + outMin;
 	}
-	
+
     //changed to templated function, e.g. maxiMap::maxiClamp<int>(v, l, h);
     template<typename T>
 	static T inline clamp(T v, const T low, const T high) {
@@ -434,11 +436,15 @@ public:
 		return v;
 	}
 	
+    template<typename T>
+    static T wrapUp(T val, T highLimit, T range) {
+        return val >= highLimit ? val - range : val;
+    }
+ 
+    
 };
 
 class maxiDyn {
-	
-	
 public:
 	double gate(double input, double threshold=0.9, long holdtime=1, double attack=1, double release=0.9995);
 	double compressor(double input, double ratio, double threshold=0.9, double attack=1, double release=0.9995);
@@ -456,8 +462,6 @@ public:
 };
 
 class maxiEnv {
-	
-	
 public:
 	double ar(double input, double attack=1, double release=0.9, long holdtime=1, int trigger=0);
 	double adsr(double input, double attack=1, double decay=0.99, double sustain=0.125, double release=0.9, long holdtime=1, int trigger=0);
@@ -490,23 +494,6 @@ public:
     double fastatan( double x );
 };
 
-inline double maxiDistortion::fastatan(double x)
-{
-    return (x / (1.0 + 0.28 * (x * x)));
-}
-
-inline double maxiDistortion::atanDist(const double in, const double shape) {
-    double out;
-    out = (1.0 / atan(shape)) * atan(in * shape);
-    return out;
-}
-
-inline double maxiDistortion::fastAtanDist(const double in, const double shape) {
-    double out;
-    out = (1.0 / fastatan(shape)) * fastatan(in * shape);
-    return out;
-}
-
 
 class maxiFlanger {
 public:
@@ -520,17 +507,6 @@ public:
 
 };
 
-inline double maxiFlanger::flange(const double input, const unsigned int delay, const double feedback, const double speed, const double depth)
-{
-    //todo: needs fixing
-    double output;
-    double lfoVal = lfo.triangle(speed);
-    output = dl.dl(input, delay + (lfoVal * depth * delay) + 1, feedback) ;    
-    double normalise = (1 - fabs(output));
-    output *= normalise;
-    return (output + input) / 2.0;
-}
-
 class maxiChorus {
 public:
     //delay = delay time - ~800 sounds good
@@ -543,19 +519,6 @@ public:
     maxiFilter lopass;
     
 };
-
-inline double maxiChorus::chorus(const double input, const unsigned int delay, const double feedback, const double speed, const double depth)
-{
-    //this needs fixing
-    double output1, output2;
-    double lfoVal = lfo.noise();
-    lfoVal = lopass.lores(lfoVal, speed, 1.0) * 2.0;
-    output1 = dl.dl(input, delay + (lfoVal * depth * delay) + 1, feedback) ;    
-    output2 = dl2.dl(input, (delay + (lfoVal * depth * delay * 1.02) + 1) * 0.98, feedback * 0.99) ;    
-    output1 *= (1.0 - fabs(output1));
-    output2 *= (1.0 - fabs(output2));
-    return (output1 + output2 + input) / 3.0;
-}
 
 template<typename T>
 class maxiEnvelopeFollowerType {
@@ -594,11 +557,7 @@ class maxiDCBlocker {
 public:
     double xm1, ym1;
     maxiDCBlocker() : xm1(0), ym1(0) {}
-    inline double play(double input, double R) {
-        ym1 = input - xm1 + R * ym1;
-        xm1 = input;
-        return ym1;
-    }
+    inline double play(double input, double R);
 };
 
 /*
@@ -623,46 +582,16 @@ public:
     maxiSVF() : v0z(0), v1(0), v2(0) { setParams(1000, 1);}
     
     //20 < cutoff < 20000
-    inline maxiSVF& setCutoff(double cutoff) {
-        setParams(cutoff, res);
-        return *this;
-    }
+    maxiSVF& setCutoff(double cutoff);
     
     //from 0 upwards, starts to ring from 2-3ish, cracks a bit around 10
-    inline maxiSVF& setResonance(double q) {
-        setParams(freq, q);
-        return *this;
-    }
+    maxiSVF& setResonance(double q);
     
     //run the filter, and get a mixture of lowpass, bandpass, highpass and notch outputs
-    inline double play(double w, double lpmix, double bpmix, double hpmix, double notchmix) {
-        double low, band, high, notch;
-        double v1z = v1;
-        double v2z = v2;
-        double v3 = w + v0z - 2.0 * v2z;
-        v1 += g1*v3-g2*v1z;
-        v2 += g3*v3+g4*v1z;
-        v0z = w;
-        low = v2;
-        band = v1;
-        high = w-k*v1-v2;
-        notch = w-k*v1;
-        return (low * lpmix) + (band * bpmix) + (high * hpmix) + (notch * notchmix);
-    }
+    double play(double w, double lpmix, double bpmix, double hpmix, double notchmix);
     
 private:
-    inline void setParams(double _freq, double _res) {
-        freq = _freq;
-        res = _res;
-        g = tan(PI * freq / maxiSettings::sampleRate);
-        damping = res == 0 ? 0 : 1.0 / res;
-        k = damping;
-        ginv = g / (1.0 + g * (g + k));
-        g1 = ginv;
-        g2 = 2.0 * (g + k) * ginv;
-        g3 = g * ginv;
-        g4 = 2.0 * ginv;
-    }
+    void setParams(double _freq, double _res);
     
     double v0z, v1, v2, g, damping, k, ginv, g1, g2, g3 ,g4;
     double freq, res;

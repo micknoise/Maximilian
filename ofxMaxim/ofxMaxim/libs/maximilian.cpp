@@ -195,7 +195,12 @@ double mtofarray[129]={0, 8.661957, 9.177024, 9.722718, 10.3, 10.913383, 11.5623
 
 void setup();//use this to do any initialisation if you want.
 
-void play(double *channels);//run dac! 
+void play(double *channels);//run dac!
+
+///////////////////////////////////////////////////////////////////////////
+// maxiOsc
+///////////////////////////////////////////////////////////////////////////
+
 
 maxiOsc::maxiOsc(){
     //When you create an oscillator, the constructor sets the phase of the oscillator to 0.
@@ -354,6 +359,9 @@ double maxiOsc::sawn(double frequency) {
 	
 }
 
+///////////////////////////////////////////////////////////////////////////
+// maxiEnvelope
+///////////////////////////////////////////////////////////////////////////
 
 double maxiEnvelope::line(int numberofsegments,double segments[1000]) {
 	//This is a basic multi-segment ramp generator that you can use for more or less anything.
@@ -390,6 +398,10 @@ void maxiEnvelope::trigger(int index, double amp) {
 	
 }
 
+///////////////////////////////////////////////////////////////////////////
+// maxiDelayline
+///////////////////////////////////////////////////////////////////////////
+
 //Delay with feedback
 maxiDelayline::maxiDelayline() {
 	memset( memory, 0, 88200*sizeof (double) );
@@ -417,6 +429,10 @@ double maxiDelayline::dl(double input, int size, double feedback, int position) 
 	return(output);
 	
 }
+
+///////////////////////////////////////////////////////////////////////////
+// maxiFilter
+///////////////////////////////////////////////////////////////////////////
 
 //I particularly like these. cutoff between 0 and 1
 double maxiFilter::lopass(double input, double cutoff) {
@@ -478,6 +494,10 @@ double maxiFilter::bandpass(double input,double cutoff1, double resonance) {
 	return(output);
 }
 
+///////////////////////////////////////////////////////////////////////////
+// maxiMix
+///////////////////////////////////////////////////////////////////////////
+
 //stereo bus
 double *maxiMix::stereo(double input,double two[2],double x) {
 	if (x>1) x=1;
@@ -518,6 +538,10 @@ double *maxiMix::ambisonic(double input,double eight[8],double x,double y,double
 	eight[7]=input*sqrt((x*(1.0-y))*z);
 	return(eight);
 }
+
+///////////////////////////////////////////////////////////////////////////
+// maxiSampler
+///////////////////////////////////////////////////////////////////////////
 
 template<class source>
 bool maxiSampler<source>::load(string fileName, int channel) {
@@ -1081,6 +1105,16 @@ maxiSampler<source>& maxiSampler<source>::operator=(const maxiSampler<source> &s
     return *this;
 }
 
+//pre instantiation, so the templated code can stay here in the .cpp file
+template class maxiSampler<memSampleSource>;
+template class maxiSampler<fileSampleSource>;
+#ifdef VORBIS
+template class maxiSampler<oggSampleSource>;
+#endif
+
+///////////////////////////////////////////////////////////////////////////
+// maxiDyn
+///////////////////////////////////////////////////////////////////////////
 
 /* OK this compressor and gate are now ready to use. The envelopes, like all the envelopes in this recent update, use stupid algorithms for
  incrementing - consequently a long attack is something like 0.0001 and a long release is like 0.9999.
@@ -1155,6 +1189,9 @@ double maxiDyn::compressor(double input, double ratio, double threshold, double 
 	return output*(1+log(ratio));
 }
 
+///////////////////////////////////////////////////////////////////////////
+// maxiEnv
+///////////////////////////////////////////////////////////////////////////
 
 /* Lots of people struggle with the envelope generators so here's a new easy one.
  It takes mental numbers for attack and release tho. Basically, they're exponentials.
@@ -1258,6 +1295,9 @@ double convert::mtof(int midinote) {
 	return mtofarray[midinote];
 }
 
+///////////////////////////////////////////////////////////////////////////
+// sampleSource
+///////////////////////////////////////////////////////////////////////////
 
 bool sampleSource::load(string filename, int channel) {
     cout << "sampleSource: operation not supported\n";
@@ -1298,6 +1338,10 @@ void sampleSource::trim(unsigned long start, unsigned long end) {
 int sampleSource::getSampleRate() {
     return 1;
 }
+
+///////////////////////////////////////////////////////////////////////////
+// memSampleSource
+///////////////////////////////////////////////////////////////////////////
 
 bool memSampleSource::load(const string filename, const int channel) {
 	bool result;
@@ -1425,6 +1469,10 @@ void memSampleSource::trim(unsigned long start, unsigned long end) {
     length = data.size();
 }
 
+///////////////////////////////////////////////////////////////////////////
+// oggSampleSource
+///////////////////////////////////////////////////////////////////////////
+
 #ifdef VORBIS
 bool oggSampleSource::load(const string filename, const int channel) {
     bool result;
@@ -1458,6 +1506,10 @@ bool oggSampleSource::save(const string filename) {
     memSampleSource::save(filename);
 }
 #endif
+
+///////////////////////////////////////////////////////////////////////////
+// fileSampleSource
+///////////////////////////////////////////////////////////////////////////
 
 bool fileSampleSource::load(const string _filename, const int _channel) {
     filename = _filename;
@@ -1569,8 +1621,8 @@ void fileSampleSource::threadedFunction() {
                 //grab blocksize worth of data from file, wrapping if needed
                 int bufferWinEndPos = bufferCenter + (bufferSize / 2);
                 for(int i=0; i < diff; i++) {
-                    if (bufferWinEndPos == bufferSize) {
-                        bufferWinEndPos = 0;
+                    if (bufferWinEndPos >= bufferSize) {
+                        bufferWinEndPos -= bufferSize;
                     }
                     inFile.seekg(fileWinEndPos + (i * numChannels * 2), ios::beg);
                     inFile.read((char*)(&frame[0]), numChannels * 2);
@@ -1578,18 +1630,21 @@ void fileSampleSource::threadedFunction() {
                     bufferWinEndPos++;
                 }
                 //sort out variables
-                bufferCenter += diff;
-                if (bufferCenter > bufferSize) {
-                    bufferCenter -= bufferSize;
-                }                
-                fileWinEndPos += diff * 2 * numChannels;
-                if (fileWinEndPos > fileEndPos) {
-                    fileWinEndPos -= fileLength;
-                }
-                fileWinStartPos += diff * 2 * numChannels;
-                if (fileWinStartPos > fileEndPos) {
-                    fileWinStartPos -= fileLength;
-                }
+                bufferCenter = maxiMap::wrapUp<unsigned long>(bufferCenter + diff, bufferSize, bufferSize);
+//                bufferCenter += diff;
+//                if (bufferCenter >= bufferSize) {
+//                    bufferCenter -= bufferSize;
+//                }
+                fileWinEndPos = maxiMap::wrapUp<unsigned long>(fileWinEndPos + (diff * 2 * numChannels), fileEndPos, fileLength);
+//                fileWinEndPos += diff * 2 * numChannels;
+//                if (fileWinEndPos >= fileEndPos) {
+//                    fileWinEndPos -= fileLength;
+//                }
+                fileWinStartPos = maxiMap::wrapUp<unsigned long>(fileWinStartPos + (diff * 2 * numChannels), fileEndPos, fileLength);
+//                fileWinStartPos += diff * 2 * numChannels;
+//                if (fileWinStartPos >= fileEndPos) {
+//                    fileWinStartPos -= fileLength;
+//                }
                 cout << "Buf center: " << bufferCenter << ", buf pos: " << bufferPos << ", file win start: " << fileWinStartPos << ", file win end: " << fileWinEndPos << endl;
             }else{
                 
@@ -1607,10 +1662,110 @@ fileSampleSource& fileSampleSource::operator=(const fileSampleSource &src) {
 }
 
 
-//pre instantiation, so the code can stay here in the .cpp file
-template class maxiSampler<memSampleSource>;
-template class maxiSampler<fileSampleSource>;
-#ifdef VORBIS
-template class maxiSampler<oggSampleSource>;
-#endif
+///////////////////////////////////////////////////////////////////////////
+// maxiDistortion
+///////////////////////////////////////////////////////////////////////////
 
+double maxiDistortion::fastatan(double x)
+{
+    return (x / (1.0 + 0.28 * (x * x)));
+}
+
+double maxiDistortion::atanDist(const double in, const double shape) {
+    double out;
+    out = (1.0 / atan(shape)) * atan(in * shape);
+    return out;
+}
+
+double maxiDistortion::fastAtanDist(const double in, const double shape) {
+    double out;
+    out = (1.0 / fastatan(shape)) * fastatan(in * shape);
+    return out;
+}
+
+///////////////////////////////////////////////////////////////////////////
+// maxiFlanger
+///////////////////////////////////////////////////////////////////////////
+
+double maxiFlanger::flange(const double input, const unsigned int delay, const double feedback, const double speed, const double depth)
+{
+    //todo: needs fixing
+    double output;
+    double lfoVal = lfo.triangle(speed);
+    output = dl.dl(input, delay + (lfoVal * depth * delay) + 1, feedback) ;
+    double normalise = (1 - fabs(output));
+    output *= normalise;
+    return (output + input) / 2.0;
+}
+
+
+///////////////////////////////////////////////////////////////////////////
+// maxiChorus
+///////////////////////////////////////////////////////////////////////////
+
+double maxiChorus::chorus(const double input, const unsigned int delay, const double feedback, const double speed, const double depth)
+{
+    //this needs fixing
+    double output1, output2;
+    double lfoVal = lfo.noise();
+    lfoVal = lopass.lores(lfoVal, speed, 1.0) * 2.0;
+    output1 = dl.dl(input, delay + (lfoVal * depth * delay) + 1, feedback) ;
+    output2 = dl2.dl(input, (delay + (lfoVal * depth * delay * 1.02) + 1) * 0.98, feedback * 0.99) ;
+    output1 *= (1.0 - fabs(output1));
+    output2 *= (1.0 - fabs(output2));
+    return (output1 + output2 + input) / 3.0;
+}
+
+///////////////////////////////////////////////////////////////////////////
+// maxiDCBlocker
+///////////////////////////////////////////////////////////////////////////
+
+double maxiDCBlocker::play(double input, double R) {
+    ym1 = input - xm1 + R * ym1;
+    xm1 = input;
+    return ym1;
+}
+
+///////////////////////////////////////////////////////////////////////////
+// maxiSVF
+///////////////////////////////////////////////////////////////////////////
+
+maxiSVF& maxiSVF::setCutoff(double cutoff) {
+    setParams(cutoff, res);
+    return *this;
+}
+
+//from 0 upwards, starts to ring from 2-3ish, cracks a bit around 10
+maxiSVF& maxiSVF::setResonance(double q) {
+    setParams(freq, q);
+    return *this;
+}
+
+//run the filter, and get a mixture of lowpass, bandpass, highpass and notch outputs
+double maxiSVF::play(double w, double lpmix, double bpmix, double hpmix, double notchmix) {
+    double low, band, high, notch;
+    double v1z = v1;
+    double v2z = v2;
+    double v3 = w + v0z - 2.0 * v2z;
+    v1 += g1*v3-g2*v1z;
+    v2 += g3*v3+g4*v1z;
+    v0z = w;
+    low = v2;
+    band = v1;
+    high = w-k*v1-v2;
+    notch = w-k*v1;
+    return (low * lpmix) + (band * bpmix) + (high * hpmix) + (notch * notchmix);
+}
+
+void maxiSVF::setParams(double _freq, double _res) {
+    freq = _freq;
+    res = _res;
+    g = tan(PI * freq / maxiSettings::sampleRate);
+    damping = res == 0 ? 0 : 1.0 / res;
+    k = damping;
+    ginv = g / (1.0 + g * (g + k));
+    g1 = ginv;
+    g2 = 2.0 * (g + k) * ginv;
+    g3 = g * ginv;
+    g4 = 2.0 * ginv;
+}

@@ -26,15 +26,6 @@ double maxiReverbFilters::comb1(double input,double size)
     return output;
 }
 
-double maxiReverbFilters::comb2(double input,double size)
-{
-    // feed back
-    delay_size = size;
-    output =  gain_cof * delay_line[delay_index];
-    delay_line[delay_index] = input +  output;
-    delay_index != delay_size - 1 ? delay_index++ : delay_index = 0;
-    return output;
-}
 
 double maxiReverbFilters::combff(double input, double size)
 {
@@ -177,7 +168,7 @@ double maxiReverbFilters::tapdpos(double input,int size, int * taps,int numtaps)
 
 ////////////////////////////////////////////////////////////////////////////
 
-maxiReverb::maxiReverb()
+maxiReverbBase::maxiReverbBase()
 {    
     int dblsize = sizeof(double);
     int numfilterssize = dblsize * numfilters;
@@ -192,15 +183,6 @@ maxiReverb::maxiReverb()
     memset(stereooutput,0,dblsize*2);
     memset(feedbackcombfb, 0,dblsize*2);
     memset(lpcombcutoff,0,dblsize*2);
-    memset(maxideltimes,0,sizeof(int)*4);
-    memset(dattorogains,0,dblsize*4);
-    memset(dattarotapspos,0,sizeof(int)*numdattarotappos);
-    memset(dattorotap,0,dblsize*numdattarotaps);
-    memset(dattarofixdellengths,0,sizeof(int)*4);
-    memset(doutputs, 0, dblsize*8);
-    memset(fbsignal,0,dblsize*8);
-    memset(hadamardmatrix16, 0,dblsize *matrixsize16);
-    memset(hadamardmatrix64, 0, dblsize* matrixsize64);
     // used to calculate delay times
     numsamplesms = (float)maxiSettings::sampleRate/1000.0;
     output = 0.0;
@@ -227,15 +209,10 @@ maxiReverb::maxiReverb()
     fbcomb[1] = 100;
     fbcomb[2] = 150;
     
-    for(int i = 0 ; i < 4; i++){
-        dattorogains[i] = 0.5;
-    }
-    sigl = 0.0;
-    sigr = 0.0;
 }
 
 
-double maxiReverb::apcombcombo(double input, double gain_coef)
+double maxiReverbBase::apcombcombo(double input, double gain_coef)
 {
     // Implementation of Schroeders first Reverb structure
     // input -> 8 parrallel comb filters -> 4 serial combs -> output + input
@@ -250,7 +227,198 @@ double maxiReverb::apcombcombo(double input, double gain_coef)
 }
 
 
-double maxiReverb::satrev(double input)
+
+//double maxiReverbBase::fdn4(double input,double size)
+//{
+//    // This is a feedback delay network, consisting of 4 delays and a
+//    // 4x4 hadamard matrix which controls level of feedback between
+//    // delays, spreading out the 'metallic' sound of each comb filter
+//    // resulting in a significantly flatter response
+//    
+//    output = 0.0;
+//    for(int i = 0 ; i < 4; i++){
+//        double inplusdel = maxiDelays[5].onetap(input, 3900) + fbsignal[i];
+//        doutputs[i] = maxiDelays[i].onetap(inplusdel, fdnlengths[i]*6);
+//        doutputs[i] = fArrayLP[i].lopass(doutputs[i],0.7);
+//        output += doutputs[i] * 0.25;
+//    }
+//    double matrixgainmulti = fdn4matrixmulti * ((size / 5) + 0.75);
+//    memset(fbsignal, 0, sizeof(double)*8);
+//    for(int i = 0 ; i < 4; i++){
+//        for(int j = 0 ; j < 4; j++){
+//            fbsignal[i] += matrixgainmulti * hadamardmatrix16[i*4+j] * doutputs[j];
+//        }
+//    }
+//    return output;
+//}
+
+
+
+double maxiReverbBase::serialallpass(double input,int firstfilter, int numfilters)
+{
+    //output = input;
+    double t = input;
+    limitnumfilters(&numfilters);
+    for(int i = 0; i < numfilters; i++){
+        t = fArrayAllP[i].allpass(t,fbap[i]);
+    }
+    output = t;
+    return output;
+}
+
+double maxiReverbBase::serialallpass(double input,int firstfilter, int numfilters,double feedback)
+{
+    //output = input;
+    double t = input;
+    limitnumfilters(&numfilters);
+    for(int i = 0; i < numfilters; i++){
+        t = fArrayAllP[i].allpass(t,fbap[i],feedback);
+    }
+    output = t;
+    return output;
+}
+
+double maxiReverbBase::parallelcomb(double input,int firstfilter, int numfilters)
+{
+    // set to prime nums
+    accumulator = 0.0;
+    limitnumfilters(&numfilters);
+    for(int i = firstfilter; i < numfilters ; i++){
+        accumulator += fArrayTwo[i].combfb(input, fbcomb[i], 0.85);
+    }
+    return accumulator;
+}
+
+double maxiReverbBase::parallellpcomb(double input,int firstfilter,int numfilters)
+{
+    // set to prime nums
+    accumulator = 0.0;
+    limitnumfilters(&numfilters);
+    for(int i = firstfilter; i < numfilters ; i++)
+    {
+        accumulator += fArrayTwo[i].lpcombfb(input, fbcomb[i], combgainweight[i], lpcombcutoff[i]);
+    }
+    return accumulator;
+}
+
+void maxiReverbBase::limitnumfilters(int * num)
+{
+    if(*num > numfilters-1){
+        *num = numfilters-1;
+    } else if(*num < 0){
+        *num = 0;
+    }
+}
+
+void maxiReverbBase::setcombtimesms(double *times, int numset)
+{
+    limitnumfilters(&numset);
+    for(int i = 0; i < numset; i++){
+        fbcomb[i] = mstodellength(times[i]);
+    }
+}
+
+void maxiReverbBase::setcombtimes(int *times, int numset)
+{
+    limitnumfilters(&numset);
+    for(int i = 0; i < numset ; i++){
+        fbcomb[i] = times[i];
+    }
+}
+
+void maxiReverbBase::setcombfeedback(double *feedback, int numset)
+{
+    limitnumfilters(&numset);
+    for(int i = 0 ; i < numset; i++){
+        feedbackcombfb[i] = feedback[i];
+    }
+}
+
+void maxiReverbBase::setlpcombcutoff(double *cutoff,int numset)
+{
+    limitnumfilters(&numset);
+    for(int i = 0 ; i < numset; i++){
+        lpcombcutoff[i] = cutoff[i];
+    }
+}
+
+void maxiReverbBase::setlpcombcutoffall(double cutoff)
+{
+    if(cutoff >1.0) cutoff = 1.0;
+    if(cutoff < 0 ) cutoff = 0.0;
+    for(int i = 0 ; i < numfilters; i++)
+    {
+        lpcombcutoff[i] = cutoff;
+    }
+}
+
+void maxiReverbBase::setaptimesms(double *times, int numset)
+{
+    limitnumfilters(&numset);
+    for(int i = 0; i < numset; i++){
+        
+        fbap[i] = mstodellength(times[i]);
+    }
+}
+
+void maxiReverbBase::setaptimes(int *times, int numset)
+{
+    limitnumfilters(&numset);
+    for(int i = 0; i < numset; i++){
+        fbap[i] = times[i];
+    }
+}
+
+
+int maxiReverbBase::mstodellength(double ms)
+{
+    return (int)(numsamplesms * ms);
+}
+
+
+void maxiReverbBase::setcombweights(double *weights, int numset)
+{
+    setweights(weights,numset,combgainweight);
+}
+
+void maxiReverbBase::setcombweightsall(double feedback)
+{
+    // can expand this
+    if(feedback > 1.0) feedback = 1.0;
+    if(feedback < 0.0) feedback = 0.0;
+    for(int i = 0; i < numfilters; i++){
+        combgainweight[i] = feedback;
+    }
+}
+void maxiReverbBase::setapweights(double *weights, int numset)
+{
+    setweights(weights, numset, apgainweight);
+}
+
+void maxiReverbBase::setweights(double *weights, int numset,double * filter)
+{
+    // used 2.16 from miami
+    limitnumfilters(&numset);
+    for(int i = 0 ; i < numset; i++){
+        filter[i] = weights[i];
+        
+    }
+}
+
+/////////////////////////////////////////////////////////////////
+
+maxiSatReverb::maxiSatReverb() : maxiReverbBase() {
+    int ctimes[4] = {778,901,1011,1123};
+    setcombtimes(ctimes, 4);
+    double cgain[4] = {0.805,0.827,0.783,0.764};
+    setcombweights(cgain, 4);
+    int atimes[3] = {125,42,12};
+    setaptimes(atimes, 3);
+    double again[3] = {0.7,0.7,0.7};
+    setapweights(again, 3);
+}
+
+double maxiSatReverb::play(double input)
 {
     // Structure created by Chowning (1971) : https://ccrma.stanford.edu/~jos/pasp/Example_Schroeder_Reverberators.html
     // 4 parallel combs -> 3 serial all pass
@@ -259,7 +427,7 @@ double maxiReverb::satrev(double input)
     return b;
 }
 
-double* maxiReverb::satrevstereo(double input)
+double* maxiSatReverb::playStereo(double input)
 {
     // same as above but with stereo widening
     double a = parallelcomb(input,0, 4);
@@ -269,7 +437,26 @@ double* maxiReverb::satrevstereo(double input)
     return stereooutput;
 }
 
-double maxiReverb::freeverb(double input)
+//////////////////////////////////////////////////////////////////
+
+maxiFreeVerb::maxiFreeVerb() : maxiReverbBase() {
+    int ctimes[8] = {1557,1617,1491,1422,1277,1356,1188,1116};
+    setcombtimes(ctimes, 8);
+    double cgain[8];
+    double cutoff[8];
+    for(int i = 0 ; i < 8; i++){
+        cgain[i] = 0.84;
+        cutoff[i] = 0.2;
+    }
+    setcombweights(cgain, 8);
+    setlpcombcutoff(cutoff, 8);
+    int atimes[4] = {225,556,441,341};
+    setaptimes(atimes, 4);
+    double again[4] = {0.5,0.5,0.5,0.5};
+    setapweights(again, 4);    
+}
+
+double maxiFreeVerb::play(double input)
 {
     // structure created by Shroeder/Moorer
     // https://ccrma.stanford.edu/~jos/pasp/Freeverb.html
@@ -279,17 +466,46 @@ double maxiReverb::freeverb(double input)
     return b;
 }
 
-double maxiReverb::freeverb(double input,double roomsize,double absorbtion)
+double maxiFreeVerb::play(double input,double roomsize,double absorbtion)
 {
     // extends controllable freeverb parameters
     setcombweightsall((roomsize*0.10) + 0.84);
     setlpcombcutoffall(absorbtion);
-    double a = parallellpcomb(input,0, 88);
+    double a = parallellpcomb(input,0, 8);
     double b = serialallpass(a,0, 44);
     return b;
 }
 
-double* maxiReverb::freeverbstereo(double input, double roomsize, double absorbtion)
+
+//////////////////////////////////////////////////////////////////////////
+
+maxiFreeVerbStereo::maxiFreeVerbStereo() : maxiReverbBase() {
+    const int num_combs = 16;
+    const int num_ap = 8;
+    int stereospread = 23;
+    int ctimes[num_combs] = {1557,1617,1491,1422,1277,1356,1188,1116};
+    for(int i = num_combs/2; i < num_combs; i++){
+        ctimes[i] = ctimes[i-(num_combs/2)] + stereospread;
+    }
+    setcombtimes(ctimes, num_combs);
+    double cgain[num_combs];
+    double cutoff[num_combs];
+    for(int i = 0 ; i < num_combs; i++){
+        cgain[i] = 0.84;
+        cutoff[i] = 0.2;
+    }
+    setcombweights(cgain, num_combs);
+    setlpcombcutoff(cutoff, num_combs);
+    int atimes[num_ap] = {225,556,441,341};
+    for(int i = num_ap/2 ; i < num_ap; i++){
+        atimes[i] = atimes[i-(num_ap/2)] + stereospread;
+    }
+    setaptimes(atimes, num_ap);
+    double again[num_ap] = {0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5};
+    setapweights(again, num_ap);    
+}
+
+double* maxiFreeVerbStereo::playStereo(double input, double roomsize, double absorbtion)
 {
     // Two seperate freeverb implens, each with different feedback/delay/filter lengths
     setcombweightsall((roomsize*0.10) + 0.84);
@@ -305,9 +521,56 @@ double* maxiReverb::freeverbstereo(double input, double roomsize, double absorbt
     return stereooutput;
 }
 
+//////////////////////////////////////////////////////////////////////////////
 
-double* maxiReverb::dattaro(double input)
-{
+maxiDattaroReverb::maxiDattaroReverb() : maxiReverbBase() {
+    memset(dattorogains,0,sizeof(double)*4);
+    memset(dattarotapspos,0,sizeof(int)*numdattarotappos);
+    memset(dattorotap,0,sizeof(double)*numdattarotaps);
+    memset(dattarofixdellengths,0,sizeof(int)*4);
+    memset(maxideltimes,0,sizeof(int)*4);
+    sigl = 0.0;
+    sigr = 0.0;
+    
+    // original dattaro del tap lengths for 29.8 khz SR
+    int orig[numdattarotappos] = { 266,2974,1913,1996,1990,187,1066,353,3627,1228,2673,2111,335,121 };
+    // 1 ms at 29.8 khz SR;
+    float dms = 29.8;
+    float cms = (float)maxiSettings::sampleRate/1000.0f;
+    for(int i = 0 ; i < numdattarotappos; i++){
+        float prevdelengthms = (float)orig[i]/dms;
+        int newdellength = floor(prevdelengthms * cms);
+        dattarotapspos[i] = newdellength;
+    }
+    // orig dattaro del lengths
+    const int numfixeddelays = 5;
+    int origdel[numfixeddelays] = { 4217,3163,4453,3720 };
+    for(int i = 0 ; i < numfixeddelays; i++){
+        float prevdellengthms = (float)origdel[i]/dms;
+        int newdellength = floor(prevdellengthms * cms);
+        dattarofixdellengths[i] = newdellength;
+    }
+    // initial delay
+    dattarofixdellengths[4] = 3100;
+    // set gains
+    const int numdattarogains = 5;
+    double presetgains[numdattarogains] = { 0.75,0.625,0.7,0.5,0.3 };
+    //    int presetgains[numdattarogains] = { 0.999,0.9999,0.7,0.5,0.99999999 };
+    for(int i = 0 ; i < numdattarogains; i++){
+        dattorogains[i] = presetgains[i];
+    }
+    
+    // set fb ap
+    const int numinitap = 8;
+    int initaplengthsorig[numinitap] = { 142,107,379,277,908,2656,672,1800 };
+    for(int i = 0 ; i < numinitap; i++){
+        float prevlength = (float)initaplengthsorig[i]/dms;
+        int newlength = floor(prevlength * cms);
+        fbap[i] = newlength;
+    }    
+}
+
+double* maxiDattaroReverb::playStereo(double input) {
     // implementation of reverb designed by Jon Dattoro
     // https://ccrma.stanford.edu/~dattorro/EffectDesignPart1.pdf
     // Sigificantly more complex than the previous examples.
@@ -367,323 +630,4 @@ double* maxiReverb::dattaro(double input)
     dattorotap[10] - dattorotap[11] - dattorotap[12] - dattorotap[13];
     
     return stereooutput;
-}
-
-
-double maxiReverb::fdn4(double input,double size)
-{
-    // This is a feedback delay network, consisting of 4 delays and a
-    // 4x4 hadamard matrix which controls level of feedback between
-    // delays, spreading out the 'metallic' sound of each comb filter
-    // resulting in a significantly flatter response
-    
-    output = 0.0;
-    for(int i = 0 ; i < 4; i++){
-        double inplusdel = maxiDelays[5].onetap(input, 3900) + fbsignal[i];
-        doutputs[i] = maxiDelays[i].onetap(inplusdel, fdnlengths[i]*6);
-        doutputs[i] = fArrayLP[i].lopass(doutputs[i],0.7);
-        output += doutputs[i] * 0.25;
-    }
-    double matrixgainmulti = fdn4matrixmulti * ((size / 5) + 0.75);
-    memset(fbsignal, 0, sizeof(double)*8);
-    for(int i = 0 ; i < 4; i++){
-        for(int j = 0 ; j < 4; j++){
-            fbsignal[i] += matrixgainmulti * hadamardmatrix16[i*4+j] * doutputs[j];
-        }
-    }
-    return output;
-}
-
-
-
-double maxiReverb::serialallpass(double input,int firstfilter, int numfilters)
-{
-    //output = input;
-    double t = input;
-    limitnumfilters(&numfilters);
-    for(int i = 0; i < numfilters; i++){
-        t = fArrayAllP[i].allpass(t,fbap[i]);
-    }
-    output = t;
-    return output;
-}
-
-double maxiReverb::serialallpass(double input,int firstfilter, int numfilters,double feedback)
-{
-    //output = input;
-    double t = input;
-    limitnumfilters(&numfilters);
-    for(int i = 0; i < numfilters; i++){
-        t = fArrayAllP[i].allpass(t,fbap[i],feedback);
-    }
-    output = t;
-    return output;
-}
-
-double maxiReverb::parallelcomb(double input,int firstfilter, int numfilters)
-{
-    // set to prime nums
-    accumulator = 0.0;
-    limitnumfilters(&numfilters);
-    for(int i = firstfilter; i < numfilters ; i++){
-        accumulator += fArrayTwo[i].comb2(input, fbcomb[i]);
-    }
-    return accumulator;
-}
-
-double maxiReverb::parallellpcomb(double input,int firstfilter,int numfilters)
-{
-    // set to prime nums
-    accumulator = 0.0;
-    limitnumfilters(&numfilters);
-    for(int i = firstfilter; i < numfilters ; i++)
-    {
-        accumulator += fArrayTwo[i].lpcombfb(input, fbcomb[i], combgainweight[i], lpcombcutoff[i]);
-    }
-    return accumulator;
-}
-
-void maxiReverb::limitnumfilters(int * num)
-{
-    if(*num > numfilters-1){
-        *num = numfilters-1;
-    } else if(*num < 0){
-        *num = 0;
-    }
-}
-
-void maxiReverb::reverbselector(int type)
-{
-    // Set the various parameters to match the reverb type.
-    // Some parameters are taken from the papers, but most are either
-    // significantly adapted or original
-    if(type == 0)
-    {
-        // SatRev
-        int ctimes[4] = {778,901,1011,1123};
-        setcombtimes(ctimes, 4);
-        double cgain[4] = {0.805,0.827,0.783,0.764};
-        setcombweights(cgain, 4);
-        int atimes[3] = {125,42,12};
-        setaptimes(atimes, 3);
-        double again[3] = {0.7,0.7,0.7};
-        setapweights(again, 3);
-    }
-    if(type == 1)
-    {
-        /* freeverb mono */
-        int ctimes[8] = {1557,1617,1491,1422,1277,1356,1188,1116};
-        setcombtimes(ctimes, 8);
-        double cgain[8];
-        double cutoff[8];
-        for(int i = 0 ; i < 8; i++){
-            cgain[i] = 0.84;
-            cutoff[i] = 0.2;
-        }
-        setcombweights(cgain, 8);
-        setlpcombcutoff(cutoff, 8);
-        int atimes[4] = {225,556,441,341};
-        setaptimes(atimes, 4);
-        double again[4] = {0.5,0.5,0.5,0.5};
-        setapweights(again, 4);
-    }
-    if(type == 2)
-    {
-        /*freeverb stereo*/
-        const int num_combs = 16;
-        const int num_ap = 8;
-        int stereospread = 23;
-        int ctimes[num_combs] = {1557,1617,1491,1422,1277,1356,1188,1116};
-        for(int i = num_combs/2; i < num_combs; i++){
-            ctimes[i] = ctimes[i-(num_combs/2)] + stereospread;
-        }
-        setcombtimes(ctimes, num_combs);
-        double cgain[num_combs];
-        double cutoff[num_combs];
-        for(int i = 0 ; i < num_combs; i++){
-            cgain[i] = 0.84;
-            cutoff[i] = 0.2;
-        }
-        setcombweights(cgain, num_combs);
-        setlpcombcutoff(cutoff, num_combs);
-        int atimes[num_ap] = {225,556,441,341};
-        for(int i = num_ap/2 ; i < num_ap; i++){
-            atimes[i] = atimes[i-(num_ap/2)] + stereospread;
-        }
-        setaptimes(atimes, num_ap);
-        double again[num_ap] = {0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5};
-        setapweights(again, num_ap);
-    }
-    if(type == 3)
-    {
-        // original dattaro del tap lengths for 29.8 khz SR
-        int orig[numdattarotappos] = { 266,2974,1913,1996,1990,187,1066,353,3627,1228,2673,2111,335,121 };
-        // 1 ms at 29.8 khz SR;
-        float dms = 29.8;
-        float cms = (float)maxiSettings::sampleRate/1000.0f;
-        for(int i = 0 ; i < numdattarotappos; i++){
-            float prevdelengthms = (float)orig[i]/dms;
-            int newdellength = floor(prevdelengthms * cms);
-            dattarotapspos[i] = newdellength;
-        }
-        // orig dattaro del lengths
-        const int numfixeddelays = 5;
-        int origdel[numfixeddelays] = { 4217,3163,4453,3720 };
-        for(int i = 0 ; i < numfixeddelays; i++){
-            float prevdellengthms = (float)origdel[i]/dms;
-            int newdellength = floor(prevdellengthms * cms);
-            dattarofixdellengths[i] = newdellength;
-        }
-        // initial delay
-        dattarofixdellengths[4] = 3100;
-        // set gains
-        const int numdattarogains = 5;
-        double presetgains[numdattarogains] = { 0.75,0.625,0.7,0.5,0.3 };
-        //    int presetgains[numdattarogains] = { 0.999,0.9999,0.7,0.5,0.99999999 };
-        for(int i = 0 ; i < numdattarogains; i++){
-            dattorogains[i] = presetgains[i];
-        }
-        
-        // set fb ap
-        const int numinitap = 8;
-        int initaplengthsorig[numinitap] = { 142,107,379,277,908,2656,672,1800 };
-        for(int i = 0 ; i < numinitap; i++){
-            float prevlength = (float)initaplengthsorig[i]/dms;
-            int newlength = floor(prevlength * cms);
-            fbap[i] = newlength;
-        }
-    }
-    if(type == 4)
-    {
-        // Any of the Feedback Delay Networks
-        // Originally attempted to create a function to produce
-        // hadamard matrixes (required for the feedback matrix)
-        // however could not produce a working function.
-        // These matrices are taken from wikipedia
-        
-        double hadmat16[matrixsize16] = { 0 , 1 , 1 , 0 ,
-            -1 , 0 , 0 , -1,
-            1 , 0 , 0 , -1,
-            0 , 1 , -1, 0 };
-        for(int i = 0; i < matrixsize16; i++){
-            hadamardmatrix16[i] = hadmat16[i];
-        }
-        double hadmat64[matrixsize64] = { 1, 1, 1, 1, 1, 1, 1, 1,
-            1,-1, 1,-1, 1,-1, 1,-1,
-            1, 1,-1,-1, 1, 1,-1,-1,
-            1,-1,-1, 1, 1,-1,-1, 1,
-            1, 1, 1, 1,-1,-1,-1,-1,
-            1,-1, 1,-1,-1, 1,-1, 1,
-            1, 1,-1,-1,-1,-1, 1, 1,
-            1,-1,-1, 1,-1, 1, 1,-1};
-        // could i make these constant?
-        for(int i = 0 ; i < matrixsize64;i++){
-            hadamardmatrix64[i] = hadmat64[i];
-        }
-        
-        int sizes[8] = { 149,211,87,191,213,349,371,394};
-        //       int sizes[8] = {853,991,1051,1201,1327,1433,1489,1621};
-        //       int sizes[8] = {1621,1787,1951,2099,2179,2341,2477,2671};
-        
-        for(int i = 0 ; i < 8 ; i++){
-            fdnlengths[i] = sizes[i];
-        }
-    }
-    
-}
-
-
-void maxiReverb::setcombtimesms(double *times, int numset)
-{
-    limitnumfilters(&numset);
-    for(int i = 0; i < numset; i++){
-        fbcomb[i] = mstodellength(times[i]);
-    }
-}
-
-void maxiReverb::setcombtimes(int *times, int numset)
-{
-    limitnumfilters(&numset);
-    for(int i = 0; i < numset ; i++){
-        fbcomb[i] = times[i];
-    }
-}
-
-void maxiReverb::setcombfeedback(double *feedback, int numset)
-{
-    limitnumfilters(&numset);
-    for(int i = 0 ; i < numset; i++){
-        feedbackcombfb[i] = feedback[i];
-    }
-}
-
-void maxiReverb::setlpcombcutoff(double *cutoff,int numset)
-{
-    limitnumfilters(&numset);
-    for(int i = 0 ; i < numset; i++){
-        lpcombcutoff[i] = cutoff[i];
-    }
-}
-
-void maxiReverb::setlpcombcutoffall(double cutoff)
-{
-    if(cutoff >1.0) cutoff = 1.0;
-    if(cutoff < 0 ) cutoff = 0.0;
-    for(int i = 0 ; i < numfilters; i++)
-    {
-        lpcombcutoff[i] = cutoff;
-    }
-}
-
-void maxiReverb::setaptimesms(double *times, int numset)
-{
-    limitnumfilters(&numset);
-    for(int i = 0; i < numset; i++){
-        
-        fbap[i] = mstodellength(times[i]);
-    }
-}
-
-void maxiReverb::setaptimes(int *times, int numset)
-{
-    limitnumfilters(&numset);
-    for(int i = 0; i < numset; i++){
-        fbap[i] = times[i];
-    }
-}
-
-
-int maxiReverb::mstodellength(double ms)
-{
-    return (int)(numsamplesms * ms);
-}
-
-
-void maxiReverb::setcombweights(double *weights, int numset)
-{
-    setweights(weights,numset,combgainweight);
-}
-
-void maxiReverb::setcombweightsall(double feedback)
-{
-    // can expand this
-    if(feedback > 1.0) feedback = 1.0;
-    if(feedback < 0.0) feedback = 0.0;
-    for(int i = 0; i < numfilters; i++){
-        combgainweight[i] = feedback;
-    }
-}
-void maxiReverb::setapweights(double *weights, int numset)
-{
-    setweights(weights, numset, apgainweight);
-}
-
-void maxiReverb::setweights(double *weights, int numset,double * filter)
-{
-    // used 2.16 from miami
-    limitnumfilters(&numset);
-    for(int i = 0 ; i < numset; i++){
-        filter[i] = weights[i];
-        
-    }
 }

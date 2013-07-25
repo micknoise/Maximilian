@@ -7,7 +7,6 @@ maxiReverbFilters::maxiReverbFilters()
     delay_index = 0;
     feedback = 0.8;
     gain_cof = 0.85;
-    //memset(delay_line, 0, sizeof(double)*44100);
     delay_line.resize(44100, 0);
 }
 
@@ -114,9 +113,6 @@ double maxiReverbFilters::onetap(double input, double size)
     delay_index != size - 1 ? delay_index++ : delay_index = 0;
     return output;
 }
-
-
-
 
 double maxiReverbFilters::tapd(double input,double size, double * taps,int numtaps)
 {
@@ -225,33 +221,6 @@ double maxiReverbBase::apcombcombo(double input, double gain_coef)
     return output + t;
     //return output;
 }
-
-
-
-//double maxiReverbBase::fdn4(double input,double size)
-//{
-//    // This is a feedback delay network, consisting of 4 delays and a
-//    // 4x4 hadamard matrix which controls level of feedback between
-//    // delays, spreading out the 'metallic' sound of each comb filter
-//    // resulting in a significantly flatter response
-//    
-//    output = 0.0;
-//    for(int i = 0 ; i < 4; i++){
-//        double inplusdel = maxiDelays[5].onetap(input, 3900) + fbsignal[i];
-//        doutputs[i] = maxiDelays[i].onetap(inplusdel, fdnlengths[i]*6);
-//        doutputs[i] = fArrayLP[i].lopass(doutputs[i],0.7);
-//        output += doutputs[i] * 0.25;
-//    }
-//    double matrixgainmulti = fdn4matrixmulti * ((size / 5) + 0.75);
-//    memset(fbsignal, 0, sizeof(double)*8);
-//    for(int i = 0 ; i < 4; i++){
-//        for(int j = 0 ; j < 4; j++){
-//            fbsignal[i] += matrixgainmulti * hadamardmatrix16[i*4+j] * doutputs[j];
-//        }
-//    }
-//    return output;
-//}
-
 
 
 double maxiReverbBase::serialallpass(double input,int firstfilter, int numfilters)

@@ -339,7 +339,7 @@ public:
 		double cycleLength = grainLength * maxiSettings::sampleRate  / overlaps;
         if (looper > cycleLength + randomOffset) {
             looper -= (cycleLength + randomOffset);
-			maxiGrain<F, source> *g = new maxiGrain<F>(sample, max(min(1.0,(position / sample->length) + posMod),0.0), grainLength, speed, &windowCache);
+			maxiGrain<F, source> *g = new maxiGrain<F>(sample, max(min(1.0, (position / sample->length) + posMod),0.0), grainLength, speed, &windowCache);
 			grainPlayer->addGrain(g);
             randomOffset = rand() % 10;
 		}

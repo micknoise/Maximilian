@@ -306,29 +306,6 @@ protected:
 private:
 };
 
-
-inline long fileSampleSource::getLength() {
-    return length;
-};
-
-inline int fileSampleSource::getSampleRate() {
-    return mySampleRate;
-}
-
-inline short& fileSampleSource::operator[](const int idx) {
-    int diff = idx - lastIdx;
-    bufferPos += diff;
-    if (bufferPos < 0) {
-        bufferPos += bufferSize;
-    }else if (bufferPos >= bufferSize) {
-        bufferPos -= bufferSize;
-    }
-    lastIdx = idx;
-    return data[bufferPos];
-}
-
-
-
 template<class source = memSampleSource>
 class maxiSampler  {
 	

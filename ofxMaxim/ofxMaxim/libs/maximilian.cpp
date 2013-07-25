@@ -1619,32 +1619,32 @@ void fileSampleSource::threadedFunction() {
             //going forward?
             if (diff > 0) {
                 //grab blocksize worth of data from file, wrapping if needed
+                frame.resize(diff * numChannels * 2);
+                inFile.seekg(fileWinEndPos);
+                if (fileWinEndPos + diff < fileEndPos) {
+                    inFile.read((char*)(&frame[0]), numChannels * 2 * diff);
+                }else{
+                    int diff1=fileEndPos - fileWinEndPos;
+                    int diff2= diff - diff1;
+                    inFile.read((char*)(&frame[0]), numChannels * 2 * diff1);
+                    inFile.seekg(fileStartPos);
+                    inFile.read((char*)(&frame[diff1 * numChannels * 2]), numChannels * 2 * diff2);
+                }
                 int bufferWinEndPos = bufferCenter + (bufferSize / 2);
-                for(int i=0; i < diff; i++) {
+                int ch=channel;
+                for(int i=0; i < diff; i++, ch += numChannels) {
                     if (bufferWinEndPos >= bufferSize) {
                         bufferWinEndPos -= bufferSize;
                     }
-                    inFile.seekg(fileWinEndPos + (i * numChannels * 2), ios::beg);
-                    inFile.read((char*)(&frame[0]), numChannels * 2);
-                    data[bufferWinEndPos] = frame[channel];
+                    data[bufferWinEndPos] = frame[ch];
                     bufferWinEndPos++;
                 }
+                
                 //sort out variables
                 bufferCenter = maxiMap::wrapUp<unsigned long>(bufferCenter + diff, bufferSize, bufferSize);
-//                bufferCenter += diff;
-//                if (bufferCenter >= bufferSize) {
-//                    bufferCenter -= bufferSize;
-//                }
                 fileWinEndPos = maxiMap::wrapUp<unsigned long>(fileWinEndPos + (diff * 2 * numChannels), fileEndPos, fileLength);
-//                fileWinEndPos += diff * 2 * numChannels;
-//                if (fileWinEndPos >= fileEndPos) {
-//                    fileWinEndPos -= fileLength;
-//                }
                 fileWinStartPos = maxiMap::wrapUp<unsigned long>(fileWinStartPos + (diff * 2 * numChannels), fileEndPos, fileLength);
-//                fileWinStartPos += diff * 2 * numChannels;
-//                if (fileWinStartPos >= fileEndPos) {
-//                    fileWinStartPos -= fileLength;
-//                }
+
                 cout << "Buf center: " << bufferCenter << ", buf pos: " << bufferPos << ", file win start: " << fileWinStartPos << ", file win end: " << fileWinEndPos << endl;
             }else{
                 
@@ -1660,6 +1660,29 @@ fileSampleSource& fileSampleSource::operator=(const fileSampleSource &src) {
     data = src.data;
     return *this;
 }
+
+inline long fileSampleSource::getLength() {
+    return length;
+};
+
+inline int fileSampleSource::getSampleRate() {
+    return mySampleRate;
+}
+
+inline short& fileSampleSource::operator[](const int idx) {
+    //map from file position to buffer position
+    //making an assumption the position is in the buffer already
+    int diff = idx - lastIdx;
+    bufferPos += diff;
+    if (bufferPos < 0) {
+        bufferPos += bufferSize;
+    }else if (bufferPos >= bufferSize) {
+        bufferPos -= bufferSize;
+    }
+    lastIdx = idx;
+    return data[bufferPos];
+}
+
 
 
 ///////////////////////////////////////////////////////////////////////////

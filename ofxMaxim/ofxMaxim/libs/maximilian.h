@@ -279,7 +279,7 @@ protected:
 
 class fileSampleSource : public sampleSource, private ofThread {
 public:
-    fileSampleSource() : sampleSource(), length(1), bufferSize(maxiSettings::sampleRate), lastIdx(0) {}
+    fileSampleSource() : sampleSource(), length(1), bufferSize(maxiSettings::sampleRate), diffFwd(0), diffRv(0) {}
     bool load(const string filename, const int channel = 0);
     void unload();
     short& operator[](const int idx);
@@ -294,15 +294,16 @@ protected:
 	short numChannels;
     int channel;
     int bufferSize;
-    unsigned long filePos, fileStartPos, fileEndPos, fileLength, fileWinStartPos, fileWinEndPos;
+    unsigned long filePos, fileStartPos, fileEndPos, fileLength, fileWinStartPos, fileWinEndPos, fileWinCenter;
     int bufferPos;
     int bufferCenter;
-    int lastIdx;
-
+    unsigned long fileCenterPos;
 	int mySampleRate;
     long length;
     string filename;
     int blockSize;
+    
+    int diffFwd, diffRv;
 private:
 };
 

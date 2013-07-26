@@ -1570,6 +1570,8 @@ bool fileSampleSource::load(const string _filename, const int _channel) {
         frame.resize(numChannels);
         fileWinEndPos = fileStartPos + ((bufferSize / 2) * 2 * numChannels);
         fileWinStartPos = fileEndPos - ((bufferSize / 2) * 2 * numChannels);
+        fileWinCenter = 0;
+        fileCenterPos = 0; // in <short> format, single channel
         //fill up the buffer
         //read ahead
         for(int i=0; i < bufferSize/2; i++) {
@@ -1608,48 +1610,51 @@ fileSampleSource::~fileSampleSource() {
 void fileSampleSource::threadedFunction() {
     cout << "Thread running\n";
     while(isThreadRunning()) {
-        int diff = 0;
-        if (bufferPos >= bufferCenter) {
-            diff = bufferPos - bufferCenter;
-        }else{
-            diff = bufferPos + (bufferSize - bufferCenter);
-        }
-        cout << diff << endl;
-        if (abs(diff) >= blockSize) {
-            //going forward?
-            if (diff > 0) {
-                //grab blocksize worth of data from file, wrapping if needed
-                frame.resize(diff * numChannels * 2);
-                inFile.seekg(fileWinEndPos);
-                if (fileWinEndPos + diff < fileEndPos) {
-                    inFile.read((char*)(&frame[0]), numChannels * 2 * diff);
-                }else{
-                    int diff1=fileEndPos - fileWinEndPos;
-                    int diff2= diff - diff1;
-                    inFile.read((char*)(&frame[0]), numChannels * 2 * diff1);
-                    inFile.seekg(fileStartPos);
-                    inFile.read((char*)(&frame[diff1 * numChannels * 2]), numChannels * 2 * diff2);
-                }
-                int bufferWinEndPos = bufferCenter + (bufferSize / 2);
-                int ch=channel;
-                for(int i=0; i < diff; i++, ch += numChannels) {
-                    if (bufferWinEndPos >= bufferSize) {
-                        bufferWinEndPos -= bufferSize;
-                    }
-                    data[bufferWinEndPos] = frame[ch];
-                    bufferWinEndPos++;
-                }
-                
-                //sort out variables
-                bufferCenter = maxiMap::wrapUp<unsigned long>(bufferCenter + diff, bufferSize, bufferSize);
-                fileWinEndPos = maxiMap::wrapUp<unsigned long>(fileWinEndPos + (diff * 2 * numChannels), fileEndPos, fileLength);
-                fileWinStartPos = maxiMap::wrapUp<unsigned long>(fileWinStartPos + (diff * 2 * numChannels), fileEndPos, fileLength);
-
-                cout << "Buf center: " << bufferCenter << ", buf pos: " << bufferPos << ", file win start: " << fileWinStartPos << ", file win end: " << fileWinEndPos << endl;
+        cout << "Rv: " << diffRv << ", " << "Fwd: " << diffFwd << endl;
+        //going forward?
+        if (diffFwd >= blockSize && diffFwd > -diffRv) {
+            //grab blocksize worth of data from file, wrapping if needed
+            frame.resize(diffFwd * numChannels * 2);
+            inFile.seekg(fileWinEndPos, ios::beg);
+            if (fileWinEndPos + (diffFwd * 2 * numChannels) < fileEndPos) {
+//                cout << "1 " << fileWinEndPos << ", " << (diffFwd * 2 * numChannels) << ", " << fileEndPos << endl;
+                inFile.read((char*)(&frame[0]), numChannels * 2 * diffFwd);
             }else{
-                
+//                cout << "2\n";
+                int diff1=(fileEndPos - fileWinEndPos) / 2 / numChannels;
+                int diff2= diffFwd - diff1;
+                inFile.read((char*)(&frame[0]), numChannels * 2 * diff1);
+//                if(inFile.fail() || inFile.eof())
+//                    cout << "File read error: " << endl;
+                inFile.seekg(fileStartPos, ios::beg);
+                inFile.read((char*)(&frame[diff1 * numChannels * 2]), numChannels * 2 * diff2);
             }
+            if(inFile.eof())
+                cout << "File read error: eof" << endl;
+            if(inFile.fail())
+                cout << "File read error: fail" << endl;
+//            cout << "**************************** " << inFile.gcount() << endl;
+            int bufferWinEndPos = bufferCenter + (bufferSize / 2);
+            int ch=channel;
+            for(int i=0; i < diffFwd; i++, ch += numChannels) {
+                if (bufferWinEndPos >= bufferSize) {
+                    bufferWinEndPos -= bufferSize;
+                }
+                data[bufferWinEndPos] = frame[ch];
+                bufferWinEndPos++;
+            }
+            //sort out positioning
+            bufferCenter = maxiMap::wrapUp<unsigned long>(bufferCenter + diffFwd, bufferSize, bufferSize);
+            fileWinEndPos = maxiMap::wrapUp<unsigned long>(fileWinEndPos + (diffFwd * 2 * numChannels), fileEndPos, fileLength);
+            fileWinStartPos = maxiMap::wrapUp<unsigned long>(fileWinStartPos + (diffFwd * 2 * numChannels), fileEndPos, fileLength);
+            fileWinCenter =maxiMap::wrapUp<unsigned long>(fileWinCenter + (diffFwd * 2 * numChannels), fileEndPos, fileLength);
+            fileCenterPos = (fileWinCenter - fileStartPos) / 2 / numChannels;
+            diffFwd = 0;
+            diffRv = 0;
+        }else // in reverse?
+            if (diffRv <= -blockSize) {
         }
+        cout << "Buf center: " << bufferCenter << ", buf pos: " << bufferPos << ", file win start: " << fileWinStartPos << ", file win center: " << fileWinCenter << ", file win end: " << fileWinEndPos << ", file center pos: " << fileCenterPos << endl;
         sleep(20);
     }
 }
@@ -1672,14 +1677,28 @@ inline int fileSampleSource::getSampleRate() {
 inline short& fileSampleSource::operator[](const int idx) {
     //map from file position to buffer position
     //making an assumption the position is in the buffer already
-    int diff = idx - lastIdx;
-    bufferPos += diff;
+    int diff = idx - fileCenterPos;
+    //wrapping around?
+    if (abs(diff) > bufferSize) {
+        //going forward
+        if (idx < fileCenterPos) {
+            diff = idx + ((fileLength / 2 / numChannels) - fileCenterPos);
+        }else{ // in reverse
+            diff = -1 * (fileCenterPos + ((fileLength / 2 / numChannels) - idx));
+        }
+    }
+    bufferPos = bufferCenter + diff;
     if (bufferPos < 0) {
         bufferPos += bufferSize;
     }else if (bufferPos >= bufferSize) {
         bufferPos -= bufferSize;
     }
-    lastIdx = idx;
+    if (diff < 0) {
+        diffRv = min(diff, diffRv);
+    }else{
+        diffFwd = max(diff, diffFwd);
+    }
+//    cout << diff << endl;
     return data[bufferPos];
 }
 

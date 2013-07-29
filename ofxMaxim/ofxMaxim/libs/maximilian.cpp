@@ -1304,7 +1304,6 @@ bool sampleSource::save(string filename) {
 
 void sampleSource::unload() {
     cout << "sampleSource: operation not supported\n";
-    return false;
 }
 
 string sampleSource::getSummary() {

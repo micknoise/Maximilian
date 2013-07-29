@@ -48,6 +48,17 @@
  *   If you're on windows, make sure to add the files std_vorbis.c and std_vorbis.h to your project*/
 //#define VORBIS
 
+/*
+ Floating point precision.  Maximilian runs in double precision by default, for increased sound quality. 
+ There may be situations where single precision is required, such as if you improve performance on a mobile device.
+ To compile using single precision, define MAXI_SINGLE_PRECISION either here or preferably in your project settings. For example in XCode,
+ add -DMAXI_SINGLE_PRECISION to the 'C++ flags'. 
+ */
+#ifdef MAXI_SINGLE_PRECISION
+#define maxiType float
+#else
+#define maxiType double
+#endif
 
 #include <iostream>
 #include <fstream>
@@ -72,110 +83,118 @@ public:
 		maxiSettings::sampleRate = initSampleRate;
 		maxiSettings::channels = initChannels;
 		maxiSettings::bufferSize = initBufferSize;
+        cout << "Maximilian settings:\n\tSample Rate:\t\t" << initSampleRate << "\n\tChannels:\t\t" << initChannels
+                << "\n\tBuffer size:\t\t" << initBufferSize << "\n\tPrecision:\t\t" <<
+#ifdef MAXI_SINGLE_PRECISION
+        "single"
+#else
+        "double"
+#endif
+        << "\n";
 	}
 };
 
 
 class maxiOsc {
 	
-	double frequency;
-	double phase;
-	double startphase;
-	double endphase;
-	double output;
-	double tri;
+	maxiType frequency;
+	maxiType phase;
+	maxiType startphase;
+	maxiType endphase;
+	maxiType output;
+	maxiType tri;
 	
 	
 public:
 	maxiOsc();
-	double sinewave(double frequency);
-	double coswave(double frequency);
-	double phasor(double frequency);
-	double phasor(double frequency, double startphase, double endphase);
-	double saw(double frequency);
-	double triangle(double frequency);
-	double square(double frequency);
-	double pulse(double frequency, double duty);
-	double noise();
-	double sinebuf(double frequency);
-	double sinebuf4(double frequency);
-	void phaseReset(double phaseIn);
-    double sawn(double frequency);    
+	maxiType sinewave(maxiType frequency);
+	maxiType coswave(maxiType frequency);
+	maxiType phasor(maxiType frequency);
+	maxiType phasor(maxiType frequency, maxiType startphase, maxiType endphase);
+	maxiType saw(maxiType frequency);
+	maxiType triangle(maxiType frequency);
+	maxiType square(maxiType frequency);
+	maxiType pulse(maxiType frequency, maxiType duty);
+	maxiType noise();
+	maxiType sinebuf(maxiType frequency);
+	maxiType sinebuf4(maxiType frequency);
+	void phaseReset(maxiType phaseIn);
+    maxiType sawn(maxiType frequency);    
 	
 };
 
 
 class maxiEnvelope {
 	
-	double period;
-	double output;
-	double startval;
-	double currentval;
-	double nextval;
+	maxiType period;
+	maxiType output;
+	maxiType startval;
+	maxiType currentval;
+	maxiType nextval;
 	int isPlaying;
 
 public:	
-	double line(int numberofsegments,double segments[100]);
-	void trigger(int index,double amp);
+	maxiType line(int numberofsegments,maxiType segments[100]);
+	void trigger(int index,maxiType amp);
 	int valindex;
-	double amplitude;
+	maxiType amplitude;
 	
 };
 
 
 class maxiDelayline {
-	double frequency;
+	maxiType frequency;
 	int phase;
-	double startphase;
-	double endphase;
-	double output;
-	double memory[88200];
+	maxiType startphase;
+	maxiType endphase;
+	maxiType output;
+	maxiType memory[88200];
 	
 public:
 	maxiDelayline();
-	double dl(double input, int size, double feedback);
-	double dl(double input, int size, double feedback, int position);
+	maxiType dl(maxiType input, int size, maxiType feedback);
+	maxiType dl(maxiType input, int size, maxiType feedback, int position);
 	
 	
 };
 
 
 class maxiFilter { 	
-	double gain;
-	double input;
-	double output;
-	double inputs[10];
-	double outputs[10];
-	double cutoff1;
-	double x;//speed
-	double y;//pos
-	double z;//pole
-	double c;//filter coefficient
+	maxiType gain;
+	maxiType input;
+	maxiType output;
+	maxiType inputs[10];
+	maxiType outputs[10];
+	maxiType cutoff1;
+	maxiType x;//speed
+	maxiType y;//pos
+	maxiType z;//pole
+	maxiType c;//filter coefficient
     
 public:
 	maxiFilter():x(0.0), y(0.0), z(0.0), c(0.0){};
-	double cutoff;
-	double resonance;
-	double lores(double input,double cutoff1, double resonance);
-	double hires(double input,double cutoff1, double resonance);
-	double bandpass(double input,double cutoff1, double resonance);
-	double lopass(double input,double cutoff);
-	double hipass(double input,double cutoff);
+	maxiType cutoff;
+	maxiType resonance;
+	maxiType lores(maxiType input,maxiType cutoff1, maxiType resonance);
+	maxiType hires(maxiType input,maxiType cutoff1, maxiType resonance);
+	maxiType bandpass(maxiType input,maxiType cutoff1, maxiType resonance);
+	maxiType lopass(maxiType input,maxiType cutoff);
+	maxiType hipass(maxiType input,maxiType cutoff);
 	
 };
 
 class maxiMix  {
-	double input;
-	double two[2];
-	double four[4];
-	double eight[8];
+	maxiType input;
+	maxiType two[2];
+	maxiType four[4];
+	maxiType eight[8];
 public:
-	double x;
-	double y;
-	double z;
-	double *stereo(double input,double two[2],double x);
-	double *quad(double input,double four[4], double x,double y);
-	double *ambisonic(double input,double eight[8],double x,double y, double z);
+	maxiType x;
+	maxiType y;
+	maxiType z;
+	maxiType *stereo(maxiType input,maxiType two[2],maxiType x);
+	maxiType *quad(maxiType input,maxiType four[4], maxiType x,maxiType y);
+	maxiType *ambisonic(maxiType input,maxiType eight[8],maxiType x,maxiType y, maxiType z);
 	
 };
 
@@ -312,13 +331,13 @@ class maxiSampler  {
 	
 private:
 	string 	myPath;
-    double speed;
-	double output;
-    maxiLagExp<double> loopRecordLag;
+    maxiType speed;
+	maxiType output;
+    maxiLagExp<maxiType> loopRecordLag;
     source samples;
 	
 public:
-	double position, recordPosition;
+	maxiType position, recordPosition;
 
 	inline long getLength() {return samples.getLength();}
     
@@ -334,39 +353,39 @@ public:
     
 	void trigger();
 	
-    void loopRecord(double newSample, const bool recordEnabled, const double recordMix, double start = 0.0, double end = 1.0);
+    void loopRecord(maxiType newSample, const bool recordEnabled, const maxiType recordMix, maxiType start = 0.0, maxiType end = 1.0);
     
     void clear();
     
     void reset();
 	
-	double play();
+	maxiType play();
 
-    double playLoop(double start, double end); // start and end are between 0.0 and 1.0
+    maxiType playLoop(maxiType start, maxiType end); // start and end are between 0.0 and 1.0
 	
-	double playOnce();
+	maxiType playOnce();
 	
-	double playOnce(double speed);
+	maxiType playOnce(maxiType speed);
 
-    void setPosition(double newPos); // between 0.0 and 1.0
+    void setPosition(maxiType newPos); // between 0.0 and 1.0
     
-    double playUntil(double end);
+    maxiType playUntil(maxiType end);
 	
-	double play(double speed);
+	maxiType play(maxiType speed);
 	
-	double play(double frequency, double start, double end, double &pos);
+	maxiType play(maxiType frequency, maxiType start, maxiType end, maxiType &pos);
 	
-	double play(double frequency, double start, double end);
+	maxiType play(maxiType frequency, maxiType start, maxiType end);
 	
-	double play4(double frequency, double start, double end);
+	maxiType play4(maxiType frequency, maxiType start, maxiType end);
 	
-	double bufferPlay(unsigned char &bufferin,long length);
+	maxiType bufferPlay(unsigned char &bufferin,long length);
 	
-	double bufferPlay(unsigned char &bufferin,double speed,long length);
+	maxiType bufferPlay(unsigned char &bufferin,maxiType speed,long length);
 	
-	double bufferPlay(unsigned char &bufferin,double frequency, double start, double end);
+	maxiType bufferPlay(unsigned char &bufferin,maxiType frequency, maxiType start, maxiType end);
 	
-	double bufferPlay4(unsigned char &bufferin,double frequency, double start, double end);
+	maxiType bufferPlay4(unsigned char &bufferin,maxiType frequency, maxiType start, maxiType end);
 
     bool save();
 	bool save(string filename);
@@ -386,18 +405,18 @@ typedef maxiSampler<fileSampleSource> maxiFileSample;
 
 class maxiMap {
 public:
-	static double inline linlin(double val, double inMin, double inMax, double outMin, double outMax) {
+	static maxiType inline linlin(maxiType val, maxiType inMin, maxiType inMax, maxiType outMin, maxiType outMax) {
 		val = max(min(val, inMax), inMin);
 		return ((val - inMin) / (inMax - inMin) * (outMax - outMin)) + outMin;
 	}
 	
-	static double inline linexp(double val, double inMin, double inMax, double outMin, double outMax) {
+	static maxiType inline linexp(maxiType val, maxiType inMin, maxiType inMax, maxiType outMin, maxiType outMax) {
 		//clipping
 		val = max(min(val, inMax), inMin);
 		return pow((outMax / outMin), (val - inMin) / (inMax - inMin)) * outMin;
 	}
 	
-	static double inline explin(double val, double inMin, double inMax, double outMin, double outMax) {
+	static maxiType inline explin(maxiType val, maxiType inMin, maxiType inMax, maxiType outMin, maxiType outMax) {
 		//clipping
 		val = max(min(val, inMax), inMin);
 		return (log(val/inMin) / log(inMax/inMin) * (outMax - outMin)) + outMin;
@@ -429,16 +448,16 @@ public:
 
 class maxiDyn {
 public:
-	double gate(double input, double threshold=0.9, long holdtime=1, double attack=1, double release=0.9995);
-	double compressor(double input, double ratio, double threshold=0.9, double attack=1, double release=0.9995);
-	double input;
-	double ratio;
-	double currentRatio;
-	double threshold;
-	double output;
-	double attack;
-	double release;
-	double amplitude;
+	maxiType gate(maxiType input, maxiType threshold=0.9, long holdtime=1, maxiType attack=1, maxiType release=0.9995);
+	maxiType compressor(maxiType input, maxiType ratio, maxiType threshold=0.9, maxiType attack=1, maxiType release=0.9995);
+	maxiType input;
+	maxiType ratio;
+	maxiType currentRatio;
+	maxiType threshold;
+	maxiType output;
+	maxiType attack;
+	maxiType release;
+	maxiType amplitude;
 	long holdtime;
 	long holdcount;
 	int attackphase,holdphase,releasephase;
@@ -446,15 +465,15 @@ public:
 
 class maxiEnv {
 public:
-	double ar(double input, double attack=1, double release=0.9, long holdtime=1, int trigger=0);
-	double adsr(double input, double attack=1, double decay=0.99, double sustain=0.125, double release=0.9, long holdtime=1, int trigger=0);
-	double input;
-	double output;
-	double attack;
-	double decay;
-	double sustain;
-	double release;
-	double amplitude;
+	maxiType ar(maxiType input, maxiType attack=1, maxiType release=0.9, long holdtime=1, int trigger=0);
+	maxiType adsr(maxiType input, maxiType attack=1, maxiType decay=0.99, maxiType sustain=0.125, maxiType release=0.9, long holdtime=1, int trigger=0);
+	maxiType input;
+	maxiType output;
+	maxiType attack;
+	maxiType decay;
+	maxiType sustain;
+	maxiType release;
+	maxiType amplitude;
 	int trigger;
 	long holdtime;
 	long holdcount;
@@ -463,7 +482,7 @@ public:
 
 class convert {
 public:
-	double mtof(int midinote);
+	maxiType mtof(int midinote);
 };
 
 
@@ -472,9 +491,9 @@ class maxiDistortion {
 public:
     /*atan distortion, see http://www.musicdsp.org/showArchiveComment.php?ArchiveID=104*/
     /*shape from 1 (soft clipping) to infinity (hard clipping)*/
-    double atanDist(const double in, const double shape);
-    double fastAtanDist(const double in, const double shape);
-    double fastatan( double x );
+    maxiType atanDist(const maxiType in, const maxiType shape);
+    maxiType fastAtanDist(const maxiType in, const maxiType shape);
+    maxiType fastatan( maxiType x );
 };
 
 
@@ -484,7 +503,7 @@ public:
     //feedback = 0 - 1
     //speed = lfo speed in Hz, 0.0001 - 10 sounds good
     //depth = 0 - 1
-    double flange(const double input, const unsigned int delay, const double feedback, const double speed, const double depth);
+    maxiType flange(const maxiType input, const unsigned int delay, const maxiType feedback, const maxiType speed, const maxiType depth);
     maxiDelayline dl;
     maxiOsc lfo;
 
@@ -496,7 +515,7 @@ public:
     //feedback = 0 - 1
     //speed = lfo speed in Hz, 0.0001 - 10 sounds good
     //depth = 0 - 1
-    double chorus(const double input, const unsigned int delay, const double feedback, const double speed, const double depth);
+    maxiType chorus(const maxiType input, const unsigned int delay, const maxiType feedback, const maxiType speed, const maxiType depth);
     maxiDelayline dl, dl2;
     maxiOsc lfo;
     maxiFilter lopass;
@@ -532,15 +551,15 @@ private:
     T attack, release, env;
 };
 
-typedef maxiEnvelopeFollowerType<double> maxiEnvelopeFollower;
+typedef maxiEnvelopeFollowerType<maxiType> maxiEnvelopeFollower;
 typedef maxiEnvelopeFollowerType<float> maxiEnvelopeFollowerF;
 
 //from https://ccrma.stanford.edu/~jos/filters/DC_Blocker_Software_Implementations.html
 class maxiDCBlocker {
 public:
-    double xm1, ym1;
+    maxiType xm1, ym1;
     maxiDCBlocker() : xm1(0), ym1(0) {}
-    inline double play(double input, double R);
+    inline maxiType play(maxiType input, maxiType R);
 };
 
 /*
@@ -565,19 +584,19 @@ public:
     maxiSVF() : v0z(0), v1(0), v2(0) { setParams(1000, 1);}
     
     //20 < cutoff < 20000
-    maxiSVF& setCutoff(double cutoff);
+    maxiSVF& setCutoff(maxiType cutoff);
     
     //from 0 upwards, starts to ring from 2-3ish, cracks a bit around 10
-    maxiSVF& setResonance(double q);
+    maxiSVF& setResonance(maxiType q);
     
     //run the filter, and get a mixture of lowpass, bandpass, highpass and notch outputs
-    double play(double w, double lpmix, double bpmix, double hpmix, double notchmix);
+    maxiType play(maxiType w, maxiType lpmix, maxiType bpmix, maxiType hpmix, maxiType notchmix);
     
 private:
-    void setParams(double _freq, double _res);
+    void setParams(maxiType _freq, maxiType _res);
     
-    double v0z, v1, v2, g, damping, k, ginv, g1, g2, g3 ,g4;
-    double freq, res;
+    maxiType v0z, v1, v2, g, damping, k, ginv, g1, g2, g3 ,g4;
+    maxiType freq, res;
     
 };
 

@@ -1,4 +1,3 @@
-
 /*
  *  maximilian.cpp
  *  platform independent synthesis library using portaudio or rtaudio
@@ -51,11 +50,11 @@ int maxiSettings::bufferSize = 1024;
 
 
 //this is a 514-point sinewave table that has many uses. 
-double sineBuffer[514]={0,0.012268,0.024536,0.036804,0.049042,0.06131,0.073547,0.085785,0.097992,0.1102,0.12241,0.13455,0.1467,0.15884,0.17093,0.18301,0.19507,0.20709,0.21909,0.23105,0.24295,0.25485,0.26669,0.2785,0.29025,0.30197,0.31366,0.32529,0.33685,0.34839,0.35986,0.37128,0.38266,0.39395,0.40521,0.41641,0.42752,0.4386,0.44958,0.46051,0.47137,0.48215,0.49286,0.50351,0.51407,0.52457,0.53497,0.54529,0.55554,0.5657,0.57578,0.58575,0.59567,0.60547,0.6152,0.62482,0.63437,0.6438,0.65314,0.66238,0.67151,0.68057,0.68951,0.69833,0.70706,0.7157,0.72421,0.7326,0.74091,0.74908,0.75717,0.76514,0.77298,0.7807,0.7883,0.79581,0.80316,0.81042,0.81754,0.82455,0.83142,0.8382,0.84482,0.85132,0.8577,0.86392,0.87006,0.87604,0.88187,0.8876,0.89319,0.89862,0.90396,0.90912,0.91415,0.91907,0.92383,0.92847,0.93295,0.93729,0.9415,0.94556,0.94949,0.95325,0.95691,0.96039,0.96375,0.96692,0.97,0.9729,0.97565,0.97827,0.98074,0.98306,0.98523,0.98724,0.98914,0.99084,0.99243,0.99387,0.99515,0.99628,0.99725,0.99808,0.99875,0.99927,0.99966,0.99988,0.99997,0.99988,0.99966,0.99927,0.99875,0.99808,0.99725,0.99628,0.99515,0.99387,0.99243,0.99084,0.98914,0.98724,0.98523,0.98306,0.98074,0.97827,0.97565,0.9729,0.97,0.96692,0.96375,0.96039,0.95691,0.95325,0.94949,0.94556,0.9415,0.93729,0.93295,0.92847,0.92383,0.91907,0.91415,0.90912,0.90396,0.89862,0.89319,0.8876,0.88187,0.87604,0.87006,0.86392,0.8577,0.85132,0.84482,0.8382,0.83142,0.82455,0.81754,0.81042,0.80316,0.79581,0.7883,0.7807,0.77298,0.76514,0.75717,0.74908,0.74091,0.7326,0.72421,0.7157,0.70706,0.69833,0.68951,0.68057,0.67151,0.66238,0.65314,0.6438,0.63437,0.62482,0.6152,0.60547,0.59567,0.58575,0.57578,0.5657,0.55554,0.54529,0.53497,0.52457,0.51407,0.50351,0.49286,0.48215,0.47137,0.46051,0.44958,0.4386,0.42752,0.41641,0.40521,0.39395,0.38266,0.37128,0.35986,0.34839,0.33685,0.32529,0.31366,0.30197,0.29025,0.2785,0.26669,0.25485,0.24295,0.23105,0.21909,0.20709,0.19507,0.18301,0.17093,0.15884,0.1467,0.13455,0.12241,0.1102,0.097992,0.085785,0.073547,0.06131,0.049042,0.036804,0.024536,0.012268,0,-0.012268,-0.024536,-0.036804,-0.049042,-0.06131,-0.073547,-0.085785,-0.097992,-0.1102,-0.12241,-0.13455,-0.1467,-0.15884,-0.17093,-0.18301,-0.19507,-0.20709,-0.21909,-0.23105,-0.24295,-0.25485,-0.26669,-0.2785,-0.29025,-0.30197,-0.31366,-0.32529,-0.33685,-0.34839,-0.35986,-0.37128,-0.38266,-0.39395,-0.40521,-0.41641,-0.42752,-0.4386,-0.44958,-0.46051,-0.47137,-0.48215,-0.49286,-0.50351,-0.51407,-0.52457,-0.53497,-0.54529,-0.55554,-0.5657,-0.57578,-0.58575,-0.59567,-0.60547,-0.6152,-0.62482,-0.63437,-0.6438,-0.65314,-0.66238,-0.67151,-0.68057,-0.68951,-0.69833,-0.70706,-0.7157,-0.72421,-0.7326,-0.74091,-0.74908,-0.75717,-0.76514,-0.77298,-0.7807,-0.7883,-0.79581,-0.80316,-0.81042,-0.81754,-0.82455,-0.83142,-0.8382,-0.84482,-0.85132,-0.8577,-0.86392,-0.87006,-0.87604,-0.88187,-0.8876,-0.89319,-0.89862,-0.90396,-0.90912,-0.91415,-0.91907,-0.92383,-0.92847,-0.93295,-0.93729,-0.9415,-0.94556,-0.94949,-0.95325,-0.95691,-0.96039,-0.96375,-0.96692,-0.97,-0.9729,-0.97565,-0.97827,-0.98074,-0.98306,-0.98523,-0.98724,-0.98914,-0.99084,-0.99243,-0.99387,-0.99515,-0.99628,-0.99725,-0.99808,-0.99875,-0.99927,-0.99966,-0.99988,-0.99997,-0.99988,-0.99966,-0.99927,-0.99875,-0.99808,-0.99725,-0.99628,-0.99515,-0.99387,-0.99243,-0.99084,-0.98914,-0.98724,-0.98523,-0.98306,-0.98074,-0.97827,-0.97565,-0.9729,-0.97,-0.96692,-0.96375,-0.96039,-0.95691,-0.95325,-0.94949,-0.94556,-0.9415,-0.93729,-0.93295,-0.92847,-0.92383,-0.91907,-0.91415,-0.90912,-0.90396,-0.89862,-0.89319,-0.8876,-0.88187,-0.87604,-0.87006,-0.86392,-0.8577,-0.85132,-0.84482,-0.8382,-0.83142,-0.82455,-0.81754,-0.81042,-0.80316,-0.79581,-0.7883,-0.7807,-0.77298,-0.76514,-0.75717,-0.74908,-0.74091,-0.7326,-0.72421,-0.7157,-0.70706,-0.69833,-0.68951,-0.68057,-0.67151,-0.66238,-0.65314,-0.6438,-0.63437,-0.62482,-0.6152,-0.60547,-0.59567,-0.58575,-0.57578,-0.5657,-0.55554,-0.54529,-0.53497,-0.52457,-0.51407,-0.50351,-0.49286,-0.48215,-0.47137,-0.46051,-0.44958,-0.4386,-0.42752,-0.41641,-0.40521,-0.39395,-0.38266,-0.37128,-0.35986,-0.34839,-0.33685,-0.32529,-0.31366,-0.30197,-0.29025,-0.2785,-0.26669,-0.25485,-0.24295,-0.23105,-0.21909,-0.20709,-0.19507,-0.18301,-0.17093,-0.15884,-0.1467,-0.13455,-0.12241,-0.1102,-0.097992,-0.085785,-0.073547,-0.06131,-0.049042,-0.036804,-0.024536,-0.012268,0,0.012268
+maxiType sineBuffer[514]={0,0.012268,0.024536,0.036804,0.049042,0.06131,0.073547,0.085785,0.097992,0.1102,0.12241,0.13455,0.1467,0.15884,0.17093,0.18301,0.19507,0.20709,0.21909,0.23105,0.24295,0.25485,0.26669,0.2785,0.29025,0.30197,0.31366,0.32529,0.33685,0.34839,0.35986,0.37128,0.38266,0.39395,0.40521,0.41641,0.42752,0.4386,0.44958,0.46051,0.47137,0.48215,0.49286,0.50351,0.51407,0.52457,0.53497,0.54529,0.55554,0.5657,0.57578,0.58575,0.59567,0.60547,0.6152,0.62482,0.63437,0.6438,0.65314,0.66238,0.67151,0.68057,0.68951,0.69833,0.70706,0.7157,0.72421,0.7326,0.74091,0.74908,0.75717,0.76514,0.77298,0.7807,0.7883,0.79581,0.80316,0.81042,0.81754,0.82455,0.83142,0.8382,0.84482,0.85132,0.8577,0.86392,0.87006,0.87604,0.88187,0.8876,0.89319,0.89862,0.90396,0.90912,0.91415,0.91907,0.92383,0.92847,0.93295,0.93729,0.9415,0.94556,0.94949,0.95325,0.95691,0.96039,0.96375,0.96692,0.97,0.9729,0.97565,0.97827,0.98074,0.98306,0.98523,0.98724,0.98914,0.99084,0.99243,0.99387,0.99515,0.99628,0.99725,0.99808,0.99875,0.99927,0.99966,0.99988,0.99997,0.99988,0.99966,0.99927,0.99875,0.99808,0.99725,0.99628,0.99515,0.99387,0.99243,0.99084,0.98914,0.98724,0.98523,0.98306,0.98074,0.97827,0.97565,0.9729,0.97,0.96692,0.96375,0.96039,0.95691,0.95325,0.94949,0.94556,0.9415,0.93729,0.93295,0.92847,0.92383,0.91907,0.91415,0.90912,0.90396,0.89862,0.89319,0.8876,0.88187,0.87604,0.87006,0.86392,0.8577,0.85132,0.84482,0.8382,0.83142,0.82455,0.81754,0.81042,0.80316,0.79581,0.7883,0.7807,0.77298,0.76514,0.75717,0.74908,0.74091,0.7326,0.72421,0.7157,0.70706,0.69833,0.68951,0.68057,0.67151,0.66238,0.65314,0.6438,0.63437,0.62482,0.6152,0.60547,0.59567,0.58575,0.57578,0.5657,0.55554,0.54529,0.53497,0.52457,0.51407,0.50351,0.49286,0.48215,0.47137,0.46051,0.44958,0.4386,0.42752,0.41641,0.40521,0.39395,0.38266,0.37128,0.35986,0.34839,0.33685,0.32529,0.31366,0.30197,0.29025,0.2785,0.26669,0.25485,0.24295,0.23105,0.21909,0.20709,0.19507,0.18301,0.17093,0.15884,0.1467,0.13455,0.12241,0.1102,0.097992,0.085785,0.073547,0.06131,0.049042,0.036804,0.024536,0.012268,0,-0.012268,-0.024536,-0.036804,-0.049042,-0.06131,-0.073547,-0.085785,-0.097992,-0.1102,-0.12241,-0.13455,-0.1467,-0.15884,-0.17093,-0.18301,-0.19507,-0.20709,-0.21909,-0.23105,-0.24295,-0.25485,-0.26669,-0.2785,-0.29025,-0.30197,-0.31366,-0.32529,-0.33685,-0.34839,-0.35986,-0.37128,-0.38266,-0.39395,-0.40521,-0.41641,-0.42752,-0.4386,-0.44958,-0.46051,-0.47137,-0.48215,-0.49286,-0.50351,-0.51407,-0.52457,-0.53497,-0.54529,-0.55554,-0.5657,-0.57578,-0.58575,-0.59567,-0.60547,-0.6152,-0.62482,-0.63437,-0.6438,-0.65314,-0.66238,-0.67151,-0.68057,-0.68951,-0.69833,-0.70706,-0.7157,-0.72421,-0.7326,-0.74091,-0.74908,-0.75717,-0.76514,-0.77298,-0.7807,-0.7883,-0.79581,-0.80316,-0.81042,-0.81754,-0.82455,-0.83142,-0.8382,-0.84482,-0.85132,-0.8577,-0.86392,-0.87006,-0.87604,-0.88187,-0.8876,-0.89319,-0.89862,-0.90396,-0.90912,-0.91415,-0.91907,-0.92383,-0.92847,-0.93295,-0.93729,-0.9415,-0.94556,-0.94949,-0.95325,-0.95691,-0.96039,-0.96375,-0.96692,-0.97,-0.9729,-0.97565,-0.97827,-0.98074,-0.98306,-0.98523,-0.98724,-0.98914,-0.99084,-0.99243,-0.99387,-0.99515,-0.99628,-0.99725,-0.99808,-0.99875,-0.99927,-0.99966,-0.99988,-0.99997,-0.99988,-0.99966,-0.99927,-0.99875,-0.99808,-0.99725,-0.99628,-0.99515,-0.99387,-0.99243,-0.99084,-0.98914,-0.98724,-0.98523,-0.98306,-0.98074,-0.97827,-0.97565,-0.9729,-0.97,-0.96692,-0.96375,-0.96039,-0.95691,-0.95325,-0.94949,-0.94556,-0.9415,-0.93729,-0.93295,-0.92847,-0.92383,-0.91907,-0.91415,-0.90912,-0.90396,-0.89862,-0.89319,-0.8876,-0.88187,-0.87604,-0.87006,-0.86392,-0.8577,-0.85132,-0.84482,-0.8382,-0.83142,-0.82455,-0.81754,-0.81042,-0.80316,-0.79581,-0.7883,-0.7807,-0.77298,-0.76514,-0.75717,-0.74908,-0.74091,-0.7326,-0.72421,-0.7157,-0.70706,-0.69833,-0.68951,-0.68057,-0.67151,-0.66238,-0.65314,-0.6438,-0.63437,-0.62482,-0.6152,-0.60547,-0.59567,-0.58575,-0.57578,-0.5657,-0.55554,-0.54529,-0.53497,-0.52457,-0.51407,-0.50351,-0.49286,-0.48215,-0.47137,-0.46051,-0.44958,-0.4386,-0.42752,-0.41641,-0.40521,-0.39395,-0.38266,-0.37128,-0.35986,-0.34839,-0.33685,-0.32529,-0.31366,-0.30197,-0.29025,-0.2785,-0.26669,-0.25485,-0.24295,-0.23105,-0.21909,-0.20709,-0.19507,-0.18301,-0.17093,-0.15884,-0.1467,-0.13455,-0.12241,-0.1102,-0.097992,-0.085785,-0.073547,-0.06131,-0.049042,-0.036804,-0.024536,-0.012268,0,0.012268
 };
 
 // This is a transition table that helps with bandlimited oscs.
-double transition[1001]={-0.500003,-0.500003,-0.500023,-0.500063,-0.500121,-0.500179,-0.500259,
+maxiType transition[1001]={-0.500003,-0.500003,-0.500023,-0.500063,-0.500121,-0.500179,-0.500259,
     -0.50036,-0.500476,-0.500591,-0.500732,-0.500893,-0.501066,-0.501239,
     -0.50144,-0.501661,-0.501891,-0.502123,-0.502382,-0.502662,-0.502949,
     -0.50324,-0.503555,-0.503895,-0.504238,-0.504587,-0.504958,-0.505356,
@@ -191,11 +190,11 @@ double transition[1001]={-0.500003,-0.500003,-0.500023,-0.500063,-0.500121,-0.50
     0.500476,0.50036,0.500259,0.500179,0.500121,0.500063,0.500023,0.500003,0.500003};
 
 //This is a lookup table for converting midi to frequency
-double mtofarray[129]={0, 8.661957, 9.177024, 9.722718, 10.3, 10.913383, 11.562325, 12.25, 12.978271, 13.75, 14.567617, 15.433853, 16.351599, 17.323914, 18.354048, 19.445436, 20.601723, 21.826765, 23.124651, 24.5, 25.956543, 27.5, 29.135235, 30.867706, 32.703197, 34.647827, 36.708096, 38.890873, 41.203445, 43.65353, 46.249302, 49., 51.913086, 55., 58.27047, 61.735413, 65.406395, 69.295654, 73.416191, 77.781746, 82.406891, 87.30706, 92.498604, 97.998856, 103.826172, 110., 116.540939, 123.470825, 130.81279, 138.591309, 146.832382, 155.563492, 164.813782, 174.61412, 184.997208, 195.997711, 207.652344, 220., 233.081879, 246.94165, 261.62558, 277.182617,293.664764, 311.126984, 329.627563, 349.228241, 369.994415, 391.995422, 415.304688, 440., 466.163757, 493.883301, 523.25116, 554.365234, 587.329529, 622.253967, 659.255127, 698.456482, 739.988831, 783.990845, 830.609375, 880., 932.327515, 987.766602, 1046.502319, 1108.730469, 1174.659058, 1244.507935, 1318.510254, 1396.912964, 1479.977661, 1567.981689, 1661.21875, 1760., 1864.655029, 1975.533203, 2093.004639, 2217.460938, 2349.318115, 2489.015869, 2637.020508, 2793.825928, 2959.955322, 3135.963379, 3322.4375, 3520., 3729.31, 3951.066406, 4186.009277, 4434.921875, 4698.63623, 4978.031738, 5274.041016, 5587.651855, 5919.910645, 6271.926758, 6644.875, 7040., 7458.620117, 7902.132812, 8372.018555, 8869.84375, 9397.272461, 9956.063477, 10548.082031, 11175.303711, 11839.821289, 12543.853516, 13289.75};
+maxiType mtofarray[129]={0, 8.661957, 9.177024, 9.722718, 10.3, 10.913383, 11.562325, 12.25, 12.978271, 13.75, 14.567617, 15.433853, 16.351599, 17.323914, 18.354048, 19.445436, 20.601723, 21.826765, 23.124651, 24.5, 25.956543, 27.5, 29.135235, 30.867706, 32.703197, 34.647827, 36.708096, 38.890873, 41.203445, 43.65353, 46.249302, 49., 51.913086, 55., 58.27047, 61.735413, 65.406395, 69.295654, 73.416191, 77.781746, 82.406891, 87.30706, 92.498604, 97.998856, 103.826172, 110., 116.540939, 123.470825, 130.81279, 138.591309, 146.832382, 155.563492, 164.813782, 174.61412, 184.997208, 195.997711, 207.652344, 220., 233.081879, 246.94165, 261.62558, 277.182617,293.664764, 311.126984, 329.627563, 349.228241, 369.994415, 391.995422, 415.304688, 440., 466.163757, 493.883301, 523.25116, 554.365234, 587.329529, 622.253967, 659.255127, 698.456482, 739.988831, 783.990845, 830.609375, 880., 932.327515, 987.766602, 1046.502319, 1108.730469, 1174.659058, 1244.507935, 1318.510254, 1396.912964, 1479.977661, 1567.981689, 1661.21875, 1760., 1864.655029, 1975.533203, 2093.004639, 2217.460938, 2349.318115, 2489.015869, 2637.020508, 2793.825928, 2959.955322, 3135.963379, 3322.4375, 3520., 3729.31, 3951.066406, 4186.009277, 4434.921875, 4698.63623, 4978.031738, 5274.041016, 5587.651855, 5919.910645, 6271.926758, 6644.875, 7040., 7458.620117, 7902.132812, 8372.018555, 8869.84375, 9397.272461, 9956.063477, 10548.082031, 11175.303711, 11839.821289, 12543.853516, 13289.75};
 
 void setup();//use this to do any initialisation if you want.
 
-void play(double *channels);//run dac!
+void play(maxiType *channels);//run dac!
 
 ///////////////////////////////////////////////////////////////////////////
 // maxiOsc
@@ -207,7 +206,7 @@ maxiOsc::maxiOsc(){
 	phase = 0.0;
 }
 
-double maxiOsc::noise() {
+maxiType maxiOsc::noise() {
     //White Noise
 	//always the same unless you seed it.
 	float r = rand()/(float)RAND_MAX;
@@ -215,13 +214,13 @@ double maxiOsc::noise() {
 	return(output);
 }
 
-void maxiOsc::phaseReset(double phaseIn) {
+void maxiOsc::phaseReset(maxiType phaseIn) {
     //This allows you to set the phase of the oscillator to anything you like.
 	phase=phaseIn;
 	
 }
 
-double maxiOsc::sinewave(double frequency) {
+maxiType maxiOsc::sinewave(maxiType frequency) {
     //This is a sinewave oscillator
 	output=sin (phase*(TWOPI));
 	if ( phase >= 1.0 ) phase -= 1.0;
@@ -230,10 +229,10 @@ double maxiOsc::sinewave(double frequency) {
 	
 }
 
-double maxiOsc::sinebuf4(double frequency) {
+maxiType maxiOsc::sinebuf4(maxiType frequency) {
     //This is a sinewave oscillator that uses 4 point interpolation on a 514 point buffer
-	double remainder;
-	double a,b,c,d,a1,a2,a3;
+	maxiType remainder;
+	maxiType a,b,c,d,a1,a2,a3;
 	phase += 512./(maxiSettings::sampleRate/(frequency));
 	if ( phase >= 511 ) phase -=512;
 	remainder = phase - floor(phase);
@@ -255,21 +254,21 @@ double maxiOsc::sinebuf4(double frequency) {
 	a1 = 0.5f * (c - a);
 	a2 = a - 2.5 * b + 2.f * c - 0.5f * d;
 	a3 = 0.5f * (d - a) + 1.5f * (b - c);
-	output = double (((a3 * remainder + a2) * remainder + a1) * remainder + b);
+	output = maxiType (((a3 * remainder + a2) * remainder + a1) * remainder + b);
 	return(output);
 }
 
-double maxiOsc::sinebuf(double frequency) { //specify the frequency of the oscillator in Hz / cps etc.
+maxiType maxiOsc::sinebuf(maxiType frequency) { //specify the frequency of the oscillator in Hz / cps etc.
     //This is a sinewave oscillator that uses linear interpolation on a 514 point buffer
-	double remainder;
+	maxiType remainder;
  	phase += 512./(maxiSettings::sampleRate/(frequency*chandiv));
 	if ( phase >= 511 ) phase -=512;
 	remainder = phase - floor(phase);
-	output = (double) ((1-remainder) * sineBuffer[1+ (long) phase] + remainder * sineBuffer[2+(long) phase]);
+	output = (maxiType) ((1-remainder) * sineBuffer[1+ (long) phase] + remainder * sineBuffer[2+(long) phase]);
 	return(output);
 }
 
-double maxiOsc::coswave(double frequency) {
+maxiType maxiOsc::coswave(maxiType frequency) {
     //This is a cosine oscillator
 	output=cos (phase*(TWOPI));
 	if ( phase >= 1.0 ) phase -= 1.0;
@@ -278,7 +277,7 @@ double maxiOsc::coswave(double frequency) {
 	
 }
 
-double maxiOsc::phasor(double frequency) {
+maxiType maxiOsc::phasor(maxiType frequency) {
     //This produces a floating point linear ramp between 0 and 1 at the desired frequency 
 	output=phase;
 	if ( phase >= 1.0 ) phase -= 1.0;
@@ -286,7 +285,7 @@ double maxiOsc::phasor(double frequency) {
 	return(output);
 } 
 
-double maxiOsc::square(double frequency) {
+maxiType maxiOsc::square(maxiType frequency) {
     //This is a square wave
 	if (phase<0.5) output=-1;
 	if (phase>0.5) output=1;
@@ -295,7 +294,7 @@ double maxiOsc::square(double frequency) {
 	return(output);
 }
 
-double maxiOsc::pulse(double frequency, double duty) {
+maxiType maxiOsc::pulse(maxiType frequency, maxiType duty) {
     //This is a pulse generator that creates a signal between -1 and 1.
 	if (duty<0.) duty=0;
 	if (duty>1.) duty=1;
@@ -306,7 +305,7 @@ double maxiOsc::pulse(double frequency, double duty) {
 	return(output);
 }
 
-double maxiOsc::phasor(double frequency, double startphase, double endphase) {
+maxiType maxiOsc::phasor(maxiType frequency, maxiType startphase, maxiType endphase) {
     //This is a phasor that takes a value for the start and end of the ramp. 
 	output=phase;
 	if (phase<startphase) {
@@ -318,7 +317,7 @@ double maxiOsc::phasor(double frequency, double startphase, double endphase) {
 }
 
 
-double maxiOsc::saw(double frequency) {
+maxiType maxiOsc::saw(maxiType frequency) {
 	//Sawtooth generator. This is like a phasor but goes between -1 and 1
 	output=phase;
 	if ( phase >= 1.0 ) phase -= 2.0;
@@ -327,7 +326,7 @@ double maxiOsc::saw(double frequency) {
 	
 } 
 
-double maxiOsc::triangle(double frequency) {
+maxiType maxiOsc::triangle(maxiType frequency) {
     //This is a triangle wave.
 	if ( phase >= 1.0 ) phase -= 1.0;
 	phase += (1./(maxiSettings::sampleRate/(frequency)));
@@ -340,11 +339,11 @@ double maxiOsc::triangle(double frequency) {
 	
 }
 
-double maxiOsc::sawn(double frequency) {
+maxiType maxiOsc::sawn(maxiType frequency) {
 	//Bandlimited sawtooth generator. Woohoo.
     if ( phase >= 0.5 ) phase -= 1.0;
     phase += (1./(maxiSettings::sampleRate/(frequency)));
-	double temp=(8820.22/frequency)*phase;
+	maxiType temp=(8820.22/frequency)*phase;
     if (temp<-0.5) {
         temp=-0.5;
     }
@@ -353,8 +352,8 @@ double maxiOsc::sawn(double frequency) {
     }
     temp*=1000.0f;
     temp+=500.0f;
-    double remainder = temp - floor(temp);
-    output = (double) ((1.0f-remainder) * transition[(long)temp] + remainder * transition[1+(long)temp]) - phase;
+    maxiType remainder = temp - floor(temp);
+    output = (maxiType) ((1.0f-remainder) * transition[(long)temp] + remainder * transition[1+(long)temp]) - phase;
 	return(output);
 	
 }
@@ -363,7 +362,7 @@ double maxiOsc::sawn(double frequency) {
 // maxiEnvelope
 ///////////////////////////////////////////////////////////////////////////
 
-double maxiEnvelope::line(int numberofsegments,double segments[1000]) {
+maxiType maxiEnvelope::line(int numberofsegments,maxiType segments[1000]) {
 	//This is a basic multi-segment ramp generator that you can use for more or less anything.
     //However, it's not that intuitive.
     if (isPlaying==1) {//only make a sound once you've been triggered
@@ -391,7 +390,7 @@ double maxiEnvelope::line(int numberofsegments,double segments[1000]) {
 }
 
 //and this
-void maxiEnvelope::trigger(int index, double amp) {
+void maxiEnvelope::trigger(int index, maxiType amp) {
 	isPlaying=1;//ok the envelope is being used now.
 	valindex=index;
 	amplitude=amp;
@@ -404,12 +403,12 @@ void maxiEnvelope::trigger(int index, double amp) {
 
 //Delay with feedback
 maxiDelayline::maxiDelayline() {
-	memset( memory, 0, 88200*sizeof (double) );
+	memset( memory, 0, 88200*sizeof (maxiType) );
     phase=0;
 }
 
 
-double maxiDelayline::dl(double input, int size, double feedback)  {
+maxiType maxiDelayline::dl(maxiType input, int size, maxiType feedback)  {
 	if ( phase >=size ) {
 		phase = 0;
 	}
@@ -420,7 +419,7 @@ double maxiDelayline::dl(double input, int size, double feedback)  {
 	
 }
 
-double maxiDelayline::dl(double input, int size, double feedback, int position)  {
+maxiType maxiDelayline::dl(maxiType input, int size, maxiType feedback, int position)  {
 	if ( phase >=size ) phase = 0;
 	if ( position >=size ) position = 0;
 	output=memory[position];
@@ -435,26 +434,26 @@ double maxiDelayline::dl(double input, int size, double feedback, int position) 
 ///////////////////////////////////////////////////////////////////////////
 
 //I particularly like these. cutoff between 0 and 1
-double maxiFilter::lopass(double input, double cutoff) {
+maxiType maxiFilter::lopass(maxiType input, maxiType cutoff) {
 	output=outputs[0] + cutoff*(input-outputs[0]);
 	outputs[0]=output;
 	return(output);
 }
 //as above
-double maxiFilter::hipass(double input, double cutoff) {
+maxiType maxiFilter::hipass(maxiType input, maxiType cutoff) {
 	output=input-(outputs[0] + cutoff*(input-outputs[0]));
 	outputs[0]=output;
 	return(output);
 }
 //awesome. cuttof is freq in hz. res is between 1 and whatever. Watch out!
-double maxiFilter::lores(double input,double cutoff1, double resonance) {
+maxiType maxiFilter::lores(maxiType input,maxiType cutoff1, maxiType resonance) {
 	cutoff=cutoff1*0.5;
 	if (cutoff<10) cutoff=10;
 	if (cutoff>(maxiSettings::sampleRate*0.5)) cutoff=(maxiSettings::sampleRate*0.5);
 	if (resonance<1.) resonance = 1.;
 	z=cos(TWOPI*cutoff/maxiSettings::sampleRate);
 	c=2-2*z;
-	double r=(sqrt(2.0)*sqrt(-pow((z-1.0),3.0))+resonance*(z-1))/(resonance*(z-1));
+	maxiType r=(sqrt(2.0)*sqrt(-pow(static_cast<maxiType>(z-1.0),static_cast<maxiType>(3.0)))+resonance*(z-1))/(resonance*(z-1));
 	x=x+(input-y)*c;
 	y=y+x;
 	x=x*r;
@@ -463,14 +462,14 @@ double maxiFilter::lores(double input,double cutoff1, double resonance) {
 }
 
 //working hires filter
-double maxiFilter::hires(double input,double cutoff1, double resonance) {
+maxiType maxiFilter::hires(maxiType input,maxiType cutoff1, maxiType resonance) {
 	cutoff=cutoff1*0.5;
 	if (cutoff<10) cutoff=10;
 	if (cutoff>(maxiSettings::sampleRate*0.5)) cutoff=(maxiSettings::sampleRate*0.5);
 	if (resonance<1.) resonance = 1.;
 	z=cos(TWOPI*cutoff/maxiSettings::sampleRate);
 	c=2-2*z;
-	double r=(sqrt(2.0)*sqrt(-pow((z-1.0),3.0))+resonance*(z-1))/(resonance*(z-1));
+	maxiType r=(sqrt(2.0)*sqrt(-pow(static_cast<maxiType>(z-1.0),static_cast<maxiType>(3.0)))+resonance*(z-1))/(resonance*(z-1));
 	x=x+(input-y)*c;
 	y=y+x;
 	x=x*r;
@@ -479,14 +478,14 @@ double maxiFilter::hires(double input,double cutoff1, double resonance) {
 }
 
 //This works a bit. Needs attention.
-double maxiFilter::bandpass(double input,double cutoff1, double resonance) {
+maxiType maxiFilter::bandpass(maxiType input,maxiType cutoff1, maxiType resonance) {
 	cutoff=cutoff1;
 	if (cutoff>(maxiSettings::sampleRate*0.5)) cutoff=(maxiSettings::sampleRate*0.5);
 	if (resonance>=1.) resonance=0.999999;
 	z=cos(TWOPI*cutoff/maxiSettings::sampleRate);
-	inputs[0] = (1-resonance)*(sqrt(resonance*(resonance-4.0*pow(z,2.0)+2.0)+1));
+	inputs[0] = (1-resonance)*(sqrt(resonance*(resonance-4.0*pow(static_cast<maxiType>(z),static_cast<maxiType>(2.0))+2.0)+1));
 	inputs[1] = 2*z*resonance;
-	inputs[2] = pow((resonance*-1),2);
+	inputs[2] = pow(static_cast<maxiType>(resonance*-1),static_cast<maxiType>(2.0));
 	
 	output=inputs[0]*input+inputs[1]*outputs[1]+inputs[2]*outputs[2];
 	outputs[2]=outputs[1];
@@ -499,7 +498,7 @@ double maxiFilter::bandpass(double input,double cutoff1, double resonance) {
 ///////////////////////////////////////////////////////////////////////////
 
 //stereo bus
-double *maxiMix::stereo(double input,double two[2],double x) {
+maxiType *maxiMix::stereo(maxiType input,maxiType two[2],maxiType x) {
 	if (x>1) x=1;
 	if (x<0) x=0;
 	two[0]=input*sqrt(1.0-x);
@@ -508,7 +507,7 @@ double *maxiMix::stereo(double input,double two[2],double x) {
 } 
 
 //quad bus
-double *maxiMix::quad(double input,double four[4],double x,double y) {
+maxiType *maxiMix::quad(maxiType input,maxiType four[4],maxiType x,maxiType y) {
 	if (x>1) x=1;
 	if (x<0) x=0;
 	if (y>1) y=1;
@@ -521,7 +520,7 @@ double *maxiMix::quad(double input,double four[4],double x,double y) {
 }
 
 //ambisonic bus
-double *maxiMix::ambisonic(double input,double eight[8],double x,double y,double z) {
+maxiType *maxiMix::ambisonic(maxiType input,maxiType eight[8],maxiType x,maxiType y,maxiType z) {
 	if (x>1) x=1;
 	if (x<0) x=0;
 	if (y>1) y=1;
@@ -556,28 +555,28 @@ void maxiSampler<source>::trigger() {
 
 
 template<class source>
-double maxiSampler<source>::play() {
+maxiType maxiSampler<source>::play() {
 	position++;
 	if ((long) position >= samples.getLength()) position=0;
-	output = (double) samples[(long)position]/32767.0;
+	output = (maxiType) samples[(long)position]/32767.0;
 	return output;
 }
 
 //start end and points are between 0 and 1
 template<class source>
-double maxiSampler<source>::playLoop(double start, double end) {
+maxiType maxiSampler<source>::playLoop(maxiType start, maxiType end) {
 	position++;
     if (position < samples.getLength() * start) position = samples.getLength() * start;
 	if ((long) position >= samples.getLength() * end) position = samples.getLength() * start;
-	output = (double) samples[(long)position]/32767.0;
+	output = (maxiType) samples[(long)position]/32767.0;
 	return output;
 }
 
 template<class source>
-double maxiSampler<source>::playOnce() {
+maxiType maxiSampler<source>::playOnce() {
 	position++;
 	if ((long) position< samples.getLength())
-        output = (double) samples[(long)position]/32767.0;
+        output = (maxiType) samples[(long)position]/32767.0;
     else {
         output=0;
     }
@@ -586,15 +585,15 @@ double maxiSampler<source>::playOnce() {
 }
 
 template<class source>
-void maxiSampler<source>::setPosition(double newPos) {
-    position = maxiMap::clamp<double>(newPos, 0.0, 1.0) * samples.getLength();
+void maxiSampler<source>::setPosition(maxiType newPos) {
+    position = maxiMap::clamp<maxiType>(newPos, 0.0, 1.0) * samples.getLength();
 }
 
 template<class source>
-double maxiSampler<source>::playUntil(double end) {
+maxiType maxiSampler<source>::playUntil(maxiType end) {
 	position++;
 	if ((long) position < samples.getLength() * end)
-        output = (double) samples[(long)position]/32767.0;
+        output = (maxiType) samples[(long)position]/32767.0;
     else {
         output=0;
     }
@@ -602,19 +601,19 @@ double maxiSampler<source>::playUntil(double end) {
 }
 
 template<class source>
-double maxiSampler<source>::playOnce(double speed) {
+maxiType maxiSampler<source>::playOnce(maxiType speed) {
 	position=position+((speed*chandiv)/(maxiSettings::sampleRate/samples.getSampleRate()));
-	double remainder = position - (long) position;
+	maxiType remainder = position - (long) position;
 	if ((long) position < samples.getLength())
-		output = (double) ((1-remainder) * samples[1+ (long) position] + remainder * samples[2+(long) position])/32767;//linear interpolation
+		output = (maxiType) ((1-remainder) * samples[1+ (long) position] + remainder * samples[2+(long) position])/32767;//linear interpolation
 	else 
 		output=0;
 	return(output);
 }
 
 template<class source>
-double maxiSampler<source>::play(double speed) {
-	double remainder;
+maxiType maxiSampler<source>::play(maxiType speed) {
+	maxiType remainder;
 	long a,b;
 	position=position+((speed*chandiv)/(maxiSettings::sampleRate/samples.getSampleRate()));
 	if (speed >=0) {
@@ -636,7 +635,7 @@ double maxiSampler<source>::play(double speed) {
 		b=samples.getLength()-1;
 		}
 		
-		output = (double) ((1-remainder) * samples[a] + remainder * samples[b])/32767;//linear interpolation
+		output = (maxiType) ((1-remainder) * samples[a] + remainder * samples[b])/32767;//linear interpolation
 } else {
 		if ((long) position<0) position= samples.getLength();
 		remainder = position - floor(position);
@@ -653,19 +652,19 @@ double maxiSampler<source>::play(double speed) {
 			else {
 				b=0;
 			}
-		output = (double) ((-1-remainder) * samples[a] + remainder * samples[b])/32767;//linear interpolation
+		output = (maxiType) ((-1-remainder) * samples[a] + remainder * samples[b])/32767;//linear interpolation
 	}	
 	return(output);
 }
 
 template<class source>
-double maxiSampler<source>::play(double frequency, double start, double end) {
+maxiType maxiSampler<source>::play(maxiType frequency, maxiType start, maxiType end) {
 	return play(frequency, start, end, position);
 }
 
 template<class source>
-double maxiSampler<source>::play(double frequency, double start, double end, double &pos) {
-	double remainder;
+maxiType maxiSampler<source>::play(maxiType frequency, maxiType start, maxiType end, maxiType &pos) {
+	maxiType remainder;
 	if (end>=samples.getLength()) end=samples.getLength()-1;
 	long a,b;
 
@@ -692,7 +691,7 @@ double maxiSampler<source>::play(double frequency, double start, double end, dou
 			b=samples.getLength()-1;
 		}
 
-		output = (double) ((1-remainder) * samples[a] +
+		output = (maxiType) ((1-remainder) * samples[a] +
 						   remainder * samples[b])/32767;//linear interpolation
 	} else {
 		frequency=frequency-(frequency+frequency);
@@ -712,7 +711,7 @@ double maxiSampler<source>::play(double frequency, double start, double end, dou
 		else {
 			b=0;
 		}		
-		output = (double) ((-1-remainder) * samples[a] +
+		output = (maxiType) ((-1-remainder) * samples[a] +
 						   remainder * samples[b])/32767;//linear interpolation
 		
 	}
@@ -723,9 +722,9 @@ double maxiSampler<source>::play(double frequency, double start, double end, dou
 
 //better cubic inerpolation. Cobbled together from various (pd externals, yehar, other places).
 template<class source>
-double maxiSampler<source>::play4(double frequency, double start, double end) {
-	double remainder;
-	double a,b,c,d,a1,a2,a3;
+maxiType maxiSampler<source>::play4(maxiType frequency, maxiType start, maxiType end) {
+	maxiType remainder;
+	maxiType a,b,c,d,a1,a2,a3;
 	if (frequency >0.) {
 		if (position<start) {
 			position=start;
@@ -758,7 +757,7 @@ double maxiSampler<source>::play4(double frequency, double start, double end) {
 		a1 = 0.5f * (c - a);
 		a2 = a - 2.5 * b + 2.f * c - 0.5f * d;
 		a3 = 0.5f * (d - a) + 1.5f * (b - c);
-		output = (double) (((a3 * remainder + a2) * remainder + a1) * remainder + b) / 32767;
+		output = (maxiType) (((a3 * remainder + a2) * remainder + a1) * remainder + b) / 32767;
 		
 	} else {
 		frequency=frequency-(frequency+frequency);
@@ -790,7 +789,7 @@ double maxiSampler<source>::play4(double frequency, double start, double end) {
 		a1 = 0.5f * (c - a);
 		a2 = a - 2.5 * b + 2.f * c - 0.5f * d;
 		a3 = 0.5f * (d - a) + 1.5f * (b - c);
-		output = (double) (((a3 * remainder + a2) * -remainder + a1) * -remainder + b) / 32767;
+		output = (maxiType) (((a3 * remainder + a2) * -remainder + a1) * -remainder + b) / 32767;
 		
 	}
 	
@@ -798,19 +797,19 @@ double maxiSampler<source>::play4(double frequency, double start, double end) {
 }
 
 template<class source>
-double maxiSampler<source>::bufferPlay(unsigned char &bufferin,long length) {
-	double remainder;
+maxiType maxiSampler<source>::bufferPlay(unsigned char &bufferin,long length) {
+	maxiType remainder;
 	short* buffer = (short *)&bufferin;
 	position=(position+1);
 	remainder = position - (long) position;
 	if ((long) position>length) position=0;
-	output = (double) ((1-remainder) * buffer[1+ (long) position] + remainder * buffer[2+(long) position])/32767;//linear interpolation
+	output = (maxiType) ((1-remainder) * buffer[1+ (long) position] + remainder * buffer[2+(long) position])/32767;//linear interpolation
 	return(output);
 }
 
 template<class source>
-double maxiSampler<source>::bufferPlay(unsigned char &bufferin,double speed,long length) {
-	double remainder;
+maxiType maxiSampler<source>::bufferPlay(unsigned char &bufferin,maxiType speed,long length) {
+	maxiType remainder;
 	long a,b;
 	short* buffer = (short *)&bufferin;
 	position=position+((speed*chandiv)/(maxiSettings::sampleRate/samples.getSampleRate()));
@@ -833,7 +832,7 @@ double maxiSampler<source>::bufferPlay(unsigned char &bufferin,double speed,long
 			b=length-1;
 		}
 		
-		output = (double) ((1-remainder) * buffer[a] + remainder * buffer[b])/32767;//linear interpolation
+		output = (maxiType) ((1-remainder) * buffer[a] + remainder * buffer[b])/32767;//linear interpolation
 	} else {
 		if ((long) position<0) position=length;
 		remainder = position - floor(position);
@@ -850,14 +849,14 @@ double maxiSampler<source>::bufferPlay(unsigned char &bufferin,double speed,long
 		else {
 			b=0;
 		}
-		output = (double) ((-1-remainder) * buffer[a] + remainder * buffer[b])/32767;//linear interpolation
+		output = (maxiType) ((-1-remainder) * buffer[a] + remainder * buffer[b])/32767;//linear interpolation
 	}	
 	return(output);
 }
 
 template<class source>
-double maxiSampler<source>::bufferPlay(unsigned char &bufferin,double frequency, double start, double end) {
-	double remainder;
+maxiType maxiSampler<source>::bufferPlay(unsigned char &bufferin,maxiType frequency, maxiType start, maxiType end) {
+	maxiType remainder;
 	long length=end;
 	long a,b;
 	short* buffer = (short *)&bufferin;
@@ -884,7 +883,7 @@ double maxiSampler<source>::bufferPlay(unsigned char &bufferin,double frequency,
 			b=length-1;
 		}
 		
-		output = (double) ((1-remainder) * buffer[a] +
+		output = (maxiType) ((1-remainder) * buffer[a] +
 						   remainder * buffer[b])/32767;//linear interpolation
 	} else {
 		frequency=frequency-(frequency+frequency);
@@ -904,7 +903,7 @@ double maxiSampler<source>::bufferPlay(unsigned char &bufferin,double frequency,
 		else {
 			b=0;
 		}		
-		output = (double) ((-1-remainder) * buffer[a] +
+		output = (maxiType) ((-1-remainder) * buffer[a] +
 						   remainder * buffer[b])/32767;//linear interpolation
 		
 	}
@@ -914,9 +913,9 @@ double maxiSampler<source>::bufferPlay(unsigned char &bufferin,double frequency,
 
 //better cubic inerpolation. Cobbled together from various (pd externals, yehar, other places).
 template<class source>
-double maxiSampler<source>::bufferPlay4(unsigned char &bufferin,double frequency, double start, double end) {
-	double remainder;
-	double a,b,c,d,a1,a2,a3;
+maxiType maxiSampler<source>::bufferPlay4(unsigned char &bufferin,maxiType frequency, maxiType start, maxiType end) {
+	maxiType remainder;
+	maxiType a,b,c,d,a1,a2,a3;
 	short* buffer = (short*)&bufferin;
 	if (frequency >0.) {
 		if (position<start) {
@@ -950,7 +949,7 @@ double maxiSampler<source>::bufferPlay4(unsigned char &bufferin,double frequency
 		a1 = 0.5f * (c - a);
 		a2 = a - 2.5 * b + 2.f * c - 0.5f * d;
 		a3 = 0.5f * (d - a) + 1.5f * (b - c);
-		output = (double) (((a3 * remainder + a2) * remainder + a1) * remainder + b) / 32767;
+		output = (maxiType) (((a3 * remainder + a2) * remainder + a1) * remainder + b) / 32767;
 		
 	} else {
 		frequency=frequency-(frequency+frequency);
@@ -982,7 +981,7 @@ double maxiSampler<source>::bufferPlay4(unsigned char &bufferin,double frequency
 		a1 = 0.5f * (c - a);
 		a2 = a - 2.5 * b + 2.f * c - 0.5f * d;
 		a3 = 0.5f * (d - a) + 1.5f * (b - c);
-		output = (double) (((a3 * remainder + a2) * -remainder + a1) * -remainder + b) / 32767;
+		output = (maxiType) (((a3 * remainder + a2) * -remainder + a1) * -remainder + b) / 32767;
 		
 	}
 	
@@ -1081,11 +1080,11 @@ string maxiSampler<source>::getSummary()
 }
 
 template<class source>
-void maxiSampler<source>::loopRecord(double newSample, const bool recordEnabled, const double recordMix, double start, double end) {
+void maxiSampler<source>::loopRecord(maxiType newSample, const bool recordEnabled, const maxiType recordMix, maxiType start, maxiType end) {
     loopRecordLag.addSample(recordEnabled);
     if (recordPosition < start * samples.getLength()) recordPosition = start * samples.getLength();
     if(recordEnabled) {
-        double currentSample = samples[(unsigned long)recordPosition] / 32767.0;
+        maxiType currentSample = samples[(unsigned long)recordPosition] / 32767.0;
         newSample = (recordMix * currentSample) + ((1.0 - recordMix) * newSample);
         newSample *= loopRecordLag.value();
         samples[(unsigned long)recordPosition] = newSample * 32767;
@@ -1120,7 +1119,7 @@ template class maxiSampler<oggSampleSource>;
  incrementing - consequently a long attack is something like 0.0001 and a long release is like 0.9999.
  Annoyingly, a short attack is 0.1, and a short release is 0.99. I'll sort this out laters */
 
-double maxiDyn::gate(double input, double threshold, long holdtime, double attack, double release) {
+maxiType maxiDyn::gate(maxiType input, maxiType threshold, long holdtime, maxiType attack, maxiType release) {
 	
 	if (fabs(input)>threshold && attackphase!=1){ 
 		holdcount=0;
@@ -1158,7 +1157,7 @@ double maxiDyn::gate(double input, double threshold, long holdtime, double attac
 }
 
 
-double maxiDyn::compressor(double input, double ratio, double threshold, double attack, double release) {
+maxiType maxiDyn::compressor(maxiType input, maxiType ratio, maxiType threshold, maxiType attack, maxiType release) {
 	
 	if (fabs(input)>threshold && attackphase!=1){ 
 		holdcount=0;
@@ -1196,7 +1195,7 @@ double maxiDyn::compressor(double input, double ratio, double threshold, double 
 /* Lots of people struggle with the envelope generators so here's a new easy one.
  It takes mental numbers for attack and release tho. Basically, they're exponentials.
  I'll map them out later so that it's a bit more intuitive */
-double maxiEnv::ar(double input, double attack, double release, long holdtime, int trigger) {
+maxiType maxiEnv::ar(maxiType input, maxiType attack, maxiType release, long holdtime, int trigger) {
 	
 	if (trigger==1 && attackphase!=1 && holdphase!=1){ 
 		holdcount=0;
@@ -1239,7 +1238,7 @@ double maxiEnv::ar(double input, double attack, double release, long holdtime, i
 
 /* and here's a new adsr. It's not bad, very simple to use*/
 
-double maxiEnv::adsr(double input, double attack, double decay, double sustain, double release, long holdtime, int trigger) {
+maxiType maxiEnv::adsr(maxiType input, maxiType attack, maxiType decay, maxiType sustain, maxiType release, long holdtime, int trigger) {
 	
 	if (trigger==1 && attackphase!=1 && holdphase!=1 && decayphase!=1){ 
 		holdcount=0;
@@ -1290,7 +1289,7 @@ double maxiEnv::adsr(double input, double attack, double decay, double sustain, 
 	return output;
 }
 
-double convert::mtof(int midinote) {
+maxiType convert::mtof(int midinote) {
 	
 	return mtofarray[midinote];
 }
@@ -1748,19 +1747,19 @@ inline short& fileSampleSource::operator[](const int idx) {
 // maxiDistortion
 ///////////////////////////////////////////////////////////////////////////
 
-double maxiDistortion::fastatan(double x)
+maxiType maxiDistortion::fastatan(maxiType x)
 {
     return (x / (1.0 + 0.28 * (x * x)));
 }
 
-double maxiDistortion::atanDist(const double in, const double shape) {
-    double out;
+maxiType maxiDistortion::atanDist(const maxiType in, const maxiType shape) {
+    maxiType out;
     out = (1.0 / atan(shape)) * atan(in * shape);
     return out;
 }
 
-double maxiDistortion::fastAtanDist(const double in, const double shape) {
-    double out;
+maxiType maxiDistortion::fastAtanDist(const maxiType in, const maxiType shape) {
+    maxiType out;
     out = (1.0 / fastatan(shape)) * fastatan(in * shape);
     return out;
 }
@@ -1769,13 +1768,13 @@ double maxiDistortion::fastAtanDist(const double in, const double shape) {
 // maxiFlanger
 ///////////////////////////////////////////////////////////////////////////
 
-double maxiFlanger::flange(const double input, const unsigned int delay, const double feedback, const double speed, const double depth)
+maxiType maxiFlanger::flange(const maxiType input, const unsigned int delay, const maxiType feedback, const maxiType speed, const maxiType depth)
 {
     //todo: needs fixing
-    double output;
-    double lfoVal = lfo.triangle(speed);
+    maxiType output;
+    maxiType lfoVal = lfo.triangle(speed);
     output = dl.dl(input, delay + (lfoVal * depth * delay) + 1, feedback) ;
-    double normalise = (1 - fabs(output));
+    maxiType normalise = (1 - fabs(output));
     output *= normalise;
     return (output + input) / 2.0;
 }
@@ -1785,11 +1784,11 @@ double maxiFlanger::flange(const double input, const unsigned int delay, const d
 // maxiChorus
 ///////////////////////////////////////////////////////////////////////////
 
-double maxiChorus::chorus(const double input, const unsigned int delay, const double feedback, const double speed, const double depth)
+maxiType maxiChorus::chorus(const maxiType input, const unsigned int delay, const maxiType feedback, const maxiType speed, const maxiType depth)
 {
     //this needs fixing
-    double output1, output2;
-    double lfoVal = lfo.noise();
+    maxiType output1, output2;
+    maxiType lfoVal = lfo.noise();
     lfoVal = lopass.lores(lfoVal, speed, 1.0) * 2.0;
     output1 = dl.dl(input, delay + (lfoVal * depth * delay) + 1, feedback) ;
     output2 = dl2.dl(input, (delay + (lfoVal * depth * delay * 1.02) + 1) * 0.98, feedback * 0.99) ;
@@ -1802,7 +1801,7 @@ double maxiChorus::chorus(const double input, const unsigned int delay, const do
 // maxiDCBlocker
 ///////////////////////////////////////////////////////////////////////////
 
-double maxiDCBlocker::play(double input, double R) {
+maxiType maxiDCBlocker::play(maxiType input, maxiType R) {
     ym1 = input - xm1 + R * ym1;
     xm1 = input;
     return ym1;
@@ -1812,23 +1811,23 @@ double maxiDCBlocker::play(double input, double R) {
 // maxiSVF
 ///////////////////////////////////////////////////////////////////////////
 
-maxiSVF& maxiSVF::setCutoff(double cutoff) {
+maxiSVF& maxiSVF::setCutoff(maxiType cutoff) {
     setParams(cutoff, res);
     return *this;
 }
 
 //from 0 upwards, starts to ring from 2-3ish, cracks a bit around 10
-maxiSVF& maxiSVF::setResonance(double q) {
+maxiSVF& maxiSVF::setResonance(maxiType q) {
     setParams(freq, q);
     return *this;
 }
 
 //run the filter, and get a mixture of lowpass, bandpass, highpass and notch outputs
-double maxiSVF::play(double w, double lpmix, double bpmix, double hpmix, double notchmix) {
-    double low, band, high, notch;
-    double v1z = v1;
-    double v2z = v2;
-    double v3 = w + v0z - 2.0 * v2z;
+maxiType maxiSVF::play(maxiType w, maxiType lpmix, maxiType bpmix, maxiType hpmix, maxiType notchmix) {
+    maxiType low, band, high, notch;
+    maxiType v1z = v1;
+    maxiType v2z = v2;
+    maxiType v3 = w + v0z - 2.0 * v2z;
     v1 += g1*v3-g2*v1z;
     v2 += g3*v3+g4*v1z;
     v0z = w;
@@ -1839,7 +1838,7 @@ double maxiSVF::play(double w, double lpmix, double bpmix, double hpmix, double 
     return (low * lpmix) + (band * bpmix) + (high * hpmix) + (notch * notchmix);
 }
 
-void maxiSVF::setParams(double _freq, double _res) {
+void maxiSVF::setParams(maxiType _freq, maxiType _res) {
     freq = _freq;
     res = _res;
     g = tan(PI * freq / maxiSettings::sampleRate);

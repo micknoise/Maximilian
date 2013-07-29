@@ -294,10 +294,10 @@ protected:
 	short numChannels;
     int channel;
     int bufferSize;
-    unsigned long filePos, fileStartPos, fileEndPos, fileLength, fileWinStartPos, fileWinEndPos, fileWinCenter;
+    long filePos, fileStartPos, fileEndPos, fileLength, fileWinStartPos, fileWinEndPos, fileWinCenter;
     int bufferPos;
     int bufferCenter;
-    unsigned long fileCenterPos;
+    long fileCenterPos;
 	int mySampleRate;
     long length;
     string filename;
@@ -418,7 +418,12 @@ public:
     static T wrapUp(T val, T highLimit, T range) {
         return val >= highLimit ? val - range : val;
     }
- 
+
+    template<typename T>
+    static T wrapDown(T val, T lowLimit, T range) {
+        return val < lowLimit ? val + range : val;
+    }
+
     
 };
 

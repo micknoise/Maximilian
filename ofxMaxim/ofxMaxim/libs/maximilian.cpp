@@ -1503,8 +1503,14 @@ bool oggSampleSource::save(const string filename) {
 ///////////////////////////////////////////////////////////////////////////
 // fileSampleSource
 ///////////////////////////////////////////////////////////////////////////
-template<int initBufferSize, int threadSleepTime>
-bool fileSampleSource<initBufferSize, threadSleepTime>::load(const string _filename, const int _channel) {
+bool fileSampleSource::load(const string filename, const int channel, int _bufferSize, int _blockSize, int _threadSleepTime){
+    bufferSize = _bufferSize;
+    blockSize = _blockSize;
+    threadSleepTime = _threadSleepTime;
+    load(filename, channel);
+}
+
+bool fileSampleSource::load(const string _filename, const int _channel) {
     filename = _filename;
 	bool result;
 	int myChunkSize;
@@ -1578,7 +1584,7 @@ bool fileSampleSource<initBufferSize, threadSleepTime>::load(const string _filen
             inFile.read((char*)(&frame[0]), numChannels * 2);
             data[i] = frame[channel];
         }
-        blockSize = 1024;
+//        blockSize = 1024;
         bufferCenter = bufferPos;
         //start off producer thread
         startThread(false, false);
@@ -1591,19 +1597,16 @@ bool fileSampleSource<initBufferSize, threadSleepTime>::load(const string _filen
 	return result;
 }
 
-template<int initBufferSize, int threadSleepTime>
-void fileSampleSource<initBufferSize, threadSleepTime>::unload() {
+void fileSampleSource::unload() {
     stopThread();
     inFile.close(); // close the input file    
 }
 
-template<int initBufferSize, int threadSleepTime>
-fileSampleSource<initBufferSize, threadSleepTime>::~fileSampleSource() {
+fileSampleSource::~fileSampleSource() {
     unload();
 }
 
-template<int initBufferSize, int threadSleepTime>
-void fileSampleSource<initBufferSize, threadSleepTime>::threadedFunction() {
+void fileSampleSource::threadedFunction() {
     cout << "Thread running\n";
     while(isThreadRunning()) {
 //        cout << "Rv: " << diffRv << ", " << "Fwd: " << diffFwd << endl;
@@ -1695,26 +1698,22 @@ void fileSampleSource<initBufferSize, threadSleepTime>::threadedFunction() {
     }
 }
 
-template<int initBufferSize, int threadSleepTime>
-fileSampleSource<initBufferSize, threadSleepTime>& fileSampleSource<initBufferSize, threadSleepTime>::operator=(const fileSampleSource &src) {
+fileSampleSource& fileSampleSource::operator=(const fileSampleSource &src) {
     load(src.filename, src.channel);
     bufferPos = src.bufferPos;
     data = src.data;
     return *this;
 }
 
-template<int initBufferSize, int threadSleepTime>
-inline long fileSampleSource<initBufferSize, threadSleepTime>::getLength() {
+inline long fileSampleSource::getLength() {
     return length;
 };
 
-template<int initBufferSize, int threadSleepTime>
-inline int fileSampleSource<initBufferSize, threadSleepTime>::getSampleRate() {
+inline int fileSampleSource::getSampleRate() {
     return mySampleRate;
 }
 
-template<int initBufferSize, int threadSleepTime>
-inline short& fileSampleSource<initBufferSize, threadSleepTime>::operator[](const long idx) {
+inline short& fileSampleSource::operator[](const long idx) {
     //map from file position to buffer position
     //making an assumption the position is in the buffer already
     int diff = idx - fileCenterPos;
@@ -1855,7 +1854,7 @@ void maxiSVF::setParams(maxiType _freq, maxiType _res) {
 
 //pre instantiation, so the templated code can stay here in the .cpp file
 template class maxiSampler<memSampleSource>;
-template class maxiSampler<fileSampleSource<44100, 20> >;
+template class maxiSampler<fileSampleSource>;
 #ifdef VORBIS
 template class maxiSampler<oggSampleSource>;
 #endif

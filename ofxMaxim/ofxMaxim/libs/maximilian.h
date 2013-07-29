@@ -234,7 +234,7 @@ public:
     virtual bool load(string filename, int channel);
     virtual bool save(string filename);
     virtual void unload();
-    virtual short& operator[](const int idx) = 0;
+    virtual short& operator[](const long idx) = 0;
     virtual string getSummary();
     virtual long getLength();
     virtual void setLength(unsigned long newLength) ;
@@ -250,7 +250,7 @@ public:
     bool load(const string filename, const int channel = 0);
     bool save(const string filename);
     void unload();
-    short& operator[](const int idx);
+    short& operator[](const long idx);
     string getSummary();
     long getLength();
     void setLength(unsigned long newLength);
@@ -274,7 +274,7 @@ protected:
     
 };
 
-inline short& memSampleSource::operator[](const int idx) {
+inline short& memSampleSource::operator[](const long idx) {
     return data[idx];
 };
 
@@ -301,7 +301,7 @@ public:
     fileSampleSource() : sampleSource(), length(1), bufferSize(maxiSettings::sampleRate), diffFwd(0), diffRv(0) {}
     bool load(const string filename, const int channel = 0);
     void unload();
-    short& operator[](const int idx);
+    short& operator[](const long idx);
     long getLength();
     virtual int getSampleRate();
     fileSampleSource& operator=(const fileSampleSource &src);

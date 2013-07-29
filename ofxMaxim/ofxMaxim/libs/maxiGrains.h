@@ -134,7 +134,7 @@ public:
 	bool finished;
 };
 
-template<typename F, typename source=memSampleSource>
+template<class F, class source>
 class maxiGrain : public maxiGrainBase {
 public:
 	source *sample;
@@ -157,7 +157,7 @@ public:
 	 position between 0.0 and 1.0
 	 duration in seconds
 	 */
-	maxiGrain(source *sample, const maxiType position, const maxiType duration, const maxiType speed, maxiGrainWindowCache<F> *windowCache) :sample(sample), pos(position), dur(duration), speed(speed)
+	maxiGrain(source *_sample, const maxiType position, const maxiType duration, const maxiType speed, maxiGrainWindowCache<F> *windowCache) :sample(_sample), pos(position), dur(duration), speed(speed)
 	{
 //        buffer = sample->temp;
 		sampleStartPos = sample->getLength() * pos;
@@ -233,8 +233,8 @@ public:
             if (b >= sample->getLength()) {
                 b = 0;
             }
-            output = (maxiType) ((1-remainder) * sample[a] +
-                               remainder * sample[b])/32767.0;//linear interpolation
+            output = (maxiType) ((1-remainder) * sample->operator[](a) +
+                               remainder * sample->operator[](b))/32767.0;//linear interpolation
 			output *= envValue;
 #endif
 		}
@@ -256,10 +256,15 @@ class maxiGrainPlayer {
 public:
 	grainList grains;
 //	maxiSample *sample;
+//    source *sample;
+    
 	
 //	maxiGrainPlayer(maxiSample *sample) : sample(sample) {
 //	}
-	
+
+//	maxiGrainPlayer(source *sample) : sample(sample) {
+//    }
+    
 	void addGrain(maxiGrainBase *g) {
 		grains.push_back(g);
 	}
@@ -283,8 +288,8 @@ public:
 //and here's maxiPitchStretch. Args to the play function are basically speed for 'pitch' and rate for playback rate.
 //the rest is the same.
 
-template<typename F, typename source=memSampleSource>
-class maxiPitchStretch {
+template<class F, class source>
+class maxiTimePitchStretch {
 public:
 	maxiType position;
 	source *sample;
@@ -294,18 +299,18 @@ public:
     long loopStart, loopEnd, loopLength;
     maxiType looper;
 	
-	maxiPitchStretch(source *sample) : sample(sample) {
-		grainPlayer = new maxiGrainPlayer(sample);
+	maxiTimePitchStretch(source *_sample) : sample(_sample) {
+		grainPlayer = new maxiGrainPlayer();
 		randomOffset=0;
         loopStart = 0.0;
         loopEnd = sample->getLength();
-        loopLength =sample->getLength();
+        loopLength = sample->getLength();
 		position=0;
         looper = 0;
 	}
     
     maxiType getNormalisedPosition() {
-        return position / (maxiType) sample->length;
+        return position / (maxiType) sample->getLength();
     }
     
     maxiType getPosition() {
@@ -323,27 +328,31 @@ public:
     }
     
     void setLoopEnd(maxiType val) {
-        loopEnd = val * sample->length;
+        loopEnd = val * sample->getLength();
         loopLength = loopEnd - loopStart;
     }
 	
-	~maxiPitchStretch() {
+	~maxiTimePitchStretch() {
 		delete grainPlayer;
 	}
 	
 	inline maxiType play(maxiType speed, maxiType rate, maxiType grainLength, int overlaps, maxiType posMod=0.0) {
-		position = position + (1 * rate);
+		position = position + rate;
         looper++;
 		if (position >= loopEnd) position-= loopLength;
 		if (position < loopStart) position += loopLength;
 		maxiType cycleLength = grainLength * maxiSettings::sampleRate  / overlaps;
         if (looper > cycleLength + randomOffset) {
             looper -= (cycleLength + randomOffset);
-			maxiGrain<F, source> *g = new maxiGrain<F>(sample, max(min(1.0, (position / sample->length) + posMod),0.0), grainLength, speed, &windowCache);
+            maxiType pos = max(min(static_cast<maxiType>(1.0), (position / sample->getLength()) + posMod),static_cast<maxiType>(0.0));
+			maxiGrain<F, source> *g = new maxiGrain<F, source>(sample,
+                                                               pos,
+                                                               grainLength, speed, &windowCache);
 			grainPlayer->addGrain(g);
             randomOffset = rand() % 10;
 		}
 		return grainPlayer->play();
+//        return sample->operator[](0) / 32767.0f;
 	}
 	
 };

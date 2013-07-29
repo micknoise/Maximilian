@@ -1693,7 +1693,7 @@ void fileSampleSource::threadedFunction() {
                 diffFwd = 0;
                 diffRv = 0;
         }
-//        cout << "Buf center: " << bufferCenter << ", buf pos: " << bufferPos << ", file win start: " << fileWinStartPos << ", file win center: " << fileWinCenter << ", file win end: " << fileWinEndPos << ", file center pos: " << fileCenterPos << endl;
+        cout << "Buf center: " << bufferCenter << ", buf pos: " << bufferPos << ", file win start: " << fileWinStartPos << ", file win center: " << fileWinCenter << ", file win end: " << fileWinEndPos << ", file center pos: " << fileCenterPos << endl;
         sleep(20);
     }
 }
@@ -1713,7 +1713,7 @@ inline int fileSampleSource::getSampleRate() {
     return mySampleRate;
 }
 
-inline short& fileSampleSource::operator[](const int idx) {
+inline short& fileSampleSource::operator[](const long idx) {
     //map from file position to buffer position
     //making an assumption the position is in the buffer already
     int diff = idx - fileCenterPos;

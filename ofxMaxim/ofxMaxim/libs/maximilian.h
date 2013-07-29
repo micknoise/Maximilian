@@ -296,15 +296,21 @@ protected:
 };
 #endif
 
+/*
+ buffer a file from file storage, using a producer-consumer setup.
+ bufferSize is in bytes - this is how much memory the class is using. Increase if you experience glitches
+ threadSleepTime is in millisecond, make sure it's low enough so the producer thread can keep up with the playback
+ */
+template<int initBufferSize = 44100, int threadSleepTime=20>
 class fileSampleSource : public sampleSource, private ofThread {
 public:
-    fileSampleSource() : sampleSource(), length(1), bufferSize(maxiSettings::sampleRate), diffFwd(0), diffRv(0) {}
+    fileSampleSource() : sampleSource(), length(1), diffFwd(0), diffRv(0), bufferSize(initBufferSize) {}
     bool load(const string filename, const int channel = 0);
     void unload();
     short& operator[](const long idx);
     long getLength();
     virtual int getSampleRate();
-    fileSampleSource& operator=(const fileSampleSource &src);
+    fileSampleSource<initBufferSize, threadSleepTime>& operator=(const fileSampleSource &src);
     ~fileSampleSource();
 protected:
     void threadedFunction();
@@ -401,7 +407,7 @@ typedef maxiSampler<memSampleSource> maxiSample;
 #ifdef VORBIS
 typedef maxiSampler<oggSampleSource> maxiOggSample;
 #endif
-typedef maxiSampler<fileSampleSource> maxiFileSample;
+typedef maxiSampler<fileSampleSource<44100, 20> > maxiFileSample;
 
 class maxiMap {
 public:

@@ -614,10 +614,14 @@ private:
  */
 class maxiBitCrusher {
 public:
-    maxiBitCrusher() : holdVal(0), counter(0) {}
-    maxiType play(const maxiType val, const maxiType bitdepth, const unsigned int sampleHoldCount);
+    maxiBitCrusher();
+    maxiBitCrusher& setBitDepth(const maxiType bitdepth);
+    maxiBitCrusher& setSampleHoldCount(const unsigned int val);
+    maxiType play(const maxiType val);
 protected:
+    maxiType bitRange;
     maxiType holdVal;
+    unsigned int sampleHoldCount;
     unsigned int counter;
 };
 

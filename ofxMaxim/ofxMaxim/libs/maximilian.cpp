@@ -1850,8 +1850,16 @@ void maxiSVF::setParams(maxiType _freq, maxiType _res) {
     g4 = 2.0 * ginv;
 }
 
+///////////////////////////////////////////////////////////////////////////
+// maxiBitCrusher
+///////////////////////////////////////////////////////////////////////////
 
-maxiType maxiBitCrusher::play(const maxiType val, const maxiType bitdepth, const unsigned int sampleHoldCount) {
+
+maxiBitCrusher::maxiBitCrusher() : holdVal(0), counter(0) {
+    setBitDepth(32);
+}
+
+maxiType maxiBitCrusher::play(const maxiType val) {
     //downsampling
     if (counter >= sampleHoldCount) {
         holdVal = val;
@@ -1859,11 +1867,21 @@ maxiType maxiBitCrusher::play(const maxiType val, const maxiType bitdepth, const
     }else{
         counter++;
     }
-    maxiType range = (pow(2, bitdepth) - 1);
-    maxiType quantVal = ((holdVal + 1.0) / 2.0) *  range;
+    maxiType quantVal = ((holdVal + 1.0) / 2.0) *  bitRange;
     quantVal = round(quantVal); //quantise to bitdepth
-    return (quantVal /  range * 2.0) - 1.0;
+    return (quantVal /  bitRange * 2.0) - 1.0;
 }
+
+maxiBitCrusher& maxiBitCrusher::setBitDepth(const maxiType bitdepth) {
+    bitRange = (pow(2, bitdepth) - 1);
+    return *this;
+}
+
+maxiBitCrusher& maxiBitCrusher::setSampleHoldCount(const unsigned int val) {
+    sampleHoldCount = val;
+    return *this;
+}
+
 
 
 //pre instantiation, so the templated code can stay here in the .cpp file

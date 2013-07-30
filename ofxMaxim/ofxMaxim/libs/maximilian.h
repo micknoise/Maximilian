@@ -606,9 +606,18 @@ protected:
     unsigned int counter;
 };
 
-class maxiLimiter {
+/*
+ A simple limiter based on the envelope follower. Use like this:
+ limiter.setLimit(0.9).setAttack(10).setRelease(100);
+ w = limiter.play(w);
+ */
+class maxiLimiter : public maxiEnvelopeFollower {
 public:
+    maxiLimiter();
+    maxiType play(const maxiType val);
+    maxiLimiter& setLimit(maxiType val);
 protected:
-    
+    maxiType limit;
 };
+
 #endif

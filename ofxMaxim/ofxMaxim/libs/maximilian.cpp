@@ -1446,7 +1446,12 @@ string memSampleSource::getSummary() {
 }
 
 void memSampleSource::setLength(unsigned long newLength) {
-    trim(0, newLength);
+    if (newLength < data.size()) {
+        trim(0, newLength);
+    }else{
+        data.resize(newLength,0);
+        length = data.size();
+    }
 }
 
 void memSampleSource::clear() {
@@ -1913,6 +1918,30 @@ maxiType maxiEnvelopeFollower::play(maxiType input) {
 void maxiEnvelopeFollower::reset() {env=0;}
 maxiType maxiEnvelopeFollower::getEnv(){return env;}
 void maxiEnvelopeFollower::setEnv(maxiType val){env = val;}
+
+
+///////////////////////////////////////////////////////////////////////////
+// maxiLimiter
+///////////////////////////////////////////////////////////////////////////
+
+maxiLimiter::maxiLimiter() : maxiEnvelopeFollower(), limit(0.99) {
+}
+
+maxiType maxiLimiter::play(const maxiType val) {
+    maxiType env = maxiEnvelopeFollower::play(val);
+    maxiType output = val;
+    if (env > limit) {
+        output *= (limit / env);
+    }
+    return output;
+}
+
+maxiLimiter& maxiLimiter::setLimit(maxiType val) {
+    limit = val;
+    return *this;
+}
+
+
 
 
 //pre instantiation, so the templated code can stay here in the .cpp file

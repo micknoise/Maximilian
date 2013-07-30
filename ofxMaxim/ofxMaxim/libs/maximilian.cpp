@@ -1859,7 +1859,6 @@ maxiType maxiBitCrusher::play(const maxiType val, const maxiType bitdepth, const
     }else{
         counter++;
     }
-
     maxiType range = (pow(2, bitdepth) - 1);
     maxiType quantVal = ((holdVal + 1.0) / 2.0) *  range;
     quantVal = round(quantVal); //quantise to bitdepth

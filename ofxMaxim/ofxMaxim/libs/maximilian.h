@@ -607,7 +607,11 @@ private:
     
 };
 
-
+/*
+ Bit quantisation and downsampling
+ bitdepth: this can be a floating point value. Try between 0.5 and 32. More pronounced in low ranges.
+ sampleHoldCount: the number of frames to wait before updating the output.  1 = no effect, 2 = half sample rate, 3 = 0.333 * sample rate etc
+ */
 class maxiBitCrusher {
 public:
     maxiBitCrusher() : holdVal(0), counter(0) {}

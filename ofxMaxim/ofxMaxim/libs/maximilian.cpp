@@ -1851,6 +1851,22 @@ void maxiSVF::setParams(maxiType _freq, maxiType _res) {
 }
 
 
+maxiType maxiBitCrusher::play(const maxiType val, const maxiType bitdepth, const unsigned int sampleHoldCount) {
+    //downsampling
+    if (counter >= sampleHoldCount) {
+        holdVal = val;
+        counter=0;
+    }else{
+        counter++;
+    }
+
+    maxiType range = (pow(2, bitdepth) - 1);
+    maxiType quantVal = ((holdVal + 1.0) / 2.0) *  range;
+    quantVal = round(quantVal); //quantise to bitdepth
+    return (quantVal /  range * 2.0) - 1.0;
+}
+
+
 //pre instantiation, so the templated code can stay here in the .cpp file
 template class maxiSampler<memSampleSource>;
 template class maxiSampler<fileSampleSource>;

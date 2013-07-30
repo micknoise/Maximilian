@@ -529,37 +529,18 @@ public:
     
 };
 
-template<typename T>
-class maxiEnvelopeFollowerType {
+class maxiEnvelopeFollower {
 public:
-    maxiEnvelopeFollowerType() {
-        setAttack(100);
-        setRelease(100);
-        env = 0;
-    }
-    void setAttack(T attackMS) {
-        attack = pow( 0.01, 1.0 / (attackMS * maxiSettings::sampleRate * 0.001 ) );        
-    }
-    void setRelease(T releaseMS) {
-        release = pow( 0.01, 1.0 / (releaseMS * maxiSettings::sampleRate * 0.001 ) );            
-    }
-    inline T play(T input) {
-        input = fabs(input);
-        if (input>env)
-            env = attack * (env - input) + input;
-        else
-            env = release * (env - input) + input;        
-        return env;
-    }
-	void reset() {env=0;}
-    inline T getEnv(){return env;}
-    inline void setEnv(T val){env = val;}
-private:
-    T attack, release, env;
+    maxiEnvelopeFollower();
+    maxiEnvelopeFollower& setAttack(maxiType attackMS);
+    maxiEnvelopeFollower& setRelease(maxiType releaseMS);
+    maxiType play(maxiType input);
+	void reset();
+    maxiType getEnv();
+    void setEnv(maxiType val);
+protected:
+    maxiType attack, release, env;
 };
-
-typedef maxiEnvelopeFollowerType<maxiType> maxiEnvelopeFollower;
-typedef maxiEnvelopeFollowerType<float> maxiEnvelopeFollowerF;
 
 //from https://ccrma.stanford.edu/~jos/filters/DC_Blocker_Software_Implementations.html
 class maxiDCBlocker {
@@ -625,4 +606,9 @@ protected:
     unsigned int counter;
 };
 
+class maxiLimiter {
+public:
+protected:
+    
+};
 #endif

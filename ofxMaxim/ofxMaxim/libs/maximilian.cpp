@@ -1883,6 +1883,37 @@ maxiBitCrusher& maxiBitCrusher::setSampleHoldCount(const unsigned int val) {
 }
 
 
+///////////////////////////////////////////////////////////////////////////
+// maxiEnvelopeFollower
+///////////////////////////////////////////////////////////////////////////
+
+
+maxiEnvelopeFollower::maxiEnvelopeFollower() {
+    setAttack(100);
+    setRelease(100);
+    env = 0;
+}
+
+maxiEnvelopeFollower& maxiEnvelopeFollower::setAttack(maxiType attackMS) {
+    attack = pow( 0.01, 1.0 / (attackMS * maxiSettings::sampleRate * 0.001 ) );
+    return *this;
+}
+maxiEnvelopeFollower& maxiEnvelopeFollower::setRelease(maxiType releaseMS) {
+    release = pow( 0.01, 1.0 / (releaseMS * maxiSettings::sampleRate * 0.001 ) );
+    return *this;
+}
+maxiType maxiEnvelopeFollower::play(maxiType input) {
+    input = fabs(input);
+    if (input>env)
+        env = attack * (env - input) + input;
+    else
+        env = release * (env - input) + input;
+    return env;
+}
+void maxiEnvelopeFollower::reset() {env=0;}
+maxiType maxiEnvelopeFollower::getEnv(){return env;}
+void maxiEnvelopeFollower::setEnv(maxiType val){env = val;}
+
 
 //pre instantiation, so the templated code can stay here in the .cpp file
 template class maxiSampler<memSampleSource>;

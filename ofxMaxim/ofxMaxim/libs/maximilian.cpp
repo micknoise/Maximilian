@@ -566,7 +566,7 @@ maxiType maxiSampler<source>::play() {
 template<class source>
 maxiType maxiSampler<source>::playLoop(maxiType start, maxiType end) {
 	position++;
-    if (position < samples.getLength() * start) position = samples.getLength() * start;
+    if ((long) position < samples.getLength() * start) position = samples.getLength() * start;
 	if ((long) position >= samples.getLength() * end) position = samples.getLength() * start;
 	output = (maxiType) samples[(long)position]/32767.0;
 	return output;
@@ -582,6 +582,11 @@ maxiType maxiSampler<source>::playOnce() {
     }
 	return output;
 
+}
+
+template<class source>
+bool maxiSampler<source>::hasEnded() {
+    return ((long) position) >= samples.getLength();
 }
 
 template<class source>
@@ -1087,7 +1092,7 @@ void maxiSampler<source>::loopRecord(maxiType newSample, const bool recordEnable
         maxiType currentSample = samples[(unsigned long)recordPosition] / 32767.0;
         newSample = (recordMix * currentSample) + ((1.0 - recordMix) * newSample);
         newSample *= loopRecordLag.value();
-        samples[(unsigned long)recordPosition] = newSample * 32767;
+        samples[(unsigned long)recordPosition] = round(newSample * 32767.0);
     }
     ++recordPosition;
     if (recordPosition >= end * samples.getLength())

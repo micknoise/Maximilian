@@ -394,6 +394,8 @@ public:
 	
 	maxiType bufferPlay4(unsigned char &bufferin,maxiType frequency, maxiType start, maxiType end);
 
+    bool hasEnded();
+    
     bool save();
 	bool save(string filename);
     

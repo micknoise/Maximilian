@@ -404,6 +404,8 @@ public:
     
     void normalise(float maxLevel = 0.99);  //0 < maxLevel < 1.0
     void autoTrim(float alpha = 0.3, float threshold = 6000, bool trimStart = true, bool trimEnd = true); //alpha of lag filter (lower == slower reaction), threshold to mark start and end, < 32767
+    source& getSampleSource();
+    
 };
 
 typedef maxiSampler<memSampleSource> maxiSample;
@@ -549,7 +551,7 @@ class maxiDCBlocker {
 public:
     maxiType xm1, ym1;
     maxiDCBlocker() : xm1(0), ym1(0) {}
-    inline maxiType play(maxiType input, maxiType R);
+    maxiType play(maxiType input, maxiType R);
 };
 
 /*

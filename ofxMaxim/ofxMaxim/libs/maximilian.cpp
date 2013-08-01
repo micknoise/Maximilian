@@ -1109,6 +1109,10 @@ maxiSampler<source>& maxiSampler<source>::operator=(const maxiSampler<source> &s
     return *this;
 }
 
+template<class source>
+source& maxiSampler<source>::getSampleSource() {
+    return samples;
+};
 
 ///////////////////////////////////////////////////////////////////////////
 // maxiDyn
@@ -1464,8 +1468,9 @@ void memSampleSource::clear() {
 }
 
 void memSampleSource::trim(unsigned long start, unsigned long end) {
-    std::valarray<short> temp(end - start);
-    temp = data[slice(start, end, 1)];
+    unsigned long sliceLen = end - start;
+    std::valarray<short> temp(sliceLen);
+    temp = data[slice(start, sliceLen, 1)];
     data.resize(temp.size());
     data = temp;
     length = data.size();
@@ -1601,7 +1606,9 @@ bool fileSampleSource::load(const string _filename, const int _channel) {
 //        blockSize = 1024;
         bufferCenter = bufferPos;
         //start off producer thread
+#if OF_VERSION_MINOR >= 7 && OF_VERSION_PATCH >= 4
         getPocoThread().setPriority(Poco::Thread::PRIO_LOW);
+#endif
         startThread(false, false);
         
         cout << "fileSampleSource cued\n";

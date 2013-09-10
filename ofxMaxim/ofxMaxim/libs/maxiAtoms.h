@@ -12,12 +12,12 @@
 #include "maximilian.h"
 #include <list>
 #include <vector>
+#include <valarray>
 #include "maxiGrains.h"
+#include <map>
 
 
 using namespace std;
-
-typedef vector<float> flArr;
 
 enum maxiAtomTypes {
 	GABOR
@@ -25,42 +25,59 @@ enum maxiAtomTypes {
 
 struct maxiAtom {
 	maxiAtomTypes atomType;
-	float length;
-	float position;
-	float amp;
+	maxiType length;
+	maxiType position;
+	maxiType amp;
 	static bool atomSortPositionAsc(maxiAtom* a, maxiAtom* b) {return a->position < b->position;}
 };
 
 struct maxiGaborAtom : maxiAtom {
-	float frequency;
-	float phase;
+	maxiType frequency;
+	maxiType phase;
 };
 
 //create atoms
 class maxiCollider {
 public:
-	static inline void createGabor(flArr &atom, const float freq, const float sampleRate, const unsigned int length, 
-                                float phase, const float kurtotis, const float amp);
+	static inline void createGabor(valarray<maxiType> &atom, const maxiType freq, const maxiType sampleRate, const unsigned int length,
+                                maxiType phase, const maxiType kurtotis, const maxiType amp);
     static maxiGrainWindowCache<gaussianWinFunctor> envCache;
 };
 
+class maxiAtomWindowCache {
+public:
+    maxiType * getWindow(int length);
+protected:
+    map<int, valarray<maxiType> > windows;
+};
 
 //queue atoms into an audio stream
 class maxiAccelerator {
 public:
 	maxiAccelerator();
-	void addAtom(flArr &atom, unsigned int offset=0);
+//	void addAtom(valarray<maxiType> &atom, long offset=0);
+    void addAtom(const maxiType freq, const maxiType phase, const maxiType sampleRate, const unsigned int length, const maxiType amp, const unsigned int offset);
 	void fillNextBuffer(float *buffer, unsigned int bufferLength);
 	inline long getSampleIdx(){return sampleIdx;}
 private:
 	long sampleIdx;
 	struct queuedAtom {
-		flArr atom;
+//        valarray<float> atom;
 		long startTime;
-		unsigned int pos;
+		maxiType phase;
+        unsigned int length;
+        maxiType amp;
+        float pos;
+        float freq;
+//        int offset;
+        maxiType *env;
+        maxiType phaseInc;
+        maxiType maxPhase;
 	};
 	typedef list<queuedAtom> queuedAtomList;
 	queuedAtomList atomQueue;
+    valarray<maxiType> gabor;
+    maxiAtomWindowCache winCache;
 };
 
 /*load a book in MPTK XML format
@@ -73,19 +90,37 @@ class maxiAtomBook {
 public:
 	~maxiAtomBook();
 	typedef vector<maxiAtom*> maxiAtomBookData;
-	unsigned int numSamples;
-	unsigned int sampleRate;
+    int numSamples;
+	int sampleRate;
+    float maxAmp;
 	maxiAtomBookData atoms;
-    //commented out for now, need to resolve tinyxml linker issues - we need tinyxml in the distrib, but it clashes if you also import ofxXmlSettings
-//	static bool loadMPTKXmlBook(string filename, maxiAtomBook &book);  
+	static bool loadMPTKXmlBook(string filename, maxiAtomBook &book);
 	
 };
 
 class maxiAtomBookPlayer {
 public:
 	maxiAtomBookPlayer();
-	void play(maxiAtomBook &book, maxiAccelerator &atomStream, float *output, int bufferSize);
-private:
-	unsigned int atomIdx;
+	void play(maxiAtomBook &book, maxiAccelerator &atomStream);
+    inline maxiAtomBookPlayer &setLengthMod(maxiType val) {lengthMod = val;}
+    inline maxiAtomBookPlayer &setFreqMod(maxiType val) {freqMod = val;}
+    inline maxiAtomBookPlayer &setProbability(maxiType val) {probability = val;}
+    inline maxiAtomBookPlayer &setLowFreq(maxiType val) {lowFreq = val;}
+    inline maxiAtomBookPlayer &setHighFreq(maxiType val) {highFreq = val;}
+    inline maxiAtomBookPlayer &setLowAmp(maxiType val) {lowAmp = val;}
+    inline maxiAtomBookPlayer &setHighAmp(maxiType val) {highAmp = val;}
+    inline maxiAtomBookPlayer &setPlaybackSpeed(maxiType val) {playbackSpeed = val;}
+    inline maxiAtomBookPlayer &setGap(maxiType val) {gap = val;}
+protected:
+    void queueAtomsBetween(maxiAtomBook &book, maxiAccelerator &atomStream, long start, long end, int blockOffset);
+	maxiType atomIdx;
+    maxiType lengthMod;
+    maxiType probability;
+    maxiType lowFreq, highFreq;
+    maxiType lowAmp, highAmp;
+    maxiType freqMod;
+    maxiType playbackSpeed;
+    maxiType gap;
+    double loopedSamplePos;
 };
 

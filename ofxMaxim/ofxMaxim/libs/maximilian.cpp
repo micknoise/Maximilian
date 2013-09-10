@@ -33,7 +33,7 @@
 #include "maximilian.h"
 #include "math.h"
 #include <sstream>
-
+#include "maxiFFT.h"
 
 #ifdef VORBIS
 extern "C" {
@@ -403,7 +403,7 @@ void maxiEnvelope::trigger(int index, maxiType amp) {
 
 //Delay with feedback
 maxiDelayline::maxiDelayline() {
-	memset( memory, 0, 88200*sizeof (maxiType) );
+    memory.resize(88200, 0);
     phase=0;
 }
 
@@ -428,6 +428,11 @@ maxiType maxiDelayline::dl(maxiType input, int size, maxiType feedback, int posi
 	return(output);
 	
 }
+
+void maxiDelayline::clear() {
+    memory = 0;
+}
+
 
 ///////////////////////////////////////////////////////////////////////////
 // maxiFilter
@@ -1585,6 +1590,7 @@ bool fileSampleSource::load(const string _filename, const int _channel) {
         fileWinStartPos = fileEndPos - ((bufferSize / 2) * 2 * numChannels);
         fileWinCenter = 0;
         fileCenterPos = 0; // in <short> format, single channel
+        
         //fill up the buffer
         //read ahead
         inFile.seekg(fileStartPos, ios::beg);
@@ -1874,6 +1880,7 @@ void maxiSVF::setParams(maxiType _freq, maxiType _res) {
 
 maxiBitCrusher::maxiBitCrusher() : holdVal(0), counter(0) {
     setBitDepth(32);
+    setSampleHoldCount(0);
 }
 
 maxiType maxiBitCrusher::play(const maxiType val) {
@@ -1962,3 +1969,160 @@ template class maxiSampler<fileSampleSource>;
 #ifdef VORBIS
 template class maxiSampler<oggSampleSource>;
 #endif
+
+
+///////////////////////////////////////////////////////////////////////////
+// maxiBeatFinder
+///////////////////////////////////////////////////////////////////////////
+
+void maxiBeatFinder::analyse(maxiSample &samp, vector<long> &beatIndexes, vector<long> &beatPeaks) {
+    analyse(samp.getSampleSource(), beatIndexes, beatPeaks);
+}
+
+int maxiBeatFinderCompare (const void * a, const void * b)
+{
+    return ( *(float*)a - *(float*)b );
+}
+
+
+/*
+ non-realtime beat finder, using spectral flux
+ */
+void maxiBeatFinder::analyse(sampleSource &source, vector<long> &beatIndexes, vector<long> &beatPeaks) {
+//    ofstream f;
+//    f.open("/tmp/tmp.py");
+    
+    //setup
+    int medianWindowSize = 20;
+    bool oddMedian = medianWindowSize % 2 == 1;
+    int medianWindowCenter = floor(medianWindowSize / 2);
+    if (oddMedian) {
+        medianWindowCenter--;
+    }
+    maxiFFT fft;
+    int hopSize = 256;
+    fft.setup(1024,1024,hopSize);
+    maxiSpectralFlux specFlux;
+    valarray<float> flux, fluxMedian;
+    flux.resize(ceil(source.getLength() / static_cast<float>(hopSize)) + medianWindowSize, 0);
+    fluxMedian.resize(flux.size(), 0);
+    specFlux.setup(fft);
+    int fluxIdx = 0;
+    //calculate the spectral flux of the sample
+    for(int i=0; i < source.getLength(); i++) {
+        if (fft.process(source[i])) {
+            flux[fluxIdx++] = specFlux.play();
+        }
+    }
+    //square the flux, to emphasise peaks (and de-emphasise the rest)
+    flux *= flux;
+    //padding either side for median filter
+    flux = flux.shift(-medianWindowSize / 2.0);
+    
+//    f << "a = array([";
+//    for(int i=0; i < flux.size(); i++) {
+//        f << flux[i] << ",";
+//    }
+//    f << "])\n";
+    
+    //get running median
+    valarray<float> window;
+    window.resize(medianWindowSize);
+    for(int i=0; i < flux.size() - medianWindowSize; i++) {
+        window = flux[slice(i, medianWindowSize, 1)];
+        //use this old c function, as std::sort doesn't support valarray yet
+        qsort(&window[0], window.size(), sizeof(float), maxiBeatFinderCompare);
+        float median;
+        if (oddMedian) {
+            median = window[medianWindowCenter];
+        }else{
+            median = (window[medianWindowCenter] + window[medianWindowCenter+1]) / 2.0;
+        }
+        fluxMedian[i + medianWindowCenter] = median;
+    }
+    //remove the median
+    flux -= fluxMedian;
+
+//    f << "b = array([";
+//    for(int i=0; i < flux.size(); i++) {
+//        f << fluxMedian[i] << ",";
+//    }
+//    f << "])\n";
+    
+    //scan for peaks
+    vector<peak> peaks;
+    int scanIdx = medianWindowCenter - 1;
+    while(scanIdx < flux.size() - medianWindowCenter) {
+        //zero crossing?
+        if (flux[scanIdx] <= 0 && flux[scanIdx+1] > 0) {
+            int peakStart = scanIdx;
+            //find peak of peak
+            while (flux[scanIdx] < flux[scanIdx+1]) {
+                scanIdx++;
+            }
+            int peakPeak = scanIdx;
+            //find end of peak
+            while (flux[scanIdx] > 0) {
+                scanIdx++;
+            }
+            int peakEnd = scanIdx;
+            peak p;
+            p.index = max(0, peakStart - (medianWindowSize / 2));
+            p.peakIndex = max(0, peakPeak - (medianWindowSize / 2));
+            //calculate RMS power of the peak
+            valarray<float> peakData(peakEnd - peakStart);
+            peakData = flux[slice(peakStart, peakData.size(), 1)];
+            peakData *= peakData;
+            p.RMS = sqrt(peakData.sum() / peakData.size());
+            peaks.push_back(p);
+//            cout << "Peak: " << p.index << ", " << p.RMS << endl;
+        }else{
+            scanIdx++;
+        }
+    }
+
+//    valarray<float> peakDebug(0.f, flux.size());
+//    for(int i=0; i < peaks.size(); i++) {
+//        peakDebug[peaks[i].index] = 50000;
+//    }
+//    f << "c = array([";
+//    for(int i=0; i < peakDebug.size(); i++) {
+//        f << peakDebug[i] << ",";
+//    }
+//    f << "])\n";
+
+    //collect RMS values, and get the mean and std deviation
+    valarray<float> rms(peaks.size());
+    for(int i=0; i < peaks.size(); i++) {
+        rms[i] = peaks[i].RMS;
+    }
+    float rmsmean = rms.sum() / rms.size();
+    rms -= rmsmean;
+    rms *= rms;
+
+    float rmsStdDev = sqrt(rms.sum() / rms.size());
+    
+//    valarray<float> peakDebug2(0.f, flux.size());
+    //pick only peaks that are more than one standard deviation higher than the mean RMS
+    for(int i=0; i < peaks.size(); i++) {
+        if (peaks[i].RMS > rmsmean + rmsStdDev) {
+            int beatIdx = peaks[i].index * hopSize;
+            //adjust back to the last zero-crossing
+            while(beatIdx > 0 && source[beatIdx] > 0) {
+                beatIdx--;
+            }
+            beatIndexes.push_back(beatIdx);
+            beatPeaks.push_back(peaks[i].peakIndex * hopSize);
+//            peakDebug2[peaks[i].index] = 50000;
+        }
+    }
+
+//    f << "d = array([";
+//    for(int i=0; i < peakDebug2.size(); i++) {
+//        f << peakDebug2[i] << ",";
+//    }
+//    f << "])\n";
+
+    
+//    f.close();
+}

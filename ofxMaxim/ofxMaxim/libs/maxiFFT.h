@@ -38,6 +38,7 @@
 
 #include "fft.h"
 #include "stddef.h"
+#include <valarray>
 
 class maxiFFT {
 	
@@ -125,4 +126,14 @@ public:
 	
 };
 
+class maxiSpectralFlux {
+public:
+    void setup(maxiFFT &_fft);
+    float play();
+    inline float getValue() {return value;}
+private:
+    std::valarray<float> prevMagnitudes;
+    maxiFFT *fft;
+    float value;
+};
 #endif

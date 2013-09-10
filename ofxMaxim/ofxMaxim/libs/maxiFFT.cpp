@@ -288,3 +288,28 @@ void maxiFFTOctaveAnalyzer::calculate(float * fftData){
 		}
     }
 }
+
+
+/////////////////////////////////////////////
+// maxiSpectralFlux
+/////////////////////////////////////////////
+
+void maxiSpectralFlux::setup(maxiFFT &_fft) {
+    fft = &_fft;
+    prevMagnitudes.resize(fft->bins, 0);
+}
+
+float maxiSpectralFlux::play() {
+    float specFlux = 0.0;
+    for(int i=0; i < fft->bins; i++) {
+        float diff = fft->magnitudes[i] - prevMagnitudes[i];
+        if (diff > 0) {
+            specFlux += diff;
+        }
+        prevMagnitudes[i] = fft->magnitudes[i];
+    }
+    specFlux /= fft->bins;
+    value = specFlux;
+    return specFlux;
+}
+

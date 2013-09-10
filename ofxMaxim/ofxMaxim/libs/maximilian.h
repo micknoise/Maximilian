@@ -148,13 +148,13 @@ class maxiDelayline {
 	maxiType startphase;
 	maxiType endphase;
 	maxiType output;
-	maxiType memory[88200];
+	valarray<maxiType> memory;
 	
 public:
 	maxiDelayline();
 	maxiType dl(maxiType input, int size, maxiType feedback);
 	maxiType dl(maxiType input, int size, maxiType feedback, int position);
-	
+    void clear();
 	
 };
 
@@ -256,7 +256,7 @@ public:
     void setLength(unsigned long newLength);
     void clear();
     void trim(unsigned long start, unsigned long end);
-    virtual int getSampleRate();
+    int getSampleRate();
     ~memSampleSource();
 protected:
     std::valarray<short> data;
@@ -333,6 +333,7 @@ protected:
 private:
 };
 
+
 template<class source = memSampleSource>
 class maxiSampler  {
 	
@@ -405,7 +406,7 @@ public:
     void normalise(float maxLevel = 0.99);  //0 < maxLevel < 1.0
     void autoTrim(float alpha = 0.3, float threshold = 6000, bool trimStart = true, bool trimEnd = true); //alpha of lag filter (lower == slower reaction), threshold to mark start and end, < 32767
     source& getSampleSource();
-    
+
 };
 
 typedef maxiSampler<memSampleSource> maxiSample;
@@ -622,6 +623,21 @@ public:
     maxiLimiter& setLimit(maxiType val);
 protected:
     maxiType limit;
+};
+
+/*
+ non-realtime beat finder
+ */
+class maxiBeatFinder {
+public:
+    static void analyse(maxiSample &samp, vector<long> &beatIndexes, vector<long> &beatPeaks);
+    static void analyse(sampleSource &source, vector<long> &beatIndexes, vector<long> &beatPeaks);
+private:
+    struct peak {
+        int index;
+        int peakIndex;
+        float RMS;
+    };
 };
 
 #endif

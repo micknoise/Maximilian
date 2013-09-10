@@ -73,19 +73,14 @@ struct blackmanNutallWinFunctor {
 };
 
 struct gaussianWinFunctor {
-    maxiType gausDivisor;
+    maxiType o;
     gaussianWinFunctor() {
-        init(0.3);
-    }
-    gaussianWinFunctor(maxiType kurtosis) {
-        init(kurtosis);
-    }
-    void init(maxiType kurtosis) {
-        gausDivisor = (-2.0 * kurtosis * kurtosis);
+        o = 0.02; //compatible with MPTK
     }
 	inline maxiType operator()(ulong windowLength, ulong windowPos) {
-        maxiType phase = ((windowPos / (maxiType) windowLength) - 0.5) * 2.0;
-        return exp((phase * phase) / gausDivisor);
+        maxiType p = 1.0/(2.0*o*(windowLength+1)*(windowLength+1));
+        maxiType k = (maxiType)windowPos-((maxiType)(windowLength-1))/2.0;
+       return exp(-k*k*p);        
 	}
 };
 
@@ -331,6 +326,10 @@ public:
         loopEnd = val * sample->getLength();
         loopLength = loopEnd - loopStart;
     }
+    
+    bool hasEnded() {
+        return position == loopEnd;
+    }
 	
 	~maxiTimePitchStretch() {
 		delete grainPlayer;
@@ -338,9 +337,24 @@ public:
 	
 	inline maxiType play(maxiType speed, maxiType rate, maxiType grainLength, int overlaps, maxiType posMod=0.0) {
 		position = position + rate;
-        looper++;
 		if (position >= loopEnd) position-= loopLength;
 		if (position < loopStart) position += loopLength;
+        return playNextGrain(speed, rate, grainLength, overlaps, posMod);
+	}
+
+	inline maxiType playOnce(maxiType speed, maxiType rate, maxiType grainLength, int overlaps, maxiType posMod=0.0) {
+		position = position + rate;
+		if (position >= loopEnd) position = loopEnd;
+		if (position < loopStart) position = loopEnd;
+        float val = 0;
+        if (position < loopEnd)
+            val = playNextGrain(speed, rate, grainLength, overlaps, posMod);
+        return val;
+    }
+
+protected:
+	inline maxiType playNextGrain(maxiType speed, maxiType rate, maxiType grainLength, int overlaps, maxiType posMod) {
+        looper++;
 		maxiType cycleLength = grainLength * maxiSettings::sampleRate  / overlaps;
         if (looper > cycleLength + randomOffset) {
             looper -= (cycleLength + randomOffset);
@@ -352,7 +366,6 @@ public:
             randomOffset = rand() % 10;
 		}
 		return grainPlayer->play();
-//        return sample->operator[](0) / 32767.0f;
 	}
 	
 };

@@ -59,6 +59,8 @@ public:
     void addAtom(const maxiType freq, const maxiType phase, const maxiType sampleRate, const unsigned int length, const maxiType amp, const unsigned int offset);
 	void fillNextBuffer(float *buffer, unsigned int bufferLength);
 	inline long getSampleIdx(){return sampleIdx;}
+    inline maxiAccelerator& setShape(maxiType val) {shape = val;}
+    inline maxiAccelerator& setAtomCountLimit(int val){atomCountLimit = val;}
 private:
 	long sampleIdx;
 	struct queuedAtom {
@@ -78,6 +80,8 @@ private:
 	queuedAtomList atomQueue;
     valarray<maxiType> gabor;
     maxiAtomWindowCache winCache;
+    maxiType shape;
+    int atomCountLimit;
 };
 
 /*load a book in MPTK XML format
@@ -111,6 +115,8 @@ public:
     inline maxiAtomBookPlayer &setHighAmp(maxiType val) {highAmp = val;}
     inline maxiAtomBookPlayer &setPlaybackSpeed(maxiType val) {playbackSpeed = val;}
     inline maxiAtomBookPlayer &setGap(maxiType val) {gap = val;}
+    inline maxiAtomBookPlayer &setSnapRange(maxiType val){snapRange = val; snapInvRange = 1.0 / snapRange;}
+    inline maxiAtomBookPlayer &setSnapFreqs(vector<maxiType> &freqs){snapFreqs = freqs;}
 protected:
     void queueAtomsBetween(maxiAtomBook &book, maxiAccelerator &atomStream, long start, long end, int blockOffset);
 	maxiType atomIdx;
@@ -122,5 +128,7 @@ protected:
     maxiType playbackSpeed;
     maxiType gap;
     double loopedSamplePos;
+    vector<maxiType> snapFreqs;
+    maxiType snapRange, snapInvRange;
 };
 

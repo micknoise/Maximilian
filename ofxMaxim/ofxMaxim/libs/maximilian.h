@@ -311,14 +311,19 @@ public:
     long getLength();
     virtual int getSampleRate();
     fileSampleSource& operator=(const fileSampleSource &src);
+    void cacheAtPosition(int cacheCenterPos);
     ~fileSampleSource();
+
 protected:
+//    void cacheAtPosition(int cacheCenterPos);
     void threadedFunction();
+    inline int bufferToFileScale(int val) {return val * 2 * numChannels;}
+    inline int fileToBufferScale(int val){return val / 2 / numChannels;}
     std::valarray<short> data, frame;
     ifstream inFile;
 	short numChannels;
     int channel;
-    int bufferSize;
+    int bufferSize, halfBufferSize;
     long filePos, fileStartPos, fileEndPos, fileLength, fileWinStartPos, fileWinEndPos, fileWinCenter;
     int bufferPos;
     int bufferCenter;
@@ -330,6 +335,8 @@ protected:
     int threadSleepTime;
     
     int diffFwd, diffRv;
+    bool recaching;
+    int recachePos;
 private:
 };
 

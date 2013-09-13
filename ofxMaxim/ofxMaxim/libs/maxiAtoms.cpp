@@ -87,6 +87,8 @@ inline void maxiCollider::createGabor(valarray<maxiType> &atom, const maxiType f
 maxiAccelerator::maxiAccelerator() {
 	sampleIdx = 0;
     gabor.resize(maxiSettings::bufferSize);
+    shape = 1.0;
+    atomCountLimit = 9999999;
 }
 
 maxiType * maxiAtomWindowCache::getWindow(int length) {
@@ -114,19 +116,21 @@ maxiType * maxiAtomWindowCache::getWindow(int length) {
 
 
 void maxiAccelerator::addAtom(const maxiType freq, const maxiType phase, const maxiType sampleRate, const unsigned int length, const maxiType amp, const unsigned int offset) {
-    queuedAtom quAtom;
-    quAtom.freq = freq;
-    quAtom.phase = phase;
-    quAtom.length = length;
-    quAtom.amp = amp;
-//    quAtom.offset = offset;
-    quAtom.env = winCache.getWindow(length);
-	maxiType cycleLen = sampleRate / freq;
-	quAtom.maxPhase = length / cycleLen;
-	quAtom.phaseInc = 1.0 / length;
-    quAtom.startTime = sampleIdx + offset;
-    quAtom.pos = 0;
-    atomQueue.push_back(quAtom);
+    if (atomQueue.size() < atomCountLimit) {
+        queuedAtom quAtom;
+        quAtom.freq = freq;
+        quAtom.phase = phase;
+        quAtom.length = length;
+        quAtom.amp = amp;
+    //    quAtom.offset = offset;
+        quAtom.env = winCache.getWindow(length);
+        maxiType cycleLen = sampleRate / freq;
+        quAtom.maxPhase = length / cycleLen;
+        quAtom.phaseInc = 1.0 / length;
+        quAtom.startTime = sampleIdx + offset;
+        quAtom.pos = 0;
+        atomQueue.push_back(quAtom);
+    }
 }
 
 void maxiAccelerator::fillNextBuffer(float *buffer, unsigned int bufferLength) {
@@ -142,9 +146,30 @@ void maxiAccelerator::fillNextBuffer(float *buffer, unsigned int bufferLength) {
             int renderLength = min(invOffset, lengthLeft);
 			for(int i=0; i < renderLength; i++) {
                 gabor[i] = ((*it).phaseInc * (i + (*it).pos) * (*it).maxPhase * TWO_PI) + (*it).phase;
-                gabor[i] = cos(gabor[i]) * (*it).amp;
 			}
+#ifdef __VFORCE_H
+#ifdef MAXI_SINGLE_PRECISION
+            vvcosf(&gabor[0], &gabor[0], &renderLength);
+#else
+            vvcos(&gabor[0], &gabor[0], &renderLength);
+#endif
+#else
 			for(int i=0; i < renderLength; i++) {
+                gabor[i] = cos(gabor[i]);
+            }
+#endif
+            if (shape != 1.0) {
+                for(int i=0; i < renderLength; i++) {
+                    float v = gabor[i];
+                    float sign = v > 0 ? 1.0 : -1.0;
+                    v = fabs(v);
+                    v = pow(v, shape);
+                    v *= sign;
+                    gabor[i] = v;
+                }
+            }
+			for(int i=0; i < renderLength; i++) {
+                gabor[i] *= (*it).amp;
                 gabor[i] *= (*it).env[i + (int)(*it).pos];
                 buffer[i + atomStart] += gabor[i];
             }
@@ -239,22 +264,24 @@ maxiAtomBookPlayer::maxiAtomBookPlayer() {
     playbackSpeed = 1.0;
     gap = 1.0;
     loopedSamplePos = 0;
+    snapRange = 1.1;
+    snapInvRange = 1.0 / snapRange;
 }
 
 
 void maxiAtomBookPlayer::play(maxiAtomBook &book, maxiAccelerator &atomStream) {
-    //TODO: fix playback speed
 	//positions
 	long idx = atomStream.getSampleIdx();
 
     //    cout << atomIdx << ", " << idx << ", " << loopedSamplePos << endl;
-	int blockSize = min(maxiSettings::bufferSize, static_cast<int>(book.numSamples - loopedSamplePos));
+    int totalBlockSize = maxiSettings::bufferSize * playbackSpeed;
+	int blockSize = min(totalBlockSize, static_cast<int>(book.numSamples - loopedSamplePos));
     int blockOffset = 0;
     queueAtomsBetween(book, atomStream, loopedSamplePos, loopedSamplePos + blockSize, blockOffset);
-    bool loopingThisFrame = blockSize < maxiSettings::bufferSize;
+    bool loopingThisFrame = blockSize < totalBlockSize;
     if (loopingThisFrame) {
         blockOffset = blockSize;
-        blockSize = maxiSettings::bufferSize - blockSize;
+        blockSize = totalBlockSize - blockSize;
         loopedSamplePos = 0;
         queueAtomsBetween(book, atomStream, loopedSamplePos, loopedSamplePos + blockSize, blockOffset);
     }
@@ -272,21 +299,31 @@ void maxiAtomBookPlayer::queueAtomsBetween(maxiAtomBook &book, maxiAccelerator &
     static int atomCount = 0;    
     maxiGaborAtom *atom = (maxiGaborAtom*) book.atoms[static_cast<int>(floor(atomIdx))];
     //        cout << atom->position << ", " << loopedSamplePos << ", " << (loopedSamplePos + maxiSettings::bufferSize) << endl;
-    
+    float speedMod = playbackSpeed == 0 ? 0 : 1.0 / playbackSpeed;
     while(atom->position < end && atom->position >= start) {
         if (rand() / static_cast<maxiType>(RAND_MAX) < probability) {
             maxiType freq = 44100.0 * atom->frequency;
             maxiType amp = atom->amp;
-            cout << freq << endl;
-           if (freq >= lowFreq && freq <= highFreq && amp >= lowAmp && amp <= highAmp * book.maxAmp) {
-            //                    if (fmod(atomIdx, gap) <= 1.0 / gap) {
-            //                        if (freqMod != 1.0) {
-            //                            freq *= freqMod;
-            //                            freq = maxiMap::clamp<maxiType>(freq, 20, 20000);
-            //                        }
-            atomStream.addAtom(freq, atom->phase, 44100, atom->length * lengthMod, amp, blockOffset + atom->position - loopedSamplePos);
-            atomCount++;
-            //                    }
+            if (freq >= lowFreq && freq <= highFreq && amp >= lowAmp && amp <= highAmp * book.maxAmp) {
+                if (fmod(atomIdx, gap) <= 1.0 / gap) {
+                    if (snapFreqs.size() > 0) {
+                        for(int f=0; f < snapFreqs.size(); f++) {
+                            if (freq >= snapFreqs[f] * snapInvRange && freq < snapFreqs[f] * snapRange) {
+                                freq = snapFreqs[f];
+                                break;
+                            }
+                        }
+                    }
+                    if (freqMod != 1.0) {
+                        freq *= freqMod;
+                        freq = maxiMap::clamp<maxiType>(freq, 20, 20000);
+                    }
+//                    float inv = maxiMap::explin(freq, 20, 20000, 0, 1);
+//                    inv = 1.0 - inv;
+//                    freq = maxiMap::linexp(inv, 0, 1, 20, 20000);
+                    atomStream.addAtom(freq, atom->phase, 44100, atom->length * lengthMod * speedMod, amp, (blockOffset + atom->position - loopedSamplePos) * speedMod);
+                    atomCount++;
+                }
            }
         }
         atomIdx += playbackSpeed;

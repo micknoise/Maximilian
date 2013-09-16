@@ -1620,20 +1620,64 @@ void fileSampleSource::cacheAtPosition(int cacheCenterPos) {
     fileWinCenter = filePos;
     fileCenterPos = fileToBufferScale(fileWinCenter); // in <short> format, single channel
 
-    //TODO: code for wrapping round ends
     //fill up the buffer
     //read ahead
     inFile.seekg(filePos, ios::beg);
-    for(int i=0; i < bufferSize/2; i++) {
-        inFile.read((char*)(&frame[0]), bufferToFileScale(1));
-        data[bufferPos + i] = frame[channel];
+    if (filePos + bufferToFileScale(halfBufferSize) < fileEndPos) {
+        for(int i=0; i < halfBufferSize; i++) {
+            inFile.read((char*)(&frame[0]), bufferToFileScale(1));
+            data[bufferPos + i] = frame[channel];
+        }
+    }else{
+        int readSize1 = fileToBufferScale(fileEndPos - filePos);
+        int readSize2 = halfBufferSize - readSize1;
+        for(int i=0; i < readSize1; i++) {
+            inFile.read((char*)(&frame[0]), bufferToFileScale(1));
+            data[bufferPos + i] = frame[channel];
+        }
+        int offset = readSize1;
+        inFile.seekg(fileStartPos, ios::beg);
+        for(int i=0; i < readSize2; i++) {
+            inFile.read((char*)(&frame[0]), bufferToFileScale(1));
+            data[bufferPos + i + offset] = frame[channel];
+        }
     }
+    if(inFile.eof()) {
+        cout << "Recache: file read error: eof " << endl;
+    }
+    if(inFile.fail())
+        cout << "Recache: File read error: fail" << endl;
+
     //read from behind
-    inFile.seekg(fileWinStartPos);
-    for(int i=0; i < bufferSize/2; i++) {
-        inFile.read((char*)(&frame[0]), bufferToFileScale(1));
-        data[i] = frame[channel];
+
+    if (filePos - bufferToFileScale(halfBufferSize) > fileStartPos) {
+        inFile.seekg(fileWinStartPos);
+        for(int i=0; i < bufferSize/2; i++) {
+            inFile.read((char*)(&frame[0]), bufferToFileScale(1));
+            data[i] = frame[channel];
+        }
+    }else{
+        int readSize2 = fileToBufferScale(filePos - fileStartPos);
+        int readSize1 = halfBufferSize - readSize2;
+        inFile.seekg(fileEndPos - bufferToFileScale(readSize1));
+        for(int i=0; i < readSize1; i++) {
+            inFile.read((char*)(&frame[0]), bufferToFileScale(1));
+            data[i] = frame[channel];
+        }
+        int offset = readSize1;
+        inFile.seekg(fileStartPos, ios::beg);
+        for(int i=0; i < readSize2; i++) {
+            inFile.read((char*)(&frame[0]), bufferToFileScale(1));
+            data[i + offset] = frame[channel];
+        }
     }
+
+    
+    if(inFile.eof()) {
+        cout << "Recache2: file read error: eof " << endl;
+    }
+    if(inFile.fail())
+        cout << "Recache2: File read error: fail" << endl;
 
     inFile.seekg(fileWinEndPos, ios::beg);
 
@@ -1694,17 +1738,22 @@ void fileSampleSource::threadedFunction() {
                 int diffRemainder = diffFwd % blockSize;
                 int readSize = diffFwd - diffRemainder;
     //            inFile.seekg(fileWinEndPos, ios::beg);
-                if (fileWinEndPos + (readSize * 2 * numChannels) < fileEndPos) {
+                int newFileWinEndPos = fileWinEndPos + bufferToFileScale(readSize);
+                bool wrappedRead = newFileWinEndPos >= fileEndPos;
+                int diff1, diff2;
+                if (!wrappedRead) {
+                    inFile.seekg(fileWinEndPos, ios::beg);
                     inFile.read((char*)(&frame[0]), numChannels * 2 * readSize);
                 }else{
-                    int diff1=(fileEndPos - fileWinEndPos) / 2 / numChannels;
-                    int diff2= readSize - diff1;
+                    diff1=(fileEndPos - fileWinEndPos) / 2 / numChannels;
+                    diff2= readSize - diff1;
                     inFile.read((char*)(&frame[0]), numChannels * 2 * diff1);
                     inFile.seekg(fileStartPos, ios::beg);
                     inFile.read((char*)(&frame[diff1 * numChannels * 2]), numChannels * 2 * diff2);
                 }
-                if(inFile.eof())
-                    cout << "File read error: eof" << endl;
+                if(inFile.eof()) {
+                    cout << "File read error: eof " << endl;
+                }
                 if(inFile.fail())
                     cout << "File read error: fail" << endl;
                 long bufferWinEndPos = bufferCenter + (bufferSize / 2);
@@ -1718,7 +1767,7 @@ void fileSampleSource::threadedFunction() {
                 }
                 //sort out positioning
                 bufferCenter = maxiMap::wrapUp<long>(bufferCenter + readSize, bufferSize, bufferSize);
-                fileWinEndPos = maxiMap::wrapUp<long>(fileWinEndPos + (readSize * 2 * numChannels), fileEndPos, fileLength);
+                fileWinEndPos = maxiMap::wrapUp<long>(newFileWinEndPos, fileEndPos, fileLength);
                 fileWinStartPos = maxiMap::wrapUp<long>(fileWinStartPos + (readSize * 2 * numChannels), fileEndPos, fileLength);
                 fileWinCenter =maxiMap::wrapUp<long>(fileWinCenter + (readSize * 2 * numChannels), fileEndPos, fileLength);
                 fileCenterPos = (fileWinCenter - fileStartPos) / 2 / numChannels; //map file center pos to single channel number space
@@ -1769,7 +1818,7 @@ void fileSampleSource::threadedFunction() {
                     diffRv = 0;
             }
         }
-        cout << "Buf center: " << bufferCenter << ", buf pos: " << bufferPos << ", file win start: " << fileWinStartPos << ", file win center: " << fileWinCenter << ", file win end: " << fileWinEndPos << ", file center pos: " << fileCenterPos << endl;
+        //cout << "Buf center: " << bufferCenter << ", buf pos: " << bufferPos << ", file win start: " << fileWinStartPos << ", file win center: " << fileWinCenter << ", file win end: " << fileWinEndPos << ", file center pos: " << fileCenterPos << endl;
         sleep(threadSleepTime);
     }
     cout << "thread stopping";

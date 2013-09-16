@@ -89,6 +89,15 @@ maxiAccelerator::maxiAccelerator() {
     gabor.resize(maxiSettings::bufferSize);
     shape = 1.0;
     atomCountLimit = 9999999;
+#ifndef TARGET_OS_IPHONE
+    clKernel.setup(maxiSettings::bufferSize);
+    atomAmps.resize(clKernel.getMaxAtoms());
+    atomPhases.resize(clKernel.getMaxAtoms());
+    atomPhaseIncs.resize(clKernel.getMaxAtoms());
+    atomPositions.resize(clKernel.getMaxAtoms());
+    atomLengths.resize(clKernel.getMaxAtoms());
+    atomDataBlock.resize(clKernel.getMaxAtoms());
+#endif
 }
 
 maxiType * maxiAtomWindowCache::getWindow(int length) {
@@ -114,6 +123,19 @@ maxiType * maxiAtomWindowCache::getWindow(int length) {
     return &windows[length][0];
 }
 
+void maxiAccelerator::precacheWindows(set<int> &windowSizes) {
+    for(set<int>::iterator it = windowSizes.begin(); it != windowSizes.end(); ++it) {
+        float *env = winCache.getWindow(*it);
+#ifndef TARGET_OS_IPHONE
+        clKernel.addWindow(env, *it);
+#endif
+    }
+#ifndef TARGET_OS_IPHONE
+    clKernel.uploadWindows();
+#endif
+}
+
+
 
 void maxiAccelerator::addAtom(const maxiType freq, const maxiType phase, const maxiType sampleRate, const unsigned int length, const maxiType amp, const unsigned int offset) {
     if (atomQueue.size() < atomCountLimit) {
@@ -122,7 +144,6 @@ void maxiAccelerator::addAtom(const maxiType freq, const maxiType phase, const m
         quAtom.phase = phase;
         quAtom.length = length;
         quAtom.amp = amp;
-    //    quAtom.offset = offset;
         quAtom.env = winCache.getWindow(length);
         maxiType cycleLen = sampleRate / freq;
         quAtom.maxPhase = length / cycleLen;
@@ -195,25 +216,124 @@ void maxiAccelerator::fillNextBuffer(float *buffer, unsigned int bufferLength) {
 //    cout << atomQueue.size() << endl;
 }
 
+#ifndef TARGET_OS_IPHONE
+void maxiAccelerator::fillNextBuffer_OpenCL(float *buffer, unsigned int bufferLength) {
+	queuedAtomList::iterator it = atomQueue.begin();
+	while(it != atomQueue.end()) {
+		int atomStart = (*it).startTime + (*it).pos - sampleIdx;
+		//include in this frame?
+		if (atomStart >= 0 && atomStart < bufferLength) {
+			//copy into buffer
+            int lengthLeft = it->length - it->pos;
+            int invOffset = bufferLength - atomStart;
+            int renderLength = min(invOffset, lengthLeft);
+            clKernel.gaborSingle(&gabor[0], it->amp, it->phase, (it->phaseInc * it->maxPhase * TWO_PI), (int)(it->pos - atomStart), bufferLength, it->length);
+			for(int i=0; i < bufferLength; i++) {
+                buffer[i] += gabor[i];
+            }
+			(*it).pos += renderLength;
+		}
+		if ((*it).pos >= (*it).length) {
+			it = atomQueue.erase(it);
+		}else {
+			it++;
+		}
+		
+	}
+	sampleIdx += bufferLength;
+//    cout << atomQueue.size() << endl;
+}
+
+
+void maxiAccelerator::fillNextBuffer_OpenCLBatch(float *buffer, unsigned int bufferLength) {
+    int atomCount=0;
+	queuedAtomList::iterator it = atomQueue.begin();
+	while(it != atomQueue.end()) {
+		int atomStart = (*it).startTime + (*it).pos - sampleIdx;
+		//include in this frame?
+		if (atomStart >= 0 && atomStart < bufferLength) {
+			//copy into buffer
+            int lengthLeft = it->length - it->pos;
+            int invOffset = bufferLength - atomStart;
+            int renderLength = min(invOffset, lengthLeft);
+
+            atomAmps[atomCount] = it->amp;
+            atomPhases[atomCount] = it->phase;
+            atomPhaseIncs[atomCount] = (it->phaseInc * it->maxPhase * TWO_PI);
+            atomPositions[atomCount] = (int)(it->pos - atomStart);
+            atomLengths[atomCount] = it->length;
+            
+			(*it).pos += renderLength;
+            atomCount++;
+		}
+		if ((*it).pos >= (*it).length) {
+			it = atomQueue.erase(it);
+		}else {
+			it++;
+		}
+		
+	}
+    clKernel.gaborBatch(buffer, atomCount, &atomAmps[0], &atomPhases[0], &atomPhaseIncs[0], &atomPositions[0], &atomLengths[0], bufferLength);
+	sampleIdx += bufferLength;
+    cout << atomCount << endl;
+    
+}
+
+void maxiAccelerator::fillNextBuffer_OpenCLBatch2(float *buffer, unsigned int bufferLength) {
+    int atomCount=0;
+	queuedAtomList::iterator it = atomQueue.begin();
+	while(it != atomQueue.end()) {
+		int atomStart = (*it).startTime + (*it).pos - sampleIdx;
+		//include in this frame?
+		if (atomStart >= 0 && atomStart < bufferLength) {
+			//copy into buffer
+            int lengthLeft = it->length - it->pos;
+            int invOffset = bufferLength - atomStart;
+            int renderLength = min(invOffset, lengthLeft);
+            
+            atomDataBlock[atomCount].amp = it->amp;
+            atomDataBlock[atomCount].phase = it->phase;
+            atomDataBlock[atomCount].phaseInc = (it->phaseInc * it->maxPhase * TWO_PI);
+            atomDataBlock[atomCount].position = (int)(it->pos - atomStart);
+            atomDataBlock[atomCount].length = it->length;
+            
+			(*it).pos += renderLength;
+            atomCount++;
+		}
+		if ((*it).pos >= (*it).length) {
+			it = atomQueue.erase(it);
+		}else {
+			it++;
+		}
+		
+	}
+    clKernel.gaborBatch2(buffer, atomDataBlock, atomCount);
+	sampleIdx += bufferLength;
+    cout << atomCount << endl;
+    
+}
+
+#endif
+
 #include "tinyxml2.h"
 
-bool maxiAtomBook::loadMPTKXmlBook(string filename, maxiAtomBook &book) {
-    cout << "Loading " << filename << endl;
+bool maxiAtomBook::loadMPTKXmlBook(string filename, maxiAtomBook &book, maxiAccelerator &accel, bool verbose) {
+    if (verbose) cout << "Loading " << filename << endl;
 	bool ok = false;
     using namespace tinyxml2;
     book.maxAmp = 0;
     XMLDocument doc;
     if (doc.LoadFile(filename.c_str()) == XML_SUCCESS) {
-        cout << "Parsed\n";
+        if (verbose) cout << "Parsed\n";
 		XMLElement *root = doc.RootElement();
         const XMLElement *dict = root->FirstChildElement();
         const XMLElement *bookElem = dict->NextSiblingElement();
         int nAtoms = bookElem->FirstAttribute()->IntValue();
-        cout << nAtoms << " atoms in book\n";
+        if (verbose) cout << nAtoms << " atoms in book\n";
         bookElem->QueryIntAttribute("numSamples", &book.numSamples);
-        cout << book.numSamples << " samples\n";
+        if (verbose) cout << book.numSamples << " samples\n";
         bookElem->QueryIntAttribute("sampleRate", &book.sampleRate);
-        cout << "Sample Rate: " << book.sampleRate << " Hz\n";
+        if (verbose) cout << "Sample Rate: " << book.sampleRate << " Hz\n";
         
         XMLNode *atomNode = const_cast<XMLNode*>(bookElem->FirstChild());
 		for(int atomIdx=0; atomIdx < nAtoms; atomIdx++) {
@@ -232,16 +352,23 @@ bool maxiAtomBook::loadMPTKXmlBook(string filename, maxiAtomBook &book) {
                 book.atoms.push_back(newAtom);
 //            }
             book.maxAmp = max(book.maxAmp, newAtom->amp);
+            
+            if (book.windowSizes.find(newAtom->length) == book.windowSizes.end()) {
+                book.windowSizes.insert(newAtom->length);
+            }
+            
             atomNode = atomNode->NextSibling();
 		}
         
         
         std::sort(book.atoms.begin(), book.atoms.end(), maxiAtom::atomSortPositionAsc);
         
-        for(int i=0; i < book.atoms.size(); i++) {
-			cout << "Atom: pos: " << book.atoms[i]->position << ", length: " << book.atoms[i]->length << ", amp: " << book.atoms[i]->amp << ", freq: " << ((maxiGaborAtom*)book.atoms[i])->frequency << ", phase: " << ((maxiGaborAtom*)book.atoms[i])->phase << endl;
+        if (verbose) {
+            for(int i=0; i < book.atoms.size(); i++) {
+                cout << "Atom: pos: " << book.atoms[i]->position << ", length: " << book.atoms[i]->length << ", amp: " << book.atoms[i]->amp << ", freq: " << ((maxiGaborAtom*)book.atoms[i])->frequency << ", phase: " << ((maxiGaborAtom*)book.atoms[i])->phase << endl;
+            }
         }
-        
+        accel.precacheWindows(book.windowSizes);
         ok = true;
     }
 

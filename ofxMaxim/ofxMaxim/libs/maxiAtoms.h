@@ -15,9 +15,16 @@
 #include <valarray>
 #include "maxiGrains.h"
 #include <map>
+#ifndef TARGET_OS_IPHONE
+#include "maxiAtomKernel.h"
+#endif
+#include <set>
 
 
 using namespace std;
+
+//
+class maxiAtomKernel;
 
 enum maxiAtomTypes {
 	GABOR
@@ -58,9 +65,15 @@ public:
 //	void addAtom(valarray<maxiType> &atom, long offset=0);
     void addAtom(const maxiType freq, const maxiType phase, const maxiType sampleRate, const unsigned int length, const maxiType amp, const unsigned int offset);
 	void fillNextBuffer(float *buffer, unsigned int bufferLength);
+#ifndef TARGET_OS_IPHONE
+	void fillNextBuffer_OpenCL(float *buffer, unsigned int bufferLength);
+	void fillNextBuffer_OpenCLBatch(float *buffer, unsigned int bufferLength);
+	void fillNextBuffer_OpenCLBatch2(float *buffer, unsigned int bufferLength);
+#endif
 	inline long getSampleIdx(){return sampleIdx;}
     inline maxiAccelerator& setShape(maxiType val) {shape = val;}
     inline maxiAccelerator& setAtomCountLimit(int val){atomCountLimit = val;}
+    void precacheWindows(set<int> &windowSizes);
 private:
 	long sampleIdx;
 	struct queuedAtom {
@@ -82,6 +95,12 @@ private:
     maxiAtomWindowCache winCache;
     maxiType shape;
     int atomCountLimit;
+#ifndef TARGET_OS_IPHONE
+    maxiAtomKernel clKernel;
+    std::vector<structAtomData> atomDataBlock;
+#endif
+    std::vector<float> atomAmps, atomPhases, atomPhaseIncs;
+    std::vector<int> atomPositions, atomLengths;
 };
 
 /*load a book in MPTK XML format
@@ -98,7 +117,8 @@ public:
 	int sampleRate;
     float maxAmp;
 	maxiAtomBookData atoms;
-	static bool loadMPTKXmlBook(string filename, maxiAtomBook &book);
+    set<int> windowSizes;
+	static bool loadMPTKXmlBook(string filename, maxiAtomBook &book, maxiAccelerator &accel, bool verbose = false);
 	
 };
 

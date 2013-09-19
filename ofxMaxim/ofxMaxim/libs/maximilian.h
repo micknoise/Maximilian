@@ -163,8 +163,8 @@ class maxiFilter {
 	maxiType gain;
 	maxiType input;
 	maxiType output;
-	maxiType inputs[10];
-	maxiType outputs[10];
+	valarray<maxiType> inputs;
+	valarray<maxiType> outputs;
 	maxiType cutoff1;
 	maxiType x;//speed
 	maxiType y;//pos
@@ -172,7 +172,7 @@ class maxiFilter {
 	maxiType c;//filter coefficient
     
 public:
-	maxiFilter():x(0.0), y(0.0), z(0.0), c(0.0){};
+	maxiFilter();
 	maxiType cutoff;
 	maxiType resonance;
 	maxiType lores(maxiType input,maxiType cutoff1, maxiType resonance);

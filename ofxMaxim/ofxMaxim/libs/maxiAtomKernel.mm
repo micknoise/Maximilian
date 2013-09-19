@@ -12,11 +12,14 @@
 ////////////////////////////////////////////////////////////////////////////////
 #include <stdio.h>
 #include <stdlib.h>
+//#include "maximilian.h"
 
 
 
 maxiAtomKernel::maxiAtomKernel() {
     maxAtoms = 2048;
+    kernelTimeMA.init(0.9, 0);
+    memTimeMA.init(0.9, 0);
 }
 
 void maxiAtomKernel::setup(int count) {
@@ -59,7 +62,12 @@ void maxiAtomKernel::setup(int count) {
 //    dispatch_sync(queue, ^{
         mem_atomDataBlock  = gcl_malloc(sizeof(structAtomData) * maxAtoms, NULL, inmemFlags);
 //    });
-
+    
+    cl_image_format format;
+    format.image_channel_order = CL_R;
+    format.image_channel_data_type =  CL_UNSIGNED_INT8;
+    imBuffer = gcl_create_image(&format, bufferSize, 1, 1, NULL);
+    imBufOut.resize(bufferSize,0);
     
 }
 
@@ -257,6 +265,80 @@ void maxiAtomKernel::gaborBatch2(float *output, std::vector<structAtomData> &ato
         
         std::cout << "Time: " << memTime << "\t" << kernelTime << "\t" << memOutTime << std::endl;
     });
+}
+
+void maxiAtomKernel::gaborBatchTest(float *output, std::vector<structAtomData> &atomDataBlock, int atomCount) {
+    dispatch_semaphore_t dsema = dispatch_semaphore_create(0);
+    dispatch_async(queue, ^{
+//        for(int i=0; i < atomCount;i++) {
+//            atomDataBlock[i].windowStartIndex = windowIndexes[atomDataBlock[i].length];
+//        }
+//        cl_timer memTimer;
+//        memTimer = gcl_start_timer();
+//        void *memmap_atomData = gcl_map_ptr(mem_atomDataBlock, CL_MAP_WRITE, sizeof(structAtomData) * maxAtoms);
+//        memcpy(memmap_atomData, &atomDataBlock[0], sizeof(structAtomData) * atomCount);
+//        gcl_unmap(memmap_atomData);
+//        double memTime = gcl_stop_timer(memTimer);
+
+        size_t wgs;
+        gcl_get_kernel_block_workgroup_info(gabor_kernel,
+                                            CL_KERNEL_WORK_GROUP_SIZE,
+                                            sizeof(wgs), &wgs, NULL);
+
+
+//        printf("OpenCL determinded workgroup size is %d.\n", wgs);
+        
+        cl_ndrange range = {
+            1,                     // The number of dimensions to use.
+            
+            {0, 0, 0},             // The offset in each dimension.  We want to
+            // process ALL of our data, so this is 0 for
+            // our test case.                          [7]
+            
+            {bufferSize, 0, 0},    // The global range -- this is how many items
+            // IN TOTAL in each dimension you want to
+            // process.
+            
+            {wgs, 0, 0} // The local size of each workgroup.  This
+            // determines the number of workitems per
+            // workgroup.  It indirectly affects the
+            // number of workgroups, since the global
+            // size / local size yields the number of
+            // workgroups.  So in our test case, we will
+            // have NUM_VALUE / wgs workgroups.
+        };
+        
+        cl_timer kernelTimer = gcl_start_timer();
+        gaborImTestKernel_kernel(&range, imBuffer, (cl_float) 1.0);
+        double kernelTime = gcl_stop_timer(kernelTimer);
+        kernelTimeMA.addsample(kernelTime);
+
+        
+        // Getting data out of the device's memory space is also easy; we
+        // use gcl_memcpy.  In this case, we take the output computed by the
+        // kernel and copy it over to our application's memory space.        [9]
+        
+        cl_timer memOutTimer = gcl_start_timer();
+        //        gcl_memcpy(output, mem_out, sizeof(cl_float) * bufferSize);
+//        void *memmap_output = gcl_map_ptr(mem_out, CL_MAP_READ, sizeof(cl_float) * bufferSize);
+//        memcpy(output, memmap_output, sizeof(cl_float) * bufferSize);
+//        gcl_unmap(memmap_output);
+        const size_t origin[3] = { 0, 0, 0 };
+        const size_t region[3] = { bufferSize, 1, 1 };
+        gcl_copy_image_to_ptr(&imBufOut[0], imBuffer, origin, region);
+        double memOutTime = gcl_stop_timer(memOutTimer);
+        memTimeMA.addsample(memOutTime);
+        dispatch_semaphore_signal(dsema);
+        
+    });
+    dispatch_semaphore_wait(dsema, DISPATCH_TIME_FOREVER);
+    for(int i=0; i < bufferSize; i++) {
+        output[i] = imBufOut[i];
+    }
+    static int ct=0;
+//    if(ct++ % 100 == 0) {
+        std::cout << "Time: " /*<< memTime << "\t" */<< kernelTimeMA.value() << "\t" << memTimeMA.value() << std::endl;
+//    }
 }
 
 

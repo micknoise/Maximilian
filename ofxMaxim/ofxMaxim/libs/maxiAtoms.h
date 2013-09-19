@@ -8,14 +8,22 @@
  */
 
 
+#ifdef __APPLE_CC__
+#include "TargetConditionals.h"
+#endif
+
+#define USEOPENCL 0
+#define OSXOPENCL TARGET_OS_MAC & !TARGET_OS_IPHONE & USEOPENCL
+
+
 #include <iostream>
 #include "maximilian.h"
 #include <list>
 #include <vector>
 #include <valarray>
-#include "maxiGrains.h"
+//#include "maxiGrains.h"
 #include <map>
-#ifndef TARGET_OS_IPHONE
+#if OSXOPENCL
 #include "maxiAtomKernel.h"
 #endif
 #include <set>
@@ -23,18 +31,15 @@
 
 using namespace std;
 
-//
-class maxiAtomKernel;
-
 enum maxiAtomTypes {
 	GABOR
 };
 
 struct maxiAtom {
 	maxiAtomTypes atomType;
-	maxiType length;
-	maxiType position;
-	maxiType amp;
+	float length;
+	float position;
+	float amp;
 	static bool atomSortPositionAsc(maxiAtom* a, maxiAtom* b) {return a->position < b->position;}
 };
 
@@ -43,19 +48,12 @@ struct maxiGaborAtom : maxiAtom {
 	maxiType phase;
 };
 
-//create atoms
-class maxiCollider {
-public:
-	static inline void createGabor(valarray<maxiType> &atom, const maxiType freq, const maxiType sampleRate, const unsigned int length,
-                                maxiType phase, const maxiType kurtotis, const maxiType amp);
-    static maxiGrainWindowCache<gaussianWinFunctor> envCache;
-};
 
 class maxiAtomWindowCache {
 public:
-    maxiType * getWindow(int length);
+    float * getWindow(int length);
 protected:
-    map<int, valarray<maxiType> > windows;
+    map<int, valarray<float> > windows;
 };
 
 //queue atoms into an audio stream
@@ -65,10 +63,11 @@ public:
 //	void addAtom(valarray<maxiType> &atom, long offset=0);
     void addAtom(const maxiType freq, const maxiType phase, const maxiType sampleRate, const unsigned int length, const maxiType amp, const unsigned int offset);
 	void fillNextBuffer(float *buffer, unsigned int bufferLength);
-#ifndef TARGET_OS_IPHONE
+#if OSXOPENCL
 	void fillNextBuffer_OpenCL(float *buffer, unsigned int bufferLength);
 	void fillNextBuffer_OpenCLBatch(float *buffer, unsigned int bufferLength);
 	void fillNextBuffer_OpenCLBatch2(float *buffer, unsigned int bufferLength);
+	void fillNextBuffer_OpenCLBatchTest(float *buffer, unsigned int bufferLength);
 #endif
 	inline long getSampleIdx(){return sampleIdx;}
     inline maxiAccelerator& setShape(maxiType val) {shape = val;}
@@ -79,23 +78,23 @@ private:
 	struct queuedAtom {
 //        valarray<float> atom;
 		long startTime;
-		maxiType phase;
+		float phase;
         unsigned int length;
-        maxiType amp;
+        float amp;
         float pos;
         float freq;
 //        int offset;
-        maxiType *env;
-        maxiType phaseInc;
-        maxiType maxPhase;
+        float *env;
+        float phaseInc;
+        float maxPhase;
 	};
 	typedef list<queuedAtom> queuedAtomList;
 	queuedAtomList atomQueue;
-    valarray<maxiType> gabor;
+    valarray<float> gabor;
     maxiAtomWindowCache winCache;
-    maxiType shape;
+    float shape;
     int atomCountLimit;
-#ifndef TARGET_OS_IPHONE
+#if OSXOPENCL
     maxiAtomKernel clKernel;
     std::vector<structAtomData> atomDataBlock;
 #endif
@@ -136,7 +135,7 @@ public:
     inline maxiAtomBookPlayer &setPlaybackSpeed(maxiType val) {playbackSpeed = val;}
     inline maxiAtomBookPlayer &setGap(maxiType val) {gap = val;}
     inline maxiAtomBookPlayer &setSnapRange(maxiType val){snapRange = val; snapInvRange = 1.0 / snapRange;}
-    inline maxiAtomBookPlayer &setSnapFreqs(vector<maxiType> &freqs){snapFreqs = freqs;}
+    inline maxiAtomBookPlayer &setSnapFreqs(vector<float> &freqs){snapFreqs = freqs;}
 protected:
     void queueAtomsBetween(maxiAtomBook &book, maxiAccelerator &atomStream, long start, long end, int blockOffset);
 	maxiType atomIdx;
@@ -148,7 +147,7 @@ protected:
     maxiType playbackSpeed;
     maxiType gap;
     double loopedSamplePos;
-    vector<maxiType> snapFreqs;
+    vector<float> snapFreqs;
     maxiType snapRange, snapInvRange;
 };
 

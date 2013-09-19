@@ -46,3 +46,53 @@ kernel void gaborBatch2(global float* output, global atomDataContainer *atomData
     }
     output[i] = cellValue;
 }
+
+
+kernel void gaborBatchTestKernel(global float* output, float amp) // [1]
+{
+    size_t i = get_global_id(0);
+//    float cellValue=0;
+//    for(int atom=0; atom < atomCount; atom++) {
+//        global atomDataContainer *currAtom = &atomData[atom];
+//        int idx = i + currAtom->position;
+//        idx = clamp(idx, 0, currAtom->length);
+//        float v = currAtom->phase + (idx * currAtom->phaseInc);
+//        v = native_cos(v) * currAtom->amp;
+//        float env = windows[currAtom->windowStartIndex + idx];
+//        v *= env;
+//        cellValue += v;
+//    }
+    //output[i] = cellValue;
+//    float v = 1.0 * i;
+//    float f = convert_float(i);
+    output[i] = sin(amp * i * 0.001f) * cos(i * 0.0001f);
+}
+
+kernel void gaborImTestKernel(write_only image2d_t output, float amp) // [1]
+{
+    size_t i = get_global_id(0);
+    //    float cellValue=0;
+    //    for(int atom=0; atom < atomCount; atom++) {
+    //        global atomDataContainer *currAtom = &atomData[atom];
+    //        int idx = i + currAtom->position;
+    //        idx = clamp(idx, 0, currAtom->length);
+    //        float v = currAtom->phase + (idx * currAtom->phaseInc);
+    //        v = native_cos(v) * currAtom->amp;
+    //        float env = windows[currAtom->windowStartIndex + idx];
+    //        v *= env;
+    //        cellValue += v;
+    //    }
+    //output[i] = cellValue;
+    //    float v = 1.0 * i;
+    //    float f = convert_float(i);
+    //    output[i] = sin(amp * i * 0.001f) * cos(i * 0.0001f);
+    //output[i] = sin(amp * i * 0.001f) * cos(i * 0.0001f);
+//    uint4 val;
+//    val.x=1;
+//    val.y=1;
+//    val.z=1;
+//    val.w=1;
+    uint val = 1;
+//    float val = sin(amp * i * 0.001f) * cos(i * 0.0001f);
+    write_imageui(output, (int2)(i, 0), val);
+}

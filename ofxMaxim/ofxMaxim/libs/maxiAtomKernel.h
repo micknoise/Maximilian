@@ -20,6 +20,39 @@ extern "C" {
     #include "gabor_kernel.cl.h"
 }
 
+template <class T>
+class expMovingAverage {
+public:
+	T alpha, alphaReciprocal;
+	T val;
+	
+	expMovingAverage() {
+		init(0.5, 0.0);
+	};
+	
+	expMovingAverage(T initAlpha, T initVal) {
+		init(initAlpha, initVal);
+	}
+	
+	void init(T initAlpha, T initVal) {
+		alpha = initAlpha;
+		alphaReciprocal = 1.0 - alpha;
+		val = initVal;
+	}
+	
+	inline void addsample(T newVal) {
+		val = (alpha * newVal) + (alphaReciprocal * val);
+	}
+	
+	inline T value() {
+		return val;
+	}
+    
+    inline T reset(float newval) {
+        val = newval;
+    }
+};
+
 class maxiAtomKernel {
 public:
     
@@ -31,6 +64,7 @@ public:
     void gaborSingle(float *output, float amp, float phase, float phaseInc, int pos, int count, int atomLength);
     void gaborBatch(float *output, int atomCount, float *amps, float *phases, float *phaseIncs, int *positions, int *atomLengths, int count);
     void gaborBatch2(float *output, std::vector<structAtomData> &atomDataBlock, int atomCount);
+    void gaborBatchTest(float *output, std::vector<structAtomData> &atomDataBlock, int atomCount);
     int getMaxAtoms(){return maxAtoms;}
 private:
     dispatch_queue_t queue;
@@ -43,6 +77,10 @@ private:
     cl_ndrange rangeBatch;
     int bufferSize;
     void *mem_atomDataBlock;
+    
+    expMovingAverage<double> memTimeMA, kernelTimeMA;
+    cl_image imBuffer;
+    std::vector<unsigned char> imBufOut;
 };
 
 #endif /* defined(__maxiTestZone__maxiAtomKernel__) */

@@ -438,6 +438,12 @@ void maxiDelayline::clear() {
 // maxiFilter
 ///////////////////////////////////////////////////////////////////////////
 
+maxiFilter::maxiFilter() :x(0.0), y(0.0), z(0.0), c(0.0){
+    inputs.resize(10,0);
+    outputs.resize(10,0);
+};
+
+
 //I particularly like these. cutoff between 0 and 1
 maxiType maxiFilter::lopass(maxiType input, maxiType cutoff) {
 	output=outputs[0] + cutoff*(input-outputs[0]);

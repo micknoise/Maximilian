@@ -180,6 +180,7 @@ public:
 	maxiType bandpass(maxiType input,maxiType cutoff1, maxiType resonance);
 	maxiType lopass(maxiType input,maxiType cutoff);
 	maxiType hipass(maxiType input,maxiType cutoff);
+    void reset();
 	
 };
 
@@ -337,6 +338,9 @@ protected:
     int diffFwd, diffRv;
     bool recaching;
     int recachePos;
+    maxiType env;
+    maxiType envInc;
+    short lastSample;
 private:
 };
 

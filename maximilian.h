@@ -289,7 +289,7 @@ public:
 	
 	double bufferPlay4(unsigned char &bufferin,double frequency, double start, double end);
     bool save() {
-        save(myPath);
+        return save(myPath);
     }
     
 	bool save(string filename)

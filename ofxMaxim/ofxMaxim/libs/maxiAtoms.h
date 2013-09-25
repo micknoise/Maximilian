@@ -70,8 +70,8 @@ public:
 	void fillNextBuffer_OpenCLBatchTest(float *buffer, unsigned int bufferLength);
 #endif
 	inline long getSampleIdx(){return sampleIdx;}
-    inline maxiAccelerator& setShape(maxiType val) {shape = val;}
-    inline maxiAccelerator& setAtomCountLimit(int val){atomCountLimit = val;}
+    inline maxiAccelerator& setShape(maxiType val) {shape = val; return *this;}
+    inline maxiAccelerator& setAtomCountLimit(int val){atomCountLimit = val; return *this;}
     void precacheWindows(set<int> &windowSizes);
 private:
 	long sampleIdx;
@@ -125,17 +125,17 @@ class maxiAtomBookPlayer {
 public:
 	maxiAtomBookPlayer();
 	void play(maxiAtomBook &book, maxiAccelerator &atomStream);
-    inline maxiAtomBookPlayer &setLengthMod(maxiType val) {lengthMod = val;}
-    inline maxiAtomBookPlayer &setFreqMod(maxiType val) {freqMod = val;}
-    inline maxiAtomBookPlayer &setProbability(maxiType val) {probability = val;}
-    inline maxiAtomBookPlayer &setLowFreq(maxiType val) {lowFreq = val;}
-    inline maxiAtomBookPlayer &setHighFreq(maxiType val) {highFreq = val;}
-    inline maxiAtomBookPlayer &setLowAmp(maxiType val) {lowAmp = val;}
-    inline maxiAtomBookPlayer &setHighAmp(maxiType val) {highAmp = val;}
-    inline maxiAtomBookPlayer &setPlaybackSpeed(maxiType val) {playbackSpeed = val;}
-    inline maxiAtomBookPlayer &setGap(maxiType val) {gap = val;}
-    inline maxiAtomBookPlayer &setSnapRange(maxiType val){snapRange = val; snapInvRange = 1.0 / snapRange;}
-    inline maxiAtomBookPlayer &setSnapFreqs(vector<float> &freqs){snapFreqs = freqs;}
+    inline maxiAtomBookPlayer &setLengthMod(maxiType val) {lengthMod = val; return *this;}
+    inline maxiAtomBookPlayer &setFreqMod(maxiType val) {freqMod = val; return *this;}
+    inline maxiAtomBookPlayer &setProbability(maxiType val) {probability = val; return *this;}
+    inline maxiAtomBookPlayer &setLowFreq(maxiType val) {lowFreq = val; return *this;}
+    inline maxiAtomBookPlayer &setHighFreq(maxiType val) {highFreq = val; return *this;}
+    inline maxiAtomBookPlayer &setLowAmp(maxiType val) {lowAmp = val; return *this;}
+    inline maxiAtomBookPlayer &setHighAmp(maxiType val) {highAmp = val; return *this;}
+    inline maxiAtomBookPlayer &setPlaybackSpeed(maxiType val) {playbackSpeed = val; return *this;}
+    inline maxiAtomBookPlayer &setGap(maxiType val) {gap = val; return *this;}
+    inline maxiAtomBookPlayer &setSnapRange(maxiType val){snapRange = val; snapInvRange = 1.0 / snapRange; return *this;}
+    inline maxiAtomBookPlayer &setSnapFreqs(vector<float> &freqs){snapFreqs = freqs; return *this;}
 protected:
     void queueAtomsBetween(maxiAtomBook &book, maxiAccelerator &atomStream, long start, long end, int blockOffset);
 	maxiType atomIdx;

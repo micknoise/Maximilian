@@ -443,6 +443,12 @@ maxiFilter::maxiFilter() :x(0.0), y(0.0), z(0.0), c(0.0){
     outputs.resize(10,0);
 };
 
+void maxiFilter::reset() {
+    outputs = 0;
+    inputs = 0;
+    x = y = z = c = 0;
+}
+
 
 //I particularly like these. cutoff between 0 and 1
 maxiType maxiFilter::lopass(maxiType input, maxiType cutoff) {
@@ -1536,6 +1542,9 @@ bool fileSampleSource::load(const string filename, const int channel, int _buffe
     threadSleepTime = _threadSleepTime;
     recaching = false;
     recachePos = 0;
+    env = 1.0;
+    lastSample = 0;
+    envInc = static_cast<maxiType>(maxiSettings::bufferSize) / maxiSettings::sampleRate * 0.3;
     load(filename, channel);
 }
 
@@ -1691,30 +1700,6 @@ void fileSampleSource::cacheAtPosition(int cacheCenterPos) {
     cout << "Done recache\n";
     //    startThread();
     
-//    bufferPos = bufferSize / 2;
-//    filePos = 0;
-//    fileWinEndPos = fileStartPos + bufferToFileScale(bufferSize/2); //((bufferSize / 2) * 2 * numChannels);
-//    fileWinStartPos = fileEndPos - bufferToFileScale(bufferSize/2); //((bufferSize / 2) * 2 * numChannels);
-//    fileWinCenter = 0;
-//    fileCenterPos = 0; // in <short> format, single channel
-//    
-//    //fill up the buffer
-//    //read ahead
-//    inFile.seekg(fileStartPos, ios::beg);
-//    for(int i=0; i < bufferSize/2; i++) {
-//        inFile.read((char*)(&frame[0]), bufferToFileScale(1));
-//        data[bufferPos + i] = frame[channel];
-//    }
-//    //read from behind
-//    inFile.seekg(fileWinStartPos);
-//    for(int i=0; i < bufferSize/2; i++) {
-//        inFile.read((char*)(&frame[0]), bufferToFileScale(1));
-//        data[i] = frame[channel];
-//    }
-//    
-//    inFile.seekg(fileWinEndPos, ios::beg);
-//    
-//    bufferCenter = bufferPos;
 }
 
 
@@ -1848,6 +1833,7 @@ inline int fileSampleSource::getSampleRate() {
 inline short& fileSampleSource::operator[](const long idx) {
     short sample = 0;
     if (!recaching) {
+        env = min(env+envInc, static_cast<maxiType>(1.0));
         //map from file position to buffer position
         //making an assumption the position is in the buffer already
         int diff = idx - fileCenterPos;
@@ -1865,22 +1851,26 @@ inline short& fileSampleSource::operator[](const long idx) {
             cout << "Recaching\n";
             recachePos = idx;
             recaching = true;
-//            stopThread();
+        }else {
+            bufferPos = bufferCenter + diff;
+            if (bufferPos < 0) {
+                bufferPos += bufferSize;
+            }else if (bufferPos >= bufferSize) {
+                bufferPos -= bufferSize;
+            }
+            if (diff < 0) {
+                diffRv = min(diff, diffRv);
+            }else{
+                diffFwd = max(diff, diffFwd);
+            }
+            sample = data[bufferPos];
         }
-        bufferPos = bufferCenter + diff;
-        if (bufferPos < 0) {
-            bufferPos += bufferSize;
-        }else if (bufferPos >= bufferSize) {
-            bufferPos -= bufferSize;
-        }
-        if (diff < 0) {
-            diffRv = min(diff, diffRv);
-        }else{
-            diffFwd = max(diff, diffFwd);
-        }
-        sample = data[bufferPos];
-    //    cout << diff << endl;
+        lastSample = sample;
+    }else{
+        env = max(static_cast<maxiType>(0.0), env - envInc);  //prevent clicks when re-caching
+        sample = lastSample;
     }
+    sample = static_cast<short>(static_cast<maxiType>(sample) * env);
     return sample;
 }
 

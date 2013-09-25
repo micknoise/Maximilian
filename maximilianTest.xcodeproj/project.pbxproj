@@ -8,12 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		00B5A18610F54EF50011B459 /* maximilian.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 00B5A18510F54EF50011B459 /* maximilian.cpp */; };
-		00FD793810CF318A00EA9294 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00FD793710CF318A00EA9294 /* CoreAudio.framework */; };
 		00FD794410CF325D00EA9294 /* RtAudio.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 00FD794110CF325D00EA9294 /* RtAudio.cpp */; };
-		4C1D998910FA773300D5E940 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C1D998810FA773300D5E940 /* AudioToolbox.framework */; };
-		4C1D998D10FA773D00D5E940 /* AudioUnit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C1D998C10FA773D00D5E940 /* AudioUnit.framework */; };
-		4C1D999110FA774A00D5E940 /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C1D999010FA774A00D5E940 /* CoreServices.framework */; };
 		833289281403E9C4003DF5D6 /* player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 833289271403E9C4003DF5D6 /* player.cpp */; };
+		8354AFB717F2D4190045717A /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8354AFB617F2D4190045717A /* CoreAudio.framework */; };
+		8354AFB917F2D4210045717A /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8354AFB817F2D4210045717A /* AudioToolbox.framework */; };
+		8354AFBB17F2D42A0045717A /* AudioUnit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8354AFBA17F2D42A0045717A /* AudioUnit.framework */; };
+		8354AFBD17F2D4330045717A /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8354AFBC17F2D4330045717A /* CoreServices.framework */; };
 		8D7601A5152BDB5200EAE4B0 /* stb_vorbis.c in Sources */ = {isa = PBXBuildFile; fileRef = 8D7601A3152BDB5200EAE4B0 /* stb_vorbis.c */; };
 		8DD76F650486A84900D96B5E /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 08FB7796FE84155DC02AAC07 /* main.cpp */; settings = {ATTRIBUTES = (); }; };
 		8DD76F6A0486A84900D96B5E /* rtaudiotest.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = C6859E8B029090EE04C91782 /* rtaudiotest.1 */; };
@@ -35,17 +35,17 @@
 /* Begin PBXFileReference section */
 		00B5A18510F54EF50011B459 /* maximilian.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = maximilian.cpp; sourceTree = "<group>"; };
 		00F9DBCA10EA67AF000FD39D /* maximilian.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = maximilian.h; sourceTree = "<group>"; };
-		00FD793710CF318A00EA9294 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
 		00FD794110CF325D00EA9294 /* RtAudio.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RtAudio.cpp; sourceTree = "<group>"; };
 		00FD794210CF325D00EA9294 /* RtAudio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RtAudio.h; sourceTree = "<group>"; };
 		00FD794310CF325D00EA9294 /* RtError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RtError.h; sourceTree = "<group>"; };
 		08FB7796FE84155DC02AAC07 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		4C1D997D10FA76E700D5E940 /* portaudio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = portaudio.h; sourceTree = "<group>"; };
-		4C1D998810FA773300D5E940 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
-		4C1D998C10FA773D00D5E940 /* AudioUnit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioUnit.framework; path = System/Library/Frameworks/AudioUnit.framework; sourceTree = SDKROOT; };
-		4C1D999010FA774A00D5E940 /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = System/Library/Frameworks/CoreServices.framework; sourceTree = SDKROOT; };
 		833289261403E9C4003DF5D6 /* player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = player.h; sourceTree = "<group>"; };
 		833289271403E9C4003DF5D6 /* player.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = player.cpp; sourceTree = "<group>"; };
+		8354AFB617F2D4190045717A /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/CoreAudio.framework; sourceTree = DEVELOPER_DIR; };
+		8354AFB817F2D4210045717A /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/AudioToolbox.framework; sourceTree = DEVELOPER_DIR; };
+		8354AFBA17F2D42A0045717A /* AudioUnit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioUnit.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/AudioUnit.framework; sourceTree = DEVELOPER_DIR; };
+		8354AFBC17F2D4330045717A /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/CoreServices.framework; sourceTree = DEVELOPER_DIR; };
 		8D7601A3152BDB5200EAE4B0 /* stb_vorbis.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = stb_vorbis.c; sourceTree = "<group>"; };
 		8D7601A4152BDB5200EAE4B0 /* stb_vorbis.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stb_vorbis.h; sourceTree = "<group>"; };
 		8DD76F6C0486A84900D96B5E /* rtaudiotest */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = rtaudiotest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -57,10 +57,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				00FD793810CF318A00EA9294 /* CoreAudio.framework in Frameworks */,
-				4C1D998910FA773300D5E940 /* AudioToolbox.framework in Frameworks */,
-				4C1D998D10FA773D00D5E940 /* AudioUnit.framework in Frameworks */,
-				4C1D999110FA774A00D5E940 /* CoreServices.framework in Frameworks */,
+				8354AFBD17F2D4330045717A /* CoreServices.framework in Frameworks */,
+				8354AFBB17F2D42A0045717A /* AudioUnit.framework in Frameworks */,
+				8354AFB917F2D4210045717A /* AudioToolbox.framework in Frameworks */,
+				8354AFB717F2D4190045717A /* CoreAudio.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -70,13 +70,14 @@
 		08FB7794FE84155DC02AAC07 /* rtaudiotest */ = {
 			isa = PBXGroup;
 			children = (
+				8354AFBC17F2D4330045717A /* CoreServices.framework */,
+				8354AFBA17F2D42A0045717A /* AudioUnit.framework */,
+				8354AFB817F2D4210045717A /* AudioToolbox.framework */,
+				8354AFB617F2D4190045717A /* CoreAudio.framework */,
 				833289351403EE46003DF5D6 /* audioIO */,
 				08FB7795FE84155DC02AAC07 /* Source */,
 				C6859E8C029090F304C91782 /* Documentation */,
 				1AB674ADFE9D54B511CA2CBB /* Products */,
-				4C1D998810FA773300D5E940 /* AudioToolbox.framework */,
-				4C1D998C10FA773D00D5E940 /* AudioUnit.framework */,
-				4C1D999010FA774A00D5E940 /* CoreServices.framework */,
 			);
 			name = rtaudiotest;
 			sourceTree = "<group>";
@@ -91,7 +92,6 @@
 				00B5A18510F54EF50011B459 /* maximilian.cpp */,
 				00F9DBCA10EA67AF000FD39D /* maximilian.h */,
 				08FB7796FE84155DC02AAC07 /* main.cpp */,
-				00FD793710CF318A00EA9294 /* CoreAudio.framework */,
 			);
 			name = Source;
 			sourceTree = "<group>";
@@ -149,6 +149,8 @@
 /* Begin PBXProject section */
 		08FB7793FE84155DC02AAC07 /* Project object */ = {
 			isa = PBXProject;
+			attributes = {
+			};
 			buildConfigurationList = 1DEB923508733DC60010E9CD /* Build configuration list for PBXProject "maximilianTest" */;
 			compatibilityVersion = "Xcode 3.1";
 			developmentRegion = English;
@@ -204,6 +206,7 @@
 					"\"$(SRCROOT)\"",
 				);
 				PRODUCT_NAME = rtaudiotest;
+				SDKROOT = macosx;
 			};
 			name = Debug;
 		};
@@ -220,6 +223,7 @@
 					"\"$(SRCROOT)\"",
 				);
 				PRODUCT_NAME = rtaudiotest;
+				SDKROOT = macosx;
 			};
 			name = Release;
 		};

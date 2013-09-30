@@ -1831,7 +1831,7 @@ inline int fileSampleSource::getSampleRate() {
 }
 
 inline short& fileSampleSource::operator[](const long idx) {
-    short sample = 0;
+    sample = 0;
     if (!recaching) {
         env = min(env+envInc, static_cast<maxiType>(1.0));
         //map from file position to buffer position

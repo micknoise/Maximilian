@@ -13,7 +13,7 @@
 #endif
 
 #define USEOPENCL 0
-#define OSXOPENCL TARGET_OS_MAC & !TARGET_OS_IPHONE & USEOPENCL
+#define OSXOPENCL TARGET_OS_MAC && !TARGET_OS_IPHONE && USEOPENCL
 
 
 #include <iostream>

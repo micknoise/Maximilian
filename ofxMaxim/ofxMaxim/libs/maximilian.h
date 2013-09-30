@@ -340,7 +340,7 @@ protected:
     int recachePos;
     maxiType env;
     maxiType envInc;
-    short lastSample;
+    short lastSample, sample;
 private:
 };
 

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>D273FE0A-5762-4D51-9EDD-E4A13BC39DEF</string>
+	<key>IDESourceControlProjectName</key>
+	<string>maximilianTest</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>FEC4E512-E134-4CF0-895B-9FCE9B4F273E</key>
+		<string>ssh://github.com/micknoise/Maximilian.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>maximilianTest.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>FEC4E512-E134-4CF0-895B-9FCE9B4F273E</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>ssh://github.com/micknoise/Maximilian.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>FEC4E512-E134-4CF0-895B-9FCE9B4F273E</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>FEC4E512-E134-4CF0-895B-9FCE9B4F273E</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Maximilian</string>
+		</dict>
+	</array>
+</dict>
+</plist>

@@ -304,7 +304,7 @@ protected:
  */
 class fileSampleSource : public sampleSource, private ofThread {
 public:
-    fileSampleSource() : sampleSource(), length(1), diffFwd(0), diffRv(0), bufferSize(maxiSettings::sampleRate), blockSize(1024), threadSleepTime(20) {}
+    fileSampleSource() : sampleSource(), length(1), diffFwd(0), diffRv(0), bufferSize(maxiSettings::sampleRate * 2), blockSize(1024 * 32), threadSleepTime(200) {}
     bool load(const string filename, const int channel, int bufferSize, int blockSize, int threadSleepTime);
     bool load(const string filename, const int channel = 0);
     void unload();
@@ -341,6 +341,7 @@ protected:
     maxiType env;
     maxiType envInc;
     short lastSample, sample;
+    
 private:
 };
 

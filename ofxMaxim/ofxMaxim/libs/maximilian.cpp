@@ -1540,16 +1540,16 @@ bool fileSampleSource::load(const string filename, const int channel, int _buffe
     bufferSize = _bufferSize;
     blockSize = _blockSize;
     threadSleepTime = _threadSleepTime;
-    recaching = false;
-    recachePos = 0;
-    env = 1.0;
-    lastSample = 0;
-    envInc = static_cast<maxiType>(maxiSettings::bufferSize) / maxiSettings::sampleRate * 0.3;
     load(filename, channel);
 }
 
 bool fileSampleSource::load(const string _filename, const int _channel) {
     filename = _filename;
+    recaching = false;
+    recachePos = 0;
+    env = 1.0;
+    lastSample = 0;
+    envInc = static_cast<maxiType>(maxiSettings::bufferSize) / maxiSettings::sampleRate * 0.3;
 	bool result;
 	int myChunkSize;
 	int	mySubChunk1Size;
@@ -1625,7 +1625,7 @@ bool fileSampleSource::load(const string _filename, const int _channel) {
 
 void fileSampleSource::cacheAtPosition(int cacheCenterPos) {
     //    stopThread();
-    cout << "Start recache\n";
+    cout << "Start recache to position " << cacheCenterPos << ": " << filename << endl;
     bufferPos = halfBufferSize;
     filePos = fileStartPos + bufferToFileScale(cacheCenterPos);
     fileWinEndPos = filePos + bufferToFileScale(bufferSize/2); //((bufferSize / 2) * 2 * numChannels);
@@ -1713,9 +1713,10 @@ fileSampleSource::~fileSampleSource() {
 }
 
 void fileSampleSource::threadedFunction() {
-    cout << "Thread running\n";
+    cout << "Thread running: " << filename << endl;
     while(isThreadRunning()) {
         if (recaching) {
+            cout << "Thread recaching: " << filename << endl;
             cacheAtPosition(recachePos);
             //            startThread();
             diffFwd = 0;

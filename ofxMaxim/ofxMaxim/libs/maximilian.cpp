@@ -1540,7 +1540,7 @@ bool fileSampleSource::load(const string filename, const int channel, int _buffe
     bufferSize = _bufferSize;
     blockSize = _blockSize;
     threadSleepTime = _threadSleepTime;
-    load(filename, channel);
+    return load(filename, channel);
 }
 
 bool fileSampleSource::load(const string _filename, const int _channel) {

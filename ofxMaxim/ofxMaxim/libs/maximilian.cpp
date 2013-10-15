@@ -409,12 +409,12 @@ maxiDelayline::maxiDelayline() {
 
 
 maxiType maxiDelayline::dl(maxiType input, int size, maxiType feedback)  {
-	if ( phase >=size ) {
-		phase = 0;
-	}
 	output=memory[phase];
 	memory[phase]=(memory[phase]*feedback)+(input*feedback)*0.5;
 	phase+=1;
+	if ( phase >=size ) {
+		phase = 0;
+	}
 	return(output);
 	
 }

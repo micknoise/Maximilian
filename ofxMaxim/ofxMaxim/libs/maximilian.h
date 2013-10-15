@@ -155,6 +155,7 @@ public:
 	maxiType dl(maxiType input, int size, maxiType feedback);
 	maxiType dl(maxiType input, int size, maxiType feedback, int position);
     void clear();
+    inline int getPhase(){return phase;}
 	
 };
 

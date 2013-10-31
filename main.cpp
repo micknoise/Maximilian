@@ -1,36 +1,55 @@
 #include "maximilian.h"
 
-//Look mum no aliasing
+//this tutorial explains how to use the maxiEnv
 
-//synthesiser bits
-maxiOsc VCO1,VCO2;
-maxiOsc ramp,ramp2,ramp3;
-double out;
+maxiSample sound1;
 
+maxiOsc timer,snarePhase; //and a timer
+
+maxiEnv envelope;//this is going to be an envelope
+
+int currentCount,lastCount,playHead,
+
+sequence[16]={1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0}; //This is the sequence for the kick
+
+int sampleTrigger;
+
+double sampleOut;
 
 void setup() {//some inits
+	
+    //YOU HAVE TO PROVIDE THE SAMPLES....
     
-    //we need this to set the duty cycle for the sqaure wave otherwise it don't work
-	VCO2.phaseReset(0.5);
-    
+	sound1.load("/Users/chris/src/Maximilian/beat2.wav");//load in your samples. Provide the full path to a wav file.
+	
+	
+	printf("Summary:\n%s", sound1.getSummary());//get info on samples if you like.
+	//beats.getLength();
 }
 
-void play(double *output) {
-
-//      no noise here
-//      out=VCO1.sawn(ramp.phasor(0.1,50,8000));
-
+void play(double *output) {//this is where the magic happens. Very slow magic.
+	
+	currentCount=(int)timer.phasor(8);//this sets up a metronome that ticks 8 times a second
+	
+	
+	if (lastCount!=currentCount) {//if we have a new timer int this sample, play the sound
+		
+		sampleTrigger=sequence[playHead%16];
+		playHead++;//iterate the playhead
+		lastCount=0;//reset the metrotest
+        
+	}
+	
+	//the envelope we're using here is an AR envelope.
+	//It has an input (which in this case is a sound)
+	//It has an attack coefficient, a hold val (in samples)
+	//and a release coefficient. Finally, it has a trigger input.
+	//If you stick a 1 in the trigger input, it retriggers the envelope
+	sampleOut=envelope.ar(sound1.playOnce(1.), 0.9999, 0.999999, 1, sampleTrigger); //
     
-//      Band limited square using two band limited saws. Comment the above and uncomment the below.
-//      you can hear a tiny bit of aliasing approaching 8000 hz but it should do.
-//      It's actually a bit of a weird hack but has nice response.
-//        out=VCO1.sawn(ramp.phasor(0.1,50,8000))-VCO2.sawn(ramp2.phasor(0.1,50,8000));
-    
-//      When you're done testing with the ramps, see here for an easy PWM hack with this approach
-      out=VCO1.sawn(500)-(VCO2.sawn(100.1)*0.9);
-
-    
-	output[0]=out*0.5;//left channel
-	output[1]=out*0.5;//right channel
+	output[0]=sampleOut;//left channel
+	output[1]=sampleOut;//right channel
+	
+	sampleTrigger = 0;//set trigger to 0 at the end of each sample to guarantee retriggering.
     
 }

@@ -149,7 +149,7 @@ void maxiAccelerator::fillNextBuffer(float *buffer, unsigned int bufferLength) {
 		
 	}
 	sampleIdx += bufferLength;
-//    cout << atomQueue.size() << endl;
+    cout << atomQueue.size() << endl;
 }
 
 #if OSXOPENCL
@@ -289,6 +289,7 @@ void maxiAccelerator::fillNextBuffer_OpenCLBatchTest(float *buffer, unsigned int
 
 bool maxiAtomBook::loadMPTKXmlBook(string filename, maxiAtomBook &book, maxiAccelerator &accel, bool verbose) {
     if (verbose) cout << "Loading " << filename << endl;
+    book.bookIndexInterval = 0.05;
 	bool ok = false;
     using namespace tinyxml2;
     book.maxAmp = 0;
@@ -345,6 +346,11 @@ bool maxiAtomBook::loadMPTKXmlBook(string filename, maxiAtomBook &book, maxiAcce
 	return ok;
 }
 
+int maxiAtomBook::getIndexOfAtomBefore(float pos) {
+    
+}
+
+
 maxiAtomBook::~maxiAtomBook() {
 	for(int i=0; i < atoms.size(); i++) delete atoms[i];
 }
@@ -363,16 +369,19 @@ maxiAtomBookPlayer::maxiAtomBookPlayer() {
     loopedSamplePos = 0;
     snapRange = 1.1;
     snapInvRange = 1.0 / snapRange;
+    setLoopStart(0.0);
+    setLoopEnd(1.0);
 }
 
 
 void maxiAtomBookPlayer::play(maxiAtomBook &book, maxiAccelerator &atomStream) {
 	//positions
-	long idx = atomStream.getSampleIdx();
+//	long idx = atomStream.getSampleIdx();
 
     //    cout << atomIdx << ", " << idx << ", " << loopedSamplePos << endl;
     int totalBlockSize = maxiSettings::bufferSize * playbackSpeed;
-	int blockSize = min(totalBlockSize, static_cast<int>(book.numSamples - loopedSamplePos));
+    float loopEndInSamples = book.numSamples * loopEnd;
+	int blockSize = min(totalBlockSize, static_cast<int>(loopEndInSamples - loopedSamplePos));
     int blockOffset = 0;
     queueAtomsBetween(book, atomStream, loopedSamplePos, loopedSamplePos + blockSize, blockOffset);
     bool loopingThisFrame = blockSize < totalBlockSize;
@@ -383,13 +392,7 @@ void maxiAtomBookPlayer::play(maxiAtomBook &book, maxiAccelerator &atomStream) {
         queueAtomsBetween(book, atomStream, loopedSamplePos, loopedSamplePos + blockSize, blockOffset);
     }
     
-//	if (atomIdx < book.atoms.size()) {
-//	}
     loopedSamplePos += blockSize;
-//    if (loopedSamplePos >= book.numSamples) {
-//        loopedSamplePos = ;
-//    }
-//    cout << atomCount << endl;
 }
 
 void maxiAtomBookPlayer::queueAtomsBetween(maxiAtomBook &book, maxiAccelerator &atomStream, long start, long end, int blockOffset) {
@@ -432,3 +435,14 @@ void maxiAtomBookPlayer::queueAtomsBetween(maxiAtomBook &book, maxiAccelerator &
     }
 }
 
+maxiAtomBookPlayer& maxiAtomBookPlayer::setLoopStart(float val) {
+    loopStart = val;
+    loopStartAtomIdx = 0;
+    return *this;
+}
+
+maxiAtomBookPlayer& maxiAtomBookPlayer::setLoopEnd(float val) {
+    loopEnd = val;
+//    loopEndAtomIdx = book.atoms.size();
+    return *this;
+}

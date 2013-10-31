@@ -1,4 +1,4 @@
-#include "maximilian.h"
+ #include "maximilian.h"
 
 maxiSample beats; //We give our sample a name. It's called beats this time. We could have loads of them, but they have to have different names.
 
@@ -14,7 +14,7 @@ void play(double *output) {//this is where the magic happens. Very slow magic.
 	*output=beats.play();//just play the file. Looping is default for all play functions.
 	//	*output=beats.play(0.69);//play the file with a speed setting. 1. is normal speed.
 	//	*output=beats.play(0.5,0,44100);//linear interpolationplay with a frequency input, start point and end point. Useful for syncing.
-	//	*output=beats.play4(0.5,0,44100);//cubic interpolation play with a frequency input, start point and end point. Useful for syncing.
+		*output=beats.play4(0.5,0,beats.length);//cubic interpolation play with a frequency input, start point and end point. Useful for syncing.
 	
 	
 }

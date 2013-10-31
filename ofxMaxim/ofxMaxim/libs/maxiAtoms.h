@@ -118,7 +118,9 @@ public:
 	maxiAtomBookData atoms;
     set<int> windowSizes;
 	static bool loadMPTKXmlBook(string filename, maxiAtomBook &book, maxiAccelerator &accel, bool verbose = false);
-	
+	int getIndexOfAtomBefore(float pos);
+    std::map<float, int> bookIndex;
+    float bookIndexInterval;
 };
 
 class maxiAtomBookPlayer {
@@ -136,6 +138,9 @@ public:
     inline maxiAtomBookPlayer &setGap(maxiType val) {gap = val; return *this;}
     inline maxiAtomBookPlayer &setSnapRange(maxiType val){snapRange = val; snapInvRange = 1.0 / snapRange; return *this;}
     inline maxiAtomBookPlayer &setSnapFreqs(vector<float> &freqs){snapFreqs = freqs; return *this;}
+    inline maxiAtomBookPlayer &setLoopStart(float val);
+    inline maxiAtomBookPlayer &setLoopEnd(float val);
+    
 protected:
     void queueAtomsBetween(maxiAtomBook &book, maxiAccelerator &atomStream, long start, long end, int blockOffset);
 	maxiType atomIdx;
@@ -149,5 +154,6 @@ protected:
     double loopedSamplePos;
     vector<float> snapFreqs;
     maxiType snapRange, snapInvRange;
+    maxiType loopStart, loopEnd, loopStartAtomIdx, loopEndAtomIdx;
 };
 

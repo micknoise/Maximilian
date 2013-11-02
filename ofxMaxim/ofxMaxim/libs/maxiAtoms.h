@@ -119,14 +119,16 @@ public:
     set<int> windowSizes;
 	static bool loadMPTKXmlBook(string filename, maxiAtomBook &book, maxiAccelerator &accel, bool verbose = false);
 	int getIndexOfAtomBefore(float pos);
-    std::map<float, int> bookIndex;
-    float bookIndexInterval;
+	int getIndexOfAtomAfter(float pos);
+    std::map<int, int> bookIndex;
+    int bookIntervalCount;
 };
 
 class maxiAtomBookPlayer {
 public:
 	maxiAtomBookPlayer();
-	void play(maxiAtomBook &book, maxiAccelerator &atomStream);
+    void setBook(maxiAtomBook &newBook);
+	void play(maxiAccelerator &atomStream);
     inline maxiAtomBookPlayer &setLengthMod(maxiType val) {lengthMod = val; return *this;}
     inline maxiAtomBookPlayer &setFreqMod(maxiType val) {freqMod = val; return *this;}
     inline maxiAtomBookPlayer &setProbability(maxiType val) {probability = val; return *this;}
@@ -138,11 +140,15 @@ public:
     inline maxiAtomBookPlayer &setGap(maxiType val) {gap = val; return *this;}
     inline maxiAtomBookPlayer &setSnapRange(maxiType val){snapRange = val; snapInvRange = 1.0 / snapRange; return *this;}
     inline maxiAtomBookPlayer &setSnapFreqs(vector<float> &freqs){snapFreqs = freqs; return *this;}
-    inline maxiAtomBookPlayer &setLoopStart(float val);
-    inline maxiAtomBookPlayer &setLoopEnd(float val);
+    maxiAtomBookPlayer &setLoopStart(float val);
+    maxiAtomBookPlayer &setLoopEnd(float val);
+    maxiAtomBookPlayer &setLoopLength(float val);
+    maxiAtomBookPlayer &moveLoopTo(float val);
+    maxiAtomBookPlayer &setBlurWidth(float val);
     
 protected:
-    void queueAtomsBetween(maxiAtomBook &book, maxiAccelerator &atomStream, long start, long end, int blockOffset);
+    void queueAtomsBetween(maxiAccelerator &atomStream, long start, long end, int blockOffset);
+    maxiAtomBook book;
 	maxiType atomIdx;
     maxiType lengthMod;
     maxiType probability;
@@ -154,6 +160,8 @@ protected:
     double loopedSamplePos;
     vector<float> snapFreqs;
     maxiType snapRange, snapInvRange;
-    maxiType loopStart, loopEnd, loopStartAtomIdx, loopEndAtomIdx;
+    maxiType loopStart, loopEnd, loopLength, loopStartAtomIdx, loopEndAtomIdx;
+    maxiType blurWidth;
+    long blurSizeAtoms;
 };
 

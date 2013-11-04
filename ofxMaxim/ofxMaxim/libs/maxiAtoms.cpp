@@ -212,7 +212,7 @@ void maxiAccelerator::fillNextBuffer_OpenCLBatch(float *buffer, unsigned int buf
 	}
     clKernel.gaborBatch(buffer, atomCount, &atomAmps[0], &atomPhases[0], &atomPhaseIncs[0], &atomPositions[0], &atomLengths[0], bufferLength);
 	sampleIdx += bufferLength;
-    cout << atomCount << endl;
+    //cout << atomCount << endl;
     
 }
 
@@ -409,6 +409,7 @@ maxiAtomBookPlayer::maxiAtomBookPlayer() {
     snapInvRange = 1.0 / snapRange;
     blurWidth = 0.0;
     blurSizeAtoms = 0;
+    resetTime = -1;
 }
 
 void maxiAtomBookPlayer::setBook(maxiAtomBook &newBook) {
@@ -427,17 +428,41 @@ void maxiAtomBookPlayer::play(maxiAccelerator &atomStream) {
     int totalBlockSize = maxiSettings::bufferSize * playbackSpeed;
     float loopEndInSamples = book.numSamples * loopEnd;
 	int blockSize = min(totalBlockSize, static_cast<int>(loopEndInSamples - loopedSamplePos));
+    //NEW
+    bool resetAfterLoop = false;
+    if (resetTime != -1) {
+        if (resetTime <= blockSize) {
+            blockSize = resetTime;
+            resetTime = -1;
+            cout << "reset\n";
+        }else{
+            resetAfterLoop = true;
+        }
+    }
+    //--NEW
     int blockOffset = 0;
     queueAtomsBetween(atomStream, loopedSamplePos, loopedSamplePos + blockSize, blockOffset);
     bool loopingThisFrame = blockSize < totalBlockSize;
+    //NEW
     if (loopingThisFrame) {
         blockOffset = blockSize;
-        blockSize = totalBlockSize - blockSize;
+        resetAtomPosition();
         loopedSamplePos = loopStart * book.numSamples;
-        queueAtomsBetween(atomStream, loopedSamplePos, loopedSamplePos + blockSize, blockOffset);
+        if (resetAfterLoop) {
+            blockSize = resetTime - blockOffset;
+            queueAtomsBetween(atomStream, loopedSamplePos, loopedSamplePos + blockSize, blockOffset);
+            blockSize = totalBlockSize - blockSize - blockOffset;
+            blockOffset += blockSize;
+            queueAtomsBetween(atomStream, loopedSamplePos, loopedSamplePos + blockSize, blockOffset);
+            resetTime = -1;
+        }else{
+            blockSize = totalBlockSize - blockSize;
+            queueAtomsBetween(atomStream, loopedSamplePos, loopedSamplePos + blockSize, blockOffset);
+        }
     }
-    
+    //--NEW
     loopedSamplePos += blockSize;
+    cout << "pos: " << loopedSamplePos << endl;
 }
 
 void maxiAtomBookPlayer::queueAtomsBetween(maxiAccelerator &atomStream, long start, long end, int blockOffset) {
@@ -489,13 +514,19 @@ void maxiAtomBookPlayer::queueAtomsBetween(maxiAccelerator &atomStream, long sta
         }
         atomIdx += playbackSpeed;
         if (atomIdx >= loopEndAtomIdx) {
-            atomIdx = loopStartAtomIdx;
+            resetAtomPosition();
             break;
         }
         thisAtomIndex = static_cast<long>(floor(atomIdx));
         atom = (maxiGaborAtom*) book.atoms[thisAtomIndex];
     }
 }
+
+//NEW
+void maxiAtomBookPlayer::resetAtomPosition() {
+    atomIdx = loopStartAtomIdx;
+}
+//--NEw
 
 maxiAtomBookPlayer& maxiAtomBookPlayer::setLoopStart(float val) {
     loopStart = val;

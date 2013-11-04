@@ -145,6 +145,7 @@ public:
     maxiAtomBookPlayer &setLoopLength(float val);
     maxiAtomBookPlayer &moveLoopTo(float val);
     maxiAtomBookPlayer &setBlurWidth(float val);
+    maxiAtomBookPlayer &resetAt(int timePos) {resetTime = timePos; return *this;}
     
 protected:
     void queueAtomsBetween(maxiAccelerator &atomStream, long start, long end, int blockOffset);
@@ -163,5 +164,7 @@ protected:
     maxiType loopStart, loopEnd, loopLength, loopStartAtomIdx, loopEndAtomIdx;
     maxiType blurWidth;
     long blurSizeAtoms;
+    int resetTime;
+    void resetAtomPosition();
 };
 

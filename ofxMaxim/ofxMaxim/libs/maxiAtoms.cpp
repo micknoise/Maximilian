@@ -116,19 +116,22 @@ void maxiAccelerator::fillNextBuffer(float *buffer, unsigned int bufferLength) {
                 gabor[i] = cos(gabor[i]);
             }
 #endif
-            if (shape != 1.0) {
-                for(int i=0; i < renderLength; i++) {
-                    float v = gabor[i];
-                    float sign = v > 0 ? 1.0 : -1.0;
-                    v = fabs(v);
-                    v = pow(v, shape);
-                    v *= sign;
-                    gabor[i] = v;
-                }
-            }
+//            if (shape != 1.0) {
+//                for(int i=0; i < renderLength; i++) {
+//                    float v = gabor[i];
+//                    float sign = v > 0 ? 1.0 : -1.0;
+//                    v = fabs(v);
+//                    v = pow(v, shape);
+//                    v *= sign;
+//                    gabor[i] = v;
+//                }
+//            }
 			for(int i=0; i < renderLength; i++) {
                 gabor[i] *= (*it).amp;
-                gabor[i] *= (*it).env[i + (int)(*it).pos];
+                float envVal = (*it).env[i + (int)(*it).pos];
+                envVal = pow(envVal, shape);
+                
+                gabor[i] *= envVal * pow(shape, shape);
                 buffer[i + atomStart] += gabor[i];
             }
 //            if (it->length == 128) {
@@ -533,8 +536,8 @@ maxiAtomBookPlayer& maxiAtomBookPlayer::setLoopStart(float val) {
     loopStartAtomIdx = book.getIndexOfAtomAfter(loopStart);
     if (atomIdx < loopStartAtomIdx) {
         atomIdx = loopStartAtomIdx;
+        loopedSamplePos = loopStart * book.numSamples;
     }
-    //loopedSamplePos = loopStart * book.numSamples;
     return *this;
 }
 

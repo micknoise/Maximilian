@@ -6,8 +6,10 @@
 //
 //
 
-#ifndef __maxiTestZone__maxiAtomKernel__
+#ifndef __maxiTestZone__maxiAtomKernel__ USEOPENCL
 #define __maxiTestZone__maxiAtomKernel__
+
+
 
 #include <iostream>
 // This include pulls in everything you need to develop with OpenCL on OS X v10.7.

@@ -1,3 +1,5 @@
+#ifdef USEOPENCL
+
 kernel void gabor(global float* output, const float amp, const float phase, const float phaseInc, int pos, global float* windows, const int windowStartIndex, const int length) // [1]
 {
     size_t i = get_global_id(0);
@@ -96,3 +98,5 @@ kernel void gaborImTestKernel(write_only image2d_t output, float amp) // [1]
 //    float val = sin(amp * i * 0.001f) * cos(i * 0.0001f);
     write_imageui(output, (int2)(i, 0), val);
 }
+
+#endif

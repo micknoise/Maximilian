@@ -15,13 +15,11 @@
 #define USEOPENCL 0
 #define OSXOPENCL TARGET_OS_MAC && !TARGET_OS_IPHONE && USEOPENCL
 
-
 #include <iostream>
 #include "maximilian.h"
 #include <list>
 #include <vector>
 #include <valarray>
-//#include "maxiGrains.h"
 #include <map>
 #if OSXOPENCL
 #include "maxiAtomKernel.h"
@@ -73,6 +71,7 @@ public:
     inline maxiAccelerator& setShape(maxiType val) {shape = val; return *this;}
     inline maxiAccelerator& setAtomCountLimit(int val){atomCountLimit = val; return *this;}
     void precacheWindows(set<int> &windowSizes);
+    inline int getAtomCount() {return atomQueue.size();}
 private:
 	long sampleIdx;
 	struct queuedAtom {
@@ -140,6 +139,8 @@ public:
     inline maxiAtomBookPlayer &setGap(maxiType val) {gap = val; return *this;}
     inline maxiAtomBookPlayer &setSnapRange(maxiType val){snapRange = val; snapInvRange = 1.0 / snapRange; return *this;}
     inline maxiAtomBookPlayer &setSnapFreqs(vector<float> &freqs){snapFreqs = freqs; return *this;}
+    inline maxiAtomBookPlayer &setFrequencyEnvelopingOn(bool val) {frequencyEnvelopeOn = val; return *this;}
+    maxiAtomBookPlayer &setFrequencyEnvelope(int size, float * bins);
     maxiAtomBookPlayer &setLoopStart(float val);
     maxiAtomBookPlayer &setLoopEnd(float val);
     maxiAtomBookPlayer &setLoopLength(float val);
@@ -166,5 +167,7 @@ protected:
     long blurSizeAtoms;
     int resetTime;
     void resetAtomPosition();
+    bool frequencyEnvelopeOn;
+    vector<float> frequencyEnvelope;
 };
 

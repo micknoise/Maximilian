@@ -368,7 +368,7 @@ double maxiEnvelope::line(int numberofsegments,double segments[1000]) {
 	//This is a basic multi-segment ramp generator that you can use for more or less anything.
     //However, it's not that intuitive.
     if (isPlaying==1) {//only make a sound once you've been triggered
-	period=2./(segments[valindex+1]*0.004);
+	period=4./(segments[valindex+1]*0.0044);
 	nextval=segments[valindex+2];
 	currentval=segments[valindex];
 	if (currentval-amplitude > 0.0000001 && valindex < numberofsegments) {
@@ -440,9 +440,9 @@ double maxiFilter::hipass(double input, double cutoff) {
 }
 //awesome. cuttof is freq in hz. res is between 1 and whatever. Watch out!
 double maxiFilter::lores(double input,double cutoff1, double resonance) {
-	cutoff=cutoff1*0.5;
+	cutoff=cutoff1;
 	if (cutoff<10) cutoff=10;
-	if (cutoff>(maxiSettings::sampleRate*0.5)) cutoff=(maxiSettings::sampleRate*0.5);
+	if (cutoff>(maxiSettings::sampleRate)) cutoff=(maxiSettings::sampleRate);
 	if (resonance<1.) resonance = 1.;
 	z=cos(TWOPI*cutoff/maxiSettings::sampleRate);
 	c=2-2*z;
@@ -456,9 +456,9 @@ double maxiFilter::lores(double input,double cutoff1, double resonance) {
 
 //working hires filter
 double maxiFilter::hires(double input,double cutoff1, double resonance) {
-	cutoff=cutoff1*0.5;
+	cutoff=cutoff1;
 	if (cutoff<10) cutoff=10;
-	if (cutoff>(maxiSettings::sampleRate*0.5)) cutoff=(maxiSettings::sampleRate*0.5);
+	if (cutoff>(maxiSettings::sampleRate)) cutoff=(maxiSettings::sampleRate);
 	if (resonance<1.) resonance = 1.;
 	z=cos(TWOPI*cutoff/maxiSettings::sampleRate);
 	c=2-2*z;
@@ -1202,7 +1202,7 @@ double maxiEnv::ar(double input, double attack, double release, long holdtime, i
 	return output;
 }
 
-/* and here's a new adsr. It's not bad, very simple to use*/
+/* adsr. It's not bad, very simple to use*/
 
 double maxiEnv::adsr(double input, double attack, double decay, double sustain, double release, long holdtime, int trigger) {
 	

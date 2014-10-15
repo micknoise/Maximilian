@@ -149,6 +149,8 @@
 /* Begin PBXProject section */
 		08FB7793FE84155DC02AAC07 /* Project object */ = {
 			isa = PBXProject;
+			attributes = {
+			};
 			buildConfigurationList = 1DEB923508733DC60010E9CD /* Build configuration list for PBXProject "maximilianTest" */;
 			compatibilityVersion = "Xcode 3.1";
 			developmentRegion = English;
@@ -188,6 +190,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD)";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
@@ -204,6 +207,7 @@
 					"\"$(SRCROOT)\"",
 				);
 				PRODUCT_NAME = rtaudiotest;
+				SDKROOT = macosx;
 			};
 			name = Debug;
 		};
@@ -211,6 +215,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD)";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_MODEL_TUNING = G5;
 				INSTALL_PATH = /usr/local/bin;
@@ -220,6 +225,7 @@
 					"\"$(SRCROOT)\"",
 				);
 				PRODUCT_NAME = rtaudiotest;
+				SDKROOT = macosx;
 			};
 			name = Release;
 		};

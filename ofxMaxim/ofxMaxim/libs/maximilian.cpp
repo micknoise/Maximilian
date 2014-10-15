@@ -597,7 +597,7 @@ bool maxiSample::read()
 		//ignore any extra chunks
 		char chunkID[5]="";
 		chunkID[4] = 0;
-		int filePos = 36;
+		int filePos = 20 + mySubChunk1Size;
 		while(!datafound && !inFile.eof()) {
 			inFile.seekg(filePos, ios::beg);
 			inFile.read((char*) &chunkID, sizeof(char) * 4);

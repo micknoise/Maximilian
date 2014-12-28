@@ -37,6 +37,7 @@
 #include "maxiFFT.h"
 #include "maxiGrains.h"
 #include "maxiMFCC.h"
+#include "maxiBark.h"
 
 
 typedef maxiMix ofxMaxiMix;

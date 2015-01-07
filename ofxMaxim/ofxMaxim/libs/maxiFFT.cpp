@@ -110,7 +110,7 @@ float maxiFFT::spectralFlatness() {
 float maxiFFT::spectralCentroid() {
 	float x=0, y=0;
 	for(int i=0; i < bins; i++) {
-		x += fabs(magnitudes[i]) * (i+1);
+		x += fabs(magnitudes[i]) * i;
 		y += fabs(magnitudes[i]);
 	}
 	return y != 0 ? x / y * ((float) maxiSettings::sampleRate / fftSize) : 0;

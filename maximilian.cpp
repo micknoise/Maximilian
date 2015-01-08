@@ -742,7 +742,7 @@ double maxiSample::play(double frequency, double start, double end, double &pos)
 		}
 		
 		if ( pos >= end ) pos = start;
-		pos += ((end-start)/(maxiSettings::sampleRate/(frequency*chandiv)));
+		pos += ((end-start)/((maxiSettings::sampleRate)/(frequency*chandiv)));
 		remainder = pos - floor(pos);
 		long posl = floor(pos);
 		if (posl+1<length) {
@@ -762,7 +762,7 @@ double maxiSample::play(double frequency, double start, double end, double &pos)
 		output = (double) ((1-remainder) * temp[a] +
 						   remainder * temp[b])/32767;//linear interpolation
 	} else {
-		frequency=frequency-(frequency+frequency);
+		frequency*=-1.;
 		if ( pos <= start ) pos = end;
 		pos -= ((end-start)/(maxiSettings::sampleRate/(frequency*chandiv)));
 		remainder = pos - floor(pos);
@@ -827,7 +827,7 @@ double maxiSample::play4(double frequency, double start, double end) {
 		output = (double) (((a3 * remainder + a2) * remainder + a1) * remainder + b) / 32767;
 		
 	} else {
-		frequency=frequency-(frequency+frequency);
+        frequency*=-1.;
 		if ( position <= start ) position = end;
 		position -= ((end-start)/(maxiSettings::sampleRate/(frequency*chandiv)));
 		remainder = position - floor(position);
@@ -952,7 +952,7 @@ double maxiSample::bufferPlay(unsigned char &bufferin,double frequency, double s
 		output = (double) ((1-remainder) * buffer[a] +
 						   remainder * buffer[b])/32767;//linear interpolation
 	} else {
-		frequency=frequency-(frequency+frequency);
+        frequency*=-1.;
 		if ( position <= start ) position = end;
 		position -= ((end-start)/(maxiSettings::sampleRate/(frequency*chandiv)));
 		remainder = position - floor(position);
@@ -1017,7 +1017,7 @@ double maxiSample::bufferPlay4(unsigned char &bufferin,double frequency, double 
 		output = (double) (((a3 * remainder + a2) * remainder + a1) * remainder + b) / 32767;
 		
 	} else {
-		frequency=frequency-(frequency+frequency);
+        frequency*=-1.;
 		if ( position <= start ) position = end;
 		position -= ((end-start)/(maxiSettings::sampleRate/(frequency*chandiv)));
 		remainder = position - floor(position);

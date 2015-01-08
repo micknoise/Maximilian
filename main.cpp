@@ -1,6 +1,7 @@
 #include "maximilian.h"
 
 maxiOsc myCounter,mySwitchableOsc;//
+maxiSample beat;
 int CurrentCount;//
 double myOscOutput,myFilteredOutput;//
 double myEnvelopeData[6] = {500,0,1000,500,0,500};//this data will be used to make an envelope. Value and time to value in ms.
@@ -9,6 +10,7 @@ maxiFilter myFilter;
 
 void setup() {//some inits
     myEnvelope.amplitude=myEnvelopeData[0]; //initialise the envelope
+    beat.load("/Users/mick/Documents/workspace/Maximilian/beat2.wav");
 }
 
 void play(double *output) {
@@ -29,5 +31,5 @@ void play(double *output) {
     
     myFilteredOutput=myFilter.lores(myOscOutput,(myEnvelope.line(6, myEnvelopeData)),10);//lores takes an audio input, a frequency and a resonance factor (1-100)
     
-    *output=myFilteredOutput;//point me at your speakers and fire.
+    *output=myFilteredOutput/2+beat.play(-1.,0,beat.length);//point me at your speakers and fire.
 }

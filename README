@@ -18,7 +18,7 @@ Maximilian is an audio synthesis and signal processing library written in C++. I
 - effects including delay, distortion, chorus, flanging
 - granular synthesis, including time and pitch stretching
 - atom synthesis
-- realtime music information retrieval functions: spectrum analysis, spectral features, octave analysis, and MFCCs
+- realtime music information retrieval functions: spectrum analysis, spectral features, octave analysis, Bark scale analysis, and MFCCs
 - example projects for Windows and MacOS, using command line and OpenFrameworks environments
 
 

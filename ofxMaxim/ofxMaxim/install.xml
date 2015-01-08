@@ -21,6 +21,8 @@
 			    <file>../../../addons/ofxMaxim/libs/fft.cpp</file>
 			    <file>../../../addons/ofxMaxim/libs/fftOctaveAnalyzer.h</file>
 			    <file>../../../addons/ofxMaxim/libs/fftOctaveAnalyzer.cpp</file>
+                <file>../../../addons/ofxMaxim/libs/maxiBark.cpp</file>
+                <file>../../../addons/ofxMaxim/libs/maxiBark.h</file>
 			    <file>../../../addons/ofxMaxim/libs/maximilian.h</file>
 			    <file>../../../addons/ofxMaxim/libs/maximilian.cpp</file>
 		    </folder>

@@ -3,6 +3,9 @@
 
 testApp::~testApp() {
 	
+	// Shouldn't sample.mydata be released
+	// using free as it was allocated with 
+	// malloc??
 	delete sample1.myData;
 	
 }

@@ -11,17 +11,17 @@
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>9EA75D55FA54A28D61D05E99737654AEBBBF0FB9</key>
-		<string>ssh://github.com/micknoise/Maximilian.git</string>
+		<string>https://github.com/micknoise/Maximilian.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>maximilianTest.xcodeproj/project.xcworkspace</string>
+	<string>maximilianTest.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>9EA75D55FA54A28D61D05E99737654AEBBBF0FB9</key>
 		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>ssh://github.com/micknoise/Maximilian.git</string>
+	<string>https://github.com/micknoise/Maximilian.git</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>

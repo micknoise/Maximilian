@@ -99,10 +99,10 @@ float maxiFFT::spectralFlatness() {
 	float geometricMean=0, arithmaticMean=0;
 	for(int i=0; i < bins; i++) {
 		if (magnitudes[i] != 0)
-			geometricMean += logf(magnitudes[i]);
+			geometricMean += log(magnitudes[i]);
 		arithmaticMean += magnitudes[i];
 	}
-	geometricMean = expf(geometricMean / (float)bins);
+	geometricMean = exp(geometricMean / (float)bins);
 	arithmaticMean /= (float)bins;
 	return arithmaticMean !=0 ?  geometricMean / arithmaticMean : 0;
 }
@@ -110,7 +110,7 @@ float maxiFFT::spectralFlatness() {
 float maxiFFT::spectralCentroid() {
 	float x=0, y=0;
 	for(int i=0; i < bins; i++) {
-		x += fabs(magnitudes[i]) * i;
+		x += fabs(magnitudes[i]) * (i+1);
 		y += fabs(magnitudes[i]);
 	}
 	return y != 0 ? x / y * ((float) maxiSettings::sampleRate / fftSize) : 0;

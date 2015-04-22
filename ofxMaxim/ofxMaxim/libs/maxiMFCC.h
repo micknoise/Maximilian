@@ -15,7 +15,6 @@
 #include "maxiFFT.h"
 #include <math.h>
 #include <iostream>
-#include <cstdlib>
 #ifdef __APPLE_CC__
 #include <Accelerate/Accelerate.h>
 #endif

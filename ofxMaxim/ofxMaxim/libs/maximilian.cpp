@@ -397,8 +397,7 @@ void maxiEnvelope::trigger(int index, double amp) {
 
 //Delay with feedback
 maxiDelayline::maxiDelayline() {
-	memset( memory, 0, 88200*sizeof (double) );
-    phase=0;
+	memset( memory, 0, 88200*sizeof (double) );	
 }
 
 
@@ -536,7 +535,6 @@ bool maxiSample::loadOgg(string fileName, int channel) {
     bool result;
 	readChannel=channel;
     int channelx;
-    free(temp);
     myDataSize = stb_vorbis_decode_filename(const_cast<char*>(fileName.c_str()), &channelx, &temp);
     result = myDataSize > 0;
     printf("\nchannels = %d\nlength = %d",channelx,myDataSize);
@@ -560,15 +558,14 @@ bool maxiSample::loadOgg(string fileName, int channel) {
 
 void maxiSample::trigger() {
 	position = 0;
-    recordPosition = 0;
 }
 
 bool maxiSample::read()
 {
 	bool result;
 	ifstream inFile( myPath.c_str(), ios::in | ios::binary);
-	result = inFile.is_open();
-	if (result) {
+	result = inFile;
+	if (inFile) {
 		bool datafound = false;
 		inFile.seekg(4, ios::beg);
 		inFile.read( (char*) &myChunkSize, 4 ); // read the ChunkSize
@@ -597,7 +594,7 @@ bool maxiSample::read()
 		//ignore any extra chunks
 		char chunkID[5]="";
 		chunkID[4] = 0;
-		int filePos = 20 + mySubChunk1Size;
+		int filePos = 36;
 		while(!datafound && !inFile.eof()) {
 			inFile.seekg(filePos, ios::beg);
 			inFile.read((char*) &chunkID, sizeof(char) * 4);
@@ -622,15 +619,20 @@ bool maxiSample::read()
 		if (myChannels>1) {
 			int position=0;
 			int channel=readChannel*2;
-			for (int i=channel;i<myDataSize+6;i+=(myChannels*2)) {
+			for (int i=channel;i<myDataSize;i+=(myChannels*2)) {
 				myData[position]=myData[i];
 				myData[position+1]=myData[i+1];
 				position+=2;
 			}
 		}
-        free(temp);
-        temp = (short*) malloc(myDataSize * sizeof(char));
-        memcpy(temp, myData, myDataSize * sizeof(char));
+        
+        // WEIRDNESS NOTE!!!
+        // One sample is actually represented as two chars in sequence.
+        // This is why we make our vector half of myDataSize, because
+        // sizeof(short) is twice the size of sizeof(char).
+        
+        temp.resize(myDataSize / 2, 0);
+        memcpy(temp.data(), myData, myDataSize * sizeof(char));
         
         free(myData);
 		
@@ -646,16 +648,7 @@ bool maxiSample::read()
 
 double maxiSample::play() {
 	position++;
-	if ((long) position >= length) position=0;
-	output = (double) temp[(long)position]/32767.0;
-	return output;
-}
-
-//start end and points are between 0 and 1
-double maxiSample::playLoop(double start, double end) {
-	position++;
-    if (position < length * start) position = length * start;
-	if ((long) position >= length * end) position = length * start;
+	if ((long) position == length) position=0;
 	output = (double) temp[(long)position]/32767.0;
 	return output;
 }
@@ -669,20 +662,6 @@ double maxiSample::playOnce() {
     }
 	return output;
 
-}
-
-void maxiSample::setPosition(double newPos) {
-    position = maxiMap::clamp<double>(newPos, 0.0, 1.0) * length;
-}
-
-double maxiSample::playUntil(double end) {
-	position++;
-	if ((long) position<length * end)
-        output = (double) temp[(long)position]/32767.0;
-    else {
-        output=0;
-    }
-	return output;
 }
 
 double maxiSample::playOnce(double speed) {
@@ -1070,7 +1049,7 @@ void maxiSample::getLength() {
 }
 
 void maxiSample::setLength(unsigned long numSamples) {
-    temp = (short*) realloc(temp, sizeof(short) * numSamples);
+    temp.reserve(numSamples);
 //    short *newData = (short*) malloc(sizeof(short) * numSamples);
 //    if (NULL!=temp) {
 //        unsigned long copyLength = min((unsigned long)length, numSamples);
@@ -1085,80 +1064,14 @@ void maxiSample::setLength(unsigned long numSamples) {
 }
 
 void maxiSample::clear() {
-    memset(temp, 0, myDataSize);
+    for (int i=0; i < temp.size(); i++) {
+        temp[i] = 0;
+    }
 }
 
 void maxiSample::reset() {
     position=0;
 }
-
-
-void maxiSample::normalise(float maxLevel) {
-    short maxValue = 0;
-    for(int i=0; i < length; i++) {
-        if (abs(temp[i]) > maxValue) {
-            maxValue = abs(temp[i]);
-        }
-    }
-    float scale = 32767.0 * maxLevel / (float) maxValue;
-    for(int i=0; i < length; i++) {
-        temp[i] = round(scale * (float) temp[i]);
-    }
-}
-
-void maxiSample::autoTrim(float alpha, float threshold, bool trimStart, bool trimEnd) {
-    
-    int startMarker=0;
-    if(trimStart) {
-        maxiLagExp<float> startLag(alpha, 0);
-        while(startMarker < length) {
-            startLag.addSample(abs(temp[startMarker]));
-            if (startLag.value() > threshold) {
-                break;
-            }
-            startMarker++;
-        }
-    }
-    
-    int endMarker = length-1;
-    if(trimEnd) {
-        maxiLagExp<float> endLag(alpha, 0);
-        while(endMarker > 0) {
-            endLag.addSample(abs(temp[endMarker]));
-            if (endLag.value() > threshold) {
-                break;
-            }
-            endMarker--;
-        }
-    }
-    
-    cout << "Autotrim: start: " << startMarker << ", end: " << endMarker << endl;
-    
-    int newLength = endMarker - startMarker;
-    if (newLength > 0) {
-        short *newData = (short*) malloc(sizeof(short) * newLength);
-        for(int i=0; i < newLength; i++) {
-            newData[i] = temp[i+startMarker];
-        }
-        free(temp);
-        temp = newData;
-        myDataSize = newLength * 2;
-        length=newLength;
-        position=0;
-        recordPosition=0;
-        //envelope the start
-        int fadeSize=min((long)100, length);
-        for(int i=0; i < fadeSize; i++) {
-            float factor = i / (float) fadeSize;
-            temp[i] = round(temp[i] * factor);
-            temp[length - 1 - i] = round(temp[length - 1 - i] * factor);
-        }
-    }
-}
-
-
-
-
 
 
 
@@ -1338,5 +1251,14 @@ double maxiEnv::adsr(double input, double attack, double decay, double sustain, 
 double convert::mtof(int midinote) {
 	
 	return mtofarray[midinote];
+}
+
+
+void maxiEnvelopeFollower::setAttack(double attackMS) {
+    attack = pow( 0.01, 1.0 / ( attackMS * maxiSettings::sampleRate * 0.001 ) );
+}
+
+void maxiEnvelopeFollower::setRelease(double releaseMS) {
+    release = pow( 0.01, 1.0 / ( releaseMS * maxiSettings::sampleRate * 0.001 ) );    
 }
 

@@ -41,7 +41,8 @@ class maxiCollider {
 public:
 	static inline void createGabor(flArr &atom, const float freq, const float sampleRate, const unsigned int length, 
                                 float phase, const float kurtotis, const float amp);
-    static maxiGrainWindowCache<gaussianWinFunctor> envCache;
+    static maxiGrainWindowCache<gaussianWinFunctor> envCache; //define your window
+   // static maxiGrainWindowCache envCache;
 };
 
 

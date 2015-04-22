@@ -22,7 +22,7 @@ float sineBuffer2[514]={0,0.012268,0.024536,0.036804,0.049042,0.06131,0.073547,0
 };
 
 
-maxiGrainWindowCache<gaussianWinFunctor> maxiCollider::envCache = maxiGrainWindowCache<gaussianWinFunctor>();
+//maxiGrainWindowCache<gaussianWinFunctor> maxiCollider::envCache = maxiGrainWindowCache<gaussianWinFunctor>();
 
 inline void maxiCollider::createGabor(flArr &atom, const float freq, const float sampleRate, const unsigned length, 
 						 float startPhase, const float kurtotis, const float amp) {

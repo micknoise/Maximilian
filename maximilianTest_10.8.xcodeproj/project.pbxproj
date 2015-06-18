@@ -208,7 +208,7 @@
 					"\"$(SRCROOT)\"",
 				);
 				PRODUCT_NAME = rtaudiotest;
-				SDKROOT = macosx;
+				SDKROOT = macosx10.9;
 			};
 			name = Debug;
 		};
@@ -225,7 +225,7 @@
 					"\"$(SRCROOT)\"",
 				);
 				PRODUCT_NAME = rtaudiotest;
-				SDKROOT = macosx;
+				SDKROOT = macosx10.9;
 			};
 			name = Release;
 		};

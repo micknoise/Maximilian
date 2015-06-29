@@ -71,6 +71,8 @@ void ofApp::setup(){
 	
 	ofBackground(255,255,255);
     
+    ofSetSphereResolution(5);
+    
     ofSoundStreamSetup(2,2,this, sampleRate, bufferSize, 4); /* this has to happen at the end of setup - it switches on the DAC */
 
 
@@ -137,7 +139,7 @@ void ofApp::draw(){
         glTranslatef(ofGetWidth()/2,ofGetHeight()/2, 0);
         glRotatef(0.01 * ofGetFrameNum() * speed * i, 1, 0.1, 0);
         //		glutWireSphere(i * 5, 2 + (10 - (fabs(speed) * 10)), 2 + (fabs(speed) * 10));
-        ofSphere(0, 0, i * 5);
+        ofDrawSphere(0, 0, i * 5);
         glPopMatrix();
     }
     

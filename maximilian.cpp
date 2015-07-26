@@ -39,7 +39,7 @@
 *   Uncomment the following to include Sean Barrett's Ogg Vorbis decoder.
 *   If you're on windows, make sure to add the files std_vorbis.c and std_vorbis.h to your project*/
 
-//#define VORBIS
+#define VORBIS
 
 #ifdef VORBIS
 extern "C" {
@@ -1157,6 +1157,37 @@ double maxiDyn::compressor(double input, double ratio, double threshold, double 
 	return output*(1+log(ratio));
 }
 
+double maxiDyn::compress(double input) {
+    
+    if (fabs(input)>threshold && attackphase!=1){
+        holdcount=0;
+        releasephase=0;
+        attackphase=1;
+        if(currentRatio==0) currentRatio=ratio;
+    }
+    
+    if (attackphase==1 && currentRatio<ratio-1) {
+        currentRatio*=(1+attack);
+    }
+    
+    if (currentRatio>=ratio-1) {
+        attackphase=0;
+        releasephase=1;
+    }
+    
+    if (releasephase==1 && currentRatio>0.) {
+        currentRatio*=release;
+    }
+    
+    if (input>0.) {
+        output = input/(1.+currentRatio);
+    } else {
+        output = input/(1.+currentRatio);
+    }
+    
+    return output*(1+log(ratio));
+}
+
 
 /* Lots of people struggle with the envelope generators so here's a new easy one.
  It takes mental numbers for attack and release tho. Basically, they're exponentials.
@@ -1205,55 +1236,144 @@ double maxiEnv::ar(double input, double attack, double release, long holdtime, i
 /* adsr. It's not bad, very simple to use*/
 
 double maxiEnv::adsr(double input, double attack, double decay, double sustain, double release, long holdtime, int trigger) {
-	
-	if (trigger==1 && attackphase!=1 && holdphase!=1 && decayphase!=1){ 
-		holdcount=0;
-		decayphase=0;
-		sustainphase=0;
-		releasephase=0;
-		attackphase=1;
-	}
-	
-	if (attackphase==1) {
-		amplitude+=(1*attack);
-		output=input*amplitude;
-	}
-	
-	if (amplitude>=1) {
-		amplitude=1;
-		attackphase=0;
-		decayphase=1;
-	}
-	
-	if (decayphase==1) {
-		output=input*(amplitude*=decay);	
-		if (amplitude<=sustain) {
-			decayphase=0;
-			holdphase=1;
-		}
-	}
-	
-	if (holdcount<holdtime && holdphase==1) {
-		output=input*amplitude;
-		holdcount++;
-	}
-	
-	if (holdcount==holdtime && trigger==1) {
-		output=input*amplitude;
-	}
-	
-	if (holdcount==holdtime && trigger!=1) {
-		holdphase=0;
-		releasephase=1;
-	}
-	
-	if (releasephase==1 && amplitude>0.) {
-		output=input*(amplitude*=release);
-		
-	}
-	
-	return output;
+    
+    if (trigger==1 && attackphase!=1 && holdphase!=1 && decayphase!=1){
+        holdcount=0;
+        decayphase=0;
+        sustainphase=0;
+        releasephase=0;
+        attackphase=1;
+    }
+    
+    if (attackphase==1) {
+        releasephase=0;
+        amplitude+=(1*attack);
+        output=input*amplitude;
+        
+        if (amplitude>=1) {
+            amplitude=1;
+            attackphase=0;
+            decayphase=1;
+        }
+    }
+    
+    
+    if (decayphase==1) {
+        output=input*(amplitude*=decay);
+        if (amplitude<=sustain) {
+            decayphase=0;
+            holdphase=1;
+        }
+    }
+    
+    if (holdcount<holdtime && holdphase==1) {
+        output=input*amplitude;
+        holdcount++;
+    }
+    
+    if (holdcount>=holdtime && trigger==1) {
+        output=input*amplitude;
+    }
+    
+    if (holdcount>=holdtime && trigger!=1) {
+        holdphase=0;
+        releasephase=1;
+    }
+    
+    if (releasephase==1 && amplitude>0.) {
+        output=input*(amplitude*=release);
+        
+    }
+    
+    return output;
 }
+
+double maxiEnv::adsr(double input, int trigger) {
+    
+    if (trigger==1 && attackphase!=1 && holdphase!=1 && decayphase!=1){
+        holdcount=0;
+        decayphase=0;
+        sustainphase=0;
+        releasephase=0;
+        attackphase=1;
+    }
+    
+    if (attackphase==1) {
+        releasephase=0;
+        amplitude+=(1*attack);
+        output=input*amplitude;
+        
+        if (amplitude>=1) {
+            amplitude=1;
+            attackphase=0;
+            decayphase=1;
+        }
+    }
+    
+    
+    if (decayphase==1) {
+        output=input*(amplitude*=decay);
+        if (amplitude<=sustain) {
+            decayphase=0;
+            holdphase=1;
+        }
+    }
+    
+    if (holdcount<holdtime && holdphase==1) {
+        output=input*amplitude;
+        holdcount++;
+    }
+    
+    if (holdcount>=holdtime && trigger==1) {
+        output=input*amplitude;
+    }
+    
+    if (holdcount>=holdtime && trigger!=1) {
+        holdphase=0;
+        releasephase=1;
+    }
+    
+    if (releasephase==1 && amplitude>0.) {
+        output=input*(amplitude*=release);
+        
+    }
+    
+    return output;
+}
+
+
+void maxiEnv::setAttack(double attackMS) {
+    attack = 1-pow( 0.01, 1.0 / ( attackMS * maxiSettings::sampleRate * 0.001 ) );
+}
+
+void maxiEnv::setRelease(double releaseMS) {
+    release = pow( 0.01, 1.0 / ( releaseMS * maxiSettings::sampleRate * 0.001 ) );
+}
+
+void maxiEnv::setSustain(double sustainL) {
+    sustain = sustainL;
+}
+
+void maxiEnv::setDecay(double decayMS) {
+    decay = pow( 0.01, 1.0 / ( decayMS * maxiSettings::sampleRate * 0.001 ) );
+}
+
+void maxiDyn::setAttack(double attackMS) {
+    attack = pow( 0.01, 1.0 / ( attackMS * maxiSettings::sampleRate * 0.001 ) );
+}
+
+void maxiDyn::setRelease(double releaseMS) {
+    release = pow( 0.01, 1.0 / ( releaseMS * maxiSettings::sampleRate * 0.001 ) );
+}
+
+void maxiDyn::setThreshold(double thresholdI) {
+    threshold = thresholdI;
+}
+
+void maxiDyn::setRatio(double ratioF) {
+    ratio = ratioF;
+}
+
 
 double convert::mtof(int midinote) {
 	

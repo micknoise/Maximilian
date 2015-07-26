@@ -358,9 +358,12 @@ class maxiDyn {
 	
 	
 public:
-	double gate(double input, double threshold=0.9, long holdtime=1, double attack=1, double release=0.9995);
-	double compressor(double input, double ratio, double threshold=0.9, double attack=1, double release=0.9995);
-	double input;
+//	double gate(double input, double threshold=0.9, long holdtime=1, double attack=1, double release=0.9995);
+//	double compressor(double input, double ratio, double threshold=0.9, double attack=1, double release=0.9995);
+    double gate(double input, double threshold=0.9, long holdtime=1, double attack=1, double release=0.9995);
+    double compressor(double input, double ratio, double threshold=0.9, double attack=1, double release=0.9995);
+    double compress(double input);
+    double input;
 	double ratio;
 	double currentRatio;
 	double threshold;
@@ -368,6 +371,10 @@ public:
 	double attack;
 	double release;
 	double amplitude;
+    void setAttack(double attackMS);
+    void setRelease(double releaseMS);
+    void setThreshold(double thresholdI);
+    void setRatio(double ratioF);
 	long holdtime;
 	long holdcount;
 	int attackphase,holdphase,releasephase;
@@ -379,6 +386,7 @@ class maxiEnv {
 public:
 	double ar(double input, double attack=1, double release=0.9, long holdtime=1, int trigger=0);
 	double adsr(double input, double attack=1, double decay=0.99, double sustain=0.125, double release=0.9, long holdtime=1, int trigger=0);
+    double adsr(double input,int trigger);
 	double input;
 	double output;
 	double attack;
@@ -386,8 +394,12 @@ public:
 	double sustain;
 	double release;
 	double amplitude;
+    void setAttack(double attackMS);
+    void setRelease(double releaseMS);
+    void setDecay(double decayMS);
+    void setSustain(double sustainL);
 	int trigger;
-	long holdtime;
+	long holdtime=1;
 	long holdcount;
 	int attackphase,decayphase,sustainphase,holdphase,releasephase;
 };

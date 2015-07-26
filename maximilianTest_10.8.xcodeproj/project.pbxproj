@@ -7,14 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		00B5A18610F54EF50011B459 /* maximilian.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 00B5A18510F54EF50011B459 /* maximilian.cpp */; };
 		00FD794410CF325D00EA9294 /* RtAudio.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 00FD794110CF325D00EA9294 /* RtAudio.cpp */; };
 		833289281403E9C4003DF5D6 /* player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 833289271403E9C4003DF5D6 /* player.cpp */; };
 		83C24ED817F9DC6D005843DB /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83C24ED717F9DC6D005843DB /* CoreAudio.framework */; };
 		83C24EDC17F9DDDD005843DB /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83C24EDB17F9DDDD005843DB /* CoreServices.framework */; };
 		83C24EDE17F9DDE3005843DB /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83C24EDD17F9DDE3005843DB /* AudioToolbox.framework */; };
 		83C24EE017F9DDEB005843DB /* AudioUnit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83C24EDF17F9DDEB005843DB /* AudioUnit.framework */; };
-		8D7601A5152BDB5200EAE4B0 /* stb_vorbis.c in Sources */ = {isa = PBXBuildFile; fileRef = 8D7601A3152BDB5200EAE4B0 /* stb_vorbis.c */; };
+		8A34BD591B65677F0026EA0C /* maximilian.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8A34BD571B65677F0026EA0C /* maximilian.cpp */; };
+		8A34BD5C1B6567E60026EA0C /* stb_vorbis.c in Sources */ = {isa = PBXBuildFile; fileRef = 8A34BD5A1B6567E60026EA0C /* stb_vorbis.c */; };
 		8DD76F650486A84900D96B5E /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 08FB7796FE84155DC02AAC07 /* main.cpp */; settings = {ATTRIBUTES = (); }; };
 		8DD76F6A0486A84900D96B5E /* rtaudiotest.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = C6859E8B029090EE04C91782 /* rtaudiotest.1 */; };
 /* End PBXBuildFile section */
@@ -33,8 +33,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		00B5A18510F54EF50011B459 /* maximilian.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = maximilian.cpp; sourceTree = "<group>"; };
-		00F9DBCA10EA67AF000FD39D /* maximilian.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = maximilian.h; sourceTree = "<group>"; };
 		00FD794110CF325D00EA9294 /* RtAudio.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RtAudio.cpp; sourceTree = "<group>"; };
 		00FD794210CF325D00EA9294 /* RtAudio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RtAudio.h; sourceTree = "<group>"; };
 		00FD794310CF325D00EA9294 /* RtError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RtError.h; sourceTree = "<group>"; };
@@ -47,8 +45,11 @@
 		83C24EDB17F9DDDD005843DB /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/CoreServices.framework; sourceTree = DEVELOPER_DIR; };
 		83C24EDD17F9DDE3005843DB /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/AudioToolbox.framework; sourceTree = DEVELOPER_DIR; };
 		83C24EDF17F9DDEB005843DB /* AudioUnit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioUnit.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/AudioUnit.framework; sourceTree = DEVELOPER_DIR; };
-		8D7601A3152BDB5200EAE4B0 /* stb_vorbis.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = stb_vorbis.c; sourceTree = "<group>"; };
-		8D7601A4152BDB5200EAE4B0 /* stb_vorbis.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stb_vorbis.h; sourceTree = "<group>"; };
+		8A34BD531B6566730026EA0C /* libs */ = {isa = PBXFileReference; lastKnownFileType = folder; path = libs; sourceTree = "<group>"; };
+		8A34BD571B65677F0026EA0C /* maximilian.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = maximilian.cpp; sourceTree = "<group>"; };
+		8A34BD581B65677F0026EA0C /* maximilian.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = maximilian.h; sourceTree = "<group>"; };
+		8A34BD5A1B6567E60026EA0C /* stb_vorbis.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = stb_vorbis.c; sourceTree = "<group>"; };
+		8A34BD5B1B6567E60026EA0C /* stb_vorbis.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stb_vorbis.h; sourceTree = "<group>"; };
 		8DD76F6C0486A84900D96B5E /* rtaudiotest */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = rtaudiotest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C6859E8B029090EE04C91782 /* rtaudiotest.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = rtaudiotest.1; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -87,12 +88,13 @@
 		08FB7795FE84155DC02AAC07 /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				8D7601A3152BDB5200EAE4B0 /* stb_vorbis.c */,
-				8D7601A4152BDB5200EAE4B0 /* stb_vorbis.h */,
+				8A34BD5A1B6567E60026EA0C /* stb_vorbis.c */,
+				8A34BD5B1B6567E60026EA0C /* stb_vorbis.h */,
+				8A34BD571B65677F0026EA0C /* maximilian.cpp */,
+				8A34BD581B65677F0026EA0C /* maximilian.h */,
+				8A34BD531B6566730026EA0C /* libs */,
 				833289261403E9C4003DF5D6 /* player.h */,
 				833289271403E9C4003DF5D6 /* player.cpp */,
-				00B5A18510F54EF50011B459 /* maximilian.cpp */,
-				00F9DBCA10EA67AF000FD39D /* maximilian.h */,
 				08FB7796FE84155DC02AAC07 /* main.cpp */,
 			);
 			name = Source;
@@ -177,11 +179,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8A34BD5C1B6567E60026EA0C /* stb_vorbis.c in Sources */,
 				8DD76F650486A84900D96B5E /* main.cpp in Sources */,
 				00FD794410CF325D00EA9294 /* RtAudio.cpp in Sources */,
-				00B5A18610F54EF50011B459 /* maximilian.cpp in Sources */,
 				833289281403E9C4003DF5D6 /* player.cpp in Sources */,
-				8D7601A5152BDB5200EAE4B0 /* stb_vorbis.c in Sources */,
+				8A34BD591B65677F0026EA0C /* maximilian.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

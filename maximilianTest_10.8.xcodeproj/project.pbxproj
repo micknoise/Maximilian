@@ -9,12 +9,19 @@
 /* Begin PBXBuildFile section */
 		00FD794410CF325D00EA9294 /* RtAudio.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 00FD794110CF325D00EA9294 /* RtAudio.cpp */; };
 		833289281403E9C4003DF5D6 /* player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 833289271403E9C4003DF5D6 /* player.cpp */; };
-		83C24ED817F9DC6D005843DB /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83C24ED717F9DC6D005843DB /* CoreAudio.framework */; };
-		83C24EDC17F9DDDD005843DB /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83C24EDB17F9DDDD005843DB /* CoreServices.framework */; };
-		83C24EDE17F9DDE3005843DB /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83C24EDD17F9DDE3005843DB /* AudioToolbox.framework */; };
-		83C24EE017F9DDEB005843DB /* AudioUnit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83C24EDF17F9DDEB005843DB /* AudioUnit.framework */; };
 		8A34BD591B65677F0026EA0C /* maximilian.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8A34BD571B65677F0026EA0C /* maximilian.cpp */; };
 		8A34BD5C1B6567E60026EA0C /* stb_vorbis.c in Sources */ = {isa = PBXBuildFile; fileRef = 8A34BD5A1B6567E60026EA0C /* stb_vorbis.c */; };
+		8A34BD5E1B65A8D10026EA0C /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A34BD5D1B65A8D10026EA0C /* Accelerate.framework */; };
+		8A34BD601B65A8D70026EA0C /* AudioUnit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A34BD5F1B65A8D70026EA0C /* AudioUnit.framework */; };
+		8A34BD621B65A8DD0026EA0C /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A34BD611B65A8DD0026EA0C /* AudioToolbox.framework */; };
+		8A34BD641B65A8E40026EA0C /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A34BD631B65A8E40026EA0C /* CoreAudio.framework */; };
+		8A34BD661B65A8E90026EA0C /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A34BD651B65A8E90026EA0C /* CoreServices.framework */; };
+		8A34BD761B65AA390026EA0C /* fft.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8A34BD681B65AA390026EA0C /* fft.cpp */; };
+		8A34BD771B65AA390026EA0C /* maxiAtoms.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8A34BD6A1B65AA390026EA0C /* maxiAtoms.cpp */; };
+		8A34BD781B65AA390026EA0C /* maxiBark.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8A34BD6C1B65AA390026EA0C /* maxiBark.cpp */; };
+		8A34BD791B65AA390026EA0C /* maxiFFT.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8A34BD6E1B65AA390026EA0C /* maxiFFT.cpp */; };
+		8A34BD7A1B65AA390026EA0C /* maxiGrains.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8A34BD701B65AA390026EA0C /* maxiGrains.cpp */; };
+		8A34BD7B1B65AA390026EA0C /* maxiMFCC.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8A34BD731B65AA390026EA0C /* maxiMFCC.cpp */; };
 		8DD76F650486A84900D96B5E /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 08FB7796FE84155DC02AAC07 /* main.cpp */; settings = {ATTRIBUTES = (); }; };
 		8DD76F6A0486A84900D96B5E /* rtaudiotest.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = C6859E8B029090EE04C91782 /* rtaudiotest.1 */; };
 /* End PBXBuildFile section */
@@ -40,17 +47,30 @@
 		4C1D997D10FA76E700D5E940 /* portaudio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = portaudio.h; sourceTree = "<group>"; };
 		833289261403E9C4003DF5D6 /* player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = player.h; sourceTree = "<group>"; };
 		833289271403E9C4003DF5D6 /* player.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = player.cpp; sourceTree = "<group>"; };
-		83C24ED717F9DC6D005843DB /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/CoreAudio.framework; sourceTree = DEVELOPER_DIR; };
-		83C24ED917F9DC76005843DB /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/Accelerate.framework; sourceTree = DEVELOPER_DIR; };
-		83C24EDB17F9DDDD005843DB /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/CoreServices.framework; sourceTree = DEVELOPER_DIR; };
-		83C24EDD17F9DDE3005843DB /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/AudioToolbox.framework; sourceTree = DEVELOPER_DIR; };
-		83C24EDF17F9DDEB005843DB /* AudioUnit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioUnit.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/AudioUnit.framework; sourceTree = DEVELOPER_DIR; };
-		8A34BD531B6566730026EA0C /* libs */ = {isa = PBXFileReference; lastKnownFileType = folder; path = libs; sourceTree = "<group>"; };
 		8A34BD571B65677F0026EA0C /* maximilian.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = maximilian.cpp; sourceTree = "<group>"; };
 		8A34BD581B65677F0026EA0C /* maximilian.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = maximilian.h; sourceTree = "<group>"; };
 		8A34BD5A1B6567E60026EA0C /* stb_vorbis.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = stb_vorbis.c; sourceTree = "<group>"; };
 		8A34BD5B1B6567E60026EA0C /* stb_vorbis.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stb_vorbis.h; sourceTree = "<group>"; };
-		8DD76F6C0486A84900D96B5E /* rtaudiotest */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = rtaudiotest; sourceTree = BUILT_PRODUCTS_DIR; };
+		8A34BD5D1B65A8D10026EA0C /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
+		8A34BD5F1B65A8D70026EA0C /* AudioUnit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioUnit.framework; path = System/Library/Frameworks/AudioUnit.framework; sourceTree = SDKROOT; };
+		8A34BD611B65A8DD0026EA0C /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		8A34BD631B65A8E40026EA0C /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
+		8A34BD651B65A8E90026EA0C /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = System/Library/Frameworks/CoreServices.framework; sourceTree = SDKROOT; };
+		8A34BD681B65AA390026EA0C /* fft.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = fft.cpp; sourceTree = "<group>"; };
+		8A34BD691B65AA390026EA0C /* fft.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fft.h; sourceTree = "<group>"; };
+		8A34BD6A1B65AA390026EA0C /* maxiAtoms.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = maxiAtoms.cpp; sourceTree = "<group>"; };
+		8A34BD6B1B65AA390026EA0C /* maxiAtoms.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = maxiAtoms.h; sourceTree = "<group>"; };
+		8A34BD6C1B65AA390026EA0C /* maxiBark.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = maxiBark.cpp; sourceTree = "<group>"; };
+		8A34BD6D1B65AA390026EA0C /* maxiBark.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = maxiBark.h; sourceTree = "<group>"; };
+		8A34BD6E1B65AA390026EA0C /* maxiFFT.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = maxiFFT.cpp; sourceTree = "<group>"; };
+		8A34BD6F1B65AA390026EA0C /* maxiFFT.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = maxiFFT.h; sourceTree = "<group>"; };
+		8A34BD701B65AA390026EA0C /* maxiGrains.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = maxiGrains.cpp; sourceTree = "<group>"; };
+		8A34BD711B65AA390026EA0C /* maxiGrains.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = maxiGrains.h; sourceTree = "<group>"; };
+		8A34BD721B65AA390026EA0C /* maxim.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = maxim.h; sourceTree = "<group>"; };
+		8A34BD731B65AA390026EA0C /* maxiMFCC.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = maxiMFCC.cpp; sourceTree = "<group>"; };
+		8A34BD741B65AA390026EA0C /* maxiMFCC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = maxiMFCC.h; sourceTree = "<group>"; };
+		8A34BD751B65AA390026EA0C /* sineTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sineTable.h; sourceTree = "<group>"; };
+		8DD76F6C0486A84900D96B5E /* maximilianTest */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = maximilianTest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C6859E8B029090EE04C91782 /* rtaudiotest.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = rtaudiotest.1; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -59,10 +79,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				83C24EE017F9DDEB005843DB /* AudioUnit.framework in Frameworks */,
-				83C24EDE17F9DDE3005843DB /* AudioToolbox.framework in Frameworks */,
-				83C24EDC17F9DDDD005843DB /* CoreServices.framework in Frameworks */,
-				83C24ED817F9DC6D005843DB /* CoreAudio.framework in Frameworks */,
+				8A34BD661B65A8E90026EA0C /* CoreServices.framework in Frameworks */,
+				8A34BD641B65A8E40026EA0C /* CoreAudio.framework in Frameworks */,
+				8A34BD621B65A8DD0026EA0C /* AudioToolbox.framework in Frameworks */,
+				8A34BD601B65A8D70026EA0C /* AudioUnit.framework in Frameworks */,
+				8A34BD5E1B65A8D10026EA0C /* Accelerate.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -72,11 +93,11 @@
 		08FB7794FE84155DC02AAC07 /* rtaudiotest */ = {
 			isa = PBXGroup;
 			children = (
-				83C24EDF17F9DDEB005843DB /* AudioUnit.framework */,
-				83C24EDD17F9DDE3005843DB /* AudioToolbox.framework */,
-				83C24EDB17F9DDDD005843DB /* CoreServices.framework */,
-				83C24ED917F9DC76005843DB /* Accelerate.framework */,
-				83C24ED717F9DC6D005843DB /* CoreAudio.framework */,
+				8A34BD651B65A8E90026EA0C /* CoreServices.framework */,
+				8A34BD631B65A8E40026EA0C /* CoreAudio.framework */,
+				8A34BD611B65A8DD0026EA0C /* AudioToolbox.framework */,
+				8A34BD5F1B65A8D70026EA0C /* AudioUnit.framework */,
+				8A34BD5D1B65A8D10026EA0C /* Accelerate.framework */,
 				833289351403EE46003DF5D6 /* audioIO */,
 				08FB7795FE84155DC02AAC07 /* Source */,
 				C6859E8C029090F304C91782 /* Documentation */,
@@ -88,11 +109,11 @@
 		08FB7795FE84155DC02AAC07 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				8A34BD671B65AA390026EA0C /* libs */,
 				8A34BD5A1B6567E60026EA0C /* stb_vorbis.c */,
 				8A34BD5B1B6567E60026EA0C /* stb_vorbis.h */,
 				8A34BD571B65677F0026EA0C /* maximilian.cpp */,
 				8A34BD581B65677F0026EA0C /* maximilian.h */,
-				8A34BD531B6566730026EA0C /* libs */,
 				833289261403E9C4003DF5D6 /* player.h */,
 				833289271403E9C4003DF5D6 /* player.cpp */,
 				08FB7796FE84155DC02AAC07 /* main.cpp */,
@@ -103,7 +124,7 @@
 		1AB674ADFE9D54B511CA2CBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				8DD76F6C0486A84900D96B5E /* rtaudiotest */,
+				8DD76F6C0486A84900D96B5E /* maximilianTest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -117,6 +138,27 @@
 				00FD794310CF325D00EA9294 /* RtError.h */,
 			);
 			name = audioIO;
+			sourceTree = "<group>";
+		};
+		8A34BD671B65AA390026EA0C /* libs */ = {
+			isa = PBXGroup;
+			children = (
+				8A34BD681B65AA390026EA0C /* fft.cpp */,
+				8A34BD691B65AA390026EA0C /* fft.h */,
+				8A34BD6A1B65AA390026EA0C /* maxiAtoms.cpp */,
+				8A34BD6B1B65AA390026EA0C /* maxiAtoms.h */,
+				8A34BD6C1B65AA390026EA0C /* maxiBark.cpp */,
+				8A34BD6D1B65AA390026EA0C /* maxiBark.h */,
+				8A34BD6E1B65AA390026EA0C /* maxiFFT.cpp */,
+				8A34BD6F1B65AA390026EA0C /* maxiFFT.h */,
+				8A34BD701B65AA390026EA0C /* maxiGrains.cpp */,
+				8A34BD711B65AA390026EA0C /* maxiGrains.h */,
+				8A34BD721B65AA390026EA0C /* maxim.h */,
+				8A34BD731B65AA390026EA0C /* maxiMFCC.cpp */,
+				8A34BD741B65AA390026EA0C /* maxiMFCC.h */,
+				8A34BD751B65AA390026EA0C /* sineTable.h */,
+			);
+			path = libs;
 			sourceTree = "<group>";
 		};
 		C6859E8C029090F304C91782 /* Documentation */ = {
@@ -145,7 +187,7 @@
 			name = maximilianTest;
 			productInstallPath = "$(HOME)/bin";
 			productName = rtaudiotest;
-			productReference = 8DD76F6C0486A84900D96B5E /* rtaudiotest */;
+			productReference = 8DD76F6C0486A84900D96B5E /* maximilianTest */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
@@ -179,11 +221,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8A34BD7B1B65AA390026EA0C /* maxiMFCC.cpp in Sources */,
+				8A34BD7A1B65AA390026EA0C /* maxiGrains.cpp in Sources */,
+				8A34BD761B65AA390026EA0C /* fft.cpp in Sources */,
+				8A34BD791B65AA390026EA0C /* maxiFFT.cpp in Sources */,
 				8A34BD5C1B6567E60026EA0C /* stb_vorbis.c in Sources */,
 				8DD76F650486A84900D96B5E /* main.cpp in Sources */,
 				00FD794410CF325D00EA9294 /* RtAudio.cpp in Sources */,
+				8A34BD781B65AA390026EA0C /* maxiBark.cpp in Sources */,
 				833289281403E9C4003DF5D6 /* player.cpp in Sources */,
 				8A34BD591B65677F0026EA0C /* maximilian.cpp in Sources */,
+				8A34BD771B65AA390026EA0C /* maxiAtoms.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -198,7 +246,7 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_MODEL_TUNING = G5;
-				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_OPTIMIZATION_LEVEL = 3;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"_GLIBCXX_DEBUG=1",
 					"_GLIBCXX_DEBUG_PEDANTIC=1",
@@ -209,8 +257,8 @@
 					"\"$(SRCROOT)/../../../Desktop\"",
 					"\"$(SRCROOT)\"",
 				);
-				PRODUCT_NAME = rtaudiotest;
-				SDKROOT = macosx10.9;
+				PRODUCT_NAME = maximilianTest;
+				SDKROOT = macosx;
 			};
 			name = Debug;
 		};
@@ -226,8 +274,8 @@
 					"\"$(SRCROOT)/../../../Desktop\"",
 					"\"$(SRCROOT)\"",
 				);
-				PRODUCT_NAME = rtaudiotest;
-				SDKROOT = macosx10.9;
+				PRODUCT_NAME = maximilianTest;
+				SDKROOT = macosx;
 			};
 			name = Release;
 		};
@@ -247,9 +295,10 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_PREPROCESSOR_DEFINITIONS = "";
-				ONLY_ACTIVE_ARCH = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				ONLY_ACTIVE_ARCH = NO;
 				PREBINDING = NO;
-				SDKROOT = macosx10.7;
+				SDKROOT = macosx;
 			};
 			name = Debug;
 		};
@@ -267,9 +316,10 @@
 				GCC_UNROLL_LOOPS = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				ONLY_ACTIVE_ARCH = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				ONLY_ACTIVE_ARCH = NO;
 				PREBINDING = NO;
-				SDKROOT = macosx10.7;
+				SDKROOT = macosx;
 			};
 			name = Release;
 		};

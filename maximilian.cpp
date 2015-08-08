@@ -572,7 +572,7 @@ bool maxiSample::read()
 {
 	bool result;
 	ifstream inFile( myPath.c_str(), ios::in | ios::binary);
-	result = inFile;
+	result = (bool) inFile;
 	if (inFile) {
 		bool datafound = false;
 		inFile.seekg(4, ios::beg);

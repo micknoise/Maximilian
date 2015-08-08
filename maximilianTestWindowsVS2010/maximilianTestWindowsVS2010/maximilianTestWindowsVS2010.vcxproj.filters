@@ -39,6 +39,9 @@
     <ClInclude Include="..\..\..\..\Program Files (x86)\Microsoft DirectX SDK (February 2010)\Include\dsound.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\stb_vorbis.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\main.cpp">
@@ -51,6 +54,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\RtAudio.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\stb_vorbis.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

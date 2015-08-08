@@ -43,6 +43,10 @@
 #include <cstdlib>
 #include "math.h"
 
+#ifdef _WIN32 || _WIN64
+#include <algorithm>
+#endif
+
 using namespace std;
 #ifndef PI
 #define PI  3.1415926535897932384626433832795

@@ -1,5 +1,4 @@
 #include "maximilian.h"
-#include "libs/maxim.h"
 
 //This shows how to use maximilian to build a polyphonic synth.
 
@@ -17,26 +16,8 @@ int currentCount,lastCount,voice=0;//these values are used to check if we have a
 
 double VCO1out[6],VCO2out[6],LFO1out[6],LFO2out[6],VCFout[6],ADSRout[6],mix,pitch[6];
 
-maxiFFTOctaveAnalyzer octo;
-int nAverages;
-float *ifftOutput;
-int ifftSize;
-
-maxiIFFT ifft;
-maxiFFT mfft;
-int fftSize;
-int bins, dataSize;
-
 
 void setup() {//some inits
-    
-    fftSize = 1024;
-    mfft.setup(fftSize, 1024, 256);
-    ifft.setup(fftSize, 1024, 256);
-    
-
-    nAverages = 12;
-    octo.setup(44100, fftSize/2, nAverages);
     
     for (int i=0;i<6;i++) {
     
@@ -66,13 +47,6 @@ void play(double *output) {
         pitch[voice]=voice+1;
         voice++;
         
-        lastCount=0;
-        cout << mfft.spectralFlatness() << ", " << mfft.spectralCentroid() << endl;
-        
-        for (int i=0; i<octo.nAverages; i++) {
-            cout << octo.averages[i] << " ,";
-        } cout << endl;
-        
     }
     
     //and this is where we build the synth
@@ -97,13 +71,7 @@ void play(double *output) {
     
     output[0]=mix*0.5;//left channel
     output[1]=mix*0.5;//right channel
-    
-    if (mfft.process(mix)) {
-        //do some manipulation
-        mfft.magsToDB();
-        octo.calculate(mfft.magnitudesDB);
-    }
-    //inverse fft
+   
     
     // This just sends note-off messages.
     for (int i=0; i<6; i++) {

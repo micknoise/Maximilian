@@ -14,12 +14,15 @@
     <ProjectGuid>{599B9B87-ABE8-4096-A0E7-A68775D8A284}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>maximilianTestWindowsVS2010</RootNamespace>
+    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+    <ProjectName>maximilianTestWindowsVS2015</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v140</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
@@ -49,6 +52,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;__WINDOWS_DS__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Users\dev\Documents\GitHubVisualStudio\Maximilian\libs;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -81,6 +85,7 @@
     <ClInclude Include="..\..\player.h" />
     <ClInclude Include="..\..\RtAudio.h" />
     <ClInclude Include="..\..\RtError.h" />
+    <ClInclude Include="..\..\stb_vorbis.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
@@ -89,6 +94,7 @@
     <ClCompile Include="..\..\maximilian.cpp" />
     <ClCompile Include="..\..\player.cpp" />
     <ClCompile Include="..\..\RtAudio.cpp" />
+    <ClCompile Include="..\..\stb_vorbis.c" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "8DD76F620486A84900D96B5E"
-               BuildableName = "rtaudiotest"
+               BuildableName = "maximilianTest"
                BlueprintName = "maximilianTest"
                ReferencedContainer = "container:maximilianTest_10.8.xcodeproj">
             </BuildableReference>
@@ -33,7 +33,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "8DD76F620486A84900D96B5E"
-            BuildableName = "rtaudiotest"
+            BuildableName = "maximilianTest"
             BlueprintName = "maximilianTest"
             ReferencedContainer = "container:maximilianTest_10.8.xcodeproj">
          </BuildableReference>
@@ -53,7 +53,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "8DD76F620486A84900D96B5E"
-            BuildableName = "rtaudiotest"
+            BuildableName = "maximilianTest"
             BlueprintName = "maximilianTest"
             ReferencedContainer = "container:maximilianTest_10.8.xcodeproj">
          </BuildableReference>
@@ -72,7 +72,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "8DD76F620486A84900D96B5E"
-            BuildableName = "rtaudiotest"
+            BuildableName = "maximilianTest"
             BlueprintName = "maximilianTest"
             ReferencedContainer = "container:maximilianTest_10.8.xcodeproj">
          </BuildableReference>

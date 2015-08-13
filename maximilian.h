@@ -43,7 +43,7 @@
 #include <cstdlib>
 #include "math.h"
 
-#ifdef _WIN32 || _WIN64
+#ifdef _WIN32 //|| _WIN64
 #include <algorithm>
 #endif
 

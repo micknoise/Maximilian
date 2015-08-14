@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
+   LastUpgradeVersion = "0500"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -16,7 +17,7 @@
                BlueprintIdentifier = "8DD76F620486A84900D96B5E"
                BuildableName = "rtaudiotest"
                BlueprintName = "maximilianTest"
-               ReferencedContainer = "container:maximilianTest.xcodeproj">
+               ReferencedContainer = "container:maximilianTest_10.8.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -34,7 +35,7 @@
             BlueprintIdentifier = "8DD76F620486A84900D96B5E"
             BuildableName = "rtaudiotest"
             BlueprintName = "maximilianTest"
-            ReferencedContainer = "container:maximilianTest.xcodeproj">
+            ReferencedContainer = "container:maximilianTest_10.8.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -53,7 +54,7 @@
             BlueprintIdentifier = "8DD76F620486A84900D96B5E"
             BuildableName = "rtaudiotest"
             BlueprintName = "maximilianTest"
-            ReferencedContainer = "container:maximilianTest.xcodeproj">
+            ReferencedContainer = "container:maximilianTest_10.8.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -71,7 +72,7 @@
             BlueprintIdentifier = "8DD76F620486A84900D96B5E"
             BuildableName = "rtaudiotest"
             BlueprintName = "maximilianTest"
-            ReferencedContainer = "container:maximilianTest.xcodeproj">
+            ReferencedContainer = "container:maximilianTest_10.8.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

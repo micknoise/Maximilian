@@ -30,12 +30,6 @@
  *
  */
 
-/*
- Feature request:
- maxiNANINFAlarm
- maxiLimiter
- */
-
 #ifndef MAXIMILIAN_H
 #define MAXIMILIAN_H
 
@@ -48,6 +42,10 @@
 #include <string.h>
 #include <cstdlib>
 #include "math.h"
+
+#ifdef _WIN32 //|| _WIN64
+#include <algorithm>
+#endif
 
 using namespace std;
 #ifndef PI
@@ -91,8 +89,9 @@ public:
 	double noise();
 	double sinebuf(double frequency);
 	double sinebuf4(double frequency);
+    double sawn(double frequency);
+    double rect(double frequency, double duty=0.5);
 	void phaseReset(double phaseIn);
-    double sawn(double frequency);    
 	
 };
 
@@ -214,12 +213,12 @@ private:
 	int   	myByteRate;
 	short 	myBlockAlign;
 	short 	myBitsPerSample;
+	double position, recordPosition;
 	double speed;
 	double output;
     maxiLagExp<double> loopRecordLag;
 	
 public:
-	double position, recordPosition;
 	int	myDataSize;
 	short 	myChannels;
 	int   	mySampleRate;
@@ -237,9 +236,11 @@ public:
 	{
 //		if (myData) free(myData);
         if (temp) free(temp);
+        printf("freeing SampleData");
+
 	}
 	
-	maxiSample():temp(NULL),position(0), recordPosition(0), myChannels(1), mySampleRate(maxiSettings::sampleRate) {};
+    maxiSample():temp(NULL),position(0), recordPosition(0), myChannels(1), mySampleRate(maxiSettings::sampleRate) {};
     
     maxiSample& operator=(const maxiSample &source) {
         if (this == &source)
@@ -285,60 +286,60 @@ public:
     void clear();
     
     void reset();
-	
-	double play();
-
+    
+    double play();
+    
     double playLoop(double start, double end); // start and end are between 0.0 and 1.0
-	
-	double playOnce();
-	
-	double playOnce(double speed);
-
+    
+    double playOnce();
+    
+    double playOnce(double speed);
+    
     void setPosition(double newPos); // between 0.0 and 1.0
     
     double playUntil(double end);
-	
-	double play(double speed);
-	
-	double play(double frequency, double start, double end, double &pos);
-	
-	double play(double frequency, double start, double end);
-	
-	double play4(double frequency, double start, double end);
-	
-	double bufferPlay(unsigned char &bufferin,long length);
-	
-	double bufferPlay(unsigned char &bufferin,double speed,long length);
-	
-	double bufferPlay(unsigned char &bufferin,double frequency, double start, double end);
-	
-	double bufferPlay4(unsigned char &bufferin,double frequency, double start, double end);
+    
+    double play(double speed);
+    
+    double play(double frequency, double start, double end, double &pos);
+    
+    double play(double frequency, double start, double end);
+    
+    double play4(double frequency, double start, double end);
+    
+    double bufferPlay(unsigned char &bufferin,long length);
+    
+    double bufferPlay(unsigned char &bufferin,double speed,long length);
+    
+    double bufferPlay(unsigned char &bufferin,double frequency, double start, double end);
+    
+    double bufferPlay4(unsigned char &bufferin,double frequency, double start, double end);
     bool save() {
         return save(myPath);
     }
     
 	bool save(string filename)
 	{
-		fstream myFile (filename.c_str(), ios::out | ios::binary);
-		
-		// write the wav file per the wav file format
-		myFile.seekp (0, ios::beg); 
-		myFile.write ("RIFF", 4);
-		myFile.write ((char*) &myChunkSize, 4);
-		myFile.write ("WAVE", 4);
-		myFile.write ("fmt ", 4);
-		myFile.write ((char*) &mySubChunk1Size, 4);
-		myFile.write ((char*) &myFormat, 2);
-		myFile.write ((char*) &myChannels, 2);
-		myFile.write ((char*) &mySampleRate, 4);
-		myFile.write ((char*) &myByteRate, 4);
-		myFile.write ((char*) &myBlockAlign, 2);
-		myFile.write ((char*) &myBitsPerSample, 2);
-		myFile.write ("data", 4);
-		myFile.write ((char*) &myDataSize, 4);
-		myFile.write ((char*) temp, myDataSize);
-		
-		return true;
+        fstream myFile (filename.c_str(), ios::out | ios::binary);
+        
+        // write the wav file per the wav file format
+        myFile.seekp (0, ios::beg);
+        myFile.write ("RIFF", 4);
+        myFile.write ((char*) &myChunkSize, 4);
+        myFile.write ("WAVE", 4);
+        myFile.write ("fmt ", 4);
+        myFile.write ((char*) &mySubChunk1Size, 4);
+        myFile.write ((char*) &myFormat, 2);
+        myFile.write ((char*) &myChannels, 2);
+        myFile.write ((char*) &mySampleRate, 4);
+        myFile.write ((char*) &myByteRate, 4);
+        myFile.write ((char*) &myBlockAlign, 2);
+        myFile.write ((char*) &myBitsPerSample, 2);
+        myFile.write ("data", 4);
+        myFile.write ((char*) &myDataSize, 4);
+        myFile.write ((char*) temp, myDataSize);
+        
+        return true;
 	}
 	
 	// return a printable summary of the wav file
@@ -346,6 +347,7 @@ public:
 	{
 		char *summary = new char[250];
 		sprintf(summary, " Format: %d\n Channels: %d\n SampleRate: %d\n ByteRate: %d\n BlockAlign: %d\n BitsPerSample: %d\n DataSize: %d\n", myFormat, myChannels, mySampleRate, myByteRate, myBlockAlign, myBitsPerSample, myDataSize);
+		std::cout << myDataSize;
 		return summary;
 	}
     
@@ -356,43 +358,47 @@ public:
 
 class maxiMap {
 public:
-	static double inline linlin(double val, double inMin, double inMax, double outMin, double outMax) {
-		val = max(min(val, inMax), inMin);
-		return ((val - inMin) / (inMax - inMin) * (outMax - outMin)) + outMin;
-	}
-	
-	static double inline linexp(double val, double inMin, double inMax, double outMin, double outMax) {
-		//clipping
-		val = max(min(val, inMax), inMin);
-		return pow((outMax / outMin), (val - inMin) / (inMax - inMin)) * outMin;
-	}
-	
-	static double inline explin(double val, double inMin, double inMax, double outMin, double outMax) {
-		//clipping
-		val = max(min(val, inMax), inMin);
-		return (log(val/inMin) / log(inMax/inMin) * (outMax - outMin)) + outMin;
-	}
-	
+    static double inline linlin(double val, double inMin, double inMax, double outMin, double outMax) {
+        val = max(min(val, inMax), inMin);
+        return ((val - inMin) / (inMax - inMin) * (outMax - outMin)) + outMin;
+    }
+    
+    static double inline linexp(double val, double inMin, double inMax, double outMin, double outMax) {
+        //clipping
+        val = max(min(val, inMax), inMin);
+        return pow((outMax / outMin), (val - inMin) / (inMax - inMin)) * outMin;
+    }
+    
+    static double inline explin(double val, double inMin, double inMax, double outMin, double outMax) {
+        //clipping
+        val = max(min(val, inMax), inMin);
+        return (log(val/inMin) / log(inMax/inMin) * (outMax - outMin)) + outMin;
+    }
+    
     //changed to templated function, e.g. maxiMap::maxiClamp<int>(v, l, h);
     template<typename T>
-	static T inline clamp(T v, const T low, const T high) {
+    static T inline clamp(T v, const T low, const T high) {
         if (v > high)
             v = high;
         else if (v < low) {
             v = low;
         }
-		return v;
-	}
+        return v;
+    }
 	
 };
+
 
 class maxiDyn {
 	
 	
 public:
-	double gate(double input, double threshold=0.9, long holdtime=1, double attack=1, double release=0.9995);
-	double compressor(double input, double ratio, double threshold=0.9, double attack=1, double release=0.9995);
-	double input;
+//	double gate(double input, double threshold=0.9, long holdtime=1, double attack=1, double release=0.9995);
+//	double compressor(double input, double ratio, double threshold=0.9, double attack=1, double release=0.9995);
+    double gate(double input, double threshold=0.9, long holdtime=1, double attack=1, double release=0.9995);
+    double compressor(double input, double ratio, double threshold=0.9, double attack=1, double release=0.9995);
+    double compress(double input);
+    double input;
 	double ratio;
 	double currentRatio;
 	double threshold;
@@ -400,6 +406,10 @@ public:
 	double attack;
 	double release;
 	double amplitude;
+    void setAttack(double attackMS);
+    void setRelease(double releaseMS);
+    void setThreshold(double thresholdI);
+    void setRatio(double ratioF);
 	long holdtime;
 	long holdcount;
 	int attackphase,holdphase,releasephase;
@@ -411,6 +421,7 @@ class maxiEnv {
 public:
 	double ar(double input, double attack=1, double release=0.9, long holdtime=1, int trigger=0);
 	double adsr(double input, double attack=1, double decay=0.99, double sustain=0.125, double release=0.9, long holdtime=1, int trigger=0);
+    double adsr(double input,int trigger);
 	double input;
 	double output;
 	double attack;
@@ -418,8 +429,12 @@ public:
 	double sustain;
 	double release;
 	double amplitude;
+    void setAttack(double attackMS);
+    void setRelease(double releaseMS);
+    void setDecay(double decayMS);
+    void setSustain(double sustainL);
 	int trigger;
-	long holdtime;
+	long holdtime=1;
 	long holdcount;
 	int attackphase,decayphase,sustainphase,holdphase,releasephase;
 };
@@ -516,20 +531,20 @@ public:
         env = 0;
     }
     void setAttack(T attackMS) {
-        attack = pow( 0.01, 1.0 / (attackMS * maxiSettings::sampleRate * 0.001 ) );        
+        attack = pow( 0.01, 1.0 / (attackMS * maxiSettings::sampleRate * 0.001 ) );
     }
     void setRelease(T releaseMS) {
-        release = pow( 0.01, 1.0 / (releaseMS * maxiSettings::sampleRate * 0.001 ) );            
+        release = pow( 0.01, 1.0 / (releaseMS * maxiSettings::sampleRate * 0.001 ) );
     }
     inline T play(T input) {
         input = fabs(input);
         if (input>env)
             env = attack * (env - input) + input;
         else
-            env = release * (env - input) + input;        
+            env = release * (env - input) + input;
         return env;
     }
-	void reset() {env=0;}
+    void reset() {env=0;}
     inline T getEnv(){return env;}
     inline void setEnv(T val){env = val;}
 private:
@@ -539,7 +554,6 @@ private:
 typedef maxiEnvelopeFollowerType<double> maxiEnvelopeFollower;
 typedef maxiEnvelopeFollowerType<float> maxiEnvelopeFollowerF;
 
-//from https://ccrma.stanford.edu/~jos/filters/DC_Blocker_Software_Implementations.html
 class maxiDCBlocker {
 public:
     double xm1, ym1;

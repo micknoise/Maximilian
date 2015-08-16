@@ -227,20 +227,35 @@ public:
     void setLength(unsigned long numSamples);  
 	
 	
-	char* 	myData;
+//	char* 	myData;
     short* temp;
 	
 	// get/set for the Path property
 	
 	~maxiSample()
 	{
-		if (myData) free(myData);
+//		if (myData) free(myData);
         if (temp) free(temp);
         printf("freeing SampleData");
 
 	}
 	
-	maxiSample():myData(NULL),temp(NULL),position(0), recordPosition(0), myChannels(1), mySampleRate(maxiSettings::sampleRate) {};
+    maxiSample():temp(NULL),position(0), recordPosition(0), myChannels(1), mySampleRate(maxiSettings::sampleRate) {};
+    
+    maxiSample& operator=(const maxiSample &source) {
+        if (this == &source)
+            return *this;
+        position=0;
+        recordPosition = 0;
+        myChannels = source.myChannels;
+        mySampleRate = maxiSettings::sampleRate;
+        free(temp);
+        myDataSize = source.myDataSize;
+        temp = (short*) malloc(myDataSize * sizeof(char));
+        memcpy(temp, source.temp, myDataSize * sizeof(char));
+        length = source.length;
+        return *this;
+    }
 	
 	bool load(string fileName, int channel=0);
     
@@ -254,70 +269,77 @@ public:
 	//read an ogg file into this class using stb_vorbis
     bool readOgg();
     
-    void loopRecord(double newSample, const bool recordEnabled, const double recordMix) {
+    void loopRecord(double newSample, const bool recordEnabled, const double recordMix, double start = 0.0, double end = 1.0) {
         loopRecordLag.addSample(recordEnabled);
+        if (recordPosition < start * length) recordPosition = start * length;
         if(recordEnabled) {
-            double currentSample = ((short*)myData)[(unsigned long)recordPosition] / 32767.0;
+            double currentSample = temp[(unsigned long)recordPosition] / 32767.0;
             newSample = (recordMix * currentSample) + ((1.0 - recordMix) * newSample);
             newSample *= loopRecordLag.value();
-            ((short*)myData)[(unsigned long)recordPosition] = newSample * 32767;
+            temp[(unsigned long)recordPosition] = newSample * 32767;
         }
         ++recordPosition;
-        if (recordPosition == length)
-            recordPosition=0;
+        if (recordPosition >= end * length)
+            recordPosition= start * length;
     }
     
     void clear();
     
     void reset();
-	
-	double play();
-	
-	double playOnce();
-	
-	double playOnce(double speed);
-	
-	double play(double speed);
-	
-	double play(double frequency, double start, double end, double &pos);
-	
-	double play(double frequency, double start, double end);
-	
-	double play4(double frequency, double start, double end);
-	
-	double bufferPlay(unsigned char &bufferin,long length);
-	
-	double bufferPlay(unsigned char &bufferin,double speed,long length);
-	
-	double bufferPlay(unsigned char &bufferin,double frequency, double start, double end);
-	
-	double bufferPlay4(unsigned char &bufferin,double frequency, double start, double end);
+    
+    double play();
+    
+    double playLoop(double start, double end); // start and end are between 0.0 and 1.0
+    
+    double playOnce();
+    
+    double playOnce(double speed);
+    
+    void setPosition(double newPos); // between 0.0 and 1.0
+    
+    double playUntil(double end);
+    
+    double play(double speed);
+    
+    double play(double frequency, double start, double end, double &pos);
+    
+    double play(double frequency, double start, double end);
+    
+    double play4(double frequency, double start, double end);
+    
+    double bufferPlay(unsigned char &bufferin,long length);
+    
+    double bufferPlay(unsigned char &bufferin,double speed,long length);
+    
+    double bufferPlay(unsigned char &bufferin,double frequency, double start, double end);
+    
+    double bufferPlay4(unsigned char &bufferin,double frequency, double start, double end);
     bool save() {
-        save(myPath);
+        return save(myPath);
     }
     
 	bool save(string filename)
 	{
-		fstream myFile (filename.c_str(), ios::out | ios::binary);
-		
-		// write the wav file per the wav file format
-		myFile.seekp (0, ios::beg); 
-		myFile.write ("RIFF", 4);
-		myFile.write ((char*) &myChunkSize, 4);
-		myFile.write ("WAVE", 4);
-		myFile.write ("fmt ", 4);
-		myFile.write ((char*) &mySubChunk1Size, 4);
-		myFile.write ((char*) &myFormat, 2);
-		myFile.write ((char*) &myChannels, 2);
-		myFile.write ((char*) &mySampleRate, 4);
-		myFile.write ((char*) &myByteRate, 4);
-		myFile.write ((char*) &myBlockAlign, 2);
-		myFile.write ((char*) &myBitsPerSample, 2);
-		myFile.write ("data", 4);
-		myFile.write ((char*) &myDataSize, 4);
-		myFile.write (myData, myDataSize);
-		
-		return true;
+        fstream myFile (filename.c_str(), ios::out | ios::binary);
+        
+        // write the wav file per the wav file format
+        myFile.seekp (0, ios::beg);
+        myFile.write ("RIFF", 4);
+        myFile.write ((char*) &myChunkSize, 4);
+        myFile.write ("WAVE", 4);
+        myFile.write ("fmt ", 4);
+        myFile.write ((char*) &mySubChunk1Size, 4);
+        myFile.write ((char*) &myFormat, 2);
+        myFile.write ((char*) &myChannels, 2);
+        myFile.write ((char*) &mySampleRate, 4);
+        myFile.write ((char*) &myByteRate, 4);
+        myFile.write ((char*) &myBlockAlign, 2);
+        myFile.write ((char*) &myBitsPerSample, 2);
+        myFile.write ("data", 4);
+        myFile.write ((char*) &myDataSize, 4);
+        myFile.write ((char*) temp, myDataSize);
+        
+        return true;
 	}
 	
 	// return a printable summary of the wav file
@@ -328,32 +350,41 @@ public:
 		std::cout << myDataSize;
 		return summary;
 	}
+    
+    void normalise(float maxLevel = 0.99);  //0 < maxLevel < 1.0
+    void autoTrim(float alpha = 0.3, float threshold = 6000, bool trimStart = true, bool trimEnd = true); //alpha of lag filter (lower == slower reaction), threshold to mark start and end, < 32767
 };
 
 
 class maxiMap {
 public:
-	static double inline linlin(double val, double inMin, double inMax, double outMin, double outMax) {
-		return ((val - inMin) / (inMax - inMin) * (outMax - outMin)) + outMin;
-	}
-	
-	static double inline linexp(double val, double inMin, double inMax, double outMin, double outMax) {
-		//clipping
-		val = max(min(val, inMax), inMin);
-		return pow((outMax / outMin), (val - inMin) / (inMax - inMin)) * outMin;
-	}
-	
-	static double inline explin(double val, double inMin, double inMax, double outMin, double outMax) {
-		//clipping
-		val = max(min(val, inMax), inMin);
-		return (log(val/inMin) / log(inMax/inMin) * (outMax - outMin)) + outMin;
-	}
-	
-	static int inline clamp(int v, const int low, const int high) {
-		v = min(high, v);
-		v = max(low, v);
-		return v;
-	}
+    static double inline linlin(double val, double inMin, double inMax, double outMin, double outMax) {
+        val = max(min(val, inMax), inMin);
+        return ((val - inMin) / (inMax - inMin) * (outMax - outMin)) + outMin;
+    }
+    
+    static double inline linexp(double val, double inMin, double inMax, double outMin, double outMax) {
+        //clipping
+        val = max(min(val, inMax), inMin);
+        return pow((outMax / outMin), (val - inMin) / (inMax - inMin)) * outMin;
+    }
+    
+    static double inline explin(double val, double inMin, double inMax, double outMin, double outMax) {
+        //clipping
+        val = max(min(val, inMax), inMin);
+        return (log(val/inMin) / log(inMax/inMin) * (outMax - outMin)) + outMin;
+    }
+    
+    //changed to templated function, e.g. maxiMap::maxiClamp<int>(v, l, h);
+    template<typename T>
+    static T inline clamp(T v, const T low, const T high) {
+        if (v > high)
+            v = high;
+        else if (v < low) {
+            v = low;
+        }
+        return v;
+    }
 	
 };
 
@@ -491,26 +522,115 @@ inline double maxiChorus::chorus(const double input, const unsigned int delay, c
     return (output1 + output2 + input) / 3.0;
 }
 
-class maxiEnvelopeFollower {
+template<typename T>
+class maxiEnvelopeFollowerType {
 public:
-    maxiEnvelopeFollower() {
+    maxiEnvelopeFollowerType() {
         setAttack(100);
         setRelease(100);
         env = 0;
     }
-    void setAttack(double attackMS);
-    void setRelease(double releaseMS);
-    inline double play(double input) {
+    void setAttack(T attackMS) {
+        attack = pow( 0.01, 1.0 / (attackMS * maxiSettings::sampleRate * 0.001 ) );
+    }
+    void setRelease(T releaseMS) {
+        release = pow( 0.01, 1.0 / (releaseMS * maxiSettings::sampleRate * 0.001 ) );
+    }
+    inline T play(T input) {
         input = fabs(input);
         if (input>env)
             env = attack * (env - input) + input;
         else
-            env = release * (env - input) + input;        
+            env = release * (env - input) + input;
         return env;
     }
-	void reset() {env=0;}
+    void reset() {env=0;}
+    inline T getEnv(){return env;}
+    inline void setEnv(T val){env = val;}
 private:
-    double attack, release, env;
+    T attack, release, env;
+};
+
+typedef maxiEnvelopeFollowerType<double> maxiEnvelopeFollower;
+typedef maxiEnvelopeFollowerType<float> maxiEnvelopeFollowerF;
+
+class maxiDCBlocker {
+public:
+    double xm1, ym1;
+    maxiDCBlocker() : xm1(0), ym1(0) {}
+    inline double play(double input, double R) {
+        ym1 = input - xm1 + R * ym1;
+        xm1 = input;
+        return ym1;
+    }
+};
+
+/*
+ State Variable Filter
+ 
+ algorithm from  http://www.cytomic.com/files/dsp/SvfLinearTrapOptimised.pdf
+ usage:
+ either set the parameters separately as required (to save CPU)
+ 
+ filter.setCutoff(param1);
+ filter.setResonance(param2);
+ 
+ w = filter.play(w, 0.0, 1.0, 0.0, 0.0);
+ 
+ or set everything together at once
+ 
+ w = filter.setCutoff(param1).setResonance(param2).play(w, 0.0, 1.0, 0.0, 0.0);
+ 
+ */
+class maxiSVF {
+public:
+    maxiSVF() : v0z(0), v1(0), v2(0) { setParams(1000, 1);}
+    
+    //20 < cutoff < 20000
+    inline maxiSVF& setCutoff(double cutoff) {
+        setParams(cutoff, res);
+        return *this;
+    }
+    
+    //from 0 upwards, starts to ring from 2-3ish, cracks a bit around 10
+    inline maxiSVF& setResonance(double q) {
+        setParams(freq, q);
+        return *this;
+    }
+    
+    //run the filter, and get a mixture of lowpass, bandpass, highpass and notch outputs
+    inline double play(double w, double lpmix, double bpmix, double hpmix, double notchmix) {
+        double low, band, high, notch;
+        double v1z = v1;
+        double v2z = v2;
+        double v3 = w + v0z - 2.0 * v2z;
+        v1 += g1*v3-g2*v1z;
+        v2 += g3*v3+g4*v1z;
+        v0z = w;
+        low = v2;
+        band = v1;
+        high = w-k*v1-v2;
+        notch = w-k*v1;
+        return (low * lpmix) + (band * bpmix) + (high * hpmix) + (notch * notchmix);
+    }
+    
+private:
+    inline void setParams(double _freq, double _res) {
+        freq = _freq;
+        res = _res;
+        g = tan(PI * freq / maxiSettings::sampleRate);
+        damping = res == 0 ? 0 : 1.0 / res;
+        k = damping;
+        ginv = g / (1.0 + g * (g + k));
+        g1 = ginv;
+        g2 = 2.0 * (g + k) * ginv;
+        g3 = g * ginv;
+        g4 = 2.0 * ginv;
+    }
+    
+    double v0z, v1, v2, g, damping, k, ginv, g1, g2, g3 ,g4;
+    double freq, res;
+    
 };
 
 

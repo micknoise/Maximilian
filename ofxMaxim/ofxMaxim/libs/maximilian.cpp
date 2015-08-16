@@ -325,19 +325,6 @@ double maxiOsc::saw(double frequency) {
 	phase += (1./(maxiSettings::sampleRate/(frequency)));
 	return(output);
 	
-} 
-
-double maxiOsc::triangle(double frequency) {
-    //This is a triangle wave.
-	if ( phase >= 1.0 ) phase -= 1.0;
-	phase += (1./(maxiSettings::sampleRate/(frequency)));
-	if (phase <= 0.5 ) {
-		output =(phase - 0.25) * 4;
-	} else {
-		output =((1.0-phase) - 0.25) * 4;
-	}
-	return(output);
-	
 }
 
 double maxiOsc::sawn(double frequency) {
@@ -359,12 +346,29 @@ double maxiOsc::sawn(double frequency) {
 	
 }
 
+double maxiOsc::rect(double frequency, double duty) {
+
+    return (output);
+}
+
+double maxiOsc::triangle(double frequency) {
+    //This is a triangle wave.
+	if ( phase >= 1.0 ) phase -= 1.0;
+	phase += (1./(maxiSettings::sampleRate/(frequency)));
+	if (phase <= 0.5 ) {
+		output =(phase - 0.25) * 4;
+	} else {
+		output =((1.0-phase) - 0.25) * 4;
+	}
+	return(output);
+	
+} 
 
 double maxiEnvelope::line(int numberofsegments,double segments[1000]) {
 	//This is a basic multi-segment ramp generator that you can use for more or less anything.
     //However, it's not that intuitive.
     if (isPlaying==1) {//only make a sound once you've been triggered
-	period=2./(segments[valindex+1]*0.004);
+	period=4./(segments[valindex+1]*0.0044);
 	nextval=segments[valindex+2];
 	currentval=segments[valindex];
 	if (currentval-amplitude > 0.0000001 && valindex < numberofsegments) {
@@ -397,8 +401,7 @@ void maxiEnvelope::trigger(int index, double amp) {
 
 //Delay with feedback
 maxiDelayline::maxiDelayline() {
-	memset( memory, 0, 88200*sizeof (double) );
-    phase=0;
+	memset( memory, 0, 88200*sizeof (double) );	
 }
 
 
@@ -437,9 +440,9 @@ double maxiFilter::hipass(double input, double cutoff) {
 }
 //awesome. cuttof is freq in hz. res is between 1 and whatever. Watch out!
 double maxiFilter::lores(double input,double cutoff1, double resonance) {
-	cutoff=cutoff1*0.5;
+	cutoff=cutoff1;
 	if (cutoff<10) cutoff=10;
-	if (cutoff>(maxiSettings::sampleRate*0.5)) cutoff=(maxiSettings::sampleRate*0.5);
+	if (cutoff>(maxiSettings::sampleRate)) cutoff=(maxiSettings::sampleRate);
 	if (resonance<1.) resonance = 1.;
 	z=cos(TWOPI*cutoff/maxiSettings::sampleRate);
 	c=2-2*z;
@@ -453,9 +456,9 @@ double maxiFilter::lores(double input,double cutoff1, double resonance) {
 
 //working hires filter
 double maxiFilter::hires(double input,double cutoff1, double resonance) {
-	cutoff=cutoff1*0.5;
+	cutoff=cutoff1;
 	if (cutoff<10) cutoff=10;
-	if (cutoff>(maxiSettings::sampleRate*0.5)) cutoff=(maxiSettings::sampleRate*0.5);
+	if (cutoff>(maxiSettings::sampleRate)) cutoff=(maxiSettings::sampleRate);
 	if (resonance<1.) resonance = 1.;
 	z=cos(TWOPI*cutoff/maxiSettings::sampleRate);
 	c=2-2*z;
@@ -524,18 +527,20 @@ double *maxiMix::ambisonic(double input,double eight[8],double x,double y,double
 	return(eight);
 }
 
-
+//This is the maxiSample load function. It just calls read.
 bool maxiSample::load(string fileName, int channel) {
 	myPath = fileName;
 	readChannel=channel;
 	return read();
 }
 
+// This is for OGG loading
 bool maxiSample::loadOgg(string fileName, int channel) {
 #ifdef VORBIS
     bool result;
 	readChannel=channel;
     int channelx;
+//    cout << fileName << endl;
     free(temp);
     myDataSize = stb_vorbis_decode_filename(const_cast<char*>(fileName.c_str()), &channelx, &temp);
     result = myDataSize > 0;
@@ -558,11 +563,13 @@ bool maxiSample::loadOgg(string fileName, int channel) {
     return 0;
 }
 
+//This sets the playback position to the start of a sample
 void maxiSample::trigger() {
 	position = 0;
     recordPosition = 0;
 }
 
+//This is the main read function.
 bool maxiSample::read()
 {
 	bool result;
@@ -612,7 +619,7 @@ bool maxiSample::read()
 		}
 		
 		// read the data chunk
-		char *myData = (char*) malloc(myDataSize * sizeof(char));
+		char * myData = (char*) malloc(myDataSize * sizeof(char));
 		inFile.seekg(filePos, ios::beg);
 		inFile.read(myData, myDataSize);
 		length=myDataSize*(0.5/myChannels);
@@ -644,6 +651,7 @@ bool maxiSample::read()
 	return result; // this should probably be something more descriptive
 }
 
+//This plays back at the correct speed. Always loops.
 double maxiSample::play() {
 	position++;
 	if ((long) position >= length) position=0;
@@ -651,15 +659,31 @@ double maxiSample::play() {
 	return output;
 }
 
-//start end and points are between 0 and 1
-double maxiSample::playLoop(double start, double end) {
-	position++;
-    if (position < length * start) position = length * start;
-	if ((long) position >= length * end) position = length * start;
-	output = (double) temp[(long)position]/32767.0;
-	return output;
+void maxiSample::setPosition(double newPos) {
+    position = maxiMap::clamp<double>(newPos, 0.0, 1.0) * length;
 }
 
+//start end and points are between 0 and 1
+double maxiSample::playLoop(double start, double end) {
+    position++;
+    if (position < length * start) position = length * start;
+    if ((long) position >= length * end) position = length * start;
+    output = (double) temp[(long)position]/32767.0;
+    return output;
+}
+
+double maxiSample::playUntil(double end) {
+    position++;
+    if ((long) position<length * end)
+        output = (double) temp[(long)position]/32767.0;
+    else {
+        output=0;
+    }
+    return output;
+}
+
+
+//This plays back at the correct speed. Only plays once. To retrigger, you have to manually reset the position
 double maxiSample::playOnce() {
 	position++;
 	if ((long) position<length)
@@ -671,20 +695,7 @@ double maxiSample::playOnce() {
 
 }
 
-void maxiSample::setPosition(double newPos) {
-    position = maxiMap::clamp<double>(newPos, 0.0, 1.0) * length;
-}
-
-double maxiSample::playUntil(double end) {
-	position++;
-	if ((long) position<length * end)
-        output = (double) temp[(long)position]/32767.0;
-    else {
-        output=0;
-    }
-	return output;
-}
-
+//Same as above but takes a speed value specified as a ratio, with 1.0 as original speed
 double maxiSample::playOnce(double speed) {
 	position=position+((speed*chandiv)/(maxiSettings::sampleRate/mySampleRate));
 	double remainder = position - (long) position;
@@ -695,6 +706,7 @@ double maxiSample::playOnce(double speed) {
 	return(output);
 }
 
+//As above but looping
 double maxiSample::play(double speed) {
 	double remainder;
 	long a,b;
@@ -740,10 +752,12 @@ double maxiSample::play(double speed) {
 	return(output);
 }
 
+//placeholder
 double maxiSample::play(double frequency, double start, double end) {
 	return play(frequency, start, end, position);
 }
 
+//This allows you to say how often a second you want a specific chunk of audio to play
 double maxiSample::play(double frequency, double start, double end, double &pos) {
 	double remainder;
 	if (end>=length) end=length-1;
@@ -755,7 +769,7 @@ double maxiSample::play(double frequency, double start, double end, double &pos)
 		}
 		
 		if ( pos >= end ) pos = start;
-		pos += ((end-start)/(maxiSettings::sampleRate/(frequency*chandiv)));
+		pos += ((end-start)/((maxiSettings::sampleRate)/(frequency*chandiv)));
 		remainder = pos - floor(pos);
 		long posl = floor(pos);
 		if (posl+1<length) {
@@ -775,7 +789,7 @@ double maxiSample::play(double frequency, double start, double end, double &pos)
 		output = (double) ((1-remainder) * temp[a] +
 						   remainder * temp[b])/32767;//linear interpolation
 	} else {
-		frequency=frequency-(frequency+frequency);
+		frequency*=-1.;
 		if ( pos <= start ) pos = end;
 		pos -= ((end-start)/(maxiSettings::sampleRate/(frequency*chandiv)));
 		remainder = pos - floor(pos);
@@ -801,7 +815,7 @@ double maxiSample::play(double frequency, double start, double end, double &pos)
 }
 
 
-//better cubic inerpolation. Cobbled together from various (pd externals, yehar, other places).
+//Same as above. better cubic inerpolation. Cobbled together from various (pd externals, yehar, other places).
 double maxiSample::play4(double frequency, double start, double end) {
 	double remainder;
 	double a,b,c,d,a1,a2,a3;
@@ -840,7 +854,7 @@ double maxiSample::play4(double frequency, double start, double end) {
 		output = (double) (((a3 * remainder + a2) * remainder + a1) * remainder + b) / 32767;
 		
 	} else {
-		frequency=frequency-(frequency+frequency);
+        frequency*=-1.;
 		if ( position <= start ) position = end;
 		position -= ((end-start)/(maxiSettings::sampleRate/(frequency*chandiv)));
 		remainder = position - floor(position);
@@ -876,6 +890,8 @@ double maxiSample::play4(double frequency, double start, double end) {
 	return(output);
 }
 
+
+//You don't need to worry about this stuff.
 double maxiSample::bufferPlay(unsigned char &bufferin,long length) {
 	double remainder;
 	short* buffer = (short *)&bufferin;
@@ -963,7 +979,7 @@ double maxiSample::bufferPlay(unsigned char &bufferin,double frequency, double s
 		output = (double) ((1-remainder) * buffer[a] +
 						   remainder * buffer[b])/32767;//linear interpolation
 	} else {
-		frequency=frequency-(frequency+frequency);
+        frequency*=-1.;
 		if ( position <= start ) position = end;
 		position -= ((end-start)/(maxiSettings::sampleRate/(frequency*chandiv)));
 		remainder = position - floor(position);
@@ -1028,7 +1044,7 @@ double maxiSample::bufferPlay4(unsigned char &bufferin,double frequency, double 
 		output = (double) (((a3 * remainder + a2) * remainder + a1) * remainder + b) / 32767;
 		
 	} else {
-		frequency=frequency-(frequency+frequency);
+        frequency*=-1.;
 		if ( position <= start ) position = end;
 		position -= ((end-start)/(maxiSettings::sampleRate/(frequency*chandiv)));
 		remainder = position - floor(position);
@@ -1066,18 +1082,17 @@ double maxiSample::bufferPlay4(unsigned char &bufferin,double frequency, double 
 
 
 void maxiSample::getLength() {
-	length=myDataSize*0.5;	
+	length=myDataSize*0.5;
 }
 
 void maxiSample::setLength(unsigned long numSamples) {
-    temp = (short*) realloc(temp, sizeof(short) * numSamples);
-//    short *newData = (short*) malloc(sizeof(short) * numSamples);
-//    if (NULL!=temp) {
-//        unsigned long copyLength = min((unsigned long)length, numSamples);
-//        memcpy(newData, temp, sizeof(short) * copyLength);
-//        free(temp);
-//    }
-//    temp = newData;
+    cout << "Length: " << numSamples << endl;
+    short *newData = (short*) malloc(sizeof(short) * numSamples);
+    if (NULL!=temp) {
+        unsigned long copyLength = min((unsigned long)length, numSamples);
+        memcpy(newData, temp, sizeof(short) * copyLength);
+    }
+    temp = newData;
     myDataSize = numSamples * 2;
     length=numSamples;
     position=0;
@@ -1091,7 +1106,6 @@ void maxiSample::clear() {
 void maxiSample::reset() {
     position=0;
 }
-
 
 void maxiSample::normalise(float maxLevel) {
     short maxValue = 0;
@@ -1155,10 +1169,6 @@ void maxiSample::autoTrim(float alpha, float threshold, bool trimStart, bool tri
         }
     }
 }
-
-
-
-
 
 
 
@@ -1237,6 +1247,37 @@ double maxiDyn::compressor(double input, double ratio, double threshold, double 
 	return output*(1+log(ratio));
 }
 
+double maxiDyn::compress(double input) {
+    
+    if (fabs(input)>threshold && attackphase!=1){
+        holdcount=0;
+        releasephase=0;
+        attackphase=1;
+        if(currentRatio==0) currentRatio=ratio;
+    }
+    
+    if (attackphase==1 && currentRatio<ratio-1) {
+        currentRatio*=(1+attack);
+    }
+    
+    if (currentRatio>=ratio-1) {
+        attackphase=0;
+        releasephase=1;
+    }
+    
+    if (releasephase==1 && currentRatio>0.) {
+        currentRatio*=release;
+    }
+    
+    if (input>0.) {
+        output = input/(1.+currentRatio);
+    } else {
+        output = input/(1.+currentRatio);
+    }
+    
+    return output*(1+log(ratio));
+}
+
 
 /* Lots of people struggle with the envelope generators so here's a new easy one.
  It takes mental numbers for attack and release tho. Basically, they're exponentials.
@@ -1282,61 +1323,159 @@ double maxiEnv::ar(double input, double attack, double release, long holdtime, i
 	return output;
 }
 
-/* and here's a new adsr. It's not bad, very simple to use*/
+/* adsr. It's not bad, very simple to use*/
 
 double maxiEnv::adsr(double input, double attack, double decay, double sustain, double release, long holdtime, int trigger) {
-	
-	if (trigger==1 && attackphase!=1 && holdphase!=1 && decayphase!=1){ 
-		holdcount=0;
-		decayphase=0;
-		sustainphase=0;
-		releasephase=0;
-		attackphase=1;
-	}
-	
-	if (attackphase==1) {
-		amplitude+=(1*attack);
-		output=input*amplitude;
-	}
-	
-	if (amplitude>=1) {
-		amplitude=1;
-		attackphase=0;
-		decayphase=1;
-	}
-	
-	if (decayphase==1) {
-		output=input*(amplitude*=decay);	
-		if (amplitude<=sustain) {
-			decayphase=0;
-			holdphase=1;
-		}
-	}
-	
-	if (holdcount<holdtime && holdphase==1) {
-		output=input*amplitude;
-		holdcount++;
-	}
-	
-	if (holdcount==holdtime && trigger==1) {
-		output=input*amplitude;
-	}
-	
-	if (holdcount==holdtime && trigger!=1) {
-		holdphase=0;
-		releasephase=1;
-	}
-	
-	if (releasephase==1 && amplitude>0.) {
-		output=input*(amplitude*=release);
-		
-	}
-	
-	return output;
+    
+    if (trigger==1 && attackphase!=1 && holdphase!=1 && decayphase!=1){
+        holdcount=0;
+        decayphase=0;
+        sustainphase=0;
+        releasephase=0;
+        attackphase=1;
+    }
+    
+    if (attackphase==1) {
+        releasephase=0;
+        amplitude+=(1*attack);
+        output=input*amplitude;
+        
+        if (amplitude>=1) {
+            amplitude=1;
+            attackphase=0;
+            decayphase=1;
+        }
+    }
+    
+    
+    if (decayphase==1) {
+        output=input*(amplitude*=decay);
+        if (amplitude<=sustain) {
+            decayphase=0;
+            holdphase=1;
+        }
+    }
+    
+    if (holdcount<holdtime && holdphase==1) {
+        output=input*amplitude;
+        holdcount++;
+    }
+    
+    if (holdcount>=holdtime && trigger==1) {
+        output=input*amplitude;
+    }
+    
+    if (holdcount>=holdtime && trigger!=1) {
+        holdphase=0;
+        releasephase=1;
+    }
+    
+    if (releasephase==1 && amplitude>0.) {
+        output=input*(amplitude*=release);
+        
+    }
+    
+    return output;
 }
+
+double maxiEnv::adsr(double input, int trigger) {
+    
+    if (trigger==1 && attackphase!=1 && holdphase!=1 && decayphase!=1){
+        holdcount=0;
+        decayphase=0;
+        sustainphase=0;
+        releasephase=0;
+        attackphase=1;
+    }
+    
+    if (attackphase==1) {
+        releasephase=0;
+        amplitude+=(1*attack);
+        output=input*amplitude;
+        
+        if (amplitude>=1) {
+            amplitude=1;
+            attackphase=0;
+            decayphase=1;
+        }
+    }
+    
+    
+    if (decayphase==1) {
+        output=input*(amplitude*=decay);
+        if (amplitude<=sustain) {
+            decayphase=0;
+            holdphase=1;
+        }
+    }
+    
+    if (holdcount<holdtime && holdphase==1) {
+        output=input*amplitude;
+        holdcount++;
+    }
+    
+    if (holdcount>=holdtime && trigger==1) {
+        output=input*amplitude;
+    }
+    
+    if (holdcount>=holdtime && trigger!=1) {
+        holdphase=0;
+        releasephase=1;
+    }
+    
+    if (releasephase==1 && amplitude>0.) {
+        output=input*(amplitude*=release);
+        
+    }
+    
+    return output;
+}
+
+
+void maxiEnv::setAttack(double attackMS) {
+    attack = 1-pow( 0.01, 1.0 / ( attackMS * maxiSettings::sampleRate * 0.001 ) );
+}
+
+void maxiEnv::setRelease(double releaseMS) {
+    release = pow( 0.01, 1.0 / ( releaseMS * maxiSettings::sampleRate * 0.001 ) );
+}
+
+void maxiEnv::setSustain(double sustainL) {
+    sustain = sustainL;
+}
+
+void maxiEnv::setDecay(double decayMS) {
+    decay = pow( 0.01, 1.0 / ( decayMS * maxiSettings::sampleRate * 0.001 ) );
+}
+
+void maxiDyn::setAttack(double attackMS) {
+    attack = pow( 0.01, 1.0 / ( attackMS * maxiSettings::sampleRate * 0.001 ) );
+}
+
+void maxiDyn::setRelease(double releaseMS) {
+    release = pow( 0.01, 1.0 / ( releaseMS * maxiSettings::sampleRate * 0.001 ) );
+}
+
+void maxiDyn::setThreshold(double thresholdI) {
+    threshold = thresholdI;
+}
+
+void maxiDyn::setRatio(double ratioF) {
+    ratio = ratioF;
+}
+
 
 double convert::mtof(int midinote) {
 	
 	return mtofarray[midinote];
+}
+
+
+template<> void maxiEnvelopeFollower::setAttack(double attackMS) {
+    attack = pow( 0.01, 1.0 / ( attackMS * maxiSettings::sampleRate * 0.001 ) );
+}
+
+template<> void maxiEnvelopeFollower::setRelease(double releaseMS) {
+    release = pow( 0.01, 1.0 / ( releaseMS * maxiSettings::sampleRate * 0.001 ) );    
 }
 

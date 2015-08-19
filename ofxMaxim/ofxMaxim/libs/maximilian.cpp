@@ -16,11 +16,11 @@
  *	copies of the Software, and to permit persons to whom the
  *	Software is furnished to do so, subject to the following
  *	conditions:
- *	
+ *
  *	The above copyright notice and this permission notice shall be
  *	included in all copies or substantial portions of the Software.
  *
- *	THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,	
+ *	THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
  *	EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
  *	OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
  *	NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
@@ -34,7 +34,7 @@
 #include "maximilian.h"
 #include "math.h"
 
-/*  Maximilian can be configured to load ogg vorbis format files using the 
+/*  Maximilian can be configured to load ogg vorbis format files using the
 *   loadOgg() method.
 *   Uncomment the following to include Sean Barrett's Ogg Vorbis decoder.
 *   If you're on windows, make sure to add the files std_vorbis.c and std_vorbis.h to your project*/
@@ -55,7 +55,7 @@ int maxiSettings::channels = 2;
 int maxiSettings::bufferSize = 1024;
 
 
-//this is a 514-point sinewave table that has many uses. 
+//this is a 514-point sinewave table that has many uses.
 double sineBuffer[514]={0,0.012268,0.024536,0.036804,0.049042,0.06131,0.073547,0.085785,0.097992,0.1102,0.12241,0.13455,0.1467,0.15884,0.17093,0.18301,0.19507,0.20709,0.21909,0.23105,0.24295,0.25485,0.26669,0.2785,0.29025,0.30197,0.31366,0.32529,0.33685,0.34839,0.35986,0.37128,0.38266,0.39395,0.40521,0.41641,0.42752,0.4386,0.44958,0.46051,0.47137,0.48215,0.49286,0.50351,0.51407,0.52457,0.53497,0.54529,0.55554,0.5657,0.57578,0.58575,0.59567,0.60547,0.6152,0.62482,0.63437,0.6438,0.65314,0.66238,0.67151,0.68057,0.68951,0.69833,0.70706,0.7157,0.72421,0.7326,0.74091,0.74908,0.75717,0.76514,0.77298,0.7807,0.7883,0.79581,0.80316,0.81042,0.81754,0.82455,0.83142,0.8382,0.84482,0.85132,0.8577,0.86392,0.87006,0.87604,0.88187,0.8876,0.89319,0.89862,0.90396,0.90912,0.91415,0.91907,0.92383,0.92847,0.93295,0.93729,0.9415,0.94556,0.94949,0.95325,0.95691,0.96039,0.96375,0.96692,0.97,0.9729,0.97565,0.97827,0.98074,0.98306,0.98523,0.98724,0.98914,0.99084,0.99243,0.99387,0.99515,0.99628,0.99725,0.99808,0.99875,0.99927,0.99966,0.99988,0.99997,0.99988,0.99966,0.99927,0.99875,0.99808,0.99725,0.99628,0.99515,0.99387,0.99243,0.99084,0.98914,0.98724,0.98523,0.98306,0.98074,0.97827,0.97565,0.9729,0.97,0.96692,0.96375,0.96039,0.95691,0.95325,0.94949,0.94556,0.9415,0.93729,0.93295,0.92847,0.92383,0.91907,0.91415,0.90912,0.90396,0.89862,0.89319,0.8876,0.88187,0.87604,0.87006,0.86392,0.8577,0.85132,0.84482,0.8382,0.83142,0.82455,0.81754,0.81042,0.80316,0.79581,0.7883,0.7807,0.77298,0.76514,0.75717,0.74908,0.74091,0.7326,0.72421,0.7157,0.70706,0.69833,0.68951,0.68057,0.67151,0.66238,0.65314,0.6438,0.63437,0.62482,0.6152,0.60547,0.59567,0.58575,0.57578,0.5657,0.55554,0.54529,0.53497,0.52457,0.51407,0.50351,0.49286,0.48215,0.47137,0.46051,0.44958,0.4386,0.42752,0.41641,0.40521,0.39395,0.38266,0.37128,0.35986,0.34839,0.33685,0.32529,0.31366,0.30197,0.29025,0.2785,0.26669,0.25485,0.24295,0.23105,0.21909,0.20709,0.19507,0.18301,0.17093,0.15884,0.1467,0.13455,0.12241,0.1102,0.097992,0.085785,0.073547,0.06131,0.049042,0.036804,0.024536,0.012268,0,-0.012268,-0.024536,-0.036804,-0.049042,-0.06131,-0.073547,-0.085785,-0.097992,-0.1102,-0.12241,-0.13455,-0.1467,-0.15884,-0.17093,-0.18301,-0.19507,-0.20709,-0.21909,-0.23105,-0.24295,-0.25485,-0.26669,-0.2785,-0.29025,-0.30197,-0.31366,-0.32529,-0.33685,-0.34839,-0.35986,-0.37128,-0.38266,-0.39395,-0.40521,-0.41641,-0.42752,-0.4386,-0.44958,-0.46051,-0.47137,-0.48215,-0.49286,-0.50351,-0.51407,-0.52457,-0.53497,-0.54529,-0.55554,-0.5657,-0.57578,-0.58575,-0.59567,-0.60547,-0.6152,-0.62482,-0.63437,-0.6438,-0.65314,-0.66238,-0.67151,-0.68057,-0.68951,-0.69833,-0.70706,-0.7157,-0.72421,-0.7326,-0.74091,-0.74908,-0.75717,-0.76514,-0.77298,-0.7807,-0.7883,-0.79581,-0.80316,-0.81042,-0.81754,-0.82455,-0.83142,-0.8382,-0.84482,-0.85132,-0.8577,-0.86392,-0.87006,-0.87604,-0.88187,-0.8876,-0.89319,-0.89862,-0.90396,-0.90912,-0.91415,-0.91907,-0.92383,-0.92847,-0.93295,-0.93729,-0.9415,-0.94556,-0.94949,-0.95325,-0.95691,-0.96039,-0.96375,-0.96692,-0.97,-0.9729,-0.97565,-0.97827,-0.98074,-0.98306,-0.98523,-0.98724,-0.98914,-0.99084,-0.99243,-0.99387,-0.99515,-0.99628,-0.99725,-0.99808,-0.99875,-0.99927,-0.99966,-0.99988,-0.99997,-0.99988,-0.99966,-0.99927,-0.99875,-0.99808,-0.99725,-0.99628,-0.99515,-0.99387,-0.99243,-0.99084,-0.98914,-0.98724,-0.98523,-0.98306,-0.98074,-0.97827,-0.97565,-0.9729,-0.97,-0.96692,-0.96375,-0.96039,-0.95691,-0.95325,-0.94949,-0.94556,-0.9415,-0.93729,-0.93295,-0.92847,-0.92383,-0.91907,-0.91415,-0.90912,-0.90396,-0.89862,-0.89319,-0.8876,-0.88187,-0.87604,-0.87006,-0.86392,-0.8577,-0.85132,-0.84482,-0.8382,-0.83142,-0.82455,-0.81754,-0.81042,-0.80316,-0.79581,-0.7883,-0.7807,-0.77298,-0.76514,-0.75717,-0.74908,-0.74091,-0.7326,-0.72421,-0.7157,-0.70706,-0.69833,-0.68951,-0.68057,-0.67151,-0.66238,-0.65314,-0.6438,-0.63437,-0.62482,-0.6152,-0.60547,-0.59567,-0.58575,-0.57578,-0.5657,-0.55554,-0.54529,-0.53497,-0.52457,-0.51407,-0.50351,-0.49286,-0.48215,-0.47137,-0.46051,-0.44958,-0.4386,-0.42752,-0.41641,-0.40521,-0.39395,-0.38266,-0.37128,-0.35986,-0.34839,-0.33685,-0.32529,-0.31366,-0.30197,-0.29025,-0.2785,-0.26669,-0.25485,-0.24295,-0.23105,-0.21909,-0.20709,-0.19507,-0.18301,-0.17093,-0.15884,-0.1467,-0.13455,-0.12241,-0.1102,-0.097992,-0.085785,-0.073547,-0.06131,-0.049042,-0.036804,-0.024536,-0.012268,0,0.012268
 };
 
@@ -200,7 +200,7 @@ double mtofarray[129]={0, 8.661957, 9.177024, 9.722718, 10.3, 10.913383, 11.5623
 
 void setup();//use this to do any initialisation if you want.
 
-void play(double *channels);//run dac! 
+void play(double *channels);//run dac!
 
 maxiOsc::maxiOsc(){
     //When you create an oscillator, the constructor sets the phase of the oscillator to 0.
@@ -218,7 +218,7 @@ double maxiOsc::noise() {
 void maxiOsc::phaseReset(double phaseIn) {
     //This allows you to set the phase of the oscillator to anything you like.
 	phase=phaseIn;
-	
+
 }
 
 double maxiOsc::sinewave(double frequency) {
@@ -227,7 +227,7 @@ double maxiOsc::sinewave(double frequency) {
 	if ( phase >= 1.0 ) phase -= 1.0;
 	phase += (1./(maxiSettings::sampleRate/(frequency)));
 	return(output);
-	
+
 }
 
 double maxiOsc::sinebuf4(double frequency) {
@@ -237,21 +237,21 @@ double maxiOsc::sinebuf4(double frequency) {
 	phase += 512./(maxiSettings::sampleRate/(frequency));
 	if ( phase >= 511 ) phase -=512;
 	remainder = phase - floor(phase);
-	
+
 	if (phase==0) {
 		a=sineBuffer[(long) 512];
 		b=sineBuffer[(long) phase];
 		c=sineBuffer[(long) phase+1];
 		d=sineBuffer[(long) phase+2];
-		
+
 	} else {
 		a=sineBuffer[(long) phase-1];
 		b=sineBuffer[(long) phase];
 		c=sineBuffer[(long) phase+1];
 		d=sineBuffer[(long) phase+2];
-		
+
 	}
-	
+
 	a1 = 0.5f * (c - a);
 	a2 = a - 2.5 * b + 2.f * c - 0.5f * d;
 	a3 = 0.5f * (d - a) + 1.5f * (b - c);
@@ -275,16 +275,16 @@ double maxiOsc::coswave(double frequency) {
 	if ( phase >= 1.0 ) phase -= 1.0;
 	phase += (1./(maxiSettings::sampleRate/(frequency)));
 	return(output);
-	
+
 }
 
 double maxiOsc::phasor(double frequency) {
-    //This produces a floating point linear ramp between 0 and 1 at the desired frequency 
+    //This produces a floating point linear ramp between 0 and 1 at the desired frequency
 	output=phase;
 	if ( phase >= 1.0 ) phase -= 1.0;
 	phase += (1./(maxiSettings::sampleRate/(frequency)));
 	return(output);
-} 
+}
 
 double maxiOsc::square(double frequency) {
     //This is a square wave
@@ -307,7 +307,7 @@ double maxiOsc::pulse(double frequency, double duty) {
 }
 
 double maxiOsc::phasor(double frequency, double startphase, double endphase) {
-    //This is a phasor that takes a value for the start and end of the ramp. 
+    //This is a phasor that takes a value for the start and end of the ramp.
 	output=phase;
 	if (phase<startphase) {
 		phase=startphase;
@@ -324,8 +324,8 @@ double maxiOsc::saw(double frequency) {
 	if ( phase >= 1.0 ) phase -= 2.0;
 	phase += (1./(maxiSettings::sampleRate/(frequency)));
 	return(output);
-	
-} 
+
+}
 
 double maxiOsc::triangle(double frequency) {
     //This is a triangle wave.
@@ -337,7 +337,7 @@ double maxiOsc::triangle(double frequency) {
 		output =((1.0-phase) - 0.25) * 4;
 	}
 	return(output);
-	
+
 }
 
 double maxiOsc::sawn(double frequency) {
@@ -356,7 +356,7 @@ double maxiOsc::sawn(double frequency) {
     double remainder = temp - floor(temp);
     output = (double) ((1.0f-remainder) * transition[(long)temp] + remainder * transition[1+(long)temp]) - phase;
 	return(output);
-	
+
 }
 
 
@@ -378,11 +378,11 @@ double maxiEnvelope::line(int numberofsegments,double segments[1000]) {
 		startval=currentval;
 	}
 	output=amplitude;
-		
+
 	}
 	else {
 		output=0;
-		
+
 	}
 	return(output);
 }
@@ -392,7 +392,7 @@ void maxiEnvelope::trigger(int index, double amp) {
 	isPlaying=1;//ok the envelope is being used now.
 	valindex=index;
 	amplitude=amp;
-	
+
 }
 
 //Delay with feedback
@@ -410,7 +410,7 @@ double maxiDelayline::dl(double input, int size, double feedback)  {
 	memory[phase]=(memory[phase]*feedback)+(input*feedback)*0.5;
 	phase+=1;
 	return(output);
-	
+
 }
 
 double maxiDelayline::dl(double input, int size, double feedback, int position)  {
@@ -420,7 +420,7 @@ double maxiDelayline::dl(double input, int size, double feedback, int position) 
 	memory[phase]=(memory[phase]*feedback)+(input*feedback)*chandiv;
 	phase+=1;
 	return(output);
-	
+
 }
 
 //I particularly like these. cutoff between 0 and 1
@@ -476,11 +476,78 @@ double maxiFilter::bandpass(double input,double cutoff1, double resonance) {
 	inputs[0] = (1-resonance)*(sqrt(resonance*(resonance-4.0*pow(z,2.0)+2.0)+1));
 	inputs[1] = 2*z*resonance;
 	inputs[2] = pow((resonance*-1),2);
-	
+
 	output=inputs[0]*input+inputs[1]*outputs[1]+inputs[2]*outputs[2];
 	outputs[2]=outputs[1];
 	outputs[1]=output;
 	return(output);
+}
+
+//Peaking filter (emphasizes a certain frequency band)
+//based on the cookbook by Robert Bristow-Johnson
+//http://www.musicdsp.org/files/Audio-EQ-Cookbook.txt
+//implemented by Jakub Fiala
+//q ranges from 0 to 1
+//so does gain
+
+double maxiFilter::peaking(double input, double centerFreq, double q, double gain) {
+    cutoff = centerFreq;
+    gain *= 4;
+    //calculate poles and coeffs
+    w0 = TWOPI * cutoff / 44100;
+    alpha = sin(w0)/(2*q);
+    b0 =   1 + alpha*gain;
+    b1 =  -2*cos(w0);
+    b2 =   1 - alpha*gain;
+    a0 =   1 + alpha/gain;
+    a1 =  -2*cos(w0);
+    a2 =   1 - alpha/gain;
+
+    //apply filter
+    output = (b0/a0)*input + (b1/a0)*in1 + (b2/a0)*in2 - (a1/a0)*out1 - (a2/a0)*out2;
+
+    //update memory
+    out2 = out1;
+    out1 = output;
+    in2 = in1;
+    in1 = input;
+
+    return output;
+}
+
+//Formant filter (basically a resonant bandpass)
+//based on the cookbook by Robert Bristow-Johnson
+//http://www.musicdsp.org/files/Audio-EQ-Cookbook.txt
+//implemented by Jakub Fiala
+//q ranges from 0 to 1
+//so does gain
+
+double maxiFilter::formant(double input, double centerFreq, double q, double gain) {
+    cutoff = centerFreq;
+
+    //offset gain
+    gain += 1;
+    //gain *= 4;
+    //calculate poles and coeffs
+    w0 = TWOPI * cutoff / 44100;
+    alpha = sin(w0)/(20*q);
+    b0 =   alpha*gain;
+    b1 =   0;
+    b2 =  -alpha*gain;
+    a0 =   1 + alpha/gain;
+    a1 =  -2*cos(w0);
+    a2 =   1 - alpha/gain;
+
+    //apply filter
+    output = (b0/a0)*input + (b1/a0)*in1 + (b2/a0)*in2 - (a1/a0)*out1 - (a2/a0)*out2;
+
+    //update memory
+    out2 = out1;
+    out1 = output;
+    in2 = in1;
+    in1 = input;
+
+    return output;
 }
 
 //stereo bus
@@ -490,7 +557,7 @@ double *maxiMix::stereo(double input,double two[2],double x) {
 	two[0]=input*sqrt(1.0-x);
 	two[1]=input*sqrt(x);
 	return(two);
-} 
+}
 
 //quad bus
 double *maxiMix::quad(double input,double four[4],double x,double y) {
@@ -544,7 +611,7 @@ bool maxiSample::loadOgg(string fileName, int channel) {
     myChannels=(short)channelx;
     length=myDataSize;
     mySampleRate=44100;
-    
+
     if (myChannels>1) {
         int position=0;
         int channel=readChannel;
@@ -572,28 +639,28 @@ bool maxiSample::read()
 		bool datafound = false;
 		inFile.seekg(4, ios::beg);
 		inFile.read( (char*) &myChunkSize, 4 ); // read the ChunkSize
-		
+
 		inFile.seekg(16, ios::beg);
 		inFile.read( (char*) &mySubChunk1Size, 4 ); // read the SubChunk1Size
-		
+
 		//inFile.seekg(20, ios::beg);
 		inFile.read( (char*) &myFormat, sizeof(short) ); // read the file format.  This should be 1 for PCM
-		
+
 		//inFile.seekg(22, ios::beg);
 		inFile.read( (char*) &myChannels, sizeof(short) ); // read the # of channels (1 or 2)
-		
+
 		//inFile.seekg(24, ios::beg);
 		inFile.read( (char*) &mySampleRate, sizeof(int) ); // read the samplerate
-		
+
 		//inFile.seekg(28, ios::beg);
 		inFile.read( (char*) &myByteRate, sizeof(int) ); // read the byterate
-		
+
 		//inFile.seekg(32, ios::beg);
 		inFile.read( (char*) &myBlockAlign, sizeof(short) ); // read the blockalign
-		
+
 		//inFile.seekg(34, ios::beg);
 		inFile.read( (char*) &myBitsPerSample, sizeof(short) ); // read the bitspersample
-		
+
 		//ignore any extra chunks
 		char chunkID[5]="";
 		chunkID[4] = 0;
@@ -610,14 +677,14 @@ bool maxiSample::read()
 				filePos += myDataSize;
 			}
 		}
-		
+
 		// read the data chunk
 		char *myData = (char*) malloc(myDataSize * sizeof(char));
 		inFile.seekg(filePos, ios::beg);
 		inFile.read(myData, myDataSize);
 		length=myDataSize*(0.5/myChannels);
 		inFile.close(); // close the input file
-		
+
         cout << "Ch: " << myChannels << ", len: " << length << endl;
 		if (myChannels>1) {
 			int position=0;
@@ -631,16 +698,16 @@ bool maxiSample::read()
         free(temp);
         temp = (short*) malloc(myDataSize * sizeof(char));
         memcpy(temp, myData, myDataSize * sizeof(char));
-        
+
         free(myData);
-		
+
 	}else {
-//		cout << "ERROR: Could not load sample: " <<myPath << endl; //This line seems to be hated by windows 
+//		cout << "ERROR: Could not load sample: " <<myPath << endl; //This line seems to be hated by windows
         printf("ERROR: Could not load sample.");
 
 	}
-	
-	
+
+
 	return result; // this should probably be something more descriptive
 }
 
@@ -690,7 +757,7 @@ double maxiSample::playOnce(double speed) {
 	double remainder = position - (long) position;
 	if ((long) position<length)
 		output = (double) ((1-remainder) * temp[1+ (long) position] + remainder * temp[2+(long) position])/32767;//linear interpolation
-	else 
+	else
 		output=0;
 	return(output);
 }
@@ -700,12 +767,12 @@ double maxiSample::play(double speed) {
 	long a,b;
 	position=position+((speed*chandiv)/(maxiSettings::sampleRate/mySampleRate));
 	if (speed >=0) {
-		
+
 		if ((long) position>=length-1) position=1;
 		remainder = position - floor(position);
 		if (position+1<length) {
 			a=position+1;
-			
+
 		}
 		else {
 			a=length-1;
@@ -717,14 +784,14 @@ double maxiSample::play(double speed) {
 		else {
 		b=length-1;
 		}
-		
+
 		output = (double) ((1-remainder) * temp[a] + remainder * temp[b])/32767;//linear interpolation
 } else {
 		if ((long) position<0) position=length;
 		remainder = position - floor(position);
 		if (position-1>=0) {
 			a=position-1;
-				
+
 			}
 			else {
 				a=0;
@@ -736,7 +803,7 @@ double maxiSample::play(double speed) {
 				b=0;
 			}
 		output = (double) ((-1-remainder) * temp[a] + remainder * temp[b])/32767;//linear interpolation
-	}	
+	}
 	return(output);
 }
 
@@ -753,14 +820,14 @@ double maxiSample::play(double frequency, double start, double end, double &pos)
 		if (pos<start) {
 			pos=start;
 		}
-		
+
 		if ( pos >= end ) pos = start;
 		pos += ((end-start)/(maxiSettings::sampleRate/(frequency*chandiv)));
 		remainder = pos - floor(pos);
 		long posl = floor(pos);
 		if (posl+1<length) {
 			a=posl+1;
-			
+
 		}
 		else {
 			a=posl-1;
@@ -791,12 +858,12 @@ double maxiSample::play(double frequency, double start, double end, double &pos)
 		}
 		else {
 			b=0;
-		}		
+		}
 		output = (double) ((-1-remainder) * temp[a] +
 						   remainder * temp[b])/32767;//linear interpolation
-		
+
 	}
-	
+
 	return(output);
 }
 
@@ -817,9 +884,9 @@ double maxiSample::play4(double frequency, double start, double end) {
 
 		} else {
 			a=temp[0];
-			
+
 		}
-		
+
 		b=temp[(long) position];
 		if (position<end-2) {
 			c=temp[(long) position+1];
@@ -838,7 +905,7 @@ double maxiSample::play4(double frequency, double start, double end) {
 		a2 = a - 2.5 * b + 2.f * c - 0.5f * d;
 		a3 = 0.5f * (d - a) + 1.5f * (b - c);
 		output = (double) (((a3 * remainder + a2) * remainder + a1) * remainder + b) / 32767;
-		
+
 	} else {
 		frequency=frequency-(frequency+frequency);
 		if ( position <= start ) position = end;
@@ -846,23 +913,23 @@ double maxiSample::play4(double frequency, double start, double end) {
 		remainder = position - floor(position);
 		if (position>start && position < end-1) {
 			a=temp[(long) position+1];
-			
+
 		} else {
 			a=temp[0];
-			
+
 		}
-		
+
 		b=temp[(long) position];
 		if (position>start) {
 			c=temp[(long) position-1];
-			
+
 		} else {
 			c=temp[0];
-			
+
 		}
 		if (position>start+1) {
 			d=temp[(long) position-2];
-			
+
 		} else {
 			d=temp[0];
 		}
@@ -870,9 +937,9 @@ double maxiSample::play4(double frequency, double start, double end) {
 		a2 = a - 2.5 * b + 2.f * c - 0.5f * d;
 		a3 = 0.5f * (d - a) + 1.5f * (b - c);
 		output = (double) (((a3 * remainder + a2) * -remainder + a1) * -remainder + b) / 32767;
-		
+
 	}
-	
+
 	return(output);
 }
 
@@ -892,12 +959,12 @@ double maxiSample::bufferPlay(unsigned char &bufferin,double speed,long length) 
 	short* buffer = (short *)&bufferin;
 	position=position+((speed*chandiv)/(maxiSettings::sampleRate/mySampleRate));
 	if (speed >=0) {
-		
+
 		if ((long) position>=length-1) position=1;
 		remainder = position - floor(position);
 		if (position+1<length) {
 			a=position+1;
-			
+
 		}
 		else {
 			a=length-1;
@@ -909,14 +976,14 @@ double maxiSample::bufferPlay(unsigned char &bufferin,double speed,long length) 
 		else {
 			b=length-1;
 		}
-		
+
 		output = (double) ((1-remainder) * buffer[a] + remainder * buffer[b])/32767;//linear interpolation
 	} else {
 		if ((long) position<0) position=length;
 		remainder = position - floor(position);
 		if (position-1>=0) {
 			a=position-1;
-			
+
 		}
 		else {
 			a=0;
@@ -928,7 +995,7 @@ double maxiSample::bufferPlay(unsigned char &bufferin,double speed,long length) 
 			b=0;
 		}
 		output = (double) ((-1-remainder) * buffer[a] + remainder * buffer[b])/32767;//linear interpolation
-	}	
+	}
 	return(output);
 }
 
@@ -941,14 +1008,14 @@ double maxiSample::bufferPlay(unsigned char &bufferin,double frequency, double s
 		if (position<start) {
 			position=start;
 		}
-		
+
 		if ( position >= end ) position = start;
 		position += ((end-start)/(maxiSettings::sampleRate/(frequency*chandiv)));
 		remainder = position - floor(position);
 		long pos = floor(position);
 		if (pos+1<length) {
 			a=pos+1;
-			
+
 		}
 		else {
 			a=pos-1;
@@ -959,7 +1026,7 @@ double maxiSample::bufferPlay(unsigned char &bufferin,double frequency, double s
 		else {
 			b=length-1;
 		}
-		
+
 		output = (double) ((1-remainder) * buffer[a] +
 						   remainder * buffer[b])/32767;//linear interpolation
 	} else {
@@ -979,12 +1046,12 @@ double maxiSample::bufferPlay(unsigned char &bufferin,double frequency, double s
 		}
 		else {
 			b=0;
-		}		
+		}
 		output = (double) ((-1-remainder) * buffer[a] +
 						   remainder * buffer[b])/32767;//linear interpolation
-		
+
 	}
-	
+
 	return(output);
 }
 
@@ -1002,23 +1069,23 @@ double maxiSample::bufferPlay4(unsigned char &bufferin,double frequency, double 
 		remainder = position - floor(position);
 		if (position>0) {
 			a=buffer[(int)(floor(position))-1];
-			
+
 		} else {
 			a=buffer[0];
-			
+
 		}
-		
+
 		b=buffer[(long) position];
 		if (position<end-2) {
 			c=buffer[(long) position+1];
-			
+
 		} else {
 			c=buffer[0];
-			
+
 		}
 		if (position<end-3) {
 			d=buffer[(long) position+2];
-			
+
 		} else {
 			d=buffer[0];
 		}
@@ -1026,7 +1093,7 @@ double maxiSample::bufferPlay4(unsigned char &bufferin,double frequency, double 
 		a2 = a - 2.5 * b + 2.f * c - 0.5f * d;
 		a3 = 0.5f * (d - a) + 1.5f * (b - c);
 		output = (double) (((a3 * remainder + a2) * remainder + a1) * remainder + b) / 32767;
-		
+
 	} else {
 		frequency=frequency-(frequency+frequency);
 		if ( position <= start ) position = end;
@@ -1034,23 +1101,23 @@ double maxiSample::bufferPlay4(unsigned char &bufferin,double frequency, double 
 		remainder = position - floor(position);
 		if (position>start && position < end-1) {
 			a=buffer[(long) position+1];
-			
+
 		} else {
 			a=buffer[0];
-			
+
 		}
-		
+
 		b=buffer[(long) position];
 		if (position>start) {
 			c=buffer[(long) position-1];
-			
+
 		} else {
 			c=buffer[0];
-			
+
 		}
 		if (position>start+1) {
 			d=buffer[(long) position-2];
-			
+
 		} else {
 			d=buffer[0];
 		}
@@ -1058,15 +1125,15 @@ double maxiSample::bufferPlay4(unsigned char &bufferin,double frequency, double 
 		a2 = a - 2.5 * b + 2.f * c - 0.5f * d;
 		a3 = 0.5f * (d - a) + 1.5f * (b - c);
 		output = (double) (((a3 * remainder + a2) * -remainder + a1) * -remainder + b) / 32767;
-		
+
 	}
-	
+
 	return(output);
 }
 
 
 void maxiSample::getLength() {
-	length=myDataSize*0.5;	
+	length=myDataSize*0.5;
 }
 
 void maxiSample::setLength(unsigned long numSamples) {
@@ -1107,7 +1174,7 @@ void maxiSample::normalise(float maxLevel) {
 }
 
 void maxiSample::autoTrim(float alpha, float threshold, bool trimStart, bool trimEnd) {
-    
+
     int startMarker=0;
     if(trimStart) {
         maxiLagExp<float> startLag(alpha, 0);
@@ -1119,7 +1186,7 @@ void maxiSample::autoTrim(float alpha, float threshold, bool trimStart, bool tri
             startMarker++;
         }
     }
-    
+
     int endMarker = length-1;
     if(trimEnd) {
         maxiLagExp<float> endLag(alpha, 0);
@@ -1131,9 +1198,9 @@ void maxiSample::autoTrim(float alpha, float threshold, bool trimStart, bool tri
             endMarker--;
         }
     }
-    
+
     cout << "Autotrim: start: " << startMarker << ", end: " << endMarker << endl;
-    
+
     int newLength = endMarker - startMarker;
     if (newLength > 0) {
         short *newData = (short*) malloc(sizeof(short) * newLength);
@@ -1164,76 +1231,76 @@ void maxiSample::autoTrim(float alpha, float threshold, bool trimStart, bool tri
 
 
 
-/* OK this compressor and gate are now ready to use. The envelopes, like all the envelopes in this recent update, use stupid algorithms for 
+/* OK this compressor and gate are now ready to use. The envelopes, like all the envelopes in this recent update, use stupid algorithms for
  incrementing - consequently a long attack is something like 0.0001 and a long release is like 0.9999.
  Annoyingly, a short attack is 0.1, and a short release is 0.99. I'll sort this out laters */
 
 double maxiDyn::gate(double input, double threshold, long holdtime, double attack, double release) {
-	
-	if (fabs(input)>threshold && attackphase!=1){ 
+
+	if (fabs(input)>threshold && attackphase!=1){
 		holdcount=0;
 		releasephase=0;
 		attackphase=1;
 		if(amplitude==0) amplitude=0.01;
 	}
-	
+
 	if (attackphase==1 && amplitude<1) {
 		amplitude*=(1+attack);
 		output=input*amplitude;
 	}
-	
+
 	if (amplitude>=1) {
 		attackphase=0;
 		holdphase=1;
 	}
-	
+
 	if (holdcount<holdtime && holdphase==1) {
 		output=input;
 		holdcount++;
 	}
-	
+
 	if (holdcount==holdtime) {
 		holdphase=0;
 		releasephase=1;
 	}
-	
+
 	if (releasephase==1 && amplitude>0.) {
 		output=input*(amplitude*=release);
-		
+
 	}
-	
+
 	return output;
 }
 
 
 double maxiDyn::compressor(double input, double ratio, double threshold, double attack, double release) {
-	
-	if (fabs(input)>threshold && attackphase!=1){ 
+
+	if (fabs(input)>threshold && attackphase!=1){
 		holdcount=0;
 		releasephase=0;
 		attackphase=1;
 		if(currentRatio==0) currentRatio=ratio;
 	}
-	
+
 	if (attackphase==1 && currentRatio<ratio-1) {
 		currentRatio*=(1+attack);
 	}
-	
+
 	if (currentRatio>=ratio-1) {
 		attackphase=0;
 		releasephase=1;
 	}
-	
+
 	if (releasephase==1 && currentRatio>0.) {
-		currentRatio*=release;		
+		currentRatio*=release;
 	}
-	
+
 	if (input>0.) {
 		output = input/(1.+currentRatio);
 	} else {
 		output = input/(1.+currentRatio);
 	}
-	
+
 	return output*(1+log(ratio));
 }
 
@@ -1242,101 +1309,101 @@ double maxiDyn::compressor(double input, double ratio, double threshold, double 
  It takes mental numbers for attack and release tho. Basically, they're exponentials.
  I'll map them out later so that it's a bit more intuitive */
 double maxiEnv::ar(double input, double attack, double release, long holdtime, int trigger) {
-	
-	if (trigger==1 && attackphase!=1 && holdphase!=1){ 
+
+	if (trigger==1 && attackphase!=1 && holdphase!=1){
 		holdcount=0;
 		releasephase=0;
 		attackphase=1;
 	}
-	
+
 	if (attackphase==1) {
 		amplitude+=(1*attack);
 		output=input*amplitude;
 	}
-	
+
 	if (amplitude>=1) {
 		amplitude=1;
 		attackphase=0;
 		holdphase=1;
 	}
-	
+
 	if (holdcount<holdtime && holdphase==1) {
 		output=input;
 		holdcount++;
 	}
-	
+
 	if (holdcount==holdtime && trigger==1) {
 		output=input;
 	}
-	
+
 	if (holdcount==holdtime && trigger!=1) {
 		holdphase=0;
 		releasephase=1;
 	}
-	
+
 	if (releasephase==1 && amplitude>0.) {
 		output=input*(amplitude*=release);
-		
+
 	}
-	
+
 	return output;
 }
 
 /* and here's a new adsr. It's not bad, very simple to use*/
 
 double maxiEnv::adsr(double input, double attack, double decay, double sustain, double release, long holdtime, int trigger) {
-	
-	if (trigger==1 && attackphase!=1 && holdphase!=1 && decayphase!=1){ 
+
+	if (trigger==1 && attackphase!=1 && holdphase!=1 && decayphase!=1){
 		holdcount=0;
 		decayphase=0;
 		sustainphase=0;
 		releasephase=0;
 		attackphase=1;
 	}
-	
+
 	if (attackphase==1) {
 		amplitude+=(1*attack);
 		output=input*amplitude;
 	}
-	
+
 	if (amplitude>=1) {
 		amplitude=1;
 		attackphase=0;
 		decayphase=1;
 	}
-	
+
 	if (decayphase==1) {
-		output=input*(amplitude*=decay);	
+		output=input*(amplitude*=decay);
 		if (amplitude<=sustain) {
 			decayphase=0;
 			holdphase=1;
 		}
 	}
-	
+
 	if (holdcount<holdtime && holdphase==1) {
 		output=input*amplitude;
 		holdcount++;
 	}
-	
+
 	if (holdcount==holdtime && trigger==1) {
 		output=input*amplitude;
 	}
-	
+
 	if (holdcount==holdtime && trigger!=1) {
 		holdphase=0;
 		releasephase=1;
 	}
-	
+
 	if (releasephase==1 && amplitude>0.) {
 		output=input*(amplitude*=release);
-		
+
 	}
-	
+
 	return output;
 }
 
 double convert::mtof(int midinote) {
-	
+
 	return mtofarray[midinote];
 }
 

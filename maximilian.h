@@ -6,7 +6,7 @@
  *  Copyright 2009 Mick Grierson & Strangeloop Limited. All rights reserved.
  *	Thanks to the Goldsmiths Creative Computing Team.
  *	Special thanks to Arturo Castro for the PortAudio implementation.
- * 
+ *
  *	Permission is hereby granted, free of charge, to any person
  *	obtaining a copy of this software and associated documentation
  *	files (the "Software"), to deal in the Software without
@@ -15,11 +15,11 @@
  *	copies of the Software, and to permit persons to whom the
  *	Software is furnished to do so, subject to the following
  *	conditions:
- *	
+ *
  *	The above copyright notice and this permission notice shall be
  *	included in all copies or substantial portions of the Software.
  *
- *	THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,	
+ *	THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
  *	EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
  *	OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
  *	NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
@@ -63,15 +63,15 @@ public:
 
 
 class maxiOsc {
-	
+
 	double frequency;
 	double phase;
 	double startphase;
 	double endphase;
 	double output;
 	double tri;
-	
-	
+
+
 public:
 	maxiOsc();
 	double sinewave(double frequency);
@@ -88,12 +88,12 @@ public:
     double sawn(double frequency);
     double rect(double frequency, double duty=0.5);
 	void phaseReset(double phaseIn);
-	
+
 };
 
 
 class maxiEnvelope {
-	
+
 	double period;
 	double output;
 	double startval;
@@ -101,12 +101,12 @@ class maxiEnvelope {
 	double nextval;
 	int isPlaying;
 
-public:	
+public:
 	double line(int numberofsegments,double segments[100]);
 	void trigger(int index,double amp);
 	int valindex;
 	double amplitude;
-	
+
 };
 
 
@@ -117,17 +117,17 @@ class maxiDelayline {
 	double endphase;
 	double output;
 	double memory[88200];
-	
+
 public:
 	maxiDelayline();
 	double dl(double input, int size, double feedback);
 	double dl(double input, int size, double feedback, int position);
-	
-	
+
+
 };
 
 
-class maxiFilter { 	
+class maxiFilter {
 	double gain;
 	double input;
 	double output;
@@ -138,7 +138,14 @@ class maxiFilter {
 	double y;//pos
 	double z;//pole
 	double c;//filter coefficient
-    
+
+	//stuff for iir filters
+    double alpha, w0, a0, b0, a1, b1, a2, b2;
+    double in1 = 0.0f;
+    double in2 = 0.0f;
+    double out1 = 0.0f;
+    double out2 = 0.0f;
+
 public:
 	maxiFilter():x(0.0), y(0.0), z(0.0), c(0.0){};
 	double cutoff;
@@ -146,9 +153,11 @@ public:
 	double lores(double input,double cutoff1, double resonance);
 	double hires(double input,double cutoff1, double resonance);
 	double bandpass(double input,double cutoff1, double resonance);
+	double peaking(double input, double centerFreq, double q, double gain);
+    double formant(double input, double centerFreq, double q, double gain);
 	double lopass(double input,double cutoff);
 	double hipass(double input,double cutoff);
-	
+
 };
 
 class maxiMix  {
@@ -163,35 +172,35 @@ public:
 	double *stereo(double input,double two[2],double x);
 	double *quad(double input,double four[4], double x,double y);
 	double *ambisonic(double input,double eight[8],double x,double y, double z);
-	
+
 };
 
 //lagging with an exponential moving average
 //a lower alpha value gives a slower lag
-template <class T> 
+template <class T>
 class maxiLagExp {
 public:
 	T alpha, alphaReciprocal;
 	T val;
-	
+
 	maxiLagExp() {
 		init(0.5, 0.0);
 	};
-	
+
 	maxiLagExp(T initAlpha, T initVal) {
 		init(initAlpha, initVal);
 	}
-	
+
 	void init(T initAlpha, T initVal) {
 		alpha = initAlpha;
 		alphaReciprocal = 1.0 - alpha;
 		val = initVal;
 	}
-	
+
 	inline void addSample(T newVal) {
 		val = (alpha * newVal) + (alphaReciprocal * val);
 	}
-	
+
 	inline T value() {
 		return val;
 	}
@@ -199,7 +208,7 @@ public:
 
 
 class maxiSample  {
-	
+
 private:
 	string 	myPath;
 	int 	myChunkSize;
@@ -213,21 +222,21 @@ private:
 	double speed;
 	double output;
     maxiLagExp<double> loopRecordLag;
-	
+
 public:
 	int	myDataSize;
 	short 	myChannels;
 	int   	mySampleRate;
 	long length;
 	void getLength();
-    void setLength(unsigned long numSamples);  
-	
-	
+    void setLength(unsigned long numSamples);
+
+
 	char* 	myData;
     short* temp;
-	
+
 	// get/set for the Path property
-	
+
 	~maxiSample()
 	{
 		if (myData) free(myData);
@@ -235,21 +244,21 @@ public:
         printf("freeing SampleData");
 
 	}
-	
+
 	maxiSample():myData(NULL),temp(NULL),position(0), recordPosition(0), myChannels(1), mySampleRate(maxiSettings::sampleRate) {};
-	
+
 	bool load(string fileName, int channel=0);
-    
+
     bool loadOgg(string filename,int channel=0);
-	
+
 	void trigger();
-	
+
 	// read a wav file into this class
 	bool read();
-	
+
 	//read an ogg file into this class using stb_vorbis
     bool readOgg();
-    
+
     void loopRecord(double newSample, const bool recordEnabled, const double recordMix) {
         loopRecordLag.addSample(recordEnabled);
         if(recordEnabled) {
@@ -262,42 +271,42 @@ public:
         if (recordPosition == length)
             recordPosition=0;
     }
-    
+
     void clear();
-    
+
     void reset();
-	
+
 	double play();
-	
+
 	double playOnce();
-	
+
 	double playOnce(double speed);
-	
+
 	double play(double speed);
-	
+
 	double play(double frequency, double start, double end, double &pos);
-	
+
 	double play(double frequency, double start, double end);
-	
+
 	double play4(double frequency, double start, double end);
-	
+
 	double bufferPlay(unsigned char &bufferin,long length);
-	
+
 	double bufferPlay(unsigned char &bufferin,double speed,long length);
-	
+
 	double bufferPlay(unsigned char &bufferin,double frequency, double start, double end);
-	
+
 	double bufferPlay4(unsigned char &bufferin,double frequency, double start, double end);
     bool save() {
         save(myPath);
     }
-    
+
 	bool save(string filename)
 	{
 		fstream myFile (filename.c_str(), ios::out | ios::binary);
-		
+
 		// write the wav file per the wav file format
-		myFile.seekp (0, ios::beg); 
+		myFile.seekp (0, ios::beg);
 		myFile.write ("RIFF", 4);
 		myFile.write ((char*) &myChunkSize, 4);
 		myFile.write ("WAVE", 4);
@@ -312,10 +321,10 @@ public:
 		myFile.write ("data", 4);
 		myFile.write ((char*) &myDataSize, 4);
 		myFile.write (myData, myDataSize);
-		
+
 		return true;
 	}
-	
+
 	// return a printable summary of the wav file
 	char *getSummary()
 	{
@@ -332,31 +341,31 @@ public:
 	static double inline linlin(double val, double inMin, double inMax, double outMin, double outMax) {
 		return ((val - inMin) / (inMax - inMin) * (outMax - outMin)) + outMin;
 	}
-	
+
 	static double inline linexp(double val, double inMin, double inMax, double outMin, double outMax) {
 		//clipping
 		val = max(min(val, inMax), inMin);
 		return pow((outMax / outMin), (val - inMin) / (inMax - inMin)) * outMin;
 	}
-	
+
 	static double inline explin(double val, double inMin, double inMax, double outMin, double outMax) {
 		//clipping
 		val = max(min(val, inMax), inMin);
 		return (log(val/inMin) / log(inMax/inMin) * (outMax - outMin)) + outMin;
 	}
-	
+
 	static int inline clamp(int v, const int low, const int high) {
 		v = min(high, v);
 		v = max(low, v);
 		return v;
 	}
-	
+
 };
 
 
 class maxiDyn {
-	
-	
+
+
 public:
 	double gate(double input, double threshold=0.9, long holdtime=1, double attack=1, double release=0.9995);
 	double compressor(double input, double ratio, double threshold=0.9, double attack=1, double release=0.9995);
@@ -374,8 +383,8 @@ public:
 };
 
 class maxiEnv {
-	
-	
+
+
 public:
 	double ar(double input, double attack=1, double release=0.9, long holdtime=1, int trigger=0);
 	double adsr(double input, double attack=1, double decay=0.99, double sustain=0.125, double release=0.9, long holdtime=1, int trigger=0);
@@ -443,7 +452,7 @@ inline double maxiFlanger::flange(const double input, const unsigned int delay, 
     //todo: needs fixing
     double output;
     double lfoVal = lfo.triangle(speed);
-    output = dl.dl(input, delay + (lfoVal * depth * delay) + 1, feedback) ;    
+    output = dl.dl(input, delay + (lfoVal * depth * delay) + 1, feedback) ;
     double normalise = (1 - fabs(output));
     output *= normalise;
     return (output + input) / 2.0;
@@ -459,7 +468,7 @@ public:
     maxiDelayline dl, dl2;
     maxiOsc lfo;
     maxiFilter lopass;
-    
+
 };
 
 inline double maxiChorus::chorus(const double input, const unsigned int delay, const double feedback, const double speed, const double depth)
@@ -468,8 +477,8 @@ inline double maxiChorus::chorus(const double input, const unsigned int delay, c
     double output1, output2;
     double lfoVal = lfo.noise();
     lfoVal = lopass.lores(lfoVal, speed, 1.0) * 2.0;
-    output1 = dl.dl(input, delay + (lfoVal * depth * delay) + 1, feedback) ;    
-    output2 = dl2.dl(input, (delay + (lfoVal * depth * delay * 1.02) + 1) * 0.98, feedback * 0.99) ;    
+    output1 = dl.dl(input, delay + (lfoVal * depth * delay) + 1, feedback) ;
+    output2 = dl2.dl(input, (delay + (lfoVal * depth * delay * 1.02) + 1) * 0.98, feedback * 0.99) ;
     output1 *= (1.0 - fabs(output1));
     output2 *= (1.0 - fabs(output2));
     return (output1 + output2 + input) / 3.0;
@@ -489,7 +498,7 @@ public:
         if (input>env)
             env = attack * (env - input) + input;
         else
-            env = release * (env - input) + input;        
+            env = release * (env - input) + input;
         return env;
     }
 	void reset() {env=0;}

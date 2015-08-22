@@ -1066,7 +1066,7 @@ double maxiSample::bufferPlay4(unsigned char &bufferin,double frequency, double 
 
 
 void maxiSample::getLength() {
-	length=myDataSize*0.5;	
+	length=(myDataSize*0.5)/myChannels;
 }
 
 void maxiSample::setLength(unsigned long numSamples) {

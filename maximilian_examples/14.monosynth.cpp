@@ -42,7 +42,7 @@ void play(double *output) {
     
     //and this is where we build the synth
     
-    ADSRout=ADSR.adsr(1.0,ADSR.trigger);//our ADSR env has 8 value/time pairs.
+    ADSRout=ADSR.adsr(1.0,ADSR.trigger);
     
     LFO1out=LFO1.sinebuf(0.2);//this lfo is a sinewave at 0.2 hz
     

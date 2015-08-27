@@ -432,6 +432,7 @@ double maxiFilter::lopass(double input, double cutoff) {
 	outputs[0]=output;
 	return(output);
 }
+
 //as above
 double maxiFilter::hipass(double input, double cutoff) {
 	output=input-(outputs[0] + cutoff*(input-outputs[0]));

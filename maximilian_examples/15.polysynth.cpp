@@ -47,8 +47,6 @@ void play(double *output) {
         pitch[voice]=voice+1;
         voice++;
         
-        lastCount=0;
-        
     }
     
     //and this is where we build the synth
@@ -56,7 +54,7 @@ void play(double *output) {
     for (int i=0; i<6; i++) {
         
         
-        ADSRout[i]=ADSR[i].adsr(1.,ADSR[i].trigger);//our ADSR env has 8 value/time pairs.
+        ADSRout[i]=ADSR[i].adsr(1.,ADSR[i].trigger);//our ADSR env is passed a constant signal of 1 to generate the transient.
         
         LFO1out[i]=LFO1[i].sinebuf(0.2);//this lfo is a sinewave at 0.2 hz
         
@@ -74,6 +72,8 @@ void play(double *output) {
     output[0]=mix*0.5;//left channel
     output[1]=mix*0.5;//right channel
     
+    
+    // This just sends note-off messages.
     for (int i=0; i<6; i++) {
         ADSR[i].trigger=0;
     }

@@ -41,7 +41,6 @@
 #include "maxiAtoms.h"
 
 
-
 //typedef maxiSignal vector<double>;
 //
 //class maxiBase {

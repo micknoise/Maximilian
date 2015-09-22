@@ -12,5 +12,6 @@ void setup() {//some inits
 void play(double *output) {
     
     output[0]=mySine.sinewave(myOtherSine.sinewave(myLastSine.sinewave(0.1)*30)*440);//awesome bassline
-    
+    output[1]=output[0];
+
 }

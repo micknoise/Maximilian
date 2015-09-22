@@ -42,7 +42,6 @@
 #include <string.h>
 #include <cstdlib>
 #include "math.h"
-
 #ifdef _WIN32 //|| _WIN64
 #include <algorithm>
 #endif
@@ -212,7 +211,6 @@ private:
 	short 	myFormat;
 	int   	myByteRate;
 	short 	myBlockAlign;
-	short 	myBitsPerSample;
 	double position, recordPosition;
 	double speed;
 	double output;
@@ -225,7 +223,8 @@ public:
 	long length;
 	void getLength();
     void setLength(unsigned long numSamples);  
-	
+    short 	myBitsPerSample;
+
 	
 //	char* 	myData;
     short* temp;
@@ -630,6 +629,170 @@ private:
     
     double v0z, v1, v2, g, damping, k, ginv, g1, g2, g3 ,g4;
     double freq, res;
+    
+};
+
+class maxiKick {
+    
+public:
+    maxiKick();
+    double play();
+    void setPitch(double pitch);
+    void setRelease(double releaseD);
+    void trigger();
+    double pitch;
+    double output = 0 ;
+    double outputD =0 ;
+    double envOut;
+    bool useDistortion = false;
+    bool useLimiter = false;
+    bool useFilter = false;
+    double distortion = 0;
+    bool inverse = false;
+    double cutoff;
+    double resonance;
+    double gain = 1;
+    maxiOsc kick;
+    maxiEnv envelope;
+    maxiDistortion distort;
+    maxiFilter filter;
+};
+
+class maxiSnare {
+public:
+    maxiSnare();
+    double play();
+    void setPitch(double pitch);
+    void setRelease(double releaseD);
+    void trigger();
+    double pitch;
+    double output = 0 ;
+    double outputD = 0 ;
+    double envOut;
+    bool useDistortion = false;
+    bool useLimiter = false;
+    bool useFilter = true;
+    double distortion = 0;
+    bool inverse = false;
+    double cutoff;
+    double resonance;
+    double gain = 1;
+    maxiOsc tone;
+    maxiOsc noise;
+    maxiEnv envelope;
+    maxiDistortion distort;
+    maxiFilter filter;
+    
+    
+    
+};
+
+class maxiHats {
+    
+public:
+    maxiHats();
+    double play();
+    void setPitch(double pitch);
+    void setRelease(double releaseD);
+    void trigger();
+    double pitch;
+    double output = 0;
+    double outputD = 0;
+    double envOut;
+    bool useDistortion = false;
+    bool useLimiter = false;
+    bool useFilter = false;
+    double distortion = 0;
+    bool inverse = false;
+    double cutoff;
+    double resonance;
+    double gain = 1;
+    maxiOsc tone;
+    maxiOsc noise;
+    maxiEnv envelope;
+    maxiDistortion distort;
+    maxiSVF filter;
+    
+    
+};
+
+
+class maxiSynth {
+    
+    
+    
+};
+
+
+class granularSynth {
+    
+    
+    
+};
+
+
+class maxiSampler {
+    
+public:
+    maxiSampler();
+    double play();
+    void setPitch(double pitch, bool setall=false);
+    void midiNoteOn(double pitch, double velocity, bool setall=false);
+    void midiNoteOff(double pitch, double velocity, bool setall=false);
+    void setAttack(double attackD,bool setall=true);
+    void setDecay(double decayD,bool setall=true);
+    void setSustain(double sustainD,bool setall=true);
+    void setRelease(double releaseD,bool setall=true);
+    void setPosition(double positionD,bool setall=true);
+    void load(string inFile,bool setall=true);
+    void setNumVoices(int numVoices);
+    double position;
+    void trigger();
+    double pitch[32];
+    int originalPitch=67;
+    double outputs[32];
+    double outputD = 0;
+    double envOut[32];
+    double envOutGain[32];
+    double output;
+    bool useDistortion = false;
+    bool useLimiter = false;
+    bool useFilter = false;
+    double distortion = 0;
+    bool inverse = false;
+    double cutoff;
+    double resonance;
+    double gain = 1;
+    int voices;
+    int currentVoice=0;
+    convert mtof;
+    maxiOsc LFO1;
+    maxiOsc LFO2;
+    maxiOsc LFO3;
+    maxiOsc LFO4;
+    maxiSample samples[32];
+    maxiEnv envelopes[32];
+    maxiDistortion distort;
+    maxiSVF filters[32];
+    bool sustain = true;
+    
+    
+};
+
+class maxiClock {
+public:
+    maxiClock();
+    void ticker();
+    void setTempo(double bpm);
+    void setTicksPerBeat(int ticksPerBeat);
+    maxiOsc timer;
+    int currentCount;
+    int lastCount;
+    int playHead;
+    double bps;
+    double bpm;
+    int ticks;
+    bool tick;
     
 };
 

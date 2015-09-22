@@ -32,3 +32,4 @@ void play(double *output) {
 
 // In complex FM systems you can have lots of modulators stacked together in interesting ways, and theoretically this can make any sound.
 // John Chowning is the guy you probably want to talk to about that.
+output[1]=output[0];

@@ -47,5 +47,6 @@ void play(double *output) {
     
     
     output[0]=myOscOutput*myCurrentVolume;//left speaker
+    output[1]=output[0];
     
 }

@@ -17,5 +17,6 @@ void play(double *output) {
     // When you multiply something by -1, its phase is inverted but it retains its amplitude.
     // So you hear 2 waves per second, not 1, even though the frequency is 1.
     output[0]=mySine.sinewave(440)*myOtherSine.sinewave(1);
-    
+    output[1]=output[0];
+
 }

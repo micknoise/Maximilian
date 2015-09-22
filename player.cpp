@@ -27,8 +27,6 @@ void setup();//use this to do any initialisation if you want.
 
 void play(double *output);//run dac! Very very often. Too often in fact. er...
 
-
-
 #ifdef MAXIMILIAN_PORTAUDIO
 int routing(const void *inputBuffer,
 		void *outputBuffer,

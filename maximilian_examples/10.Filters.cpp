@@ -44,5 +44,6 @@ void play(double *output) {
     myFilteredOutput=myFilter.lores(myOscOutput,myCurrentVolume*1000,10);
     
     output[0]=myFilteredOutput;//left speaker
+    output[1]=output[0];
     
 }

@@ -27,9 +27,9 @@ void play(double *output) {
     // It also shows how the modulation index works. In this case the modulation index is 100
     // Try adjusting the modolation index. Also, try altering the modulation frequency.
     output[0]=mySine.sinewave(440+(myOtherSine.sinewave(1)*100));
-    
+    output[1]=output[0];
+
 }
 
 // In complex FM systems you can have lots of modulators stacked together in interesting ways, and theoretically this can make any sound.
 // John Chowning is the guy you probably want to talk to about that.
-output[1]=output[0];

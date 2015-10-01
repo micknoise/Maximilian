@@ -1,33 +1,49 @@
+// Here is an example of a Maximilian filter being used.
+// There are a number of filters in Maximilian, including low and high pass filters.
+// There are also resonant filters and a state variable filter.
+
+
 #include "maximilian.h"
 
 maxiOsc myCounter,mySwitchableOsc;//
 int CurrentCount;//
-double myOscOutput,myFilteredOutput;//
-double myEnvelopeData[6] = {500,0,1000,500,0,500};//this data will be used to make an envelope. Value and time to value in ms.
-maxiEnvelope myEnvelope;
+double myOscOutput,myCurrentVolume, myFilteredOutput;//
+maxiEnv myEnvelope;
 maxiFilter myFilter;
 
 void setup() {//some inits
-	myEnvelope.amplitude=myEnvelopeData[0]; //initialise the envelope
+    
+    //Timing is in ms
+    
+    myEnvelope.setAttack(0);
+    myEnvelope.setDecay(1);  // Needs to be at least 1
+    myEnvelope.setSustain(1);
+    myEnvelope.setRelease(1000);
+    
 }
 
 void play(double *output) {
-	
-	CurrentCount=myCounter.phasor(1, 1, 9);//phasor can take three arguments; frequency, start value and end value.
-	
-	if (CurrentCount<5)//simple if statement
-		
-		myOscOutput=mySwitchableOsc.square(CurrentCount*100);
-	
-	else if (CurrentCount>=5)//and the 'else' bit.
-		
-		myOscOutput=mySwitchableOsc.saw(CurrentCount*50);//one osc object can produce whichever waveform you want. 
-	
-	if (CurrentCount==1) 
-		
-		myEnvelope.trigger(0,myEnvelopeData[0]); //trigger the envelope
-	
-	myFilteredOutput=myFilter.lores(myOscOutput,(myEnvelope.line(6, myEnvelopeData)),10);//lores takes an audio input, a frequency and a resonance factor (1-100)
-	
-	*output=myFilteredOutput;//point me at your speakers and fire.
+    
+    myCurrentVolume=myEnvelope.adsr(1.,myEnvelope.trigger);
+    
+    CurrentCount=myCounter.phasor(1, 1, 9);//phasor can take three arguments; frequency, start value and end value.
+    
+    // You'll notice that these 'if' statements don't require curly braces "{}".
+    // This is because there is only one outcome if the statement is true.
+    
+    if (CurrentCount==1) myEnvelope.trigger=1; //trigger the envelope
+    
+    else myEnvelope.trigger=0;//release the envelope to make it fade out only if it's been triggered
+    
+    myOscOutput=mySwitchableOsc.sawn(100);
+    
+    // Below, the oscilator signals are being passed through a low pass filter.
+    // The middle input is the filter cutoff. It is being controlled by the envelope.
+    // Notice that the envelope is being amplified so that it scales between 0 and 1000.
+    // The last input is the resonance.
+    myFilteredOutput=myFilter.lores(myOscOutput,myCurrentVolume*1000,10);
+    
+    output[0]=myFilteredOutput;//left speaker
+    output[1]=output[0];
+    
 }

@@ -1,61 +1,81 @@
 #include "maximilian.h"
 
-//Bizarelly, this sounds a little bit like Kraftwerk's 'Metropolis', although it isn't. Funny that.
+//This shows how to use maximilian to build a polyphonic synth.
 
-maxiOsc sound,bass,timer,mod,lead,lead2,leadmod;//here are the synth bits
-maxiEnv envelope, leadenvelope;//some envelopes
-maxiFilter filter, filter2;//some filters
-maxiDelayline delay;//a delay
-convert mtof;//a method for converting midi notes to frequency
-double bassout,leadout, delayout;//some variables to hold the data and pass it around
-int trigger, trigger2, newnote;//some control variables
-int currentCount,lastCount,playHead=0, currentChord=0;//some other control variables
-int pitch[8]={57,57,59,60};//the bassline for the arpeggio
-int chord[8]={0,0,7,2,5,5,0,0};//the root chords for the arpeggio
-float currentPitch,leadPitch;//the final pitch variables
+//These are the synthesiser bits
+maxiOsc VCO1[6],VCO2[6],LFO1[6],LFO2[6];
+maxiFilter VCF[6];
+maxiEnv ADSR[6];
 
-//here's the lead line trigger array, followed by the pitches
-int leadLineTrigger[256]={1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
-int leadLinePitch[15]={69,67,65,64,67,66,64,62,65,64,62,57,55,60,57};
+//This is a bunch of control signals so that we can hear something
 
+maxiOsc timer;//this is the metronome
+int currentCount,lastCount,voice=0;//these values are used to check if we have a new beat this sample
+
+//and these are some variables we can use to pass stuff around
+
+double VCO1out[6],VCO2out[6],LFO1out[6],LFO2out[6],VCFout[6],ADSRout[6],mix,pitch[6];
 
 
 void setup() {//some inits
     
+    for (int i=0;i<6;i++) {
+        
+        ADSR[i].setAttack(0);
+        ADSR[i].setDecay(200);
+        ADSR[i].setSustain(0.2);
+        ADSR[i].setRelease(2000);
+        
+    }
 }
 
-void play(double *output) {//this is where the magic happens. Very slow magic.
+void play(double *output) {
     
-    currentCount=(int)timer.phasor(9);//this sets up a metronome that ticks every so often
+    mix=0;//we're adding up the samples each update and it makes sense to clear them each time first.
+    
+    //so this first bit is just a basic metronome so we can hear what we're doing.
+    
+    currentCount=(int)timer.phasor(8);//this sets up a metronome that ticks 8 times a second
     
     if (lastCount!=currentCount) {//if we have a new timer int this sample, play the sound
-        trigger=1;//play the arpeggiator line
-        trigger2=leadLineTrigger[playHead%256];//play the lead line
-        if (trigger2==1) {//if we are going to play a note
-            leadPitch=mtof.mtof(leadLinePitch[newnote]);//get the next pitch val
-            newnote++;//and iterate
-            if (newnote>14) {
-                newnote=0;//make sure we don't go over the edge of the array
-            }
+        
+        if (voice==6) {
+            voice=0;
         }
-        currentPitch=mtof.mtof(pitch[(playHead%4)]+chord[currentChord%8]);//write the frequency val into currentPitch
-        playHead++;//iterate the playhead
-        if (playHead%32==0) {//wrap every 4 bars
-            currentChord++;//change the chord
-        }
-        //cout << "tick\n";//the clock ticks
-        lastCount=0;//set lastCount to 0
+        
+        ADSR[voice].trigger=1;//trigger the envelope from the start
+        pitch[voice]=voice+1;
+        voice++;
+        
     }
     
-    bassout=filter2.lores(envelope.adsr(bass.saw(currentPitch*0.5)+sound.pulse(currentPitch*0.5,mod.phasor(1)),1,0.9995, 0.25, 0.9995, 1, trigger),9250,2);//new, simple ADSR.
-    leadout=filter.lores(leadenvelope.ar(lead2.saw(leadPitch*4)+lead.pulse(leadPitch+(leadmod.sinebuf(1.9)*1.5), 0.6), 0.00005, 0.999975, 50000, trigger2),5900,10);//leadline
+    //and this is where we build the synth
     
-    delayout=(leadout+(delay.dl(leadout, 14000, 0.8)*0.5))/2;//add some delay
+    for (int i=0; i<6; i++) {
+        
+        
+        ADSRout[i]=ADSR[i].adsr(1.,ADSR[i].trigger);//our ADSR env is passed a constant signal of 1 to generate the transient.
+        
+        LFO1out[i]=LFO1[i].sinebuf(0.2);//this lfo is a sinewave at 0.2 hz
+        
+        VCO1out[i]=VCO1[i].pulse(55*pitch[i],0.6);//here's VCO1. it's a pulse wave at 55 hz, with a pulse width of 0.6
+        VCO2out[i]=VCO2[i].pulse((110*pitch[i])+LFO1out[i],0.2);//here's VCO2. it's a pulse wave at 110hz with LFO modulation on the frequency, and width of 0.2
+        
+        
+        VCFout[i]=VCF[i].lores((VCO1out[i]+VCO2out[i])*0.5, 250+((pitch[i]+LFO1out[i])*1000), 10);//now we stick the VCO's into the VCF, using the ADSR as the filter cutoff
+        
+        mix+=VCFout[i]*ADSRout[i]/6;//finally we add the ADSR as an amplitude modulator
+        
+        
+    }
     
-    if(trigger!=0)trigger=0;//set the trigger to off if you want it to trigger immediately next time.
+    output[0]=mix*0.5;//left channel
+    output[1]=mix*0.5;//right channel
     
     
-    output[0]=(bassout+delayout)/2;//sum output
-    output[1]=(bassout+delayout)/2;
+    // This just sends note-off messages.
+    for (int i=0; i<6; i++) {
+        ADSR[i].trigger=0;
+    }
     
 }

@@ -241,6 +241,7 @@ void maxiFFTOctaveAnalyzer::setup(float samplingRate, int nBandsInTheFFT, int nA
     nAverages = avgidx;
     averages = new float[nAverages];
     peaks = new float[nAverages];
+    memset(peaks, 0, sizeof(float) * nAverages);
     peakHoldTimes = new int[nAverages];
     peakHoldTime = 0; // arbitrary
     peakDecayRate = 0.9f; // arbitrary

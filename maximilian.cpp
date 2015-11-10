@@ -1086,6 +1086,14 @@ void maxiSample::getLength() {
 	length=myDataSize*0.5;
 }
 
+double maxiSample::getPosition() {
+  return position;
+}
+
+double maxiSample::getRecordPosition() {
+  return recordPosition;
+}
+
 void maxiSample::setLength(unsigned long numSamples) {
     cout << "Length: " << numSamples << endl;
     short *newData = (short*) malloc(sizeof(short) * numSamples);

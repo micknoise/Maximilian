@@ -560,6 +560,8 @@ bool maxiSample::loadOgg(string fileName, int channel) {
         }
     }
 	return result; // this should probably be something more descriptive
+#else
+  assert(false); // called but VORBIS not defined!
 #endif
     return 0;
 }

@@ -40,6 +40,7 @@
 #include <iostream>
 #include <fstream>
 #include <string.h>
+#include <cassert>
 #include <cstdlib>
 #include "math.h"
 #ifdef _WIN32 //|| _WIN64

@@ -1,0 +1,12 @@
+*.pbxuser
+*.mode1v3
+*.mode2v3
+build
+
+
+build
+.DS_Store
+/maximilianTestWindowsVS2010/Debug
+/maximilianTestWindowsVS2010/ipch
+/maximilianTestWindowsVS2010/maximilianTestWindowsVS2010/Debug
+

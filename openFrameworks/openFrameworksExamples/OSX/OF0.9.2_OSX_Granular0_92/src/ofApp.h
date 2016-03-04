@@ -56,9 +56,9 @@ public:
     
     double wave,sample,outputs[2];
     maxiSample samp, samp2, samp3, samp4, samp5;
-    vector<maxiTimestretch<grainPlayerWin>*> stretches;
+    vector<maxiTimePitchStretch<grainPlayerWin, maxiSample>*> stretches;
     maxiMix mymix;
-    maxiTimestretch<grainPlayerWin> *ts, *ts2, *ts3, *ts4, *ts5;
+    maxiTimePitchStretch<grainPlayerWin, maxiSample> *ts, *ts2, *ts3, *ts4, *ts5;
     double speed, grainLength;
     
     ofxMaxiFFT fft;

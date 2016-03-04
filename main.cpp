@@ -5,12 +5,12 @@ maxiDyn compressor; //this is a compressor
 double out;
 
 void setup() {//some inits
-    beats.load("/Users/mzed/GIT/Maximilian/beat2.wav");//load in your samples. Provide the full path to a wav file.
+    beats.load("/Users/michaelgrierson/Documents/workspace/Maximilian/beat2.wav");//load in your samples. Provide the full path to a wav file.
     printf("Summary:\n%s", beats.getSummary());//get info on samples if you like.
     
-    compressor.setAttack(100);
-    compressor.setRelease(300);
-    compressor.setThreshold(0.25);
+    compressor.setAttack(200);
+    compressor.setRelease(500);
+    compressor.setThreshold(0.2);
     compressor.setRatio(5);
     
     //you can set these any time you like.

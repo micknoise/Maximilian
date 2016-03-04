@@ -39,11 +39,11 @@ void ofApp::setup(){
     
     
     
-    ts = new maxiTimestretch<grainPlayerWin>(&samp);
-    ts2 = new maxiTimestretch<grainPlayerWin>(&samp2);
-    ts3 = new maxiTimestretch<grainPlayerWin>(&samp3);
-    ts4 = new maxiTimestretch<grainPlayerWin>(&samp4);
-    ts5 = new maxiTimestretch<grainPlayerWin>(&samp5);
+    ts = new maxiTimePitchStretch<grainPlayerWin, maxiSample>(&samp);
+    ts2 = new maxiTimePitchStretch<grainPlayerWin, maxiSample>(&samp2);
+    ts3 = new maxiTimePitchStretch<grainPlayerWin, maxiSample>(&samp3);
+    ts4 = new maxiTimePitchStretch<grainPlayerWin, maxiSample>(&samp4);
+    ts5 = new maxiTimePitchStretch<grainPlayerWin, maxiSample>(&samp5);
     stretches.push_back(ts);
     stretches.push_back(ts2);
     stretches.push_back(ts3);
@@ -134,11 +134,9 @@ void ofApp::draw(){
                    100 + ((int)(ofGetFrameNum() * 1.4) % 255),
                    ofGetFrameNum() % 255,
                    oct.averages[i] / 20.0 * 255.0);
-        //		ofCircle(ofGetWidth() / 2, ofGetHeight()/2, i * 5);
         glPushMatrix();
         glTranslatef(ofGetWidth()/2,ofGetHeight()/2, 0);
         glRotatef(0.01 * ofGetFrameNum() * speed * i, 0.01 * ofGetFrameNum() * speed * i,0.01 * ofGetFrameNum() * speed * i, 0);
-        //		glutWireSphere(i * 5, 2 + (10 - (fabs(speed) * 10)), 2 + (fabs(speed) * 10));
         ofDrawSphere(0, 0, i * 5);
         glPopMatrix();
     }
@@ -165,9 +163,8 @@ void ofApp::audioOut(float * output, int bufferSize, int nChannels) {
          */
         
         
-        //		wave = stretches[current]->play(speed, grainLength, 5, 0);
-        wave = stretches[current]->play(speed, 0.1, 4, 0);
-        //		wave = stretches[current]->play2(pos, 0.1, 4);
+        wave = stretches[current]->play(1.,speed, grainLength, 4, 0);
+        
         if (fft.process(wave)) {
             oct.calculate(fft.magnitudes);
         }
@@ -222,6 +219,8 @@ void ofApp::mouseMoved(int x, int y){
         
         speed = ((double ) x1 / ofGetWidth() * 4.0) - 2.0;
         grainLength = ((double) y1 / ofGetHeight() * 0.1) + 0.001;
+        if (grainLength < 0.01 ) grainLength = 0.01;
+        if (grainLength > 0.4 ) grainLength = 0.4;
         pos = ((double) x1 / ofGetWidth() * 2.0);
         //	cout << pos << endl;
         

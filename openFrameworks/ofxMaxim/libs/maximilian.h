@@ -211,12 +211,12 @@ private:
     short 	myFormat;
     int   	myByteRate;
     short 	myBlockAlign;
-    double position, recordPosition;
     double speed;
     double output;
     maxiLagExp<double> loopRecordLag;
     
 public:
+    double position, recordPosition;
     int	myDataSize;
     short 	myChannels;
     int   	mySampleRate;
@@ -270,7 +270,6 @@ public:
     
     void loopRecord(double newSample, const bool recordEnabled, const double recordMix, double start = 0.0, double end = 1.0) {
         loopRecordLag.addSample(recordEnabled);
-        if (recordPosition < start * length) recordPosition = start * length;
         if(recordEnabled) {
             double currentSample = temp[(unsigned long)recordPosition] / 32767.0;
             newSample = (recordMix * currentSample) + ((1.0 - recordMix) * newSample);
@@ -278,8 +277,8 @@ public:
             temp[(unsigned long)recordPosition] = newSample * 32767;
         }
         ++recordPosition;
-        if (recordPosition >= end * length)
-            recordPosition= start * length;
+        if (recordPosition >= length)
+            recordPosition=0;
     }
     
     void clear();

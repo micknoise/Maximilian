@@ -29,6 +29,37 @@ struct hammingWinFunctor {
     }
 };
 
+// Sawtooth
+struct sawtoothWinFunctor {
+    inline double operator()(ulong windowLength, ulong windowPos) {
+        double ramp = windowPos % windowLength;
+        double rampPerc = ramp / (double)windowLength;
+        double v = rampPerc * -1.0 + 1.0;
+        return v;
+    }
+};
+
+// PulseExponential
+struct pulseExpWinFunctor {
+    inline double operator()(ulong windowLength, ulong windowPos) {
+        double ramp = windowPos % windowLength;
+        double rampPerc = ramp / (double)windowLength;
+        double v = rampPerc * -1.0 + 1.0;
+        double steepness = 4.0;
+        return v * pow(fabs(v), steepness);
+    }
+};
+
+// RevPulseExponential
+struct revPulseExpWinFunctor {
+    inline double operator()(ulong windowLength, ulong windowPos) {
+        double ramp = windowPos % windowLength;
+        double rampPerc = ramp / (double)windowLength;
+        double steepness = 4.0;
+        return rampPerc * pow(fabs(rampPerc), steepness);
+    }
+};
+
 
 struct cosineWinFunctor {
     inline double operator()(ulong windowLength, ulong windowPos) {
@@ -283,7 +314,7 @@ public:
     }
     
     double getNormalisedPosition() {
-        return position / (double) sample->getLength();
+        return position / (double) sample->length;
     }
     
     double getPosition() {
@@ -342,7 +373,7 @@ protected:
                                                                        pos,
                                                                        grainLength, speed, &windowCache);
             grainPlayer->addGrain(g);
-            randomOffset = rand() % 10;
+            randomOffset = rand() % 2;
         }
         return grainPlayer->play();
     }

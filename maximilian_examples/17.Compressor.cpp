@@ -5,25 +5,28 @@ maxiDyn compressor; //this is a compressor
 double out;
 
 void setup() {//some inits
-	
-	beats.load("/Users/yourusername/somewhere/schub.wav");//load in your samples. Provide the full path to a wav file.
-	printf("Summary:\n%s", beats.getSummary());//get info on samples if you like.
-	
+    
+    beats.load("/Users/michaelgrierson/Documents/workspace/Maximilian/ofxMaxim/examples/OSX/ofMaximExample007OSX_Granular/bin/data/beat2.wav");//load in your samples. Provide the full path to a wav file.
+    printf("Summary:\n%s", beats.getSummary());//get info on samples if you like.
+    
+    compressor.setAttack(100);
+    compressor.setRelease(300);
+    compressor.setThreshold(0.25);
+    compressor.setRatio(5);
+    
+    //you can set these any time you like.
+    
 }
 
 void play(double *output) {//this is where the magic happens. Very slow magic.
-	
-	
-	//here, we're just compressing the file in real-time
-	//arguments are input,ratio,threshold,attack,release
-	out=compressor.compressor(beats.play(),5,0.25,0.0001,0.9999);
-
-	output[0]=out;	
-	output[1]=out;	
-	
-	//	*output=beats.play(0.69);//play the file with a speed setting. 1. is normal speed.
-	//	*output=beats.play(0.5,0,44100);//linear interpolationplay with a frequency input, start point and end point. Useful for syncing.
-	//	*output=beats.play4(0.5,0,44100);//cubic interpolation play with a frequency input, start point and end point. Useful for syncing.
-
+    
+    
+    //here, we're just compressing the file in real-time
+    //arguments are input,ratio,threshold,attack,release
+    out=compressor.compress(beats.play());
+    
+    output[0]=out;
+    output[1]=out;
+    
 }
 

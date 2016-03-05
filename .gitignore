@@ -1,10 +1,28 @@
+### Emacs ###
+*~
+
+### XCode ###
+## Build generated
+build/
+DerivedData/
+
+## Various settings
 *.pbxuser
+!default.pbxuser
 *.mode1v3
+!default.mode1v3
 *.mode2v3
-build
+!default.mode2v3
+*.perspectivev3
+!default.perspectivev3
+xcuserdata/
+
+## Other
+*.moved-aside
+*.xccheckout
+*.xcscmblueprint
 
 
-build
 .DS_Store
 /maximilianTestWindowsVS2010/Debug
 /maximilianTestWindowsVS2010/ipch

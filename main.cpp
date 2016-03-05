@@ -1,35 +1,31 @@
 #include "maximilian.h"
 
-maxiOsc myCounter,mySwitchableOsc;//
-maxiSample beat;
-int CurrentCount;//
-double myOscOutput,myFilteredOutput;//
-double myEnvelopeData[6] = {500,0,1000,500,0,500};//this data will be used to make an envelope. Value and time to value in ms.
-maxiEnvelope myEnvelope;
-maxiFilter myFilter;
+maxiSample beats; //We give our sample a name. It's called beats this time. We could have loads of them, but they have to have different names.
+maxiDyn compressor; //this is a compressor
+double out;
 
 void setup() {//some inits
-    myEnvelope.amplitude=myEnvelopeData[0]; //initialise the envelope
-    beat.load("/Users/mick/Documents/workspace/Maximilian/beat2.wav");
+    beats.load("/Users/michaelgrierson/Documents/workspace/Maximilian/beat2.wav");//load in your samples. Provide the full path to a wav file.
+    printf("Summary:\n%s", beats.getSummary());//get info on samples if you like.
+    
+    compressor.setAttack(200);
+    compressor.setRelease(500);
+    compressor.setThreshold(0.2);
+    compressor.setRatio(5);
+    
+    //you can set these any time you like.
+    
 }
 
-void play(double *output) {
+void play(double *output) {//this is where the magic happens. Very slow magic.
     
-    CurrentCount=myCounter.phasor(1, 1, 9);//phasor can take three arguments; frequency, start value and end value.
     
-    if (CurrentCount<5)//simple if statement
-        
-        myOscOutput=mySwitchableOsc.square(CurrentCount*100);
+    //here, we're just compressing the file in real-time
+    //arguments are input,ratio,threshold,attack,release
+    out=compressor.compress(beats.play());
     
-    else if (CurrentCount>=5)//and the 'else' bit.
-        
-        myOscOutput=mySwitchableOsc.saw(CurrentCount*50);//one osc object can produce whichever waveform you want.
+    output[0]=out;
+    output[1]=out;
     
-    if (CurrentCount==1)
-        
-        myEnvelope.trigger(0,myEnvelopeData[0]); //trigger the envelope
-    
-    myFilteredOutput=myFilter.lores(myOscOutput,(myEnvelope.line(6, myEnvelopeData)),10);//lores takes an audio input, a frequency and a resonance factor (1-100)
-    
-    *output=myFilteredOutput/2+beat.play(-1.,0,beat.length);//point me at your speakers and fire.
 }
+

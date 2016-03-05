@@ -1,33 +1,52 @@
+//Envelopes allow you to shape the sound. The basic idea is that a sound has the following shape
+// Attack: This is how long it takes to fade up to maximum volume
+// Decay: This is how long it takes to reach the sustain level.
+// Sustain: This is the sustain level
+// Release: This is how long it takes to fade out.
+
 #include "maximilian.h"
 
 maxiOsc myCounter,mySwitchableOsc;//
 int CurrentCount;//
 double myOscOutput,myCurrentVolume;//
-double myEnvelopeData[4] = {1,0,0,500};//this data will be used to make an envelope. Value and time to value in ms.
-maxiEnvelope myEnvelope;
+maxiEnv myEnvelope;
 
 
 void setup() {//some inits
-	myEnvelope.amplitude=myEnvelopeData[0]; //initialise the envelope
+    
+    //Timing is in ms
+    
+    myEnvelope.setAttack(0);
+    myEnvelope.setDecay(1);  // Needs to be at least 1
+    myEnvelope.setSustain(1);
+    myEnvelope.setRelease(1000);
+    
 }
 
 void play(double *output) {
-	
-	myCurrentVolume=myEnvelope.line(4,myEnvelopeData);
-	
-	CurrentCount=myCounter.phasor(1, 1, 9);//phasor can take three arguments; frequency, start value and end value.
-	
-	if (CurrentCount<5)//simple if statement
-		
-		myOscOutput=mySwitchableOsc.square(CurrentCount*100);
-	
-	else if (CurrentCount>=5)//and the 'else' bit.
-		
-		myOscOutput=mySwitchableOsc.sinewave(CurrentCount*50);//one osc object can produce whichever waveform you want. 
-	
-	if (CurrentCount==1) 
-		
-		myEnvelope.trigger(0,myEnvelopeData[0]); //trigger the envelope
-	
-	*output=myOscOutput*myCurrentVolume;//point me at your speakers and fire.
+    
+    //notice that we feed in a value of 1. to create an envelope shape we can apply later.
+    myCurrentVolume=myEnvelope.adsr(1.,myEnvelope.trigger);
+    
+    CurrentCount=myCounter.phasor(1, 1, 9);//phasor can take three arguments; frequency, start value and end value.
+    
+    // You'll notice that these 'if' statements don't require curly braces "{}".
+    // This is because there is only one outcome if the statement is true.
+    
+    if (CurrentCount==1) myEnvelope.trigger=1; //trigger the envelope
+    
+    else myEnvelope.trigger=0;//release the envelope to make it fade out only if it's been triggered
+    
+    if (CurrentCount<5)
+        
+        myOscOutput=mySwitchableOsc.sawn(CurrentCount*100);
+    
+    else if (CurrentCount>=5)//and the 'else' bit.
+        
+        myOscOutput=mySwitchableOsc.sinewave(CurrentCount*50);//one osc object can produce whichever waveform you want.
+    
+    
+    output[0]=myOscOutput*myCurrentVolume;//left speaker
+    output[1]=output[0];
+    
 }

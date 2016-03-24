@@ -37,7 +37,6 @@
 #include "maxiFFT.h"
 #include "maxiGrains.h"
 #include "maxiMFCC.h"
-#include "maxiBark.h"
 
 
 typedef maxiMix ofxMaxiMix;
@@ -45,12 +44,14 @@ typedef maxiOsc ofxMaxiOsc;
 typedef maxiEnvelope ofxMaxiEnvelope;
 typedef maxiDelayline ofxMaxiDelayline;
 typedef maxiFilter ofxMaxiFilter;
+typedef maxiFlanger ofxMaxiFlanger;
 typedef maxiSample ofxMaxiSample;
 typedef maxiFFT ofxMaxiFFT;
 typedef maxiIFFT ofxMaxiIFFT;
 typedef maxiFFTOctaveAnalyzer ofxMaxiFFTOctaveAnalyzer;
 typedef maxiSettings ofxMaxiSettings;
 typedef maxiMFCC ofxMaxiMFCC;
+typedef maxiDyn ofxMaxiDyn;
 
 
 //typedef maxiSignal vector<double>;

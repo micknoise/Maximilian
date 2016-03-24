@@ -11,6 +11,7 @@
 #endif
 
 #include <list>
+#include <vector>
 
 typedef unsigned long ulong;
 
@@ -26,6 +27,37 @@ struct hannWinFunctor {
 struct hammingWinFunctor {
     inline double operator()(ulong windowLength, ulong windowPos) {
         return 0.54 - (0.46 * cos((2.0 * PI * windowPos) / (windowLength - 1)));
+    }
+};
+
+// Sawtooth
+struct sawtoothWinFunctor {
+    inline double operator()(ulong windowLength, ulong windowPos) {
+        double ramp = windowPos % windowLength;
+        double rampPerc = ramp / (double)windowLength;
+        double v = rampPerc * -1.0 + 1.0;
+        return v;
+    }
+};
+
+// PulseExponential
+struct pulseExpWinFunctor {
+    inline double operator()(ulong windowLength, ulong windowPos) {
+        double ramp = windowPos % windowLength;
+        double rampPerc = ramp / (double)windowLength;
+        double v = rampPerc * -1.0 + 1.0;
+        double steepness = 4.0;
+        return v * pow(fabs(v), steepness);
+    }
+};
+
+// RevPulseExponential
+struct revPulseExpWinFunctor {
+    inline double operator()(ulong windowLength, ulong windowPos) {
+        double ramp = windowPos % windowLength;
+        double rampPerc = ramp / (double)windowLength;
+        double steepness = 4.0;
+        return rampPerc * pow(fabs(rampPerc), steepness);
     }
 };
 
@@ -93,34 +125,24 @@ public:
     
     maxiGrainWindowCache() {
         cacheSize = maxiSettings::sampleRate / 2.0; //allocate mem for up to 500ms grains
-        cache = (double**)malloc(cacheSize * sizeof(double*));
+        cache.reserve(cacheSize);
         for(int i=0; i < cacheSize; i++) {
-            cache[i] = NULL;
+            cache.push_back(vector<double>());
         }
-    }
-    
-    ~maxiGrainWindowCache() {
-        for(int i=0; i < cacheSize; i++) {
-            if(NULL != cache[i]) {
-                free(cache[i]);
-            }
-        }
-        free(cache);
     }
     
     double* getWindow(const unsigned int length) {
-        if (NULL == cache[length]) {
-            cache[length] = (double*)malloc(length * sizeof(double));
+        if (0 == cache[length].size()) {
+            cache[length].reserve(length);
             for(int i=0; i < length; i++) {
                 cache[length][i] = F()(length, i);
             }
         }
-        return cache[length];
+        return cache[length].data();
     }
     
 private:
-    double** cache;
-    
+    vector<vector<double> > cache;
 };
 
 class maxiGrainBase {
@@ -155,7 +177,7 @@ public:
      */
     maxiGrain(maxiSample *_sample, const double position, const double duration, const double speed, maxiGrainWindowCache<F> *windowCache) :sample(_sample), pos(position), dur(duration), speed(speed)
     {
-        //        buffer = sample->temp;
+        //        buffer = sample->temp.data();
         sampleStartPos = (sample->length) * pos;
         sampleDur = dur * (double)maxiSettings::sampleRate;
         sampleDurMinusOne = sampleDur - 1;
@@ -283,7 +305,7 @@ public:
     }
     
     double getNormalisedPosition() {
-        return position / (double) sample->getLength();
+        return position / (double) sample->length;
     }
     
     double getPosition() {
@@ -342,7 +364,7 @@ protected:
                                                                        pos,
                                                                        grainLength, speed, &windowCache);
             grainPlayer->addGrain(g);
-            randomOffset = rand() % 10;
+            randomOffset = rand() % 2;
         }
         return grainPlayer->play();
     }

@@ -42,6 +42,7 @@
 #include <string.h>
 #include <cstdlib>
 #include "math.h"
+#include <vector>
 #ifdef _WIN32 //|| _WIN64
 #include <algorithm>
 #endif
@@ -211,12 +212,12 @@ private:
     short 	myFormat;
     int   	myByteRate;
     short 	myBlockAlign;
-    double position, recordPosition;
     double speed;
     double output;
     maxiLagExp<double> loopRecordLag;
     
 public:
+    double position, recordPosition;
     int	myDataSize;
     short 	myChannels;
     int   	mySampleRate;
@@ -227,19 +228,17 @@ public:
     
     
     //	char* 	myData;
-    short* temp;
+    //short* temp;
+    vector<short> temp;
     
     // get/set for the Path property
     
     ~maxiSample()
     {
-        //		if (myData) free(myData);
-        if (temp) free(temp);
         printf("freeing SampleData");
-        
     }
     
-    maxiSample():temp(NULL),position(0), recordPosition(0), myChannels(1), mySampleRate(maxiSettings::sampleRate) {};
+    maxiSample():position(0), recordPosition(0), myChannels(1), mySampleRate(maxiSettings::sampleRate) {};
     
     maxiSample& operator=(const maxiSample &source) {
         if (this == &source)
@@ -248,10 +247,8 @@ public:
         recordPosition = 0;
         myChannels = source.myChannels;
         mySampleRate = maxiSettings::sampleRate;
-        free(temp);
+        temp = source.temp;
         myDataSize = source.myDataSize;
-        temp = (short*) malloc(myDataSize * sizeof(char));
-        memcpy(temp, source.temp, myDataSize * sizeof(char));
         length = source.length;
         return *this;
     }
@@ -270,7 +267,6 @@ public:
     
     void loopRecord(double newSample, const bool recordEnabled, const double recordMix, double start = 0.0, double end = 1.0) {
         loopRecordLag.addSample(recordEnabled);
-        if (recordPosition < start * length) recordPosition = start * length;
         if(recordEnabled) {
             double currentSample = temp[(unsigned long)recordPosition] / 32767.0;
             newSample = (recordMix * currentSample) + ((1.0 - recordMix) * newSample);
@@ -278,8 +274,8 @@ public:
             temp[(unsigned long)recordPosition] = newSample * 32767;
         }
         ++recordPosition;
-        if (recordPosition >= end * length)
-            recordPosition= start * length;
+        if (recordPosition >= length)
+            recordPosition=0;
     }
     
     void clear();
@@ -336,7 +332,7 @@ public:
         myFile.write ((char*) &myBitsPerSample, 2);
         myFile.write ("data", 4);
         myFile.write ((char*) &myDataSize, 4);
-        myFile.write ((char*) temp, myDataSize);
+        myFile.write ((char*) temp.data(), myDataSize);
         
         return true;
     }

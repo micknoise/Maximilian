@@ -541,8 +541,6 @@ bool maxiSample::loadOgg(string fileName, int channel) {
     bool result;
     readChannel=channel;
     int channelx;
-    //    cout << fileName << endl;
-    free(temp);
     myDataSize = stb_vorbis_decode_filename(const_cast<char*>(fileName.c_str()), &channelx, &temp);
     result = myDataSize > 0;
     printf("\nchannels = %d\nlength = %d",channelx,myDataSize);
@@ -637,9 +635,13 @@ bool maxiSample::read()
             }
         }
         
-        free(temp);
-        temp = (short*) malloc(myDataSize * sizeof(char));
-        memcpy(temp, myData, myDataSize * sizeof(char));
+        // WEIRDNESS NOTE!!!
+        // One sample is actually represented as two chars in sequence.
+        // This is why we make our vector half of myDataSize, because
+        // sizeof(short) is twice the size of sizeof(char).
+
+        temp.resize(myDataSize / 2, 0);
+        memcpy(temp.data(), myData, myDataSize * sizeof(char));
         
         free(myData);
         
@@ -1089,12 +1091,7 @@ void maxiSample::getLength() {
 
 void maxiSample::setLength(unsigned long numSamples) {
     cout << "Length: " << numSamples << endl;
-    short *newData = (short*) malloc(sizeof(short) * numSamples);
-    if (NULL!=temp) {
-        unsigned long copyLength = min((unsigned long)length, numSamples);
-        memcpy(newData, temp, sizeof(short) * copyLength);
-    }
-    temp = newData;
+    temp.reserve(numSamples);
     myDataSize = numSamples * 2;
     length=numSamples;
     position=0;
@@ -1102,7 +1099,9 @@ void maxiSample::setLength(unsigned long numSamples) {
 }
 
 void maxiSample::clear() {
-    memset(temp, 0, myDataSize);
+    for(int i = 0; i < temp.size(); i++){
+        temp[i] = 0;
+    }
 }
 
 void maxiSample::reset() {
@@ -1152,12 +1151,7 @@ void maxiSample::autoTrim(float alpha, float threshold, bool trimStart, bool tri
     
     int newLength = endMarker - startMarker;
     if (newLength > 0) {
-        short *newData = (short*) malloc(sizeof(short) * newLength);
-        for(int i=0; i < newLength; i++) {
-            newData[i] = temp[i+startMarker];
-        }
-        free(temp);
-        temp = newData;
+        temp.reserve(newLength);
         myDataSize = newLength * 2;
         length=newLength;
         position=0;

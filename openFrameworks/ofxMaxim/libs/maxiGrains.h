@@ -11,6 +11,7 @@
 #endif
 
 #include <list>
+#include <vector>
 
 typedef unsigned long ulong;
 
@@ -124,34 +125,24 @@ public:
     
     maxiGrainWindowCache() {
         cacheSize = maxiSettings::sampleRate / 2.0; //allocate mem for up to 500ms grains
-        cache = (double**)malloc(cacheSize * sizeof(double*));
+        cache.reserve(cacheSize);
         for(int i=0; i < cacheSize; i++) {
-            cache[i] = NULL;
+            cache.push_back(vector<double>());
         }
-    }
-    
-    ~maxiGrainWindowCache() {
-        for(int i=0; i < cacheSize; i++) {
-            if(NULL != cache[i]) {
-                free(cache[i]);
-            }
-        }
-        free(cache);
     }
     
     double* getWindow(const unsigned int length) {
-        if (NULL == cache[length]) {
-            cache[length] = (double*)malloc(length * sizeof(double));
+        if (0 == cache[length].size()) {
+            cache[length].reserve(length);
             for(int i=0; i < length; i++) {
                 cache[length][i] = F()(length, i);
             }
         }
-        return cache[length];
+        return cache[length].data();
     }
     
 private:
-    double** cache;
-    
+    vector<vector<double> > cache;
 };
 
 class maxiGrainBase {
@@ -186,7 +177,7 @@ public:
      */
     maxiGrain(maxiSample *_sample, const double position, const double duration, const double speed, maxiGrainWindowCache<F> *windowCache) :sample(_sample), pos(position), dur(duration), speed(speed)
     {
-        //        buffer = sample->temp;
+        //        buffer = sample->temp.data();
         sampleStartPos = (sample->length) * pos;
         sampleDur = dur * (double)maxiSettings::sampleRate;
         sampleDurMinusOne = sampleDur - 1;

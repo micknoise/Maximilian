@@ -636,6 +636,7 @@ bool maxiSample::read()
                 position+=2;
             }
         }
+        
         free(temp);
         temp = (short*) malloc(myDataSize * sizeof(char));
         memcpy(temp, myData, myDataSize * sizeof(char));

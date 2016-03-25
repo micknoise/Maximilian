@@ -222,6 +222,8 @@ public:
 	int   	mySampleRate;
 	long length;
 	void getLength();
+  double getPosition();
+  double getRecordPosition();
     void setLength(unsigned long numSamples);  
     short 	myBitsPerSample;
 

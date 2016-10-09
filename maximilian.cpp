@@ -1082,8 +1082,8 @@ double maxiSample::bufferPlay4(unsigned char &bufferin,double frequency, double 
 }
 
 
-void maxiSample::getLength() {
-	length=myDataSize*0.5;
+long maxiSample::getLength() {
+	return (length=myDataSize*0.5);
 }
 
 void maxiSample::setLength(unsigned long numSamples) {

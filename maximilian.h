@@ -221,7 +221,7 @@ public:
 	short 	myChannels;
 	int   	mySampleRate;
 	long length;
-	void getLength();
+	long getLength();
     void setLength(unsigned long numSamples);  
     short 	myBitsPerSample;
 

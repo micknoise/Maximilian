@@ -9,7 +9,7 @@ maxiFFT myFFT;
 
 void setup() {
     
-    myFFT.setup(1024, 512, 2);
+    myFFT.setup(1024, 512, 256);
     
 }
 

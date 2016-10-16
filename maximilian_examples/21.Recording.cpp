@@ -19,9 +19,12 @@ void setup() {
     // Call setup here, make sure you do this so the recorder
     // knows where to write the file. Currently the recorder
     // will write the wav file to the directory that this file
-    // is in but you can pass any absolute file path in you'd
-    // like to. 
-    recorder.setup("hey.wav");
+    // is in if you use linux but with mac and windows I 
+    // strongly reccomend putting an absolute file path to the
+    // directory you want to write to. Also, when in Windows,
+    // remember to do double '\' characters because they
+    // count as an escape which will nullify any path you write
+    recorder.setup("lovesong.wav");
 
     // This must be called to start the asynchronous thread to
     // manage the recorder's internal memory

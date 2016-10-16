@@ -36,14 +36,26 @@
 //#define MAXIMILIAN_PORTAUDIO
 #define MAXIMILIAN_RT_AUDIO
 
-
 #include <iostream>
 #include <fstream>
 #include <string.h>
 #include <cstdlib>
 #include "math.h"
+#include <cerrno>
+#include <queue>
+#include <vector>
+
+#if !defined(_WIN32) && (defined(unix) || defined(__unix__) || defined(__unix) || (defined(__APPLE__) && defined(__MACH__)))
+#define OS_IS_UNIX true
+#include <pthread.h>
+#include <unistd.h>
+#endif
+
 #ifdef _WIN32 //|| _WIN64
+#define OS_IS_WIN true
 #include <algorithm>
+#include <Windows.h>
+#include <process.h>
 #endif
 
 using namespace std;
@@ -795,39 +807,50 @@ public:
     bool tick;
     
 };
-//
-//class maxiRecorder
-//{
-//public:
-//    maxiRecorder();
-//    ~maxiRecorder();
-//
-//    void                setup(std::string _filename);
-//    void                startRecording();
-//    void                stopRecording();
-//    bool                isRecording() const;
-//    void                passData(double* _in, int _inBufferSize);
-//    void                passData(float*  _in, int _inBufferSize);
-//    void                saveToWav();
-//
-//protected:
-////    std::vector<double> getProcessedData();
-//    void                update();
-//    void                enqueueBuffer();
-//    void                freeResources();
-//
-//private:  
-//    template <typename T>
-//    void                write(std::ofstream& _stream, const T& _t);
-//    const int           bufferQueueSize;
-//    const int           bufferSize;
-//    long int            bufferIndex;
-//    long int            recordedAmountFrames;
-////    std::queue<double*> bufferQueue;
-////    std::queue<double*> savedBuffers;
-//    bool                doRecord;
-//    std::string         filename;
-//};
-//
+
+class maxiRecorder
+{
+public:
+    maxiRecorder();
+    ~maxiRecorder();
+
+    void                setup(std::string _filename);
+    void                startRecording();
+    void                stopRecording();
+    bool                isRecording() const;
+    void                passData(double* _in, int _inBufferSize);
+    void                passData(float*  _in, int _inBufferSize);
+    void                saveToWav();
+
+private:
+    template <typename T>
+    void                write(std::ofstream& _stream, const T& _t);
+    void*               update(void* _context);
+    std::vector<double> getProcessedData();
+    void                enqueueBuffer();
+    void                freeResources();
+    bool                threadRunning;
+    const int           bufferQueueSize;
+    const int           bufferSize;
+    long int            bufferIndex;
+    long int            recordedAmountFrames;
+    std::queue<double*> bufferQueue;
+    std::queue<double*> savedBuffers;
+    bool                doRecord;
+    std::string         filename;
+#if defined(OS_IS_UNIX)
+	pthread_t           daemon;
+	static void*        update_pthread_helper(void* _context)
+#elif defined(OS_IS_WIN)
+	HANDLE				daemonHandle;
+	static unsigned __stdcall
+                        update_pthread_helper(void* _context)
+#endif
+	{
+		maxiRecorder* _this = static_cast<maxiRecorder*>(_context);
+		_this->update(_this);
+		return 0;
+	}
+};
 
 #endif

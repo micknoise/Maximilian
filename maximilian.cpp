@@ -2197,7 +2197,7 @@ void maxiRecorder::saveToWav()
     pcmDataInt.resize(pcmData.size());
 
     for (int i = 0; i < pcmData.size(); ++i)
-        pcmDataInt[i] = (short) (pcmData[i] * 32767);
+        pcmDataInt[i] = (short) (pcmData[i] * 3276.7);
 
     int sampleRate = maxiSettings::sampleRate;
     short channels = maxiSettings::channels;

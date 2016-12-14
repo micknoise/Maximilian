@@ -372,14 +372,14 @@ double maxiEnvelope::line(int numberofsegments,double segments[1000]) {
 	nextval=segments[valindex+2];
 	currentval=segments[valindex];
 	if (currentval-amplitude > 0.0000001 && valindex < numberofsegments) {
-		amplitude += ((currentval-startval)/(maxiSettings::sampleRate/period));
+		amplitude += ((currentval-startVal)/(maxiSettings::sampleRate/period));
 	} else if (currentval-amplitude < -0.0000001 && valindex < numberofsegments) {
-		amplitude -= (((currentval-startval)*(-1))/(maxiSettings::sampleRate/period));
+		amplitude -= (((currentval-startVal)*(-1))/(maxiSettings::sampleRate/period));
 	} else if (valindex >numberofsegments-1) {
 		valindex=numberofsegments-2;
 	} else {
 		valindex=valindex+2;
-		startval=currentval;
+		startVal=currentval;
 	}
 	output=amplitude;
 		
@@ -392,12 +392,140 @@ double maxiEnvelope::line(int numberofsegments,double segments[1000]) {
 }
 
 //and this
-void maxiEnvelope::trigger(int index, double amp) {
-	isPlaying=1;//ok the envelope is being used now.
-	valindex=index;
-	amplitude=amp;
-	
+//void maxiEnvelope::trigger(int index, double amp) {
+//	isPlaying=1;//ok the envelope is being used now.
+//	valindex=index;
+//	amplitude=amp;
+//	
+//}
+
+double maxiEnvelope::ramp(double startVal, double endVal, double duration, int trigger1){
+  
+    if (trigger!=0) {
+        phase=startVal;
+        trigger=0;
+    }
+
+    if (startVal<endVal) {
+        phase += ((endVal-startVal)/(maxiSettings::sampleRate/(1./duration)));
+        if ( phase >= endVal ) phase = endVal;
+    }
+    
+    if (startVal > endVal) {
+        phase += ((endVal-startVal)/(maxiSettings::sampleRate/(1./duration)));
+        if ( phase <= endVal ) phase = endVal;
+    }
+    return(phase);
+
 }
+
+
+double maxiEnvelope::ramps(double rampsArray[1000], int trigger1){
+    
+    if (trigger!=0) {
+        valindex=0;
+        endVal=rampsArray[valindex];
+        trigger=0;
+
+    }
+    
+    if (phase<endVal) {
+        phase += ((endVal-startVal)/(maxiSettings::sampleRate/(1./rampsArray[valindex+1])));
+        if ( phase >= endVal ) {
+            startVal=phase;
+            valindex+=2;
+            endVal=rampsArray[valindex];
+        }
+    }
+    
+    if (phase > endVal) {
+        phase += ((endVal-startVal)/(maxiSettings::sampleRate/(1./rampsArray[valindex+1])));
+        if ( phase <= endVal ) {
+            startVal=phase;
+            valindex+=2;
+            endVal=rampsArray[valindex];
+        }
+    }
+    return(phase);
+    
+}
+
+double maxiEnvelope::ar(double attack, double release,int trigger1) {
+    
+    if (trigger!=0) {
+        phase=0;
+        releaseMode=false;
+        trigger=0;
+    }
+
+    if (phase<1 && releaseMode==false) {
+        phase += ((1)/(maxiSettings::sampleRate/(1./attack)));
+        if ( phase >= 1 ) {
+            phase=1;
+            releaseMode=true;
+        };
+    }
+    
+    if (releaseMode==true) {
+        phase += ((-1)/(maxiSettings::sampleRate/(1./release)));
+        if ( phase <= 0 ) phase = 0;
+    }
+    
+    return phase;
+}
+
+
+double maxiEnvelope::adsr(double attack, double decay, double sustain, double release, int trigger1) {
+    
+    if (trigger!=0 && !releaseMode && !decayMode && !sustainMode) {
+        phase=0;
+        releaseMode=false;
+        decayMode=false;
+        sustainMode=false;
+        attackMode=true;
+    }
+    
+    if (phase<1 && attackMode) {
+        phase += ((1)/(maxiSettings::sampleRate/(1./attack)));
+        if ( phase >= 1 ) {
+            phase=1;
+            attackMode=false;
+            decayMode=true;
+        };
+    }
+    
+    if (decayMode) {
+        phase += ((-1)/(maxiSettings::sampleRate/(1./decay)));
+        if ( phase <= sustain ) {
+            phase=sustain;
+            decayMode=false;
+            sustainMode=true;
+        };
+    }
+    
+    if (sustainMode) {
+
+        if (trigger!=0) {
+            phase=sustain;
+        }
+        
+        if (trigger==0) {
+            sustainMode=false;
+            releaseMode=true;
+        }
+    }
+    
+    if (releaseMode) {
+        phase += ((-sustain)/(maxiSettings::sampleRate/(1./release)));
+        if ( phase <= 0 ) {
+            phase = 0;
+            releaseMode=false;
+        }
+    }
+    
+    return phase;
+}
+
 
 //Delay with feedback
 maxiDelayline::maxiDelayline() {

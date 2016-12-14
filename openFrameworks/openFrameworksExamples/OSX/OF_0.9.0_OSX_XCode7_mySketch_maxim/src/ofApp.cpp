@@ -57,7 +57,7 @@ void ofApp::draw(){
 
 //--------------------------------------------------------------
 void ofApp::audioOut(float * output, int bufferSize, int nChannels) {
-    
+   
     
     for (int i = 0; i < bufferSize; i++){
         
@@ -73,7 +73,6 @@ void ofApp::audioOut(float * output, int bufferSize, int nChannels) {
         
         //make 'wave' equal something noisy
         
-        double wave = mySample.play(0.5);
 
         
         output[i*nChannels    ] = wave; /* You may end up with lots of outputs. add them here */

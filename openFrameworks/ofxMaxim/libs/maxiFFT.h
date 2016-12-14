@@ -33,7 +33,7 @@
 #ifndef _MAXI_FFT
 #define _MAXI_FFT
 
-//#define _NO_VDSP  //set this if you don't want to use apple's vDSP fft functions
+#define _NO_VDSP  //set this if you don't want to use apple's vDSP fft functions
 
 
 #include "fft.h"

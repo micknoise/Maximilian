@@ -2131,259 +2131,325 @@ void maxiSampler::trigger() {
     
 }
 
-/////*************************************************************
-/////
-///// Init all variables
-/////
-/////*************************************************************
-//maxiRecorder::maxiRecorder() :
-//    bufferSize(maxiSettings::sampleRate * 2),
-//    bufferQueueSize(3),
-//    bufferIndex(0),
-//    doRecord(true),
-//    recordedAmountFrames(0)
-//{
-//
-//}
-//
-/////*************************************************************
-/////
-///// Free resources in RAII manner
-/////
-/////*************************************************************
-//maxiRecorder::~maxiRecorder()
-//{
-//    if (isRecording()) saveToWav();
-//    freeResources();
-//}
-//
-/////*************************************************************
-/////
-///// Free resources if they exist
-/////
-/////*************************************************************
-////void maxiRecorder::freeResources()
-////{
-////    if (savedBuffers.size() > 0)
-////    {
-////        for (int i = 0; i < savedBuffers.size(); ++i)
-////        {
-////            delete[] savedBuffers.front();
-////            savedBuffers.pop();
-////        }
-////    }
-////}
-//
-/////*************************************************************
-/////
-///// get if we are recording or not
-/////
-/////*************************************************************
-//bool maxiRecorder::isRecording() const
-//{
-//    return doRecord;
-//}
-//
-/////*************************************************************
-/////
-///// get if we are recording or not
-/////
-/////*************************************************************
-//void maxiRecorder::setup(std::string _filename)
-//{
-//    filename = _filename;
-//}
-//
-/////*************************************************************
-/////
-///// This whacks the update method into a detached thread which
-///// will ensure there are enough buffers available in the queue.
-/////
-/////*************************************************************
-////void maxiRecorder::startRecording()
-////{
-////    for (int i = 0; i < bufferQueueSize; ++i)
-////    {
-////        enqueueBuffer();
-////    }
-////
-////    std::thread daemon(&maxiRecorder::update, this);
-////    daemon.detach();
-////}
-//
-/////*************************************************************
-/////
-///// stops the recording thread by allowing the stack to unwind
-///// in update()
-/////
-/////*************************************************************
-//void maxiRecorder::stopRecording()
-//{
-//    doRecord = false;
-//}
-//
-/////*************************************************************
-/////
-///// Shamelessly hacked together largely using this link
-///// http://stackoverflow.com/questions/22226872/two-problems-
-///// when-writing-to-wav-c
-/////
-/////*************************************************************
-//template <typename T>
-//void maxiRecorder::write(std::ofstream& _stream, const T& _t) {
-//    _stream.write((const char*)&_t, sizeof(T));
-//}
-//
-//void maxiRecorder::saveToWav()
-//{
-//    if (isRecording()) stopRecording();
-//    std::vector<double> pcmData = getProcessedData();
-//    std::vector<short> pcmDataInt;
-//
-//    pcmDataInt.resize(pcmData.size());
-//
-//    for (int i = 0; i < pcmData.size(); ++i)
-//        pcmDataInt[i] = (short) (pcmData[i] * 32767);
-//
-//    int sampleRate = maxiSettings::sampleRate;
-//    short channels = maxiSettings::channels;
-//    int   buffSize = pcmDataInt.size() * 2;
-//
-//    std::ofstream stream(filename.c_str(), std::ios::binary);
-//
-//    /* Header */
-//    stream.write("RIFF", 4);
-//    write<int>(stream, 36 + buffSize);
-//    stream.write("WAVE", 4);
-//
-//    /* Format Chunk */
-//    stream.write("fmt ", 4);
-//    write<int>(stream, 16);
-//    write<short>(stream, 1);
-//    write<short>(stream, channels);
-//    write<int>(stream, sampleRate);
-//    write<int>(stream, sampleRate * channels * sizeof(short));
-//    write<short>(stream, channels * sizeof(short));
-//    write<short>(stream, 8 * sizeof(short));
-//
-//    /* Data Chunk */
-//    stream.write("data", 4);
-//    stream.write((const char*) &buffSize, 4);
-//    stream.write((const char*) pcmDataInt.data(), buffSize);
-//
-//    std::cout << "Wrote " << buffSize
-//              << " bytes to " << filename.c_str()
-//              << std::endl;
-//}
-//
-/////*************************************************************
-/////
-///// This takes the queue of user generated arrays and whacks
-///// it into a vector of doubles which is easier to transverse
-///// and work with.
-/////
-/////*************************************************************
-//std::vector<double> maxiRecorder::getProcessedData()
-//{
-//    std::vector<double> userData;
-//    int dataSize = savedBuffers.size() * bufferSize;
-//    userData.resize(dataSize);
-//
-//    int savedIndex = 0;
-//    for (int i = 0; i < dataSize; ++i)
-//    {
-//        if (i > 0 && i % bufferSize == 0)
-//        {
-//            savedIndex = 0;
-//            savedBuffers.pop();
-//        }
-//
-//        userData[i] = savedBuffers.front()[savedIndex];
-//        ++savedIndex;
-//    }
-//
-//    double lastFrame = userData[userData.size() - 1];
-//    while (lastFrame == 0)
-//    {
-//        userData.pop_back();
-//        lastFrame = userData[userData.size() - 1];
-//    }
-//
-//    return userData;
-//}
-//
-/////*************************************************************
-/////
-///// You don't need to worry about this, this runs in a
-///// detached thread after calling startRecording() and means
-///// we can allocate new memory without interupting the real
-///// time audio callback
-/////
-/////*************************************************************
-//void maxiRecorder::update()
-//{
-//    auto ms = std::chrono::milliseconds((long) (1000. / bufferSize / maxiSettings::sampleRate));
-//    while (doRecord)
-//    {
-//        while (bufferQueueSize > bufferQueue.size())
-//        {
-//            enqueueBuffer();
-//        }
-//        std::this_thread::sleep_for(ms);
-//    }
-//    std::cout << "Finishing Recording..." << std::endl;
-//}
-//
-/////*************************************************************
-/////
-///// Pass the buffer of audio to this method and it will write
-///// it to the right place. This method is real-time safe and
-///// is overriden for ofx's / port's floats array or maximilian's
-///// / rtaudio's double
-/////
-/////*************************************************************
-//void maxiRecorder::passData(double* _in, int _inBufferSize)
-//{  
-//    for (int i = 0; i < _inBufferSize; ++i)
-//    {
-//        if (bufferIndex >= bufferSize)
-//        {
-//            bufferQueue.pop();
-//            bufferIndex = 0;
-//        }
-//        bufferQueue.front()[bufferIndex] = _in[i];
-//        ++bufferIndex;
-//        ++recordedAmountFrames;
-//    }
-//}
-//void maxiRecorder::passData(float* _in, int _inBufferSize)
-//{    
-//    for (int i = 0; i < _inBufferSize; ++i)
-//    {
-//        if (bufferIndex >= bufferSize)
-//        {
-//            bufferQueue.pop();
-//            bufferIndex = 0;
-//        }
-//        bufferQueue.front()[bufferIndex] = (double) _in[i];
-//        ++bufferIndex;
-//        ++recordedAmountFrames;
-//    }
-//}
-//
-/////*************************************************************
-/////
-///// The method to instanciate new memory and ensure the correct
-///// structures have the correct addresses.
-/////
-/////*************************************************************
-//void maxiRecorder::enqueueBuffer()
-//{
-//    double* b = new double[bufferSize];
-//    bufferQueue.push(b);
-//    savedBuffers.push(b);
-//}
-//
-//
-//
+///*************************************************************
+///
+/// Init most variables
+///
+///*************************************************************
+maxiRecorder::maxiRecorder() :
+bufferSize(maxiSettings::sampleRate * 2),
+bufferQueueSize(3),
+bufferIndex(0),
+recordedAmountFrames(0),
+threadRunning(false)
+{
+
+}
+
+///*************************************************************
+///
+/// Free resources in RAII manner and save to wav when this
+/// object lifetime is up!
+///
+///*************************************************************
+maxiRecorder::~maxiRecorder()
+{
+    if (isRecording()) saveToWav();
+    freeResources();
+}
+
+///*************************************************************
+///
+/// Free resources only if they exist; may be called multiple
+/// times in it's lifetime becasuse of destructor.
+///
+///*************************************************************
+void maxiRecorder::freeResources()
+{
+    if (savedBuffers.size() > 0)
+    {
+        for (int i = 0; i < savedBuffers.size(); ++i)
+        {
+            delete[] savedBuffers.front();
+            savedBuffers.pop();
+        }
+    }
+}
+
+///*************************************************************
+///
+/// Simply return if we are recording or not
+///
+///*************************************************************
+bool maxiRecorder::isRecording() const
+{
+    return doRecord;
+}
+
+///*************************************************************
+///
+/// Set the filename (and path)
+///
+///*************************************************************
+void maxiRecorder::setup(std::string _filename)
+{
+    filename = _filename;
+}
+
+///*************************************************************
+///
+/// You don't need to worry calling about this, this runs in a
+/// detached thread after calling startRecording() and means
+/// we can allocate new memory without interupting the real
+/// time audio callback. Rather than have multiple ifdefs to
+/// split up the same function to use different OS's threading
+/// services I just redefined the thing because it looked 
+/// cleaner. 
+///
+/// A pointer to the instanciated object from this class is
+/// passed as '_context'. We do this because we are calling this
+/// function from a static helper func and need to access object 
+/// specific variables.
+///
+///*************************************************************
+#if defined(OS_IS_UNIX)
+void* maxiRecorder::update(void* _context)
+{
+	pthread_setcanceltype(PTHREAD_CANCEL_ASYNCHRONOUS, NULL);
+	maxiRecorder* _this = static_cast<maxiRecorder*>(_context);
+	_this->threadRunning = true;
+	while (_this->doRecord)
+	{
+		usleep((long)(10000. / bufferSize / maxiSettings::sampleRate));
+		while (_this->bufferQueueSize > _this->bufferQueue.size())
+		{
+			_this->enqueueBuffer();
+		}
+	}
+	std::cout << "\nFinishing Recording..." << std::endl;
+	return 0;
+}
+#elif defined(OS_IS_WIN)
+void* maxiRecorder::update(void* _context)
+{
+	maxiRecorder* _this = static_cast<maxiRecorder*>(_context);
+  	_this->threadRunning = true;
+	long time = (long)(1000. / bufferSize / maxiSettings::sampleRate);
+	while (_this->doRecord)
+	{
+		Sleep(time);
+		while (_this->bufferQueueSize > _this->bufferQueue.size())
+		{
+			_this->enqueueBuffer();
+		}
+	}
+	std::cout << "\nFinishing Recording..." << std::endl;
+	return 0;
+}
+#endif
+
+///*************************************************************
+///
+/// This whacks the update method into a detached thread which
+/// will ensure there are enough buffers available in the queue.
+///
+///*************************************************************
+void maxiRecorder::startRecording()
+{
+    doRecord = true;
+    for (int i = 0; i < bufferQueueSize; ++i)
+    {
+        enqueueBuffer();
+    }
+
+#if defined(OS_IS_UNIX)
+    if (pthread_create(&daemon, NULL, &maxiRecorder::update_pthread_helper, this) != 0)
+        std::cout << "pthread created incorrectly" << std::endl;
+    if (pthread_detach(daemon) != 0)
+        std::cout << "pthread detached incorrectly" << std::endl;
+#elif defined(OS_IS_WIN)
+	unsigned threadID;
+	daemonHandle = (HANDLE) _beginthreadex(NULL, 0, &maxiRecorder::update_pthread_helper, (void *) this, 0, &threadID);
+#endif
+
+
+}
+
+///*************************************************************
+///
+/// stops the recording thread by allowing the stack to unwind
+/// in update() and stops the Windows thread if necessary
+///
+///*************************************************************
+void maxiRecorder::stopRecording()
+{
+#if defined(OS_IS_WIN)
+	CloseHandle(daemonHandle);
+#endif
+    doRecord = false;
+}
+
+///*************************************************************
+///
+/// Shamelessly hacked together largely using this link
+/// http://stackoverflow.com/questions/22226872/two-problems-
+/// when-writing-to-wav-c
+/// 
+/// I haven't bothered to change the syntax much here and the 
+/// templated write function was too convenient during my
+/// struggle to get my head around wav headers so I've kept it
+/// very similar to the attached code. 
+///
+/// A clear optimisation would be to make getProcessedData()
+/// return a vector of shorts to prevent another loop
+///
+///*************************************************************
+template <typename T>
+void maxiRecorder::write(std::ofstream& _stream, const T& _t) {
+    _stream.write((const char*)&_t, sizeof(T));
+}
+
+void maxiRecorder::saveToWav()
+{
+    if (isRecording()) stopRecording();
+    if (threadRunning)
+    {
+#if defined(OS_IS_UNIX)
+        pthread_cancel(daemon);
+#endif
+        threadRunning = false;
+    }
+    std::vector<double> pcmData = getProcessedData();
+    std::vector<short> pcmDataInt;
+
+    pcmDataInt.resize(pcmData.size());
+
+    for (int i = 0; i < pcmData.size(); ++i)
+        pcmDataInt[i] = (short) (pcmData[i] * 3276.7);
+
+    int sampleRate = maxiSettings::sampleRate;
+    short channels = maxiSettings::channels;
+    int   buffSize = pcmDataInt.size() * 2;
+
+    std::ofstream stream(filename.c_str(), std::ios::binary);
+
+    if (stream.is_open())
+    {
+        /* Header */
+        stream.write("RIFF", 4);
+        write<int>(stream, 36 + buffSize);
+        stream.write("WAVE", 4);
+
+        /* Format Chunk */
+        stream.write("fmt ", 4);
+        write<int>(stream, 16);
+        write<short>(stream, 1);
+        write<short>(stream, channels);
+        write<int>(stream, sampleRate);
+        write<int>(stream, sampleRate * channels * sizeof(short));
+        write<short>(stream, channels * sizeof(short));
+        write<short>(stream, 8 * sizeof(short));
+
+        /* Data Chunk */
+        stream.write("data", 4);
+        stream.write((const char*) &buffSize, 4);
+        stream.write((const char*) pcmDataInt.data(), buffSize);
+
+        stream.close();
+
+        std::cout << "Wrote " << buffSize
+        << " bytes to " << filename.c_str()
+        << std::endl;
+    }
+    else
+    {
+        std::cerr << "Failed to open file: " << strerror(errno) << std::endl;
+    }
+}
+
+///*************************************************************
+///
+/// This takes the queue of user generated arrays and whacks
+/// it into a vector of doubles which is easier to transverse
+/// and work with.
+///
+///*************************************************************
+std::vector<double> maxiRecorder::getProcessedData()
+{
+    std::vector<double> userData;
+    int dataSize = savedBuffers.size() * bufferSize;
+    userData.resize(dataSize);
+
+    int savedIndex = 0;
+    for (int i = 0; i < dataSize; ++i)
+    {
+        if (i > 0 && i % bufferSize == 0)
+        {
+            savedIndex = 0;
+            savedBuffers.pop();
+        }
+
+        userData[i] = savedBuffers.front()[savedIndex];
+        ++savedIndex;
+    }
+
+    double lastFrame = userData[userData.size() - 1];
+    while (lastFrame == 0)
+    {
+        userData.pop_back();
+        lastFrame = userData[userData.size() - 1];
+    }
+
+    return userData;
+}
+
+///*************************************************************
+///
+/// Pass the buffer of audio to this method and it will write
+/// it to the right place. This method is real-time safe and
+/// is overriden for ofx's / port's floats array or maximilian's
+/// / rtaudio's double
+///
+///*************************************************************
+void maxiRecorder::passData(double* _in, int _inBufferSize)
+{
+    for (int i = 0; i < _inBufferSize; ++i)
+    {
+        if (bufferIndex >= bufferSize)
+        {
+            bufferQueue.pop();
+            bufferIndex = 0;
+        }
+        bufferQueue.front()[bufferIndex] = _in[i];
+        ++bufferIndex;
+        ++recordedAmountFrames;
+    }
+}
+void maxiRecorder::passData(float* _in, int _inBufferSize)
+{
+    for (int i = 0; i < _inBufferSize; ++i)
+    {
+        if (bufferIndex >= bufferSize)
+        {
+            bufferQueue.pop();
+            bufferIndex = 0;
+        }
+        bufferQueue.front()[bufferIndex] = (double) _in[i];
+        ++bufferIndex;
+        ++recordedAmountFrames;
+    }
+}
+
+///*************************************************************
+///
+/// The method to instanciate new memory and ensure the correct
+/// structures have the correct addresses.
+///
+///*************************************************************
+void maxiRecorder::enqueueBuffer()
+{
+    double* b = new double[bufferSize];
+    bufferQueue.push(b);
+    savedBuffers.push(b);
+}
 

@@ -6,7 +6,7 @@
  *  Copyright 2009 Mick Grierson & Strangeloop Limited. All rights reserved.
  *	Thanks to the Goldsmiths Creative Computing Team.
  *	Special thanks to Arturo Castro for the PortAudio implementation.
- *
+ * 
  *	Permission is hereby granted, free of charge, to any person
  *	obtaining a copy of this software and associated documentation
  *	files (the "Software"), to deal in the Software without
@@ -15,11 +15,11 @@
  *	copies of the Software, and to permit persons to whom the
  *	Software is furnished to do so, subject to the following
  *	conditions:
- *
+ *	
  *	The above copyright notice and this permission notice shall be
  *	included in all copies or substantial portions of the Software.
  *
- *	THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ *	THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,	
  *	EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
  *	OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
  *	NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
@@ -36,14 +36,26 @@
 //#define MAXIMILIAN_PORTAUDIO
 #define MAXIMILIAN_RT_AUDIO
 
-
 #include <iostream>
 #include <fstream>
 #include <string.h>
 #include <cstdlib>
 #include "math.h"
+#include <cerrno>
+#include <queue>
+#include <vector>
+
+#if !defined(_WIN32) && (defined(unix) || defined(__unix__) || defined(__unix) || (defined(__APPLE__) && defined(__MACH__)))
+#define OS_IS_UNIX true
+#include <pthread.h>
+#include <unistd.h>
+#endif
+
 #ifdef _WIN32 //|| _WIN64
+#define OS_IS_WIN true
 #include <algorithm>
+#include <Windows.h>
+#include <process.h>
 #endif
 
 using namespace std;
@@ -54,191 +66,191 @@ using namespace std;
 
 class maxiSettings {
 public:
-    static int sampleRate;
-    static int channels;
-    static int bufferSize;
-    static void setup(int initSampleRate, int initChannels, int initBufferSize) {
-        maxiSettings::sampleRate = initSampleRate;
-        maxiSettings::channels = initChannels;
-        maxiSettings::bufferSize = initBufferSize;
-    }
+	static int sampleRate;
+	static int channels;
+	static int bufferSize;
+	static void setup(int initSampleRate, int initChannels, int initBufferSize) {
+		maxiSettings::sampleRate = initSampleRate;
+		maxiSettings::channels = initChannels;
+		maxiSettings::bufferSize = initBufferSize;
+	}
 };
 
 
 class maxiOsc {
-    
-    double frequency;
-    double phase;
-    double startphase;
-    double endphase;
-    double output;
-    double tri;
-    
-    
+	
+	double frequency;
+	double phase;
+	double startphase;
+	double endphase;
+	double output;
+	double tri;
+	
+	
 public:
-    maxiOsc();
-    double sinewave(double frequency);
-    double coswave(double frequency);
-    double phasor(double frequency);
-    double phasor(double frequency, double startphase, double endphase);
-    double saw(double frequency);
-    double triangle(double frequency);
-    double square(double frequency);
-    double pulse(double frequency, double duty);
-    double noise();
-    double sinebuf(double frequency);
-    double sinebuf4(double frequency);
+	maxiOsc();
+	double sinewave(double frequency);
+	double coswave(double frequency);
+	double phasor(double frequency);
+	double phasor(double frequency, double startphase, double endphase);
+	double saw(double frequency);
+	double triangle(double frequency);
+	double square(double frequency);
+	double pulse(double frequency, double duty);
+	double noise();
+	double sinebuf(double frequency);
+	double sinebuf4(double frequency);
     double sawn(double frequency);
     double rect(double frequency, double duty=0.5);
-    void phaseReset(double phaseIn);
-    
+	void phaseReset(double phaseIn);
+	
 };
 
 
 class maxiEnvelope {
-    
-    double period;
-    double output;
-    double startval;
-    double currentval;
-    double nextval;
-    int isPlaying;
-    
-public:
-    double line(int numberofsegments,double segments[100]);
-    void trigger(int index,double amp);
-    int valindex;
-    double amplitude;
-    
+	
+	double period;
+	double output;
+	double startval;
+	double currentval;
+	double nextval;
+	int isPlaying;
+
+public:	
+	double line(int numberofsegments,double segments[100]);
+	void trigger(int index,double amp);
+	int valindex;
+	double amplitude;
+	
 };
 
 
 class maxiDelayline {
-    double frequency;
-    int phase;
-    double startphase;
-    double endphase;
-    double output;
-    double memory[88200];
-    
+	double frequency;
+	int phase;
+	double startphase;
+	double endphase;
+	double output;
+	double memory[88200];
+	
 public:
-    maxiDelayline();
-    double dl(double input, int size, double feedback);
-    double dl(double input, int size, double feedback, int position);
-    
-    
+	maxiDelayline();
+	double dl(double input, int size, double feedback);
+	double dl(double input, int size, double feedback, int position);
+	
+	
 };
 
 
-class maxiFilter {
-    double gain;
-    double input;
-    double output;
-    double inputs[10];
-    double outputs[10];
-    double cutoff1;
-    double x;//speed
-    double y;//pos
-    double z;//pole
-    double c;//filter coefficient
+class maxiFilter { 	
+	double gain;
+	double input;
+	double output;
+	double inputs[10];
+	double outputs[10];
+	double cutoff1;
+	double x;//speed
+	double y;//pos
+	double z;//pole
+	double c;//filter coefficient
     
 public:
-    maxiFilter():x(0.0), y(0.0), z(0.0), c(0.0){};
-    double cutoff;
-    double resonance;
-    double lores(double input,double cutoff1, double resonance);
-    double hires(double input,double cutoff1, double resonance);
-    double bandpass(double input,double cutoff1, double resonance);
-    double lopass(double input,double cutoff);
-    double hipass(double input,double cutoff);
-    
+	maxiFilter():x(0.0), y(0.0), z(0.0), c(0.0){};
+	double cutoff;
+	double resonance;
+	double lores(double input,double cutoff1, double resonance);
+	double hires(double input,double cutoff1, double resonance);
+	double bandpass(double input,double cutoff1, double resonance);
+	double lopass(double input,double cutoff);
+	double hipass(double input,double cutoff);
+	
 };
 
 class maxiMix  {
-    double input;
-    double two[2];
-    double four[4];
-    double eight[8];
+	double input;
+	double two[2];
+	double four[4];
+	double eight[8];
 public:
-    double x;
-    double y;
-    double z;
-    double *stereo(double input,double two[2],double x);
-    double *quad(double input,double four[4], double x,double y);
-    double *ambisonic(double input,double eight[8],double x,double y, double z);
-    
+	double x;
+	double y;
+	double z;
+	double *stereo(double input,double two[2],double x);
+	double *quad(double input,double four[4], double x,double y);
+	double *ambisonic(double input,double eight[8],double x,double y, double z);
+	
 };
 
 //lagging with an exponential moving average
 //a lower alpha value gives a slower lag
-template <class T>
+template <class T> 
 class maxiLagExp {
 public:
-    T alpha, alphaReciprocal;
-    T val;
-    
-    maxiLagExp() {
-        init(0.5, 0.0);
-    };
-    
-    maxiLagExp(T initAlpha, T initVal) {
-        init(initAlpha, initVal);
-    }
-    
-    void init(T initAlpha, T initVal) {
-        alpha = initAlpha;
-        alphaReciprocal = 1.0 - alpha;
-        val = initVal;
-    }
-    
-    inline void addSample(T newVal) {
-        val = (alpha * newVal) + (alphaReciprocal * val);
-    }
-    
-    inline T value() {
-        return val;
-    }
+	T alpha, alphaReciprocal;
+	T val;
+	
+	maxiLagExp() {
+		init(0.5, 0.0);
+	};
+	
+	maxiLagExp(T initAlpha, T initVal) {
+		init(initAlpha, initVal);
+	}
+	
+	void init(T initAlpha, T initVal) {
+		alpha = initAlpha;
+		alphaReciprocal = 1.0 - alpha;
+		val = initVal;
+	}
+	
+	inline void addSample(T newVal) {
+		val = (alpha * newVal) + (alphaReciprocal * val);
+	}
+	
+	inline T value() {
+		return val;
+	}
 };
 
 
 class maxiSample  {
-    
+	
 private:
-    string 	myPath;
-    int 	myChunkSize;
-    int	mySubChunk1Size;
-    int		readChannel;
-    short 	myFormat;
-    int   	myByteRate;
-    short 	myBlockAlign;
-    double position, recordPosition;
-    double speed;
-    double output;
+	string 	myPath;
+	int 	myChunkSize;
+	int	mySubChunk1Size;
+	int		readChannel;
+	short 	myFormat;
+	int   	myByteRate;
+	short 	myBlockAlign;
+	double position, recordPosition;
+	double speed;
+	double output;
     maxiLagExp<double> loopRecordLag;
-    
+	
 public:
-    int	myDataSize;
-    short 	myChannels;
-    int   	mySampleRate;
-    long length;
-    void getLength();
-    void setLength(unsigned long numSamples);
+	int	myDataSize;
+	short 	myChannels;
+	int   	mySampleRate;
+	long length;
+	long getLength();
+    void setLength(unsigned long numSamples);  
     short 	myBitsPerSample;
-    
-    
-    //	char* 	myData;
+
+	
+//	char* 	myData;
     short* temp;
-    
-    // get/set for the Path property
-    
-    ~maxiSample()
-    {
-        //		if (myData) free(myData);
+	
+	// get/set for the Path property
+	
+	~maxiSample()
+	{
+//		if (myData) free(myData);
         if (temp) free(temp);
         printf("freeing SampleData");
-        
-    }
-    
+
+	}
+	
     maxiSample():temp(NULL),position(0), recordPosition(0), myChannels(1), mySampleRate(maxiSettings::sampleRate) {};
     
     maxiSample& operator=(const maxiSample &source) {
@@ -255,17 +267,17 @@ public:
         length = source.length;
         return *this;
     }
-    
-    bool load(string fileName, int channel=0);
+	
+	bool load(string fileName, int channel=0);
     
     bool loadOgg(string filename,int channel=0);
-    
-    void trigger();
-    
-    // read a wav file into this class
-    bool read();
-    
-    //read an ogg file into this class using stb_vorbis
+	
+	void trigger();
+	
+	// read a wav file into this class
+	bool read();
+	
+	//read an ogg file into this class using stb_vorbis
     bool readOgg();
     
     void loopRecord(double newSample, const bool recordEnabled, const double recordMix, double start = 0.0, double end = 1.0) {
@@ -317,8 +329,8 @@ public:
         return save(myPath);
     }
     
-    bool save(string filename)
-    {
+	bool save(string filename)
+	{
         fstream myFile (filename.c_str(), ios::out | ios::binary);
         
         // write the wav file per the wav file format
@@ -339,16 +351,16 @@ public:
         myFile.write ((char*) temp, myDataSize);
         
         return true;
-    }
-    
-    // return a printable summary of the wav file
-    char *getSummary()
-    {
-        char *summary = new char[250];
-        sprintf(summary, " Format: %d\n Channels: %d\n SampleRate: %d\n ByteRate: %d\n BlockAlign: %d\n BitsPerSample: %d\n DataSize: %d\n", myFormat, myChannels, mySampleRate, myByteRate, myBlockAlign, myBitsPerSample, myDataSize);
-        std::cout << myDataSize;
-        return summary;
-    }
+	}
+	
+	// return a printable summary of the wav file
+	char *getSummary()
+	{
+		char *summary = new char[250];
+		sprintf(summary, " Format: %d\n Channels: %d\n SampleRate: %d\n ByteRate: %d\n BlockAlign: %d\n BitsPerSample: %d\n DataSize: %d\n", myFormat, myChannels, mySampleRate, myByteRate, myBlockAlign, myBitsPerSample, myDataSize);
+		std::cout << myDataSize;
+		return summary;
+	}
     
     void normalise(float maxLevel = 0.99);  //0 < maxLevel < 1.0
     void autoTrim(float alpha = 0.3, float threshold = 6000, bool trimStart = true, bool trimEnd = true); //alpha of lag filter (lower == slower reaction), threshold to mark start and end, < 32767
@@ -384,63 +396,63 @@ public:
         }
         return v;
     }
-    
+	
 };
 
 
 class maxiDyn {
-    
-    
+	
+	
 public:
-    //	double gate(double input, double threshold=0.9, long holdtime=1, double attack=1, double release=0.9995);
-    //	double compressor(double input, double ratio, double threshold=0.9, double attack=1, double release=0.9995);
+//	double gate(double input, double threshold=0.9, long holdtime=1, double attack=1, double release=0.9995);
+//	double compressor(double input, double ratio, double threshold=0.9, double attack=1, double release=0.9995);
     double gate(double input, double threshold=0.9, long holdtime=1, double attack=1, double release=0.9995);
     double compressor(double input, double ratio, double threshold=0.9, double attack=1, double release=0.9995);
     double compress(double input);
     double input;
-    double ratio;
-    double currentRatio;
-    double threshold;
-    double output;
-    double attack;
-    double release;
-    double amplitude;
+	double ratio;
+	double currentRatio;
+	double threshold;
+	double output;
+	double attack;
+	double release;
+	double amplitude;
     void setAttack(double attackMS);
     void setRelease(double releaseMS);
     void setThreshold(double thresholdI);
     void setRatio(double ratioF);
-    long holdtime;
-    long holdcount;
-    int attackphase,holdphase,releasephase;
+	long holdtime;
+	long holdcount;
+	int attackphase,holdphase,releasephase;
 };
 
 class maxiEnv {
-    
-    
+	
+	
 public:
-    double ar(double input, double attack=1, double release=0.9, long holdtime=1, int trigger=0);
-    double adsr(double input, double attack=1, double decay=0.99, double sustain=0.125, double release=0.9, long holdtime=1, int trigger=0);
+	double ar(double input, double attack=1, double release=0.9, long holdtime=1, int trigger=0);
+	double adsr(double input, double attack=1, double decay=0.99, double sustain=0.125, double release=0.9, long holdtime=1, int trigger=0);
     double adsr(double input,int trigger);
-    double input;
-    double output;
-    double attack;
-    double decay;
-    double sustain;
-    double release;
-    double amplitude;
+	double input;
+	double output;
+	double attack;
+	double decay;
+	double sustain;
+	double release;
+	double amplitude;
     void setAttack(double attackMS);
     void setRelease(double releaseMS);
     void setDecay(double decayMS);
     void setSustain(double sustainL);
-    int trigger;
-    long holdtime=1;
-    long holdcount;
-    int attackphase,decayphase,sustainphase,holdphase,releasephase;
+	int trigger;
+	long holdtime=1;
+	long holdcount;
+	int attackphase,decayphase,sustainphase,holdphase,releasephase;
 };
 
 class convert {
 public:
-    double mtof(int midinote);
+	double mtof(int midinote);
 };
 
 
@@ -481,7 +493,7 @@ public:
     double flange(const double input, const unsigned int delay, const double feedback, const double speed, const double depth);
     maxiDelayline dl;
     maxiOsc lfo;
-    
+
 };
 
 inline double maxiFlanger::flange(const double input, const unsigned int delay, const double feedback, const double speed, const double depth)
@@ -489,7 +501,7 @@ inline double maxiFlanger::flange(const double input, const unsigned int delay, 
     //todo: needs fixing
     double output;
     double lfoVal = lfo.triangle(speed);
-    output = dl.dl(input, delay + (lfoVal * depth * delay) + 1, feedback) ;
+    output = dl.dl(input, delay + (lfoVal * depth * delay) + 1, feedback) ;    
     double normalise = (1 - fabs(output));
     output *= normalise;
     return (output + input) / 2.0;
@@ -514,8 +526,8 @@ inline double maxiChorus::chorus(const double input, const unsigned int delay, c
     double output1, output2;
     double lfoVal = lfo.noise();
     lfoVal = lopass.lores(lfoVal, speed, 1.0) * 2.0;
-    output1 = dl.dl(input, delay + (lfoVal * depth * delay) + 1, feedback) ;
-    output2 = dl2.dl(input, (delay + (lfoVal * depth * delay * 1.02) + 1) * 0.98, feedback * 0.99) ;
+    output1 = dl.dl(input, delay + (lfoVal * depth * delay) + 1, feedback) ;    
+    output2 = dl2.dl(input, (delay + (lfoVal * depth * delay * 1.02) + 1) * 0.98, feedback * 0.99) ;    
     output1 *= (1.0 - fabs(output1));
     output2 *= (1.0 - fabs(output2));
     return (output1 + output2 + input) / 3.0;
@@ -796,5 +808,49 @@ public:
     
 };
 
+class maxiRecorder
+{
+public:
+    maxiRecorder();
+    ~maxiRecorder();
+
+    void                setup(std::string _filename);
+    void                startRecording();
+    void                stopRecording();
+    bool                isRecording() const;
+    void                passData(double* _in, int _inBufferSize);
+    void                passData(float*  _in, int _inBufferSize);
+    void                saveToWav();
+
+private:
+    template <typename T>
+    void                write(std::ofstream& _stream, const T& _t);
+    void*               update(void* _context);
+    std::vector<double> getProcessedData();
+    void                enqueueBuffer();
+    void                freeResources();
+    bool                threadRunning;
+    const int           bufferQueueSize;
+    const int           bufferSize;
+    long int            bufferIndex;
+    long int            recordedAmountFrames;
+    std::queue<double*> bufferQueue;
+    std::queue<double*> savedBuffers;
+    bool                doRecord;
+    std::string         filename;
+#if defined(OS_IS_UNIX)
+	pthread_t           daemon;
+	static void*        update_pthread_helper(void* _context)
+#elif defined(OS_IS_WIN)
+	HANDLE				daemonHandle;
+	static unsigned __stdcall
+                        update_pthread_helper(void* _context)
+#endif
+	{
+		maxiRecorder* _this = static_cast<maxiRecorder*>(_context);
+		_this->update(_this);
+		return 0;
+	}
+};
 
 #endif

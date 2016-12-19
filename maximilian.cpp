@@ -364,6 +364,8 @@ double maxiOsc::triangle(double frequency) {
 	
 } 
 
+// don't use this nonsense. Use ramps instead.
+// ..er... I mean "This method is deprecated"
 double maxiEnvelope::line(int numberofsegments,double segments[1000]) {
 	//This is a basic multi-segment ramp generator that you can use for more or less anything.
     //However, it's not that intuitive.
@@ -399,13 +401,23 @@ double maxiEnvelope::line(int numberofsegments,double segments[1000]) {
 //	
 //}
 
-double maxiEnvelope::ramp(double startVal, double endVal, double duration, int trigger1){
-  
+void maxiEnvelope::note(bool noteOn) {
+    
+    if (noteOn) trigger=1;
+    if (noteOn==false) trigger=0;
+
+}
+
+double maxiEnvelope::ramp(double startVal, double endVal, double duration){
+
     if (trigger!=0) {
         phase=startVal;
+        isPlaying=true;
         trigger=0;
     }
 
+    if (isPlaying) {
+    
     if (startVal<endVal) {
         phase += ((endVal-startVal)/(maxiSettings::sampleRate/(1./duration)));
         if ( phase >= endVal ) phase = endVal;
@@ -416,41 +428,90 @@ double maxiEnvelope::ramp(double startVal, double endVal, double duration, int t
         if ( phase <= endVal ) phase = endVal;
     }
     return(phase);
+    } else {
+        
+        return(0);
+        
+    }
+        
 
 }
 
 
-double maxiEnvelope::ramps(double rampsArray[1000], int trigger1){
+double maxiEnvelope::ramps(std::vector<double> rampsArray){
     
     if (trigger!=0) {
         valindex=0;
-        endVal=rampsArray[valindex];
+        endVal=rampsArray[valindex+1];
+        isPlaying=true;
         trigger=0;
+        
+    }
+    
+    if (isPlaying) {
+        
+        if (valindex>0 && rampsArray[valindex-1]==rampsArray[valindex+1]) {
+            period += (1/(maxiSettings::sampleRate/(1./rampsArray[valindex])));
+            if (period>=1) {
+                phase=endVal;
+                startVal=phase;
+                if (valindex+2<rampsArray.size()){
+                    valindex+=2;
+                    endVal=rampsArray[valindex+1];
+                    period=0;
+                }
+            } output=phase;
+        }
+        
+        if (valindex==0 && output==endVal) {
+            period += (1/(maxiSettings::sampleRate/(1./rampsArray[valindex])));
+            if (period>=1) {
+                phase=endVal;
+                startVal=phase;
+                if (valindex+2<rampsArray.size()){
+                    valindex+=2;
+                    endVal=rampsArray[valindex+1];
+                    period=0;
+                }
+            } output=phase;
+        }
+        
+        if (phase<endVal) {
+            phase += ((endVal-startVal)/(maxiSettings::sampleRate/(1./rampsArray[valindex])));
+            if ( phase >= endVal ) {
+                phase=endVal;
+                startVal=phase;
+                if (valindex+2<rampsArray.size()){
+                    valindex+=2;
+                    endVal=rampsArray[valindex+1];
 
-    }
-    
-    if (phase<endVal) {
-        phase += ((endVal-startVal)/(maxiSettings::sampleRate/(1./rampsArray[valindex+1])));
-        if ( phase >= endVal ) {
-            startVal=phase;
-            valindex+=2;
-            endVal=rampsArray[valindex];
+                }
+            }
+            output=phase;
         }
-    }
-    
-    if (phase > endVal) {
-        phase += ((endVal-startVal)/(maxiSettings::sampleRate/(1./rampsArray[valindex+1])));
-        if ( phase <= endVal ) {
-            startVal=phase;
-            valindex+=2;
-            endVal=rampsArray[valindex];
+        
+        if (phase > endVal) {
+            phase += ((endVal-startVal)/(maxiSettings::sampleRate/(1./rampsArray[valindex])));
+            if ( phase <= endVal ) {
+                phase=endVal;
+                startVal=phase;
+                if (valindex+2<rampsArray.size()){
+                    valindex+=2;
+                    endVal=rampsArray[valindex+1];
+
+                }
+            } output=phase;
         }
-    }
-    return(phase);
+        
+        return(output);
     
+    } else {
+        
+        return(0);
+    }
 }
 
-double maxiEnvelope::ar(double attack, double release,int trigger1) {
+double maxiEnvelope::ar(double attack, double release) {
     
     if (trigger!=0) {
         phase=0;
@@ -475,18 +536,19 @@ double maxiEnvelope::ar(double attack, double release,int trigger1) {
 }
 
 
-double maxiEnvelope::adsr(double attack, double decay, double sustain, double release, int trigger1) {
+double maxiEnvelope::adsr(double attack, double decay, double sustain, double release) {
     
-    if (trigger!=0 && !releaseMode && !decayMode && !sustainMode) {
-        phase=0;
+    if (trigger!=0 && !attackMode && !decayMode && !sustainMode && !releaseMode) {
+        phase=0.;
         releaseMode=false;
         decayMode=false;
         sustainMode=false;
         attackMode=true;
     }
     
-    if (phase<1 && attackMode) {
+    if (attackMode) {
         phase += ((1)/(maxiSettings::sampleRate/(1./attack)));
+
         if ( phase >= 1 ) {
             phase=1;
             attackMode=false;

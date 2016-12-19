@@ -109,27 +109,29 @@ public:
 
 class maxiEnvelope {
 	
-	double period;
+	double period=0;
 	double output;
     double phase;
 	double startVal;
     double endVal;
 	double currentval;
 	double nextval;
+    bool noteOn;
     bool releaseMode;
     bool decayMode;
     bool sustainMode;
-    bool attackMode=true;
+    bool attackMode;
 	int isPlaying;
 
 public:
-    int trigger=1;
+    int trigger;
 	double line(int numberofsegments,double segments[100]);
-    double ramp(double startVal=0, double endVal=1, double duration=1, int trigger=1);
-    double ramps(double rampsArray[1000], int trigger=1);
-    double ar(double attack=0.1, double release=0.1,int trigger=1);
-    double adsr(double attack=0.1, double decay=0.1, double sustain=0.1, double release=0.1,int trigger=1);
+    double ramp(double startVal=0, double endVal=1, double duration=1);
+    double ramps(std::vector<double> rampsArray);
+    double ar(double attack=0.1, double release=0.1);
+    double adsr(double attack=0.1, double decay=0.1, double sustain=0.1, double release=0.1);
 //	void trigger(int index,double amp);
+    void note(bool noteOn=false);
 	int valindex;
 	double amplitude;
 	

@@ -544,8 +544,8 @@ void fft::inversePowerSpectrum(int start, float *finalOut, float *window, float 
 	}
 	
 	/* zero negative frequencies */
-	memset(in_real+half, half, 0.0);
-	memset(in_img+half, half, 0.0);
+	memset(in_real+half, 0, sizeof(float) * half);
+	memset(in_img+half, 0, sizeof(float) * half);
 	
 	FFT(n, 1, in_real, in_img, out_real, out_img); // second parameter indicates inverse transform
 	

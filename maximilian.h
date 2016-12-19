@@ -39,6 +39,7 @@
 #include <iostream>
 #include <fstream>
 #include <string.h>
+#include <cassert>
 #include <cstdlib>
 #include "math.h"
 #include <cerrno>

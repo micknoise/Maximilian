@@ -393,27 +393,27 @@ double maxiEnvelope::line(int numberofsegments,double segments[1000]) {
 	return(output);
 }
 
-//and this
-//void maxiEnvelope::trigger(int index, double amp) {
-//	isPlaying=1;//ok the envelope is being used now.
-//	valindex=index;
-//	amplitude=amp;
-//	
-//}
+//and this is also deprecated
+void maxiEnvelope::trigger(int index, double amp) {
+	isPlaying=1;//ok the envelope is being used now.
+	valindex=index;
+	amplitude=amp;
+	
+}
 
-void maxiEnvelope::note(bool noteOn) {
+void maxiEnvelope::trigger(bool noteOn) {
     
-    if (noteOn) trigger=1;
-    if (noteOn==false) trigger=0;
+    if (noteOn) trig=1;
+    if (noteOn==false) trig=0;
 
 }
 
 double maxiEnvelope::ramp(double startVal, double endVal, double duration){
 
-    if (trigger!=0) {
+    if (trig!=0) {
         phase=startVal;
         isPlaying=true;
-        trigger=0;
+        trig=0;
     }
 
     if (isPlaying) {
@@ -440,11 +440,11 @@ double maxiEnvelope::ramp(double startVal, double endVal, double duration){
 
 double maxiEnvelope::ramps(std::vector<double> rampsArray){
     
-    if (trigger!=0) {
+    if (trig!=0) {
         valindex=0;
         endVal=rampsArray[valindex+1];
         isPlaying=true;
-        trigger=0;
+        trig=0;
         
     }
     
@@ -513,10 +513,10 @@ double maxiEnvelope::ramps(std::vector<double> rampsArray){
 
 double maxiEnvelope::ar(double attack, double release) {
     
-    if (trigger!=0) {
-        phase=0;
+    if (trig!=0) {
+        //phase=0;
         releaseMode=false;
-        trigger=0;
+        trig=0;
     }
 
     if (phase<1 && releaseMode==false) {
@@ -538,12 +538,13 @@ double maxiEnvelope::ar(double attack, double release) {
 
 double maxiEnvelope::adsr(double attack, double decay, double sustain, double release) {
     
-    if (trigger!=0 && !attackMode && !decayMode && !sustainMode && !releaseMode) {
-        phase=0.;
+    if (trig!=0 && !attackMode) {
+//        phase=0.;
         releaseMode=false;
         decayMode=false;
         sustainMode=false;
         attackMode=true;
+        trig=0;
     }
     
     if (attackMode) {
@@ -567,11 +568,11 @@ double maxiEnvelope::adsr(double attack, double decay, double sustain, double re
     
     if (sustainMode) {
 
-        if (trigger!=0) {
+        if (noteOn) {
             phase=sustain;
         }
         
-        if (trigger==0) {
+        if (!noteOn) {
             sustainMode=false;
             releaseMode=true;
         }

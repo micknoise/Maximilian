@@ -55,20 +55,35 @@ public:
 	
 	float			*in_real, *out_real, *in_img, *out_img;
     
+    float * getReal();
+    float * getImg();
+    
 #ifdef __APPLE_CC__
 	int log2n; //log2(n);
     FFTSetup        setupReal;
     COMPLEX_SPLIT   A;
 	float *polar;
-	void powerSpectrum_vdsp(int start, float *data, float *window, float *magnitude,float *phase);	
-	void inversePowerSpectrum_vdsp(int start, float *finalOut, float *window, float *magnitude,float *phase);	
+    
+    void calcFFT_vdsp(float *data, float *window);
+    void cartToPol_vdsp(float *magnitude,float *phase);
+	void powerSpectrum_vdsp(int start, float *data, float *window, float *magnitude,float *phase);
+    
+    void polToCart_vdsp(float *magnitude,float *phase);
+    void calcIFFT_vdsp(float *finalOut, float *window);
+    void inverseFFTComplex_vdsp(int start, float *finalOut, float *window, float *real, float *imaginary);
+	void inversePowerSpectrum_vdsp(int start, float *finalOut, float *window, float *magnitude,float *phase);
 	void convToDB_vdsp(float *in, float *out);
 #endif
 	
 	/* Calculate the power spectrum */
+    void calcFFT(int start, float *data, float *window);
+    void cartToPol(float *magnitude,float *phase);
 	void powerSpectrum(int start, float *data, float *window, float *magnitude, float *phase);
 	/* ... the inverse */
-	void inversePowerSpectrum(int start, float *finalOut, float *window, float *magnitude,float *phase);	
+    void polToCart(float *magnitude,float *phase);
+    void calcIFFT(int start, float *finalOut, float *window);
+    void inverseFFTComplex(int start, float *finalOut, float *window, float *real, float *imaginary);
+	void inversePowerSpectrum(int start, float *finalOut, float *window, float *magnitude,float *phase);
 	void convToDB(float *in, float *out);
     
 	static void genWindow(int whichFunction, int NumSamples, float *window);

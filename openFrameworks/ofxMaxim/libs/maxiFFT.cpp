@@ -63,18 +63,28 @@ void maxiFFT::setup(int _fftSize, int _windowSize, int _hopSize) {
 	window = (float*) malloc(fftSize * sizeof(float));
 	memset(window, 0, fftSize * sizeof(float));
 	fft::genWindow(3, windowSize, window);
+    real = _fft->getReal();
+    imag = _fft->getImg();
 }
 
-bool maxiFFT::process(float value) {
+bool maxiFFT::process(float value, fftModes mode) {
 	//add value to buffer at current pos
 	buffer[pos++] = value;
 	//if buffer full, run fft
 	newFFT = pos == windowSize;
 	if (newFFT) {
 #if defined(__APPLE_CC__) && !defined(_NO_VDSP)
-		_fft->powerSpectrum_vdsp(0, buffer, window, magnitudes, phases);
+        if (mode == maxiFFT::WITH_POLAR_CONVERSION) {
+            _fft->powerSpectrum_vdsp(0, buffer, window, magnitudes, phases);
+        }else{
+            _fft->calcFFT_vdsp(buffer, window);
+        }
 #else
-		_fft->powerSpectrum(0, buffer, window, magnitudes, phases);		
+        if (mode == maxiFFT::WITH_POLAR_CONVERSION) {
+            _fft->powerSpectrum(0, buffer, window, magnitudes, phases);
+        }else{
+            _fft->calcFFT(0, buffer, window);
+        }
 #endif
 		//shift buffer back by one hop size
 		memcpy(buffer, buffer + hopSize, (windowSize - hopSize) * sizeof(float));
@@ -146,14 +156,22 @@ void maxiIFFT::setup(int _fftSize, int _windowSize, int _hopSize) {
 	fft::genWindow(3, windowSize, window);
 }
 
-float maxiIFFT::process(float *magnitudes, float *phases) {
+float maxiIFFT::process(float *data1, float *data2, fftModes mode) {
 	if (0==pos) {
 		//do ifft
 		memset(ifftOut, 0, fftSize * sizeof(float));
 #if defined(__APPLE_CC__) && !defined(_NO_VDSP)
-		_fft->inversePowerSpectrum_vdsp(0, ifftOut, window, magnitudes, phases);
+        if (mode == maxiIFFT::SPECTRUM) {
+            _fft->inversePowerSpectrum_vdsp(0, ifftOut, window, data1, data2);
+        }else{
+            _fft->inverseFFTComplex_vdsp(0, ifftOut, window, data1, data2);
+        }
 #else
-		_fft->inversePowerSpectrum(0, ifftOut, window, magnitudes, phases);
+        if (mode == maxiIFFT::SPECTRUM) {
+            _fft->inversePowerSpectrum(0, ifftOut, window, data1, data2);
+        }else{
+            _fft->inverseFFTComplex(0, ifftOut, window, data1, data2);            
+        }
 #endif
 		//add to output
 		//shift back by one hop

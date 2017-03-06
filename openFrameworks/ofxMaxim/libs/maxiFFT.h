@@ -33,7 +33,7 @@
 #ifndef _MAXI_FFT
 #define _MAXI_FFT
 
-#define _NO_VDSP  //set this if you don't want to use apple's vDSP fft functions
+//#define _NO_VDSP  //set this if you don't want to use apple's vDSP fft functions
 
 
 #include "fft.h"
@@ -42,20 +42,23 @@
 class maxiFFT {
 	
 public:
+    
+    enum fftModes {NO_POLAR_CONVERSION, WITH_POLAR_CONVERSION};
+    
 	maxiFFT(){
 		_fft = NULL; 
 		buffer = magnitudes = phases  = window = avgPower = NULL;
 	};
 	~maxiFFT();
 	void setup(int fftSize, int windowSize, int hopSize);
-	bool process(float value);
+    bool process(float value, fftModes mode = maxiFFT::WITH_POLAR_CONVERSION);
 	float* magsToDB();
-	float *magnitudes, *phases, *magnitudesDB;
+	float *magnitudes, *phases, *magnitudesDB, *real, *imag;
 	float *avgPower;
 	int windowSize;
 	int hopSize;
 	int bins;
-	
+    
 	//features
 	float spectralFlatness();
 	float spectralCentroid();
@@ -73,13 +76,16 @@ private:
 class maxiIFFT {
 	
 public:
+    enum fftModes {SPECTRUM, COMPLEX};
+
 	maxiIFFT(){
 		_fft=0;
 	};
 	~maxiIFFT();
 	void setup(int fftSize, int windowSize, int hopSize);
-	float process(float *magnitudes, float *phases);
+    float process(float *data1, float *data2, fftModes mode = maxiIFFT::SPECTRUM);
 	
+    
 private:
 	float *ifftOut, *buffer, *window;
 	int windowSize;

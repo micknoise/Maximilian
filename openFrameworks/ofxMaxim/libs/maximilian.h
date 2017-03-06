@@ -247,7 +247,7 @@ public:
 	{
 //		if (myData) free(myData);
         if (temp) free(temp);
-        printf("freeing SampleData");
+        printf("freeing SampleData\n");
 
 	}
 	

@@ -42,6 +42,7 @@
 #include <stdio.h>
 #include <math.h>
 #include <string.h>
+#include <iostream>
 
 int **gFFTBitTable = NULL;
 const int MaxFastBits = 16;
@@ -418,6 +419,10 @@ fft::fft(int fftSize) {
 	in_img = (float *) malloc(n * sizeof(float));
 	out_real = (float *) malloc(n * sizeof(float));
 	out_img = (float *) malloc(n * sizeof(float));
+    std::fill(out_real, out_real+half, 0);
+    std::fill(out_img, out_img+half, 0);
+    std::fill(in_real, in_real+half, 0);
+    std::fill(in_img, in_img+half, 0);
     
 #ifdef __APPLE_CC__
 	log2n = log2(n);
@@ -444,31 +449,52 @@ fft::~fft() {
 	
 }
 
-/* Calculate the power spectrum */
-void fft::powerSpectrum(int start, float *data, float *window, float *magnitude,float *phase) {
-	int i;
-	
-	//windowing
-	for (i = 0; i < n; i++) {
-		in_real[i] = data[start + i] * window[i];
-	}
-	
-	
-	RealFFT(n, in_real, out_real, out_img);
-	
-	for (i = 0; i < half; i++) {
-		/* compute power */
-		float power = out_real[i]*out_real[i] + out_img[i]*out_img[i];
-		/* compute magnitude and phase */
-		magnitude[i] = sqrt(power);
-		phase[i] = atan2(out_img[i],out_real[i]);
-		
+float * fft::getReal() {
+#ifdef __APPLE_CC__
+    return A.realp;
+#else
+    return out_real;
+#endif
+}
+
+float * fft::getImg() {
+#ifdef __APPLE_CC__
+    return A.imagp;
+#else
+    return out_img;
+#endif
+}
+
+void fft::calcFFT(int start, float *data, float *window) {
+    //windowing
+    for (int i = 0; i < n; i++) {
+        in_real[i] = data[start + i] * window[i];
+    }
+    RealFFT(n, in_real, out_real, out_img);
+}
+
+void fft::cartToPol(float *magnitude,float *phase) {
+    for (int i = 0; i < half; i++) {
+        /* compute power */
+        float power = out_real[i]*out_real[i] + out_img[i]*out_img[i];
+        /* compute magnitude and phase */
+        magnitude[i] = sqrt(power);
+        phase[i] = atan2(out_img[i],out_real[i]);
+        
         //		if (magnitude[i] < 0.000001){ // less than 0.1 nV
         //			magnitude[i] = 0; // out of range
         //		} else {
         //			magnitude[i] = 20.0*log10(magnitude[i] + 1);  // get to to db scale
         //		}
-	}
+    }
+}
+
+
+/* Calculate the power spectrum */
+void fft::powerSpectrum(int start, float *data, float *window, float *magnitude,float *phase) {
+	
+    calcFFT(start, data, window);
+    cartToPol(magnitude, phase);
 	
 }
 
@@ -485,39 +511,43 @@ void fft::convToDB(float *in, float *out) {
 
 #ifdef __APPLE_CC__
 
+void fft::calcFFT_vdsp(float *data, float *window) {
+    uint32_t        i;
+    
+    //multiply by window
+    vDSP_vmul(data, 1, window, 1, in_real, 1, n);
+    
+    //convert to split complex format - evens and odds
+    vDSP_ctoz((COMPLEX *) in_real, 2, &A, 1, half);
+    
+    
+    //calc fft
+    vDSP_fft_zrip(setupReal, &A, 1, log2n, FFT_FORWARD);
+    
+    //scale by 2 (see vDSP docs)
+    static float scale=0.5 ;
+    vDSP_vsmul(A.realp, 1, &scale, A.realp, 1, half);
+    vDSP_vsmul(A.imagp, 1, &scale, A.imagp, 1, half);
+}
+
+void fft::cartToPol_vdsp(float *magnitude,float *phase) {
+    //back to split complex format
+    vDSP_ztoc(&A, 1, (COMPLEX*) out_real, 2, half);
+    
+    //convert to polar
+    vDSP_polar(out_real, 2, polar, 2, half);
+    
+    for (uint32_t i = 0; i < half; i++) {
+        magnitude[i]=polar[2*i];
+        phase[i]=polar[2*i + 1];
+    }
+}
+
+
 /* Calculate the power spectrum */
 void fft::powerSpectrum_vdsp(int start, float *data, float *window, float *magnitude,float *phase) {
-	
-    uint32_t        i;
-	
-	//multiply by window
-	vDSP_vmul(data, 1, window, 1, in_real, 1, n);
-    
-	//convert to split complex format - evens and odds
-	vDSP_ctoz((COMPLEX *) in_real, 2, &A, 1, half);
-	
-	
-	//calc fft
-	vDSP_fft_zrip(setupReal, &A, 1, log2n, FFT_FORWARD);
-	
-	//scale by 2 (see vDSP docs)
-	static float scale=0.5 ;
-	vDSP_vsmul(A.realp, 1, &scale, A.realp, 1, half);
-	vDSP_vsmul(A.imagp, 1, &scale, A.imagp, 1, half);
-    
-	//back to split complex format
-	vDSP_ztoc(&A, 1, (COMPLEX*) out_real, 2, half);
-	
-	//convert to polar
-	vDSP_polar(out_real, 2, polar, 2, half);
-	
-	for (i = 0; i < half; i++) {
-		magnitude[i]=polar[2*i];
-		phase[i]=polar[2*i + 1];
-	}
-	
-	
-	
+    calcFFT_vdsp(data, window);
+    cartToPol_vdsp(magnitude, phase);
 }
 
 void fft::convToDB_vdsp(float *in, float *out) {
@@ -531,57 +561,82 @@ void fft::convToDB_vdsp(float *in, float *out) {
 
 #endif
 
-void fft::inversePowerSpectrum(int start, float *finalOut, float *window, float *magnitude,float *phase) {
-	int i;
-	
-	/* get real and imag part */
-	for (i = 0; i < half; i++) {
+void fft::polToCart(float *magnitude,float *phase) {
+    /* get real and imag part */
+    for (int i = 0; i < half; i++) {
         //		float mag = pow(10.0, magnitude[i] / 20.0) - 1.0;
         //		in_real[i] = mag *cos(phase[i]);
         //		in_img[i]  = mag *sin(phase[i]);
-		in_real[i] = magnitude[i] *cos(phase[i]);
-		in_img[i]  = magnitude[i] *sin(phase[i]);
-	}
-	
-	/* zero negative frequencies */
-//	memset(in_real+half, half, 0.0);
-//	memset(in_img+half, half, 0.0);
-
+        in_real[i] = magnitude[i] *cos(phase[i]);
+        in_img[i]  = magnitude[i] *sin(phase[i]);
+    }
+    
+    /* zero negative frequencies */
     memset(in_real+half, 0.0, sizeof(float) * half);
     memset(in_img+half, 0.0, sizeof(float) * half);
-    
-	FFT(n, 1, in_real, in_img, out_real, out_img); // second parameter indicates inverse transform
-	
-	for (i = 0; i < n; i++) {
-		finalOut[start + i] += out_real[i] * window[i]
-		;
-	}
-	
+}
+
+void fft::calcIFFT(int start, float *finalOut, float *window) {
+    FFT(n, 1, in_real, in_img, out_real, out_img); // second parameter indicates inverse transform
+    for (int i = 0; i < n; i++) {
+        finalOut[start + i] += out_real[i] * window[i];
+    }
+}
+
+void fft::inverseFFTComplex(int start, float *finalOut, float *window, float *real, float *imaginary) {
+    for(int i=0; i < half; i++) {
+        out_real[i] = real[i];
+        out_img[i] = imaginary[i];
+    }
+    calcIFFT(start, finalOut, window);
 }
 
 
+void fft::inversePowerSpectrum(int start, float *finalOut, float *window, float *magnitude,float *phase) {
+    polToCart(magnitude, phase);
+    calcIFFT(start, finalOut, window);
+}
+
+
+
 #ifdef __APPLE_CC__
-void fft::inversePowerSpectrum_vdsp(int start, float *finalOut, float *window, float *magnitude,float *phase) {
-	uint32_t i;
-	
-	for (i = 0; i < half; i++) {
+
+void fft::polToCart_vdsp(float *magnitude,float *phase) {
+    for (uint32_t i = 0; i < half; i++) {
         //		polar[2*i] = pow(10.0, magnitude[i] / 20.0) - 1.0;
-		polar[2*i] = magnitude[i];
-		polar[2*i + 1] = phase[i];
-	}	
-	
-	vDSP_rect(polar, 2, in_real, 2, half);
-	
-	vDSP_ctoz((COMPLEX*) in_real, 2, &A, 1, half);
-	vDSP_fft_zrip(setupReal, &A, 1, log2n, FFT_INVERSE);
-	vDSP_ztoc(&A, 1, (COMPLEX*) out_real, 2, half);
-	
-    float scale = 1./n;
-	vDSP_vsmul(out_real, 1, &scale, out_real, 1, n);
+        polar[2*i] = magnitude[i];
+        polar[2*i + 1] = phase[i];
+    }
     
-	//multiply by window
-	vDSP_vmul(out_real, 1, window, 1, finalOut, 1, n);
+    vDSP_rect(polar, 2, in_real, 2, half);
+    
+    vDSP_ctoz((COMPLEX*) in_real, 2, &A, 1, half);
+}
+
+void fft::calcIFFT_vdsp(float *finalOut, float *window) {
+    vDSP_fft_zrip(setupReal, &A, 1, log2n, FFT_INVERSE);
+    vDSP_ztoc(&A, 1, (COMPLEX*) out_real, 2, half);
+    
+    float scale = 1./n;
+    vDSP_vsmul(out_real, 1, &scale, out_real, 1, n);
+    
+    //multiply by window
+    vDSP_vmul(out_real, 1, window, 1, finalOut, 1, n);
+}
+
+void fft::inversePowerSpectrum_vdsp(int start, float *finalOut, float *window, float *magnitude,float *phase) {
 	
+    polToCart_vdsp(magnitude, phase);
+    calcIFFT_vdsp(finalOut, window);
+	
+}
+
+void fft::inverseFFTComplex_vdsp(int start, float *finalOut, float *window, float *real, float *imaginary) {
+    for(int i=0; i < half; i++) {
+        A.realp[i] = real[i];
+        A.imagp[i] = imaginary[i];
+    }
+    calcIFFT_vdsp(finalOut, window);
 }
 
 #endif

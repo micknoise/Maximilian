@@ -125,7 +125,7 @@ private:
 
 class maxiGrainBase {
 public:
-    virtual double play() {}
+	virtual double play() = 0;
     virtual ~maxiGrainBase() {}
     bool finished;
 };

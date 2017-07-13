@@ -1287,7 +1287,7 @@ void maxiSample::setLength(unsigned long numSamples) {
         memcpy(newData, temp, sizeof(short) * copyLength);
     }
     temp = newData;
-    myDataSize = numSamples * 2;
+    myDataSize = int(numSamples * 2);
     length=numSamples;
     position=0;
     recordPosition=0;
@@ -1328,7 +1328,7 @@ void maxiSample::autoTrim(float alpha, float threshold, bool trimStart, bool tri
         }
     }
     
-    int endMarker = length-1;
+    int endMarker = int(length-1);
     if(trimEnd) {
         maxiLagExp<float> endLag(alpha, 0);
         while(endMarker > 0) {
@@ -1355,7 +1355,7 @@ void maxiSample::autoTrim(float alpha, float threshold, bool trimStart, bool tri
         position=0;
         recordPosition=0;
         //envelope the start
-        int fadeSize=min((long)100, length);
+        int fadeSize=int(min((long)100, length));
         for(int i=0; i < fadeSize; i++) {
             float factor = i / (float) fadeSize;
             temp[i] = round(temp[i] * factor);
@@ -2285,7 +2285,7 @@ void* maxiRecorder::update(void* _context)
 	_this->threadRunning = true;
 	while (_this->doRecord)
 	{
-		usleep((long)(10000. / bufferSize / maxiSettings::sampleRate));
+		usleep((useconds_t)(10000. / bufferSize / maxiSettings::sampleRate));
 		while (_this->bufferQueueSize > _this->bufferQueue.size())
 		{
 			_this->enqueueBuffer();
@@ -2394,7 +2394,7 @@ void maxiRecorder::saveToWav()
 
     int sampleRate = maxiSettings::sampleRate;
     short channels = maxiSettings::channels;
-    int   buffSize = pcmDataInt.size() * 2;
+    int   buffSize = int(pcmDataInt.size()) * 2;
 
     std::ofstream stream(filename.c_str(), std::ios::binary);
 
@@ -2442,7 +2442,7 @@ void maxiRecorder::saveToWav()
 std::vector<double> maxiRecorder::getProcessedData()
 {
     std::vector<double> userData;
-    int dataSize = savedBuffers.size() * bufferSize;
+    int dataSize = int(savedBuffers.size()) * bufferSize;
     userData.resize(dataSize);
 
     int savedIndex = 0;

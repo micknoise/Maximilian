@@ -31,7 +31,7 @@
  */
 
 #include "maxiFFT.h"
-#include "maximilian.h"
+#include "../maximilian.h"
 #include <iostream>
 #include "math.h"
 

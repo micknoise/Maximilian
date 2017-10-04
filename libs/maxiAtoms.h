@@ -9,7 +9,7 @@
 
 
 #include <iostream>
-#include "maximilian.h"
+#include "../maximilian.h"
 #include <list>
 #include <vector>
 #include "maxiGrains.h"

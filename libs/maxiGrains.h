@@ -2,7 +2,7 @@
 
 #ifndef maxiGrains_2_hpp
 #define maxiGrains_2_hpp
-#include "maximilian.h"
+#include "../maximilian.h"
 
 #if defined(__APPLE_CC__)
 #include "accelerate/accelerate.h"

@@ -1658,12 +1658,14 @@ void maxiDyn::setRatio(double ratioF) {
     ratio = ratioF;
 }
 
-
 double convert::mtof(int midinote) {
-	
 	return mtofarray[midinote];
 }
 
+int convert::ftom(double frequency) {
+    double baseFrequency = 440;
+    return round(12 * log2(frequency/baseFrequency)) + 69;
+}
 
 template<> void maxiEnvelopeFollower::setAttack(double attackMS) {
     attack = pow( 0.01, 1.0 / ( attackMS * maxiSettings::sampleRate * 0.001 ) );

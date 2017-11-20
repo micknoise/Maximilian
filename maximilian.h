@@ -466,7 +466,8 @@ public:
 
 class convert {
 public:
-	double mtof(int midinote);
+	static double mtof(int midinote);
+    static int ftom(double frequency);
 };
 
 

@@ -1667,6 +1667,14 @@ int convert::ftom(double frequency) {
     return round(12 * log2(frequency/baseFrequency)) + 69;
 }
 
+double convert::atodb(double amplitude) {
+    return 20 * log10(amplitude);
+}
+
+double convert::dbtoa(double decibels) {
+    return pow(10, (decibels * 0.5));
+}
+
 template<> void maxiEnvelopeFollower::setAttack(double attackMS) {
     attack = pow( 0.01, 1.0 / ( attackMS * maxiSettings::sampleRate * 0.001 ) );
 }

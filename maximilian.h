@@ -468,6 +468,8 @@ class convert {
 public:
 	static double mtof(int midinote);
     static int ftom(double frequency);
+    static double atodb(double amplitude);
+    static double dbtoa(double amplitude);
 };
 
 

@@ -6,7 +6,7 @@
  *  Copyright 2009 Mick Grierson & Strangeloop Limited. All rights reserved.
  *	Thanks to the Goldsmiths Creative Computing Team.
  *	Special thanks to Arturo Castro for the PortAudio implementation.
- * 
+ *
  *	Permission is hereby granted, free of charge, to any person
  *	obtaining a copy of this software and associated documentation
  *	files (the "Software"), to deal in the Software without
@@ -15,11 +15,11 @@
  *	copies of the Software, and to permit persons to whom the
  *	Software is furnished to do so, subject to the following
  *	conditions:
- *	
+ *
  *	The above copyright notice and this permission notice shall be
  *	included in all copies or substantial portions of the Software.
  *
- *	THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,	
+ *	THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
  *	EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
  *	OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
  *	NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
@@ -74,7 +74,7 @@ bool maxiFFT::process(float value) {
 #if defined(__APPLE_CC__) && !defined(_NO_VDSP)
 		_fft->powerSpectrum_vdsp(0, buffer, window, magnitudes, phases);
 #else
-		_fft->powerSpectrum(0, buffer, window, magnitudes, phases);		
+		_fft->powerSpectrum(0, buffer, window, magnitudes, phases);
 #endif
 		//shift buffer back by one hop size
 		memcpy(buffer, buffer + hopSize, (windowSize - hopSize) * sizeof(float));
@@ -120,8 +120,14 @@ float maxiFFT::spectralCentroid() {
 
 maxiFFT::~maxiFFT() {
 	delete _fft;
-	if (buffer)
-		delete[] buffer,magnitudes,phases,window, avgPower, magnitudesDB;
+    if (buffer) {
+        delete[] buffer;
+        delete[] magnitudes;
+        delete[] phases;
+        delete[] window;
+        delete[] avgPower;
+        delete[] magnitudesDB;
+    }
 }
 
 
@@ -132,7 +138,7 @@ maxiFFT::~maxiFFT() {
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 void maxiIFFT::setup(int _fftSize, int _windowSize, int _hopSize) {
-	_fft = new fft(_fftSize);	
+	_fft = new fft(_fftSize);
 	fftSize = _fftSize;
 	windowSize = _windowSize;
 	bins = fftSize / 2;
@@ -159,7 +165,7 @@ float maxiIFFT::process(float *magnitudes, float *phases) {
 		//shift back by one hop
 		memcpy(buffer, buffer+hopSize, (fftSize - hopSize) * sizeof(float));
 		//clear the end chunk
-		memset(buffer + (fftSize - hopSize), 0, hopSize * sizeof(float)); 
+		memset(buffer + (fftSize - hopSize), 0, hopSize * sizeof(float));
 		//merge new output
 		for(int i=0; i < fftSize; i++) {
 			buffer[i] += ifftOut[i];
@@ -179,7 +185,9 @@ float maxiIFFT::process(float *magnitudes, float *phases) {
 
 maxiIFFT::~maxiIFFT() {
 	delete _fft;
-	delete[] ifftOut, buffer, window;
+    delete[] ifftOut;
+    delete[] buffer;
+    delete[] window;
 };
 
 

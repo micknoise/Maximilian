@@ -434,7 +434,10 @@ fft::fft(int fftSize) {
 
 /* destructor */
 fft::~fft() {
-	delete[] in_real, out_real, in_img, out_img;
+    delete[] in_real;
+    delete[] out_real;
+    delete[] in_img;
+    delete[] out_img;
 #ifdef __APPLE_CC__
 	vDSP_destroy_fftsetup(setupReal);
     delete[] A.realp;

@@ -141,6 +141,16 @@ public:
 	
 };
 
+class maxiFractionalDelay {
+    static const int delaySize = 88200;
+    double memory[delaySize];
+    int writePointer = 0;
+    int readPointer = 0;
+    
+public:
+    maxiFractionalDelay ( void );
+    double dl ( double sig, double delayTime, double feedback );
+};
 
 class maxiFilter { 	
 	double gain;

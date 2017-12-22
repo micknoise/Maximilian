@@ -9,7 +9,7 @@
 
 Maximilian is an audio synthesis and signal processing library written in C++. It's cross-platform compatible with MacOS, Windows, Linux and IOS systems.  The main features are:
 
-- sample playback, recording and looping
+- sample playback, recording, and looping
 - read from WAV and OGG files.
 - a selection of oscillators and filters
 - enveloping
@@ -18,13 +18,13 @@ Maximilian is an audio synthesis and signal processing library written in C++. I
 - effects including delay, distortion, chorus, flanging
 - granular synthesis, including time and pitch stretching
 - atom synthesis
-- realtime music information retrieval functions: spectrum analysis, spectral features, octave analysis, Bark scale analysis, and MFCCs
-- example projects for Windows and MacOS, using command line and OpenFrameworks environments
+- real-time music information retrieval functions: spectrum analysis, spectral features, octave analysis, Bark scale analysis, and MFCCs
+- example projects for Windows and MacOS, using the command line and OpenFrameworks environments
 
 
 :::::::::::::::::::::::::::BASIC EXAMPLES
 
-You can choose between using RTAudio and PortAudio drivers in player.h by uncommenting the appropriate line.  To use PortAudio, you will need to compile the portAudio library from http://http://www.portaudio.com/ and link it with your executable.
+You can choose between using RTAudio and PortAudio drivers in the player.h by uncommenting the appropriate line.  To use PortAudio, you will need to compile the portAudio library from http://http://www.portaudio.com/ and link it with your executable.
 
 Examples demonstrating different features can be found in the maximilian_examples folder.  To try them, replace the contents of main.cpp with the contents of a tutorial file and compile.
 
@@ -36,7 +36,7 @@ You can run the examples using the 'maximilianTest' XCode 3 project provided.
 
 ::WINDOWS VISUAL STUDIO 2010 PROJECT
 
-This is in the maximilianTestWindowsVS2010 folder. You will need to install the DirectX SDK, so that the program can use DirectSound.
+This is in the maximilianTestWindowsVS2010 folder. You will need to install the DirectX SDK so that the program can use DirectSound.
 
 
 :::COMMAND LINE COMPILATION IN MACOSX

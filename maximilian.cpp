@@ -617,6 +617,41 @@ double maxiDelayline::dl(double input, int size, double feedback, int position) 
 	
 }
 
+maxiFractionalDelay::maxiFractionalDelay ( void ) {
+    memset( memory, 0, delaySize*sizeof (double) );
+}
+
+double maxiFractionalDelay::dl ( double sig, double delayTime, double feedback )
+{
+    // Set delay time
+    delayTime = fmin(fabs(delayTime), delaySize);
+    int32_t delay = delayTime; // Truncated
+    double fractAmount = delayTime - delay; // Fractional remainder
+    double truncAmount = 1.0f - fractAmount; // Inverse fractional remainder
+    
+    // Update read pointer
+    readPointer = writePointer - delay;
+    if (readPointer < 0)
+        readPointer += delaySize;
+    
+    int readPointerFractPart = readPointer-1;
+    if (readPointerFractPart < 0)
+        readPointerFractPart += delaySize;
+    
+    // Get interpolated sample
+    double y = memory[readPointer] * truncAmount + memory[readPointerFractPart] * fractAmount;
+    
+    // Write new sample
+    memory[writePointer] = y * feedback + sig;
+    
+    // Increment write pointer
+    if (++writePointer >= delaySize)
+        writePointer -= delaySize;
+    return y;
+    
+}
+
+
 //I particularly like these. cutoff between 0 and 1
 double maxiFilter::lopass(double input, double cutoff) {
 	output=outputs[0] + cutoff*(input-outputs[0]);

@@ -710,7 +710,7 @@ public:
     double envOut;
     bool useDistortion = false;
     bool useLimiter = false;
-    bool useFilter = true;
+    bool useFilter = false;
     double distortion = 0;
     bool inverse = false;
     double cutoff;

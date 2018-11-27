@@ -858,7 +858,7 @@ bool maxiSample::read()
 		if (myChannels>1) {
 			int position=0;
 			int channel=readChannel*2;
-			for (int i=channel;i<myDataSize+6;i+=(myChannels*2)) {
+			for (int i=channel;i<myDataSize;i+=(myChannels*2)) {
 				myData[position]=myData[i];
 				myData[position+1]=myData[i+1];
 				position+=2;

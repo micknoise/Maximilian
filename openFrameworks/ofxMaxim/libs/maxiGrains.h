@@ -125,9 +125,9 @@ private:
 
 class maxiGrainBase {
 public:
-    virtual double play() {}
-    virtual ~maxiGrainBase() {}
-    bool finished;
+  virtual double play() = 0;
+  virtual ~maxiGrainBase() {}
+  bool finished;
 };
 
 template<class F, class maxiSample>

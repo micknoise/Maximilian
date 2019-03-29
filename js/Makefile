@@ -7,11 +7,11 @@ EMSCR=em++
 # POST_JS is all the external js stuff that handles web audio etc
 
 # POST_JS_webAudioWorklet_all=src/js/maxiAudio.js
-POST_JS_webAudio_all=src/js/maxi_webAudio.js
+POST_JS_webAudio_all=maxi_webAudio.js
 # POST_JS_extras=src/js/maxi_extras.js
 
 #the .cpp file that is used
-SOURCE_MAXI=src/cpp/maxi_emscr_new.cpp
+SOURCE_MAXI=../src/maximilian.cpp
 
 BUILD_DIR=build
 TEST_DIR=test
@@ -23,10 +23,10 @@ OUTPUT_MAXI=$(BUILD_DIR)/maxiLib.js
 # ----------------------------------------
 # extra libs stuff
 
-SOURCE_maxiFFT=src/cpp/libs/maxiFFT.cpp
-SOURCE_maxiMFCC=src/cpp/libs/maxiMFCC.cpp
-SOURCE_maxiGrains=src/cpp/libs/maxiGrains.cpp
-SOURCES_LIBS = $(SOURCE_maxiFFT) $(SOURCE_maxiMFCC) $(SOURCE_maxiGrains)
+# SOURCE_maxiFFT=../src/libs/maxiFFT.cpp
+# SOURCE_maxiMFCC=../src/libs/maxiMFCC.cpp
+# SOURCE_maxiGrains=../src/libs/maxiGrains.cpp
+# SOURCES_LIBS = $(SOURCE_maxiFFT) $(SOURCE_maxiMFCC) $(SOURCE_maxiGrains)
 # ----------------------------------------
 # General flags
 # https://kripken.github.io/emscripten-site/docs/tools_reference/emcc.html
@@ -52,12 +52,19 @@ CFLAGS= --bind -O1 \
 				-s WASM=1 \
 				-s BINARYEN_ASYNC_COMPILATION=0 \
 				-s SINGLE_FILE=1 \
-				$(SOURCE_MAXI) $(SOURCES_LIBS) \
+				$(SOURCE_MAXI)  \
 				-o $(BUILD_DIR)/maxiLib.wasmmodule.js
 
+				# CFLAGS= --bind -O1 \
+				# 				-s WASM=1 \
+				# 				-s BINARYEN_ASYNC_COMPILATION=0 \
+				# 				-s SINGLE_FILE=1 \
+				# 				$(SOURCE_MAXI) $(SOURCES_LIBS) \
+				# 				-o $(BUILD_DIR)/maxiLib.wasmmodule.js
 
-# all: full
-all: full copyfiles
+
+all: full
+# all: full copyfiles
 	@echo "Building all"
 
 # ----------------------------------------
@@ -71,11 +78,11 @@ full:
 # basic:
 # 	$(EMSCR) $(CFLAGS) --post-js $(POST_JS_extras) --bind -o $(OUTPUT_MAXI_noAudio) $(SOURCE_MAXI) $(SOURCES_LIBS)
 
-.PHONY: copyfiles
-copyfiles: full
-	@echo "Copying files"
-	cp -f $(BUILD_DIR)/maxiLib.js $(TEST_DIR)/maxiLib.js
-	cp -f $(BUILD_DIR)/maxiLib.wasmmodule.js $(TEST_DIR)/maxiLib.wasmmodule.js
+# .PHONY: copyfiles
+# copyfiles: full
+# 	@echo "Copying files"
+# 	cp -f $(BUILD_DIR)/maxiLib.js $(TEST_DIR)/maxiLib.js
+# 	cp -f $(BUILD_DIR)/maxiLib.wasmmodule.js $(TEST_DIR)/maxiLib.wasmmodule.js
 	# cp -f $(BUILD_DIR)/maxiLib.wasm $(TEST_DIR)/maxiLib.wasm
 
 

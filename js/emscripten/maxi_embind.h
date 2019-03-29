@@ -7,6 +7,143 @@
 #include <emscripten.h>
 #include <emscripten/bind.h>
 
+
+EMSCRIPTEN_BINDINGS(my_module_maxiMFCC) {
+    
+    // -------------------------------------------------------------------------------------------
+    // LIBS
+    // MAXI MFCC
+    class_<maxiMFCC>("maxiMFCC")
+    //    .constructor<>()
+    //    .constructor<int>()
+    
+    .smart_ptr_constructor("shared_ptr<maxiMFCC>",&std::make_shared<maxiMFCC>)
+    .function("setup", &maxiMFCC::setup)
+    .function("mfcc", &maxiMFCC::mfcc, allow_raw_pointers())
+    ;
+};
+
+EMSCRIPTEN_BINDINGS(my_module_maxiGrains) {
+    
+    // -------------------------------------------------------------------------------------------
+    // LIBS
+    
+    
+    // MAXI TIMESTRETCH
+    class_<maxiTimestretch<hannWinFunctor> >("maxiTimestretch")
+    .smart_ptr_constructor("shared_ptr<maxiTimestretch<hannWinFunctor> >",&std::make_shared<maxiTimestretch<hannWinFunctor> >)
+    //    .smart_ptr_constructor<maxiSample*>("shared_ptr<maxiTimestretch<hannWinFunctor> >",&std::make_shared<maxiTimestretch<hannWinFunctor> >)
+    .function("setSample", &maxiTimestretch<hannWinFunctor>::setSample, allow_raw_pointers())
+    
+    .function("getNormalisedPosition", &maxiTimestretch<hannWinFunctor>::getNormalisedPosition)
+    .function("getPosition", &maxiTimestretch<hannWinFunctor>::getPosition)
+    .function("setPosition", &maxiTimestretch<hannWinFunctor>::setPosition)
+    
+    .function("play", &maxiTimestretch<hannWinFunctor>::play)
+    .function("play2", &maxiTimestretch<hannWinFunctor>::play2)
+    ;
+    
+    // MAXI PITCHSHIFT
+    
+    class_<maxiPitchShift<hannWinFunctor> >("maxiPitchShift")
+    .smart_ptr_constructor("shared_ptr<maxiPitchShift<hannWinFunctor> >",&std::make_shared<maxiPitchShift<hannWinFunctor> >)
+    .function("setSample", &maxiPitchShift<hannWinFunctor>::setSample, allow_raw_pointers())
+    
+    .function("play", &maxiPitchShift<hannWinFunctor>::play)
+    ;
+    
+    
+    // MAXI PITCHSTRETCH
+    class_<maxiPitchStretch<hannWinFunctor> >("maxiPitchStretch")
+    .smart_ptr_constructor("shared_ptr<maxiTimestretch<hannWinFunctor> >",&std::make_shared<maxiPitchStretch<hannWinFunctor> >)
+    //    .smart_ptr_constructor<maxiSample*>("shared_ptr<maxiTimestretch<hannWinFunctor> >",&std::make_shared<maxiTimestretch<hannWinFunctor> >)
+    .function("setSample", &maxiPitchStretch<hannWinFunctor>::setSample, allow_raw_pointers())
+    
+    .function("getNormalisedPosition", &maxiPitchStretch<hannWinFunctor>::getNormalisedPosition)
+    .function("getPosition", &maxiPitchStretch<hannWinFunctor>::getPosition)
+    .function("setPosition", &maxiPitchStretch<hannWinFunctor>::setPosition)
+    
+    .function("setLoopStart", &maxiPitchStretch<hannWinFunctor>::setLoopStart)
+    .function("setLoopEnd", &maxiPitchStretch<hannWinFunctor>::setLoopEnd)
+    
+    .function("play", &maxiPitchStretch<hannWinFunctor>::play)
+    ;
+};
+EMSCRIPTEN_BINDINGS(my_module_maxiFFT) {
+    
+    // -------------------------------------------------------------------------------------------
+    // LIBS
+    
+    
+    // MAXI FFT
+    class_<maxiFFT>("maxiFFT")
+    //    .constructor<>()
+    //    .constructor<int>()
+    
+    
+    .smart_ptr_constructor("shared_ptr<maxiFFT>",&std::make_shared<maxiFFT>)
+    .function("setup", &maxiFFT::setup)
+    .function("process", &maxiFFT::process)
+    .function("magsToDB", &maxiFFT::magsToDB)
+    .function("spectralFlatness", &maxiFFT::spectralFlatness)
+    .function("spectralCentroid", &maxiFFT::spectralCentroid)
+    .function("getMagnitude", &maxiFFT::getMagnitude)
+    .function("getMagnitudeDB", &maxiFFT::getMagnitudeDB)
+    .function("getPhase", &maxiFFT::getPhase)
+    
+    .property("windowSize", &maxiFFT::getWindowSize, &maxiFFT::setWindowSize)
+    .property("hopSize", &maxiFFT::getHopSize, &maxiFFT::setHopSize)
+    .property("bins", &maxiFFT::getNumBins, &maxiFFT::setNumBins)
+    .property("magnitudes", &maxiFFT::getMagnitudes, &maxiFFT::setMagnitudes)
+    .property("phases", &maxiFFT::getPhases, &maxiFFT::setPhases)
+    
+    ;
+    
+    // MAXI IFFT
+    class_<maxiIFFT>("maxiIFFT")
+    //    .constructor<>()
+    //    .constructor<int>()
+    
+    .smart_ptr_constructor("shared_ptr<maxiIFFT>",&std::make_shared<maxiIFFT>)
+    .function("setup", &maxiIFFT::setup)
+    .function("process", &maxiIFFT::process)
+    
+    ;
+    
+    // MAXI IFFT
+    class_<maxiFFTOctaveAnalyzer>("maxiFFTOctaveAnalyzer")
+    //    .constructor<>()
+    //    .constructor<int>()
+    
+    .smart_ptr_constructor("shared_ptr<maxiFFTOctaveAnalyzer>",&std::make_shared<maxiFFTOctaveAnalyzer>)
+    .function("setup", &maxiFFTOctaveAnalyzer::setup)
+    .function("calculate", &maxiFFTOctaveAnalyzer::calculate)
+    
+    //properties
+    .property("samplingRate", &maxiFFTOctaveAnalyzer::getSamplingRate, &maxiFFTOctaveAnalyzer::setSamplingRate)
+    .property("nSpectrum", &maxiFFTOctaveAnalyzer::getNSpectrum, &maxiFFTOctaveAnalyzer::setNSpectrum)
+    .property("nAverages", &maxiFFTOctaveAnalyzer::getNAverages, &maxiFFTOctaveAnalyzer::setNAverages)
+    .property("nAveragesPerOctave", &maxiFFTOctaveAnalyzer::getNAveragesPerOct, &maxiFFTOctaveAnalyzer::setNAveragesPerOct)
+    .property("spectrumFrequencySpan", &maxiFFTOctaveAnalyzer::getSpecFreqSpan, &maxiFFTOctaveAnalyzer::setSpecFreqSpan)
+    .property("firstOctaveFrequency", &maxiFFTOctaveAnalyzer::getFirstOctFreq, &maxiFFTOctaveAnalyzer::setFirstOctFreq)
+    .property("averageFrequencyIncrement", &maxiFFTOctaveAnalyzer::getAvgFreqIncr, &maxiFFTOctaveAnalyzer::setAvgFreqIncr)
+    
+    
+    .function("getAverage", &maxiFFTOctaveAnalyzer::getAverage)
+    .function("getPeak", &maxiFFTOctaveAnalyzer::getPeak)
+    .function("getPeakHoldTime", &maxiFFTOctaveAnalyzer::getPeakHoldTime)
+    
+    .property("peakHoldTime", &maxiFFTOctaveAnalyzer::getPeakHoldTimeTotal, &maxiFFTOctaveAnalyzer::setPeakHoldTimeTotal)
+    .property("peakDecayRate", &maxiFFTOctaveAnalyzer::getPeakDecayRate, &maxiFFTOctaveAnalyzer::setPeakDecayRate)
+    
+    .function("getSpe2Avg", &maxiFFTOctaveAnalyzer::getSpe2Avg)
+    
+    .property("linearEQSlope", &maxiFFTOctaveAnalyzer::getLinEQSlope, &maxiFFTOctaveAnalyzer::setLinEQSlope)
+    .property("linearEQIntercept", &maxiFFTOctaveAnalyzer::getLinEQIntercept, &maxiFFTOctaveAnalyzer::setLinEQIntercept)
+    ;
+    
+};
+
 //extern "C" {
 //	//	class arrayTest{
 //	//		int int_sqrt(int x) {

@@ -8,7 +8,6 @@
  */
 
 #include "maxiMFCC.h"
-#include "maxiMFCC_embind.h"
 
 #ifdef __APPLE_CC__
 template <>

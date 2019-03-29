@@ -38,7 +38,7 @@
 
 #include "fft.h"
 #include "stddef.h"
-#include "../maxi_emscr_new.h"
+#include "../maximilian.h"
 #include <vector>
 
 class maxiFFT {

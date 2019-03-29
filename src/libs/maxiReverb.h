@@ -37,7 +37,7 @@
 #define __maxiReverb__
 
 #include "maximilian.h"
-
+#include <valarray>
 
 class maxiReverbFilters{
 public:

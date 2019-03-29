@@ -8,20 +8,22 @@
 
 /* Begin PBXBuildFile section */
 		00FD794410CF325D00EA9294 /* RtAudio.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 00FD794110CF325D00EA9294 /* RtAudio.cpp */; };
+		38BD3C5E224E372A0088B7F7 /* maximilian.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 38BD3C5D224E372A0088B7F7 /* maximilian.cpp */; };
+		38BD3C75224E37350088B7F7 /* fft.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 38BD3C60224E37350088B7F7 /* fft.cpp */; };
+		38BD3C76224E37350088B7F7 /* maxiAtoms.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 38BD3C62224E37350088B7F7 /* maxiAtoms.cpp */; };
+		38BD3C77224E37350088B7F7 /* maxiBark.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 38BD3C64224E37350088B7F7 /* maxiBark.cpp */; };
+		38BD3C78224E37350088B7F7 /* maxiFFT.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 38BD3C66224E37350088B7F7 /* maxiFFT.cpp */; };
+		38BD3C79224E37350088B7F7 /* maxiGrains.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 38BD3C69224E37350088B7F7 /* maxiGrains.cpp */; };
+		38BD3C7A224E37350088B7F7 /* maxiMFCC.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 38BD3C6D224E37350088B7F7 /* maxiMFCC.cpp */; };
+		38BD3C7B224E37350088B7F7 /* maxiReverb.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 38BD3C70224E37350088B7F7 /* maxiReverb.cpp */; };
+		38BD3C7C224E37350088B7F7 /* maxiSynths.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 38BD3C72224E37350088B7F7 /* maxiSynths.cpp */; };
 		833289281403E9C4003DF5D6 /* player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 833289271403E9C4003DF5D6 /* player.cpp */; };
-		8A34BD591B65677F0026EA0C /* maximilian.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8A34BD571B65677F0026EA0C /* maximilian.cpp */; };
 		8A34BD5C1B6567E60026EA0C /* stb_vorbis.c in Sources */ = {isa = PBXBuildFile; fileRef = 8A34BD5A1B6567E60026EA0C /* stb_vorbis.c */; };
 		8A34BD5E1B65A8D10026EA0C /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A34BD5D1B65A8D10026EA0C /* Accelerate.framework */; };
 		8A34BD601B65A8D70026EA0C /* AudioUnit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A34BD5F1B65A8D70026EA0C /* AudioUnit.framework */; };
 		8A34BD621B65A8DD0026EA0C /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A34BD611B65A8DD0026EA0C /* AudioToolbox.framework */; };
 		8A34BD641B65A8E40026EA0C /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A34BD631B65A8E40026EA0C /* CoreAudio.framework */; };
 		8A34BD661B65A8E90026EA0C /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A34BD651B65A8E90026EA0C /* CoreServices.framework */; };
-		8A34BD761B65AA390026EA0C /* fft.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8A34BD681B65AA390026EA0C /* fft.cpp */; };
-		8A34BD771B65AA390026EA0C /* maxiAtoms.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8A34BD6A1B65AA390026EA0C /* maxiAtoms.cpp */; };
-		8A34BD781B65AA390026EA0C /* maxiBark.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8A34BD6C1B65AA390026EA0C /* maxiBark.cpp */; };
-		8A34BD791B65AA390026EA0C /* maxiFFT.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8A34BD6E1B65AA390026EA0C /* maxiFFT.cpp */; };
-		8A34BD7A1B65AA390026EA0C /* maxiGrains.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8A34BD701B65AA390026EA0C /* maxiGrains.cpp */; };
-		8A34BD7B1B65AA390026EA0C /* maxiMFCC.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8A34BD731B65AA390026EA0C /* maxiMFCC.cpp */; };
 		8DD76F650486A84900D96B5E /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 08FB7796FE84155DC02AAC07 /* main.cpp */; settings = {ATTRIBUTES = (); }; };
 		8DD76F6A0486A84900D96B5E /* rtaudiotest.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = C6859E8B029090EE04C91782 /* rtaudiotest.1 */; };
 /* End PBXBuildFile section */
@@ -44,11 +46,29 @@
 		00FD794210CF325D00EA9294 /* RtAudio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RtAudio.h; sourceTree = "<group>"; };
 		00FD794310CF325D00EA9294 /* RtError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RtError.h; sourceTree = "<group>"; };
 		08FB7796FE84155DC02AAC07 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		38BD3C5C224E372A0088B7F7 /* maximilian.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = maximilian.h; path = ../../src/maximilian.h; sourceTree = "<group>"; };
+		38BD3C5D224E372A0088B7F7 /* maximilian.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = maximilian.cpp; path = ../../src/maximilian.cpp; sourceTree = "<group>"; };
+		38BD3C60224E37350088B7F7 /* fft.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = fft.cpp; sourceTree = "<group>"; };
+		38BD3C61224E37350088B7F7 /* fft.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fft.h; sourceTree = "<group>"; };
+		38BD3C62224E37350088B7F7 /* maxiAtoms.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = maxiAtoms.cpp; sourceTree = "<group>"; };
+		38BD3C63224E37350088B7F7 /* maxiAtoms.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = maxiAtoms.h; sourceTree = "<group>"; };
+		38BD3C64224E37350088B7F7 /* maxiBark.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = maxiBark.cpp; sourceTree = "<group>"; };
+		38BD3C65224E37350088B7F7 /* maxiBark.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = maxiBark.h; sourceTree = "<group>"; };
+		38BD3C66224E37350088B7F7 /* maxiFFT.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = maxiFFT.cpp; sourceTree = "<group>"; };
+		38BD3C67224E37350088B7F7 /* maxiFFT.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = maxiFFT.h; sourceTree = "<group>"; };
+		38BD3C69224E37350088B7F7 /* maxiGrains.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = maxiGrains.cpp; sourceTree = "<group>"; };
+		38BD3C6A224E37350088B7F7 /* maxiGrains.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = maxiGrains.h; sourceTree = "<group>"; };
+		38BD3C6C224E37350088B7F7 /* maxim.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = maxim.h; sourceTree = "<group>"; };
+		38BD3C6D224E37350088B7F7 /* maxiMFCC.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = maxiMFCC.cpp; sourceTree = "<group>"; };
+		38BD3C6E224E37350088B7F7 /* maxiMFCC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = maxiMFCC.h; sourceTree = "<group>"; };
+		38BD3C70224E37350088B7F7 /* maxiReverb.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = maxiReverb.cpp; sourceTree = "<group>"; };
+		38BD3C71224E37350088B7F7 /* maxiReverb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = maxiReverb.h; sourceTree = "<group>"; };
+		38BD3C72224E37350088B7F7 /* maxiSynths.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = maxiSynths.cpp; sourceTree = "<group>"; };
+		38BD3C73224E37350088B7F7 /* maxiSynths.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = maxiSynths.h; sourceTree = "<group>"; };
+		38BD3C74224E37350088B7F7 /* sineTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sineTable.h; sourceTree = "<group>"; };
 		4C1D997D10FA76E700D5E940 /* portaudio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = portaudio.h; sourceTree = "<group>"; };
 		833289261403E9C4003DF5D6 /* player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = player.h; sourceTree = "<group>"; };
 		833289271403E9C4003DF5D6 /* player.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = player.cpp; sourceTree = "<group>"; };
-		8A34BD571B65677F0026EA0C /* maximilian.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = maximilian.cpp; sourceTree = "<group>"; };
-		8A34BD581B65677F0026EA0C /* maximilian.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = maximilian.h; sourceTree = "<group>"; };
 		8A34BD5A1B6567E60026EA0C /* stb_vorbis.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = stb_vorbis.c; sourceTree = "<group>"; };
 		8A34BD5B1B6567E60026EA0C /* stb_vorbis.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stb_vorbis.h; sourceTree = "<group>"; };
 		8A34BD5D1B65A8D10026EA0C /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
@@ -56,20 +76,6 @@
 		8A34BD611B65A8DD0026EA0C /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		8A34BD631B65A8E40026EA0C /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
 		8A34BD651B65A8E90026EA0C /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = System/Library/Frameworks/CoreServices.framework; sourceTree = SDKROOT; };
-		8A34BD681B65AA390026EA0C /* fft.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = fft.cpp; sourceTree = "<group>"; };
-		8A34BD691B65AA390026EA0C /* fft.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fft.h; sourceTree = "<group>"; };
-		8A34BD6A1B65AA390026EA0C /* maxiAtoms.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = maxiAtoms.cpp; sourceTree = "<group>"; };
-		8A34BD6B1B65AA390026EA0C /* maxiAtoms.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = maxiAtoms.h; sourceTree = "<group>"; };
-		8A34BD6C1B65AA390026EA0C /* maxiBark.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = maxiBark.cpp; sourceTree = "<group>"; };
-		8A34BD6D1B65AA390026EA0C /* maxiBark.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = maxiBark.h; sourceTree = "<group>"; };
-		8A34BD6E1B65AA390026EA0C /* maxiFFT.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = maxiFFT.cpp; sourceTree = "<group>"; };
-		8A34BD6F1B65AA390026EA0C /* maxiFFT.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = maxiFFT.h; sourceTree = "<group>"; };
-		8A34BD701B65AA390026EA0C /* maxiGrains.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = maxiGrains.cpp; sourceTree = "<group>"; };
-		8A34BD711B65AA390026EA0C /* maxiGrains.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = maxiGrains.h; sourceTree = "<group>"; };
-		8A34BD721B65AA390026EA0C /* maxim.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = maxim.h; sourceTree = "<group>"; };
-		8A34BD731B65AA390026EA0C /* maxiMFCC.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = maxiMFCC.cpp; sourceTree = "<group>"; };
-		8A34BD741B65AA390026EA0C /* maxiMFCC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = maxiMFCC.h; sourceTree = "<group>"; };
-		8A34BD751B65AA390026EA0C /* sineTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sineTable.h; sourceTree = "<group>"; };
 		8DD76F6C0486A84900D96B5E /* maximilianTest */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = maximilianTest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C6859E8B029090EE04C91782 /* rtaudiotest.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = rtaudiotest.1; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -109,11 +115,11 @@
 		08FB7795FE84155DC02AAC07 /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				8A34BD671B65AA390026EA0C /* libs */,
+				38BD3C5F224E37350088B7F7 /* libs */,
+				38BD3C5D224E372A0088B7F7 /* maximilian.cpp */,
+				38BD3C5C224E372A0088B7F7 /* maximilian.h */,
 				8A34BD5A1B6567E60026EA0C /* stb_vorbis.c */,
 				8A34BD5B1B6567E60026EA0C /* stb_vorbis.h */,
-				8A34BD571B65677F0026EA0C /* maximilian.cpp */,
-				8A34BD581B65677F0026EA0C /* maximilian.h */,
 				833289261403E9C4003DF5D6 /* player.h */,
 				833289271403E9C4003DF5D6 /* player.cpp */,
 				08FB7796FE84155DC02AAC07 /* main.cpp */,
@@ -129,6 +135,32 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		38BD3C5F224E37350088B7F7 /* libs */ = {
+			isa = PBXGroup;
+			children = (
+				38BD3C60224E37350088B7F7 /* fft.cpp */,
+				38BD3C61224E37350088B7F7 /* fft.h */,
+				38BD3C62224E37350088B7F7 /* maxiAtoms.cpp */,
+				38BD3C63224E37350088B7F7 /* maxiAtoms.h */,
+				38BD3C64224E37350088B7F7 /* maxiBark.cpp */,
+				38BD3C65224E37350088B7F7 /* maxiBark.h */,
+				38BD3C66224E37350088B7F7 /* maxiFFT.cpp */,
+				38BD3C67224E37350088B7F7 /* maxiFFT.h */,
+				38BD3C69224E37350088B7F7 /* maxiGrains.cpp */,
+				38BD3C6A224E37350088B7F7 /* maxiGrains.h */,
+				38BD3C6C224E37350088B7F7 /* maxim.h */,
+				38BD3C6D224E37350088B7F7 /* maxiMFCC.cpp */,
+				38BD3C6E224E37350088B7F7 /* maxiMFCC.h */,
+				38BD3C70224E37350088B7F7 /* maxiReverb.cpp */,
+				38BD3C71224E37350088B7F7 /* maxiReverb.h */,
+				38BD3C72224E37350088B7F7 /* maxiSynths.cpp */,
+				38BD3C73224E37350088B7F7 /* maxiSynths.h */,
+				38BD3C74224E37350088B7F7 /* sineTable.h */,
+			);
+			name = libs;
+			path = ../../src/libs;
+			sourceTree = "<group>";
+		};
 		833289351403EE46003DF5D6 /* audioIO */ = {
 			isa = PBXGroup;
 			children = (
@@ -138,27 +170,6 @@
 				00FD794310CF325D00EA9294 /* RtError.h */,
 			);
 			name = audioIO;
-			sourceTree = "<group>";
-		};
-		8A34BD671B65AA390026EA0C /* libs */ = {
-			isa = PBXGroup;
-			children = (
-				8A34BD681B65AA390026EA0C /* fft.cpp */,
-				8A34BD691B65AA390026EA0C /* fft.h */,
-				8A34BD6A1B65AA390026EA0C /* maxiAtoms.cpp */,
-				8A34BD6B1B65AA390026EA0C /* maxiAtoms.h */,
-				8A34BD6C1B65AA390026EA0C /* maxiBark.cpp */,
-				8A34BD6D1B65AA390026EA0C /* maxiBark.h */,
-				8A34BD6E1B65AA390026EA0C /* maxiFFT.cpp */,
-				8A34BD6F1B65AA390026EA0C /* maxiFFT.h */,
-				8A34BD701B65AA390026EA0C /* maxiGrains.cpp */,
-				8A34BD711B65AA390026EA0C /* maxiGrains.h */,
-				8A34BD721B65AA390026EA0C /* maxim.h */,
-				8A34BD731B65AA390026EA0C /* maxiMFCC.cpp */,
-				8A34BD741B65AA390026EA0C /* maxiMFCC.h */,
-				8A34BD751B65AA390026EA0C /* sineTable.h */,
-			);
-			path = libs;
 			sourceTree = "<group>";
 		};
 		C6859E8C029090F304C91782 /* Documentation */ = {
@@ -221,17 +232,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8A34BD7B1B65AA390026EA0C /* maxiMFCC.cpp in Sources */,
-				8A34BD7A1B65AA390026EA0C /* maxiGrains.cpp in Sources */,
-				8A34BD761B65AA390026EA0C /* fft.cpp in Sources */,
-				8A34BD791B65AA390026EA0C /* maxiFFT.cpp in Sources */,
+				38BD3C7C224E37350088B7F7 /* maxiSynths.cpp in Sources */,
+				38BD3C7A224E37350088B7F7 /* maxiMFCC.cpp in Sources */,
+				38BD3C79224E37350088B7F7 /* maxiGrains.cpp in Sources */,
+				38BD3C75224E37350088B7F7 /* fft.cpp in Sources */,
+				38BD3C78224E37350088B7F7 /* maxiFFT.cpp in Sources */,
+				38BD3C7B224E37350088B7F7 /* maxiReverb.cpp in Sources */,
 				8A34BD5C1B6567E60026EA0C /* stb_vorbis.c in Sources */,
+				38BD3C5E224E372A0088B7F7 /* maximilian.cpp in Sources */,
 				8DD76F650486A84900D96B5E /* main.cpp in Sources */,
 				00FD794410CF325D00EA9294 /* RtAudio.cpp in Sources */,
-				8A34BD781B65AA390026EA0C /* maxiBark.cpp in Sources */,
+				38BD3C77224E37350088B7F7 /* maxiBark.cpp in Sources */,
 				833289281403E9C4003DF5D6 /* player.cpp in Sources */,
-				8A34BD591B65677F0026EA0C /* maximilian.cpp in Sources */,
-				8A34BD771B65AA390026EA0C /* maxiAtoms.cpp in Sources */,
+				38BD3C76224E37350088B7F7 /* maxiAtoms.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -252,11 +265,7 @@
 					"_GLIBCXX_DEBUG_PEDANTIC=1",
 				);
 				INSTALL_PATH = /usr/local/bin;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../../../Desktop\"",
-					"\"$(SRCROOT)\"",
-				);
+				LIBRARY_SEARCH_PATHS = "\"$(SRCROOT)/../../src\"";
 				PRODUCT_NAME = maximilianTest;
 				SDKROOT = macosx;
 			};
@@ -269,11 +278,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_MODEL_TUNING = G5;
 				INSTALL_PATH = /usr/local/bin;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../../../Desktop\"",
-					"\"$(SRCROOT)\"",
-				);
+				LIBRARY_SEARCH_PATHS = "\"$(SRCROOT)/../../src\"";
 				PRODUCT_NAME = maximilianTest;
 				SDKROOT = macosx;
 			};

@@ -1,0 +1,196 @@
+
+<!--
+Copyright 2010, Google Inc.
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are
+met:
+
+    * Redistributions of source code must retain the above copyright
+notice, this list of conditions and the following disclaimer.
+    * Redistributions in binary form must reproduce the above
+copyright notice, this list of conditions and the following disclaimer
+in the documentation and/or other materials provided with the
+distribution.
+    * Neither the name of Google Inc. nor the names of its
+contributors may be used to endorse or promote products derived from
+this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+"AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<title>
+	Javascript Audio Processing
+</title>
+<script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js?autoload=true&amp;skin=sunburst&amp;lang=css" defer="defer"></script>
+<!-- <link rel="stylesheet" type="text/css" href="javascript-processing_files/simple.css"> -->
+
+
+<script src="../maxiLib.js"></script>
+
+<!-- Our javascript code -->
+<script type="text/javascript">
+var audio = new maximJs.maxiAudio();
+audio.init();
+audio.outputIsArray(true, 2);
+
+//Bizarelly, this sounds a little bit like Kraftwerk's 'Metropolis', although it isn't. Funny that. 
+var sound = new maximJs.maxiOsc();
+var bass = new maximJs.maxiOsc();
+var timer = new maximJs.maxiOsc();
+var mod = new maximJs.maxiOsc();
+var lead = new maximJs.maxiOsc();
+var lead2 = new maximJs.maxiOsc();
+var leadmod = new maximJs.maxiOsc();
+
+var envelope = new maximJs.maxiEnv();
+var leadenvelope = new maximJs.maxiEnv();
+
+var filter = new maximJs.maxiFilter();
+var filter2 = new maximJs.maxiFilter();
+
+var delay = new maximJs.maxiDelayline();
+
+var mtof = new maximJs.convert();
+
+var bassout,leadout, delayout;//some variables to hold the data and pass it around
+var trigger, trigger2, newnote = 0;//some control variables
+var currentCount,lastCount,playHead=0, currentChord=0;//some other control variables
+var pitch = [57,57,59,60];//the bassline for the arpeggio
+var chord = [0,0,7,2,5,5,0,0];//the root chords for the arpeggio
+var currentPitch,leadPitch;//the final pitch variables
+
+//here's the lead line trigger array, followed by the pitches
+var leadLineTrigger=[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
+var leadLinePitch=[69,67,65,64,67,66,64,62,65,64,62,57,55,60,57];
+
+
+audio.play = function(){
+    currentCount=Math.floor(timer.phasor(9));//this sets up a metronome that ticks every so often
+    
+    if (lastCount!=currentCount) {//if we have a new timer int this sample, play the sound
+        trigger=1;//play the arpeggiator line
+        trigger2=leadLineTrigger[playHead%256];//play the lead line
+        if (trigger2==1) {//if we are going to play a note
+            leadPitch=mtof.mtof(leadLinePitch[newnote]);//get the next pitch val
+            newnote++;//and iterate
+            if (newnote>14) {
+                newnote=0;//make sure we don't go over the edge of the array
+            }
+        }
+        currentPitch=mtof.mtof(pitch[(playHead%4)]+chord[currentChord%8]);//write the frequency val into currentPitch
+        playHead++;//iterate the playhead
+        if (playHead%32==0) {//wrap every 4 bars
+            currentChord++;//change the chord
+        }
+        //cout << "tick\n";//the clock ticks
+        lastCount=0;//set lastCount to 0
+    }
+    
+    bassout=filter2.lores(envelope.adsr(bass.saw(currentPitch*0.5)+sound.pulse(currentPitch*0.5,mod.phasor(1)),1,0.9995, 0.25, 0.9995, 1, trigger),9250,2);//new, simple ADSR.
+    leadout=filter.lores(leadenvelope.ar(lead2.saw(leadPitch*4)+lead.pulse(leadPitch+(leadmod.sinebuf(1.9)*1.5), 0.6), 0.00005, 0.999975, 50000, trigger2),5900,10);//leadline
+    
+    delayout=(leadout+(delay.dl(leadout, 14000, 0.8)*0.5))/2;//add some delay
+    
+    if(trigger!=0)trigger=0;//set the trigger to off if you want it to trigger immediately next time.
+    
+    
+    audio.output[0]=(bassout + delayout)/2;//sum output
+    audio.output[1]=(bassout + delayout)/2;
+}
+</script>
+
+</head>
+
+<body>
+
+	<h1> Replicant! </h1>
+
+	<p>
+		
+	</p>
+
+   <pre class="prettyprint lang-js linenums:true" id="quine" style="border:4px solid #88c" >
+var audio = new maximJs.maxiAudio();
+audio.init();
+audio.outputIsArray(true, 2);
+
+//Bizarelly, this sounds a little bit like Kraftwerk's 'Metropolis', although it isn't. Funny that. 
+var sound = new maximJs.maxiOsc();
+var bass = new maximJs.maxiOsc();
+var timer = new maximJs.maxiOsc();
+var mod = new maximJs.maxiOsc();
+var lead = new maximJs.maxiOsc();
+var lead2 = new maximJs.maxiOsc();
+var leadmod = new maximJs.maxiOsc();
+
+var envelope = new maximJs.maxiEnv();
+var leadenvelope = new maximJs.maxiEnv();
+
+var filter = new maximJs.maxiFilter();
+var filter2 = new maximJs.maxiFilter();
+
+var delay = new maximJs.maxiDelayline();
+
+var mtof = new maximJs.convert();
+
+var bassout,leadout, delayout;//some variables to hold the data and pass it around
+var trigger, trigger2, newnote = 0;//some control variables
+var currentCount,lastCount,playHead=0, currentChord=0;//some other control variables
+var pitch = [57,57,59,60];//the bassline for the arpeggio
+var chord = [0,0,7,2,5,5,0,0];//the root chords for the arpeggio
+var currentPitch,leadPitch;//the final pitch variables
+
+//here's the lead line trigger array, followed by the pitches
+var leadLineTrigger=[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
+var leadLinePitch=[69,67,65,64,67,66,64,62,65,64,62,57,55,60,57];
+
+
+audio.play = function(){
+    currentCount=Math.floor(timer.phasor(9));//this sets up a metronome that ticks every so often
+    
+    if (lastCount!=currentCount) {//if we have a new timer int this sample, play the sound
+        trigger=1;//play the arpeggiator line
+        trigger2=leadLineTrigger[playHead%256];//play the lead line
+        if (trigger2==1) {//if we are going to play a note
+            leadPitch=mtof.mtof(leadLinePitch[newnote]);//get the next pitch val
+            newnote++;//and iterate
+            if (newnote>14) {
+                newnote=0;//make sure we don't go over the edge of the array
+            }
+        }
+        currentPitch=mtof.mtof(pitch[(playHead%4)]+chord[currentChord%8]);//write the frequency val into currentPitch
+        playHead++;//iterate the playhead
+        if (playHead%32==0) {//wrap every 4 bars
+            currentChord++;//change the chord
+        }
+        //cout << "tick\n";//the clock ticks
+        lastCount=0;//set lastCount to 0
+    }
+    
+    bassout=filter2.lores(envelope.adsr(bass.saw(currentPitch*0.5)+sound.pulse(currentPitch*0.5,mod.phasor(1)),1,0.9995, 0.25, 0.9995, 1, trigger),9250,2);//new, simple ADSR.
+    leadout=filter.lores(leadenvelope.ar(lead2.saw(leadPitch*4)+lead.pulse(leadPitch+(leadmod.sinebuf(1.9)*1.5), 0.6), 0.00005, 0.999975, 50000, trigger2),5900,10);//leadline
+    
+    delayout=(leadout+(delay.dl(leadout, 14000, 0.8)*0.5))/2;//add some delay
+    
+    if(trigger!=0)trigger=0;//set the trigger to off if you want it to trigger immediately next time.
+    
+    
+    audio.output[0]=(bassout + delayout)/2;//sum output
+    audio.output[1]=(bassout + delayout)/2;
+}
+   </pre>
+</body></html>

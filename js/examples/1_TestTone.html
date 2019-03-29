@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<title>
+	Javascript Audio Processing
+</title>
+<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?lang=js&amp;skin=sunburst"></script>
+<!-- show all line numbers-->
+<style type="text/css">.prettyprint ol.linenums > li { list-style-type: decimal }</style>
+
+<script src="../build/maxiLib.js"></script>
+
+<!-- Our javascript code -->
+<script type="text/javascript">
+
+var maxiLib = MaxiLib();
+
+function wasmReady(){
+
+	var audio = new maxiLib.maxiAudio();
+	// initialise audio
+	audio.init();
+	// create oscillator
+	var mySine = new maxiLib.maxiOsc();
+	audio.play = function(){
+		// direct value to output
+		this.output = mySine.sinewave(440);
+	}
+}
+</script>
+
+</head>
+
+<body>
+
+	<h1> Test Tone </h1>
+	<p id="funcs"></p>
+	<p>
+		A simple 440Hz sinewave.
+	</p>
+
+	<pre class="prettyprint lang-js linenums:true" id="quine" style="border:4px solid #88c" >
+var maxiLib = MaxiLib();
+
+function wasmReady(){
+
+  var audio = new maxiLib.maxiAudio();
+
+  // initialise audio
+  audio.init();
+
+  // create oscillator
+  var mySine = new maxiLib.maxiOsc();
+
+  audio.play = function(){
+    // direct value to output
+    this.output = mySine.sinewave(440);
+  }
+}
+</pre>
+</body>
+
+</html>

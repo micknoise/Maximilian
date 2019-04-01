@@ -1,12 +1,12 @@
-import Module from './maxi-audio.wasmmodule.js';
+import Module from './maximilian.wasmmodule.js';
 
 /**
  * The main Maxi Audio wrapper with a WASM-powered AudioWorkletProcessor.
  *
- * @class MaxiAudioProcessor
+ * @class MaxiProcessor
  * @extends AudioWorkletProcessor
  */
-class MaxiAudioProcessor extends AudioWorkletProcessor {
+class MaxiProcessor extends AudioWorkletProcessor {
 
   static get parameterDescriptors() {
     return [{ name: 'gain', defaultValue: 0.1 }];
@@ -53,4 +53,4 @@ class MaxiAudioProcessor extends AudioWorkletProcessor {
 
 };
 
-registerProcessor("maxi-audio-processor", MaxiAudioProcessor);
+registerProcessor("maxi-processor", MaxiProcessor);

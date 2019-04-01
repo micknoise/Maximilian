@@ -204,11 +204,11 @@ public:
 	maxiFilter():x(0.0), y(0.0), z(0.0), c(0.0){};
 	double cutoff;
 	double resonance;
-	double lores(double input,double cutoff1, double resonance);
-	double hires(double input,double cutoff1, double resonance);
-	double bandpass(double input,double cutoff1, double resonance);
-	double lopass(double input,double cutoff);
-	double hipass(double input,double cutoff);
+	double lores(double input, double cutoff1, double resonance);
+	double hires(double input, double cutoff1, double resonance);
+	double bandpass(double input, double cutoff1, double resonance);
+	double lopass(double input, double cutoff);
+	double hipass(double input, double cutoff);
 
 	// ------------------------------------------------
 	// getters/setters
@@ -281,7 +281,6 @@ public:
 		val = (alpha * newVal) + (alphaReciprocal * val);
 	}
 
-
 	// getters/setters
 	void setAlpha(T alpha_){
 		alpha = alpha_;
@@ -306,8 +305,6 @@ public:
 	inline T value() const{
 		return val;
 	}
-
-
 };
 
 
@@ -324,7 +321,7 @@ private:
 	double position, recordPosition;
 	double speed;
 	double output;
-    maxiLagExp<double> loopRecordLag;
+	maxiLagExp<double> loopRecordLag;
 
 public:
 	int	myDataSize;
@@ -352,7 +349,7 @@ public:
 
 	}
 
-    maxiSample():temp(NULL),position(0), recordPosition(0), myChannels(1), mySampleRate(maxiSettings::sampleRate) {};
+  maxiSample():temp(NULL),position(0), recordPosition(0), myChannels(1), mySampleRate(maxiSettings::sampleRate) {};
 
     maxiSample& operator=(const maxiSample &source) {
         if (this == &source)

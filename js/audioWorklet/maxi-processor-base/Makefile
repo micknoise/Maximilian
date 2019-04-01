@@ -1,14 +1,12 @@
 EMSCR=em++
 
-SOURCE_MAXI=../../src/cpp/maxi_emscr_new.cpp
-SOURCE_maxiFFT=../../src/cpp/libs/maxiFFT.cpp
-SOURCE_maxiMFCC=../../src/cpp/libs/maxiMFCC.cpp
-SOURCE_maxiGrains=../../src/cpp/libs/maxiGrains.cpp
-SOURCES_LIBS = $(SOURCE_maxiFFT) $(SOURCE_maxiMFCC) $(SOURCE_maxiGrains)
+SRC=../../../src/maximilian.embind.cpp
 
-OUTPUT_MAXI=maxi-audio.wasmmodule.js
+OUTPUT=maximilian.wasmmodule.js
 
-POST_JS=maxi-audio.js
+# POST_JS – external js handling web audio etc
+POST_JS=../../src/maximilian.post.js
+
 
 # CFLAGS=--bind -O1 -s DISABLE_EXCEPTION_CATCHING=0 \
 # 						-s ALLOW_MEMORY_GROWTH=1 \
@@ -27,7 +25,7 @@ CFLAGS=--bind -O1 \
 						-s SINGLE_FILE=1
 
 build: $(SOURCE_MAXI)
-	@emcc $(CFLAGS) --post-js $(POST_JS) -o $(OUTPUT_MAXI) $(SOURCE_MAXI) $(SOURCES_LIBS)
+	@emcc $(CFLAGS) --post-js $(POST_JS) -o $(OUTPUT) $(SRC)
 
 clean:
-	@rm -f maxi-audio.wasmmodule.js
+	@rm -f maximilian.wasmmodule.js

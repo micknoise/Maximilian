@@ -26,7 +26,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 "use strict";
 var currentDate = "20 February 2019, 12:17am";
-console.log("MaxiLib: " + currentDate);
+console.log("MaxiAudio: " + Date());
 
 // ------------------------------------------------
 // maxiArray - could extend Array object?
@@ -164,12 +164,14 @@ Module.maxiAudio = function () {
     this.initDone = false;
 };
 
+
+
 Module.maxiAudio.play = function () {
 };
 
-Module.maxiAudio.prototype.mzedTest = function () {
-    console.log("mzed loves you!");
-};
+// Module.maxiAudio.prototype.mzedTest = function () {
+//     console.log("mzed loves you!");
+// };
 
 // don't really need setup??
 Module.maxiAudio.setup = function () {
@@ -386,3 +388,5 @@ Module.maxiAudio.prototype.loadSample = function (url, samplePlayer, contextIn) 
     }
 
 };
+
+export default Module;

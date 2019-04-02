@@ -36,7 +36,7 @@
 #ifndef __maxiReverb__
 #define __maxiReverb__
 
-#include "maximilian.h"
+#include "../maximilian.h"
 #include <valarray>
 
 class maxiReverbFilters{
@@ -47,7 +47,7 @@ public:
     double combff(double input,double size);
     double combfb(double input,double size,double fb);
     double lpcombfb(double input,double size,double fb, double cutoff);
-    
+
     double allpass(double input,double size);
     double allpass(double input,double size,double fback);
     double allpasstap(double input,double size,int tap);
@@ -57,7 +57,7 @@ public:
     double tapdwgain(double input,double size, double * taps,int numtaps,double * gain);
     double tapdpos(double input,int size, int * taps,int numtaps);
     double gettap(int tap);
-    
+
 private:
     std::valarray<double> delay_line;
     double a;
@@ -66,16 +66,16 @@ private:
     double output;
     double feedback;
     double gain_cof;
-    
+
     maxiFilter mf;
-    
-    
+
+
 };
 
 class maxiReverbBase{
 public:
     maxiReverbBase();
-    
+
 protected:
     double parallellpcomb(double input,int firstfilter,int numfilters);
     void setcombtimesms(double times[],int numset);
@@ -84,7 +84,7 @@ protected:
     double serialallpass(double input,int firstfilter,int numfilters,double fb);
     double parallelcomb(double input,int firstfilter, int numfilters);
     double apcombcombo(double input,double gain_coef);
-    
+
     double fbsignal[8];
     void setweights(double weights[],int numset,double *filter);
     int mstodellength(double ms);
@@ -97,13 +97,13 @@ protected:
     void setlpcombcutoffall(double cutoff);
     void setcombfeedback(double *feedback,int numset);
     void limitnumfilters(int * num);
-    
+
     static int const numfilters = 32;
     maxiReverbFilters fArrayAllP[numfilters];
     maxiReverbFilters fArrayTwo[numfilters];
     maxiFilter fArrayLP[numfilters];
-    
-    
+
+
     double fbcomb[numfilters];
     double fbap[numfilters];
     double combgainweight[numfilters];
@@ -114,7 +114,7 @@ protected:
     double stereooutput[2];
     double accumulator;
     float numsamplesms;
-    
+
     maxiReverbFilters earlyref;
     double taps[numfilters];
     double tapsgain[numfilters];
@@ -151,14 +151,14 @@ private:
     maxiReverbFilters maxiDelays[9];
     static const int numdattarotappos = 14;
     static const int numdattarotaps = 14;
-    
+
     int dattarotapspos[numdattarotappos];
     double dattorotap[numdattarotaps];
     int maxideltimes[4];
     double dattorogains[5];
     int dattarofixdellengths[5];
     double sigl,sigr;
-    
+
 };
 
 

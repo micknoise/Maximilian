@@ -11,7 +11,7 @@
 // #include "libs/maxiGrains.h"
 // #include "libs/maxiMFCC.h"
 // #include "libs/maxiReverb.h"
-// #include "libs/maxiSynths.h"
+#include "libs/maxiSynths.h"
 // #include "libs/fft.cpp"
 
 
@@ -329,7 +329,7 @@ EMSCRIPTEN_BINDINGS(my_module) {
 	// .function("trigger", &maxiHats::trigger)
 	// ;
 
-	MAXI MAXI CLOCK
+	// MAXI MAXI CLOCK
 	class_<maxiClock>("maxiClock")
 	//	.constructor<>()
 	.smart_ptr_constructor("shared_ptr<maxiClock>",&std::make_shared<maxiClock>)
@@ -345,6 +345,7 @@ EMSCRIPTEN_BINDINGS(my_module) {
 	.property("tick", &maxiClock::getTick, &maxiClock::setTick)
 	.property("ticks", &maxiClock::getTicks, &maxiClock::setTicks)
 	;
+
   //	class_<testVectorHolder>("testVectorHolder")
 	//	.constructor<>()
 	/*

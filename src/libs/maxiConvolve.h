@@ -9,7 +9,7 @@
 #ifndef maxiConvolve_h
 #define maxiConvolve_h
 
-#include "maximilian.h"
+#include "../maximilian.h"
 #include "maxiFFT.h"
 #include <iostream>
 #include <deque>
@@ -29,7 +29,7 @@ private:
     floatVV impulseImag;
     vector<float> sumReal;
     vector<float> sumImag;
-    
+
 };
 
 #endif /* maxiConvolve_h */

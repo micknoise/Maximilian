@@ -9,7 +9,7 @@
 
 
 #include <iostream>
-#include "maximilian.h"
+#include "../maximilian.h"
 #include <list>
 #include <vector>
 #include "maxiGrains.h"
@@ -39,7 +39,7 @@ struct maxiGaborAtom : maxiAtom {
 //create atoms
 class maxiCollider {
 public:
-	static inline void createGabor(flArr &atom, const float freq, const float sampleRate, const unsigned int length, 
+	static inline void createGabor(flArr &atom, const float freq, const float sampleRate, const unsigned int length,
                                 float phase, const float kurtotis, const float amp);
     static maxiGrainWindowCache<gaussianWinFunctor> envCache;
 };
@@ -65,7 +65,7 @@ private:
 
 /*load a book in MPTK XML format
  http://mptk.irisa.fr/
- 
+
  how to create a book:
  mpd -n 1000 -R 10 -d ./dic_gabor_two_scales.xml glockenspiel.wav book.xml
 */
@@ -77,8 +77,8 @@ public:
 	unsigned int sampleRate;
 	maxiAtomBookData atoms;
     //commented out for now, need to resolve tinyxml linker issues - we need tinyxml in the distrib, but it clashes if you also import ofxXmlSettings
-//	static bool loadMPTKXmlBook(string filename, maxiAtomBook &book);  
-	
+//	static bool loadMPTKXmlBook(string filename, maxiAtomBook &book);
+
 };
 
 class maxiAtomBookPlayer {
@@ -88,4 +88,3 @@ public:
 private:
 	unsigned int atomIdx;
 };
-

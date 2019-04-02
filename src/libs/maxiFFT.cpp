@@ -6,7 +6,7 @@
  *  Copyright 2009 Mick Grierson & Strangeloop Limited. All rights reserved.
  *	Thanks to the Goldsmiths Creative Computing Team.
  *	Special thanks to Arturo Castro for the PortAudio implementation.
- * 
+ *
  *	Permission is hereby granted, free of charge, to any person
  *	obtaining a copy of this software and associated documentation
  *	files (the "Software"), to deal in the Software without
@@ -15,11 +15,11 @@
  *	copies of the Software, and to permit persons to whom the
  *	Software is furnished to do so, subject to the following
  *	conditions:
- *	
+ *
  *	The above copyright notice and this permission notice shall be
  *	included in all copies or substantial portions of the Software.
  *
- *	THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,	
+ *	THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
  *	EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
  *	OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
  *	NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
@@ -31,9 +31,9 @@
  */
 
 #include "maxiFFT.h"
+#include "../maximilian.h"
 #include <iostream>
 #include "math.h"
-
 
 using namespace std;
 
@@ -49,34 +49,42 @@ void maxiFFT::setup(int _fftSize, int _windowSize, int _hopSize) {
 	bins = fftSize / 2;
 	hopSize = _hopSize;
 	buffer = (float *) malloc(fftSize * sizeof(float));
-//	magnitudes = (float *) malloc(bins * sizeof(float));
-	magnitudes.resize(bins);
+	magnitudes = (float *) malloc(bins * sizeof(float));
 	magnitudesDB = (float *) malloc(bins * sizeof(float));
-//	phases = (float *) malloc(bins * sizeof(float));
-	phases.resize(bins);
+	phases = (float *) malloc(bins * sizeof(float));
 	avgPower = new float;
 	memset(buffer, 0, fftSize * sizeof(float));
-//	memset(magnitudes, 0, bins * sizeof(float));
+	memset(magnitudes, 0, bins * sizeof(float));
 	memset(magnitudesDB, 0, bins * sizeof(float));
-//	memset(phases, 0, bins * sizeof(float));
+	memset(phases, 0, bins * sizeof(float));
 	*avgPower = 0;
 	pos =windowSize - hopSize;
 	newFFT = 0;
 	window = (float*) malloc(fftSize * sizeof(float));
 	memset(window, 0, fftSize * sizeof(float));
 	fft::genWindow(3, windowSize, window);
+    real = _fft->getReal();
+    imag = _fft->getImg();
 }
 
-bool maxiFFT::process(float value) {
+bool maxiFFT::process(float value, fftModes mode) {
 	//add value to buffer at current pos
 	buffer[pos++] = value;
 	//if buffer full, run fft
 	newFFT = pos == windowSize;
 	if (newFFT) {
 #if defined(__APPLE_CC__) && !defined(_NO_VDSP)
-		_fft->powerSpectrum_vdsp(0, buffer, window, magnitudes.data(), phases.data());
+        if (mode == maxiFFT::WITH_POLAR_CONVERSION) {
+            _fft->powerSpectrum_vdsp(0, buffer, window, magnitudes, phases);
+        }else{
+            _fft->calcFFT_vdsp(buffer, window);
+        }
 #else
-		_fft->powerSpectrum(0, buffer, window, magnitudes.data(), phases.data());
+        if (mode == maxiFFT::WITH_POLAR_CONVERSION) {
+            _fft->powerSpectrum(0, buffer, window, magnitudes, phases);
+        }else{
+            _fft->calcFFT(0, buffer, window);
+        }
 #endif
 		//shift buffer back by one hop size
 		memcpy(buffer, buffer + hopSize, (windowSize - hopSize) * sizeof(float));
@@ -88,13 +96,13 @@ bool maxiFFT::process(float value) {
 	return newFFT;
 }
 
-float maxiFFT::magsToDB() {
+float* maxiFFT::magsToDB() {
 #if defined(__APPLE_CC__) && !defined(_NO_VDSP)
-	_fft->convToDB_vdsp(magnitudes.data(), magnitudesDB);
+	_fft->convToDB_vdsp(magnitudes, magnitudesDB);
 #else
-	_fft->convToDB(magnitudes.data(), magnitudesDB);
-#endif	
-	return *magnitudesDB;
+	_fft->convToDB(magnitudes, magnitudesDB);
+#endif
+	return magnitudesDB;
 }
 
 float maxiFFT::spectralFlatness() {
@@ -123,7 +131,7 @@ float maxiFFT::spectralCentroid() {
 maxiFFT::~maxiFFT() {
 	delete _fft;
 	if (buffer)
-		delete[] buffer,/*magnitudes,phases,*/window, avgPower, magnitudesDB;
+		delete[] buffer,magnitudes,phases,window, avgPower, magnitudesDB;
 }
 
 
@@ -134,7 +142,7 @@ maxiFFT::~maxiFFT() {
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 void maxiIFFT::setup(int _fftSize, int _windowSize, int _hopSize) {
-	_fft = new fft(_fftSize);	
+	_fft = new fft(_fftSize);
 	fftSize = _fftSize;
 	windowSize = _windowSize;
 	bins = fftSize / 2;
@@ -148,29 +156,34 @@ void maxiIFFT::setup(int _fftSize, int _windowSize, int _hopSize) {
 	fft::genWindow(3, windowSize, window);
 }
 
-//float maxiIFFT::process(float *magnitudes, float *phases) {
-	float maxiIFFT::process(std::vector<float>& magnitudes, std::vector<float>& phases) {
-
+float maxiIFFT::process(float *data1, float *data2, fftModes mode) {
 	if (0==pos) {
 		//do ifft
 		memset(ifftOut, 0, fftSize * sizeof(float));
-		// use data() to pass first adrress of vectors
 #if defined(__APPLE_CC__) && !defined(_NO_VDSP)
-		_fft->inversePowerSpectrum_vdsp(0, ifftOut, window, magnitudes.data(), phases.data());
+        if (mode == maxiIFFT::SPECTRUM) {
+            _fft->inversePowerSpectrum_vdsp(0, ifftOut, window, data1, data2);
+        }else{
+            _fft->inverseFFTComplex_vdsp(0, ifftOut, window, data1, data2);
+        }
 #else
-		_fft->inversePowerSpectrum(0, ifftOut, window, magnitudes.data(), phases.data());
+        if (mode == maxiIFFT::SPECTRUM) {
+            _fft->inversePowerSpectrum(0, ifftOut, window, data1, data2);
+        }else{
+            _fft->inverseFFTComplex(0, ifftOut, window, data1, data2);
+        }
 #endif
 		//add to output
 		//shift back by one hop
 		memcpy(buffer, buffer+hopSize, (fftSize - hopSize) * sizeof(float));
 		//clear the end chunk
-		memset(buffer + (fftSize - hopSize), 0, hopSize * sizeof(float)); 
+		memset(buffer + (fftSize - hopSize), 0, hopSize * sizeof(float));
 		//merge new output
 		for(int i=0; i < fftSize; i++) {
 			buffer[i] += ifftOut[i];
 		}
 	}
-	
+
 	nextValue = buffer[pos];
 	//limit the values, this alg seems to spike occasionally (and break the audio drivers)
 	if (nextValue > 0.99999f) nextValue = 0.99999f;
@@ -178,7 +191,7 @@ void maxiIFFT::setup(int _fftSize, int _windowSize, int _hopSize) {
 	if (hopSize == ++pos ) {
 		pos=0;
 	}
-	
+
 	return nextValue;
 }
 
@@ -200,7 +213,7 @@ maxiIFFT::~maxiIFFT() {
 
 
 void maxiFFTOctaveAnalyzer::setup(float samplingRate, int nBandsInTheFFT, int nAveragesPerOctave){
-	
+
     samplingRate = samplingRate;
     nSpectrum = nBandsInTheFFT;
     spectrumFrequencySpan = (samplingRate / 2.0f) / (float)(nSpectrum);
@@ -253,8 +266,8 @@ void maxiFFTOctaveAnalyzer::setup(float samplingRate, int nBandsInTheFFT, int nA
     linearEQSlope = 0.0f; // unity -- no eq by default
 }
 
-//void maxiFFTOctaveAnalyzer::calculate(float * fftData){
-void maxiFFTOctaveAnalyzer::calculate(vector<float>& fftData){
+void maxiFFTOctaveAnalyzer::calculate(float * fftData){
+
 	int last_avgidx = 0; // tracks when we've crossed into a new averaging bin, so store current average
     float sum = 0.0f; // running total of spectrum data
     int count = 0; // count of spectrums accumulated (for averaging)
@@ -263,7 +276,7 @@ void maxiFFTOctaveAnalyzer::calculate(vector<float>& fftData){
 		sum += fftData[speidx] * (linearEQIntercept + (float)(speidx) * linearEQSlope);
 		int avgidx = spe2avg[speidx];
 		if (avgidx != last_avgidx) {
-			
+
 			for (int j = last_avgidx; j < avgidx; j++){
 				averages[j] = sum / (float)(count);
 			}
@@ -276,7 +289,7 @@ void maxiFFTOctaveAnalyzer::calculate(vector<float>& fftData){
     if ((count > 0) && (last_avgidx < nAverages)){
 		averages[last_avgidx] = sum / (float)(count);
 	}
-	
+
     // update the peaks separately
     for (int i=0; i < nAverages; i++) {
 		if (averages[i] >= peaks[i]) {

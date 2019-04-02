@@ -11,10 +11,10 @@ using namespace std;
 
 void maxiConvolve::setup(std::string impulseFile, int fftsize, int hopsize) {
     auto  analyseImpulse = [fftsize, hopsize](maxiSample &impulse, floatVV &impulseReal, floatVV &impulseImag) {
-        
+
         float maxReal=0;
         float maxImag=0;
-        
+
         auto pushFFTFrame = [&impulseReal, &impulseImag](maxiFFT &fft, float &maxReal, float &maxImag) {
             vector<float> realVector;
             realVector.assign(fft.real, fft.real + fft.bins);
@@ -29,7 +29,7 @@ void maxiConvolve::setup(std::string impulseFile, int fftsize, int hopsize) {
                 if (imagVector[i] > maxImag) maxImag = imagVector[i];
             }
         };
-        
+
         maxiFFT fft;
         fft.setup(fftsize,fftsize,hopsize);
         for(int i=0; i < impulse.length; i++) {
@@ -42,7 +42,7 @@ void maxiConvolve::setup(std::string impulseFile, int fftsize, int hopsize) {
                 pushFFTFrame(fft, maxReal, maxImag);
             };
         }
-        
+
         for (int i=0; i < impulseReal.size(); i++) {
             for(int j=0; j < impulseReal[i].size(); j++) {
                 impulseReal[i][j] /= maxReal;
@@ -51,25 +51,25 @@ void maxiConvolve::setup(std::string impulseFile, int fftsize, int hopsize) {
         }
     };
 
-    
+
     maxiSample impulseSample;
     impulseSample.load(impulseFile);
     analyseImpulse(impulseSample, impulseReal, impulseImag);
     cout << "Impulse loaded, " << impulseReal.size() << " frames\n";
-    
+
     inFFT.setup(fftsize,fftsize,hopsize);
     ifft.setup(fftsize,fftsize,hopsize);
-    
+
     for(int i=0; i < impulseReal.size(); i++) {
         vector<float> blank;
         blank.resize(inFFT.bins, 0);
         FDLReal.push_front(blank);
         FDLImag.push_front(blank);
     }
-    
+
     sumReal.resize(inFFT.bins, 0);
     sumImag.resize(inFFT.bins, 0);
-    
+
 }
 
 float maxiConvolve::play(float w) {
@@ -83,10 +83,10 @@ float maxiConvolve::play(float w) {
         imagFrame.assign(inFFT.imag, inFFT.imag + inFFT.bins);
         FDLImag.push_front(imagFrame);
         FDLImag.pop_back();
-        
+
         std::fill(sumReal.begin(), sumReal.end(), 0);
         std::fill(sumImag.begin(), sumImag.end(), 0);
-        
+
         auto impRealIt = impulseReal.begin();
         auto impImagIt = impulseImag.begin();
         auto fdlRealIt = FDLReal.begin();

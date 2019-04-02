@@ -78,12 +78,12 @@ void maxiKick::setRelease(double release) {
 
 }
 
-void maxiKick::setPitch(double newPitch) {
-
-    pitch=newPitch;
-
-}
-
+// void maxiKick::setPitch(double newPitch) {
+//
+//     pitch=newPitch;
+//
+// }
+//
 void maxiKick::trigger() {
 
     envelope.trigger=1;

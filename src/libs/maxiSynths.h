@@ -21,9 +21,28 @@ class maxiKick {
 public:
     maxiKick();
     double play();
-    void setPitch(double pitch);
-    void setRelease(double releaseD);
     void trigger();
+    // void setPitch(double pitch);
+    void setRelease(double releaseD);
+
+    void setPitch(double v) {pitch = v;}
+    double getPitch() const {return pitch;}
+    void setDistortion(double v) {distortion = v;}
+    double getDistortion() const {return distortion;}
+    void setCutoff(double v) {cutoff = v;}
+    double getCutoff()  const{return cutoff;}
+    void setResonance(double v) {resonance = v;}
+    double getResonance() const {return resonance;}
+
+    void setUseDistortion(bool v) {useDistortion = v;}
+    double getUseDistortion()  const {return useDistortion;}
+    void setUseLimiter(bool v) {useLimiter = v;}
+    double getUseLimiter()  const {return useLimiter;}
+    void setUseFilter(bool v) {useFilter = v;}
+    double getUseFilter()  const {return useFilter;}
+
+
+  private:
     double pitch;
     double output = 0 ;
     double outputD =0 ;

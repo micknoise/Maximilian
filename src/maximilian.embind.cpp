@@ -300,14 +300,21 @@ EMSCRIPTEN_BINDINGS(my_module) {
 	;
 
 	// MAXI KICK
-	// class_<maxiKick>("maxiKick")
-	// //	.constructor<>()
-	// .smart_ptr_constructor("shared_ptr<maxiKick>",&std::make_shared<maxiKick>)
-	// .function("play", &maxiKick::play)
+	class_<maxiKick>("maxiKick")
+	//	.constructor<>()
 	// .function("setPitch", &maxiKick::setPitch)
-	// .function("setRelease", &maxiKick::setRelease)
-	// .function("trigger", &maxiKick::trigger)
-	// ;
+	.smart_ptr_constructor("shared_ptr<maxiKick>",&std::make_shared<maxiKick>)
+	.function("play", &maxiKick::play)
+	.function("setRelease", &maxiKick::setRelease)
+	.function("trigger", &maxiKick::trigger)
+	.property("pitch", &maxiKick::getPitch, &maxiKick::setPitch)
+	.property("distortion", &maxiKick::getDistortion, &maxiKick::setDistortion)
+	.property("cutoff", &maxiKick::getCutoff, &maxiKick::setCutoff)
+	.property("resonance", &maxiKick::getResonance, &maxiKick::setResonance)
+	.property("useDistortion", &maxiKick::getUseDistortion, &maxiKick::setUseDistortion)
+	.property("useLimiter", &maxiKick::getUseLimiter, &maxiKick::setUseLimiter)
+	.property("useFilter", &maxiKick::getUseFilter, &maxiKick::setUseFilter)
+	;
 
 	// MAXI SNARE
 	// class_<maxiSnare>("maxiSnare")
@@ -329,7 +336,7 @@ EMSCRIPTEN_BINDINGS(my_module) {
 	// .function("trigger", &maxiHats::trigger)
 	// ;
 
-	// MAXI MAXI CLOCK
+	// MAXI CLOCK
 	class_<maxiClock>("maxiClock")
 	//	.constructor<>()
 	.smart_ptr_constructor("shared_ptr<maxiClock>",&std::make_shared<maxiClock>)

@@ -4,6 +4,7 @@
 maxiOsc osc1, osc2, osc3, osc4, osc5;//One oscillator - can be called anything. Can be any of the available waveforms.
 maxiFilter filt1;
 maxiDistortion dist;
+
 void setup() {//some inits
     //nothing to go here this time
 }
@@ -15,6 +16,5 @@ void play(double *output) {
     w = filt1.lores(w, maxiMap::linexp(osc5.phasor(0.4),0,1,40,4000), 0.9);
     w = dist.atanDist(w,10);
     output[0]= output[1] = w;
-    
 }
 

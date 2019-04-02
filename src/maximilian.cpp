@@ -33,7 +33,6 @@
 
 #include "maximilian.h"
 #include "math.h"
-// #include "maxi_embind.h"
 
 
 /*  Maximilian can be configured to load ogg vorbis format files using the

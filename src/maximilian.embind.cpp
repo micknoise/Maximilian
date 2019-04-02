@@ -329,23 +329,22 @@ EMSCRIPTEN_BINDINGS(my_module) {
 	// .function("trigger", &maxiHats::trigger)
 	// ;
 
-	// MAXI MAXI CLOCK
-	// class_<maxiClock>("maxiClock")
-	// //	.constructor<>()
-	// .smart_ptr_constructor("shared_ptr<maxiClock>",&std::make_shared<maxiClock>)
-	// .function("ticker", &maxiClock::ticker)
-	// .function("setTempo", &maxiClock::setTempo)
-	// .function("setTicksPerBeat", &maxiClock::setTicksPerBeat)
-	// .function("isTick", &maxiClock::isTick)
-	//
-	// .property("currentCount", &maxiClock::getCurrentCount, &maxiClock::setCurrentCount)
-	// .property("currentCount", &maxiClock::getLastCount, &maxiClock::setLastCount)
-	// .property("playHead", &maxiClock::getPlayHead, &maxiClock::setPlayHead)
-	// .property("bps", &maxiClock::getBps, &maxiClock::setBps)
-	// .property("bpm", &maxiClock::getBpm, &maxiClock::setBpm)
-	// .property("tick", &maxiClock::getTick, &maxiClock::setTick)
-	// .property("ticks", &maxiClock::getTicks, &maxiClock::setTicks)
-	// ;
+	MAXI MAXI CLOCK
+	class_<maxiClock>("maxiClock")
+	//	.constructor<>()
+	.smart_ptr_constructor("shared_ptr<maxiClock>",&std::make_shared<maxiClock>)
+	.function("ticker", &maxiClock::ticker)
+	.function("setTempo", &maxiClock::setTempo)
+	.function("setTicksPerBeat", &maxiClock::setTicksPerBeat)
+	.function("isTick", &maxiClock::isTick)
+	.property("currentCount", &maxiClock::getCurrentCount, &maxiClock::setCurrentCount)
+	.property("currentCount", &maxiClock::getLastCount, &maxiClock::setLastCount)
+	.property("playHead", &maxiClock::getPlayHead, &maxiClock::setPlayHead)
+	.property("bps", &maxiClock::getBps, &maxiClock::setBps)
+	.property("bpm", &maxiClock::getBpm, &maxiClock::setBpm)
+	.property("tick", &maxiClock::getTick, &maxiClock::setTick)
+	.property("ticks", &maxiClock::getTicks, &maxiClock::setTicks)
+	;
   //	class_<testVectorHolder>("testVectorHolder")
 	//	.constructor<>()
 	/*

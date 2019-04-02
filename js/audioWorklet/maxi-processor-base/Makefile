@@ -18,9 +18,9 @@ POST_JS=../../src/maximilian.post.js
 # 						-s MODULARIZE=1 --memory-init-file 0 --profiling \
 # 						-s BINARYEN_ASYNC_COMPILATION=0 \
 # 						-s SINGLE_FILE=1
+						 	# -s ERROR_ON_UNDEFINED_SYMBOLS=0 \
 
 CFLAGS=--bind -O1 \
-						-s ERROR_ON_UNDEFINED_SYMBOLS=0 \
  						-s DISABLE_EXCEPTION_CATCHING=0 \
 						-s ASSERTIONS=1 \
 						-s WASM=0 \

@@ -32,7 +32,7 @@
     let customProcessorName = 'maxi-processor';
     let workletUrl = 'maxi-processor.js';
 
-    class MaxiAudioNode extends AudioWorkletNode {
+    class MaxiNode extends AudioWorkletNode {
 
       constructor(audioContext, processorName) {
         super(audioContext, processorName);
@@ -66,7 +66,7 @@
       try {
         window.MaxiAudioNode = audioContext.audioWorklet.addModule(workletUrl).then(() => {
           stopAudio();
-          customNode = new MaxiAudioNode(audioContext, customProcessorName);
+          customNode = new MaxiNode(audioContext, customProcessorName);
 
           customNode.port.onmessage = (event) => {
             //  data from the processor.
@@ -74,7 +74,7 @@
           };
 
           customNode.connect(audioContext.destination);
-        });
+        }).catch((e => console.log("Error on loading worklet: ", e)));
       } catch (err) {
         console.log("AudioWorklet not supported in this browser: ", err.message);
       }

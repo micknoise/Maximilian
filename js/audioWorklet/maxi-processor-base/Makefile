@@ -1,6 +1,7 @@
 EMSCR=em++
 
-SRC=../../../src/maximilian.embind.cpp
+SRC=../../../src/maximilian.cpp
+SRC_EM=../../../src/maximilian.embind.cpp
 
 OUTPUT=maximilian.wasmmodule.js
 
@@ -18,6 +19,7 @@ POST_JS=../../src/maximilian.post.js
 # 						-s SINGLE_FILE=1
 
 CFLAGS=--bind -O1 \
+						-s ERROR_ON_UNDEFINED_SYMBOLS=0 \
  						-s DISABLE_EXCEPTION_CATCHING=0 \
 						-s ASSERTIONS=1 \
 						-s WASM=0 \
@@ -25,7 +27,7 @@ CFLAGS=--bind -O1 \
 						-s SINGLE_FILE=1
 
 build: $(SOURCE_MAXI)
-	@emcc $(CFLAGS) --post-js $(POST_JS) -o $(OUTPUT) $(SRC)
+	@emcc $(CFLAGS) --post-js $(POST_JS) -o $(OUTPUT) $(SRC) $(SRC_EM)
 
 clean:
 	@rm -f maximilian.wasmmodule.js

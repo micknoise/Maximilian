@@ -38,6 +38,7 @@
 
 #include "fft.h"
 #include "stddef.h"
+#include <vector>
 
 class maxiFFT {
 	
@@ -45,16 +46,17 @@ public:
     
     enum fftModes {NO_POLAR_CONVERSION, WITH_POLAR_CONVERSION};
     
-	maxiFFT(){
-		_fft = NULL; 
-		buffer = magnitudes = phases  = window = avgPower = NULL;
-	};
-	~maxiFFT();
+    maxiFFT() {};
+    ~maxiFFT() {};
 	void setup(int fftSize, int windowSize, int hopSize);
     bool process(float value, fftModes mode = maxiFFT::WITH_POLAR_CONVERSION);
 	float* magsToDB();
-	float *magnitudes, *phases, *magnitudesDB, *real, *imag;
-	float *avgPower;
+//    float *magnitudes, *phases, *magnitudesDB,
+//    float *real, *imag;
+    inline float *getReal() {return _fft.getReal();};
+    inline float *getImag() {return _fft.getImg();};
+    float avgPower;
+    std::vector<float> magnitudes, phases, magnitudesDB;
 	int windowSize;
 	int hopSize;
 	int bins;
@@ -64,11 +66,12 @@ public:
 	float spectralCentroid();
     
 private:
-	float *buffer, *window;
+//    float *buffer, *window;
+    std::vector<float> buffer, window;
 	int pos;
 	float nextValue;
 	int fftSize;
-	fft *_fft;
+	fft _fft;
 	bool newFFT;
     
 };
@@ -79,22 +82,21 @@ public:
     enum fftModes {SPECTRUM, COMPLEX};
 
 	maxiIFFT(){
-		_fft=0;
 	};
-	~maxiIFFT();
+    ~maxiIFFT() {};
 	void setup(int fftSize, int windowSize, int hopSize);
     float process(float *data1, float *data2, fftModes mode = maxiIFFT::SPECTRUM);
 	
     
 private:
-	float *ifftOut, *buffer, *window;
+    std::vector<float> ifftOut, buffer, window;
 	int windowSize;
 	int bins;
 	int hopSize;
 	int pos;
 	float nextValue;
 	int fftSize;
-	fft *_fft;
+	fft _fft;
 };
 
 

@@ -32,12 +32,12 @@ void maxiConvolve::setup(std::string impulseFile, int fftsize, int hopsize) {
 
         maxiFFT fft;
         fft.setup(fftsize,fftsize,hopsize);
-        for(int i=0; i < impulse.length; i++) {
+        for(int i=0; i < impulse.getLength(); i++) {
             if (fft.process(impulse.play(), maxiFFT::NO_POLAR_CONVERSION)) {
                 pushFFTFrame(fft, maxReal, maxImag);
             };
         }
-        for(int i=0; i < fft.bins - (impulse.length % fft.bins); i++) {
+        for(int i=0; i < fft.bins - (impulse.getLength() % fft.bins); i++) {
             if (fft.process(0, maxiFFT::NO_POLAR_CONVERSION)) {
                 pushFFTFrame(fft, maxReal, maxImag);
             };

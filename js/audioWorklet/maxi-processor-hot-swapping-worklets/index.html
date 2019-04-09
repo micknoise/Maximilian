@@ -161,7 +161,7 @@
 
       // Set custom processor in audio worklet
       audioContext.audioWorklet.addModule(workletUrl).then(() => {
-        stop();
+        stopAudio();
 
         customNode = new MaxiNode(audioContext, processorName);
 

@@ -82,44 +82,44 @@
       // We get an "Error on loading worklet:  DOMException" with the following import:
       // import Module from './maximilian.wasmmodule.js';
       return `
-      import Module from './maximilian.wasmmodule.js'; 
-      class CustomProcessor extends AudioWorkletProcessor {
-        static get parameterDescriptors() {
-          return [{
-            name: 'gain',
-            defaultValue: 0.1
-          }];
-        }
-        constructor() {
-          super();
-          this.sampleRate = 44100;
+        import Module from './maximilian.wasmmodule.js';
+        class CustomProcessor extends AudioWorkletProcessor {
+          static get parameterDescriptors() {
+            return [{
+              name: 'gain',
+              defaultValue: 0.1
+            }];
+          }
+          constructor() {
+            super();
+            this.sampleRate = 44100;
 
-          this.port.onmessage = (event) => {
-            console.log(event.data);
-          };
+            this.port.onmessage = (event) => {
+              console.log(event.data);
+            };
 
-        }
-        process(inputs, outputs, parameters) {
+          }
+          process(inputs, outputs, parameters) {
 
-          const outputsLength = outputs.length;
-          for (let outputId = 0; outputId < outputsLength; ++outputId) {
-            let output = outputs[outputId];
-            const channelLenght = output.length;
+            const outputsLength = outputs.length;
+            for (let outputId = 0; outputId < outputsLength; ++outputId) {
+              let output = outputs[outputId];
+              const channelLenght = output.length;
 
-            for (let channelId = 0; channelId < channelLenght; ++channelId) {
-              const gain = parameters.gain;
-              const isConstant = gain.length === 1
-              let outputChannel = output[channelId];
+              for (let channelId = 0; channelId < channelLenght; ++channelId) {
+                const gain = parameters.gain;
+                const isConstant = gain.length === 1
+                let outputChannel = output[channelId];
 
-              for (let i = 0; i < outputChannel.length; ++i) {
-                const amp = isConstant ? gain[0] : gain[i]
-                outputChannel[i] = ${userDefinedFunction} * amp;
+                for (let i = 0; i < outputChannel.length; ++i) {
+                  const amp = isConstant ? gain[0] : gain[i]
+                  outputChannel[i] = ${userDefinedFunction} * amp;
+                }
               }
             }
+            return true;
           }
-          return true;
-        }
-      }`;
+        }`;
     }
 
     /**
@@ -152,7 +152,7 @@
       console.log(code);
 
       const blob = new Blob([code], {
-        type: "application/javascript"
+        type: "application/javascript; charset=utf-8"
       });
 
       // TODO: Check for memory leaks
@@ -162,7 +162,13 @@
       // Set custom processor in audio worklet
       audioContext.audioWorklet.addModule(workletUrl).then(() => {
         stop();
+
         customNode = new MaxiNode(audioContext, processorName);
+
+        customNode.onprocessorerror = (event) => {
+          console.log(`An error from AudioWorkletProcessor.constructor() was detected.`);
+        };
+
         customNode.port.onmessage = (event) => {
           //  data from the processor.
           console.log("from processor: " + event.data);
@@ -182,6 +188,10 @@
         audioContext.audioWorklet.addModule(workletUrl).then(() => {
           stopAudio();
           customNode = new MaxiNode(audioContext, customProcessorName);
+
+          customNode.onprocessorerror = (event) => {
+            console.log(`An error from AudioWorkletProcessor.constructor() was detected.`);
+          };
 
           customNode.port.onmessage = (event) => {
             //  data from the processor.

@@ -36,7 +36,7 @@
 #ifndef M_PI
 #define	M_PI		3.14159265358979323846  /* pi */
 #endif
-
+#include <vector>
 #ifdef __APPLE_CC__
 #include <Accelerate/Accelerate.h>
 #endif
@@ -46,23 +46,29 @@
 class fft {
 	
 public:
+//    fft();
+//    fft(int fftSize);
+    fft(){};
+//    fft(fft const &other);
+	~fft();
 	
-	fft(int fftSize);
-	~fft();	
-	
+    void setup(int fftSize);
 	int n; //fftSize
 	int half; //halfFFTSize
 	
-	float			*in_real, *out_real, *in_img, *out_img;
+//    float            *in_real, *out_real, *in_img, *out_img;
+    std::vector<float> in_real,out_real,in_img,out_img;
     
     float * getReal();
     float * getImg();
     
 #ifdef __APPLE_CC__
 	int log2n; //log2(n);
-    FFTSetup        setupReal;
+    FFTSetup        setupReal = NULL;
     COMPLEX_SPLIT   A;
-	float *polar;
+    bool issetup = false;
+    std::vector<float> realp, imagp;
+	std::vector<float> polar;
     
     void calcFFT_vdsp(float *data, float *window);
     void cartToPol_vdsp(float *magnitude,float *phase);

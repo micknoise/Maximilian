@@ -788,5 +788,120 @@ private:
 
 };
 
+//based on http://www.earlevel.com/main/2011/01/02/biquad-formulas/ and https://ccrma.stanford.edu/~jos/fp/Direct_Form_II.html
+class maxiBiquad {
+public:
+    enum filterTypes {LOWPASS, HIGHPASS, BANDPASS, NOTCH, PEAK, LOWSHELF, HIGHSHELF};
+    inline double play(double input) {
+        v[0] = input - (b1 * v[1]) - (b2 * v[2]);
+        double y = (a0 * v[0]) + (a1 * v[1]) + (a2 * v[2]);
+        v[2] = v[1];
+        v[1] = v[0];
+        return y;
+    }
+    inline void set(filterTypes filtType, double cutoff, double Q, double peakGain) {
+        double norm=0;
+        double V = pow(10.0, abs(peakGain) / 20.0);
+        double K = tan(PI * cutoff / maxiSettings::sampleRate);
+        switch (filtType) {
+            case LOWPASS:
+                norm = 1.0 / (1.0 + K / Q + K * K);
+                a0 = K * K * norm;
+                a1 = 2.0 * a0;
+                a2 = a0;
+                b1 = 2.0 * (K * K - 1.0) * norm;
+                b2 = (1.0 - K / Q + K * K) * norm;
+                break;
+                
+            case HIGHPASS:
+                norm = 1. / (1. + K / Q + K * K);
+                a0 = 1 * norm;
+                a1 = -2 * a0;
+                a2 = a0;
+                b1 = 2 * (K * K - 1) * norm;
+                b2 = (1 - K / Q + K * K) * norm;
+                break;
+                
+            case BANDPASS:
+                norm = 1. / (1. + K / Q + K * K);
+                a0 = K / Q * norm;
+                a1 = 0.;
+                a2 = -a0;
+                b1 = 2. * (K * K - 1.) * norm;
+                b2 = (1. - K / Q + K * K) * norm;
+                break;
+                
+            case NOTCH:
+                norm = 1. / (1. + K / Q + K * K);
+                a0 = (1. + K * K) * norm;
+                a1 = 2. * (K * K - 1.) * norm;
+                a2 = a0;
+                b1 = a1;
+                b2 = (1. - K / Q + K * K) * norm;
+                break;
+                
+            case PEAK:
+                if (peakGain >= 0.0) {    // boost
+                    norm = 1. / (1. + 1./Q * K + K * K);
+                    a0 = (1. + V/Q * K + K * K) * norm;
+                    a1 = 2. * (K * K - 1.) * norm;
+                    a2 = (1. - V/Q * K + K * K) * norm;
+                    b1 = a1;
+                    b2 = (1. - 1./Q * K + K * K) * norm;
+                }
+                else {    // cut
+                    norm = 1. / (1. + V/Q * K + K * K);
+                    a0 = (1. + 1/Q * K + K * K) * norm;
+                    a1 = 2. * (K * K - 1) * norm;
+                    a2 = (1. - 1./Q * K + K * K) * norm;
+                    b1 = a1;
+                    b2 = (1. - V/Q * K + K * K) * norm;
+                }
+                break;
+            case LOWSHELF:
+                if (peakGain >= 0.) {    // boost
+                    norm = 1. / (1. + SQRT2 * K + K * K);
+                    a0 = (1. + sqrt(2.*V) * K + V * K * K) * norm;
+                    a1 = 2. * (V * K * K - 1.) * norm;
+                    a2 = (1. - sqrt(2. *V) * K + V * K * K) * norm;
+                    b1 = 2. * (K * K - 1.) * norm;
+                    b2 = (1. - SQRT2 * K + K * K) * norm;
+                }
+                else {    // cut
+                    norm = 1. / (1. + sqrt(2.*V) * K + V * K * K);
+                    a0 = (1. + SQRT2 * K + K * K) * norm;
+                    a1 = 2. * (K * K - 1.) * norm;
+                    a2 = (1. - SQRT2 * K + K * K) * norm;
+                    b1 = 2. * (V * K * K - 1.) * norm;
+                    b2 = (1. - sqrt(2.*V) * K + V * K * K) * norm;
+                }
+                break;
+            case HIGHSHELF:
+                if (peakGain >= 0.) {    // boost
+                    norm = 1. / (1. + SQRT2 * K + K * K);
+                    a0 = (V + sqrt(2.*V) * K + K * K) * norm;
+                    a1 = 2. * (K * K - V) * norm;
+                    a2 = (V - sqrt(2.*V) * K + K * K) * norm;
+                    b1 = 2. * (K * K - 1) * norm;
+                    b2 = (1. - SQRT2 * K + K * K) * norm;
+                }
+                else {    // cut
+                    norm = 1. / (V + sqrt(2.*V) * K + K * K);
+                    a0 = (1. + SQRT2 * K + K * K) * norm;
+                    a1 = 2. * (K * K - 1.) * norm;
+                    a2 = (1. - SQRT2 * K + K * K) * norm;
+                    b1 = 2. * (K * K - V) * norm;
+                    b2 = (V - sqrt(2.*V) * K + K * K) * norm;
+                }
+                break;
+        }
+    }
+private:
+    double a0=0,a1=0,a2=0,b1=0,b2=0;
+    filterTypes filterType;
+    const double SQRT2 = sqrt(2.0);
+    double v[3] = {0,0,0};
+};
+
 
 #endif

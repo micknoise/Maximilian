@@ -24,7 +24,7 @@ POST_JS=../../src/maximilian.post.js
 CFLAGS=--bind -O1 \
  						-s DISABLE_EXCEPTION_CATCHING=0 \
 						-s ASSERTIONS=1 \
-						-s WASM=0 \
+						-s WASM=1 \
 						-s BINARYEN_ASYNC_COMPILATION=0 \
 						-s SINGLE_FILE=1
 

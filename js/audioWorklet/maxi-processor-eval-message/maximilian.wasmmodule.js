@@ -301,7 +301,8 @@ function dynamicAlloc(size) {
   if (end <= _emscripten_get_heap_size()) {
     HEAP32[DYNAMICTOP_PTR>>2] = end;
   } else {
-    return 0;
+    var success = _emscripten_resize_heap(end);
+    if (!success) return 0;
   }
   return ret;
 }
@@ -2197,6 +2198,17 @@ function copyTempDouble(ptr) {
           }
           return size;
         },write:function (stream, buffer, offset, length, position, canOwn) {
+          // If memory can grow, we don't want to hold on to references of
+          // the memory Buffer, as they may get invalidated. That means
+          // we need to do a copy here.
+          // FIXME: this is inefficient as the file packager may have
+          //        copied the data into memory already - we may want to
+          //        integrate more there and let the file packager loading
+          //        code be able to query if memory growth is on or off.
+          if (canOwn) {
+            warnOnce('file packager has copied file data into memory, but in memory growth we are forced to copy it again (see --no-heap-copy)');
+          }
+          canOwn = false;
   
           if (!length) return 0;
           var node = stream.node;
@@ -6730,8 +6742,79 @@ function copyTempDouble(ptr) {
   
   function abortOnCannotGrowMemory(requestedSize) {
       abort('Cannot enlarge memory arrays to size ' + requestedSize + ' bytes. Either (1) compile with  -s TOTAL_MEMORY=X  with X higher than the current value ' + TOTAL_MEMORY + ', (2) compile with  -s ALLOW_MEMORY_GROWTH=1  which allows increasing the size at runtime but prevents some optimizations, (3) set Module.TOTAL_MEMORY to a higher value before the program runs, or (4) if you want malloc to return NULL (0) instead of this abort, compile with  -s ABORTING_MALLOC=0 ');
+    }
+  
+  function emscripten_realloc_buffer(size) {
+      try {
+        var newBuffer = new ArrayBuffer(size);
+        if (newBuffer.byteLength != size) return false;
+        new Int8Array(newBuffer).set(HEAP8);
+      } catch(e) {
+        return false;
+      }
+      Module['_emscripten_replace_memory'](newBuffer);
+      HEAP8 = new Int8Array(newBuffer);
+      HEAP16 = new Int16Array(newBuffer);
+      HEAP32 = new Int32Array(newBuffer);
+      HEAPU8 = new Uint8Array(newBuffer);
+      HEAPU16 = new Uint16Array(newBuffer);
+      HEAPU32 = new Uint32Array(newBuffer);
+      HEAPF32 = new Float32Array(newBuffer);
+      HEAPF64 = new Float64Array(newBuffer);
+      buffer = newBuffer;
+      return newBuffer;
     }function _emscripten_resize_heap(requestedSize) {
-      abortOnCannotGrowMemory(requestedSize);
+      var oldSize = _emscripten_get_heap_size();
+      // TOTAL_MEMORY is the current size of the actual array, and DYNAMICTOP is the new top.
+      assert(requestedSize > oldSize); // This function should only ever be called after the ceiling of the dynamic heap has already been bumped to exceed the current total size of the asm.js heap.
+  
+  
+      var PAGE_MULTIPLE = 16777216;
+      var LIMIT = 2147483648 - PAGE_MULTIPLE; // We can do one page short of 2GB as theoretical maximum.
+  
+      if (requestedSize > LIMIT) {
+        err('Cannot enlarge memory, asked to go up to ' + requestedSize + ' bytes, but the limit is ' + LIMIT + ' bytes!');
+        return false;
+      }
+  
+      var MIN_TOTAL_MEMORY = 16777216;
+      var newSize = Math.max(oldSize, MIN_TOTAL_MEMORY); // So the loop below will not be infinite, and minimum asm.js memory size is 16MB.
+  
+      while (newSize < requestedSize) { // Keep incrementing the heap size as long as it's less than what is requested.
+        if (newSize <= 536870912) {
+          newSize = alignUp(2 * newSize, PAGE_MULTIPLE); // Simple heuristic: double until 1GB...
+        } else {
+          // ..., but after that, add smaller increments towards 2GB, which we cannot reach
+          newSize = Math.min(alignUp((3 * newSize + 2147483648) / 4, PAGE_MULTIPLE), LIMIT);
+          if (newSize === oldSize) {
+            warnOnce('Cannot ask for more memory since we reached the practical limit in browsers (which is just below 2GB), so the request would have failed. Requesting only ' + TOTAL_MEMORY);
+          }
+        }
+      }
+  
+  
+      var start = Date.now();
+  
+      var replacement = emscripten_realloc_buffer(newSize);
+      if (!replacement || replacement.byteLength != newSize) {
+        err('Failed to grow the heap from ' + oldSize + ' bytes to ' + newSize + ' bytes, not enough memory!');
+        if (replacement) {
+          err('Expected to get back a buffer of size ' + newSize + ' bytes, but instead got back a buffer of size ' + replacement.byteLength);
+        }
+        return false;
+      }
+  
+      // everything worked
+      updateGlobalBuffer(replacement);
+      updateGlobalBufferViews();
+  
+      TOTAL_MEMORY = newSize;
+      HEAPU32[DYNAMICTOP_PTR>>2] = requestedSize;
+  
+      err('Warning: Enlarging memory arrays, this is not fast! ' + [oldSize, newSize]);
+  
+  
+      return true;
     }
 
   
@@ -7640,10 +7723,10 @@ function invoke_viiiiiiiiiiiiiii(index,a1,a2,a3,a4,a5,a6,a7,a8,a9,a10,a11,a12,a1
 
 var asmGlobalArg = { "Math": Math, "Int8Array": Int8Array, "Int16Array": Int16Array, "Int32Array": Int32Array, "Uint8Array": Uint8Array, "Uint16Array": Uint16Array, "Float32Array": Float32Array, "Float64Array": Float64Array, "NaN": NaN, "Infinity": Infinity }
 
-var asmLibraryArg = { "a": abort, "b": setTempRet0, "c": getTempRet0, "d": abortStackOverflow, "e": nullFunc_dddd, "f": nullFunc_dddddd, "g": nullFunc_di, "h": nullFunc_did, "i": nullFunc_didd, "j": nullFunc_diddd, "k": nullFunc_diddddd, "l": nullFunc_didddddii, "m": nullFunc_didddii, "n": nullFunc_diddidd, "o": nullFunc_didi, "p": nullFunc_didid, "q": nullFunc_dididdd, "r": nullFunc_dididi, "s": nullFunc_dii, "t": nullFunc_diid, "u": nullFunc_diidd, "v": nullFunc_diiddd, "w": nullFunc_diiddddd, "x": nullFunc_diidddddii, "y": nullFunc_diidddii, "z": nullFunc_diiddidd, "A": nullFunc_diidi, "B": nullFunc_diidid, "C": nullFunc_diididdd, "D": nullFunc_diididi, "E": nullFunc_diii, "F": nullFunc_diiii, "G": nullFunc_i, "H": nullFunc_ii, "I": nullFunc_iid, "J": nullFunc_iii, "K": nullFunc_iiid, "L": nullFunc_iiii, "M": nullFunc_iiiid, "N": nullFunc_iiiii, "O": nullFunc_iiiiid, "P": nullFunc_iiiiii, "Q": nullFunc_iiiiiid, "R": nullFunc_iiiiiii, "S": nullFunc_iiiiiiii, "T": nullFunc_iiiiiiiii, "U": nullFunc_iiiiiiiiiii, "V": nullFunc_iiiiiiiiiiii, "W": nullFunc_iiiiiiiiiiiii, "X": nullFunc_v, "Y": nullFunc_vi, "Z": nullFunc_vid, "_": nullFunc_vidd, "$": nullFunc_vidid, "aa": nullFunc_vididd, "ab": nullFunc_vididdd, "ac": nullFunc_vii, "ad": nullFunc_viid, "ae": nullFunc_viidd, "af": nullFunc_viidid, "ag": nullFunc_viididd, "ah": nullFunc_viididdd, "ai": nullFunc_viii, "aj": nullFunc_viiid, "ak": nullFunc_viiii, "al": nullFunc_viiiii, "am": nullFunc_viiiiii, "an": nullFunc_viiiiiii, "ao": nullFunc_viiiiiiiiii, "ap": nullFunc_viiiiiiiiiiiiiii, "aq": invoke_diii, "ar": invoke_i, "as": invoke_ii, "at": invoke_iii, "au": invoke_iiii, "av": invoke_iiiii, "aw": invoke_iiiiiii, "ax": invoke_iiiiiiii, "ay": invoke_iiiiiiiii, "az": invoke_iiiiiiiiiii, "aA": invoke_iiiiiiiiiiii, "aB": invoke_iiiiiiiiiiiii, "aC": invoke_v, "aD": invoke_vi, "aE": invoke_vii, "aF": invoke_viii, "aG": invoke_viiii, "aH": invoke_viiiiiii, "aI": invoke_viiiiiiiiii, "aJ": invoke_viiiiiiiiiiiiiii, "aK": ClassHandle, "aL": ClassHandle_clone, "aM": ClassHandle_delete, "aN": ClassHandle_deleteLater, "aO": ClassHandle_isAliasOf, "aP": ClassHandle_isDeleted, "aQ": RegisteredClass, "aR": RegisteredPointer, "aS": RegisteredPointer_deleteObject, "aT": RegisteredPointer_destructor, "aU": RegisteredPointer_fromWireType, "aV": RegisteredPointer_getPointee, "aW": __ZSt18uncaught_exceptionv, "aX": ___cxa_allocate_exception, "aY": ___cxa_begin_catch, "aZ": ___cxa_end_catch, "a_": ___cxa_find_matching_catch, "a$": ___cxa_find_matching_catch_2, "ba": ___cxa_find_matching_catch_3, "bb": ___cxa_free_exception, "bc": ___cxa_rethrow, "bd": ___cxa_throw, "be": ___gxx_personality_v0, "bf": ___lock, "bg": ___map_file, "bh": ___resumeException, "bi": ___setErrNo, "bj": ___syscall140, "bk": ___syscall145, "bl": ___syscall146, "bm": ___syscall54, "bn": ___syscall6, "bo": ___syscall91, "bp": ___unlock, "bq": __addDays, "br": __arraySum, "bs": __embind_register_bool, "bt": __embind_register_class, "bu": __embind_register_class_class_function, "bv": __embind_register_class_constructor, "bw": __embind_register_class_function, "bx": __embind_register_class_property, "by": __embind_register_emval, "bz": __embind_register_float, "bA": __embind_register_integer, "bB": __embind_register_memory_view, "bC": __embind_register_smart_ptr, "bD": __embind_register_std_string, "bE": __embind_register_std_wstring, "bF": __embind_register_void, "bG": __emval_call, "bH": __emval_decref, "bI": __emval_incref, "bJ": __emval_lookupTypes, "bK": __emval_register, "bL": __emval_take_value, "bM": __isLeapYear, "bN": _abort, "bO": _embind_repr, "bP": _emscripten_get_heap_size, "bQ": _emscripten_memcpy_big, "bR": _emscripten_resize_heap, "bS": _getenv, "bT": _llvm_stackrestore, "bU": _llvm_stacksave, "bV": _pthread_cond_wait, "bW": _pthread_getspecific, "bX": _pthread_key_create, "bY": _pthread_once, "bZ": _pthread_setspecific, "b_": _strftime, "b$": _strftime_l, "ca": abortOnCannotGrowMemory, "cb": constNoSmartPtrRawPointerToWireType, "cc": count_emval_handles, "cd": craftInvokerFunction, "ce": createNamedFunction, "cf": downcastPointer, "cg": embind__requireFunction, "ch": embind_init_charCodes, "ci": ensureOverloadTable, "cj": exposePublicSymbol, "ck": extendError, "cl": floatReadValueFromPointer, "cm": flushPendingDeletes, "cn": genericPointerToWireType, "co": getBasestPointer, "cp": getInheritedInstance, "cq": getInheritedInstanceCount, "cr": getLiveInheritedInstances, "cs": getShiftFromSize, "ct": getTypeName, "cu": get_first_emval, "cv": heap32VectorToArray, "cw": init_ClassHandle, "cx": init_RegisteredPointer, "cy": init_embind, "cz": init_emval, "cA": integerReadValueFromPointer, "cB": makeClassHandle, "cC": makeLegalFunctionName, "cD": new_, "cE": nonConstNoSmartPtrRawPointerToWireType, "cF": readLatin1String, "cG": registerType, "cH": replacePublicSymbol, "cI": requireHandle, "cJ": requireRegisteredType, "cK": runDestructor, "cL": runDestructors, "cM": setDelayFunction, "cN": shallowCopyInternalPointer, "cO": simpleReadValueFromPointer, "cP": throwBindingError, "cQ": throwInstanceAlreadyDeleted, "cR": throwInternalError, "cS": throwUnboundTypeError, "cT": upcastPointer, "cU": validateThis, "cV": whenDependentTypesAreResolved, "cW": tempDoublePtr, "cX": DYNAMICTOP_PTR }
+var asmLibraryArg = { "a": abort, "b": setTempRet0, "c": getTempRet0, "d": abortStackOverflow, "e": nullFunc_dddd, "f": nullFunc_dddddd, "g": nullFunc_di, "h": nullFunc_did, "i": nullFunc_didd, "j": nullFunc_diddd, "k": nullFunc_diddddd, "l": nullFunc_didddddii, "m": nullFunc_didddii, "n": nullFunc_diddidd, "o": nullFunc_didi, "p": nullFunc_didid, "q": nullFunc_dididdd, "r": nullFunc_dididi, "s": nullFunc_dii, "t": nullFunc_diid, "u": nullFunc_diidd, "v": nullFunc_diiddd, "w": nullFunc_diiddddd, "x": nullFunc_diidddddii, "y": nullFunc_diidddii, "z": nullFunc_diiddidd, "A": nullFunc_diidi, "B": nullFunc_diidid, "C": nullFunc_diididdd, "D": nullFunc_diididi, "E": nullFunc_diii, "F": nullFunc_diiii, "G": nullFunc_i, "H": nullFunc_ii, "I": nullFunc_iid, "J": nullFunc_iii, "K": nullFunc_iiid, "L": nullFunc_iiii, "M": nullFunc_iiiid, "N": nullFunc_iiiii, "O": nullFunc_iiiiid, "P": nullFunc_iiiiii, "Q": nullFunc_iiiiiid, "R": nullFunc_iiiiiii, "S": nullFunc_iiiiiiii, "T": nullFunc_iiiiiiiii, "U": nullFunc_iiiiiiiiiii, "V": nullFunc_iiiiiiiiiiii, "W": nullFunc_iiiiiiiiiiiii, "X": nullFunc_v, "Y": nullFunc_vi, "Z": nullFunc_vid, "_": nullFunc_vidd, "$": nullFunc_vidid, "aa": nullFunc_vididd, "ab": nullFunc_vididdd, "ac": nullFunc_vii, "ad": nullFunc_viid, "ae": nullFunc_viidd, "af": nullFunc_viidid, "ag": nullFunc_viididd, "ah": nullFunc_viididdd, "ai": nullFunc_viii, "aj": nullFunc_viiid, "ak": nullFunc_viiii, "al": nullFunc_viiiii, "am": nullFunc_viiiiii, "an": nullFunc_viiiiiii, "ao": nullFunc_viiiiiiiiii, "ap": nullFunc_viiiiiiiiiiiiiii, "aq": invoke_diii, "ar": invoke_i, "as": invoke_ii, "at": invoke_iii, "au": invoke_iiii, "av": invoke_iiiii, "aw": invoke_iiiiiii, "ax": invoke_iiiiiiii, "ay": invoke_iiiiiiiii, "az": invoke_iiiiiiiiiii, "aA": invoke_iiiiiiiiiiii, "aB": invoke_iiiiiiiiiiiii, "aC": invoke_v, "aD": invoke_vi, "aE": invoke_vii, "aF": invoke_viii, "aG": invoke_viiii, "aH": invoke_viiiiiii, "aI": invoke_viiiiiiiiii, "aJ": invoke_viiiiiiiiiiiiiii, "aK": ClassHandle, "aL": ClassHandle_clone, "aM": ClassHandle_delete, "aN": ClassHandle_deleteLater, "aO": ClassHandle_isAliasOf, "aP": ClassHandle_isDeleted, "aQ": RegisteredClass, "aR": RegisteredPointer, "aS": RegisteredPointer_deleteObject, "aT": RegisteredPointer_destructor, "aU": RegisteredPointer_fromWireType, "aV": RegisteredPointer_getPointee, "aW": __ZSt18uncaught_exceptionv, "aX": ___cxa_allocate_exception, "aY": ___cxa_begin_catch, "aZ": ___cxa_end_catch, "a_": ___cxa_find_matching_catch, "a$": ___cxa_find_matching_catch_2, "ba": ___cxa_find_matching_catch_3, "bb": ___cxa_free_exception, "bc": ___cxa_rethrow, "bd": ___cxa_throw, "be": ___gxx_personality_v0, "bf": ___lock, "bg": ___map_file, "bh": ___resumeException, "bi": ___setErrNo, "bj": ___syscall140, "bk": ___syscall145, "bl": ___syscall146, "bm": ___syscall54, "bn": ___syscall6, "bo": ___syscall91, "bp": ___unlock, "bq": __addDays, "br": __arraySum, "bs": __embind_register_bool, "bt": __embind_register_class, "bu": __embind_register_class_class_function, "bv": __embind_register_class_constructor, "bw": __embind_register_class_function, "bx": __embind_register_class_property, "by": __embind_register_emval, "bz": __embind_register_float, "bA": __embind_register_integer, "bB": __embind_register_memory_view, "bC": __embind_register_smart_ptr, "bD": __embind_register_std_string, "bE": __embind_register_std_wstring, "bF": __embind_register_void, "bG": __emval_call, "bH": __emval_decref, "bI": __emval_incref, "bJ": __emval_lookupTypes, "bK": __emval_register, "bL": __emval_take_value, "bM": __isLeapYear, "bN": _abort, "bO": _embind_repr, "bP": _emscripten_get_heap_size, "bQ": _emscripten_memcpy_big, "bR": _emscripten_resize_heap, "bS": _getenv, "bT": _llvm_stackrestore, "bU": _llvm_stacksave, "bV": _pthread_cond_wait, "bW": _pthread_getspecific, "bX": _pthread_key_create, "bY": _pthread_once, "bZ": _pthread_setspecific, "b_": _strftime, "b$": _strftime_l, "ca": abortOnCannotGrowMemory, "cb": constNoSmartPtrRawPointerToWireType, "cc": count_emval_handles, "cd": craftInvokerFunction, "ce": createNamedFunction, "cf": downcastPointer, "cg": embind__requireFunction, "ch": embind_init_charCodes, "ci": emscripten_realloc_buffer, "cj": ensureOverloadTable, "ck": exposePublicSymbol, "cl": extendError, "cm": floatReadValueFromPointer, "cn": flushPendingDeletes, "co": genericPointerToWireType, "cp": getBasestPointer, "cq": getInheritedInstance, "cr": getInheritedInstanceCount, "cs": getLiveInheritedInstances, "ct": getShiftFromSize, "cu": getTypeName, "cv": get_first_emval, "cw": heap32VectorToArray, "cx": init_ClassHandle, "cy": init_RegisteredPointer, "cz": init_embind, "cA": init_emval, "cB": integerReadValueFromPointer, "cC": makeClassHandle, "cD": makeLegalFunctionName, "cE": new_, "cF": nonConstNoSmartPtrRawPointerToWireType, "cG": readLatin1String, "cH": registerType, "cI": replacePublicSymbol, "cJ": requireHandle, "cK": requireRegisteredType, "cL": runDestructor, "cM": runDestructors, "cN": setDelayFunction, "cO": shallowCopyInternalPointer, "cP": simpleReadValueFromPointer, "cQ": throwBindingError, "cR": throwInstanceAlreadyDeleted, "cS": throwInternalError, "cT": throwUnboundTypeError, "cU": upcastPointer, "cV": validateThis, "cW": whenDependentTypesAreResolved, "cX": tempDoublePtr, "cY": DYNAMICTOP_PTR }
 // EMSCRIPTEN_START_ASM
 var asm = (/** @suppress {uselessCode} */ function(global, env, buffer) {
-'use asm';
+'almost asm';
 
   var HEAP8 = new global.Int8Array(buffer),
   HEAP16 = new global.Int16Array(buffer),
@@ -7652,8 +7735,8 @@ var asm = (/** @suppress {uselessCode} */ function(global, env, buffer) {
   HEAPU16 = new global.Uint16Array(buffer),
   HEAPF32 = new global.Float32Array(buffer),
   HEAPF64 = new global.Float64Array(buffer),
-  tempDoublePtr=env.cW|0,
-  DYNAMICTOP_PTR=env.cX|0,
+  tempDoublePtr=env.cX|0,
+  DYNAMICTOP_PTR=env.cY|0,
   __THREW__ = 0,
   threwValue = 0,
   setjmpId = 0,
@@ -7846,49 +7929,63 @@ var asm = (/** @suppress {uselessCode} */ function(global, env, buffer) {
   downcastPointer=env.cf,
   embind__requireFunction=env.cg,
   embind_init_charCodes=env.ch,
-  ensureOverloadTable=env.ci,
-  exposePublicSymbol=env.cj,
-  extendError=env.ck,
-  floatReadValueFromPointer=env.cl,
-  flushPendingDeletes=env.cm,
-  genericPointerToWireType=env.cn,
-  getBasestPointer=env.co,
-  getInheritedInstance=env.cp,
-  getInheritedInstanceCount=env.cq,
-  getLiveInheritedInstances=env.cr,
-  getShiftFromSize=env.cs,
-  getTypeName=env.ct,
-  get_first_emval=env.cu,
-  heap32VectorToArray=env.cv,
-  init_ClassHandle=env.cw,
-  init_RegisteredPointer=env.cx,
-  init_embind=env.cy,
-  init_emval=env.cz,
-  integerReadValueFromPointer=env.cA,
-  makeClassHandle=env.cB,
-  makeLegalFunctionName=env.cC,
-  new_=env.cD,
-  nonConstNoSmartPtrRawPointerToWireType=env.cE,
-  readLatin1String=env.cF,
-  registerType=env.cG,
-  replacePublicSymbol=env.cH,
-  requireHandle=env.cI,
-  requireRegisteredType=env.cJ,
-  runDestructor=env.cK,
-  runDestructors=env.cL,
-  setDelayFunction=env.cM,
-  shallowCopyInternalPointer=env.cN,
-  simpleReadValueFromPointer=env.cO,
-  throwBindingError=env.cP,
-  throwInstanceAlreadyDeleted=env.cQ,
-  throwInternalError=env.cR,
-  throwUnboundTypeError=env.cS,
-  upcastPointer=env.cT,
-  validateThis=env.cU,
-  whenDependentTypesAreResolved=env.cV,
+  emscripten_realloc_buffer=env.ci,
+  ensureOverloadTable=env.cj,
+  exposePublicSymbol=env.ck,
+  extendError=env.cl,
+  floatReadValueFromPointer=env.cm,
+  flushPendingDeletes=env.cn,
+  genericPointerToWireType=env.co,
+  getBasestPointer=env.cp,
+  getInheritedInstance=env.cq,
+  getInheritedInstanceCount=env.cr,
+  getLiveInheritedInstances=env.cs,
+  getShiftFromSize=env.ct,
+  getTypeName=env.cu,
+  get_first_emval=env.cv,
+  heap32VectorToArray=env.cw,
+  init_ClassHandle=env.cx,
+  init_RegisteredPointer=env.cy,
+  init_embind=env.cz,
+  init_emval=env.cA,
+  integerReadValueFromPointer=env.cB,
+  makeClassHandle=env.cC,
+  makeLegalFunctionName=env.cD,
+  new_=env.cE,
+  nonConstNoSmartPtrRawPointerToWireType=env.cF,
+  readLatin1String=env.cG,
+  registerType=env.cH,
+  replacePublicSymbol=env.cI,
+  requireHandle=env.cJ,
+  requireRegisteredType=env.cK,
+  runDestructor=env.cL,
+  runDestructors=env.cM,
+  setDelayFunction=env.cN,
+  shallowCopyInternalPointer=env.cO,
+  simpleReadValueFromPointer=env.cP,
+  throwBindingError=env.cQ,
+  throwInstanceAlreadyDeleted=env.cR,
+  throwInternalError=env.cS,
+  throwUnboundTypeError=env.cT,
+  upcastPointer=env.cU,
+  validateThis=env.cV,
+  whenDependentTypesAreResolved=env.cW,
   STACKTOP = 49264,
   STACK_MAX = 5292144,
   tempFloat = 0.0;
+
+function _emscripten_replace_memory(newBuffer) {
+  HEAP8 = new Int8Array(newBuffer);
+  HEAPU8 = new Uint8Array(newBuffer);
+  HEAP16 = new Int16Array(newBuffer);
+  HEAPU16 = new Uint16Array(newBuffer);
+  HEAP32 = new Int32Array(newBuffer);
+  HEAPF32 = new Float32Array(newBuffer);
+  HEAPF64 = new Float64Array(newBuffer);
+
+  buffer = newBuffer;
+  return true;
+}
 
 // EMSCRIPTEN_START_FUNCS
   function globalCtors() {
@@ -86757,7 +86854,7 @@ var FUNCTION_TABLE_viiiiiii = [b63,__ZNSt3__29__num_putIcE21__widen_and_group_in
 var FUNCTION_TABLE_viiiiiiiiii = [b64,__ZNSt3__211__money_getIcE13__gather_infoEbRKNS_6localeERNS_10money_base7patternERcS8_RNS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEESF_SF_SF_Ri,__ZNSt3__211__money_getIwE13__gather_infoEbRKNS_6localeERNS_10money_base7patternERwS8_RNS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEERNS9_IwNSA_IwEENSC_IwEEEESJ_SJ_Ri,__ZNSt3__211__money_putIcE13__gather_infoEbbRKNS_6localeERNS_10money_base7patternERcS8_RNS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEESF_SF_Ri,__ZNSt3__211__money_putIwE13__gather_infoEbbRKNS_6localeERNS_10money_base7patternERwS8_RNS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEERNS9_IwNSA_IwEENSC_IwEEEESJ_Ri,b64,b64,b64];
 var FUNCTION_TABLE_viiiiiiiiiiiiiii = [b65,__ZNSt3__211__money_putIcE8__formatEPcRS2_S3_jPKcS5_RKNS_5ctypeIcEEbRKNS_10money_base7patternEccRKNS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEESL_SL_i,__ZNSt3__211__money_putIwE8__formatEPwRS2_S3_jPKwS5_RKNS_5ctypeIwEEbRKNS_10money_base7patternEwwRKNS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEERKNSE_IwNSF_IwEENSH_IwEEEESQ_i,b65];
 
-  return { ___cxa_can_catch: ___cxa_can_catch, ___cxa_is_pointer_type: ___cxa_is_pointer_type, ___errno_location: ___errno_location, ___getTypeName: ___getTypeName, ___muldi3: ___muldi3, ___udivdi3: ___udivdi3, _bitshift64Lshr: _bitshift64Lshr, _bitshift64Shl: _bitshift64Shl, _fflush: _fflush, _free: _free, _i64Add: _i64Add, _i64Subtract: _i64Subtract, _llvm_bswap_i32: _llvm_bswap_i32, _malloc: _malloc, _memcpy: _memcpy, _memmove: _memmove, _memset: _memset, _pthread_cond_broadcast: _pthread_cond_broadcast, _pthread_mutex_lock: _pthread_mutex_lock, _pthread_mutex_unlock: _pthread_mutex_unlock, _sbrk: _sbrk, _setThrew: _setThrew, dynCall_dddd: dynCall_dddd, dynCall_dddddd: dynCall_dddddd, dynCall_di: dynCall_di, dynCall_did: dynCall_did, dynCall_didd: dynCall_didd, dynCall_diddd: dynCall_diddd, dynCall_diddddd: dynCall_diddddd, dynCall_didddddii: dynCall_didddddii, dynCall_didddii: dynCall_didddii, dynCall_diddidd: dynCall_diddidd, dynCall_didi: dynCall_didi, dynCall_didid: dynCall_didid, dynCall_dididdd: dynCall_dididdd, dynCall_dididi: dynCall_dididi, dynCall_dii: dynCall_dii, dynCall_diid: dynCall_diid, dynCall_diidd: dynCall_diidd, dynCall_diiddd: dynCall_diiddd, dynCall_diiddddd: dynCall_diiddddd, dynCall_diidddddii: dynCall_diidddddii, dynCall_diidddii: dynCall_diidddii, dynCall_diiddidd: dynCall_diiddidd, dynCall_diidi: dynCall_diidi, dynCall_diidid: dynCall_diidid, dynCall_diididdd: dynCall_diididdd, dynCall_diididi: dynCall_diididi, dynCall_diii: dynCall_diii, dynCall_diiii: dynCall_diiii, dynCall_i: dynCall_i, dynCall_ii: dynCall_ii, dynCall_iid: dynCall_iid, dynCall_iii: dynCall_iii, dynCall_iiid: dynCall_iiid, dynCall_iiii: dynCall_iiii, dynCall_iiiid: dynCall_iiiid, dynCall_iiiii: dynCall_iiiii, dynCall_iiiiid: dynCall_iiiiid, dynCall_iiiiii: dynCall_iiiiii, dynCall_iiiiiid: dynCall_iiiiiid, dynCall_iiiiiii: dynCall_iiiiiii, dynCall_iiiiiiii: dynCall_iiiiiiii, dynCall_iiiiiiiii: dynCall_iiiiiiiii, dynCall_iiiiiiiiiii: dynCall_iiiiiiiiiii, dynCall_iiiiiiiiiiii: dynCall_iiiiiiiiiiii, dynCall_iiiiiiiiiiiii: dynCall_iiiiiiiiiiiii, dynCall_v: dynCall_v, dynCall_vi: dynCall_vi, dynCall_vid: dynCall_vid, dynCall_vidd: dynCall_vidd, dynCall_vidid: dynCall_vidid, dynCall_vididd: dynCall_vididd, dynCall_vididdd: dynCall_vididdd, dynCall_vii: dynCall_vii, dynCall_viid: dynCall_viid, dynCall_viidd: dynCall_viidd, dynCall_viidid: dynCall_viidid, dynCall_viididd: dynCall_viididd, dynCall_viididdd: dynCall_viididdd, dynCall_viii: dynCall_viii, dynCall_viiid: dynCall_viiid, dynCall_viiii: dynCall_viiii, dynCall_viiiii: dynCall_viiiii, dynCall_viiiiii: dynCall_viiiiii, dynCall_viiiiiii: dynCall_viiiiiii, dynCall_viiiiiiiiii: dynCall_viiiiiiiiii, dynCall_viiiiiiiiiiiiiii: dynCall_viiiiiiiiiiiiiii, establishStackSpace: establishStackSpace, globalCtors: globalCtors, stackAlloc: stackAlloc, stackRestore: stackRestore, stackSave: stackSave };
+  return { ___cxa_can_catch: ___cxa_can_catch, ___cxa_is_pointer_type: ___cxa_is_pointer_type, ___errno_location: ___errno_location, ___getTypeName: ___getTypeName, ___muldi3: ___muldi3, ___udivdi3: ___udivdi3, _bitshift64Lshr: _bitshift64Lshr, _bitshift64Shl: _bitshift64Shl, _emscripten_replace_memory: _emscripten_replace_memory, _fflush: _fflush, _free: _free, _i64Add: _i64Add, _i64Subtract: _i64Subtract, _llvm_bswap_i32: _llvm_bswap_i32, _malloc: _malloc, _memcpy: _memcpy, _memmove: _memmove, _memset: _memset, _pthread_cond_broadcast: _pthread_cond_broadcast, _pthread_mutex_lock: _pthread_mutex_lock, _pthread_mutex_unlock: _pthread_mutex_unlock, _sbrk: _sbrk, _setThrew: _setThrew, dynCall_dddd: dynCall_dddd, dynCall_dddddd: dynCall_dddddd, dynCall_di: dynCall_di, dynCall_did: dynCall_did, dynCall_didd: dynCall_didd, dynCall_diddd: dynCall_diddd, dynCall_diddddd: dynCall_diddddd, dynCall_didddddii: dynCall_didddddii, dynCall_didddii: dynCall_didddii, dynCall_diddidd: dynCall_diddidd, dynCall_didi: dynCall_didi, dynCall_didid: dynCall_didid, dynCall_dididdd: dynCall_dididdd, dynCall_dididi: dynCall_dididi, dynCall_dii: dynCall_dii, dynCall_diid: dynCall_diid, dynCall_diidd: dynCall_diidd, dynCall_diiddd: dynCall_diiddd, dynCall_diiddddd: dynCall_diiddddd, dynCall_diidddddii: dynCall_diidddddii, dynCall_diidddii: dynCall_diidddii, dynCall_diiddidd: dynCall_diiddidd, dynCall_diidi: dynCall_diidi, dynCall_diidid: dynCall_diidid, dynCall_diididdd: dynCall_diididdd, dynCall_diididi: dynCall_diididi, dynCall_diii: dynCall_diii, dynCall_diiii: dynCall_diiii, dynCall_i: dynCall_i, dynCall_ii: dynCall_ii, dynCall_iid: dynCall_iid, dynCall_iii: dynCall_iii, dynCall_iiid: dynCall_iiid, dynCall_iiii: dynCall_iiii, dynCall_iiiid: dynCall_iiiid, dynCall_iiiii: dynCall_iiiii, dynCall_iiiiid: dynCall_iiiiid, dynCall_iiiiii: dynCall_iiiiii, dynCall_iiiiiid: dynCall_iiiiiid, dynCall_iiiiiii: dynCall_iiiiiii, dynCall_iiiiiiii: dynCall_iiiiiiii, dynCall_iiiiiiiii: dynCall_iiiiiiiii, dynCall_iiiiiiiiiii: dynCall_iiiiiiiiiii, dynCall_iiiiiiiiiiii: dynCall_iiiiiiiiiiii, dynCall_iiiiiiiiiiiii: dynCall_iiiiiiiiiiiii, dynCall_v: dynCall_v, dynCall_vi: dynCall_vi, dynCall_vid: dynCall_vid, dynCall_vidd: dynCall_vidd, dynCall_vidid: dynCall_vidid, dynCall_vididd: dynCall_vididd, dynCall_vididdd: dynCall_vididdd, dynCall_vii: dynCall_vii, dynCall_viid: dynCall_viid, dynCall_viidd: dynCall_viidd, dynCall_viidid: dynCall_viidid, dynCall_viididd: dynCall_viididd, dynCall_viididdd: dynCall_viididdd, dynCall_viii: dynCall_viii, dynCall_viiid: dynCall_viiid, dynCall_viiii: dynCall_viiii, dynCall_viiiii: dynCall_viiiii, dynCall_viiiiii: dynCall_viiiiii, dynCall_viiiiiii: dynCall_viiiiiii, dynCall_viiiiiiiiii: dynCall_viiiiiiiiii, dynCall_viiiiiiiiiiiiiii: dynCall_viiiiiiiiiiiiiii, establishStackSpace: establishStackSpace, globalCtors: globalCtors, stackAlloc: stackAlloc, stackRestore: stackRestore, stackSave: stackSave };
 })
 // EMSCRIPTEN_END_ASM
 (asmGlobalArg, asmLibraryArg, buffer);
@@ -86919,6 +87016,7 @@ var ___muldi3 = Module["___muldi3"] = asm["___muldi3"];
 var ___udivdi3 = Module["___udivdi3"] = asm["___udivdi3"];
 var _bitshift64Lshr = Module["_bitshift64Lshr"] = asm["_bitshift64Lshr"];
 var _bitshift64Shl = Module["_bitshift64Shl"] = asm["_bitshift64Shl"];
+var _emscripten_replace_memory = Module["_emscripten_replace_memory"] = asm["_emscripten_replace_memory"];
 var _fflush = Module["_fflush"] = asm["_fflush"];
 var _free = Module["_free"] = asm["_free"];
 var _i64Add = Module["_i64Add"] = asm["_i64Add"];

@@ -301,22 +301,23 @@ EMSCRIPTEN_BINDINGS(my_module) {
 	.function("play", &maxiSVF::play)
 	;
 
+	// TODO:FB – Uncomment – this is giving me compilation errors on EM
 	// MAXI KICK
-	class_<maxiKick>("maxiKick")
-	//	.constructor<>()
-	// .function("setPitch", &maxiKick::setPitch)
-	.smart_ptr_constructor("shared_ptr<maxiKick>",&std::make_shared<maxiKick>)
-	.function("play", &maxiKick::play)
-	.function("setRelease", &maxiKick::setRelease)
-	.function("trigger", &maxiKick::trigger)
-	.property("pitch", &maxiKick::getPitch, &maxiKick::setPitch)
-	.property("distortion", &maxiKick::getDistortion, &maxiKick::setDistortion)
-	.property("cutoff", &maxiKick::getCutoff, &maxiKick::setCutoff)
-	.property("resonance", &maxiKick::getResonance, &maxiKick::setResonance)
-	.property("useDistortion", &maxiKick::getUseDistortion, &maxiKick::setUseDistortion)
-	.property("useLimiter", &maxiKick::getUseLimiter, &maxiKick::setUseLimiter)
-	.property("useFilter", &maxiKick::getUseFilter, &maxiKick::setUseFilter)
-	;
+	// class_<maxiKick>("maxiKick")
+	// //	.constructor<>()
+	// // .function("setPitch", &maxiKick::setPitch)
+	// .smart_ptr_constructor("shared_ptr<maxiKick>",&std::make_shared<maxiKick>)
+	// .function("play", &maxiKick::play)
+	// .function("setRelease", &maxiKick::setRelease)
+	// .function("trigger", &maxiKick::trigger)
+	// .property("pitch", &maxiKick::getPitch, &maxiKick::setPitch)
+	// .property("distortion", &maxiKick::getDistortion, &maxiKick::setDistortion)
+	// .property("cutoff", &maxiKick::getCutoff, &maxiKick::setCutoff)
+	// .property("resonance", &maxiKick::getResonance, &maxiKick::setResonance)
+	// .property("useDistortion", &maxiKick::getUseDistortion, &maxiKick::setUseDistortion)
+	// .property("useLimiter", &maxiKick::getUseLimiter, &maxiKick::setUseLimiter)
+	// .property("useFilter", &maxiKick::getUseFilter, &maxiKick::setUseFilter)
+	// ;
 
 	// MAXI SNARE
 	// class_<maxiSnare>("maxiSnare")
@@ -338,22 +339,24 @@ EMSCRIPTEN_BINDINGS(my_module) {
 	// .function("trigger", &maxiHats::trigger)
 	// ;
 
+
+	// TODO:FB – Uncomment – this is giving me compilation errors on EM
 	// MAXI CLOCK
-	class_<maxiClock>("maxiClock")
-	//	.constructor<>()
-	.smart_ptr_constructor("shared_ptr<maxiClock>",&std::make_shared<maxiClock>)
-	.function("ticker", &maxiClock::ticker)
-	.function("setTempo", &maxiClock::setTempo)
-	.function("setTicksPerBeat", &maxiClock::setTicksPerBeat)
-	.function("isTick", &maxiClock::isTick)
-	.property("currentCount", &maxiClock::getCurrentCount, &maxiClock::setCurrentCount)
-	.property("currentCount", &maxiClock::getLastCount, &maxiClock::setLastCount)
-	.property("playHead", &maxiClock::getPlayHead, &maxiClock::setPlayHead)
-	.property("bps", &maxiClock::getBps, &maxiClock::setBps)
-	.property("bpm", &maxiClock::getBpm, &maxiClock::setBpm)
-	.property("tick", &maxiClock::getTick, &maxiClock::setTick)
-	.property("ticks", &maxiClock::getTicks, &maxiClock::setTicks)
-	;
+	// class_<maxiClock>("maxiClock")
+	// //	.constructor<>()
+	// .smart_ptr_constructor("shared_ptr<maxiClock>",&std::make_shared<maxiClock>)
+	// .function("ticker", &maxiClock::ticker)
+	// .function("setTempo", &maxiClock::setTempo)
+	// .function("setTicksPerBeat", &maxiClock::setTicksPerBeat)
+	// .function("isTick", &maxiClock::isTick)
+	// .property("currentCount", &maxiClock::getCurrentCount, &maxiClock::setCurrentCount)
+	// .property("currentCount", &maxiClock::getLastCount, &maxiClock::setLastCount)
+	// .property("playHead", &maxiClock::getPlayHead, &maxiClock::setPlayHead)
+	// .property("bps", &maxiClock::getBps, &maxiClock::setBps)
+	// .property("bpm", &maxiClock::getBpm, &maxiClock::setBpm)
+	// .property("tick", &maxiClock::getTick, &maxiClock::setTick)
+	// .property("ticks", &maxiClock::getTicks, &maxiClock::setTicks)
+	// ;
 
   //	class_<testVectorHolder>("testVectorHolder")
 	//	.constructor<>()

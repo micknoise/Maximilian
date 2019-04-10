@@ -64,7 +64,7 @@
         audioContext = new AudioContext();
 
       try {
-        window.MaxiAudioNode = audioContext.audioWorklet.addModule(workletUrl).then(() => {
+        audioContext.audioWorklet.addModule(workletUrl).then(() => {
           stopAudio();
           customNode = new MaxiNode(audioContext, customProcessorName);
 

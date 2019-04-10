@@ -21,12 +21,14 @@ class MaxiProcessor extends AudioWorkletProcessor {
 
     this.mySine = new Module.maxiOsc();
     this.myOtherSine = new Module.maxiOsc();
-    
+    this.myLastSine = new Module.maxiOsc();
+
     this.evalExpression = eval(`() => { return this.mySine.square(30)}`);
 
     this.port.onmessage = (event) => {
       this.evalExpression = eval(event.data);
-      console.log(this.evalExpression);
+      // DEBUG:
+      // console.log("Processor: " + this.evalExpression);
     }
   }
 

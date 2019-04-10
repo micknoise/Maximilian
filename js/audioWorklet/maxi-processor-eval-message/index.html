@@ -124,19 +124,16 @@
     function changeSynth() {
       if (customNode !== undefined) {
 
-        userDefinedFunction = [
+        let functions = [
           `this.mySine.sawn(60) * this.myOtherSine.sinewave(0.4)`,
           `this.mySine.sawn(60)`,
-          `this.myOtherSine.sinewave(0.4)`,
-          `this.mySine.sawn(60) * this.myOtherSine.sinewave(0.4)`,
-          `this.mySine.sawn(60) * this.myOtherSine.sinewave(0.4)`,
-          `this.mySine.sawn(60) * this.myOtherSine.sinewave(0.4)`,
-          `this.mySine.sawn(60) * this.myOtherSine.sinewave(0.4)`,
-          `this.mySine.sawn(60) * this.myOtherSine.sinewave(0.4)`,
-        ].
+          `this.myOtherSine.sinewave(400)`
+        ];
+
+        let userDefinedFunction = functions[Math.floor(Math.random() * functions.length)];
 
         customNode.port.postMessage(`() => { return ${userDefinedFunction} }`);
-        console.log("Change synth: ");
+        console.log("Change synth: " + userDefinedFunction);
       }
     }
 

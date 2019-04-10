@@ -134,7 +134,7 @@
           `this.mySine.sinewave(this.myOtherSine.sinewave(30) * 440)`,
           `this.mySine.sinewave(this.myOtherSine.sinewave(this.myLastSine.sinewave(0.1) * 30) * 440)`,
           `new Module.maxiOsc()`,
-          `new Module.maxiOsc().sinewave(400)`, // Interesting case of failure, it seems we can't instantiate
+          `new Module.maxiOsc().sinewave(400)`, // Interesting case of failure, it seems we can't instantiate because of EM heap limits 
         ];
 
         let userDefinedFunction = fs[Math.floor(Math.random() * fs.length)];

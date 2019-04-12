@@ -23,15 +23,32 @@
 
   <button id="playButton">Play</button>
   <button id="stopButton">Stop</button>
-  <button id="plusButton">+</button>
-  <button id="minusButton">–</button>
-  <button id="synthButton">Synth</button>
+  <button id="plusButton">vol+</button>
+  <button id="minusButton">vol–</button>
+  <button id="synthButton">Change Synth</button>
+  <input type="checkbox" id="box" value="false">Load test<br>
 
   <script type="text/javascript">
     let audioContext;
     let customNode;
     let customProcessorName = 'maxi-processor';
     let workletUrl = 'maxi-processor.js';
+
+    let fs = [
+      `this.mySine.sawn(60) * this.myOtherSine.sinewave(0.4)`,
+      `this.mySine.sawn(60)`,
+      `this.myOtherSine.sinewave(400)`,
+      `this.mySine.sinewave(440) + this.myOtherSine.sinewave(441)`,
+      `this.mySine.sinewave(440) * this.myOtherSine.sinewave(1)`,
+      `this.mySine.sinewave(440 + (this.myOtherSine.sinewave(1) * 100))`,
+      `this.mySine.sinewave(this.myOtherSine.sinewave(30) * 440)`,
+      `this.mySine.sinewave(this.myOtherSine.sinewave(this.myLastSine.sinewave(0.1) * 30) * 440)`,
+      `new Module.maxiOsc()`,
+      `new Module.maxiOsc().sinewave(400)`, // Interesting case of failure, it seems we can't instantiate because of EM heap limits
+    ];
+
+    const SYNTH_CHANGE_MS = 50;
+
 
     class MaxiNode extends AudioWorkletNode {
 
@@ -60,6 +77,9 @@
 
       const synthButton = document.getElementById('synthButton');
       synthButton.addEventListener("click", () => changeSynth());
+
+      const checkBox = document.getElementById('box');
+      checkBox.addEventListener("click", () => { playAudio(); setInterval('changeSynth()', SYNTH_CHANGE_MS) }  );
     }
 
     function playAudio() {
@@ -123,19 +143,6 @@
 
     function changeSynth() {
       if (customNode !== undefined) {
-
-        let fs = [
-          `this.mySine.sawn(60) * this.myOtherSine.sinewave(0.4)`,
-          `this.mySine.sawn(60)`,
-          `this.myOtherSine.sinewave(400)`,
-          `this.mySine.sinewave(440) + this.myOtherSine.sinewave(441)`,
-          `this.mySine.sinewave(440) * this.myOtherSine.sinewave(1)`,
-          `this.mySine.sinewave(440 + (this.myOtherSine.sinewave(1) * 100))`,
-          `this.mySine.sinewave(this.myOtherSine.sinewave(30) * 440)`,
-          `this.mySine.sinewave(this.myOtherSine.sinewave(this.myLastSine.sinewave(0.1) * 30) * 440)`,
-          `new Module.maxiOsc()`,
-          `new Module.maxiOsc().sinewave(400)`, // Interesting case of failure, it seems we can't instantiate because of EM heap limits 
-        ];
 
         let userDefinedFunction = fs[Math.floor(Math.random() * fs.length)];
 

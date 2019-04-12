@@ -8,7 +8,7 @@
  */
 
 #pragma once
-#pragma pack(16)
+//#pragma pack(16)
 
 #include "maxiFFT.h"
 #include <math.h>

@@ -76,6 +76,7 @@ float maxiConvolve::play(float w) {
     if (inFFT.process(w, maxiFFT::NO_POLAR_CONVERSION)) {
         vector<float> realFrame;
         realFrame.assign(inFFT.getReal(), inFFT.getReal() + inFFT.bins);
+        
         FDLReal.push_front(realFrame);
         FDLReal.pop_back();
 

@@ -31,7 +31,6 @@ class MaxiProcessor extends AudioWorkletProcessor {
         console.log("Error in Worklet evaluation: " + err);
         this.evalExpression = () => { return this.mySine.square(30) };
       }
-
     }
   }
 
@@ -49,16 +48,16 @@ class MaxiProcessor extends AudioWorkletProcessor {
         const gain = parameters.gain;
         const isConstant = gain.length === 1
         let outputChannel = output[channelId];
-
         for (let i = 0; i < outputChannel.length; ++i) {
           const amp = isConstant ? gain[0] : gain[i];
-          outputChannel[i] = this.evalExpression() * amp;
+          outputChannel[i] = this.evalExpression() * amp; // This multiplication should only happen when gain is NOT constant, that's when you get the 128 quanta
         }
+        // DEBUG:
+        console.log(`inputs ${inputs.length}, outputsLen ${outputs.length}, outputLen ${output.length}, outputChannelLen ${outputChannel.length}`);
       }
     }
     return true;
   }
-
 };
 
 registerProcessor("maxi-processor", MaxiProcessor);

@@ -43,10 +43,10 @@
       `this.mySine.sinewave(440 + (this.myOtherSine.sinewave(1) * 100))`,
       `this.mySine.sinewave(this.myOtherSine.sinewave(30) * 440)`,
       `this.mySine.sinewave(this.myOtherSine.sinewave(this.myLastSine.sinewave(0.1) * 30) * 440)`,
+      //,  Interesting case of failure, it seems we can't instantiate because of EM heap limits
       `new Module.maxiOsc()`,
       `new Module.maxiOsc().sinewave(400)`
-      //,  Interesting case of failure, it seems we can't instantiate because of EM heap limits
-      // `this.mySine.tri(440) >> DAC`, // Stereo by default
+      // , `this.mySine.tri(440) >> DAC`, // Stereo by default
       // `this.mySine.tri(440) >> DAC(1)`, // Mono to 1
       // `this.mySine.tri(440) >> DAC(0)` // Mono to 2
       // `this.mySine.tri(440) >> DAC(0,3,5)` // Channel indices
@@ -60,8 +60,8 @@
 
     class MaxiNode extends AudioWorkletNode {
 
-      constructor(audioContext, processorName) {
-        super(audioContext, processorName);
+      constructor(audioContext, processorName, options) {
+        super(audioContext, processorName, options);
       }
     }
 
@@ -94,9 +94,13 @@
       if(audioContext === undefined) {
         try {
           audioContext = new AudioContext();
-          audioContext =
           audioContext.audioWorklet.addModule(workletUrl).then(() => {
-            customNode = new MaxiNode(audioContext, customProcessorName);
+            let options = {
+              numberOfInputs: 0,
+              numberOfOutputs: 1,
+              outputChannelCount: [2]
+            }
+            customNode = new MaxiNode(audioContext, customProcessorName, options);
             customNode.onprocessorerror = (event) => { console.log(`MaxiProcessor Error detected`); }
             customNode.port.onmessage = (event) => { console.log(`Message from processor: ` + event.data); }; //  data from the processor.
             customNode.port.onmessageerror = (event) => { console.log(`Error message from port: ` + event.data); }; //  error from the message port.

@@ -26,9 +26,7 @@ class MaxiProcessor extends AudioWorkletProcessor {
     this.evalExpression = eval(`() => { return this.mySine.square(30)}`);
 
     this.port.onmessage = (event) => {
-      try{
-        this.evalExpression = eval(event.data);
-      }
+      try{ this.evalExpression = eval(event.data); }
       catch(err) {
         console.log("Error in Worklet evaluation: " + err);
         this.evalExpression = () => { return this.mySine.square(30) };
@@ -54,9 +52,6 @@ class MaxiProcessor extends AudioWorkletProcessor {
 
         for (let i = 0; i < outputChannel.length; ++i) {
           const amp = isConstant ? gain[0] : gain[i];
-
-          // outputChannel[i] = eval(`() => { return this.mySine.sawn(60) * this.myOtherSine.sinewave(0.4)}`;
-          // outputChannel[i] = (this.mySine.sawn(60) * this.myOtherSine.sinewave(0.4)) * amp;
           outputChannel[i] = this.evalExpression() * amp;
         }
       }

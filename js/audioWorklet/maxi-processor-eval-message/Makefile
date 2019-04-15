@@ -12,14 +12,11 @@ POST_JS=../../src/maximilian.post.js
 
 
 # CFLAGS=--bind -O1 -s DISABLE_EXCEPTION_CATCHING=0 \
-# 						-s ALLOW_MEMORY_GROWTH=1 \
-# 						-s ASSERTIONS=1 \
 # 						-s EXPORT_NAME="'Maximilian'" \
 # 						-s ERROR_ON_UNDEFINED_SYMBOLS=0 \
 # 						-s MODULARIZE=1 --memory-init-file 0 --profiling \
 # 						-s BINARYEN_ASYNC_COMPILATION=0 \
-# 						-s SINGLE_FILE=1
-						# -s ENVIRONMENT=web\
+# 						-s ENVIRONMENT=web\
 
 
 CFLAGS=--bind -O1 \

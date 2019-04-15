@@ -44,7 +44,15 @@
       `this.mySine.sinewave(this.myOtherSine.sinewave(30) * 440)`,
       `this.mySine.sinewave(this.myOtherSine.sinewave(this.myLastSine.sinewave(0.1) * 30) * 440)`,
       `new Module.maxiOsc()`,
-      `new Module.maxiOsc().sinewave(400)`, // Interesting case of failure, it seems we can't instantiate because of EM heap limits
+      `new Module.maxiOsc().sinewave(400)`
+      //,  Interesting case of failure, it seems we can't instantiate because of EM heap limits
+      // `this.mySine.tri(440) >> DAC`, // Stereo by default
+      // `this.mySine.tri(440) >> DAC(1)`, // Mono to 1
+      // `this.mySine.tri(440) >> DAC(0)` // Mono to 2
+      // `this.mySine.tri(440) >> DAC(0,3,5)` // Channel indices
+      // `ADC >> this.mySine.tri(440) >> DAC(0,3,5)` // Channel indices
+      // `ADC >> this.mySine.tri(440) >> DAC(0,3,5)` // Channel indices
+      // `ADC >> this.mySine.tri(440) >> DAC(0,3,5)` // Channel indices
     ];
 
     const SYNTH_CHANGE_MS = 50;
@@ -83,28 +91,15 @@
     }
 
     function playAudio() {
-
       if(audioContext === undefined) {
         try {
           audioContext = new AudioContext();
+          audioContext =
           audioContext.audioWorklet.addModule(workletUrl).then(() => {
-
             customNode = new MaxiNode(audioContext, customProcessorName);
-
-            customNode.onprocessorerror = (event) => {
-              console.log(`WASMWorkletProcessor Error detected`);
-            }
-
-            customNode.port.onmessage = (event) => {
-              //  data from the processor.
-              console.log(`Message from processor: ` + event.data);
-            };
-
-            customNode.port.onmessageerror = (event) => {
-              //  data from the processor.
-              console.log(`Error message from port: ` + event.data);
-            };
-
+            customNode.onprocessorerror = (event) => { console.log(`MaxiProcessor Error detected`); }
+            customNode.port.onmessage = (event) => { console.log(`Message from processor: ` + event.data); }; //  data from the processor.
+            customNode.port.onmessageerror = (event) => { console.log(`Error message from port: ` + event.data); }; //  error from the message port.
             customNode.connect(audioContext.destination);
           }).catch((e => console.log("Error on loading worklet: ", e)));
         } catch (err) {
@@ -143,9 +138,7 @@
 
     function changeSynth() {
       if (customNode !== undefined) {
-
         let userDefinedFunction = fs[Math.floor(Math.random() * fs.length)];
-
         customNode.port.postMessage(`() => { return ${userDefinedFunction} }`);
         // DEBUG:
         console.log("Change synth: " + userDefinedFunction);

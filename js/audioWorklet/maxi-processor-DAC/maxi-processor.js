@@ -59,8 +59,8 @@ class MaxiProcessor extends AudioWorkletProcessor {
             outputChannel[i] = this.osc.triangle(400) * this.sampleIndex/this.sampleRate * parameters.gain[i];
           }
         }
-        this.sampleIndex++;
       }
+      this.sampleIndex++;
     }
     return true;
   }

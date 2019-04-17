@@ -100,15 +100,16 @@
           audioContext = new AudioContext();
           audioContext.audioWorklet.addModule(workletUrl).then(() => {
             let options = {
-              numberOfInputs: 0,
+              numberOfInputs: 1,
               numberOfOutputs: 1,
               outputChannelCount: [2]
             }
             // customNode = new MaxiNode(audioContext, customProcessorName, options);
             customNode = new AudioWorkletNode(audioContext, customProcessorName);
-            customNode.onprocessorerror = (event) => { console.log(`MaxiProcessor Error detected`); }
-            customNode.port.onmessage = (event) => { console.log(`Message from processor: ` + event.data); }; //  data from the processor.
-            customNode.port.onmessageerror = (event) => { console.log(`Error message from port: ` + event.data); }; //  error from the message port.
+            customNode.onprocessorerror = event => { console.log(`MaxiProcessor Error detected`); }
+            customNode.onprocessorstatechange =  event => { console.log(`MaxiProcessor state change detected `) + processorState; }
+            customNode.port.onmessage = event => { console.log(`Message from processor: ` + event.data); }; //  data from the processor.
+            customNode.port.onmessageerror = event => { console.log(`Error message from port: ` + event.data); }; //  error from the message port.
             customNode.connect(audioContext.destination);
           }).catch((e => console.log("Error on loading worklet: ", e)));
         } catch (err) {

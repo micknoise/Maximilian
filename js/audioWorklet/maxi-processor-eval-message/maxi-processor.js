@@ -10,7 +10,7 @@ class MaxiProcessor extends AudioWorkletProcessor {
 
   static get parameterDescriptors() {
     return [
-      { name: 'gain', defaultValue: 0.1 },
+      { name: 'gain', defaultValue: 0.5 },
       { name: 'frequency', defaultValue: 440.0 }
     ];
   }
@@ -21,7 +21,7 @@ class MaxiProcessor extends AudioWorkletProcessor {
   constructor() {
     super();
     this.sampleRate = 44100;
-    this.sampleIndex = 0;
+    this.sampleIndex = 1;
 
     this.mySine = new Module.maxiOsc();
     this.myOtherSine = new Module.maxiOsc();
@@ -61,9 +61,11 @@ class MaxiProcessor extends AudioWorkletProcessor {
             outputChannel[i] = this.evalExpression() * this.sampleIndex/this.sampleRate * parameters.gain[i];
           }
         }
-        this.sampleIndex++;
+        console.log(`inputs ${inputs.length}, outputsLen ${outputs.length}, outputLen ${output.length}, outputChannelLen ${outputChannel.length}`);
       }
+      this.sampleIndex++;
     }
+
     return true;
   }
 };

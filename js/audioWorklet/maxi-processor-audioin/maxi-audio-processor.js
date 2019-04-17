@@ -18,13 +18,11 @@ class MaxiAudioProcessor extends AudioWorkletProcessor {
   constructor() {
     super();
     this.sampleRate = 44100;
-
+    this.sampleIndex = 0;
     this.port.onmessage = (event) => {
       console.log(event.data);
     };
-
-    this.mySine = new Module.maxiOsc();
-    this.myOtherSine = new Module.maxiOsc();
+    this.osc = new Module.maxiOsc();
   }
 
   /**
@@ -37,19 +35,20 @@ class MaxiAudioProcessor extends AudioWorkletProcessor {
       let output = outputs[outputId];
       let input = inputs[outputId];
       const channelLenght = output.length;
-
       for (let channelId = 0; channelId < channelLenght; ++channelId) {
-        const gain = parameters.gain;
-        const isConstant = gain.length === 1
         let inputChannel = input[channelId];
         let outputChannel = output[channelId];
-
-        for (let i = 0; i < outputChannel.length; ++i) {
-          const amp = isConstant ? gain[0] : gain[i]
-          // outputChannel[i] = (this.mySine.sawn(60) * this.myOtherSine.sinewave(0.4)) * amp;
-          let mic = inputChannel[i];
-          outputChannel[i] = mic * (this.myOtherSine.sinewave(900)) * amp;
+        if(parameters.gain === 1) {
+          for (let i = 0; i < outputChannel.length; ++i) {
+            outputChannel[i] = inputChannel[i] * this.osc.sinewave(900) * this.sampleIndex/this.sampleRate * parameters.gain[0];
+          }
         }
+        else {
+          for (let i = 0; i < outputChannel.length; ++i) {
+            outputChannel[i] = inputChannel[i] * this.osc.sinewave(900) * this.sampleIndex/this.sampleRate * parameters.gain[i];
+          }
+        }
+        this.sampleIndex++;
       }
     }
     return true;

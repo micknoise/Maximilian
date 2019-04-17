@@ -37,7 +37,11 @@
     let fs = [
       `this.mySine.sawn(60) * this.myOtherSine.sinewave(0.4)`,
       `this.mySine.sawn(60)`,
-      `this.myOtherSine.sinewave(400)`,
+      `this.myOtherSine.sinewave(440)`,
+      `this.myOtherSine.sawn(440)`,
+      `this.myOtherSine.triangle(440)`,
+      `this.myOtherSine.square(440)`,
+      `this.myOtherSine.square(440)`,
       `this.mySine.sinewave(440) + this.myOtherSine.sinewave(441)`,
       `this.mySine.sinewave(440) * this.myOtherSine.sinewave(1)`,
       `this.mySine.sinewave(440 + (this.myOtherSine.sinewave(1) * 100))`,
@@ -100,7 +104,8 @@
               numberOfOutputs: 1,
               outputChannelCount: [2]
             }
-            customNode = new MaxiNode(audioContext, customProcessorName, options);
+            // customNode = new MaxiNode(audioContext, customProcessorName, options);
+            customNode = new AudioWorkletNode(audioContext, customProcessorName);
             customNode.onprocessorerror = (event) => { console.log(`MaxiProcessor Error detected`); }
             customNode.port.onmessage = (event) => { console.log(`Message from processor: ` + event.data); }; //  data from the processor.
             customNode.port.onmessageerror = (event) => { console.log(`Error message from port: ` + event.data); }; //  error from the message port.
@@ -129,20 +134,20 @@
     function increaseVolume() {
       if (customNode !== undefined) {
         const gainParam = customNode.parameters.get('gain');
-        gainParam.value += 0.1;
+        gainParam.value += 0.01;
       }
     }
 
     function decreaseVolume() {
       if (customNode !== undefined) {
         const gainParam = customNode.parameters.get('gain');
-        gainParam.value -= 0.1;
+        gainParam.value -= 0.01;
       }
     }
 
     function changeSynth() {
       if (customNode !== undefined){
-        let userDefinedFunction
+        let userDefinedFunction;
         if(arguments.length == 0){
           userDefinedFunction = fs[Math.floor(Math.random() * fs.length)];
           customNode.port.postMessage(`() => { return ${userDefinedFunction} }`);

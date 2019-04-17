@@ -43,33 +43,28 @@ class MaxiProcessor extends AudioWorkletProcessor {
   process(inputs, outputs, parameters) {
 
     const outputsLength = outputs.length;
-
-    console.log(`gain: ` + parameters.gain[0]);
+    // DEBUG:
+    // console.log(`gain: ` + parameters.gain[0]);
     for (let outputId = 0; outputId < outputsLength; ++outputId) {
       let output = outputs[outputId];
       const channelLenght = output.length;
       for (let channelId = 0; channelId < channelLenght; ++channelId) {
         let outputChannel = output[channelId];
-        if (parameters.gain.length === 1) { // either gain[0] if constant,
+        if (parameters.gain.length === 1) { // if gain is constant, lenght === 1, gain[0]
           for (let i = 0; i < outputChannel.length; ++i) {
-            outputChannel[i] = this.osc.triangle(400) * this.sampleIndex/44100 * parameters.gain[0];
-            // outputChannel[i] = Math.sin(2 * Math.PI * 400 * this.sampleIndex/44100) * parameters.gain[0];
-            this.sampleIndex++;
+            outputChannel[i] = this.osc.triangle(400) * this.sampleIndex/this.sampleRate * parameters.gain[0];
           }
         }
-        else {
+        else { // if gain is varying, lenght === 128, gain[i]
           for (let i = 0; i < outputChannel.length; ++i) {
-            outputChannel[i] = this.osc.triangle(400) * this.sampleIndex/44100 * parameters.gain[i];
-            // outputChannel[i] = Math.sin(2 * Math.PI * 400 * this.sampleIndex/44100) * parameters.gain[i];
-            this.sampleIndex++;
+            outputChannel[i] = this.osc.triangle(400) * this.sampleIndex/this.sampleRate * parameters.gain[i];
           }
         }
+        this.sampleIndex++;
       }
     }
     return true;
-
   }
-
 };
 
 registerProcessor("maxi-processor", MaxiProcessor);

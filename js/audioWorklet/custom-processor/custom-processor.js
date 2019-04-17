@@ -23,13 +23,13 @@ class CustomProcessor extends AudioWorkletProcessor {
     //   // |myParam| has been changed and |myParamValues| has 128 values.
     // }
 
-    const speakers = outputs[0];
-    for (let i = 0; i < speakers[0].length; i++) {
+    const output = outputs[0];
+    for (let i = 0; i < output[0].length; i++) {
 
-      const func = Math.sin(i) + 0.4;
+      const func = Math.sin(2 * Math.PI * 600 / 44100);
       const gain = parameters.gain[i];
-      speakers[0][i] = func * gain;
-      speakers[1][i] = func * gain;
+      output[0][i] = func * gain;
+      output[1][i] = func * gain;
     }
     return true;
   }

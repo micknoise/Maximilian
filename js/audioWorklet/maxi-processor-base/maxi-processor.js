@@ -8,8 +8,14 @@ import Module from './maximilian.wasmmodule.js';
  */
 class MaxiProcessor extends AudioWorkletProcessor {
 
+  /**
+   * @getter
+   */
   static get parameterDescriptors() {
-    return [{ name: 'gain', defaultValue: 0.1 }];
+    return [
+      { name: 'gain', defaultValue: 0.1 },
+      { name: 'frequency', defaultValue: 440.0 }
+    ];
   }
 
   /**
@@ -17,14 +23,18 @@ class MaxiProcessor extends AudioWorkletProcessor {
    */
   constructor() {
     super();
-    this.sampleRate = 44100;
+    this.sampleRate   = 44100;
+    this.sampleIndex  = 0;
 
-    this.port.onmessage = (event) => {
-      console.log(event.data);
+    this.type         = 'sine';
+
+    this.port.onmessage = event => {
+      for (const key in event.data) {
+        this[key] = event.data[key];
+      }
     };
 
-    this.mySine = new Module.maxiOsc();
-    this.myOtherSine = new Module.maxiOsc();
+    this.osc = new Module.maxiOsc();
   }
 
   /**
@@ -33,19 +43,26 @@ class MaxiProcessor extends AudioWorkletProcessor {
   process(inputs, outputs, parameters) {
 
     const outputsLength = outputs.length;
+
+    console.log(`gain: ` + parameters.gain[0]);
     for (let outputId = 0; outputId < outputsLength; ++outputId) {
       let output = outputs[outputId];
       const channelLenght = output.length;
-
       for (let channelId = 0; channelId < channelLenght; ++channelId) {
-        const gain = parameters.gain;
-        const isConstant = gain.length === 1
         let outputChannel = output[channelId];
-
-        for (let i = 0; i < outputChannel.length; ++i) {
-          const amp = isConstant ? gain[0] : gain[i]
-          outputChannel[i] = (this.mySine.sawn(60) * this.myOtherSine.sinewave(0.4)) * amp;
-          // outputChannel[i] = ( Math.sin(i) + 0.4 ) * amp;
+        if (parameters.gain.length === 1) { // either gain[0] if constant,
+          for (let i = 0; i < outputChannel.length; ++i) {
+            outputChannel[i] = this.osc.triangle(400) * this.sampleIndex/44100 * parameters.gain[0];
+            // outputChannel[i] = Math.sin(2 * Math.PI * 400 * this.sampleIndex/44100) * parameters.gain[0];
+            this.sampleIndex++;
+          }
+        }
+        else {
+          for (let i = 0; i < outputChannel.length; ++i) {
+            outputChannel[i] = this.osc.triangle(400) * this.sampleIndex/44100 * parameters.gain[i];
+            // outputChannel[i] = Math.sin(2 * Math.PI * 400 * this.sampleIndex/44100) * parameters.gain[i];
+            this.sampleIndex++;
+          }
         }
       }
     }

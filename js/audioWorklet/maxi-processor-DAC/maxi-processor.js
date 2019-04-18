@@ -12,9 +12,14 @@ class MaxiProcessor extends AudioWorkletProcessor {
    * @getter
    */
   static get parameterDescriptors() { // TODO: parameters are static? can we not change this map with a setter?
-    return [
-      { name: 'gain', defaultValue: 0.2 },
-      { name: 'frequency', defaultValue: 440.0 } // NOTE: we might want frequency as a param from async message port
+    return [{
+        name: 'gain',
+        defaultValue: 0.2
+      },
+      {
+        name: 'frequency',
+        defaultValue: 440.0
+      } // NOTE: we might want frequency as a param from async message port
     ];
   }
 
@@ -23,26 +28,33 @@ class MaxiProcessor extends AudioWorkletProcessor {
    */
   constructor() {
     super();
-    this.sampleRate   = 44100;
-    this.sampleIndex  = 0;
-    this.type         = 'sine';
+    this.sampleRate = 44100;
+    this.sampleIndex = 0;
 
+    this.DAC = [0];
 
-    // TODO: Implement
+    // TODO: Implement Obj Pool pattern
     this.osc = new Module.maxiOsc();
     this.oOsc = new Module.maxiOsc();
     this.aOsc = new Module.maxiOsc();
 
-    this.signal = () => { return this.osc.sinewave(440) };
+    this.signal = () => {
+      return this.osc.sinewave(440);
+    };
 
-    this.port.onmessage = event => {  // message port async handler
+    this.port.onmessage = event => { // message port async handler
       for (const key in event.data) { // event from node scope packs JSON object
-        this[key] = event.data[key];  // de-structure into local props
+        this[key] = event.data[key]; // de-structure into local props
       }
-      try{ this.signal = eval(this.eval); } // eval a property function
-      catch(err) {
+      // TODO: explore SharedArrayBtuffer
+      try {
+        this.signal = eval(this.eval);
+      } // eval a property function, need to check if it changed
+      catch (err) {
         console.log("Error in Worklet evaluation: " + err);
-        this.signal = () => { return this.osc.sinewave(440) };
+        this.signal = () => {
+          return this.osc.sinewave(440);
+        };
       }
     };
   }
@@ -53,41 +65,46 @@ class MaxiProcessor extends AudioWorkletProcessor {
   process(inputs, outputs, parameters) {
 
     // TODO:
-    // sine(20) >> DAC
-    // sine(400) >> DAC(0)
-    // sine(2349) >> DAC(0,4,5)
+    // sine(20) >> DAC – Default case, play one channel stereo
+    // sine(400) >> DAC(0) – One channel selected, mono
+    // sine(2349) >> DAC(0,4,5) – Three channels selected, indidual routing
 
     // if(this.DAC !== undefined)
     //   this.DAC.map(channel => { outputChannel[channel] = evalExpression})
 
-    const outputsLength = outputs.length;
     // DEBUG:
     // console.log(`gain: ` + parameters.gain[0]);
+    const outputsLength = outputs.length; // NOTE: Typically we will be working with outputs[0] but we need to generalise
 
-    // for (let outputId = 0; outputId < outputsLength; ++outputId) {
-      // let output = outputs[outputId];
-      let output = outputs[0];
-      const channelLenght = output.length;
-      for (let channelId = 0; channelId < channelLenght; ++channelId) {
-        let outputChannel = output[0];
-        // let outputChannel = output[channelId];
-        if (parameters.gain.length === 1) { // if gain is constant, lenght === 1, gain[0]
-          for (let i = 0; i < outputChannel.length; ++i) {
-            outputChannel[i] = this.signal() * this.sampleIndex/this.sampleRate * parameters.gain[0];
-          }
+    for (let outputId = 0; outputId < outputsLength; ++outputId) {
+      let output = outputs[outputId];
+
+      for (let channel = 0; channel < output.length; ++channel) {
+        let outputChannel;
+
+        if (this.DAC === undefined || this.DAC.length === 0) {
+          outputChannel = output[channel];
         }
-        else { // if gain is varying, lenght === 128, gain[i]
-          for (let i = 0; i < outputChannel.length; ++i) {
-            outputChannel[i] = this.signal() * this.sampleIndex/this.sampleRate * parameters.gain[i];
+        else { // If the user specified a channel configuration for his DAC
+          outputChannel = output[this.DAC[channel]];
+        }
+
+        if (parameters.gain.length === 1) { // if gain is constant, lenght === 1, gain[0]
+          for (let i = 0; i < 128; ++i) {
+            outputChannel[i] = this.signal() * this.sampleIndex / this.sampleRate * parameters.gain[0];
+          }
+        } else { // if gain is varying, lenght === 128, gain[i]
+          for (let i = 0; i < 128; ++i) {
+            outputChannel[i] = this.signal() * this.sampleIndex / this.sampleRate * parameters.gain[i];
           }
         }
         // DEBUG:
         console.log(`inputs ${inputs.length}, outputsLen ${outputs.length}, outputLen ${output.length}, outputChannelLen ${outputChannel.length}`);
       }
       this.sampleIndex++;
-    // }
+    }
     return true;
   }
-};
+}
 
 registerProcessor("maxi-processor", MaxiProcessor);

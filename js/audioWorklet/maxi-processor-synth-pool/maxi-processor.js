@@ -38,31 +38,9 @@ class MaxiProcessor extends AudioWorkletProcessor {
     this.oOsc = new Module.maxiOsc();
     this.aOsc = new Module.maxiOsc();
 
-    this.VCO1 = new Module.maxiOsc();
-    this.VCO2 = new Module.maxiOsc();
-    this.LFO1 = new Module.maxiOsc();
-    this.LFO2 = new Module.maxiOsc();
+    this.setupMonosynth();
 
-    this.VCF = new Module.maxiFilter();
-
-    this.ADSR = new Module.maxiEnv();
-
-    this.timer = new Module.maxiOsc(); // this is the metronome
-    this.currentCount;
-    this.lastCount; // these values are used to check if we have a new beat this sample
-
-    this.VCO1out;
-    this.VCO2out;
-    this.LFO1out;
-    this.LFO2out;
-    this.VCFout;
-    this.ADSRout;
-
-    this.ADSR.setAttack(1000);
-    this.ADSR.setDecay(1);
-    this.ADSR.setSustain(1);
-    this.ADSR.setRelease(1000);
-
+    this.setupPolysynth();
 
     this.signal = () => {
       return this.osc.sinewave(440);
@@ -85,28 +63,178 @@ class MaxiProcessor extends AudioWorkletProcessor {
     };
   }
 
-  monosynth(a=1000, d=1, s=1, r=1000){
+  /**
+   * @setupMonosynth
+   */
+  setupMonosynth() {
 
-    this.currentCount = Math.round(this.timer.phasor(0.5) * this.sampleIndex / this.sampleRate);// set up a metronome ticking every 2 seconds
+    this.VCO1 = [];
+    this.VCO1[0] = new Module.maxiOsc();
+    this.VCO2 = [];
+    this.VCO2[0] = new Module.maxiOsc();
+    this.VCO1 = [];
+    this.VCO1[0] = new Module.maxiOsc();
+    this.LFO1 = [];
+    this.LFO1[0] = new Module.maxiOsc();
+    this.LFO2 = [];
+    this.LFO2[0] = new Module.maxiOsc();
+    this.VCF = [];
+    this.VCF[0] = new Module.maxiFilter();
+    this.ADSR = [];
+    this.ADSR[0] = new Module.maxiEnv();
 
+    this.timer = new Module.maxiOsc(); // this is the metronome
+    this.currentCount = 0;
+    this.lastCount = 0; // these values are used to check if we have a new beat this sample
+
+    this.VCO1out = [];
+    this.VCO2out = [];
+    this.LFO1out = [];
+    this.LFO2out = [];
+    this.VCFout  = [];
+    this.ADSRout = [];
+
+    this.ADSR[0].setAttack(1000);
+    this.ADSR[0].setDecay(1);
+    this.ADSR[0].setSustain(1);
+    this.ADSR[0].setRelease(1000);
+  }
+  /**
+   * @monosynth
+   */
+
+  monosynth(a = 1000, d = 1, s = 1, r = 1000) {
+
+    this.currentCount = Math.round(this.timer.phasor(0.5) * this.sampleIndex / this.sampleRate); // set up a metronome ticking every 2 seconds
     if (this.lastCount != this.currentCount) { //if we have a new timer int this sample, play the sound
-
-      this.ADSR.setAttack(a);
-      this.ADSR.setDecay(d);
-      this.ADSR.setSustain(s);
-      this.ADSR.setRelease(r);
-
-      this.ADSR.trigger = 1; //trigger envelope from start
+      this.ADSR[0].setAttack(a);
+      this.ADSR[0].setDecay(d);
+      this.ADSR[0].setSustain(s);
+      this.ADSR[0].setRelease(r);
+      this.ADSR[0].trigger = 1; // trigger envelope from start
       this.lastCount = 0;
     }
-    this.ADSRout = this.ADSR.adsr(1.0, this.ADSR.trigger);
-    this.LFO1out = this.LFO1.sinebuf(0.2);//this lfo is a sinewave at 0.2 hz
-    this.VCO1out = this.VCO1.pulse(55, 0.6);//here's VCO1. it's a pulse wave at 55 hz, with a pulse width of 0.6
-    this.VCO2out = this.VCO2.pulse(110 + this.LFO1out, 0.2);// pulse wave at 110hz with LFO modulation on the frequency, and width of 0.2
-    this.VCFout  = this.VCF.lores((this.VCO1out + this.VCO2out) * 0.5, this.ADSRout * 10000, 10);// VCO's into the VCF, using the ADSR as the filter cutoff
-    this.ADSR.trigger = 0;
-    return this.VCFout * this.ADSRout;
+    this.ADSRout[0] = this.ADSR[0].adsr(1.0, this.ADSR[0].trigger);
+    this.LFO1out[0] = this.LFO1[0].sinebuf(0.2); // LFO1 is a sinewave at 0.2 hz
+    this.VCO1out[0] = this.VCO1[0].pulse(55, 0.6); // VCO1 is pulse wave at 55 hz, with a pulse width of 0.6
+    this.VCO2out[0] = this.VCO2[0].pulse(110 + this.LFO1out[0], 0.2); // Pulse wave at 110hz with LFO modulation on the frequency and width of 0.2
+    this.VCFout[0] = this.VCF[0].lores((this.VCO1out[0] + this.VCO2out[0]) * 0.5, this.ADSRout[0] * 10000, 10); // VCO's into the VCF, using the ADSR as the filter cutoff
+    this.ADSR[0].trigger = 0;
+
+    return this.VCFout[0] * this.ADSRout[0];
   }
+
+  /**
+   * @setupPolysynth
+   */
+
+  setupPolysynth() {
+
+    let VCO_ArraySize = 6;
+
+    this.VCO1 = [];
+    for (let i = 0; i < VCO_ArraySize; ++i) {
+      this.VCO1.push(new Module.maxiOsc());
+    }
+    this.VCO2 = [];
+    for (let i = 0; i < VCO_ArraySize; ++i) {
+      this.VCO2.push(new Module.maxiOsc());
+    }
+    this.LFO1 = [];
+    for (let i = 0; i < VCO_ArraySize; ++i) {
+      this.LFO1.push(new Module.maxiOsc());
+    }
+    this.LFO2 = [];
+    for (let i = 0; i < VCO_ArraySize; ++i) {
+      this.LFO2.push(new Module.maxiOsc());
+    } // VCO_ArraySize * 4, 24 maxiOsc for 1 polysynth
+    this.VCF = [];
+    for (let i = 0; i < VCO_ArraySize; ++i) {
+      this.VCF.push(new Module.maxiFilter());
+    }
+    this.ADSR = [];
+    for (let i = 0; i < VCO_ArraySize; ++i) {
+      this.ADSR.push(new Module.maxiEnv());
+    }
+
+    this.timer = new Module.maxiOsc(); // metronome, 25 maxiOsc
+    this.currentCount = 0;
+    this.lastCount = 0; // these values are used to check if we have a new beat this sample
+    this.voice = 0;
+    this.mix = 0;
+
+    // aux
+    this.VCO1out = [];
+    this.VCO2out = [];
+    this.LFO1out = [];
+    this.LFO2out = [];
+    this.VCFout = [];
+    this.ADSRout = [];
+    this.pitch = [];
+
+    // zeros
+    for (let i = 0; i < VCO_ArraySize; i++) {
+      this.VCO1out.push(0);
+      this.VCO2out.push(0);
+      this.LFO1out.push(0);
+      this.LFO2out.push(0);
+      this.VCFout.push(0);
+      this.ADSRout.push(0);
+      this.pitch.push(0);
+    }
+
+    for (let i=0;i<VCO_ArraySize;i++) {
+      this.ADSR[i].setAttack(0);
+      this.ADSR[i].setDecay(200);
+      this.ADSR[i].setSustain(0.2);
+      this.ADSR[i].setRelease(2000);
+    }
+  }
+
+  /**
+   * @polysynth
+   */
+  polysynth(a = 0, d = 200, s = 0.2, r = 2000) {
+
+    let VCO_ArraySize = 6;
+    this.mix = 0; // Clear sample accumulator on every play
+
+    this.currentCount = Math.round(this.timer.phasor(8) * this.sampleIndex / this.sampleRate); // set up a metronome ticking every 2 seconds
+    if (this.lastCount != this.currentCount) { //if we have a new timer int this sample, play the sound
+
+      if (this.voice >= VCO_ArraySize) {
+        this.voice = 0;
+      }
+
+      for (let i = 0; i < VCO_ArraySize; i++) {
+        this.ADSR[this.voice].setAttack(a);
+        this.ADSR[this.voice].setDecay(d);
+        this.ADSR[this.voice].setSustain(s);
+        this.ADSR[this.voice].setRelease(r);
+        this.ADSR[this.voice].trigger = 1; //trigger envelope from start
+      }
+      this.pitch[this.voice] = this.voice+1;
+      this.voice++;
+      this.lastCount = 0;
+    }
+
+    for (let i = 0; i < VCO_ArraySize; i++) {
+      this.ADSRout[i] = this.ADSR[i].adsr(1.0, this.ADSR[i].trigger);
+      this.LFO1out[i] = this.LFO1[i].sinebuf(0.2); //LFO1 is a sinewave at 0.2 hz
+      this.VCO1out[i] = this.VCO1[i].pulse(55 * this.pitch[i], 0.6); //VCO1. it's a pulse wave at 55 hz, with a pulse width of 0.6
+      this.VCO2out[i] = this.VCO2[i].pulse(110 + this.pitch[i] * this.LFO1out[i], 0.2); // pulse wave at 110hz with LFO modulation on the frequency, and width of 0.2
+      this.VCFout[i]  = this.VCF[i].lores( (this.VCO1out[i] + this.VCO2out[i]) * 0.5, 250 + (this.pitch[i] + this.LFO1out[i]) * 10000, 10); // VCO's into the VCF, using the ADSR as the filter cutoff
+      this.mix = this.VCFout[i] * this.ADSRout[i] / VCO_ArraySize;
+    }
+
+    // This just sends note-off messages.
+    for (let i = 0; i < VCO_ArraySize; i++) {
+      this.ADSR[i].trigger = 0;
+    }
+
+    return this.mix;
+  }
+
 
   /**
    * @process
@@ -125,17 +253,15 @@ class MaxiProcessor extends AudioWorkletProcessor {
 
         if (this.DAC === undefined || this.DAC.length === 0) {
           outputChannel = output[channel];
-        }
-        else { // If the user specified a channel configuration for his DAC
-          if(this.DAC[channel] === undefined) // If user-specified channel configuration is invalid (e.g. channel 7 in a 5.1 layout)
+        } else { // If the user specified a channel configuration for his DAC
+          if (this.DAC[channel] === undefined) // If user-specified channel configuration is invalid (e.g. channel 7 in a 5.1 layout)
             break;
           else
-            if(output[this.DAC[channel]] !== undefined) { // If user-specified channel configuration is valid
-              outputChannel = output[this.DAC[channel]];
-            }
-            else { // If user-specified channel configuration is a subset of the total number of channel skip loop iterations until total number
-              continue;
-            }
+          if (output[this.DAC[channel]] !== undefined) { // If user-specified channel configuration is valid
+            outputChannel = output[this.DAC[channel]];
+          } else { // If user-specified channel configuration is a subset of the total number of channel skip loop iterations until total number
+            continue;
+          }
         }
 
         if (parameters.gain.length === 1) { // if gain is constant, lenght === 1, gain[0]
@@ -154,6 +280,7 @@ class MaxiProcessor extends AudioWorkletProcessor {
     }
     return true;
   }
+
 }
 
 registerProcessor("maxi-processor", MaxiProcessor);

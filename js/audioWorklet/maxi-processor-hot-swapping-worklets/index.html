@@ -82,7 +82,7 @@
       // We get an "Error on loading worklet:  DOMException" with the following import:
       // import Module from './maximilian.wasmmodule.js';
       return `
-        import Module from './maximilian.wasmmodule.js';
+        import Module from "${new URL("./maximilian.wasmmodule.js", location.origin)}";
         class CustomProcessor extends AudioWorkletProcessor {
           static get parameterDescriptors() {
             return [{

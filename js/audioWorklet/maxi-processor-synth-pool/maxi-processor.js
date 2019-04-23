@@ -42,11 +42,15 @@ class MaxiProcessor extends AudioWorkletProcessor {
     this.VCO2 = new Module.maxiOsc();
     this.LFO1 = new Module.maxiOsc();
     this.LFO2 = new Module.maxiOsc();
+
     this.VCF = new Module.maxiFilter();
+
     this.ADSR = new Module.maxiEnv();
+
     this.timer = new Module.maxiOsc(); // this is the metronome
     this.currentCount;
     this.lastCount; // these values are used to check if we have a new beat this sample
+
     this.VCO1out;
     this.VCO2out;
     this.LFO1out;
@@ -81,11 +85,17 @@ class MaxiProcessor extends AudioWorkletProcessor {
     };
   }
 
-  monosynth(){
+  monosynth(a=1000, d=1, s=1, r=1000){
 
     this.currentCount = Math.round(this.timer.phasor(0.5) * this.sampleIndex / this.sampleRate);// set up a metronome ticking every 2 seconds
 
     if (this.lastCount != this.currentCount) { //if we have a new timer int this sample, play the sound
+
+      this.ADSR.setAttack(a);
+      this.ADSR.setDecay(d);
+      this.ADSR.setSustain(s);
+      this.ADSR.setRelease(r);
+
       this.ADSR.trigger = 1; //trigger envelope from start
       this.lastCount = 0;
     }

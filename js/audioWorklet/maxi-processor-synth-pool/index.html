@@ -37,11 +37,13 @@
     let fs = [
       `this.osc.sawn(60) * this.oOsc.sinewave(0.4)`,
       `this.osc.sawn(60)`,
+      `this.monosynth()`,
       `this.osc.sinewave(440)`,
       `this.osc.sawn(440)`,
       `this.osc.triangle(440)`,
       `this.osc.square(440)`,
       `this.osc.square(440)`,
+      `this.monosynth()`,
       `this.osc.sinewave(440) + this.oOsc.sinewave(441)`,
       `this.osc.sinewave(440) * this.oOsc.sinewave(1)`,
       `this.osc.sinewave(440 + (this.oOsc.sinewave(1) * 100))`,
@@ -99,6 +101,8 @@
         try {
           audioContext = new AudioContext();
           audioContext.audioWorklet.addModule(workletUrl).then(() => {
+
+            // options initialize named AudioParams automatically.
             let options = {
               numberOfInputs: 1,
               numberOfOutputs: 1,
@@ -106,8 +110,8 @@
             }
             // customNode = new MaxiNode(audioContext, customProcessorName, options);
             customNode = new AudioWorkletNode(audioContext, customProcessorName);
-            customNode.onprocessorerror = event => { console.log(`MaxiProcessor Error detected` + event.data); }
-            customNode.onprocessorstatechange =  event => { console.log(`MaxiProcessor state change detected ` + customNode.processorState); }
+            customNode.onprocessorerror = event => { console.log(`MaxiProcessor Error detected: ` + event.data); }
+            customNode.onprocessorstatechange =  event => { console.log(`MaxiProcessor state change detected: ` + customNode.processorState); }
             customNode.port.onmessage = event => { console.log(`Message from processor: ` + event.data); }; //  data from the processor.
             customNode.port.onmessageerror = event => { console.log(`Error message from port: ` + event.data); }; //  error from the message port.
             customNode.connect(audioContext.destination);

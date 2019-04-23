@@ -82,6 +82,7 @@ class MaxiProcessor extends AudioWorkletProcessor {
       for (let channel = 0; channel < output.length; ++channel) {
         let outputChannel;
 
+
         if (this.DAC === undefined || this.DAC.length === 0) {
           outputChannel = output[channel];
         }

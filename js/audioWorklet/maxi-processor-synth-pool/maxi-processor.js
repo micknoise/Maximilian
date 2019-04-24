@@ -98,14 +98,17 @@ class MaxiProcessor extends AudioWorkletProcessor {
     this.ADSR[0].setDecay(1);
     this.ADSR[0].setSustain(1);
     this.ADSR[0].setRelease(1000);
+
+    this.port.postMessage(`monosynth SET`);
   }
+
+
   /**
    * @monosynth
    */
+  monosynth(a = 50, d = 1, s = 1, r = 1000) {
 
-  monosynth(a = 1000, d = 1, s = 1, r = 1000) {
-
-    this.currentCount = Math.round(this.timer.phasor(0.5) * this.sampleIndex / this.sampleRate); // set up a metronome ticking every 2 seconds
+    this.currentCount = Math.round(this.timer.phasor(8) * this.sampleIndex / this.sampleRate); // set up a metronome ticking every 2 seconds
     if (this.lastCount != this.currentCount) { //if we have a new timer int this sample, play the sound
       this.ADSR[0].setAttack(a);
       this.ADSR[0].setDecay(d);
@@ -167,7 +170,6 @@ class MaxiProcessor extends AudioWorkletProcessor {
     this.VCO1out = [];
     this.VCO2out = [];
     this.LFO1out = [];
-    this.LFO2out = [];
     this.VCFout = [];
     this.ADSRout = [];
     this.pitch = [];
@@ -177,7 +179,6 @@ class MaxiProcessor extends AudioWorkletProcessor {
       this.VCO1out.push(0);
       this.VCO2out.push(0);
       this.LFO1out.push(0);
-      this.LFO2out.push(0);
       this.VCFout.push(0);
       this.ADSRout.push(0);
       this.pitch.push(0);
@@ -189,6 +190,8 @@ class MaxiProcessor extends AudioWorkletProcessor {
       this.ADSR[i].setSustain(0.2);
       this.ADSR[i].setRelease(2000);
     }
+
+    this.port.postMessage(`polysynth SET`);
   }
 
   /**
@@ -206,13 +209,13 @@ class MaxiProcessor extends AudioWorkletProcessor {
         this.voice = 0;
       }
 
-      for (let i = 0; i < VCO_ArraySize; i++) {
-        this.ADSR[this.voice].setAttack(a);
-        this.ADSR[this.voice].setDecay(d);
-        this.ADSR[this.voice].setSustain(s);
-        this.ADSR[this.voice].setRelease(r);
-        this.ADSR[this.voice].trigger = 1; //trigger envelope from start
-      }
+      // for (let i = 0; i < VCO_ArraySize; i++) {
+      this.ADSR[this.voice].setAttack(a);
+      this.ADSR[this.voice].setDecay(d);
+      this.ADSR[this.voice].setSustain(s);
+      this.ADSR[this.voice].setRelease(r);
+      this.ADSR[this.voice].trigger = 1; //trigger envelope from start
+      // }
       this.pitch[this.voice] = this.voice+1;
       this.voice++;
       this.lastCount = 0;
@@ -221,16 +224,16 @@ class MaxiProcessor extends AudioWorkletProcessor {
     for (let i = 0; i < VCO_ArraySize; i++) {
       this.ADSRout[i] = this.ADSR[i].adsr(1.0, this.ADSR[i].trigger);
       this.LFO1out[i] = this.LFO1[i].sinebuf(0.2); //LFO1 is a sinewave at 0.2 hz
-      this.VCO1out[i] = this.VCO1[i].pulse(55 * this.pitch[i], 0.6); //VCO1. it's a pulse wave at 55 hz, with a pulse width of 0.6
-      this.VCO2out[i] = this.VCO2[i].pulse(110 + this.pitch[i] * this.LFO1out[i], 0.2); // pulse wave at 110hz with LFO modulation on the frequency, and width of 0.2
-      this.VCFout[i]  = this.VCF[i].lores( (this.VCO1out[i] + this.VCO2out[i]) * 0.5, 250 + (this.pitch[i] + this.LFO1out[i]) * 10000, 10); // VCO's into the VCF, using the ADSR as the filter cutoff
-      this.mix = this.VCFout[i] * this.ADSRout[i] / VCO_ArraySize;
+      this.VCO1out[i] = this.VCO1[i].pulse( (55 * this.pitch[i]), 0.6); //VCO1. it's a pulse wave at 55 hz, with a pulse width of 0.6
+      this.VCO2out[i] = this.VCO2[i].pulse( (110 * this.pitch[i]) + this.LFO1out[i], 0.2); // pulse wave at 110hz with LFO modulation on the frequency, and width of 0.2
+      this.VCFout[i]  = this.VCF[i].lores( (this.VCO1out[i] + this.VCO2out[i]) * 0.5, 250 + ((this.pitch[i] + this.LFO1out[i]) * 10000), 10); // VCO's into the VCF, using the ADSR as the filter cutoff
+      this.mix += this.VCFout[i] * this.ADSRout[i] / VCO_ArraySize;
     }
 
-    // This just sends note-off messages.
-    for (let i = 0; i < VCO_ArraySize; i++) {
-      this.ADSR[i].trigger = 0;
-    }
+    // // This just sends note-off messages.
+    // for (let i = 0; i < VCO_ArraySize; i++) {
+    //   this.ADSR[i].trigger = 0;
+    // }
 
     return this.mix;
   }
@@ -253,14 +256,16 @@ class MaxiProcessor extends AudioWorkletProcessor {
 
         if (this.DAC === undefined || this.DAC.length === 0) {
           outputChannel = output[channel];
-        } else { // If the user specified a channel configuration for his DAC
+        }
+        else { // If the user specified a channel configuration for his DAC
           if (this.DAC[channel] === undefined) // If user-specified channel configuration is invalid (e.g. channel 7 in a 5.1 layout)
             break;
-          else
-          if (output[this.DAC[channel]] !== undefined) { // If user-specified channel configuration is valid
-            outputChannel = output[this.DAC[channel]];
-          } else { // If user-specified channel configuration is a subset of the total number of channel skip loop iterations until total number
-            continue;
+          else {
+            if (output[this.DAC[channel]] !== undefined) { // If user-specified channel configuration is valid
+              outputChannel = output[this.DAC[channel]];
+            } else { // If user-specified channel configuration is a subset of the total number of channel skip loop iterations until total number
+              continue;
+            }
           }
         }
 

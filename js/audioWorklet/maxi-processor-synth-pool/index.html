@@ -35,27 +35,27 @@
     let workletUrl = 'maxi-processor.js';
 
     let fs = [
-      `this.osc.sawn(60) * this.oOsc.sinewave(0.4)`,
-      `this.osc.sawn(60)`,
+      // `this.osc.sawn(60) * this.oOsc.sinewave(0.4)`,
+      // `this.osc.sawn(60)`,
       `this.monosynth()`,
-      `this.osc.sinewave(440)`,
-      `this.osc.sawn(440)`,
-      `this.osc.triangle(440)`,
-      `this.osc.square(440)`,
-      `this.osc.square(440)`,
-      `this.monosynth(10, 1, 500, 500)`,
-      `this.monosynth(500, 500, 500, 500)`,
-      `this.osc.sinewave(440) + this.oOsc.sinewave(441)`,
-      `this.osc.sinewave(440) * this.oOsc.sinewave(1)`,
-      `this.osc.sinewave(440 + (this.oOsc.sinewave(1) * 100))`,
+      // `this.osc.sinewave(440)`,
+      // `this.osc.sawn(440)`,
+      // `this.osc.triangle(440)`,
+      // `this.osc.square(440)`,
+      // `this.osc.square(440)`,
+      // `this.monosynth(10, 1, 500, 500)`,
+      // `this.monosynth(500, 500, 500, 500)`,
+      // `this.osc.sinewave(440) + this.oOsc.sinewave(441)`,
+      // `this.osc.sinewave(440) * this.oOsc.sinewave(1)`,
+      // `this.osc.sinewave(440 + (this.oOsc.sinewave(1) * 100))`,
       `this.polysynth()`,
-      `this.polysynth(10, 1, 500, 500)`,
-      `this.polysynth(0, 500, 500, 500)`,
-      `this.osc.sinewave(this.oOsc.sinewave(30) * 440)`,
-      `this.osc.sinewave(this.oOsc.sinewave(this.aOsc.sinewave(0.1) * 30) * 440)`,
-      //,  Interesting case of failure, it seems we can't instantiate because of EM heap limits
-      `new Module.maxiOsc()`,
-      `new Module.maxiOsc().sinewave(400)`
+      // `this.polysynth(10, 1, 500, 500)`,
+      // `this.polysynth(0, 500, 500, 500)`,
+      // `this.osc.sinewave(this.oOsc.sinewave(30) * 440)`,
+      // `this.osc.sinewave(this.oOsc.sinewave(this.aOsc.sinewave(0.1) * 30) * 440)`,
+      // ,  Interesting case of failure, it seems we can't instantiate because of EM heap limits
+      // `new Module.maxiOsc()`,
+      // `new Module.maxiOsc().sinewave(400)`
       // , `this.mySine.tri(440) >> DAC`, // Stereo by default
       // `this.mySine.tri(440) >> DAC(1)`, // Mono to 1
       // `this.mySine.tri(440) >> DAC(0)` // Mono to 2

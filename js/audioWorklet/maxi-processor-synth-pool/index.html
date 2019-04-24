@@ -15,10 +15,10 @@
 
 <body>
 
-  <h1> Test asynchronous messaging to the worklet </h1>
+  <h1>Load-testing asynchronous messaging to an audio worklet loaded with Maximilian</h1>
   <p id="funcs"></p>
   <p>
-    A simple synths on the UI thread are posted to the worklet [You might need to clean the cache when you are testing your worklet processor code]
+    Synth defs on the UI thread are posted to the worklet [You might need to clean the cache when you are testing your worklet processor code]
   </p>
 
   <button id="playButton">Play</button>
@@ -35,24 +35,23 @@
     let workletUrl = 'maxi-processor.js';
 
     let fs = [
-      // `this.osc.sawn(60) * this.oOsc.sinewave(0.4)`,
-      // `this.osc.sawn(60)`,
+      `this.osc.sawn(60) * this.oOsc.sinewave(0.4)`,
+      `this.osc.sawn(60)`,
       `this.monosynth()`,
-      // `this.osc.sinewave(440)`,
-      // `this.osc.sawn(440)`,
-      // `this.osc.triangle(440)`,
-      // `this.osc.square(440)`,
-      // `this.osc.square(440)`,
-      // `this.monosynth(10, 1, 500, 500)`,
-      // `this.monosynth(500, 500, 500, 500)`,
-      // `this.osc.sinewave(440) + this.oOsc.sinewave(441)`,
-      // `this.osc.sinewave(440) * this.oOsc.sinewave(1)`,
-      // `this.osc.sinewave(440 + (this.oOsc.sinewave(1) * 100))`,
+      `this.osc.sinewave(440)`,
+      `this.osc.sawn(440)`,
+      `this.osc.triangle(440)`,
+      `this.osc.square(440)`,
+      `this.monosynth(10, 1, 500, 500)`,
+      `this.monosynth(500, 500, 500, 500)`,
+      `this.osc.sinewave(440) + this.oOsc.sinewave(441)`,
+      `this.osc.sinewave(440) * this.oOsc.sinewave(1)`,
+      `this.osc.sinewave(440 + (this.oOsc.sinewave(1) * 100))`,
       `this.polysynth()`,
-      // `this.polysynth(10, 1, 500, 500)`,
-      // `this.polysynth(0, 500, 500, 500)`,
-      // `this.osc.sinewave(this.oOsc.sinewave(30) * 440)`,
-      // `this.osc.sinewave(this.oOsc.sinewave(this.aOsc.sinewave(0.1) * 30) * 440)`,
+      `this.polysynth(10, 1, 500, 500)`,
+      `this.polysynth(1000, 500, 500, 500)`,
+      `this.osc.sinewave(this.oOsc.sinewave(30) * 440)`,
+      `this.osc.sinewave(this.oOsc.sinewave(this.aOsc.sinewave(0.1) * 30) * 440)`,
       // ,  Interesting case of failure, it seems we can't instantiate because of EM heap limits
       // `new Module.maxiOsc()`,
       // `new Module.maxiOsc().sinewave(400)`
@@ -97,7 +96,7 @@
       synthButton.addEventListener("click", () => changeSynth());
 
       const checkBox = document.getElementById('box');
-      checkBox.addEventListener("click", () => { playAudio(); setInterval('changeSynth()', SYNTH_CHANGE_MS) }  );
+      checkBox.addEventListener("click", () => { if(audioContext.state === "suspended") playAudio(); setInterval('changeSynth()', SYNTH_CHANGE_MS) }  );
     }
 
     function playAudio() {

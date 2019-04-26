@@ -1,3 +1,8 @@
+
+var maximilian = (
+function(maximilian) {
+  maximilian = maximilian || {};
+
 // Copyright 2010 The Emscripten Authors.  All rights reserved.
 // Emscripten is available under two separate licenses, the MIT license and the
 // University of Illinois/NCSA Open Source License.  Both these licenses can be
@@ -16,7 +21,7 @@
 // after the generated code, you will need to define   var Module = {};
 // before the code. Then that object will be used in the code, and you
 // can continue to use Module afterwards as well.
-var Module = typeof Module !== 'undefined' ? Module : {};
+var Module = typeof maximilian !== 'undefined' ? maximilian : {};
 
 // --pre-jses are emitted after the Module integration code, so that they can
 // refer to Module (if they choose; they can also define Module)
@@ -47,7 +52,7 @@ Module['postRun'] = [];
 // setting the ENVIRONMENT setting at compile time (see settings.js).
 
 var ENVIRONMENT_IS_WEB = false;
-var ENVIRONMENT_IS_WORKER = false;
+var ENVIRONMENT_IS_WORKER = true;
 var ENVIRONMENT_IS_NODE = false;
 var ENVIRONMENT_IS_SHELL = false;
 ENVIRONMENT_IS_WEB = typeof window === 'object';
@@ -113,9 +118,7 @@ if (ENVIRONMENT_IS_NODE) {
 
   Module['arguments'] = process['argv'].slice(2);
 
-  if (typeof module !== 'undefined') {
-    module['exports'] = Module;
-  }
+  // MODULARIZE will export the module in the proper place outside, we don't need to export here
 
   process['on']('uncaughtException', function(ex) {
     // suppress ExitStatus exceptions from showing an error
@@ -301,8 +304,7 @@ function dynamicAlloc(size) {
   if (end <= _emscripten_get_heap_size()) {
     HEAP32[DYNAMICTOP_PTR>>2] = end;
   } else {
-    var success = _emscripten_resize_heap(end);
-    if (!success) return 0;
+    return 0;
   }
   return ret;
 }
@@ -1525,12 +1527,12 @@ function copyTempDouble(ptr) {
       return _malloc(size);
     }
 
-  
+
   function __ZSt18uncaught_exceptionv() { // std::uncaught_exception()
       return !!__ZSt18uncaught_exceptionv.uncaught_exception;
     }
-  
-  
+
+
   function ___cxa_free_exception(ptr) {
       try {
         return _free(ptr);
@@ -1585,7 +1587,7 @@ function copyTempDouble(ptr) {
       return ptr;
     }
 
-  
+
    function ___cxa_end_catch() {
       // Clear state flag.
       _setThrew(0);
@@ -1618,8 +1620,8 @@ function copyTempDouble(ptr) {
       throw ptr;
     }
 
-  
-  
+
+
   function ___resumeException(ptr) {
       if (!EXCEPTIONS.last) { EXCEPTIONS.last = ptr; }
       throw ptr;
@@ -1636,7 +1638,7 @@ function copyTempDouble(ptr) {
         return ((setTempRet0(0),thrown)|0);
       }
       var typeArray = Array.prototype.slice.call(arguments);
-  
+
       var pointer = Module['___cxa_is_pointer_type'](throwntype);
       // can_catch receives a **, add indirection
       if (!___cxa_find_matching_catch.buffer) ___cxa_find_matching_catch.buffer = _malloc(4);
@@ -1682,7 +1684,7 @@ function copyTempDouble(ptr) {
 
   function ___lock() {}
 
-  
+
   function ___setErrNo(value) {
       if (Module['___errno_location']) HEAP32[((Module['___errno_location']())>>2)]=value;
       else err('failed to set errno from JS');
@@ -1692,14 +1694,14 @@ function copyTempDouble(ptr) {
       return -1;
     }
 
-  
-  
-  var _Math_imul=undefined;  
 
 
-  
-  
-  
+  var _Math_imul=undefined;
+
+
+
+
+
   var PATH={splitPath:function (filename) {
         var splitPathRe = /^(\/?|)([\s\S]*?)((?:\.{1,2}|[^\/]+?|)(\.[^.\/]*|))(?:[\/]*)$/;
         return splitPathRe.exec(filename).slice(1);
@@ -1817,7 +1819,7 @@ function copyTempDouble(ptr) {
         outputParts = outputParts.concat(toParts.slice(samePartsLength));
         return outputParts.join('/');
       }};
-  
+
   var TTY={ttys:[],init:function () {
         // https://github.com/emscripten-core/emscripten/pull/1555
         // if (ENVIRONMENT_IS_NODE) {
@@ -1898,9 +1900,9 @@ function copyTempDouble(ptr) {
               var BUFSIZE = 256;
               var buf = new Buffer(BUFSIZE);
               var bytesRead = 0;
-  
+
               var isPosixPlatform = (process.platform != 'win32'); // Node doesn't offer a direct check, so test by exclusion
-  
+
               var fd = process.stdin.fd;
               if (isPosixPlatform) {
                 // Linux and Mac cannot use process.stdin.fd (which isn't set up as sync)
@@ -1910,7 +1912,7 @@ function copyTempDouble(ptr) {
                   usingDevice = true;
                 } catch (e) {}
               }
-  
+
               try {
                 bytesRead = fs.readSync(fd, buf, 0, BUFSIZE, null);
               } catch(e) {
@@ -1919,7 +1921,7 @@ function copyTempDouble(ptr) {
                 if (e.toString().indexOf('EOF') != -1) bytesRead = 0;
                 else throw e;
               }
-  
+
               if (usingDevice) { fs.closeSync(fd); }
               if (bytesRead > 0) {
                 result = buf.slice(0, bytesRead).toString('utf-8');
@@ -1972,7 +1974,7 @@ function copyTempDouble(ptr) {
             tty.output = [];
           }
         }}};
-  
+
   var MEMFS={ops_table:null,mount:function (mount) {
         return MEMFS.createNode(null, '/', 16384 | 511 /* 0777 */, 0);
       },createNode:function (parent, name, mode, dev) {
@@ -2041,7 +2043,7 @@ function copyTempDouble(ptr) {
           // When the byte data of the file is populated, this will point to either a typed array, or a normal JS array. Typed arrays are preferred
           // for performance, and used by default. However, typed arrays are not resizable like normal JS arrays are, so there is a small disk size
           // penalty involved for appending file writes that continuously grow a file similar to std::vector capacity vs used -scheme.
-          node.contents = null; 
+          node.contents = null;
         } else if (FS.isLink(node.mode)) {
           node.node_ops = MEMFS.ops_table.link.node;
           node.stream_ops = MEMFS.ops_table.link.stream;
@@ -2198,22 +2200,11 @@ function copyTempDouble(ptr) {
           }
           return size;
         },write:function (stream, buffer, offset, length, position, canOwn) {
-          // If memory can grow, we don't want to hold on to references of
-          // the memory Buffer, as they may get invalidated. That means
-          // we need to do a copy here.
-          // FIXME: this is inefficient as the file packager may have
-          //        copied the data into memory already - we may want to
-          //        integrate more there and let the file packager loading
-          //        code be able to query if memory growth is on or off.
-          if (canOwn) {
-            warnOnce('file packager has copied file data into memory, but in memory growth we are forced to copy it again (see --no-heap-copy)');
-          }
-          canOwn = false;
-  
+
           if (!length) return 0;
           var node = stream.node;
           node.timestamp = Date.now();
-  
+
           if (buffer.subarray && (!node.contents || node.contents.subarray)) { // This write is from a typed array to a typed array?
             if (canOwn) {
               assert(position === 0, 'canOwn must imply no weird position inside the file');
@@ -2229,7 +2220,7 @@ function copyTempDouble(ptr) {
               return length;
             }
           }
-  
+
           // Appending to an existing file and we need to reallocate, or source data did not come as a typed array.
           MEMFS.expandFileStorage(node, position+length);
           if (node.contents.subarray && buffer.subarray) node.contents.set(buffer.subarray(offset, offset + length), position); // Use typed array write if available.
@@ -2295,12 +2286,12 @@ function copyTempDouble(ptr) {
             // MAP_PRIVATE calls need not to be synced back to underlying fs
             return 0;
           }
-  
+
           var bytesWritten = MEMFS.stream_ops.write(stream, buffer, 0, length, offset, false);
           // should we check if bytesWritten and length are the same?
           return 0;
         }}};
-  
+
   var IDBFS={dbs:{},indexedDB:function () {
         if (typeof indexedDB !== 'undefined') return indexedDB;
         var ret = null;
@@ -2313,13 +2304,13 @@ function copyTempDouble(ptr) {
       },syncfs:function (mount, populate, callback) {
         IDBFS.getLocalSet(mount, function(err, local) {
           if (err) return callback(err);
-  
+
           IDBFS.getRemoteSet(mount, function(err, remote) {
             if (err) return callback(err);
-  
+
             var src = populate ? remote : local;
             var dst = populate ? local : remote;
-  
+
             IDBFS.reconcile(src, dst, callback);
           });
         });
@@ -2329,7 +2320,7 @@ function copyTempDouble(ptr) {
         if (db) {
           return callback(null, db);
         }
-  
+
         var req;
         try {
           req = IDBFS.indexedDB().open(name, IDBFS.DB_VERSION);
@@ -2342,22 +2333,22 @@ function copyTempDouble(ptr) {
         req.onupgradeneeded = function(e) {
           var db = e.target.result;
           var transaction = e.target.transaction;
-  
+
           var fileStore;
-  
+
           if (db.objectStoreNames.contains(IDBFS.DB_STORE_NAME)) {
             fileStore = transaction.objectStore(IDBFS.DB_STORE_NAME);
           } else {
             fileStore = db.createObjectStore(IDBFS.DB_STORE_NAME);
           }
-  
+
           if (!fileStore.indexNames.contains('timestamp')) {
             fileStore.createIndex('timestamp', 'timestamp', { unique: false });
           }
         };
         req.onsuccess = function() {
           db = req.result;
-  
+
           // add to the cache
           IDBFS.dbs[name] = db;
           callback(null, db);
@@ -2368,7 +2359,7 @@ function copyTempDouble(ptr) {
         };
       },getLocalSet:function (mount, callback) {
         var entries = {};
-  
+
         function isRealDir(p) {
           return p !== '.' && p !== '..';
         };
@@ -2377,52 +2368,52 @@ function copyTempDouble(ptr) {
             return PATH.join2(root, p);
           }
         };
-  
+
         var check = FS.readdir(mount.mountpoint).filter(isRealDir).map(toAbsolute(mount.mountpoint));
-  
+
         while (check.length) {
           var path = check.pop();
           var stat;
-  
+
           try {
             stat = FS.stat(path);
           } catch (e) {
             return callback(e);
           }
-  
+
           if (FS.isDir(stat.mode)) {
             check.push.apply(check, FS.readdir(path).filter(isRealDir).map(toAbsolute(path)));
           }
-  
+
           entries[path] = { timestamp: stat.mtime };
         }
-  
+
         return callback(null, { type: 'local', entries: entries });
       },getRemoteSet:function (mount, callback) {
         var entries = {};
-  
+
         IDBFS.getDB(mount.mountpoint, function(err, db) {
           if (err) return callback(err);
-  
+
           try {
             var transaction = db.transaction([IDBFS.DB_STORE_NAME], 'readonly');
             transaction.onerror = function(e) {
               callback(this.error);
               e.preventDefault();
             };
-  
+
             var store = transaction.objectStore(IDBFS.DB_STORE_NAME);
             var index = store.index('timestamp');
-  
+
             index.openKeyCursor().onsuccess = function(event) {
               var cursor = event.target.result;
-  
+
               if (!cursor) {
                 return callback(null, { type: 'remote', db: db, entries: entries });
               }
-  
+
               entries[cursor.primaryKey] = { timestamp: cursor.key };
-  
+
               cursor.continue();
             };
           } catch (e) {
@@ -2431,7 +2422,7 @@ function copyTempDouble(ptr) {
         });
       },loadLocalEntry:function (path, callback) {
         var stat, node;
-  
+
         try {
           var lookup = FS.lookupPath(path);
           node = lookup.node;
@@ -2439,7 +2430,7 @@ function copyTempDouble(ptr) {
         } catch (e) {
           return callback(e);
         }
-  
+
         if (FS.isDir(stat.mode)) {
           return callback(null, { timestamp: stat.mtime, mode: stat.mode });
         } else if (FS.isFile(stat.mode)) {
@@ -2459,19 +2450,19 @@ function copyTempDouble(ptr) {
           } else {
             return callback(new Error('node type not supported'));
           }
-  
+
           FS.chmod(path, entry.mode);
           FS.utime(path, entry.timestamp, entry.timestamp);
         } catch (e) {
           return callback(e);
         }
-  
+
         callback(null);
       },removeLocalEntry:function (path, callback) {
         try {
           var lookup = FS.lookupPath(path);
           var stat = FS.stat(path);
-  
+
           if (FS.isDir(stat.mode)) {
             FS.rmdir(path);
           } else if (FS.isFile(stat.mode)) {
@@ -2480,7 +2471,7 @@ function copyTempDouble(ptr) {
         } catch (e) {
           return callback(e);
         }
-  
+
         callback(null);
       },loadRemoteEntry:function (store, path, callback) {
         var req = store.get(path);
@@ -2505,7 +2496,7 @@ function copyTempDouble(ptr) {
         };
       },reconcile:function (src, dst, callback) {
         var total = 0;
-  
+
         var create = [];
         Object.keys(src.entries).forEach(function (key) {
           var e = src.entries[key];
@@ -2515,7 +2506,7 @@ function copyTempDouble(ptr) {
             total++;
           }
         });
-  
+
         var remove = [];
         Object.keys(dst.entries).forEach(function (key) {
           var e = dst.entries[key];
@@ -2525,17 +2516,17 @@ function copyTempDouble(ptr) {
             total++;
           }
         });
-  
+
         if (!total) {
           return callback(null);
         }
-  
+
         var errored = false;
         var completed = 0;
         var db = src.type === 'remote' ? src.db : dst.db;
         var transaction = db.transaction([IDBFS.DB_STORE_NAME], 'readwrite');
         var store = transaction.objectStore(IDBFS.DB_STORE_NAME);
-  
+
         function done(err) {
           if (err) {
             if (!done.errored) {
@@ -2548,12 +2539,12 @@ function copyTempDouble(ptr) {
             return callback(null);
           }
         };
-  
+
         transaction.onerror = function(e) {
           done(this.error);
           e.preventDefault();
         };
-  
+
         // sort paths in ascending order so directory entries are created
         // before the files inside them
         create.sort().forEach(function (path) {
@@ -2569,7 +2560,7 @@ function copyTempDouble(ptr) {
             });
           }
         });
-  
+
         // sort paths in descending order so files are deleted before their
         // parent directories
         remove.sort().reverse().forEach(function(path) {
@@ -2580,7 +2571,7 @@ function copyTempDouble(ptr) {
           }
         });
       }};
-  
+
   var NODEFS={isWindows:false,staticInit:function () {
         NODEFS.isWindows = !!process.platform.match(/^win/);
         var flags = process["binding"]("constants");
@@ -2649,7 +2640,7 @@ function copyTempDouble(ptr) {
             flags ^= k;
           }
         }
-  
+
         if (!flags) {
           return newFlags;
         } else {
@@ -2823,14 +2814,14 @@ function copyTempDouble(ptr) {
               }
             }
           }
-  
+
           if (position < 0) {
             throw new FS.ErrnoError(ERRNO_CODES.EINVAL);
           }
-  
+
           return position;
         }}};
-  
+
   var WORKERFS={DIR_MODE:16895,FILE_MODE:33279,reader:null,mount:function (mount) {
         assert(ENVIRONMENT_IS_WORKER);
         if (!WORKERFS.reader) WORKERFS.reader = new FileReaderSync();
@@ -2960,24 +2951,24 @@ function copyTempDouble(ptr) {
           }
           return position;
         }}};
-  
+
   var ERRNO_MESSAGES={0:"Success",1:"Not super-user",2:"No such file or directory",3:"No such process",4:"Interrupted system call",5:"I/O error",6:"No such device or address",7:"Arg list too long",8:"Exec format error",9:"Bad file number",10:"No children",11:"No more processes",12:"Not enough core",13:"Permission denied",14:"Bad address",15:"Block device required",16:"Mount device busy",17:"File exists",18:"Cross-device link",19:"No such device",20:"Not a directory",21:"Is a directory",22:"Invalid argument",23:"Too many open files in system",24:"Too many open files",25:"Not a typewriter",26:"Text file busy",27:"File too large",28:"No space left on device",29:"Illegal seek",30:"Read only file system",31:"Too many links",32:"Broken pipe",33:"Math arg out of domain of func",34:"Math result not representable",35:"File locking deadlock error",36:"File or path name too long",37:"No record locks available",38:"Function not implemented",39:"Directory not empty",40:"Too many symbolic links",42:"No message of desired type",43:"Identifier removed",44:"Channel number out of range",45:"Level 2 not synchronized",46:"Level 3 halted",47:"Level 3 reset",48:"Link number out of range",49:"Protocol driver not attached",50:"No CSI structure available",51:"Level 2 halted",52:"Invalid exchange",53:"Invalid request descriptor",54:"Exchange full",55:"No anode",56:"Invalid request code",57:"Invalid slot",59:"Bad font file fmt",60:"Device not a stream",61:"No data (for no delay io)",62:"Timer expired",63:"Out of streams resources",64:"Machine is not on the network",65:"Package not installed",66:"The object is remote",67:"The link has been severed",68:"Advertise error",69:"Srmount error",70:"Communication error on send",71:"Protocol error",72:"Multihop attempted",73:"Cross mount point (not really error)",74:"Trying to read unreadable message",75:"Value too large for defined data type",76:"Given log. name not unique",77:"f.d. invalid for this operation",78:"Remote address changed",79:"Can   access a needed shared lib",80:"Accessing a corrupted shared lib",81:".lib section in a.out corrupted",82:"Attempting to link in too many libs",83:"Attempting to exec a shared library",84:"Illegal byte sequence",86:"Streams pipe error",87:"Too many users",88:"Socket operation on non-socket",89:"Destination address required",90:"Message too long",91:"Protocol wrong type for socket",92:"Protocol not available",93:"Unknown protocol",94:"Socket type not supported",95:"Not supported",96:"Protocol family not supported",97:"Address family not supported by protocol family",98:"Address already in use",99:"Address not available",100:"Network interface is not configured",101:"Network is unreachable",102:"Connection reset by network",103:"Connection aborted",104:"Connection reset by peer",105:"No buffer space available",106:"Socket is already connected",107:"Socket is not connected",108:"Can't send after socket shutdown",109:"Too many references",110:"Connection timed out",111:"Connection refused",112:"Host is down",113:"Host is unreachable",114:"Socket already connected",115:"Connection already in progress",116:"Stale file handle",122:"Quota exceeded",123:"No medium (in tape drive)",125:"Operation canceled",130:"Previous owner died",131:"State not recoverable"};
-  
+
   var ERRNO_CODES={EPERM:1,ENOENT:2,ESRCH:3,EINTR:4,EIO:5,ENXIO:6,E2BIG:7,ENOEXEC:8,EBADF:9,ECHILD:10,EAGAIN:11,EWOULDBLOCK:11,ENOMEM:12,EACCES:13,EFAULT:14,ENOTBLK:15,EBUSY:16,EEXIST:17,EXDEV:18,ENODEV:19,ENOTDIR:20,EISDIR:21,EINVAL:22,ENFILE:23,EMFILE:24,ENOTTY:25,ETXTBSY:26,EFBIG:27,ENOSPC:28,ESPIPE:29,EROFS:30,EMLINK:31,EPIPE:32,EDOM:33,ERANGE:34,ENOMSG:42,EIDRM:43,ECHRNG:44,EL2NSYNC:45,EL3HLT:46,EL3RST:47,ELNRNG:48,EUNATCH:49,ENOCSI:50,EL2HLT:51,EDEADLK:35,ENOLCK:37,EBADE:52,EBADR:53,EXFULL:54,ENOANO:55,EBADRQC:56,EBADSLT:57,EDEADLOCK:35,EBFONT:59,ENOSTR:60,ENODATA:61,ETIME:62,ENOSR:63,ENONET:64,ENOPKG:65,EREMOTE:66,ENOLINK:67,EADV:68,ESRMNT:69,ECOMM:70,EPROTO:71,EMULTIHOP:72,EDOTDOT:73,EBADMSG:74,ENOTUNIQ:76,EBADFD:77,EREMCHG:78,ELIBACC:79,ELIBBAD:80,ELIBSCN:81,ELIBMAX:82,ELIBEXEC:83,ENOSYS:38,ENOTEMPTY:39,ENAMETOOLONG:36,ELOOP:40,EOPNOTSUPP:95,EPFNOSUPPORT:96,ECONNRESET:104,ENOBUFS:105,EAFNOSUPPORT:97,EPROTOTYPE:91,ENOTSOCK:88,ENOPROTOOPT:92,ESHUTDOWN:108,ECONNREFUSED:111,EADDRINUSE:98,ECONNABORTED:103,ENETUNREACH:101,ENETDOWN:100,ETIMEDOUT:110,EHOSTDOWN:112,EHOSTUNREACH:113,EINPROGRESS:115,EALREADY:114,EDESTADDRREQ:89,EMSGSIZE:90,EPROTONOSUPPORT:93,ESOCKTNOSUPPORT:94,EADDRNOTAVAIL:99,ENETRESET:102,EISCONN:106,ENOTCONN:107,ETOOMANYREFS:109,EUSERS:87,EDQUOT:122,ESTALE:116,ENOTSUP:95,ENOMEDIUM:123,EILSEQ:84,EOVERFLOW:75,ECANCELED:125,ENOTRECOVERABLE:131,EOWNERDEAD:130,ESTRPIPE:86};
-  
+
   var _stdin=49024;
-  
+
   var _stdout=49040;
-  
+
   var _stderr=49056;var FS={root:null,mounts:[],devices:{},streams:[],nextInode:1,nameTable:null,currentPath:"/",initialized:false,ignorePermissions:true,trackingDelegate:{},tracking:{openFlags:{READ:1,WRITE:2}},ErrnoError:null,genericErrors:{},filesystems:null,syncFSRequests:0,handleFSError:function (e) {
         if (!(e instanceof FS.ErrnoError)) throw e + ' : ' + stackTrace();
         return ___setErrNo(e.errno);
       },lookupPath:function (path, opts) {
         path = PATH.resolve(FS.cwd(), path);
         opts = opts || {};
-  
+
         if (!path) return { path: '', node: null };
-  
+
         var defaults = {
           follow_mount: true,
           recurse_count: 0
@@ -2987,37 +2978,37 @@ function copyTempDouble(ptr) {
             opts[key] = defaults[key];
           }
         }
-  
+
         if (opts.recurse_count > 8) {  // max recursive lookup of 8
           throw new FS.ErrnoError(40);
         }
-  
+
         // split the path
         var parts = PATH.normalizeArray(path.split('/').filter(function(p) {
           return !!p;
         }), false);
-  
+
         // start at the root
         var current = FS.root;
         var current_path = '/';
-  
+
         for (var i = 0; i < parts.length; i++) {
           var islast = (i === parts.length-1);
           if (islast && opts.parent) {
             // stop resolving
             break;
           }
-  
+
           current = FS.lookupNode(current, parts[i]);
           current_path = PATH.join2(current_path, parts[i]);
-  
+
           // jump to the mount's root node if this is a mountpoint
           if (FS.isMountpoint(current)) {
             if (!islast || (islast && opts.follow_mount)) {
               current = current.mounted.root;
             }
           }
-  
+
           // by default, lookupPath will not follow a symlink if it is the final path component.
           // setting opts.follow = true will override this behavior.
           if (!islast || opts.follow) {
@@ -3025,17 +3016,17 @@ function copyTempDouble(ptr) {
             while (FS.isLink(current.mode)) {
               var link = FS.readlink(current_path);
               current_path = PATH.resolve(PATH.dirname(current_path), link);
-  
+
               var lookup = FS.lookupPath(current_path, { recurse_count: opts.recurse_count });
               current = lookup.node;
-  
+
               if (count++ > 40) {  // limit max consecutive symlinks to 40 (SYMLOOP_MAX).
                 throw new FS.ErrnoError(40);
               }
             }
           }
         }
-  
+
         return { path: current_path, node: current };
       },getPath:function (node) {
         var path;
@@ -3050,8 +3041,8 @@ function copyTempDouble(ptr) {
         }
       },hashName:function (parentid, name) {
         var hash = 0;
-  
-  
+
+
         for (var i = 0; i < name.length; i++) {
           hash = ((hash << 5) - hash + name.charCodeAt(i)) | 0;
         }
@@ -3104,13 +3095,13 @@ function copyTempDouble(ptr) {
             this.stream_ops = {};
             this.rdev = rdev;
           };
-  
+
           FS.FSNode.prototype = {};
-  
+
           // compatibility
           var readMode = 292 | 73;
           var writeMode = 146;
-  
+
           // NOTE we must use Object.defineProperties instead of individual calls to
           // Object.defineProperty in order to make closure compiler happy
           Object.defineProperties(FS.FSNode.prototype, {
@@ -3130,11 +3121,11 @@ function copyTempDouble(ptr) {
             }
           });
         }
-  
+
         var node = new FS.FSNode(parent, name, mode, rdev);
-  
+
         FS.hashAddNode(node);
-  
+
         return node;
       },destroyNode:function (node) {
         FS.hashRemoveNode(node);
@@ -3297,37 +3288,37 @@ function copyTempDouble(ptr) {
       },getMounts:function (mount) {
         var mounts = [];
         var check = [mount];
-  
+
         while (check.length) {
           var m = check.pop();
-  
+
           mounts.push(m);
-  
+
           check.push.apply(check, m.mounts);
         }
-  
+
         return mounts;
       },syncfs:function (populate, callback) {
         if (typeof(populate) === 'function') {
           callback = populate;
           populate = false;
         }
-  
+
         FS.syncFSRequests++;
-  
+
         if (FS.syncFSRequests > 1) {
           console.log('warning: ' + FS.syncFSRequests + ' FS.syncfs operations in flight at once, probably just doing extra work');
         }
-  
+
         var mounts = FS.getMounts(FS.root.mount);
         var completed = 0;
-  
+
         function doCallback(err) {
           assert(FS.syncFSRequests > 0);
           FS.syncFSRequests--;
           return callback(err);
         }
-  
+
         function done(err) {
           if (err) {
             if (!done.errored) {
@@ -3340,7 +3331,7 @@ function copyTempDouble(ptr) {
             doCallback(null);
           }
         };
-  
+
         // sync all mounts
         mounts.forEach(function (mount) {
           if (!mount.type.syncfs) {
@@ -3352,78 +3343,78 @@ function copyTempDouble(ptr) {
         var root = mountpoint === '/';
         var pseudo = !mountpoint;
         var node;
-  
+
         if (root && FS.root) {
           throw new FS.ErrnoError(16);
         } else if (!root && !pseudo) {
           var lookup = FS.lookupPath(mountpoint, { follow_mount: false });
-  
+
           mountpoint = lookup.path;  // use the absolute path
           node = lookup.node;
-  
+
           if (FS.isMountpoint(node)) {
             throw new FS.ErrnoError(16);
           }
-  
+
           if (!FS.isDir(node.mode)) {
             throw new FS.ErrnoError(20);
           }
         }
-  
+
         var mount = {
           type: type,
           opts: opts,
           mountpoint: mountpoint,
           mounts: []
         };
-  
+
         // create a root node for the fs
         var mountRoot = type.mount(mount);
         mountRoot.mount = mount;
         mount.root = mountRoot;
-  
+
         if (root) {
           FS.root = mountRoot;
         } else if (node) {
           // set as a mountpoint
           node.mounted = mount;
-  
+
           // add the new mount to the current mount's children
           if (node.mount) {
             node.mount.mounts.push(mount);
           }
         }
-  
+
         return mountRoot;
       },unmount:function (mountpoint) {
         var lookup = FS.lookupPath(mountpoint, { follow_mount: false });
-  
+
         if (!FS.isMountpoint(lookup.node)) {
           throw new FS.ErrnoError(22);
         }
-  
+
         // destroy the nodes for this mount, and all its child mounts
         var node = lookup.node;
         var mount = node.mounted;
         var mounts = FS.getMounts(mount);
-  
+
         Object.keys(FS.nameTable).forEach(function (hash) {
           var current = FS.nameTable[hash];
-  
+
           while (current) {
             var next = current.name_next;
-  
+
             if (mounts.indexOf(current.mount) !== -1) {
               FS.destroyNode(current);
             }
-  
+
             current = next;
           }
         });
-  
+
         // no longer a mountpoint
         node.mounted = null;
-  
+
         // remove this mount from the child mounts
         var idx = node.mount.mounts.indexOf(mount);
         assert(idx !== -1);
@@ -3830,7 +3821,7 @@ function copyTempDouble(ptr) {
         }
         // we've already handled these, don't pass down to the underlying vfs
         flags &= ~(128 | 512);
-  
+
         // register the stream with the filesystem
         var stream = FS.createStream({
           node: node,
@@ -4120,7 +4111,7 @@ function copyTempDouble(ptr) {
         // TODO deprecate the old functionality of a single
         // input / output callback and that utilizes FS.createDevice
         // and instead require a unique set of stream ops
-  
+
         // by default, we symlink the standard streams to the
         // default tty devices. however, if the standard streams
         // have been overwritten we create a unique device for
@@ -4140,14 +4131,14 @@ function copyTempDouble(ptr) {
         } else {
           FS.symlink('/dev/tty1', '/dev/stderr');
         }
-  
+
         // open default streams for the stdin, stdout and stderr devices
         var stdin = FS.open('/dev/stdin', 'r');
         assert(stdin.fd === 0, 'invalid handle for stdin (' + stdin.fd + ')');
-  
+
         var stdout = FS.open('/dev/stdout', 'w');
         assert(stdout.fd === 1, 'invalid handle for stdout (' + stdout.fd + ')');
-  
+
         var stderr = FS.open('/dev/stderr', 'w');
         assert(stderr.fd === 2, 'invalid handle for stderr (' + stderr.fd + ')');
       },ensureErrnoError:function () {
@@ -4178,15 +4169,15 @@ function copyTempDouble(ptr) {
         });
       },staticInit:function () {
         FS.ensureErrnoError();
-  
+
         FS.nameTable = new Array(4096);
-  
+
         FS.mount(MEMFS, {}, '/');
-  
+
         FS.createDefaultDirectories();
         FS.createDefaultDevices();
         FS.createSpecialDirectories();
-  
+
         FS.filesystems = {
           'MEMFS': MEMFS,
           'IDBFS': IDBFS,
@@ -4196,14 +4187,14 @@ function copyTempDouble(ptr) {
       },init:function (input, output, error) {
         assert(!FS.init.initialized, 'FS.init was previously called. If you want to initialize later with custom parameters, remove any earlier calls (note that one is automatically added to the generated code)');
         FS.init.initialized = true;
-  
+
         FS.ensureErrnoError();
-  
+
         // Allow Module.stdin etc. to provide defaults, if none explicitly passed to us here
         Module['stdin'] = input || Module['stdin'];
         Module['stdout'] = output || Module['stdout'];
         Module['stderr'] = error || Module['stderr'];
-  
+
         FS.createStandardStreams();
       },quit:function () {
         FS.init.initialized = false;
@@ -4410,27 +4401,27 @@ function copyTempDouble(ptr) {
           var header;
           var hasByteServing = (header = xhr.getResponseHeader("Accept-Ranges")) && header === "bytes";
           var usesGzip = (header = xhr.getResponseHeader("Content-Encoding")) && header === "gzip";
-  
+
           var chunkSize = 1024*1024; // Chunk size in bytes
-  
+
           if (!hasByteServing) chunkSize = datalength;
-  
+
           // Function to get a range from the remote URL.
           var doXHR = (function(from, to) {
             if (from > to) throw new Error("invalid range (" + from + ", " + to + ") or no bytes requested!");
             if (to > datalength-1) throw new Error("only " + datalength + " bytes available! programmer error!");
-  
+
             // TODO: Use mozResponseArrayBuffer, responseStream, etc. if available.
             var xhr = new XMLHttpRequest();
             xhr.open('GET', url, false);
             if (datalength !== chunkSize) xhr.setRequestHeader("Range", "bytes=" + from + "-" + to);
-  
+
             // Some hints to the browser that we want binary data.
             if (typeof Uint8Array != 'undefined') xhr.responseType = 'arraybuffer';
             if (xhr.overrideMimeType) {
               xhr.overrideMimeType('text/plain; charset=x-user-defined');
             }
-  
+
             xhr.send(null);
             if (!(xhr.status >= 200 && xhr.status < 300 || xhr.status === 304)) throw new Error("Couldn't load " + url + ". Status: " + xhr.status);
             if (xhr.response !== undefined) {
@@ -4450,7 +4441,7 @@ function copyTempDouble(ptr) {
             if (typeof(lazyArray.chunks[chunkNum]) === "undefined") throw new Error("doXHR failed!");
             return lazyArray.chunks[chunkNum];
           });
-  
+
           if (usesGzip || !datalength) {
             // if the server uses gzip or doesn't supply the length, we have to download the whole file to get the (uncompressed) length
             chunkSize = datalength = 1; // this will force getter(0)/doXHR do download the whole file
@@ -4458,7 +4449,7 @@ function copyTempDouble(ptr) {
             chunkSize = datalength;
             console.log("LazyFiles on gzip forces download of the whole file when length is accessed");
           }
-  
+
           this._length = datalength;
           this._chunkSize = chunkSize;
           this.lengthKnown = true;
@@ -4484,12 +4475,12 @@ function copyTempDouble(ptr) {
               }
             }
           });
-  
+
           var properties = { isDevice: false, contents: lazyArray };
         } else {
           var properties = { isDevice: false, url: url };
         }
-  
+
         var node = FS.createFile(parent, name, properties, canRead, canWrite);
         // This is a total hack, but I want to get this lazy file code out of the
         // core of MEMFS. If we want to keep this lazy file concept I feel it should
@@ -4719,14 +4710,14 @@ function copyTempDouble(ptr) {
       },doReadlink:function (path, buf, bufsize) {
         if (bufsize <= 0) return -ERRNO_CODES.EINVAL;
         var ret = FS.readlink(path);
-  
+
         var len = Math.min(bufsize, lengthBytesUTF8(ret));
         var endChar = HEAP8[buf+len];
         stringToUTF8(ret, buf, bufsize+1);
         // readlink is one of the rare functions that write out a C string, but does never append a null to the output buffer(!)
         // stringToUTF8() always appends a null byte, so restore the character under the null byte after the write.
         HEAP8[buf+len] = endChar;
-  
+
         return len;
       },doAccess:function (path, amode) {
         if (amode & ~7) {
@@ -4925,18 +4916,18 @@ function copyTempDouble(ptr) {
   }
   }
 
-  
-  
-   
-  
-   
-  
-  
-  var _Math_clz32=undefined;   
+
+
+
+
+
+
+
+  var _Math_clz32=undefined;
 
   function ___unlock() {}
 
-  
+
   function getShiftFromSize(size) {
       switch (size) {
           case 1: return 0;
@@ -4947,9 +4938,9 @@ function copyTempDouble(ptr) {
               throw new TypeError('Unknown type size: ' + size);
       }
     }
-  
-  
-  
+
+
+
   function embind_init_charCodes() {
       var codes = new Array(256);
       for (var i = 0; i < 256; ++i) {
@@ -4964,21 +4955,21 @@ function copyTempDouble(ptr) {
       }
       return ret;
     }
-  
-  
+
+
   var awaitingDependencies={};
-  
+
   var registeredTypes={};
-  
+
   var typeDependencies={};
-  
-  
-  
-  
-  
-  
+
+
+
+
+
+
   var char_0=48;
-  
+
   var char_9=57;function makeLegalFunctionName(name) {
       if (undefined === name) {
           return '_unknown';
@@ -5004,7 +4995,7 @@ function copyTempDouble(ptr) {
       var errorClass = createNamedFunction(errorName, function(message) {
           this.name = errorName;
           this.message = message;
-  
+
           var stack = (new Error(message)).stack;
           if (stack !== undefined) {
               this.stack = this.toString() + '\n' +
@@ -5020,21 +5011,21 @@ function copyTempDouble(ptr) {
               return this.name + ': ' + this.message;
           }
       };
-  
+
       return errorClass;
     }var BindingError=undefined;function throwBindingError(message) {
       throw new BindingError(message);
     }
-  
-  
-  
+
+
+
   var InternalError=undefined;function throwInternalError(message) {
       throw new InternalError(message);
     }function whenDependentTypesAreResolved(myTypes, dependentTypes, getTypeConverters) {
       myTypes.forEach(function(type) {
           typeDependencies[type] = dependentTypes;
       });
-  
+
       function onComplete(typeConverters) {
           var myTypeConverters = getTypeConverters(typeConverters);
           if (myTypeConverters.length !== myTypes.length) {
@@ -5044,7 +5035,7 @@ function copyTempDouble(ptr) {
               registerType(myTypes[i], myTypeConverters[i]);
           }
       }
-  
+
       var typeConverters = new Array(dependentTypes.length);
       var unregisteredTypes = [];
       var registered = 0;
@@ -5070,11 +5061,11 @@ function copyTempDouble(ptr) {
       }
     }function registerType(rawType, registeredInstance, options) {
       options = options || {};
-  
+
       if (!('argPackAdvance' in registeredInstance)) {
           throw new TypeError('registerType registeredInstance requires argPackAdvance');
       }
-  
+
       var name = registeredInstance.name;
       if (!rawType) {
           throwBindingError('type "' + name + '" must have a positive integer typeid pointer');
@@ -5086,10 +5077,10 @@ function copyTempDouble(ptr) {
               throwBindingError("Cannot register type '" + name + "' twice");
           }
       }
-  
+
       registeredTypes[rawType] = registeredInstance;
       delete typeDependencies[rawType];
-  
+
       if (awaitingDependencies.hasOwnProperty(rawType)) {
           var callbacks = awaitingDependencies[rawType];
           delete awaitingDependencies[rawType];
@@ -5099,7 +5090,7 @@ function copyTempDouble(ptr) {
       }
     }function __embind_register_bool(rawType, name, size, trueValue, falseValue) {
       var shift = getShiftFromSize(size);
-  
+
       name = readLatin1String(name);
       registerType(rawType, {
           name: name,
@@ -5130,9 +5121,9 @@ function copyTempDouble(ptr) {
       });
     }
 
-  
-  
-  
+
+
+
   function ClassHandle_isAliasOf(other) {
       if (!(this instanceof ClassHandle)) {
           return false;
@@ -5140,26 +5131,26 @@ function copyTempDouble(ptr) {
       if (!(other instanceof ClassHandle)) {
           return false;
       }
-  
+
       var leftClass = this.$$.ptrType.registeredClass;
       var left = this.$$.ptr;
       var rightClass = other.$$.ptrType.registeredClass;
       var right = other.$$.ptr;
-  
+
       while (leftClass.baseClass) {
           left = leftClass.upcast(left);
           leftClass = leftClass.baseClass;
       }
-  
+
       while (rightClass.baseClass) {
           right = rightClass.upcast(right);
           rightClass = rightClass.baseClass;
       }
-  
+
       return leftClass === rightClass && left === right;
     }
-  
-  
+
+
   function shallowCopyInternalPointer(o) {
       return {
           count: o.count,
@@ -5171,7 +5162,7 @@ function copyTempDouble(ptr) {
           smartPtrType: o.smartPtrType,
       };
     }
-  
+
   function throwInstanceAlreadyDeleted(obj) {
       function getInstanceTypeName(handle) {
         return handle.$$.ptrType.registeredClass.name;
@@ -5181,7 +5172,7 @@ function copyTempDouble(ptr) {
       if (!this.$$.ptr) {
           throwInstanceAlreadyDeleted(this);
       }
-  
+
       if (this.$$.preservePointerOnDelete) {
           this.$$.count.value += 1;
           return this;
@@ -5191,14 +5182,14 @@ function copyTempDouble(ptr) {
                   value: shallowCopyInternalPointer(this.$$),
               }
           });
-  
+
           clone.$$.count.value += 1;
           clone.$$.deleteScheduled = false;
           return clone;
       }
     }
-  
-  
+
+
   function runDestructor(handle) {
       var $$ = handle.$$;
       if ($$.smartPtr) {
@@ -5210,11 +5201,11 @@ function copyTempDouble(ptr) {
       if (!this.$$.ptr) {
           throwInstanceAlreadyDeleted(this);
       }
-  
+
       if (this.$$.deleteScheduled && !this.$$.preservePointerOnDelete) {
           throwBindingError('Object already scheduled for deletion');
       }
-  
+
       this.$$.count.value -= 1;
       var toDelete = 0 === this.$$.count.value;
       if (toDelete) {
@@ -5225,16 +5216,16 @@ function copyTempDouble(ptr) {
           this.$$.ptr = undefined;
       }
     }
-  
+
   function ClassHandle_isDeleted() {
       return !this.$$.ptr;
     }
-  
-  
+
+
   var delayFunction=undefined;
-  
+
   var deletionQueue=[];
-  
+
   function flushPendingDeletes() {
       while (deletionQueue.length) {
           var obj = deletionQueue.pop();
@@ -5262,10 +5253,10 @@ function copyTempDouble(ptr) {
       ClassHandle.prototype['deleteLater'] = ClassHandle_deleteLater;
     }function ClassHandle() {
     }
-  
+
   var registeredPointers={};
-  
-  
+
+
   function ensureOverloadTable(proto, methodName, humanName) {
       if (undefined === proto[methodName].overloadTable) {
           var prevFunc = proto[methodName];
@@ -5286,7 +5277,7 @@ function copyTempDouble(ptr) {
           if (undefined === numArguments || (undefined !== Module[name].overloadTable && undefined !== Module[name].overloadTable[numArguments])) {
               throwBindingError("Cannot register public name '" + name + "' twice");
           }
-  
+
           // We are exposing a function with the same name as an existing function. Create an overload table and a function selector
           // that routes between the two.
           ensureOverloadTable(Module, name, name);
@@ -5303,7 +5294,7 @@ function copyTempDouble(ptr) {
           }
       }
     }
-  
+
   function RegisteredClass(
       name,
       constructor,
@@ -5324,9 +5315,9 @@ function copyTempDouble(ptr) {
       this.downcast = downcast;
       this.pureVirtualFunctions = [];
     }
-  
-  
-  
+
+
+
   function upcastPointer(ptr, ptrClass, desiredClass) {
       while (ptrClass !== desiredClass) {
           if (!ptrClass.upcast) {
@@ -5343,7 +5334,7 @@ function copyTempDouble(ptr) {
           }
           return 0;
       }
-  
+
       if (!handle.$$) {
           throwBindingError('Cannot pass "' + _embind_repr(handle) + '" as a ' + this.name);
       }
@@ -5354,14 +5345,14 @@ function copyTempDouble(ptr) {
       var ptr = upcastPointer(handle.$$.ptr, handleClass, this.registeredClass);
       return ptr;
     }
-  
+
   function genericPointerToWireType(destructors, handle) {
       var ptr;
       if (handle === null) {
           if (this.isReference) {
               throwBindingError('null is not a valid ' + this.name);
           }
-  
+
           if (this.isSmartPointer) {
               ptr = this.rawConstructor();
               if (destructors !== null) {
@@ -5372,7 +5363,7 @@ function copyTempDouble(ptr) {
               return 0;
           }
       }
-  
+
       if (!handle.$$) {
           throwBindingError('Cannot pass "' + _embind_repr(handle) + '" as a ' + this.name);
       }
@@ -5384,7 +5375,7 @@ function copyTempDouble(ptr) {
       }
       var handleClass = handle.$$.ptrType.registeredClass;
       ptr = upcastPointer(handle.$$.ptr, handleClass, this.registeredClass);
-  
+
       if (this.isSmartPointer) {
           // TODO: this is not strictly true
           // We could support BY_EMVAL conversions from raw pointers to smart pointers
@@ -5392,7 +5383,7 @@ function copyTempDouble(ptr) {
           if (undefined === handle.$$.smartPtr) {
               throwBindingError('Passing raw pointer to smart pointer is illegal');
           }
-  
+
           switch (this.sharingPolicy) {
               case 0: // NONE
                   // no upcasting
@@ -5402,11 +5393,11 @@ function copyTempDouble(ptr) {
                       throwBindingError('Cannot convert argument of type ' + (handle.$$.smartPtrType ? handle.$$.smartPtrType.name : handle.$$.ptrType.name) + ' to parameter type ' + this.name);
                   }
                   break;
-  
+
               case 1: // INTRUSIVE
                   ptr = handle.$$.smartPtr;
                   break;
-  
+
               case 2: // BY_EMVAL
                   if (handle.$$.smartPtrType === this) {
                       ptr = handle.$$.smartPtr;
@@ -5423,14 +5414,14 @@ function copyTempDouble(ptr) {
                       }
                   }
                   break;
-  
+
               default:
                   throwBindingError('Unsupporting sharing policy');
           }
       }
       return ptr;
     }
-  
+
   function nonConstNoSmartPtrRawPointerToWireType(destructors, handle) {
       if (handle === null) {
           if (this.isReference) {
@@ -5438,7 +5429,7 @@ function copyTempDouble(ptr) {
           }
           return 0;
       }
-  
+
       if (!handle.$$) {
           throwBindingError('Cannot pass "' + _embind_repr(handle) + '" as a ' + this.name);
       }
@@ -5452,32 +5443,32 @@ function copyTempDouble(ptr) {
       var ptr = upcastPointer(handle.$$.ptr, handleClass, this.registeredClass);
       return ptr;
     }
-  
-  
+
+
   function simpleReadValueFromPointer(pointer) {
       return this['fromWireType'](HEAPU32[pointer >> 2]);
     }
-  
+
   function RegisteredPointer_getPointee(ptr) {
       if (this.rawGetPointee) {
           ptr = this.rawGetPointee(ptr);
       }
       return ptr;
     }
-  
+
   function RegisteredPointer_destructor(ptr) {
       if (this.rawDestructor) {
           this.rawDestructor(ptr);
       }
     }
-  
+
   function RegisteredPointer_deleteObject(handle) {
       if (handle !== null) {
           handle['delete']();
       }
     }
-  
-  
+
+
   function downcastPointer(ptr, ptrClass, desiredClass) {
       if (ptrClass === desiredClass) {
           return ptr;
@@ -5485,21 +5476,21 @@ function copyTempDouble(ptr) {
       if (undefined === desiredClass.baseClass) {
           return null; // no conversion
       }
-  
+
       var rv = downcastPointer(ptr, ptrClass, desiredClass.baseClass);
       if (rv === null) {
           return null;
       }
       return desiredClass.downcast(rv);
     }
-  
-  
-  
-  
+
+
+
+
   function getInheritedInstanceCount() {
       return Object.keys(registeredInstances).length;
     }
-  
+
   function getLiveInheritedInstances() {
       var rv = [];
       for (var k in registeredInstances) {
@@ -5509,7 +5500,7 @@ function copyTempDouble(ptr) {
       }
       return rv;
     }
-  
+
   function setDelayFunction(fn) {
       delayFunction = fn;
       if (deletionQueue.length && delayFunction) {
@@ -5521,7 +5512,7 @@ function copyTempDouble(ptr) {
       Module['flushPendingDeletes'] = flushPendingDeletes;
       Module['setDelayFunction'] = setDelayFunction;
     }var registeredInstances={};
-  
+
   function getBasestPointer(class_, ptr) {
       if (ptr === undefined) {
           throwBindingError('ptr should not be undefined');
@@ -5535,7 +5526,7 @@ function copyTempDouble(ptr) {
       ptr = getBasestPointer(class_, ptr);
       return registeredInstances[ptr];
     }
-  
+
   function makeClassHandle(prototype, record) {
       if (!record.ptrType || !record.ptr) {
           throwInternalError('makeClassHandle requires ptr and ptrType');
@@ -5553,14 +5544,14 @@ function copyTempDouble(ptr) {
       });
     }function RegisteredPointer_fromWireType(ptr) {
       // ptr is a raw pointer (or a raw smartpointer)
-  
+
       // rawPointer is a maybe-null raw pointer
       var rawPointer = this.getPointee(ptr);
       if (!rawPointer) {
           this.destructor(ptr);
           return null;
       }
-  
+
       var registeredInstance = getInheritedInstance(this.registeredClass, rawPointer);
       if (undefined !== registeredInstance) {
           // JS object has been neutered, time to repopulate it
@@ -5576,7 +5567,7 @@ function copyTempDouble(ptr) {
               return rv;
           }
       }
-  
+
       function makeDefaultHandle() {
           if (this.isSmartPointer) {
               return makeClassHandle(this.registeredClass.instancePrototype, {
@@ -5592,13 +5583,13 @@ function copyTempDouble(ptr) {
               });
           }
       }
-  
+
       var actualType = this.registeredClass.getActualType(rawPointer);
       var registeredPointerRecord = registeredPointers[actualType];
       if (!registeredPointerRecord) {
           return makeDefaultHandle.call(this);
       }
-  
+
       var toType;
       if (this.isConst) {
           toType = registeredPointerRecord.constPointerType;
@@ -5637,7 +5628,7 @@ function copyTempDouble(ptr) {
       registeredClass,
       isReference,
       isConst,
-  
+
       // smart pointer properties
       isSmartPointer,
       pointeeType,
@@ -5651,7 +5642,7 @@ function copyTempDouble(ptr) {
       this.registeredClass = registeredClass;
       this.isReference = isReference;
       this.isConst = isConst;
-  
+
       // smart pointer properties
       this.isSmartPointer = isSmartPointer;
       this.pointeeType = pointeeType;
@@ -5660,7 +5651,7 @@ function copyTempDouble(ptr) {
       this.rawConstructor = rawConstructor;
       this.rawShare = rawShare;
       this.rawDestructor = rawDestructor;
-  
+
       if (!isSmartPointer && registeredClass.baseClass === undefined) {
           if (isConst) {
               this['toWireType'] = constNoSmartPtrRawPointerToWireType;
@@ -5677,7 +5668,7 @@ function copyTempDouble(ptr) {
           //       craftInvokerFunction altogether.
       }
     }
-  
+
   function replacePublicSymbol(name, value, numArguments) {
       if (!Module.hasOwnProperty(name)) {
           throwInternalError('Replacing nonexistant public symbol');
@@ -5691,24 +5682,24 @@ function copyTempDouble(ptr) {
           Module[name].argCount = numArguments;
       }
     }
-  
+
   function embind__requireFunction(signature, rawFunction) {
       signature = readLatin1String(signature);
-  
+
       function makeDynCaller(dynCall) {
           var args = [];
           for (var i = 1; i < signature.length; ++i) {
               args.push('a' + i);
           }
-  
+
           var name = 'dynCall_' + signature + '_' + rawFunction;
           var body = 'return function ' + name + '(' + args.join(', ') + ') {\n';
           body    += '    return dynCall(rawFunction' + (args.length ? ', ' : '') + args.join(', ') + ');\n';
           body    += '};\n';
-  
+
           return (new Function('dynCall', 'rawFunction', body))(dynCall, rawFunction);
       }
-  
+
       var fp;
       if (Module['FUNCTION_TABLE_' + signature] !== undefined) {
           fp = Module['FUNCTION_TABLE_' + signature][rawFunction];
@@ -5737,16 +5728,16 @@ function copyTempDouble(ptr) {
           }
           fp = makeDynCaller(dc);
       }
-  
+
       if (typeof fp !== "function") {
           throwBindingError("unknown function pointer with signature " + signature + ": " + rawFunction);
       }
       return fp;
     }
-  
-  
+
+
   var UnboundTypeError=undefined;
-  
+
   function getTypeName(type) {
       var ptr = ___getTypeName(type);
       var rv = readLatin1String(ptr);
@@ -5770,7 +5761,7 @@ function copyTempDouble(ptr) {
           seen[type] = true;
       }
       types.forEach(visit);
-  
+
       throw new UnboundTypeError(message + ': ' + unboundTypes.map(getTypeName).join([', ']));
     }function __embind_register_class(
       rawType,
@@ -5797,18 +5788,18 @@ function copyTempDouble(ptr) {
       }
       rawDestructor = embind__requireFunction(destructorSignature, rawDestructor);
       var legalFunctionName = makeLegalFunctionName(name);
-  
+
       exposePublicSymbol(legalFunctionName, function() {
           // this code cannot run if baseClassRawType is zero
           throwUnboundTypeError('Cannot construct ' + name + ' due to unbound types', [baseClassRawType]);
       });
-  
+
       whenDependentTypesAreResolved(
           [rawType, rawPointerType, rawConstPointerType],
           baseClassRawType ? [baseClassRawType] : [],
           function(base) {
               base = base[0];
-  
+
               var baseClass;
               var basePrototype;
               if (baseClassRawType) {
@@ -5817,7 +5808,7 @@ function copyTempDouble(ptr) {
               } else {
                   basePrototype = ClassHandle.prototype;
               }
-  
+
               var constructor = createNamedFunction(legalFunctionName, function() {
                   if (Object.getPrototypeOf(this) !== instancePrototype) {
                       throw new BindingError("Use 'new' to construct " + name);
@@ -5831,13 +5822,13 @@ function copyTempDouble(ptr) {
                   }
                   return body.apply(this, arguments);
               });
-  
+
               var instancePrototype = Object.create(basePrototype, {
                   constructor: { value: constructor },
               });
-  
+
               constructor.prototype = instancePrototype;
-  
+
               var registeredClass = new RegisteredClass(
                   name,
                   constructor,
@@ -5847,52 +5838,52 @@ function copyTempDouble(ptr) {
                   getActualType,
                   upcast,
                   downcast);
-  
+
               var referenceConverter = new RegisteredPointer(
                   name,
                   registeredClass,
                   true,
                   false,
                   false);
-  
+
               var pointerConverter = new RegisteredPointer(
                   name + '*',
                   registeredClass,
                   false,
                   false,
                   false);
-  
+
               var constPointerConverter = new RegisteredPointer(
                   name + ' const*',
                   registeredClass,
                   false,
                   true,
                   false);
-  
+
               registeredPointers[rawType] = {
                   pointerType: pointerConverter,
                   constPointerType: constPointerConverter
               };
-  
+
               replacePublicSymbol(legalFunctionName, constructor);
-  
+
               return [referenceConverter, pointerConverter, constPointerConverter];
           }
       );
     }
 
-  
-  
+
+
   function new_(constructor, argumentList) {
       if (!(constructor instanceof Function)) {
           throw new TypeError('new_ called with constructor type ' + typeof(constructor) + " which is not a function");
       }
-  
+
       /*
        * Previously, the following line was just:
-  
+
        function dummy() {};
-  
+
        * Unfortunately, Chrome was preserving 'dummy' as the object's name, even though at creation, the 'dummy' has the
        * correct constructor name.  Thus, objects created with IMVU.new would show up in the debugger as 'dummy', which
        * isn't very helpful.  Using IMVU.createNamedFunction addresses the issue.  Doublely-unfortunately, there's no way
@@ -5901,11 +5892,11 @@ function copyTempDouble(ptr) {
       var dummy = createNamedFunction(constructor.name || 'unknownFunctionName', function(){});
       dummy.prototype = constructor.prototype;
       var obj = new dummy;
-  
+
       var r = constructor.apply(obj, argumentList);
       return (r instanceof Object) ? r : obj;
     }
-  
+
   function runDestructors(destructors) {
       while (destructors.length) {
           var ptr = destructors.pop();
@@ -5922,74 +5913,74 @@ function copyTempDouble(ptr) {
       // cppInvokerFunc: JS Function object to the C++-side function that interops into C++ code.
       // cppTargetFunc: Function pointer (an integer to FUNCTION_TABLE) to the target C++ function the cppInvokerFunc will end up calling.
       var argCount = argTypes.length;
-  
+
       if (argCount < 2) {
           throwBindingError("argTypes array size mismatch! Must at least get return value and 'this' types!");
       }
-  
+
       var isClassMethodFunc = (argTypes[1] !== null && classType !== null);
-  
+
       // Free functions with signature "void function()" do not need an invoker that marshalls between wire types.
   // TODO: This omits argument count check - enable only at -O3 or similar.
   //    if (ENABLE_UNSAFE_OPTS && argCount == 2 && argTypes[0].name == "void" && !isClassMethodFunc) {
   //       return FUNCTION_TABLE[fn];
   //    }
-  
-  
+
+
       // Determine if we need to use a dynamic stack to store the destructors for the function parameters.
       // TODO: Remove this completely once all function invokers are being dynamically generated.
       var needsDestructorStack = false;
-  
+
       for(var i = 1; i < argTypes.length; ++i) { // Skip return value at index 0 - it's not deleted here.
           if (argTypes[i] !== null && argTypes[i].destructorFunction === undefined) { // The type does not define a destructor function - must use dynamic stack
               needsDestructorStack = true;
               break;
           }
       }
-  
+
       var returns = (argTypes[0].name !== "void");
-  
+
       var argsList = "";
       var argsListWired = "";
       for(var i = 0; i < argCount - 2; ++i) {
           argsList += (i!==0?", ":"")+"arg"+i;
           argsListWired += (i!==0?", ":"")+"arg"+i+"Wired";
       }
-  
+
       var invokerFnBody =
           "return function "+makeLegalFunctionName(humanName)+"("+argsList+") {\n" +
           "if (arguments.length !== "+(argCount - 2)+") {\n" +
               "throwBindingError('function "+humanName+" called with ' + arguments.length + ' arguments, expected "+(argCount - 2)+" args!');\n" +
           "}\n";
-  
-  
+
+
       if (needsDestructorStack) {
           invokerFnBody +=
               "var destructors = [];\n";
       }
-  
+
       var dtorStack = needsDestructorStack ? "destructors" : "null";
       var args1 = ["throwBindingError", "invoker", "fn", "runDestructors", "retType", "classParam"];
       var args2 = [throwBindingError, cppInvokerFunc, cppTargetFunc, runDestructors, argTypes[0], argTypes[1]];
-  
-  
+
+
       if (isClassMethodFunc) {
           invokerFnBody += "var thisWired = classParam.toWireType("+dtorStack+", this);\n";
       }
-  
+
       for(var i = 0; i < argCount - 2; ++i) {
           invokerFnBody += "var arg"+i+"Wired = argType"+i+".toWireType("+dtorStack+", arg"+i+"); // "+argTypes[i+2].name+"\n";
           args1.push("argType"+i);
           args2.push(argTypes[i+2]);
       }
-  
+
       if (isClassMethodFunc) {
           argsListWired = "thisWired" + (argsListWired.length > 0 ? ", " : "") + argsListWired;
       }
-  
+
       invokerFnBody +=
           (returns?"var rv = ":"") + "invoker(fn"+(argsListWired.length>0?", ":"")+argsListWired+");\n";
-  
+
       if (needsDestructorStack) {
           invokerFnBody += "runDestructors(destructors);\n";
       } else {
@@ -6002,20 +5993,20 @@ function copyTempDouble(ptr) {
               }
           }
       }
-  
+
       if (returns) {
           invokerFnBody += "var ret = retType.fromWireType(rv);\n" +
                            "return ret;\n";
       } else {
       }
       invokerFnBody += "}\n";
-  
+
       args1.push(invokerFnBody);
-  
+
       var invokerFunction = new_(Function, args1).apply(null, args2);
       return invokerFunction;
     }
-  
+
   function heap32VectorToArray(count, firstElement) {
       var array = [];
       for (var i = 0; i < count; i++) {
@@ -6037,11 +6028,11 @@ function copyTempDouble(ptr) {
       whenDependentTypesAreResolved([], [rawClassType], function(classType) {
           classType = classType[0];
           var humanName = classType.name + '.' + methodName;
-  
+
           function unboundTypesHandler() {
               throwUnboundTypeError('Cannot call ' + humanName + ' due to unbound types', rawArgTypes);
           }
-  
+
           var proto = classType.registeredClass.constructor;
           if (undefined === proto[methodName]) {
               // This is the first function to be registered with this name.
@@ -6052,7 +6043,7 @@ function copyTempDouble(ptr) {
               ensureOverloadTable(proto, methodName, humanName);
               proto[methodName].overloadTable[argCount-1] = unboundTypesHandler;
           }
-  
+
           whenDependentTypesAreResolved([], rawArgTypes, function(argTypes) {
               // Replace the initial unbound-types-handler stub with the proper function. If multiple overloads are registered,
               // the function handlers go into an overload table.
@@ -6080,11 +6071,11 @@ function copyTempDouble(ptr) {
     ) {
       var rawArgTypes = heap32VectorToArray(argCount, rawArgTypesAddr);
       invoker = embind__requireFunction(invokerSignature, invoker);
-  
+
       whenDependentTypesAreResolved([], [rawClassType], function(classType) {
           classType = classType[0];
           var humanName = 'constructor ' + classType.name;
-  
+
           if (undefined === classType.registeredClass.constructor_body) {
               classType.registeredClass.constructor_body = [];
           }
@@ -6094,7 +6085,7 @@ function copyTempDouble(ptr) {
           classType.registeredClass.constructor_body[argCount - 1] = function unboundTypeHandler() {
               throwUnboundTypeError('Cannot construct ' + classType.name + ' due to unbound types', rawArgTypes);
           };
-  
+
           whenDependentTypesAreResolved([], rawArgTypes, function(argTypes) {
               classType.registeredClass.constructor_body[argCount - 1] = function constructor_body() {
                   if (arguments.length !== argCount - 1) {
@@ -6106,10 +6097,10 @@ function copyTempDouble(ptr) {
                   for (var i = 1; i < argCount; ++i) {
                       args[i] = argTypes[i]['toWireType'](destructors, arguments[i - 1]);
                   }
-  
+
                   var ptr = invoker.apply(null, args);
                   runDestructors(destructors);
-  
+
                   return argTypes[0]['fromWireType'](ptr);
               };
               return [];
@@ -6131,19 +6122,19 @@ function copyTempDouble(ptr) {
       var rawArgTypes = heap32VectorToArray(argCount, rawArgTypesAddr);
       methodName = readLatin1String(methodName);
       rawInvoker = embind__requireFunction(invokerSignature, rawInvoker);
-  
+
       whenDependentTypesAreResolved([], [rawClassType], function(classType) {
           classType = classType[0];
           var humanName = classType.name + '.' + methodName;
-  
+
           if (isPureVirtual) {
               classType.registeredClass.pureVirtualFunctions.push(methodName);
           }
-  
+
           function unboundTypesHandler() {
               throwUnboundTypeError('Cannot call ' + humanName + ' due to unbound types', rawArgTypes);
           }
-  
+
           var proto = classType.registeredClass.instancePrototype;
           var method = proto[methodName];
           if (undefined === method || (undefined === method.overloadTable && method.className !== classType.name && method.argCount === argCount - 2)) {
@@ -6156,11 +6147,11 @@ function copyTempDouble(ptr) {
               ensureOverloadTable(proto, methodName, humanName);
               proto[methodName].overloadTable[argCount - 2] = unboundTypesHandler;
           }
-  
+
           whenDependentTypesAreResolved([], rawArgTypes, function(argTypes) {
-  
+
               var memberFunction = craftInvokerFunction(humanName, argTypes, classType, rawInvoker, context);
-  
+
               // Replace the initial unbound-handler-stub function with the appropriate member function, now that all types
               // are resolved. If multiple overloads are registered for this function, the function goes into an overload table.
               if (undefined === proto[methodName].overloadTable) {
@@ -6170,14 +6161,14 @@ function copyTempDouble(ptr) {
               } else {
                   proto[methodName].overloadTable[argCount - 2] = memberFunction;
               }
-  
+
               return [];
           });
           return [];
       });
     }
 
-  
+
   function validateThis(this_, classType, humanName) {
       if (!(this_ instanceof Object)) {
           throwBindingError(humanName + ' with invalid "this": ' + this_);
@@ -6188,7 +6179,7 @@ function copyTempDouble(ptr) {
       if (!this_.$$.ptr) {
           throwBindingError('cannot call emscripten binding method ' + humanName + ' on deleted object');
       }
-  
+
       // todo: kill this
       return upcastPointer(
           this_.$$.ptr,
@@ -6208,7 +6199,7 @@ function copyTempDouble(ptr) {
     ) {
       fieldName = readLatin1String(fieldName);
       getter = embind__requireFunction(getterSignature, getter);
-  
+
       whenDependentTypesAreResolved([], [classType], function(classType) {
           classType = classType[0];
           var humanName = classType.name + '.' + fieldName;
@@ -6228,9 +6219,9 @@ function copyTempDouble(ptr) {
                   throwBindingError(humanName + ' is a read-only property');
               };
           }
-  
+
           Object.defineProperty(classType.registeredClass.instancePrototype, fieldName, desc);
-  
+
           whenDependentTypesAreResolved(
               [],
               (setter ? [getterReturnType, setterArgumentType] : [getterReturnType]),
@@ -6243,7 +6234,7 @@ function copyTempDouble(ptr) {
                   },
                   enumerable: true
               };
-  
+
               if (setter) {
                   setter = embind__requireFunction(setterSignature, setter);
                   var setterArgumentType = types[1];
@@ -6254,28 +6245,28 @@ function copyTempDouble(ptr) {
                       runDestructors(destructors);
                   };
               }
-  
+
               Object.defineProperty(classType.registeredClass.instancePrototype, fieldName, desc);
               return [];
           });
-  
+
           return [];
       });
     }
 
-  
-  
+
+
   var emval_free_list=[];
-  
+
   var emval_handle_array=[{},{value:undefined},{value:null},{value:true},{value:false}];function __emval_decref(handle) {
       if (handle > 4 && 0 === --emval_handle_array[handle].refcount) {
           emval_handle_array[handle] = undefined;
           emval_free_list.push(handle);
       }
     }
-  
-  
-  
+
+
+
   function count_emval_handles() {
       var count = 0;
       for (var i = 5; i < emval_handle_array.length; ++i) {
@@ -6285,7 +6276,7 @@ function copyTempDouble(ptr) {
       }
       return count;
     }
-  
+
   function get_first_emval() {
       for (var i = 5; i < emval_handle_array.length; ++i) {
           if (emval_handle_array[i] !== undefined) {
@@ -6297,7 +6288,7 @@ function copyTempDouble(ptr) {
       Module['count_emval_handles'] = count_emval_handles;
       Module['get_first_emval'] = get_first_emval;
     }function __emval_register(value) {
-  
+
       switch(value){
         case undefined :{ return 1; }
         case null :{ return 2; }
@@ -6307,7 +6298,7 @@ function copyTempDouble(ptr) {
           var handle = emval_free_list.length ?
               emval_free_list.pop() :
               emval_handle_array.length;
-  
+
           emval_handle_array[handle] = {refcount: 1, value: value};
           return handle;
           }
@@ -6327,13 +6318,13 @@ function copyTempDouble(ptr) {
           'argPackAdvance': 8,
           'readValueFromPointer': simpleReadValueFromPointer,
           destructorFunction: null, // This type does not need a destructor
-  
+
           // TODO: do we need a deleteObject here?  write a test where
           // emval is passed into JS via an interface
       });
     }
 
-  
+
   function _embind_repr(v) {
       if (v === null) {
           return 'null';
@@ -6345,7 +6336,7 @@ function copyTempDouble(ptr) {
           return '' + v;
       }
     }
-  
+
   function floatReadValueFromPointer(name, shift) {
       switch (shift) {
           case 2: return function(pointer) {
@@ -6379,7 +6370,7 @@ function copyTempDouble(ptr) {
       });
     }
 
-  
+
   function integerReadValueFromPointer(name, shift, signed) {
       // integers are quite common, so generate very specialized functions
       switch (shift) {
@@ -6400,22 +6391,22 @@ function copyTempDouble(ptr) {
       if (maxRange === -1) { // LLVM doesn't have signed and unsigned 32-bit types, so u32 literals come out as 'i32 -1'. Always treat those as max u32.
           maxRange = 4294967295;
       }
-  
+
       var shift = getShiftFromSize(size);
-  
+
       var fromWireType = function(value) {
           return value;
       };
-  
+
       if (minRange === 0) {
           var bitshift = 32 - 8*size;
           fromWireType = function(value) {
               return (value << bitshift) >>> bitshift;
           };
       }
-  
+
       var isUnsignedType = (name.indexOf('unsigned') != -1);
-  
+
       registerType(primitiveType, {
           name: name,
           'fromWireType': fromWireType,
@@ -6447,9 +6438,9 @@ function copyTempDouble(ptr) {
           Float32Array,
           Float64Array,
       ];
-  
+
       var TA = typeMapping[dataTypeIndex];
-  
+
       function decodeMemoryView(handle) {
           handle = handle >> 2;
           var heap = HEAPU32;
@@ -6457,7 +6448,7 @@ function copyTempDouble(ptr) {
           var data = heap[handle + 1]; // byte offset into emscripten heap
           return new TA(heap['buffer'], data, size);
       }
-  
+
       name = readLatin1String(name);
       registerType(rawType, {
           name: name,
@@ -6488,10 +6479,10 @@ function copyTempDouble(ptr) {
       rawConstructor = embind__requireFunction(constructorSignature, rawConstructor);
       rawShare = embind__requireFunction(shareSignature, rawShare);
       rawDestructor = embind__requireFunction(destructorSignature, rawDestructor);
-  
+
       whenDependentTypesAreResolved([rawType], [rawPointeeType], function(pointeeType) {
           pointeeType = pointeeType[0];
-  
+
           var registeredPointer = new RegisteredPointer(
               name,
               pointeeType.registeredClass,
@@ -6514,12 +6505,12 @@ function copyTempDouble(ptr) {
       var stdStringIsUTF8
       //process only std::string bindings with UTF8 support, in contrast to e.g. std::basic_string<unsigned char>
       = (name === "std::string");
-  
+
       registerType(rawType, {
           name: name,
           'fromWireType': function(value) {
               var length = HEAPU32[value >> 2];
-  
+
               var str;
               if(stdStringIsUTF8) {
                   //ensure null termination at one-past-end byte if not present yet
@@ -6530,7 +6521,7 @@ function copyTempDouble(ptr) {
                     endCharSwap = endChar;
                     HEAPU8[value + 4 + length] = 0;
                   }
-  
+
                   var decodeStartPtr = value + 4;
                   //looping here to support possible embedded '0' bytes
                   for (var i = 0; i <= length; ++i) {
@@ -6548,7 +6539,7 @@ function copyTempDouble(ptr) {
                       decodeStartPtr = currentBytePtr + 1;
                     }
                   }
-  
+
                   if(endCharSwap != 0)
                     HEAPU8[value + 4 + length] = endCharSwap;
               } else {
@@ -6558,19 +6549,19 @@ function copyTempDouble(ptr) {
                   }
                   str = a.join('');
               }
-  
+
               _free(value);
-              
+
               return str;
           },
           'toWireType': function(destructors, value) {
               if (value instanceof ArrayBuffer) {
                   value = new Uint8Array(value);
               }
-              
+
               var getLength;
               var valueIsOfTypeString = (typeof value === 'string');
-  
+
               if (!(valueIsOfTypeString || value instanceof Uint8Array || value instanceof Uint8ClampedArray || value instanceof Int8Array)) {
                   throwBindingError('Cannot pass non-string to std::string');
               }
@@ -6579,12 +6570,12 @@ function copyTempDouble(ptr) {
               } else {
                   getLength = function() {return value.length;};
               }
-              
+
               // assumes 4-byte alignment
               var length = getLength();
               var ptr = _malloc(4 + length + 1);
               HEAPU32[ptr >> 2] = length;
-  
+
               if (stdStringIsUTF8 && valueIsOfTypeString) {
                   stringToUTF8(value, ptr + 4, length + 1);
               } else {
@@ -6603,7 +6594,7 @@ function copyTempDouble(ptr) {
                       }
                   }
               }
-  
+
               if (destructors !== null) {
                   destructors.push(_free, ptr);
               }
@@ -6676,8 +6667,8 @@ function copyTempDouble(ptr) {
       });
     }
 
-  
-  
+
+
   function requireRegisteredType(rawType, humanName) {
       var impl = registeredTypes[rawType];
       if (undefined === impl) {
@@ -6693,7 +6684,7 @@ function copyTempDouble(ptr) {
       }
       return a;
     }
-  
+
   function requireHandle(handle) {
       if (!handle) {
           throwBindingError('Cannot use deleted val. handle = ' + handle);
@@ -6702,14 +6693,14 @@ function copyTempDouble(ptr) {
     }function __emval_call(handle, argCount, argTypes, argv) {
       handle = requireHandle(handle);
       var types = __emval_lookupTypes(argCount, argTypes);
-  
+
       var args = new Array(argCount);
       for (var i = 0; i < argCount; ++i) {
           var type = types[i];
           args[i] = type['readValueFromPointer'](argv);
           argv += type['argPackAdvance'];
       }
-  
+
       var rv = handle.apply(undefined, args);
       return __emval_register(rv);
     }
@@ -6731,100 +6722,29 @@ function copyTempDouble(ptr) {
       Module['abort']();
     }
 
-   
 
-   
+
+
 
   function _emscripten_get_heap_size() {
       return TOTAL_MEMORY;
     }
 
-  
+
   function abortOnCannotGrowMemory(requestedSize) {
       abort('Cannot enlarge memory arrays to size ' + requestedSize + ' bytes. Either (1) compile with  -s TOTAL_MEMORY=X  with X higher than the current value ' + TOTAL_MEMORY + ', (2) compile with  -s ALLOW_MEMORY_GROWTH=1  which allows increasing the size at runtime but prevents some optimizations, (3) set Module.TOTAL_MEMORY to a higher value before the program runs, or (4) if you want malloc to return NULL (0) instead of this abort, compile with  -s ABORTING_MALLOC=0 ');
-    }
-  
-  function emscripten_realloc_buffer(size) {
-      try {
-        var newBuffer = new ArrayBuffer(size);
-        if (newBuffer.byteLength != size) return false;
-        new Int8Array(newBuffer).set(HEAP8);
-      } catch(e) {
-        return false;
-      }
-      Module['_emscripten_replace_memory'](newBuffer);
-      HEAP8 = new Int8Array(newBuffer);
-      HEAP16 = new Int16Array(newBuffer);
-      HEAP32 = new Int32Array(newBuffer);
-      HEAPU8 = new Uint8Array(newBuffer);
-      HEAPU16 = new Uint16Array(newBuffer);
-      HEAPU32 = new Uint32Array(newBuffer);
-      HEAPF32 = new Float32Array(newBuffer);
-      HEAPF64 = new Float64Array(newBuffer);
-      buffer = newBuffer;
-      return newBuffer;
     }function _emscripten_resize_heap(requestedSize) {
-      var oldSize = _emscripten_get_heap_size();
-      // TOTAL_MEMORY is the current size of the actual array, and DYNAMICTOP is the new top.
-      assert(requestedSize > oldSize); // This function should only ever be called after the ceiling of the dynamic heap has already been bumped to exceed the current total size of the asm.js heap.
-  
-  
-      var PAGE_MULTIPLE = 16777216;
-      var LIMIT = 2147483648 - PAGE_MULTIPLE; // We can do one page short of 2GB as theoretical maximum.
-  
-      if (requestedSize > LIMIT) {
-        err('Cannot enlarge memory, asked to go up to ' + requestedSize + ' bytes, but the limit is ' + LIMIT + ' bytes!');
-        return false;
-      }
-  
-      var MIN_TOTAL_MEMORY = 16777216;
-      var newSize = Math.max(oldSize, MIN_TOTAL_MEMORY); // So the loop below will not be infinite, and minimum asm.js memory size is 16MB.
-  
-      while (newSize < requestedSize) { // Keep incrementing the heap size as long as it's less than what is requested.
-        if (newSize <= 536870912) {
-          newSize = alignUp(2 * newSize, PAGE_MULTIPLE); // Simple heuristic: double until 1GB...
-        } else {
-          // ..., but after that, add smaller increments towards 2GB, which we cannot reach
-          newSize = Math.min(alignUp((3 * newSize + 2147483648) / 4, PAGE_MULTIPLE), LIMIT);
-          if (newSize === oldSize) {
-            warnOnce('Cannot ask for more memory since we reached the practical limit in browsers (which is just below 2GB), so the request would have failed. Requesting only ' + TOTAL_MEMORY);
-          }
-        }
-      }
-  
-  
-      var start = Date.now();
-  
-      var replacement = emscripten_realloc_buffer(newSize);
-      if (!replacement || replacement.byteLength != newSize) {
-        err('Failed to grow the heap from ' + oldSize + ' bytes to ' + newSize + ' bytes, not enough memory!');
-        if (replacement) {
-          err('Expected to get back a buffer of size ' + newSize + ' bytes, but instead got back a buffer of size ' + replacement.byteLength);
-        }
-        return false;
-      }
-  
-      // everything worked
-      updateGlobalBuffer(replacement);
-      updateGlobalBufferViews();
-  
-      TOTAL_MEMORY = newSize;
-      HEAPU32[DYNAMICTOP_PTR>>2] = requestedSize;
-  
-      err('Warning: Enlarging memory arrays, this is not fast! ' + [oldSize, newSize]);
-  
-  
-      return true;
+      abortOnCannotGrowMemory(requestedSize);
     }
 
-  
+
   var ENV={};function _getenv(name) {
       // char *getenv(const char *name);
       // http://pubs.opengroup.org/onlinepubs/009695399/functions/getenv.html
       if (name === 0) return 0;
       name = UTF8ToString(name);
       if (!ENV.hasOwnProperty(name)) return 0;
-  
+
       if (_getenv.ret) _free(_getenv.ret);
       _getenv.ret = allocateUTF8(ENV[name]);
       return _getenv.ret;
@@ -6832,7 +6752,7 @@ function copyTempDouble(ptr) {
 
 
 
-   
+
 
   function _llvm_stackrestore(p) {
       var self = _llvm_stacksave;
@@ -6850,29 +6770,29 @@ function copyTempDouble(ptr) {
       return self.LLVM_SAVEDSTACKS.length-1;
     }
 
-  
+
   function _emscripten_memcpy_big(dest, src, num) {
       HEAPU8.set(HEAPU8.subarray(src, src+num), dest);
     }
-  
+
   var _Int8Array=undefined;
-  
-  var _Int32Array=undefined; 
 
-   
+  var _Int32Array=undefined;
 
-   
 
-   
+
+
+
+
 
   function _pthread_cond_wait() { return 0; }
 
-  
+
   var PTHREAD_SPECIFIC={};function _pthread_getspecific(key) {
       return PTHREAD_SPECIFIC[key] || 0;
     }
 
-  
+
   var PTHREAD_SPECIFIC_NEXT_KEY=1;function _pthread_key_create(key, destructor) {
       if (key == 0) {
         return ERRNO_CODES.EINVAL;
@@ -6884,9 +6804,9 @@ function copyTempDouble(ptr) {
       return 0;
     }
 
-   
 
-   
+
+
 
   function _pthread_once(ptr, func) {
       if (!_pthread_once.seen) _pthread_once.seen = {};
@@ -6903,30 +6823,30 @@ function copyTempDouble(ptr) {
       return 0;
     }
 
-   
 
-  
-  
+
+
+
   function __isLeapYear(year) {
         return year%4 === 0 && (year%100 !== 0 || year%400 === 0);
     }
-  
+
   function __arraySum(array, index) {
       var sum = 0;
       for (var i = 0; i <= index; sum += array[i++]);
       return sum;
     }
-  
-  
+
+
   var __MONTH_DAYS_LEAP=[31,29,31,30,31,30,31,31,30,31,30,31];
-  
+
   var __MONTH_DAYS_REGULAR=[31,28,31,30,31,30,31,31,30,31,30,31];function __addDays(date, days) {
       var newDate = new Date(date.getTime());
       while(days > 0) {
         var leap = __isLeapYear(newDate.getFullYear());
         var currentMonth = newDate.getMonth();
         var daysInCurrentMonth = (leap ? __MONTH_DAYS_LEAP : __MONTH_DAYS_REGULAR)[currentMonth];
-  
+
         if (days > daysInCurrentMonth-newDate.getDate()) {
           // we spill over to next month
           days -= (daysInCurrentMonth-newDate.getDate()+1);
@@ -6943,14 +6863,14 @@ function copyTempDouble(ptr) {
           return newDate;
         }
       }
-  
+
       return newDate;
     }function _strftime(s, maxsize, format, tm) {
       // size_t strftime(char *restrict s, size_t maxsize, const char *restrict format, const struct tm *restrict timeptr);
       // http://pubs.opengroup.org/onlinepubs/009695399/functions/strftime.html
-  
+
       var tm_zone = HEAP32[(((tm)+(40))>>2)];
-  
+
       var date = {
         tm_sec: HEAP32[((tm)>>2)],
         tm_min: HEAP32[(((tm)+(4))>>2)],
@@ -6964,9 +6884,9 @@ function copyTempDouble(ptr) {
         tm_gmtoff: HEAP32[(((tm)+(36))>>2)],
         tm_zone: tm_zone ? UTF8ToString(tm_zone) : ''
       };
-  
+
       var pattern = UTF8ToString(format);
-  
+
       // expand format
       var EXPANSION_RULES_1 = {
         '%c': '%a %b %d %H:%M:%S %Y',     // Replaced by the locale's appropriate date and time representation - e.g., Mon Aug  3 14:02:01 2013
@@ -6982,10 +6902,10 @@ function copyTempDouble(ptr) {
       for (var rule in EXPANSION_RULES_1) {
         pattern = pattern.replace(new RegExp(rule, 'g'), EXPANSION_RULES_1[rule]);
       }
-  
+
       var WEEKDAYS = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
       var MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-  
+
       function leadingSomething(value, digits, character) {
         var str = typeof value === 'number' ? value.toString() : (value || '');
         while (str.length < digits) {
@@ -6993,16 +6913,16 @@ function copyTempDouble(ptr) {
         }
         return str;
       };
-  
+
       function leadingNulls(value, digits) {
         return leadingSomething(value, digits, '0');
       };
-  
+
       function compareByDay(date1, date2) {
         function sgn(value) {
           return value < 0 ? -1 : (value > 0 ? 1 : 0);
         };
-  
+
         var compare;
         if ((compare = sgn(date1.getFullYear()-date2.getFullYear())) === 0) {
           if ((compare = sgn(date1.getMonth()-date2.getMonth())) === 0) {
@@ -7011,7 +6931,7 @@ function copyTempDouble(ptr) {
         }
         return compare;
       };
-  
+
       function getFirstWeekStartDate(janFourth) {
           switch (janFourth.getDay()) {
             case 0: // Sunday
@@ -7030,16 +6950,16 @@ function copyTempDouble(ptr) {
               return new Date(janFourth.getFullYear()-1, 11, 30);
           }
       };
-  
+
       function getWeekBasedYear(date) {
           var thisDate = __addDays(new Date(date.tm_year+1900, 0, 1), date.tm_yday);
-  
+
           var janFourthThisYear = new Date(thisDate.getFullYear(), 0, 4);
           var janFourthNextYear = new Date(thisDate.getFullYear()+1, 0, 4);
-  
+
           var firstWeekStartThisYear = getFirstWeekStartDate(janFourthThisYear);
           var firstWeekStartNextYear = getFirstWeekStartDate(janFourthNextYear);
-  
+
           if (compareByDay(firstWeekStartThisYear, thisDate) <= 0) {
             // this date is after the start of the first week of this year
             if (compareByDay(firstWeekStartNextYear, thisDate) <= 0) {
@@ -7051,7 +6971,7 @@ function copyTempDouble(ptr) {
             return thisDate.getFullYear()-1;
           }
       };
-  
+
       var EXPANSION_RULES_2 = {
         '%a': function(date) {
           return WEEKDAYS[date.tm_wday].substring(0,3);
@@ -7085,7 +7005,7 @@ function copyTempDouble(ptr) {
           // %G is replaced by 1998 and %V is replaced by 53. If December 29th, 30th,
           // or 31st is a Monday, it and any following days are part of week 1 of the following year.
           // Thus, for Tuesday 30th December 1997, %G is replaced by 1998 and %V is replaced by 01.
-  
+
           return getWeekBasedYear(date).toString().substring(2);
         },
         '%G': function(date) {
@@ -7137,7 +7057,7 @@ function copyTempDouble(ptr) {
           var janFirst = new Date(date.tm_year+1900, 0, 1);
           var firstSunday = janFirst.getDay() === 0 ? janFirst : __addDays(janFirst, 7-janFirst.getDay());
           var endDate = new Date(date.tm_year+1900, date.tm_mon, date.tm_mday);
-  
+
           // is target date after the first Sunday?
           if (compareByDay(firstSunday, endDate) < 0) {
             // calculate difference in days between first Sunday and endDate
@@ -7146,7 +7066,7 @@ function copyTempDouble(ptr) {
             var days = firstSundayUntilEndJanuary+februaryFirstUntilEndMonth+endDate.getDate();
             return leadingNulls(Math.ceil(days/7), 2);
           }
-  
+
           return compareByDay(firstSunday, janFirst) === 0 ? '01': '00';
         },
         '%V': function(date) {
@@ -7157,22 +7077,22 @@ function copyTempDouble(ptr) {
           // Both January 4th and the first Thursday of January are always in week 1. [ tm_year, tm_wday, tm_yday]
           var janFourthThisYear = new Date(date.tm_year+1900, 0, 4);
           var janFourthNextYear = new Date(date.tm_year+1901, 0, 4);
-  
+
           var firstWeekStartThisYear = getFirstWeekStartDate(janFourthThisYear);
           var firstWeekStartNextYear = getFirstWeekStartDate(janFourthNextYear);
-  
+
           var endDate = __addDays(new Date(date.tm_year+1900, 0, 1), date.tm_yday);
-  
+
           if (compareByDay(endDate, firstWeekStartThisYear) < 0) {
             // if given date is before this years first week, then it belongs to the 53rd week of last year
             return '53';
           }
-  
+
           if (compareByDay(firstWeekStartNextYear, endDate) <= 0) {
             // if given date is after next years first week, then it belongs to the 01th week of next year
             return '01';
           }
-  
+
           // given date is in between CW 01..53 of this calendar year
           var daysDifference;
           if (firstWeekStartThisYear.getFullYear() < date.tm_year+1900) {
@@ -7195,7 +7115,7 @@ function copyTempDouble(ptr) {
           var janFirst = new Date(date.tm_year, 0, 1);
           var firstMonday = janFirst.getDay() === 1 ? janFirst : __addDays(janFirst, janFirst.getDay() === 0 ? 1 : 7-janFirst.getDay()+1);
           var endDate = new Date(date.tm_year+1900, date.tm_mon, date.tm_mday);
-  
+
           // is target date after the first Monday?
           if (compareByDay(firstMonday, endDate) < 0) {
             var februaryFirstUntilEndMonth = __arraySum(__isLeapYear(endDate.getFullYear()) ? __MONTH_DAYS_LEAP : __MONTH_DAYS_REGULAR, endDate.getMonth()-1)-31;
@@ -7235,12 +7155,12 @@ function copyTempDouble(ptr) {
           pattern = pattern.replace(new RegExp(rule, 'g'), EXPANSION_RULES_2[rule](date));
         }
       }
-  
+
       var bytes = intArrayFromString(pattern, false);
       if (bytes.length > maxsize) {
         return 0;
       }
-  
+
       writeArrayToMemory(bytes, s);
       return bytes.length-1;
     }function _strftime_l(s, maxsize, format, tm) {
@@ -7723,10 +7643,10 @@ function invoke_viiiiiiiiiiiiiii(index,a1,a2,a3,a4,a5,a6,a7,a8,a9,a10,a11,a12,a1
 
 var asmGlobalArg = { "Math": Math, "Int8Array": Int8Array, "Int16Array": Int16Array, "Int32Array": Int32Array, "Uint8Array": Uint8Array, "Uint16Array": Uint16Array, "Float32Array": Float32Array, "Float64Array": Float64Array, "NaN": NaN, "Infinity": Infinity }
 
-var asmLibraryArg = { "a": abort, "b": setTempRet0, "c": getTempRet0, "d": abortStackOverflow, "e": nullFunc_dddd, "f": nullFunc_dddddd, "g": nullFunc_di, "h": nullFunc_did, "i": nullFunc_didd, "j": nullFunc_diddd, "k": nullFunc_diddddd, "l": nullFunc_didddddii, "m": nullFunc_didddii, "n": nullFunc_diddidd, "o": nullFunc_didi, "p": nullFunc_didid, "q": nullFunc_dididdd, "r": nullFunc_dididi, "s": nullFunc_dii, "t": nullFunc_diid, "u": nullFunc_diidd, "v": nullFunc_diiddd, "w": nullFunc_diiddddd, "x": nullFunc_diidddddii, "y": nullFunc_diidddii, "z": nullFunc_diiddidd, "A": nullFunc_diidi, "B": nullFunc_diidid, "C": nullFunc_diididdd, "D": nullFunc_diididi, "E": nullFunc_diii, "F": nullFunc_diiii, "G": nullFunc_i, "H": nullFunc_ii, "I": nullFunc_iid, "J": nullFunc_iii, "K": nullFunc_iiid, "L": nullFunc_iiii, "M": nullFunc_iiiid, "N": nullFunc_iiiii, "O": nullFunc_iiiiid, "P": nullFunc_iiiiii, "Q": nullFunc_iiiiiid, "R": nullFunc_iiiiiii, "S": nullFunc_iiiiiiii, "T": nullFunc_iiiiiiiii, "U": nullFunc_iiiiiiiiiii, "V": nullFunc_iiiiiiiiiiii, "W": nullFunc_iiiiiiiiiiiii, "X": nullFunc_v, "Y": nullFunc_vi, "Z": nullFunc_vid, "_": nullFunc_vidd, "$": nullFunc_vidid, "aa": nullFunc_vididd, "ab": nullFunc_vididdd, "ac": nullFunc_vii, "ad": nullFunc_viid, "ae": nullFunc_viidd, "af": nullFunc_viidid, "ag": nullFunc_viididd, "ah": nullFunc_viididdd, "ai": nullFunc_viii, "aj": nullFunc_viiid, "ak": nullFunc_viiii, "al": nullFunc_viiiii, "am": nullFunc_viiiiii, "an": nullFunc_viiiiiii, "ao": nullFunc_viiiiiiiiii, "ap": nullFunc_viiiiiiiiiiiiiii, "aq": invoke_diii, "ar": invoke_i, "as": invoke_ii, "at": invoke_iii, "au": invoke_iiii, "av": invoke_iiiii, "aw": invoke_iiiiiii, "ax": invoke_iiiiiiii, "ay": invoke_iiiiiiiii, "az": invoke_iiiiiiiiiii, "aA": invoke_iiiiiiiiiiii, "aB": invoke_iiiiiiiiiiiii, "aC": invoke_v, "aD": invoke_vi, "aE": invoke_vii, "aF": invoke_viii, "aG": invoke_viiii, "aH": invoke_viiiiiii, "aI": invoke_viiiiiiiiii, "aJ": invoke_viiiiiiiiiiiiiii, "aK": ClassHandle, "aL": ClassHandle_clone, "aM": ClassHandle_delete, "aN": ClassHandle_deleteLater, "aO": ClassHandle_isAliasOf, "aP": ClassHandle_isDeleted, "aQ": RegisteredClass, "aR": RegisteredPointer, "aS": RegisteredPointer_deleteObject, "aT": RegisteredPointer_destructor, "aU": RegisteredPointer_fromWireType, "aV": RegisteredPointer_getPointee, "aW": __ZSt18uncaught_exceptionv, "aX": ___cxa_allocate_exception, "aY": ___cxa_begin_catch, "aZ": ___cxa_end_catch, "a_": ___cxa_find_matching_catch, "a$": ___cxa_find_matching_catch_2, "ba": ___cxa_find_matching_catch_3, "bb": ___cxa_free_exception, "bc": ___cxa_rethrow, "bd": ___cxa_throw, "be": ___gxx_personality_v0, "bf": ___lock, "bg": ___map_file, "bh": ___resumeException, "bi": ___setErrNo, "bj": ___syscall140, "bk": ___syscall145, "bl": ___syscall146, "bm": ___syscall54, "bn": ___syscall6, "bo": ___syscall91, "bp": ___unlock, "bq": __addDays, "br": __arraySum, "bs": __embind_register_bool, "bt": __embind_register_class, "bu": __embind_register_class_class_function, "bv": __embind_register_class_constructor, "bw": __embind_register_class_function, "bx": __embind_register_class_property, "by": __embind_register_emval, "bz": __embind_register_float, "bA": __embind_register_integer, "bB": __embind_register_memory_view, "bC": __embind_register_smart_ptr, "bD": __embind_register_std_string, "bE": __embind_register_std_wstring, "bF": __embind_register_void, "bG": __emval_call, "bH": __emval_decref, "bI": __emval_incref, "bJ": __emval_lookupTypes, "bK": __emval_register, "bL": __emval_take_value, "bM": __isLeapYear, "bN": _abort, "bO": _embind_repr, "bP": _emscripten_get_heap_size, "bQ": _emscripten_memcpy_big, "bR": _emscripten_resize_heap, "bS": _getenv, "bT": _llvm_stackrestore, "bU": _llvm_stacksave, "bV": _pthread_cond_wait, "bW": _pthread_getspecific, "bX": _pthread_key_create, "bY": _pthread_once, "bZ": _pthread_setspecific, "b_": _strftime, "b$": _strftime_l, "ca": abortOnCannotGrowMemory, "cb": constNoSmartPtrRawPointerToWireType, "cc": count_emval_handles, "cd": craftInvokerFunction, "ce": createNamedFunction, "cf": downcastPointer, "cg": embind__requireFunction, "ch": embind_init_charCodes, "ci": emscripten_realloc_buffer, "cj": ensureOverloadTable, "ck": exposePublicSymbol, "cl": extendError, "cm": floatReadValueFromPointer, "cn": flushPendingDeletes, "co": genericPointerToWireType, "cp": getBasestPointer, "cq": getInheritedInstance, "cr": getInheritedInstanceCount, "cs": getLiveInheritedInstances, "ct": getShiftFromSize, "cu": getTypeName, "cv": get_first_emval, "cw": heap32VectorToArray, "cx": init_ClassHandle, "cy": init_RegisteredPointer, "cz": init_embind, "cA": init_emval, "cB": integerReadValueFromPointer, "cC": makeClassHandle, "cD": makeLegalFunctionName, "cE": new_, "cF": nonConstNoSmartPtrRawPointerToWireType, "cG": readLatin1String, "cH": registerType, "cI": replacePublicSymbol, "cJ": requireHandle, "cK": requireRegisteredType, "cL": runDestructor, "cM": runDestructors, "cN": setDelayFunction, "cO": shallowCopyInternalPointer, "cP": simpleReadValueFromPointer, "cQ": throwBindingError, "cR": throwInstanceAlreadyDeleted, "cS": throwInternalError, "cT": throwUnboundTypeError, "cU": upcastPointer, "cV": validateThis, "cW": whenDependentTypesAreResolved, "cX": tempDoublePtr, "cY": DYNAMICTOP_PTR }
+var asmLibraryArg = { "a": abort, "b": setTempRet0, "c": getTempRet0, "d": abortStackOverflow, "e": nullFunc_dddd, "f": nullFunc_dddddd, "g": nullFunc_di, "h": nullFunc_did, "i": nullFunc_didd, "j": nullFunc_diddd, "k": nullFunc_diddddd, "l": nullFunc_didddddii, "m": nullFunc_didddii, "n": nullFunc_diddidd, "o": nullFunc_didi, "p": nullFunc_didid, "q": nullFunc_dididdd, "r": nullFunc_dididi, "s": nullFunc_dii, "t": nullFunc_diid, "u": nullFunc_diidd, "v": nullFunc_diiddd, "w": nullFunc_diiddddd, "x": nullFunc_diidddddii, "y": nullFunc_diidddii, "z": nullFunc_diiddidd, "A": nullFunc_diidi, "B": nullFunc_diidid, "C": nullFunc_diididdd, "D": nullFunc_diididi, "E": nullFunc_diii, "F": nullFunc_diiii, "G": nullFunc_i, "H": nullFunc_ii, "I": nullFunc_iid, "J": nullFunc_iii, "K": nullFunc_iiid, "L": nullFunc_iiii, "M": nullFunc_iiiid, "N": nullFunc_iiiii, "O": nullFunc_iiiiid, "P": nullFunc_iiiiii, "Q": nullFunc_iiiiiid, "R": nullFunc_iiiiiii, "S": nullFunc_iiiiiiii, "T": nullFunc_iiiiiiiii, "U": nullFunc_iiiiiiiiiii, "V": nullFunc_iiiiiiiiiiii, "W": nullFunc_iiiiiiiiiiiii, "X": nullFunc_v, "Y": nullFunc_vi, "Z": nullFunc_vid, "_": nullFunc_vidd, "$": nullFunc_vidid, "aa": nullFunc_vididd, "ab": nullFunc_vididdd, "ac": nullFunc_vii, "ad": nullFunc_viid, "ae": nullFunc_viidd, "af": nullFunc_viidid, "ag": nullFunc_viididd, "ah": nullFunc_viididdd, "ai": nullFunc_viii, "aj": nullFunc_viiid, "ak": nullFunc_viiii, "al": nullFunc_viiiii, "am": nullFunc_viiiiii, "an": nullFunc_viiiiiii, "ao": nullFunc_viiiiiiiiii, "ap": nullFunc_viiiiiiiiiiiiiii, "aq": invoke_diii, "ar": invoke_i, "as": invoke_ii, "at": invoke_iii, "au": invoke_iiii, "av": invoke_iiiii, "aw": invoke_iiiiiii, "ax": invoke_iiiiiiii, "ay": invoke_iiiiiiiii, "az": invoke_iiiiiiiiiii, "aA": invoke_iiiiiiiiiiii, "aB": invoke_iiiiiiiiiiiii, "aC": invoke_v, "aD": invoke_vi, "aE": invoke_vii, "aF": invoke_viii, "aG": invoke_viiii, "aH": invoke_viiiiiii, "aI": invoke_viiiiiiiiii, "aJ": invoke_viiiiiiiiiiiiiii, "aK": ClassHandle, "aL": ClassHandle_clone, "aM": ClassHandle_delete, "aN": ClassHandle_deleteLater, "aO": ClassHandle_isAliasOf, "aP": ClassHandle_isDeleted, "aQ": RegisteredClass, "aR": RegisteredPointer, "aS": RegisteredPointer_deleteObject, "aT": RegisteredPointer_destructor, "aU": RegisteredPointer_fromWireType, "aV": RegisteredPointer_getPointee, "aW": __ZSt18uncaught_exceptionv, "aX": ___cxa_allocate_exception, "aY": ___cxa_begin_catch, "aZ": ___cxa_end_catch, "a_": ___cxa_find_matching_catch, "a$": ___cxa_find_matching_catch_2, "ba": ___cxa_find_matching_catch_3, "bb": ___cxa_free_exception, "bc": ___cxa_rethrow, "bd": ___cxa_throw, "be": ___gxx_personality_v0, "bf": ___lock, "bg": ___map_file, "bh": ___resumeException, "bi": ___setErrNo, "bj": ___syscall140, "bk": ___syscall145, "bl": ___syscall146, "bm": ___syscall54, "bn": ___syscall6, "bo": ___syscall91, "bp": ___unlock, "bq": __addDays, "br": __arraySum, "bs": __embind_register_bool, "bt": __embind_register_class, "bu": __embind_register_class_class_function, "bv": __embind_register_class_constructor, "bw": __embind_register_class_function, "bx": __embind_register_class_property, "by": __embind_register_emval, "bz": __embind_register_float, "bA": __embind_register_integer, "bB": __embind_register_memory_view, "bC": __embind_register_smart_ptr, "bD": __embind_register_std_string, "bE": __embind_register_std_wstring, "bF": __embind_register_void, "bG": __emval_call, "bH": __emval_decref, "bI": __emval_incref, "bJ": __emval_lookupTypes, "bK": __emval_register, "bL": __emval_take_value, "bM": __isLeapYear, "bN": _abort, "bO": _embind_repr, "bP": _emscripten_get_heap_size, "bQ": _emscripten_memcpy_big, "bR": _emscripten_resize_heap, "bS": _getenv, "bT": _llvm_stackrestore, "bU": _llvm_stacksave, "bV": _pthread_cond_wait, "bW": _pthread_getspecific, "bX": _pthread_key_create, "bY": _pthread_once, "bZ": _pthread_setspecific, "b_": _strftime, "b$": _strftime_l, "ca": abortOnCannotGrowMemory, "cb": constNoSmartPtrRawPointerToWireType, "cc": count_emval_handles, "cd": craftInvokerFunction, "ce": createNamedFunction, "cf": downcastPointer, "cg": embind__requireFunction, "ch": embind_init_charCodes, "ci": ensureOverloadTable, "cj": exposePublicSymbol, "ck": extendError, "cl": floatReadValueFromPointer, "cm": flushPendingDeletes, "cn": genericPointerToWireType, "co": getBasestPointer, "cp": getInheritedInstance, "cq": getInheritedInstanceCount, "cr": getLiveInheritedInstances, "cs": getShiftFromSize, "ct": getTypeName, "cu": get_first_emval, "cv": heap32VectorToArray, "cw": init_ClassHandle, "cx": init_RegisteredPointer, "cy": init_embind, "cz": init_emval, "cA": integerReadValueFromPointer, "cB": makeClassHandle, "cC": makeLegalFunctionName, "cD": new_, "cE": nonConstNoSmartPtrRawPointerToWireType, "cF": readLatin1String, "cG": registerType, "cH": replacePublicSymbol, "cI": requireHandle, "cJ": requireRegisteredType, "cK": runDestructor, "cL": runDestructors, "cM": setDelayFunction, "cN": shallowCopyInternalPointer, "cO": simpleReadValueFromPointer, "cP": throwBindingError, "cQ": throwInstanceAlreadyDeleted, "cR": throwInternalError, "cS": throwUnboundTypeError, "cT": upcastPointer, "cU": validateThis, "cV": whenDependentTypesAreResolved, "cW": tempDoublePtr, "cX": DYNAMICTOP_PTR }
 // EMSCRIPTEN_START_ASM
 var asm = (/** @suppress {uselessCode} */ function(global, env, buffer) {
-'almost asm';
+'use asm';
 
   var HEAP8 = new global.Int8Array(buffer),
   HEAP16 = new global.Int16Array(buffer),
@@ -7735,8 +7655,8 @@ var asm = (/** @suppress {uselessCode} */ function(global, env, buffer) {
   HEAPU16 = new global.Uint16Array(buffer),
   HEAPF32 = new global.Float32Array(buffer),
   HEAPF64 = new global.Float64Array(buffer),
-  tempDoublePtr=env.cX|0,
-  DYNAMICTOP_PTR=env.cY|0,
+  tempDoublePtr=env.cW|0,
+  DYNAMICTOP_PTR=env.cX|0,
   __THREW__ = 0,
   threwValue = 0,
   setjmpId = 0,
@@ -7929,63 +7849,49 @@ var asm = (/** @suppress {uselessCode} */ function(global, env, buffer) {
   downcastPointer=env.cf,
   embind__requireFunction=env.cg,
   embind_init_charCodes=env.ch,
-  emscripten_realloc_buffer=env.ci,
-  ensureOverloadTable=env.cj,
-  exposePublicSymbol=env.ck,
-  extendError=env.cl,
-  floatReadValueFromPointer=env.cm,
-  flushPendingDeletes=env.cn,
-  genericPointerToWireType=env.co,
-  getBasestPointer=env.cp,
-  getInheritedInstance=env.cq,
-  getInheritedInstanceCount=env.cr,
-  getLiveInheritedInstances=env.cs,
-  getShiftFromSize=env.ct,
-  getTypeName=env.cu,
-  get_first_emval=env.cv,
-  heap32VectorToArray=env.cw,
-  init_ClassHandle=env.cx,
-  init_RegisteredPointer=env.cy,
-  init_embind=env.cz,
-  init_emval=env.cA,
-  integerReadValueFromPointer=env.cB,
-  makeClassHandle=env.cC,
-  makeLegalFunctionName=env.cD,
-  new_=env.cE,
-  nonConstNoSmartPtrRawPointerToWireType=env.cF,
-  readLatin1String=env.cG,
-  registerType=env.cH,
-  replacePublicSymbol=env.cI,
-  requireHandle=env.cJ,
-  requireRegisteredType=env.cK,
-  runDestructor=env.cL,
-  runDestructors=env.cM,
-  setDelayFunction=env.cN,
-  shallowCopyInternalPointer=env.cO,
-  simpleReadValueFromPointer=env.cP,
-  throwBindingError=env.cQ,
-  throwInstanceAlreadyDeleted=env.cR,
-  throwInternalError=env.cS,
-  throwUnboundTypeError=env.cT,
-  upcastPointer=env.cU,
-  validateThis=env.cV,
-  whenDependentTypesAreResolved=env.cW,
+  ensureOverloadTable=env.ci,
+  exposePublicSymbol=env.cj,
+  extendError=env.ck,
+  floatReadValueFromPointer=env.cl,
+  flushPendingDeletes=env.cm,
+  genericPointerToWireType=env.cn,
+  getBasestPointer=env.co,
+  getInheritedInstance=env.cp,
+  getInheritedInstanceCount=env.cq,
+  getLiveInheritedInstances=env.cr,
+  getShiftFromSize=env.cs,
+  getTypeName=env.ct,
+  get_first_emval=env.cu,
+  heap32VectorToArray=env.cv,
+  init_ClassHandle=env.cw,
+  init_RegisteredPointer=env.cx,
+  init_embind=env.cy,
+  init_emval=env.cz,
+  integerReadValueFromPointer=env.cA,
+  makeClassHandle=env.cB,
+  makeLegalFunctionName=env.cC,
+  new_=env.cD,
+  nonConstNoSmartPtrRawPointerToWireType=env.cE,
+  readLatin1String=env.cF,
+  registerType=env.cG,
+  replacePublicSymbol=env.cH,
+  requireHandle=env.cI,
+  requireRegisteredType=env.cJ,
+  runDestructor=env.cK,
+  runDestructors=env.cL,
+  setDelayFunction=env.cM,
+  shallowCopyInternalPointer=env.cN,
+  simpleReadValueFromPointer=env.cO,
+  throwBindingError=env.cP,
+  throwInstanceAlreadyDeleted=env.cQ,
+  throwInternalError=env.cR,
+  throwUnboundTypeError=env.cS,
+  upcastPointer=env.cT,
+  validateThis=env.cU,
+  whenDependentTypesAreResolved=env.cV,
   STACKTOP = 49264,
   STACK_MAX = 5292144,
   tempFloat = 0.0;
-
-function _emscripten_replace_memory(newBuffer) {
-  HEAP8 = new Int8Array(newBuffer);
-  HEAPU8 = new Uint8Array(newBuffer);
-  HEAP16 = new Int16Array(newBuffer);
-  HEAPU16 = new Uint16Array(newBuffer);
-  HEAP32 = new Int32Array(newBuffer);
-  HEAPF32 = new Float32Array(newBuffer);
-  HEAPF64 = new Float64Array(newBuffer);
-
-  buffer = newBuffer;
-  return true;
-}
 
 // EMSCRIPTEN_START_FUNCS
   function globalCtors() {
@@ -86055,7 +85961,7 @@ function _sbrk(increment) {
     return oldDynamicTop|0;
 }
 
-  
+
 function dynCall_dddd(index,a1,a2,a3) {
   index = index|0;
   a1=+a1; a2=+a2; a3=+a3;
@@ -86254,7 +86160,7 @@ function dynCall_diiii(index,a1,a2,a3,a4) {
 
 function dynCall_i(index) {
   index = index|0;
-  
+
   return FUNCTION_TABLE_i[index&31]()|0;
 }
 
@@ -86373,7 +86279,7 @@ function dynCall_iiiiiiiiiiiii(index,a1,a2,a3,a4,a5,a6,a7,a8,a9,a10,a11,a12) {
 
 function dynCall_v(index) {
   index = index|0;
-  
+
   FUNCTION_TABLE_v[index&63]();
 }
 
@@ -86854,7 +86760,7 @@ var FUNCTION_TABLE_viiiiiii = [b63,__ZNSt3__29__num_putIcE21__widen_and_group_in
 var FUNCTION_TABLE_viiiiiiiiii = [b64,__ZNSt3__211__money_getIcE13__gather_infoEbRKNS_6localeERNS_10money_base7patternERcS8_RNS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEESF_SF_SF_Ri,__ZNSt3__211__money_getIwE13__gather_infoEbRKNS_6localeERNS_10money_base7patternERwS8_RNS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEERNS9_IwNSA_IwEENSC_IwEEEESJ_SJ_Ri,__ZNSt3__211__money_putIcE13__gather_infoEbbRKNS_6localeERNS_10money_base7patternERcS8_RNS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEESF_SF_Ri,__ZNSt3__211__money_putIwE13__gather_infoEbbRKNS_6localeERNS_10money_base7patternERwS8_RNS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEERNS9_IwNSA_IwEENSC_IwEEEESJ_Ri,b64,b64,b64];
 var FUNCTION_TABLE_viiiiiiiiiiiiiii = [b65,__ZNSt3__211__money_putIcE8__formatEPcRS2_S3_jPKcS5_RKNS_5ctypeIcEEbRKNS_10money_base7patternEccRKNS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEESL_SL_i,__ZNSt3__211__money_putIwE8__formatEPwRS2_S3_jPKwS5_RKNS_5ctypeIwEEbRKNS_10money_base7patternEwwRKNS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEERKNSE_IwNSF_IwEENSH_IwEEEESQ_i,b65];
 
-  return { ___cxa_can_catch: ___cxa_can_catch, ___cxa_is_pointer_type: ___cxa_is_pointer_type, ___errno_location: ___errno_location, ___getTypeName: ___getTypeName, ___muldi3: ___muldi3, ___udivdi3: ___udivdi3, _bitshift64Lshr: _bitshift64Lshr, _bitshift64Shl: _bitshift64Shl, _emscripten_replace_memory: _emscripten_replace_memory, _fflush: _fflush, _free: _free, _i64Add: _i64Add, _i64Subtract: _i64Subtract, _llvm_bswap_i32: _llvm_bswap_i32, _malloc: _malloc, _memcpy: _memcpy, _memmove: _memmove, _memset: _memset, _pthread_cond_broadcast: _pthread_cond_broadcast, _pthread_mutex_lock: _pthread_mutex_lock, _pthread_mutex_unlock: _pthread_mutex_unlock, _sbrk: _sbrk, _setThrew: _setThrew, dynCall_dddd: dynCall_dddd, dynCall_dddddd: dynCall_dddddd, dynCall_di: dynCall_di, dynCall_did: dynCall_did, dynCall_didd: dynCall_didd, dynCall_diddd: dynCall_diddd, dynCall_diddddd: dynCall_diddddd, dynCall_didddddii: dynCall_didddddii, dynCall_didddii: dynCall_didddii, dynCall_diddidd: dynCall_diddidd, dynCall_didi: dynCall_didi, dynCall_didid: dynCall_didid, dynCall_dididdd: dynCall_dididdd, dynCall_dididi: dynCall_dididi, dynCall_dii: dynCall_dii, dynCall_diid: dynCall_diid, dynCall_diidd: dynCall_diidd, dynCall_diiddd: dynCall_diiddd, dynCall_diiddddd: dynCall_diiddddd, dynCall_diidddddii: dynCall_diidddddii, dynCall_diidddii: dynCall_diidddii, dynCall_diiddidd: dynCall_diiddidd, dynCall_diidi: dynCall_diidi, dynCall_diidid: dynCall_diidid, dynCall_diididdd: dynCall_diididdd, dynCall_diididi: dynCall_diididi, dynCall_diii: dynCall_diii, dynCall_diiii: dynCall_diiii, dynCall_i: dynCall_i, dynCall_ii: dynCall_ii, dynCall_iid: dynCall_iid, dynCall_iii: dynCall_iii, dynCall_iiid: dynCall_iiid, dynCall_iiii: dynCall_iiii, dynCall_iiiid: dynCall_iiiid, dynCall_iiiii: dynCall_iiiii, dynCall_iiiiid: dynCall_iiiiid, dynCall_iiiiii: dynCall_iiiiii, dynCall_iiiiiid: dynCall_iiiiiid, dynCall_iiiiiii: dynCall_iiiiiii, dynCall_iiiiiiii: dynCall_iiiiiiii, dynCall_iiiiiiiii: dynCall_iiiiiiiii, dynCall_iiiiiiiiiii: dynCall_iiiiiiiiiii, dynCall_iiiiiiiiiiii: dynCall_iiiiiiiiiiii, dynCall_iiiiiiiiiiiii: dynCall_iiiiiiiiiiiii, dynCall_v: dynCall_v, dynCall_vi: dynCall_vi, dynCall_vid: dynCall_vid, dynCall_vidd: dynCall_vidd, dynCall_vidid: dynCall_vidid, dynCall_vididd: dynCall_vididd, dynCall_vididdd: dynCall_vididdd, dynCall_vii: dynCall_vii, dynCall_viid: dynCall_viid, dynCall_viidd: dynCall_viidd, dynCall_viidid: dynCall_viidid, dynCall_viididd: dynCall_viididd, dynCall_viididdd: dynCall_viididdd, dynCall_viii: dynCall_viii, dynCall_viiid: dynCall_viiid, dynCall_viiii: dynCall_viiii, dynCall_viiiii: dynCall_viiiii, dynCall_viiiiii: dynCall_viiiiii, dynCall_viiiiiii: dynCall_viiiiiii, dynCall_viiiiiiiiii: dynCall_viiiiiiiiii, dynCall_viiiiiiiiiiiiiii: dynCall_viiiiiiiiiiiiiii, establishStackSpace: establishStackSpace, globalCtors: globalCtors, stackAlloc: stackAlloc, stackRestore: stackRestore, stackSave: stackSave };
+  return { ___cxa_can_catch: ___cxa_can_catch, ___cxa_is_pointer_type: ___cxa_is_pointer_type, ___errno_location: ___errno_location, ___getTypeName: ___getTypeName, ___muldi3: ___muldi3, ___udivdi3: ___udivdi3, _bitshift64Lshr: _bitshift64Lshr, _bitshift64Shl: _bitshift64Shl, _fflush: _fflush, _free: _free, _i64Add: _i64Add, _i64Subtract: _i64Subtract, _llvm_bswap_i32: _llvm_bswap_i32, _malloc: _malloc, _memcpy: _memcpy, _memmove: _memmove, _memset: _memset, _pthread_cond_broadcast: _pthread_cond_broadcast, _pthread_mutex_lock: _pthread_mutex_lock, _pthread_mutex_unlock: _pthread_mutex_unlock, _sbrk: _sbrk, _setThrew: _setThrew, dynCall_dddd: dynCall_dddd, dynCall_dddddd: dynCall_dddddd, dynCall_di: dynCall_di, dynCall_did: dynCall_did, dynCall_didd: dynCall_didd, dynCall_diddd: dynCall_diddd, dynCall_diddddd: dynCall_diddddd, dynCall_didddddii: dynCall_didddddii, dynCall_didddii: dynCall_didddii, dynCall_diddidd: dynCall_diddidd, dynCall_didi: dynCall_didi, dynCall_didid: dynCall_didid, dynCall_dididdd: dynCall_dididdd, dynCall_dididi: dynCall_dididi, dynCall_dii: dynCall_dii, dynCall_diid: dynCall_diid, dynCall_diidd: dynCall_diidd, dynCall_diiddd: dynCall_diiddd, dynCall_diiddddd: dynCall_diiddddd, dynCall_diidddddii: dynCall_diidddddii, dynCall_diidddii: dynCall_diidddii, dynCall_diiddidd: dynCall_diiddidd, dynCall_diidi: dynCall_diidi, dynCall_diidid: dynCall_diidid, dynCall_diididdd: dynCall_diididdd, dynCall_diididi: dynCall_diididi, dynCall_diii: dynCall_diii, dynCall_diiii: dynCall_diiii, dynCall_i: dynCall_i, dynCall_ii: dynCall_ii, dynCall_iid: dynCall_iid, dynCall_iii: dynCall_iii, dynCall_iiid: dynCall_iiid, dynCall_iiii: dynCall_iiii, dynCall_iiiid: dynCall_iiiid, dynCall_iiiii: dynCall_iiiii, dynCall_iiiiid: dynCall_iiiiid, dynCall_iiiiii: dynCall_iiiiii, dynCall_iiiiiid: dynCall_iiiiiid, dynCall_iiiiiii: dynCall_iiiiiii, dynCall_iiiiiiii: dynCall_iiiiiiii, dynCall_iiiiiiiii: dynCall_iiiiiiiii, dynCall_iiiiiiiiiii: dynCall_iiiiiiiiiii, dynCall_iiiiiiiiiiii: dynCall_iiiiiiiiiiii, dynCall_iiiiiiiiiiiii: dynCall_iiiiiiiiiiiii, dynCall_v: dynCall_v, dynCall_vi: dynCall_vi, dynCall_vid: dynCall_vid, dynCall_vidd: dynCall_vidd, dynCall_vidid: dynCall_vidid, dynCall_vididd: dynCall_vididd, dynCall_vididdd: dynCall_vididdd, dynCall_vii: dynCall_vii, dynCall_viid: dynCall_viid, dynCall_viidd: dynCall_viidd, dynCall_viidid: dynCall_viidid, dynCall_viididd: dynCall_viididd, dynCall_viididdd: dynCall_viididdd, dynCall_viii: dynCall_viii, dynCall_viiid: dynCall_viiid, dynCall_viiii: dynCall_viiii, dynCall_viiiii: dynCall_viiiii, dynCall_viiiiii: dynCall_viiiiii, dynCall_viiiiiii: dynCall_viiiiiii, dynCall_viiiiiiiiii: dynCall_viiiiiiiiii, dynCall_viiiiiiiiiiiiiii: dynCall_viiiiiiiiiiiiiii, establishStackSpace: establishStackSpace, globalCtors: globalCtors, stackAlloc: stackAlloc, stackRestore: stackRestore, stackSave: stackSave };
 })
 // EMSCRIPTEN_END_ASM
 (asmGlobalArg, asmLibraryArg, buffer);
@@ -87016,7 +86922,6 @@ var ___muldi3 = Module["___muldi3"] = asm["___muldi3"];
 var ___udivdi3 = Module["___udivdi3"] = asm["___udivdi3"];
 var _bitshift64Lshr = Module["_bitshift64Lshr"] = asm["_bitshift64Lshr"];
 var _bitshift64Shl = Module["_bitshift64Shl"] = asm["_bitshift64Shl"];
-var _emscripten_replace_memory = Module["_emscripten_replace_memory"] = asm["_emscripten_replace_memory"];
 var _fflush = Module["_fflush"] = asm["_fflush"];
 var _free = Module["_free"] = asm["_free"];
 var _i64Add = Module["_i64Add"] = asm["_i64Add"];
@@ -87178,6 +87083,9 @@ if (!Module["printErr"]) Module["printErr"] = function() { abort("'printErr' was
 if (!Module["getTempRet0"]) Module["getTempRet0"] = function() { abort("'getTempRet0' was not exported. add it to EXTRA_EXPORTED_RUNTIME_METHODS (see the FAQ)") };
 if (!Module["setTempRet0"]) Module["setTempRet0"] = function() { abort("'setTempRet0' was not exported. add it to EXTRA_EXPORTED_RUNTIME_METHODS (see the FAQ)") };
 if (!Module["Pointer_stringify"]) Module["Pointer_stringify"] = function() { abort("'Pointer_stringify' was not exported. add it to EXTRA_EXPORTED_RUNTIME_METHODS (see the FAQ)") };
+if (!Module["writeStackCookie"]) Module["writeStackCookie"] = function() { abort("'writeStackCookie' was not exported. add it to EXTRA_EXPORTED_RUNTIME_METHODS (see the FAQ)") };
+if (!Module["checkStackCookie"]) Module["checkStackCookie"] = function() { abort("'checkStackCookie' was not exported. add it to EXTRA_EXPORTED_RUNTIME_METHODS (see the FAQ)") };
+if (!Module["abortStackOverflow"]) Module["abortStackOverflow"] = function() { abort("'abortStackOverflow' was not exported. add it to EXTRA_EXPORTED_RUNTIME_METHODS (see the FAQ)") };
 if (!Module["intArrayFromBase64"]) Module["intArrayFromBase64"] = function() { abort("'intArrayFromBase64' was not exported. add it to EXTRA_EXPORTED_RUNTIME_METHODS (see the FAQ)") };
 if (!Module["tryParseAsDataURI"]) Module["tryParseAsDataURI"] = function() { abort("'tryParseAsDataURI' was not exported. add it to EXTRA_EXPORTED_RUNTIME_METHODS (see the FAQ)") };if (!Module["ALLOC_NORMAL"]) Object.defineProperty(Module, "ALLOC_NORMAL", { get: function() { abort("'ALLOC_NORMAL' was not exported. add it to EXTRA_EXPORTED_RUNTIME_METHODS (see the FAQ)") } });
 if (!Module["ALLOC_STACK"]) Object.defineProperty(Module, "ALLOC_STACK", { get: function() { abort("'ALLOC_STACK' was not exported. add it to EXTRA_EXPORTED_RUNTIME_METHODS (see the FAQ)") } });
@@ -87468,8 +87376,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 /* global Module */
 
 "use strict";
-var currentDate = "20 February 2019, 12:17am";
-console.log("MaxiAudio: " + Date());
+
+// console.log("maximilian: " + Date());
+
+console.log("maximilian v2.0.0: " + Date());
 
 // ------------------------------------------------
 // maxiArray - could extend Array object?
@@ -87607,52 +87517,7 @@ Module.maxiAudio = function () {
     this.initDone = false;
 };
 
-
-
 Module.maxiAudio.play = function () {
-};
-
-// Module.maxiAudio.prototype.mzedTest = function () {
-//     console.log("mzed loves you!");
-// };
-
-// don't really need setup??
-Module.maxiAudio.setup = function () {
-    console.log("non-overrided setup");
-};
-
-Module.maxiAudio.prototype.getNumChannels = function () {
-    return this.numChannels;
-};
-
-// isArray should be second param really
-// set num channels and set output as an array
-// use this if you want to change number of channels
-Module.maxiAudio.prototype.setNumChannels = function (isArray, numChannels_) {
-
-    this.numChannels = numChannels_;
-    this.outputIsArray(isArray, numChannels_);
-
-    this.resetAudio();
-};
-
-Module.maxiAudio.prototype.setBufferSize = function (newBufferSize) {
-    this.bufferSize = newBufferSize;
-    this.resetAudio();
-};
-
-// use this if you want to keep num of outputs but change
-// method e.g. array or not
-Module.maxiAudio.prototype.outputIsArray = function (isArray) {
-    if (isArray) {
-        this.output = new Array(this.numChannels);
-
-        for (var i = 0; i < this.numChannels; i++) {
-            this.output[i] = 0;
-        }
-    } else {
-        this.output = 0;
-    }
 };
 
 Module.maxiAudio.prototype.init = function () {
@@ -87697,6 +87562,47 @@ Module.maxiAudio.prototype.init = function () {
     this.analyser.connect(this.context.destination);
     this.initDone = true;
 };
+
+
+// don't really need setup??
+Module.maxiAudio.setup = function () {
+    console.log("non-overrided setup");
+};
+
+Module.maxiAudio.prototype.getNumChannels = function () {
+    return this.numChannels;
+};
+
+// isArray should be second param really
+// set num channels and set output as an array
+// use this if you want to change number of channels
+Module.maxiAudio.prototype.setNumChannels = function (isArray, numChannels_) {
+
+    this.numChannels = numChannels_;
+    this.outputIsArray(isArray, numChannels_);
+
+    this.resetAudio();
+};
+
+Module.maxiAudio.prototype.setBufferSize = function (newBufferSize) {
+    this.bufferSize = newBufferSize;
+    this.resetAudio();
+};
+
+// use this if you want to keep num of outputs but change
+// method e.g. array or not
+Module.maxiAudio.prototype.outputIsArray = function (isArray) {
+    if (isArray) {
+        this.output = new Array(this.numChannels);
+
+        for (var i = 0; i < this.numChannels; i++) {
+            this.output[i] = 0;
+        }
+    } else {
+        this.output = 0;
+    }
+};
+
 
 Module.maxiAudio.prototype.resetAudio = function () {
     if (this.initDone) {
@@ -87826,11 +87732,22 @@ Module.maxiAudio.prototype.loadSample = function (url, samplePlayer, contextIn) 
                 }
             );
         };
-
         request.send();
     }
 
 };
 
-export default Module;
+// export default Module;
+// export default maximilian;
 
+
+
+  return maximilian;
+}
+)(typeof maximilian === 'object' ? maximilian : {});
+if (typeof exports === 'object' && typeof module === 'object')
+      module.exports = maximilian;
+    else if (typeof define === 'function' && define['amd'])
+      define([], function() { return maximilian; });
+    else if (typeof exports === 'object')
+      exports["maximilian"] = maximilian;

@@ -2,6 +2,9 @@
 EMSCR=em++
 
 # Maximilian
+SRC=../src/maximilian.cpp
+SRC_EM=../src/maximilian.embind.cpp
+SRC_LIBS=../src/libs/maxiSynths.cpp
 
 # POST_JS – external js handling web audio etc
 POST_JS=./src/maximilian.post.js
@@ -22,28 +25,36 @@ OUTPUT_AW=$(BUILD_DIR)/maximilian.wasmmodule.js
 # -s ALLOW_MEMORY_GROWTH=1 \
 
 # ScriptProcessorNode – No WASM generation, outputs everything in one JS file
-CFLAGS=-O3 -s WASM=0 \
-						-s DISABLE_EXCEPTION_CATCHING=0 \
-						-s ASSERTIONS=1 \
-						-s EXPORT_NAME="'maximilian'" \
-						-s MODULARIZE=1 --memory-init-file 0 --profiling -std=c++11
+CFLAGS=--bind -O1 \
+				-s WASM=0 \
+				-s DISABLE_EXCEPTION_CATCHING=0 \
+				-s ASSERTIONS=1 \
+				-s SINGLE_FILE=1 \
+				-s --memory-init-file 0 --profiling -std=c++11 \
+				-s MODULARIZE=1 \
+				-s EXPORT_NAME="'maximilian'" \
+
 
 # ScriptProcessorNode – with WASM generation, outputs JS file + WASM module
-WASMCFLAGS=-O3 -s \
+WASMCFLAGS=--bind -O3 \
 				-s WASM=1 \
 				-s DISABLE_EXCEPTION_CATCHING=0 \
 				-s ALLOW_MEMORY_GROWTH=1 \
 				-s ASSERTIONS=1 \
-				-s EXPORT_NAME="'maximilian'" \
-				-s MODULARIZE=1 --memory-init-file 0 --profiling -std=c++11
+				-s --memory-init-file 0 --profiling -std=c++11 \
+				# -s EXPORT_NAME="'maximilian'" \
+				# -s MODULARIZE=1
 
 # Audio Worklets Maximilian WASM module
-AWWASMCFLAGS= --bind -O1 \
-				-s WASM=1 \
-				-s BINARYEN_ASYNC_COMPILATION=0 \
-				-s ALLOW_MEMORY_GROWTH=1 \
-				-s SINGLE_FILE=1 \
-				-s EXPORT_NAME="'maximilian'" \
+AWWASMCFLAGS=--bind -O1 \
+ 						-s DISABLE_EXCEPTION_CATCHING=0 \
+						-s ASSERTIONS=1 \
+						-s WASM=0 \
+						-s BINARYEN_ASYNC_COMPILATION=0 \
+						-s ALLOW_MEMORY_GROWTH=1 \
+						-s SINGLE_FILE=1
+						# -s EXPORT_NAME="'maximilian'" \
+
 
 # -std=c++11
 
@@ -59,8 +70,7 @@ all: full wasm aw
 
 full:
 	@echo "${RED}\r\nBUILD WITHOUT WASM – maximilian.js \r\n${GREEN}"
-	$(EMSCR) $(CFLAGS) --post-js $(POST_JS) -o $(OUTPUT) $(SRC)
-	# $(EMSCR) $(CFLAGS) --post-js $(POST_JS_webAudio_all) --bind -o $(OUTPUT_MAXI) $(SOURCE_MAXI) $(SOURCES_LIBS)
+	$(EMSCR) $(CFLAGS) --post-js $(POST_JS) -o $(OUTPUT) $(SRC) $(SRC_EM) $(SRC_LIBS)
 
 wasm:
 	@echo "${RED}\r\nBUILD WITH WASM – maximilian.wasm.js + maximilian.wasm \r\n${CYAN}"

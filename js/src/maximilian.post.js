@@ -26,7 +26,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 "use strict";
 
-console.log("maximilian: " + Date());
+// console.log("maximilian: " + Date());
+
+console.log("maximilian v2.0.0: " + Date());
 
 // ------------------------------------------------
 // maxiArray - could extend Array object?
@@ -385,3 +387,4 @@ Module.maxiAudio.prototype.loadSample = function (url, samplePlayer, contextIn) 
 };
 
 // export default Module;
+// export default maximilian;

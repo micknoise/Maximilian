@@ -40,21 +40,32 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <!-- <link rel="stylesheet" type="text/css" href="javascript-processing_files/simple.css"> -->
 
 
-<script src="../maxiLib.js"></script>
+<script src="../build/maximilian.js"></script>
 
 <!-- Our javascript code -->
 <script type="text/javascript">
-var audio = new maximJs.maxiAudio();
-audio.init();
 
-//This shows how to use maximilian to do basic amplitude modulation
-var mySine = new maximJs.maxiOsc();
-var myOtherSine = new maximJs.maxiOsc();
+  // var maxiLib = Module();
 
-audio.play = function(){
- 	// these two sines will beat together. They're now a bit too loud though..
-    this.output = mySine.sinewave(440)*myOtherSine.sinewave(1);
- }
+  // var m = Module();
+
+  // var ma = maximilian.maxiAudio();
+
+  // ma.init();
+  	// create oscillator
+  // var mySine = m.maxiOsc();
+  var mySine = new Module.maxiOsc();
+function wasmReady(){
+  //This shows how to use maximilian to do basic amplitude modulation
+  var mySine = m.maxiOsc();
+  var myOtherSine = m.maxiOsc();
+
+  var play = () => {
+   	// these two sines will beat together. They're now a bit too loud though..
+    this.output = mySine.sinewave(440) * myOtherSine.sinewave(1);
+  }
+}
+
 </script>
 
 </head>

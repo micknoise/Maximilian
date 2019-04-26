@@ -37,6 +37,7 @@
 //}
 
 // int main() {
+//
 //   EM_ASM( wasmReady() );
 // }
 

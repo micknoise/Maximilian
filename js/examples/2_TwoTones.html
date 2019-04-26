@@ -45,11 +45,11 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 <!-- Our javascript code -->
 <script type="text/javascript">
-var audio = new maximJs.maxiAudio();
+var audio = Maximilian.maxiAudio();
 audio.init();
 
-var mySine = new maximJs.maxiOsc();
-var myOtherSine = new maximJs.maxiOsc();
+var mySine = Maximilian.maxiOsc();
+var myOtherSine = Maximilian.maxiOsc();
 
 audio.play = function(){
 	// these two sines will beat together. They're now a bit too loud though..

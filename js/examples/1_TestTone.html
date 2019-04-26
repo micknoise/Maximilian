@@ -8,25 +8,52 @@
 <!-- show all line numbers-->
 <style type="text/css">.prettyprint ol.linenums > li { list-style-type: decimal }</style>
 
-<script src="../build/maxiLib.js"></script>
+<script src="../build/maximilian.js"></script>
 
 <!-- Our javascript code -->
 <script type="text/javascript">
 
-var maxiLib = MaxiLib();
+// var maxiLib = Module();
 
-function wasmReady(){
+var m = Maximilian();
 
-	var audio = new maxiLib.maxiAudio();
+let play = () => {
 	// initialise audio
-	audio.init();
+	var ma = m.maxiAudio();
+
+	ma.init();
 	// create oscillator
-	var mySine = new maxiLib.maxiOsc();
+	var mySine = m.maxiOsc();
+
 	audio.play = function(){
 		// direct value to output
 		this.output = mySine.sinewave(440);
 	}
 }
+
+(let wasmReady = () => play())();
+
+
+
+// var maxiLib = MaxiLib();
+//
+// function wasmReady(){
+//
+//   var audio = new maxiLib.maxiAudio();
+//
+//   // initialise audio
+//   audio.init();
+//
+//   // create oscillator
+//   var mySine = new maxiLib.maxiOsc();
+//
+//   audio.play = function(){
+//     // direct value to output
+//     this.output = mySine.sinewave(440);
+//   }
+// }
+
+
 </script>
 
 </head>

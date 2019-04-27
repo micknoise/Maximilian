@@ -386,5 +386,4 @@ Module.maxiAudio.prototype.loadSample = function (url, samplePlayer, contextIn) 
 
 };
 
-// export default Module;
-// export default maximilian;
+export default Module;

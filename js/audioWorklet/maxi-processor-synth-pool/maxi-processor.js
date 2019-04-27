@@ -1,8 +1,8 @@
-import maximilian from './maximilian.wasmmodule.js';
+import Module from '../build/maximilian.wasmmodule.js';
 
 // import * from './maximilian.wasmmodule.js';
 
-import './maximilian.wasmmodule.js';
+// import './maximilian.wasmmodule.js';
 
 /**
  * The main Maxi Audio wrapper with a WASM-powered AudioWorkletProcessor.
@@ -47,36 +47,36 @@ class MaxiProcessor extends AudioWorkletProcessor {
 
 
 
-    // this.osc = new Module.maxiOsc();
-    // this.oOsc = new Module.maxiOsc();
-    // this.aOsc = new Module.maxiOsc();
+    this.osc = new Module.maxiOsc();
+    this.oOsc = new Module.maxiOsc();
+    this.aOsc = new Module.maxiOsc();
 
 
     // this.setupMonosynth();
 
-    // this.setupPolysynth();
+    this.setupPolysynth();
 
 
 
     this.signal = () => {
-      // return this.osc.sinewave(440);
+      return this.osc.sinewave(440);
     };
 
 
     this.port.onmessage = event => { // message port async handler
-      // for (const key in event.data) { // event from node scope packs JSON object
-      //   this[key] = event.data[key]; // de-structure into local props
-      // }
-      // // TODO: explore SharedArrayBtuffer
-      // try {
-      //   this.signal = eval(this.eval);
-      // } // eval a property function, need to check if it changed
-      // catch (err) {
-      //   console.log("Error in Worklet evaluation: " + err);
-      //   this.signal = () => {
-      //     return this.osc.sinewave(440);
-      //   };
-      // }
+      for (const key in event.data) { // event from node scope packs JSON object
+        this[key] = event.data[key]; // de-structure into local props
+      }
+      // TODO: explore SharedArrayBtuffer
+      try {
+        this.signal = eval(this.eval);
+      } // eval a property function, need to check if it changed
+      catch (err) {
+        console.log("Error in Worklet evaluation: " + err);
+        this.signal = () => {
+          return this.osc.sinewave(440);
+        };
+      }
     };
 
 

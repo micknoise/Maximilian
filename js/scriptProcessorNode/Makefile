@@ -2,15 +2,16 @@
 EMSCR=em++
 
 # Maximilian
-SRC=../src/maximilian.cpp
-SRC_EM=../src/maximilian.embind.cpp
-SRC_LIBS=../src/libs/maxiSynths.cpp
+SRC=../../src/maximilian.cpp
+SRC_EM=../../src/maximilian.embind.cpp
+# SRC_LIBS=../../../src/libs/*.cpp
+SRC_LIBS=../../src/libs/maxiSynths.cpp
 
 # POST_JS – external js handling web audio etc
-POST_JS=./src/maximilian.post.js
+POST_JS=./maximilian.post.js
+
 
 #the .cpp file that is used
-SRC=../src/maximilian.cpp
 BUILD_DIR=build
 TEST_DIR=test
 
@@ -36,25 +37,14 @@ CFLAGS=--bind -O1 \
 
 
 # ScriptProcessorNode – with WASM generation, outputs JS file + WASM module
-WASMCFLAGS=--bind -O3 \
-				-s WASM=1 \
-				-s DISABLE_EXCEPTION_CATCHING=0 \
-				-s ALLOW_MEMORY_GROWTH=1 \
-				-s ASSERTIONS=1 \
-				-s --memory-init-file 0 --profiling -std=c++11 \
-				# -s EXPORT_NAME="'maximilian'" \
+# WASMCFLAGS=--bind -O3 \
+# 				-s WASM=1 \
+# 				-s DISABLE_EXCEPTION_CATCHING=0 \
+# 				-s ALLOW_MEMORY_GROWTH=1 \
+# 				-s ASSERTIONS=1 \
+# 				-s --memory-init-file 0 --profiling -std=c++11 \
+# 				# -s EXPORT_NAME="'maximilian'" \
 				# -s MODULARIZE=1
-
-# Audio Worklets Maximilian WASM module
-AWWASMCFLAGS=--bind -O1 \
- 						-s DISABLE_EXCEPTION_CATCHING=0 \
-						-s ASSERTIONS=1 \
-						-s WASM=0 \
-						-s BINARYEN_ASYNC_COMPILATION=0 \
-						-s ALLOW_MEMORY_GROWTH=1 \
-						-s SINGLE_FILE=1
-						# -s EXPORT_NAME="'maximilian'" \
-
 
 # -std=c++11
 
@@ -64,8 +54,8 @@ YELLOW=\033[1;33m
 CYAN=\033[0;36m
 
 
-all: full wasm aw
-# all: full
+all: full
+	# all: full
 	@echo "${RED}\r\nBUILD ALL"
 
 full:
@@ -73,13 +63,8 @@ full:
 	$(EMSCR) $(CFLAGS) --post-js $(POST_JS) -o $(OUTPUT) $(SRC) $(SRC_EM) $(SRC_LIBS)
 
 wasm:
-	@echo "${RED}\r\nBUILD WITH WASM – maximilian.wasm.js + maximilian.wasm \r\n${CYAN}"
+	@echo "${RED}\r\nBUILD WITH WASM – maximilian.wasm + maximilian.js \r\n${CYAN}"
 	$(EMSCR) $(WASMCFLAGS) --post-js $(POST_JS) -o $(OUTPUT) $(SRC)
-
-aw:
-	@echo "${RED}\r\nBUILD FOR WORKLETS – maximilian.wasmmodule.js \r\n${YELLOW}"
-	$(EMSCR) $(AWWASMCFLAGS) --post-js $(POST_JS) -o $(OUTPUT_AW) $(SRC)
-
 
 # without webAudio stuff
 # basic:

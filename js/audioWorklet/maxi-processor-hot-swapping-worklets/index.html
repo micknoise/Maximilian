@@ -67,6 +67,14 @@
      * @translateIntermediateToLanguageProcessorCode
      */
     function translateIntermediateLanguageToProcessorCode(expression) {
+
+    }
+
+    /**
+     * @createAndRegisterCustomProcessorCode
+     */
+    function createAndRegisterCustomProcessorCode(expression, processorName) {
+
       let userDefinedFunction = "";
       switch (expression % 2) {
         case 0:
@@ -82,7 +90,7 @@
       // We get an "Error on loading worklet:  DOMException" with the following import:
       // import Module from './maximilian.wasmmodule.js';
       return `
-        import Module from './maximilian.wasmmodule.js';
+        // import Module from "${new URL("./maximilian.wasmmodule.js", location.href)}";
         class CustomProcessor extends AudioWorkletProcessor {
           static get parameterDescriptors() {
             return [{
@@ -119,17 +127,9 @@
             }
             return true;
           }
-        }`;
-    }
+        }
 
-    /**
-     * @createAndRegisterCustomProcessorCode
-     */
-    function createAndRegisterCustomProcessorCode(il2pCode, processorName) {
-
-      return `${il2pCode}
-
-      registerProcessor("${processorName}", CustomProcessor);`;
+        registerProcessor("${processorName}", CustomProcessor);`;
     }
 
     /**
@@ -145,9 +145,7 @@
       // const userCode = editor.getDoc().getValue();
       const processorName = `processor-${processorCount}`;
 
-      il2pCode = translateIntermediateLanguageToProcessorCode(processorCount);
-
-      const code = createAndRegisterCustomProcessorCode(il2pCode, processorName);
+      const code = createAndRegisterCustomProcessorCode(processorCount, processorName);
 
       console.log(code);
 

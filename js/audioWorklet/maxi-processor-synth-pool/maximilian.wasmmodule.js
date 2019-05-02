@@ -1165,7 +1165,7 @@ assert(DYNAMIC_BASE % 16 === 0, 'heap must start aligned');
 var TOTAL_STACK = 5242880;
 if (Module['TOTAL_STACK']) assert(TOTAL_STACK === Module['TOTAL_STACK'], 'the stack size can no longer be determined at runtime')
 
-var TOTAL_MEMORY = Module['TOTAL_MEMORY'] || 536870912;
+var TOTAL_MEMORY = Module['TOTAL_MEMORY'] || 16777216;
 if (TOTAL_MEMORY < TOTAL_STACK) err('TOTAL_MEMORY should be larger than TOTAL_STACK, was ' + TOTAL_MEMORY + '! (TOTAL_STACK=' + TOTAL_STACK + ')');
 
 // Initialize the runtime's memory
@@ -87370,8 +87370,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 /* global Module */
 
 "use strict";
-var currentDate = "20 February 2019, 12:17am";
-console.log("MaxiAudio: " + Date());
+
+// console.log("maximilian: " + Date());
+
+console.log("maximilian v2.0.0: " + Date());
 
 // ------------------------------------------------
 // maxiArray - could extend Array object?
@@ -87509,52 +87511,7 @@ Module.maxiAudio = function () {
     this.initDone = false;
 };
 
-
-
 Module.maxiAudio.play = function () {
-};
-
-// Module.maxiAudio.prototype.mzedTest = function () {
-//     console.log("mzed loves you!");
-// };
-
-// don't really need setup??
-Module.maxiAudio.setup = function () {
-    console.log("non-overrided setup");
-};
-
-Module.maxiAudio.prototype.getNumChannels = function () {
-    return this.numChannels;
-};
-
-// isArray should be second param really
-// set num channels and set output as an array
-// use this if you want to change number of channels
-Module.maxiAudio.prototype.setNumChannels = function (isArray, numChannels_) {
-
-    this.numChannels = numChannels_;
-    this.outputIsArray(isArray, numChannels_);
-
-    this.resetAudio();
-};
-
-Module.maxiAudio.prototype.setBufferSize = function (newBufferSize) {
-    this.bufferSize = newBufferSize;
-    this.resetAudio();
-};
-
-// use this if you want to keep num of outputs but change
-// method e.g. array or not
-Module.maxiAudio.prototype.outputIsArray = function (isArray) {
-    if (isArray) {
-        this.output = new Array(this.numChannels);
-
-        for (var i = 0; i < this.numChannels; i++) {
-            this.output[i] = 0;
-        }
-    } else {
-        this.output = 0;
-    }
 };
 
 Module.maxiAudio.prototype.init = function () {
@@ -87599,6 +87556,47 @@ Module.maxiAudio.prototype.init = function () {
     this.analyser.connect(this.context.destination);
     this.initDone = true;
 };
+
+
+// don't really need setup??
+Module.maxiAudio.setup = function () {
+    console.log("non-overrided setup");
+};
+
+Module.maxiAudio.prototype.getNumChannels = function () {
+    return this.numChannels;
+};
+
+// isArray should be second param really
+// set num channels and set output as an array
+// use this if you want to change number of channels
+Module.maxiAudio.prototype.setNumChannels = function (isArray, numChannels_) {
+
+    this.numChannels = numChannels_;
+    this.outputIsArray(isArray, numChannels_);
+
+    this.resetAudio();
+};
+
+Module.maxiAudio.prototype.setBufferSize = function (newBufferSize) {
+    this.bufferSize = newBufferSize;
+    this.resetAudio();
+};
+
+// use this if you want to keep num of outputs but change
+// method e.g. array or not
+Module.maxiAudio.prototype.outputIsArray = function (isArray) {
+    if (isArray) {
+        this.output = new Array(this.numChannels);
+
+        for (var i = 0; i < this.numChannels; i++) {
+            this.output[i] = 0;
+        }
+    } else {
+        this.output = 0;
+    }
+};
+
 
 Module.maxiAudio.prototype.resetAudio = function () {
     if (this.initDone) {
@@ -87728,7 +87726,6 @@ Module.maxiAudio.prototype.loadSample = function (url, samplePlayer, contextIn) 
                 }
             );
         };
-
         request.send();
     }
 

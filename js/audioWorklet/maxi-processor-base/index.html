@@ -90,14 +90,14 @@
     function increaseVolume() {
       if (customNode !== undefined) {
         const gainParam = customNode.parameters.get('gain');
-        gainParam.value += 0.1;
+        gainParam.value += 0.01;
       }
     }
 
     function decreaseVolume() {
       if (customNode !== undefined) {
         const gainParam = customNode.parameters.get('gain');
-        gainParam.value -= 0.1;
+        gainParam.value -= 0.01;
       }
     }
   </script>

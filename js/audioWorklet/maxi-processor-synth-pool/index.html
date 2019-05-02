@@ -15,11 +15,10 @@
 
 <body>
 
-  <h1> Test asynchronous messaging to the worklet </h1>
+  <h1>Load-testing an audio worklet loaded with Maximilian</h1>
   <p id="funcs"></p>
-  <p>
-    A simple synths on the UI thread are posted to the worklet [You might need to clean the cache when you are testing your worklet processor code]
-  </p>
+  <p>Synth defs on the UI thread are posted to the worklet. Check out your dev console (Command+Option+J).</p>
+  <p>You might need to clean the cache when you are testing your worklet processor code</p>
 
   <button id="playButton">Play</button>
   <button id="stopButton">Stop</button>
@@ -35,21 +34,26 @@
     let workletUrl = 'maxi-processor.js';
 
     let fs = [
-      `this.mySine.sawn(60) * this.myOtherSine.sinewave(0.4)`,
-      `this.mySine.sawn(60)`,
-      `this.myOtherSine.sinewave(440)`,
-      `this.myOtherSine.sawn(440)`,
-      `this.myOtherSine.triangle(440)`,
-      `this.myOtherSine.square(440)`,
-      `this.myOtherSine.square(440)`,
-      `this.mySine.sinewave(440) + this.myOtherSine.sinewave(441)`,
-      `this.mySine.sinewave(440) * this.myOtherSine.sinewave(1)`,
-      `this.mySine.sinewave(440 + (this.myOtherSine.sinewave(1) * 100))`,
-      `this.mySine.sinewave(this.myOtherSine.sinewave(30) * 440)`,
-      `this.mySine.sinewave(this.myOtherSine.sinewave(this.myLastSine.sinewave(0.1) * 30) * 440)`,
-      //,  Interesting case of failure, it seems we can't instantiate because of EM heap limits
-      `new Module.maxiOsc()`,
-      `new Module.maxiOsc().sinewave(400)`
+      `this.osc.sawn(60) * this.oOsc.sinewave(0.4)`,
+      `this.osc.sawn(60)`,
+      `this.monosynth()`,
+      `this.osc.sinewave(440)`,
+      `this.osc.sawn(440)`,
+      `this.osc.triangle(440)`,
+      `this.osc.square(440)`,
+      `this.monosynth(10, 1, 500, 500)`,
+      `this.monosynth(500, 500, 500, 500)`,
+      `this.osc.sinewave(440) + this.oOsc.sinewave(441)`,
+      `this.osc.sinewave(440) * this.oOsc.sinewave(1)`,
+      `this.osc.sinewave(440 + (this.oOsc.sinewave(1) * 100))`,
+      `this.polysynth()`,
+      `this.polysynth(10, 1, 500, 500)`,
+      `this.polysynth(1000, 500, 500, 500)`,
+      `this.osc.sinewave(this.oOsc.sinewave(30) * 440)`,
+      `this.osc.sinewave(this.oOsc.sinewave(this.aOsc.sinewave(0.1) * 30) * 440)`,
+      // ,  Interesting case of failure, it seems we can't instantiate because of EM heap limits
+      // `new Module.maxiOsc()`,
+      // `new Module.maxiOsc().sinewave(400)`
       // , `this.mySine.tri(440) >> DAC`, // Stereo by default
       // `this.mySine.tri(440) >> DAC(1)`, // Mono to 1
       // `this.mySine.tri(440) >> DAC(0)` // Mono to 2
@@ -91,7 +95,7 @@
       synthButton.addEventListener("click", () => changeSynth());
 
       const checkBox = document.getElementById('box');
-      checkBox.addEventListener("click", () => { playAudio(); setInterval('changeSynth()', SYNTH_CHANGE_MS) }  );
+      checkBox.addEventListener("click", () => { if(audioContext.state === "suspended") playAudio(); setInterval('changeSynth()', SYNTH_CHANGE_MS) }  );
     }
 
     function playAudio() {
@@ -99,6 +103,8 @@
         try {
           audioContext = new AudioContext();
           audioContext.audioWorklet.addModule(workletUrl).then(() => {
+
+            // options initialize named AudioParams automatically.
             let options = {
               numberOfInputs: 1,
               numberOfOutputs: 1,
@@ -106,8 +112,8 @@
             }
             // customNode = new MaxiNode(audioContext, customProcessorName, options);
             customNode = new AudioWorkletNode(audioContext, customProcessorName);
-            customNode.onprocessorerror = event => { console.log(`MaxiProcessor Error detected` + event.data); }
-            customNode.onprocessorstatechange =  event => { console.log(`MaxiProcessor state change detected ` + customNode.processorState); }
+            customNode.onprocessorerror = event => { console.log(`MaxiProcessor Error detected: ` + event.data); }
+            customNode.onprocessorstatechange =  event => { console.log(`MaxiProcessor state change detected: ` + customNode.processorState); }
             customNode.port.onmessage = event => { console.log(`Message from processor: ` + event.data); }; //  data from the processor.
             customNode.port.onmessageerror = event => { console.log(`Error message from port: ` + event.data); }; //  error from the message port.
             customNode.connect(audioContext.destination);
@@ -151,11 +157,11 @@
         let userDefinedFunction;
         if(arguments.length == 0){
           userDefinedFunction = fs[Math.floor(Math.random() * fs.length)];
-          customNode.port.postMessage(`() => { return ${userDefinedFunction} }`);
+          customNode.port.postMessage({ eval: `() => { return ${userDefinedFunction} }` }); // Send JSON object with eval prop for evaluation in processor
         }
         else {
           userDefinedFunction = arguments[0];
-          customNode.port.postMessage(`() => { return ${userDefinedFunction} }`);
+          customNode.port.postMessage({ eval: `() => { return ${userDefinedFunction} }` }); // Send JSON object with eval prop for evaluation in processor
         }
         // DEBUG:
         console.log("Change synth: " + userDefinedFunction);

@@ -35,18 +35,18 @@
     let workletUrl = 'maxi-processor.js';
 
     let fs = [
-      `this.mySine.sawn(60) * this.myOtherSine.sinewave(0.4)`,
-      `this.mySine.sawn(60)`,
-      `this.myOtherSine.sinewave(440)`,
-      `this.myOtherSine.sawn(440)`,
-      `this.myOtherSine.triangle(440)`,
-      `this.myOtherSine.square(440)`,
-      `this.myOtherSine.square(440)`,
-      `this.mySine.sinewave(440) + this.myOtherSine.sinewave(441)`,
-      `this.mySine.sinewave(440) * this.myOtherSine.sinewave(1)`,
-      `this.mySine.sinewave(440 + (this.myOtherSine.sinewave(1) * 100))`,
-      `this.mySine.sinewave(this.myOtherSine.sinewave(30) * 440)`,
-      `this.mySine.sinewave(this.myOtherSine.sinewave(this.myLastSine.sinewave(0.1) * 30) * 440)`,
+      `this.osc.sawn(60) * this.oOsc.sinewave(0.4)`,
+      `this.osc.sawn(60)`,
+      `this.osc.sinewave(440)`,
+      `this.osc.sawn(440)`,
+      `this.osc.triangle(440)`,
+      `this.osc.square(440)`,
+      `this.osc.square(440)`,
+      `this.osc.sinewave(440) + this.oOsc.sinewave(441)`,
+      `this.osc.sinewave(440) * this.oOsc.sinewave(1)`,
+      `this.osc.sinewave(440 + (this.oOsc.sinewave(1) * 100))`,
+      `this.osc.sinewave(this.oOsc.sinewave(30) * 440)`,
+      `this.osc.sinewave(this.oOsc.sinewave(this.aOsc.sinewave(0.1) * 30) * 440)`,
       //,  Interesting case of failure, it seems we can't instantiate because of EM heap limits
       `new Module.maxiOsc()`,
       `new Module.maxiOsc().sinewave(400)`
@@ -151,11 +151,11 @@
         let userDefinedFunction;
         if(arguments.length == 0){
           userDefinedFunction = fs[Math.floor(Math.random() * fs.length)];
-          customNode.port.postMessage(`() => { return ${userDefinedFunction} }`);
+          customNode.port.postMessage({ eval: `() => { return ${userDefinedFunction} }` }); // Send JSON object with eval prop for evaluation in processor
         }
         else {
           userDefinedFunction = arguments[0];
-          customNode.port.postMessage(`() => { return ${userDefinedFunction} }`);
+          customNode.port.postMessage({ eval: `() => { return ${userDefinedFunction} }` }); // Send JSON object with eval prop for evaluation in processor
         }
         // DEBUG:
         console.log("Change synth: " + userDefinedFunction);

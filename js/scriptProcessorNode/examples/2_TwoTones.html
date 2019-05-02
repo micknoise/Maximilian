@@ -35,48 +35,49 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <title>
     Javascript Audio Processing
 </title>
+
 <script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js?autoload=true&amp;skin=sunburst&amp;lang=css" defer="defer"></script>
-
-<!-- <link rel="stylesheet" type="text/css" href="javascript-processing_files/simple.css"> -->
-
+<!-- show all line numbers-->
+<style type="text/css">.prettyprint ol.linenums > li { list-style-type: decimal }</style>
 
 <script src="../maxiLib.js"></script>
+<!-- <script src="../maxi_webAudio.js"></script> -->
 
 <!-- Our javascript code -->
 <script type="text/javascript">
-var audio = new maximJs.maxiAudio();
+var audio = Maximilian.maxiAudio();
 audio.init();
 
-//This shows how to use maximilian to do basic amplitude modulation
-var mySine = new maximJs.maxiOsc();
-var myOtherSine = new maximJs.maxiOsc();
+var mySine = Maximilian.maxiOsc();
+var myOtherSine = Maximilian.maxiOsc();
 
 audio.play = function(){
- 	// these two sines will beat together. They're now a bit too loud though..
-    this.output = mySine.sinewave(440)*myOtherSine.sinewave(1);
+	// these two sines will beat together. They're now a bit too loud though..
+	this.output = mySine.sinewave(440) + myOtherSine.sinewave(441);
  }
+
 </script>
 
 </head>
 
 <body>
 
-    <h1>Amplitude Modulation</h1>
+    <h1> Two Tones </h1>
 
 <p>
-Basic amplitude modulation
+These sines are taking a beating...
 </p>
+
 	<pre class="prettyprint lang-js linenums:true" id="quine" style="border:4px solid #88c" >
 var audio = new maximJs.maxiAudio();
 audio.init();
 
-//This shows how to use maximilian to do basic amplitude modulation
 var mySine = new maximJs.maxiOsc();
 var myOtherSine = new maximJs.maxiOsc();
 
 audio.play = function(){
- 	// these two sines will beat together. They're now a bit too loud though..
-    this.output = mySine.sinewave(440)*myOtherSine.sinewave(1);
+	// these two sines will beat together. They're now a bit too loud though..
+	this.output = mySine.sinewave(440) + myOtherSine.sinewave(441);
  }
 </pre>
 </body></html>

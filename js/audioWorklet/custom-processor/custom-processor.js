@@ -7,6 +7,7 @@ class CustomProcessor extends AudioWorkletProcessor {
   constructor() {
     super();
     this.sampleRate = 44100;
+    this.sampleIndex = 0;
 
     this.port.onmessage = (event) => {
       console.log(event.data);
@@ -23,31 +24,16 @@ class CustomProcessor extends AudioWorkletProcessor {
     //   // |myParam| has been changed and |myParamValues| has 128 values.
     // }
 
-    const speakers = outputs[0];
-    for (let i = 0; i < speakers[0].length; i++) {
+    const output = outputs[0];
+    for (let i = 0; i < output[0].length; i++) {
 
-      const func = Math.sin(i) + 0.4;
+      const func = Math.sin(2 * Math.PI * 600 * this.sampleIndex++/this.sampleRate);
       const gain = parameters.gain[i];
-      speakers[0][i] = func * gain;
-      speakers[1][i] = func * gain;
+      output[0][i] = func * gain;
+      output[1][i] = func * gain;
     }
     return true;
   }
 };
-
-// function wasmReady(){
-//
-//   var audio = new maxiLib.maxiAudio();
-//   // initialise audio
-//   audio.init();
-//   // create oscillator
-//   var mySine = new maxiLib.maxiOsc();
-//   // audio.play = function(){
-//   //   // direct value to output
-//   //   this.output = mySine.sinewave(440);
-//   // }
-//   console.log("Maxi Audio loaded");
-// }
-
 
 registerProcessor("custom-processor", CustomProcessor);

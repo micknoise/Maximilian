@@ -176,9 +176,9 @@ float maxiIFFT::process(float *data1, float *data2, fftModes mode) {
         }
 #else
         if (mode == maxiIFFT::SPECTRUM) {
-            _fft.inversePowerSpectrum(0, &ifftOut[0], window, data1, data2);
+            _fft.inversePowerSpectrum(0, &ifftOut[0], &window[0], data1, data2);
         }else{
-            _fft.inverseFFTComplex(0, &ifftOut[0], window, data1, data2);
+            _fft.inverseFFTComplex(0, &ifftOut[0], &window[0], data1, data2);
         }
 #endif
 		//add to output

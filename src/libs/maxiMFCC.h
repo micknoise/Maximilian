@@ -10,7 +10,7 @@
  */
 
 #pragma once
-#pragma pack(16)
+//#pragma pack(16)
 
 //#include "../maxi_emscr_new.h"
 //#include "maxiFFT.h"

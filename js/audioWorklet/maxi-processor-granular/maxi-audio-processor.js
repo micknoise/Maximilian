@@ -1,4 +1,5 @@
-import Module from './maxi-audio.wasmmodule.js';
+import Module from '../build/maximilian.wasmmodule.js';
+
 
 /**
  * The main Maxi Audio wrapper with a WASM-powered AudioWorkletProcessor.

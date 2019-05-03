@@ -11,6 +11,7 @@ SRC_LIBS=../../src/libs/maxiSynths.cpp
 POST_JS=./maximilian.post.js
 
 BUILD_DIR=build
+MKDIR_P = mkdir -p
 
 # target .js file
 OUTPUT=$(BUILD_DIR)/maximilian.js
@@ -44,15 +45,12 @@ WASMCFLAGS=--bind -O3 \
 				-s MODULARIZE=1
 
 
-MKDIR_P = mkdir -p
-
 RED=\033[0;31m
 GREEN=\033[0;32m
 YELLOW=\033[1;33m
 CYAN=\033[0;36m
 
 all: full
-	# @emcc $(CFLAGS) --post-js $(POST_JS) -o $(OUTPUT) $(SRC_EM) $(SRC) $(SRC_LIBS)
 
 .PHONY: directory
 directory: $(BUILD_DIR)
@@ -69,27 +67,6 @@ wasm: directory
 	@echo "${RED}\r\nBUILD WITH WASM – maximilian.wasm + maximilian.js \r\n${CYAN}"
 	$(EMSCR) $(WASMCFLAGS) --post-js $(POST_JS) -o $(OUTPUT) $(SRC)
 
-# clean:
-# 	@rm -f maximilian.wasmmodule.js
-
-
-# all: full
-# 	# all: full
-# 	@echo "${RED}\r\nBUILD ALL"
-
 clean:
 	@echo "Cleaning up"
 	rm -f $(BUILD_DIR)/maximilian.*
-
-
-
-# without webAudio stuff
-# basic:
-# 	$(EMSCR) $(CFLAGS) --post-js $(POST_JS_extras) --bind -o $(OUTPUT_MAXI_noAudio) $(SOURCE_MAXI) $(SOURCES_LIBS)
-
-# .PHONY: copyfiles
-# copyfiles: full
-# 	@echo "Copying files"
-# 	cp -f $(BUILD_DIR)/maxiLib.js $(TEST_DIR)/maxiLib.js
-# 	cp -f $(BUILD_DIR)/maxiLib.wasmmodule.js $(TEST_DIR)/maxiLib.wasmmodule.js
-# cp -f $(BUILD_DIR)/maxiLib.wasm $(TEST_DIR)/maxiLib.wasm

@@ -1,8 +1,7 @@
-
-import Module from './ring-buffer-maxi-audio.wasmmodule.js';
+import Module from '../build/maximilian.wasmmodule.js';
 // import { VariableBufferKernel } from './ring-buffer-maxi-audio.wasmmodule.js';
 import { RENDER_QUANTUM_FRAMES, MAX_CHANNEL_COUNT, HeapAudioBuffer, RingBuffer }
-    from './wasm-audio-helper.js';
+    from '../common/wasm-audio-helper.js';
 
 /**
  * The main Maxi Audio wrapper with a WASM-powered AudioWorkletProcessor.

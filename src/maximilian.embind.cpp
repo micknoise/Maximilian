@@ -172,36 +172,36 @@ EMSCRIPTEN_BINDINGS(my_module) {
 	;
 
 	// MAXI SAMPLE
-	// class_<maxiSample>("maxiSample")
-	// //	.constructor<>()
-	// .smart_ptr_constructor("shared_ptr<maxiSample>",&std::make_shared<maxiSample>)
-	// //	.property("length", &maxiSample::getLength, &maxiSample::setLength) // no work???
-	// .function("getLength", &maxiSample::getLength)
-	// //	.function("setSample", &maxiSample::setSample)
-	// .function("setSample", select_overload<void(vector<double>&)>(&maxiSample::setSample))
-	// .function("setSample", select_overload<void(vector<double>&, int)>(&maxiSample::setSample))
-	//
-	// //	.function("getSummary", &maxiSample::getSummary)
-	// .function("isReady", &maxiSample::isReady)
-	//
-	// .function("playOnce", select_overload<double()>(&maxiSample::playOnce))
-	// .function("playOnce", select_overload<double(double)>(&maxiSample::playOnce))
-	//
-	// .function("play", select_overload<double()>(&maxiSample::play))
-	// .function("play", select_overload<double(double)>(&maxiSample::play))
-	// .function("play", select_overload<double(double, double, double)>(&maxiSample::play))
-	// .function("play4", &maxiSample::play4)
-	//
-	// .function("trigger", &maxiSample::trigger)
-	// .function("clear", &maxiSample::clear)
+	class_<maxiSample>("maxiSample")
+	//	.constructor<>()
+	.smart_ptr_constructor("shared_ptr<maxiSample>",&std::make_shared<maxiSample>)
+	//	.property("length", &maxiSample::getLength, &maxiSample::setLength) // no work???
+	.function("getLength", &maxiSample::getLength)
+	//	.function("setSample", &maxiSample::setSample)
+	.function("setSample", select_overload<void(vector<double>&)>(&maxiSample::setSample))
+	.function("setSample", select_overload<void(vector<double>&, int)>(&maxiSample::setSample))
+
+	//	.function("getSummary", &maxiSample::getSummary)
+	.function("isReady", &maxiSample::isReady)
+
+	.function("playOnce", select_overload<double()>(&maxiSample::playOnce))
+	.function("playOnce", select_overload<double(double)>(&maxiSample::playOnce))
+
+	.function("play", select_overload<double()>(&maxiSample::play))
+	.function("play", select_overload<double(double)>(&maxiSample::play))
+	.function("play", select_overload<double(double, double, double)>(&maxiSample::play))
+	.function("play4", &maxiSample::play4)
+
+	.function("trigger", &maxiSample::trigger)
+	.function("clear", &maxiSample::clear)
 
 
 
-	//	.function("normalise", &maxiSample::normalise)
-	//	.function("autoTrim", &maxiSample::autoTrim)
+		.function("normalise", &maxiSample::normalise)
+		.function("autoTrim", &maxiSample::autoTrim)
 
-	//	.function("load", &maxiSample::load)
-	//	.function("read", &maxiSample::read, allow_raw_pointers())
+		.function("load", &maxiSample::load)
+		.function("read", &maxiSample::read, allow_raw_pointers())
 	;
 
 	// MAXI MAP

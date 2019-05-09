@@ -324,32 +324,18 @@ private:
 	maxiLagExp<double> loopRecordLag;
 
 public:
-	int	myDataSize;
+//    int    myDataSize;
 	short 	myChannels;
 	int   	mySampleRate;
-	long length;
-	void getLength(); // why void??
+    inline unsigned long getLength() const {return amplitudes.size();};
     void setLength(unsigned long numSamples);
     short 	myBitsPerSample;
 
-	vector<double> tempVec;
-	vector<short> temp;
-//    char*     myData;
-//    short* temp;
+	vector<double> amplitudes;
+    
+	~maxiSample() {}
 
-	// get/set for the Path property
-
-	~maxiSample()
-	{
-//		if (myData) free(myData);
-//        if (temp) free(temp);
-		temp.clear();
-		tempVec.clear();
-        printf("freeing SampleData");
-
-	}
-
-  maxiSample():temp(NULL),position(0), recordPosition(0), myChannels(1), mySampleRate(maxiSettings::sampleRate) {};
+    maxiSample():position(0), recordPosition(0), myChannels(1), mySampleRate(maxiSettings::sampleRate) {};
 
     maxiSample& operator=(const maxiSample &source) {
         if (this == &source)
@@ -358,13 +344,8 @@ public:
         recordPosition = 0;
         myChannels = source.myChannels;
         mySampleRate = maxiSettings::sampleRate;
-//        free(temp);
-		temp.clear();
-        myDataSize = source.myDataSize;
-//        temp = (short*) malloc(myDataSize * sizeof(char));
-		temp = source.temp;
-//        memcpy(temp, source.temp, myDataSize * sizeof(char));
-        length = source.length;
+		amplitudes.clear();
+		amplitudes = source.amplitudes;
         return *this;
     }
 
@@ -380,8 +361,7 @@ public:
 	void setSample(vector<double>& temp);
 	void setSample(vector<double>& temp, int sampleRate);
 
-//	void setSampleChar(vector<char>& temp);
-	void clear(){temp.clear();}
+	void clear(){amplitudes.clear();}
 	// -------------------------
 
 	void trigger();
@@ -389,26 +369,19 @@ public:
 	// read a wav file into this class
     bool read();
 
-//    bool read(vector<char>& fileChars);
-
-	//read an ogg file into this class using stb_vorbis
-    bool readOgg();
-
     void loopRecord(double newSample, const bool recordEnabled, const double recordMix, double start = 0.0, double end = 1.0) {
         loopRecordLag.addSample(recordEnabled);
-        if (recordPosition < start * length) recordPosition = start * length;
+        if (recordPosition < start * amplitudes.size()) recordPosition = start * amplitudes.size();
         if(recordEnabled) {
-            double currentSample = temp[(unsigned long)recordPosition] / 32767.0;
+            double currentSample = amplitudes[(unsigned long)recordPosition] / 32767.0;
             newSample = (recordMix * currentSample) + ((1.0 - recordMix) * newSample);
             newSample *= loopRecordLag.value();
-            temp[(unsigned long)recordPosition] = newSample * 32767;
+            amplitudes[(unsigned long)recordPosition] = newSample * 32767;
         }
         ++recordPosition;
-        if (recordPosition >= end * length)
-            recordPosition= start * length;
+        if (recordPosition >= end * amplitudes.size())
+            recordPosition= start * amplitudes.size();
     }
-
-//    void clear();
 
     void reset();
 
@@ -431,53 +404,15 @@ public:
     double play(double frequency, double start, double end);
 
     double play4(double frequency, double start, double end);
-    /*
-    double bufferPlay(unsigned char &bufferin,long length);
 
-    double bufferPlay(unsigned char &bufferin,double speed,long length);
 
-    double bufferPlay(unsigned char &bufferin,double frequency, double start, double end);
-
-    double bufferPlay4(unsigned char &bufferin,double frequency, double start, double end);
-	 */
-    bool save() {
-        return save(myPath);
-    }
-
-	bool save(string filename)
-	{
-        fstream myFile (filename.c_str(), ios::out | ios::binary);
-
-        // write the wav file per the wav file format
-        myFile.seekp (0, ios::beg);
-        myFile.write ("RIFF", 4);
-        myFile.write ((char*) &myChunkSize, 4);
-        myFile.write ("WAVE", 4);
-        myFile.write ("fmt ", 4);
-        myFile.write ((char*) &mySubChunk1Size, 4);
-        myFile.write ((char*) &myFormat, 2);
-        myFile.write ((char*) &myChannels, 2);
-        myFile.write ((char*) &mySampleRate, 4);
-        myFile.write ((char*) &myByteRate, 4);
-        myFile.write ((char*) &myBlockAlign, 2);
-        myFile.write ((char*) &myBitsPerSample, 2);
-        myFile.write ("data", 4);
-        myFile.write ((char*) &myDataSize, 4);
-//        myFile.write ((char*) temp, myDataSize);
-		myFile.write ((char*) temp.data(), myDataSize);
-        return true;
-	}
+    bool save();
+    bool save(string filename);
 
 	// return a printable summary of the wav file
-	char *getSummary()
-	{
-		char *summary = new char[250];
-		sprintf(summary, " Format: %d\n Channels: %d\n SampleRate: %d\n ByteRate: %d\n BlockAlign: %d\n BitsPerSample: %d\n DataSize: %d\n", myFormat, myChannels, mySampleRate, myByteRate, myBlockAlign, myBitsPerSample, myDataSize);
-		std::cout << myDataSize;
-		return summary;
-	}
+    char *getSummary();
 
-    void normalise(float maxLevel = 0.99);  //0 < maxLevel < 1.0
+    void normalise(double maxLevel = 0.99);  //0 < maxLevel < 1.0
     void autoTrim(float alpha = 0.3, float threshold = 6000, bool trimStart = true, bool trimEnd = true); //alpha of lag filter (lower == slower reaction), threshold to mark start and end, < 32767
 };
 

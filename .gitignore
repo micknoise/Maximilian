@@ -1,10 +1,14 @@
 ### Emacs ###
 *~
 
-### XCode ###
 ## Build generated
 build/
+
+### XCode ###
 DerivedData/
+
+## VS Code 
+.vscode/
 
 ## Various settings
 *.pbxuser

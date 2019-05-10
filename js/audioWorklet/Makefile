@@ -14,16 +14,6 @@ POST_JS=maximilian.post.js
 OUTPUT=$(BUILD_DIR)/maximilian.wasmmodule.js
 
 
-# CFLAGS=--bind -O1 -s DISABLE_EXCEPTION_CATCHING=0 \
-# 						-s EXPORT_NAME="'Maximilian'" \
-# 						-s ERROR_ON_UNDEFINED_SYMBOLS=0 \
-# 						-s MODULARIZE=1 --memory-init-file 0 --profiling \
-# 						-s BINARYEN_ASYNC_COMPILATION=0 \
-# 						-s ENVIRONMENT=web \
-
-# -s ALLOW_MEMORY_GROWTH=1 \
-
-
 CFLAGS=--bind -O1 \
  			-s DISABLE_EXCEPTION_CATCHING=0 \
 			-s ASSERTIONS=1 \
@@ -33,6 +23,8 @@ CFLAGS=--bind -O1 \
 			# -s MODULARIZE_INSTANCE=1 \
 			# -s EXPORT_NAME="'maximilian'"
 			# -s --memory-init-file 0 --profiling -std=c++11 \
+			# -s ALLOW_MEMORY_GROWTH=1 \
+
 
 RED=\033[0;31m
 GREEN=\033[0;32m
@@ -49,7 +41,7 @@ ${BUILD_DIR}:
 	${MKDIR_P} ${BUILD_DIR}
 
 full: directory
-	@echo "${YELLOW}\r\nBUILD WITHOUT WASM – maximilian.js \r\n"
+	@echo "${YELLOW}\r\nBUILD for Web Audio Worklets – maximilian.wasmmodule.js \r\n"
 	@emcc $(CFLAGS) --post-js $(POST_JS) -o $(OUTPUT) $(SRC_EM) $(SRC) $(SRC_LIBS)
 
 clean:

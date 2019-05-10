@@ -39,23 +39,23 @@ Module.maxiArray = function maxiArray() {
     this.length = 0;
     var vec = new Module.VectorDouble();
 
-// this.update = function(){
-//     var lengthsMatch = this.length !== this.vec.size();
-//     if(!lengthsMatch){
-//         if(this.length < this.vec.size()){
-//             for(var i = this.length; i < this.vec.size(); i++){
-//                 this[i] = this.vec.get(i);
-//             }
-//         } else{
-//             for(var i = this.length; i < this.vec.size(); i++){
-//                 delete this[i];
-//             }
-//         }
+    // this.update = function(){
+    //     var lengthsMatch = this.length !== this.vec.size();
+    //     if(!lengthsMatch){
+    //         if(this.length < this.vec.size()){
+    //             for(var i = this.length; i < this.vec.size(); i++){
+    //                 this[i] = this.vec.get(i);
+    //             }
+    //         } else{
+    //             for(var i = this.length; i < this.vec.size(); i++){
+    //                 delete this[i];
+    //             }
+    //         }
 
-//         // reset length var
-//         this.length = this.vec.size();
-//     }
-// };
+    //         // reset length var
+    //         this.length = this.vec.size();
+    //     }
+    // };
 };
 
 Module.maxiArray.prototype.asVector = function (arrayIn) {
@@ -107,8 +107,7 @@ Module.maxiArray.prototype.clear = function (useSq) {
 
 
 // tools
-Module.maxiTools = function () {
-};
+Module.maxiTools = function () {};
 
 // not sure this is good
 // Module.maxiTools.arrayOfObj = function(obj, num){
@@ -138,8 +137,7 @@ Module.maxiTools.getBase64 = function (str) {
         // taken from
         // http://stackoverflow.com/a/8571649
         return str.slice(dataStart).match(/^([A-Za-z0-9+\/]{4})*([A-Za-z0-9+\/]{4}|[A-Za-z0-9+\/]{3}=|[A-Za-z0-9+\/]{2}==)$/) ? str.slice(dataStart) : false;
-    }
-    else return false;
+    } else return false;
 };
 
 Module.maxiTools._keyStr = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
@@ -166,41 +164,38 @@ Module.maxiAudio = function () {
     this.initDone = false;
 };
 
-Module.maxiAudio.play = function () {
-};
+Module.maxiAudio.play = function () {};
 
 Module.maxiAudio.prototype.init = function () {
 
     // Temporary patch until all browsers support unprefixed context.
-    this.context = new (window.AudioContext || window.webkitAudioContext)();
+    this.context = new(window.AudioContext || window.webkitAudioContext)();
     this.source = this.context.createBufferSource();
     this.jsProcessor = this.context.createScriptProcessor(this.bufferSize, this.numChannels, this.numChannels);
     // var process = this.process;
 
     this.jsProcessor.onaudioprocess = function (event) {
-        var numChannels = event.outputBuffer.numberOfChannels;
-        var outputLength = event.outputBuffer.getChannelData(0).length;
-        for (var i = 0; i < outputLength; ++i) {
-            this.play();
-            // if(this.play===undefined)
-            //   break;
-            // else
-            //   this.play();
-            var channel = 0;
-            if (this.output instanceof Array) {
-                for (channel = 0; channel < numChannels; channel++) {
-                    event.outputBuffer.getChannelData(channel)[i] = this.output[channel];
-                }
-            }
-            else {
-                for (channel = 0; channel < numChannels; channel++) {
-                    event.outputBuffer.getChannelData(channel)[i] = this.output;
+            var numChannels = event.outputBuffer.numberOfChannels;
+            var outputLength = event.outputBuffer.getChannelData(0).length;
+            for (var i = 0; i < outputLength; ++i) {
+                this.play();
+                // if(this.play===undefined)
+                //   break;
+                // else
+                //   this.play();
+                var channel = 0;
+                if (this.output instanceof Array) {
+                    for (channel = 0; channel < numChannels; channel++) {
+                        event.outputBuffer.getChannelData(channel)[i] = this.output[channel];
+                    }
+                } else {
+                    for (channel = 0; channel < numChannels; channel++) {
+                        event.outputBuffer.getChannelData(channel)[i] = this.output;
+                    }
                 }
             }
         }
-    }
-        .bind(this)
-    ;
+        .bind(this);
 
     this.analyser = this.context.createAnalyser();
     this.analyser.fftSize = 2048;
@@ -268,6 +263,7 @@ Module.maxiAudio.prototype.loadSample = function (url, samplePlayer, contextIn) 
     var data = [];
     var context;
 
+    //NOTE: this.context = new(window.AudioContext || window.webkitAudioContext)(); 
     if (!contextIn) {
         context = this.context;
     } else {
@@ -315,9 +311,11 @@ Module.maxiAudio.prototype.loadSample = function (url, samplePlayer, contextIn) 
             if (enc4 !== 64) uarray[i + 2] = chr3;
         }
 
+        // https://webaudio.github.io/web-audio-api/#dom-baseaudiocontext-decodeaudiodata
+        // Asynchronously decodes the audio file data contained in the ArrayBuffer.
         context.decodeAudioData(
-            arrayBuffer,
-            function (buffer) {
+            arrayBuffer, // has its content-type determined by sniffing
+            function (buffer) { // successCallback, argument is an AudioBuffer representing the decoded PCM audio data.
                 // source.buffer = buffer;
                 // source.loop = true;
                 // source.start(0);
@@ -331,20 +329,25 @@ Module.maxiAudio.prototype.loadSample = function (url, samplePlayer, contextIn) 
                         myBufferData.push_back(data[n]);
                     }
 
-                    samplePlayer.setSample(myBufferData/*, context.sampleRate*/);
+                    samplePlayer.setSample(myBufferData /*, context.sampleRate*/ );
                 }
 
             },
 
-            function (buffer) {
+            function (buffer) { // errorCallback
                 console.log("Error decoding source!");
             }
         );
 
 
-    }
-    else {
+    } else {
         // Load asynchronously
+        // NOTE: This is giving me an error
+        // Uncaught ReferenceError: XMLHttpRequest is not defined (index):97 MaxiProcessor Error detected: undefined
+        // NOTE: followed the trail to the wasmmodule.js
+        // when loading on if (typeof XMLHttpRequest !== 'undefined') {
+        // throw new Error("Lazy loading should have been performed (contents set) in createLazyFile, but it was not. Lazy loading only works in web workers. 
+        // Use --embed-file or --preload-file in emcc on the main thread.");
         var request = new XMLHttpRequest();
         request.addEventListener("load",
             function (evt) {
@@ -371,7 +374,7 @@ Module.maxiAudio.prototype.loadSample = function (url, samplePlayer, contextIn) 
                             myBufferData.push_back(data[n]);
                         }
 
-                        samplePlayer.setSample(myBufferData/*, context.sampleRate*/);
+                        samplePlayer.setSample(myBufferData /*, context.sampleRate*/ );
                     }
 
                 },

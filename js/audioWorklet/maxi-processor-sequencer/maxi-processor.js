@@ -31,22 +31,24 @@ class MaxiProcessor extends AudioWorkletProcessor {
     this.DAC = [0];
 
     this.tempo = 120.0; // tempo (in beats per minute);
-    this.secondsPerBeat = (60.0 / tempo);
-    this.counterTimeValue = (secondsPerBeat / 4); //___16th note
+    this.secondsPerBeat = (60.0 / this.tempo);
+    this.counterTimeValue = (this.secondsPerBeat / 4); //___16th note
 
     this.oldClock = 0;
     this.phase = 0;
 
+    this.maxiAudio = new Module.maxiAudio();
     this.clock = new Module.maxiOsc();
     this.kick = new Module.maxiSample();
     this.snare = new Module.maxiSample();
     this.closedHat = new Module.maxiSample();
     this.openHat = new Module.maxiSample();
 
-    Module.maxiAudio.loadSample("./samples/909b.wav", kick);
-    Module.maxiAudio.loadSample("./samples/909.wav", snare);
-    Module.maxiAudio.loadSample("./samples/909closed.wav", closedHat);
-    Module.maxiAudio.loadSample("./samples/909open.wav", openHat);
+    this.maxiAudio.loadSample("./909b.wav", this.kick);
+    this.maxiAudio.loadSample("./909.wav", this.snare);
+    this.maxiAudio.loadSample("./909closed.wav", this.closedHat);
+    this.maxiAudio.loadSample("./909open.wav", this.openHat);
+
 
     this.initialised = false;
 

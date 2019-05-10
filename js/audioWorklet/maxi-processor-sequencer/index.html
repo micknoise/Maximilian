@@ -25,6 +25,7 @@
   <button id="plusButton">vol+</button>
   <button id="minusButton">vol–</button>
   <button id="synthButton">Change Synth</button>
+  <button id="blobButton">Blob</button>
   <input type="checkbox" id="box" value="false">Load test<br>
 
   <script type="text/javascript">
@@ -32,8 +33,6 @@
     let customNode;
     let customProcessorName = 'maxi-processor';
     let workletUrl = 'maxi-processor.js';
-
-    "", "", ""
 
     let fs = [
       `kc kc k scos`,
@@ -71,6 +70,9 @@
 
       const synthButton = document.getElementById('synthButton');
       synthButton.addEventListener("click", () => changeSynth());
+
+      const blobButton = document.getElementById('blobButton');
+      blobButton.addEventListener("click", () => sendFloat32Array());
 
       const checkBox = document.getElementById('box');
       checkBox.addEventListener("click", () => {
@@ -139,6 +141,41 @@
         gainParam.value -= 0.01;
       }
     }
+
+
+    function generateNoiseBuffer(length) {
+      var float32Array = new Float32Array(length);
+      for (var n = 0; n < length; n++) {
+        float32Array[n] = Math.random(1);
+      }
+      return float32Array;
+    }
+
+    function sendNoiseBlob() {
+      if (customNode !== undefined) {
+        var blob = new Blob([generateNoiseBuffer(44100)], {
+          type: "application/octet-stream"
+        });
+        // TODO: Check for memory leaks
+        // URL.revokeObjectURL()
+        const workletUrl = window.URL.createObjectURL(blob);
+
+        customNode.port.postMessage({
+          audioBlob: blob,
+        }); // Send JSON object with eval prop for evaluation in processor
+      }
+    }
+
+    function sendFloat32Array() {
+      if (customNode !== undefined) {
+        var float32Array = generateNoiseBuffer(44100);
+        console.log('noiseBuff: ' + float32Array);
+        customNode.port.postMessage({
+          audioArray: float32Array,
+        });
+      }
+    }
+
 
     function changeSynth() {
       if (customNode !== undefined) {

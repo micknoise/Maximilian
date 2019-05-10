@@ -44,22 +44,77 @@ class MaxiProcessor extends AudioWorkletProcessor {
     this.closedHat = new Module.maxiSample();
     this.openHat = new Module.maxiSample();
 
-    this.maxiAudio.loadSample("./909b.wav", this.kick);
-    this.maxiAudio.loadSample("./909.wav", this.snare);
-    this.maxiAudio.loadSample("./909closed.wav", this.closedHat);
-    this.maxiAudio.loadSample("./909open.wav", this.openHat);
+    // this.maxiAudio.loadSample("./909b.wav", this.kick);
+    // this.maxiAudio.loadSample("./909.wav", this.snare);
+    // this.maxiAudio.loadSample("./909closed.wav", this.closedHat);
+    // this.maxiAudio.loadSample("./909open.wav", this.openHat);
+
+    // this.kick.setSample(this.generateNoiseBuffer(44100));
+    // this.snare.setSample(this.generateNoiseBuffer(44100));
+    // this.closedHat.setSample(this.generateNoiseBuffer(44100));
+    // this.openHat.setSample(this.generateNoiseBuffer(44100));
+
+
+    // this.snare.setSample(this.generateNoiseBuffer(44100));
+    // this.closedHat.setSample(this.generateNoiseBuffer(44100));
+    // this.openHat.setSample(this.generateNoiseBuffer(44100));
 
 
     this.initialised = false;
 
-    this.sequence = "kc kc k scos";
+
+    this.sequence = "kkk";
+    // this.sequence = "kc kc k scos";
 
     this.port.onmessage = event => { // message port async handler
       for (const key in event.data) { // event from node scope packs JSON object
-        this[key] = event.data[key]; // get this.sequence into local props
+        this[key] = event.data[key]; // get this.audioBlob into local props
+        console.log("key: " + key);
+        console.log("key: " + this[key]);
       }
+
+      // this.kick.setSample(this.translateBlobToBuffer(this.audioBlob));
+      this.kick.setSample(this.translateFloat32ArrayToBuffer(this.audioArray));
     };
   }
+
+  //Deprecated
+  generateNoiseBuffer(length) {
+    var bufferData = new Module.VectorDouble();
+    for (var n = 0; n < length; n++) {
+      bufferData.push_back(Math.random(1));
+    }
+    return bufferData;
+  }
+
+  //Deprecated
+  translateBlobToBuffer(blob) {
+
+    let arrayBuffer = null;
+    let float32Array = null;
+    var fileReader = new FileReader();
+    fileReader.onload = function (event) {
+      arrayBuffer = event.target.result;
+      float32Array = new Float32Array(arrayBuffer);
+    };
+    fileReader.readAsArrayBuffer(blob);
+    let audioFloat32Array = fileReader.result;
+    var maxiSampleBufferData = new Module.VectorDouble();
+    for (var i = 0; i < audioFloat32Array.length; i++) {
+      maxiSampleBufferData.push_back(audioFloat32Array[i]);
+    }
+    return maxiSampleBufferData;
+  }
+
+  translateFloat32ArrayToBuffer(audioFloat32Array) {
+
+    var maxiSampleBufferData = new Module.VectorDouble();
+    for (var i = 0; i < audioFloat32Array.length; i++) {
+      maxiSampleBufferData.push_back(audioFloat32Array[i]);
+    }
+    return maxiSampleBufferData;
+  }
+
 
   loopPlayer() {
 
@@ -82,6 +137,8 @@ class MaxiProcessor extends AudioWorkletProcessor {
         case "c":
           this.closedHat.trigger();
           break;
+        default:
+          this.kick.trigger();
       }
     }
 

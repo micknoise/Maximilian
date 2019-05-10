@@ -120,9 +120,10 @@
 
 			if (trigger != 0) trigger = 0; //set the trigger to off if you want it to trigger immediately next time.
 
-
-			this.output[0] = (bassout + delayout) / 2; //sum output
-			this.output[1] = (bassout + delayout) / 2;
+			let output = [];
+			output[0] = (bassout + delayout) / 2; //sum output
+			output[1] = (bassout + delayout) / 2;
+			return output;
 		}
 	}
 

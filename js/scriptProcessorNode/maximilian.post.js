@@ -161,7 +161,7 @@ Module.maxiAudio = function () {
     this.context = null;
     this.source = null;
     this.analyser = null;
-    this.jsProcessor = null;
+    this.maxiAudioProcessor = null;
     this.bufferSize = 1024;
     this.initDone = false;
 };
@@ -174,27 +174,27 @@ Module.maxiAudio.prototype.init = function () {
     // Temporary patch until all browsers support unprefixed context.
     this.context = new (window.AudioContext || window.webkitAudioContext)();
     this.source = this.context.createBufferSource();
-    this.jsProcessor = this.context.createScriptProcessor(this.bufferSize, this.numChannels, this.numChannels);
+    this.maxiAudioProcessor = this.context.createScriptProcessor(this.bufferSize, this.numChannels, this.numChannels);
     // var process = this.process;
 
-    this.jsProcessor.onaudioprocess = function (event) {
+    this.maxiAudioProcessor.onaudioprocess = function (event) {
         var numChannels = event.outputBuffer.numberOfChannels;
         var outputLength = event.outputBuffer.getChannelData(0).length;
         for (var i = 0; i < outputLength; ++i) {
-            this.play();
+            var w = this.play();
             // if(this.play===undefined)
             //   break;
             // else
             //   this.play();
             var channel = 0;
-            if (this.output instanceof Array) {
+            if (w instanceof Array) {
                 for (channel = 0; channel < numChannels; channel++) {
-                    event.outputBuffer.getChannelData(channel)[i] = this.output[channel];
+                    event.outputBuffer.getChannelData(channel)[i] = w[channel];
                 }
             }
             else {
                 for (channel = 0; channel < numChannels; channel++) {
-                    event.outputBuffer.getChannelData(channel)[i] = this.output;
+                    event.outputBuffer.getChannelData(channel)[i] = w;
                 }
             }
         }
@@ -205,9 +205,9 @@ Module.maxiAudio.prototype.init = function () {
     this.analyser = this.context.createAnalyser();
     this.analyser.fftSize = 2048;
 
-    // Connect the processing graph: source -> jsProcessor -> analyser -> destination
-    this.source.connect(this.jsProcessor);
-    this.jsProcessor.connect(this.analyser);
+    // Connect the processing graph: source -> maxiAudioProcessor -> analyser -> destination
+    this.source.connect(this.maxiAudioProcessor);
+    this.maxiAudioProcessor.connect(this.analyser);
     this.analyser.connect(this.context.destination);
     this.initDone = true;
 };
@@ -256,7 +256,7 @@ Module.maxiAudio.prototype.outputIsArray = function (isArray) {
 Module.maxiAudio.prototype.resetAudio = function () {
     if (this.initDone) {
         this.source.disconnect();
-        this.jsProcessor.disconnect();
+        this.maxiAudioProcessor.disconnect();
         this.analyser.disconnect();
     }
 
@@ -353,6 +353,7 @@ Module.maxiAudio.prototype.loadSample = function (url, samplePlayer, contextIn) 
         request.open("GET", url, true);
 
         request.responseType = "arraybuffer";
+
 
         request.onload = function () {
             context.decodeAudioData(

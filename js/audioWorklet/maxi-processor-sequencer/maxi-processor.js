@@ -41,8 +41,8 @@ class MaxiProcessor extends AudioWorkletProcessor {
     this.clock = new Module.maxiOsc();
     this.kick = new Module.maxiSample();
     this.snare = new Module.maxiSample();
-    this.closedHat = new Module.maxiSample();
-    this.openHat = new Module.maxiSample();
+    this.closed = new Module.maxiSample();
+    this.open = new Module.maxiSample();
 
     // this.maxiAudio.loadSample("./909b.wav", this.kick);
     // this.maxiAudio.loadSample("./909.wav", this.snare);
@@ -63,19 +63,25 @@ class MaxiProcessor extends AudioWorkletProcessor {
     this.initialised = false;
 
 
-    this.sequence = "kkk";
-
+    // this.sequence = "k k s o c k";
+    this.sequence = "ksco    ";
     // this.sequence = "kc kc k scos";
 
     this.port.onmessage = event => { // message port async handler
       for (const key in event.data) { // event from node scope packs JSON object
-        this[key] = event.data[key]; // get this.audioBlob into local props
-        console.log("key: " + key);
-        console.log("key: " + this[key]);
-      }
+        // this[key] = event.data[key]; // get this.audioBlob into local props
+        // console.log("key: " + key);
+        // console.log("key: " + );
+        console.log(key + ": " + event.data[key]);
+        console.log(this[key] + ": " + typeof this[key]);
+        this[key].setSample(this.translateFloat32ArrayToBuffer(event.data[key]));
 
+      }
+      // source.buffer = buffer;
+      // source.loop = true;
+      // source.start(0);
       // this.kick.setSample(this.translateBlobToBuffer(this.audioBlob));
-      this.kick.setSample(this.translateFloat32ArrayToBuffer(this.audioArray));
+      // this.kick.setSample(this.audioArray));
     };
   }
 
@@ -133,10 +139,10 @@ class MaxiProcessor extends AudioWorkletProcessor {
           this.snare.trigger();
           break;
         case "o":
-          this.openHat.trigger();
+          this.open.trigger();
           break;
         case "c":
-          this.closedHat.trigger();
+          this.closed.trigger();
           break;
         default:
           this.kick.trigger();
@@ -153,11 +159,11 @@ class MaxiProcessor extends AudioWorkletProcessor {
     if (this.snare.isReady()) {
       w += this.snare.playOnce();
     }
-    if (this.closedHat.isReady()) {
-      w += this.closedHat.playOnce();
+    if (this.closed.isReady()) {
+      w += this.closed.playOnce();
     }
-    if (this.openHat.isReady()) {
-      w += this.openHat.playOnce();
+    if (this.open.isReady()) {
+      w += this.open.playOnce();
     }
     return w * 0.5;
   }

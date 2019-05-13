@@ -28,7 +28,21 @@
   <button id="blobButton">Blob</button>
   <input type="checkbox" id="box" value="false">Load test<br>
 
-  <script type="text/javascript">
+  <script type="module">
+    import Module from '../build/maximilian.wasmmodule.js';
+    import { loadSampleToArray} from '../build/maximilian.wasmmodule.js';
+    var maxiAudio = new Module.maxiAudio();
+    console.log('maxiAudio Module.object: ' + Module.maxiAudio);
+    console.log('maxiAudio instance in variable: ' + maxiAudio);
+    console.log('maxiAudio init(): ' + maxiAudio.init());
+    console.log('maxiAudio output: ' + maxiAudio.output);
+    console.log('maxiAudio init: ' + maxiAudio.init);
+    // console.log('maxiAudio loadSampleToArray: ' + loadSampleToArray());
+    // console.log('maxiAudio resetAudio:' + maxiAudio.resetAudio());
+    // console.log('maxiAudio: ' + new maxiAudio());
+    // console.log('maxiAudio: ' + new maxiAudio());
+    // console.log('maxiAudio: ' + Module.maxiAudio.loadSampleToArray);
+
     let audioContext;
     let customNode;
     let customProcessorName = 'maxi-processor';
@@ -39,6 +53,8 @@
       `kc kc k`,
       `kc sss kccs skckos`,
     ];
+
+
 
     const SYNTH_CHANGE_MS = 50;
 
@@ -72,7 +88,7 @@
       synthButton.addEventListener("click", () => changeSynth());
 
       const blobButton = document.getElementById('blobButton');
-      blobButton.addEventListener("click", () => sendFloat32Array());
+      blobButton.addEventListener("click", () => sendFloat32NoiseBuffer());
 
       const checkBox = document.getElementById('box');
       checkBox.addEventListener("click", () => {
@@ -103,10 +119,10 @@
             }
             customNode.port.onmessage = event => {
               console.log(`Message from processor: ` + event.data);
-            }; //  data from the processor.
+            }; // data from the processor.
             customNode.port.onmessageerror = event => {
               console.log(`Error message from port: ` + event.data);
-            }; //  error from the message port.
+            }; // error from the message port.
             customNode.connect(audioContext.destination);
           }).catch((e => console.log("Error on loading worklet: ", e)));
         } catch (err) {
@@ -155,18 +171,15 @@
       if (customNode !== undefined) {
         var blob = new Blob([generateNoiseBuffer(44100)], {
           type: "application/octet-stream"
-        });
-        // TODO: Check for memory leaks
-        // URL.revokeObjectURL()
-        const workletUrl = window.URL.createObjectURL(blob);
-
+        }); // TODO: Check for memory leaks // URL.revokeObjectURL() const
+        workletUrl = window.URL.createObjectURL(blob);
         customNode.port.postMessage({
           audioBlob: blob,
-        }); // Send JSON object with eval prop for evaluation in processor
+        }); // Send JSON
       }
     }
 
-    function sendFloat32Array() {
+    function sendFloat32NoiseBuffer() {
       if (customNode !== undefined) {
         var float32Array = generateNoiseBuffer(44100);
         console.log('noiseBuff: ' + float32Array);
@@ -176,6 +189,149 @@
       }
     }
 
+
+    function sendFloat32Array(float32Array) {
+      if (float32Array !== undefined && customNode !== undefined) {
+        console.log('noiseBuff: ' + float32Array);
+        customNode.port.postMessage({
+          audioArray: float32Array,
+        });
+      }
+    }
+
+
+
+
+    
+    function loadSampleToArrayBuffer() {
+
+      // console.log(maxiAudio.loadSampleToArrayBuffer());
+
+      if (audioContext !== undefined) {
+
+        var data = [];
+        samplePlayer.clear();
+
+        //check if url is actually a base64-encoded string
+        var b64 = Module.maxiTools.getBase64(url);
+        if (b64) {
+          //convert to arraybuffer
+          //modified version of this:
+          // https://github.com/danguer/blog-examples/blob/master/js/base64-binary.js
+          var ab_bytes = (b64.length / 4) * 3;
+          var arrayBuffer = new ArrayBuffer(ab_bytes);
+
+          b64 = Module.maxiTools.removePaddingFromBase64(Module.maxiTools.removePaddingFromBase64(b64));
+
+          var bytes = parseInt((b64.length / 4) * 3, 10);
+
+          var uarray;
+          var chr1, chr2, chr3;
+          var enc1, enc2, enc3, enc4;
+          var i = 0;
+          var j = 0;
+
+          uarray = new Uint8Array(arrayBuffer);
+
+          b64 = b64.replace(/[^A-Za-z0-9\+\/\=]/g, "");
+
+          for (i = 0; i < bytes; i += 3) {
+              //get the 3 octects in 4 ascii chars
+              enc1 = Module.maxiTools._keyStr.indexOf(b64.charAt(j++));
+              enc2 = Module.maxiTools._keyStr.indexOf(b64.charAt(j++));
+              enc3 = Module.maxiTools._keyStr.indexOf(b64.charAt(j++));
+              enc4 = Module.maxiTools._keyStr.indexOf(b64.charAt(j++));
+
+              chr1 = (enc1 << 2) | (enc2 >> 4);
+              chr2 = ((enc2 & 15) << 4) | (enc3 >> 2);
+              chr3 = ((enc3 & 3) << 6) | enc4;
+
+              uarray[i] = chr1;
+              if (enc3 !== 64) uarray[i + 1] = chr2;
+              if (enc4 !== 64) uarray[i + 2] = chr3;
+          }
+
+          // https://webaudio.github.io/web-audio-api/#dom-baseaudiocontext-decodeaudiodata
+          // Asynchronously decodes the audio file data contained in the ArrayBuffer.
+          audioContext.decodeAudioData(
+              arrayBuffer, // has its content-type determined by sniffing
+              function (buffer) { // successCallback, argument is an AudioBuffer representing the decoded PCM audio data.
+                  // source.buffer = buffer;
+                  // source.loop = true;
+                  // source.start(0);
+                  data = buffer.getChannelData(0);
+
+                  if (data) {
+                      var myBufferData = new Module.VectorDouble();
+                      // Module.vectorTools.clearVectorDbl(myBufferData);
+
+                      for (var n = 0; n < data.length; n++) {
+                          myBufferData.push_back(data[n]);
+                      }
+
+                      return myBufferData;
+                      //NOTE: there is an asynchronous loading going on here
+                      // samplePlayer.setSample(myBufferData /*, context.sampleRate*/ );
+                  }
+
+              },
+
+              function (buffer) { // errorCallback
+                  console.log("Error decoding source!");
+              }
+          );
+
+
+          } else {
+              // Load asynchronously
+              // NOTE: This is giving me an error
+              // Uncaught ReferenceError: XMLHttpRequest is not defined (index):97 MaxiProcessor Error detected: undefined
+              // NOTE: followed the trail to the wasmmodule.js
+              // when loading on if (typeof XMLHttpRequest !== 'undefined') {
+              // throw new Error("Lazy loading should have been performed (contents set) in createLazyFile, but it was not. Lazy loading only works in web workers. 
+              // Use --embed-file or --preload-file in emcc on the main thread.");
+              var request = new XMLHttpRequest();
+              request.addEventListener("load",
+                  function (evt) {
+                      console.log("The transfer is complete.");
+                  });
+              request.open("GET", url, true);
+
+              request.responseType = "arraybuffer";
+
+              request.onload = function () {
+                  context.decodeAudioData(
+                      request.response,
+                      function (buffer) {
+                          // source.buffer = buffer;
+                          // source.loop = true;
+                          // source.start(0);
+                          data = buffer.getChannelData(0);
+
+                          if (data) {
+                              var myBufferData = new Module.VectorDouble();
+                              // Module.vectorTools.clearVectorDbl(myBufferData);
+
+                              for (var n = 0; n < data.length; n++) {
+                                  myBufferData.push_back(data[n]);
+                              }
+
+                              samplePlayer.setSample(myBufferData /*, context.sampleRate*/ );
+                          }
+
+                      },
+
+                      function (buffer) {
+                          console.log("Error decoding source!");
+                      }
+                  );
+              };
+              request.send();
+          }
+
+        }
+
+    }
 
     function changeSynth() {
       if (customNode !== undefined) {

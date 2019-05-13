@@ -68,9 +68,15 @@
 	var currentPitch, leadPitch; //the final pitch variables
 
 	//here's the lead line trigger array, followed by the pitches
-	var leadLineTrigger = [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-		0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0,
-		0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+	var leadLineTrigger = [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0,
+		1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0,
+		0, 0, 0, 0, 0,
+		0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+		0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0,
+		0, 1, 0, 0, 0, 0,
+		0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0,
+		0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+		0, 0, 0, 0, 0, 0,
 		0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
 	];
 	var leadLinePitch = [69, 67, 65, 64, 67, 66, 64, 62, 65, 64, 62, 57, 55, 60, 57];
@@ -89,7 +95,7 @@
 		ma.init();
 		ma.outputIsArray(true, 2);
 
-		ma.play = function() {
+		ma.play = function () {
 			// this.output = filt1.lores(osc1.sawn(200), 1000, 0.5);
 			// this.output = samplePlayer.play();
 			currentCount = Math.floor(timer.phasor(9)); //this sets up a metronome that ticks every so often
@@ -104,7 +110,8 @@
 						newnote = 0; //make sure we don't go over the edge of the array
 					}
 				}
-				currentPitch = mtof.mtof(pitch[(playHead % 4)] + chord[currentChord % 8]); //write the frequency val into currentPitch
+				currentPitch = mtof.mtof(pitch[(playHead % 4)] + chord[currentChord %
+				8]); //write the frequency val into currentPitch
 				playHead++; //iterate the playhead
 				if (playHead % 32 == 0) { //wrap every 4 bars
 					currentChord++; //change the chord
@@ -113,8 +120,10 @@
 				lastCount = 0; //set lastCount to 0
 			}
 
-			bassout = filter2.lores(envelope.adsr(bass.saw(currentPitch * 0.5) + sound.pulse(currentPitch * 0.5, mod.phasor(1)), 1, 0.9995, 0.25, 0.9995, 1, trigger), 9250, 2); //new, simple ADSR.
-			leadout = filter.lores(leadenvelope.ar(lead2.saw(leadPitch * 4) + lead.pulse(leadPitch + (leadmod.sinebuf(1.9) * 1.5), 0.6), 0.00005, 0.999975, 50000, trigger2), 5900, 10); //leadline
+			bassout = filter2.lores(envelope.adsr(bass.saw(currentPitch * 0.5) + sound.pulse(currentPitch * 0.5, mod
+				.phasor(1)), 1, 0.9995, 0.25, 0.9995, 1, trigger), 9250, 2); //new, simple ADSR.
+			leadout = filter.lores(leadenvelope.ar(lead2.saw(leadPitch * 4) + lead.pulse(leadPitch + (leadmod.sinebuf(
+				1.9) * 1.5), 0.6), 0.00005, 0.999975, 50000, trigger2), 5900, 10); //leadline
 
 			delayout = (leadout + (delay.dl(leadout, 14000, 0.8) * 0.5)) / 2; //add some delay
 

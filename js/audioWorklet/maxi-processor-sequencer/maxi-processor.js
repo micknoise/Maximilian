@@ -64,6 +64,7 @@ class MaxiProcessor extends AudioWorkletProcessor {
 
 
     this.sequence = "kkk";
+
     // this.sequence = "kc kc k scos";
 
     this.port.onmessage = event => { // message port async handler

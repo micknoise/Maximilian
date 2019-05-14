@@ -49,6 +49,8 @@ RED=\033[0;31m
 GREEN=\033[0;32m
 YELLOW=\033[1;33m
 CYAN=\033[0;36m
+RESET=\x1b[0m
+
 
 all: full
 
@@ -60,11 +62,11 @@ $(BUILD_DIR):
 	$(MKDIR_P) $(BUILD_DIR)
 
 full: directory
-	@echo "${RED}\r\nBUILD WITHOUT WASM – maximilian.js \r\n${GREEN}"
+	@echo "${RED}\r\nBUILD WITHOUT WASM – maximilian.js \r\n ${RESET}"
 	$(EMSCR) $(CFLAGS) --post-js $(POST_JS) -o $(OUTPUT) $(SRC) $(SRC_EM) $(SRC_LIBS)
 
 wasm: directory
-	@echo "${RED}\r\nBUILD WITH WASM – maximilian.wasm + maximilian.js \r\n${CYAN}"
+	@echo "${RED}\r\nBUILD WITH WASM – maximilian.wasm + maximilian.js \r\n ${RESET}"
 	$(EMSCR) $(WASMCFLAGS) --post-js $(POST_JS) -o $(OUTPUT) $(SRC)
 
 clean:

@@ -25,12 +25,23 @@
   <button id="plusButton">vol+</button>
   <button id="minusButton">vol–</button>
   <button id="synthButton">Change Synth</button>
-  <button id="blobButton">Blob</button>
+  <button id="loadSamplesButton">Load Samples</button>
   <input type="checkbox" id="box" value="false">Load test<br>
 
-  <script type="text/javascript">
+  <script type="module">
+    import Module from '../build/maximilian.wasmmodule.js';
+    import { loadSampleToArray } from '../build/maximilian.wasmmodule.js';
+    // var maxiAudio = new Module.maxiAudio();
+    // console.log('maxiAudio Module.object: ' + Module.maxiAudio);
+    // console.log('maxiAudio instance in variable: ' + maxiAudio);
+    // console.log('maxiAudio init(): ' + maxiAudio.init());
+    // console.log('maxiAudio output: ' + maxiAudio.output);
+    // console.log('maxiAudio init: ' + maxiAudio.init);
+    // console.log('maxiAudio loadSampleToArray: ' + loadSampleToArray('909.wav')); // Need to work with AudioContext initialised
+
+
     let audioContext;
-    let customNode;
+    let audioWorkletNode;
     let customProcessorName = 'maxi-processor';
     let workletUrl = 'maxi-processor.js';
 
@@ -39,6 +50,8 @@
       `kc kc k`,
       `kc sss kccs skckos`,
     ];
+
+
 
     const SYNTH_CHANGE_MS = 50;
 
@@ -71,8 +84,10 @@
       const synthButton = document.getElementById('synthButton');
       synthButton.addEventListener("click", () => changeSynth());
 
-      const blobButton = document.getElementById('blobButton');
-      blobButton.addEventListener("click", () => sendFloat32Array());
+      const loadSamplesButton = document.getElementById('loadSamplesButton');
+      // loadSamplesButton.addEventListener("click", () => loadSampleToAudioArray('909.wav'));
+      loadSamplesButton.addEventListener("click", () => loadSamples());
+
 
       const checkBox = document.getElementById('box');
       checkBox.addEventListener("click", () => {
@@ -93,21 +108,21 @@
               numberOfOutputs: 1,
               outputChannelCount: [2]
             }
-            // customNode = new MaxiNode(audioContext, customProcessorName, options);
-            customNode = new AudioWorkletNode(audioContext, customProcessorName);
-            customNode.onprocessorerror = event => {
+            // audioWorkletNode = new MaxiNode(audioContext, customProcessorName, options);
+            audioWorkletNode = new AudioWorkletNode(audioContext, customProcessorName);
+            audioWorkletNode.onprocessorerror = event => {
               console.log(`MaxiProcessor Error detected: ` + event.data);
             }
-            customNode.onprocessorstatechange = event => {
-              console.log(`MaxiProcessor state change detected: ` + customNode.processorState);
+            audioWorkletNode.onprocessorstatechange = event => {
+              console.log(`MaxiProcessor state change detected: ` + audioWorkletNode.processorState);
             }
-            customNode.port.onmessage = event => {
+            audioWorkletNode.port.onmessage = event => {
               console.log(`Message from processor: ` + event.data);
-            }; //  data from the processor.
-            customNode.port.onmessageerror = event => {
+            }; // data from the processor.
+            audioWorkletNode.port.onmessageerror = event => {
               console.log(`Error message from port: ` + event.data);
-            }; //  error from the message port.
-            customNode.connect(audioContext.destination);
+            }; // error from the message port.
+            audioWorkletNode.connect(audioContext.destination);
           }).catch((e => console.log("Error on loading worklet: ", e)));
         } catch (err) {
           console.log("AudioWorklet not supported in this browser: ", err.message);
@@ -121,27 +136,36 @@
     }
 
     function stopAudio() {
-      if (customNode !== undefined) {
+      if (audioWorkletNode !== undefined) {
         audioContext.suspend();
-        // customNode.disconnect(audioContext.destination);
-        // customNode = undefined;
+        // audioWorkletNode.disconnect(audioContext.destination);
+        // audioWorkletNode = undefined;
       }
     }
 
     function increaseVolume() {
-      if (customNode !== undefined) {
-        const gainParam = customNode.parameters.get('gain');
+      if (audioWorkletNode !== undefined) {
+        const gainParam = audioWorkletNode.parameters.get('gain');
         gainParam.value += 0.01;
       }
     }
 
     function decreaseVolume() {
-      if (customNode !== undefined) {
-        const gainParam = customNode.parameters.get('gain');
+      if (audioWorkletNode !== undefined) {
+        const gainParam = audioWorkletNode.parameters.get('gain');
         gainParam.value -= 0.01;
       }
     }
 
+
+    function sendAudioArray(sampleWorkletObjectName, float32Array) {
+      if (float32Array !== undefined && audioWorkletNode !== undefined) {
+        // console.log('f32array: ' + float32Array);
+        audioWorkletNode.port.postMessage({
+          [sampleWorkletObjectName]: float32Array,
+        });
+      }
+    }
 
     function generateNoiseBuffer(length) {
       var float32Array = new Float32Array(length);
@@ -152,42 +176,51 @@
     }
 
     function sendNoiseBlob() {
-      if (customNode !== undefined) {
+      if (audioWorkletNode !== undefined) {
         var blob = new Blob([generateNoiseBuffer(44100)], {
           type: "application/octet-stream"
-        });
-        // TODO: Check for memory leaks
-        // URL.revokeObjectURL()
-        const workletUrl = window.URL.createObjectURL(blob);
-
-        customNode.port.postMessage({
+        }); // TODO: Check for memory leaks // URL.revokeObjectURL() const
+        workletUrl = window.URL.createObjectURL(blob);
+        audioWorkletNode.port.postMessage({
           audioBlob: blob,
-        }); // Send JSON object with eval prop for evaluation in processor
+        }); // Send JSON
       }
     }
 
-    function sendFloat32Array() {
-      if (customNode !== undefined) {
-        var float32Array = generateNoiseBuffer(44100);
-        console.log('noiseBuff: ' + float32Array);
-        customNode.port.postMessage({
-          audioArray: float32Array,
-        });
-      }
+    function sendFloat32NoiseBuffer() {
+      this.sendAudioArray( this.generateNoiseBuffer(44100) );
     }
 
+    function loadSampleToAudioArray(url) {
 
+      if(audioContext !== undefined){
+        loadSampleToArray(audioContext, url, sendAudioArray); 
+      }
+      else throw "Audio Context is not initialised!"; 
+    }
+
+    function loadSamples() {
+      if(audioContext !== undefined){
+        loadSampleToArray(audioContext, "snare", "909.wav", sendAudioArray); 
+        loadSampleToArray(audioContext, "kick", "909b.wav", sendAudioArray); 
+        loadSampleToArray(audioContext, "closed", "909closed.wav", sendAudioArray); 
+        loadSampleToArray(audioContext, "open", "909open.wav", sendAudioArray); 
+      }
+      else throw "Audio Context is not initialised!"; 
+    }
+
+    
     function changeSynth() {
-      if (customNode !== undefined) {
+      if (audioWorkletNode !== undefined) {
         let userDefinedFunction;
         if (arguments.length == 0) {
           userDefinedFunction = fs[Math.floor(Math.random() * fs.length)];
-          customNode.port.postMessage({
+          audioWorkletNode.port.postMessage({
             eval: `() => { return ${userDefinedFunction} }`
           }); // Send JSON object with eval prop for evaluation in processor
         } else {
           userDefinedFunction = arguments[0];
-          customNode.port.postMessage({
+          audioWorkletNode.port.postMessage({
             eval: `() => { return ${userDefinedFunction} }`
           }); // Send JSON object with eval prop for evaluation in processor
         }

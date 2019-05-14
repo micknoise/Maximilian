@@ -15,9 +15,10 @@
 
 <body>
 
-  <h1>Load-testing an audio worklet loaded with Maximilian</h1>
+  <h1>Sequencer with Markov with an audio worklet loaded with Maximilian</h1>
   <p id="funcs"></p>
-  <p>Synth defs on the UI thread are posted to the worklet. Check out your dev console (Command+Option+J).</p>
+  <p>Samples are loaded at initialisation from global scope sequences injected from. Check out your dev console
+    (Command+Option+J).</p>
   <p>You might need to clean the cache when you are testing your worklet processor code</p>
 
   <button id="playButton">Play</button>
@@ -51,10 +52,7 @@
       `kc sss kccs skckos`,
     ];
 
-
-
     const SYNTH_CHANGE_MS = 50;
-
 
     class MaxiNode extends AudioWorkletNode {
 

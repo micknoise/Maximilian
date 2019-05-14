@@ -28,7 +28,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 // console.log("maximilian: " + Date());
 
-console.log("maximilian v2.0.0: " + Date());
+console.log("maximilian v2.0.1: " + Date());
 
 // ------------------------------------------------
 // maxiArray - could extend Array object?
@@ -169,24 +169,43 @@ Module.maxiAudio = function () {
 Module.maxiAudio.play = function () {
 };
 
-Module.maxiAudio.prototype.init = function () {
+
+Module.INPUT_TYPE = {NONE:-2, DEFAULT:-1};
+Module.maxiAudio.prototype.init = function (audioIn = Module.INPUT_TYPE.NONE) {
 
     // Temporary patch until all browsers support unprefixed context.
     this.context = new (window.AudioContext || window.webkitAudioContext)();
     this.source = this.context.createBufferSource();
     this.maxiAudioProcessor = this.context.createScriptProcessor(this.bufferSize, this.numChannels, this.numChannels);
-    // var process = this.process;
-
+    let handleConnection = function(stream) {
+        console.log("Connecting audio input");
+        console.log(stream);
+        this.audioInputSource = this.context.createMediaStreamSource(stream);
+        this.audioInputSource.connect(this.maxiAudioProcessor);
+    }.bind(this);
+    if (audioIn == Module.INPUT_TYPE.DEFAULT) {
+      navigator.mediaDevices.getUserMedia({ audio: true, video: false })
+          .then(handleConnection);
+    }else if(audioIn > Module.INPUT_TYPE.DEFAULT) {
+      navigator.mediaDevices.enumerateDevices().then((devices) => {
+        devices = devices.filter((d) => d.kind === 'audioinput');
+        navigator.mediaDevices.getUserMedia({ audio: {deviceId: devices[audioIn].deviceId}, video: false })
+            .then(handleConnection);
+      });
+    }else{
+      this.source.connect(this.maxiAudioProcessor);
+    }
     this.maxiAudioProcessor.onaudioprocess = function (event) {
+        var numInputChannels = event.inputBuffer.numberOfChannels;
         var numChannels = event.outputBuffer.numberOfChannels;
         var outputLength = event.outputBuffer.getChannelData(0).length;
+        var audioIn = new Array(numChannels);
         for (var i = 0; i < outputLength; ++i) {
-            var w = this.play();
-            // if(this.play===undefined)
-            //   break;
-            // else
-            //   this.play();
-            var channel = 0;
+            for (let channel = 0; channel < numInputChannels; channel++) {
+                audioIn[channel] = event.inputBuffer.getChannelData(channel)[i];
+            }
+            var w = this.play(audioIn);
+            // var channel = 0;
             if (w instanceof Array) {
                 for (channel = 0; channel < numChannels; channel++) {
                     event.outputBuffer.getChannelData(channel)[i] = w[channel];
@@ -202,21 +221,20 @@ Module.maxiAudio.prototype.init = function () {
         .bind(this)
     ;
 
-    this.analyser = this.context.createAnalyser();
-    this.analyser.fftSize = 2048;
-
     // Connect the processing graph: source -> maxiAudioProcessor -> analyser -> destination
-    this.source.connect(this.maxiAudioProcessor);
-    this.maxiAudioProcessor.connect(this.analyser);
-    this.analyser.connect(this.context.destination);
+    // this.maxiAudioProcessor.connect(this.analyser);
+    this.maxiAudioProcessor.connect(this.context.destination);
     this.initDone = true;
 };
 
 
-// don't really need setup??
-Module.maxiAudio.setup = function () {
-    console.log("non-overrided setup");
-};
+Module.maxiAudio.prototype.listInputDevices = function() {
+  navigator.mediaDevices.enumerateDevices().then((devices) => {
+    devices = devices.filter((d) => d.kind === 'audioinput');
+    console.log(devices);
+  });
+}
+
 
 Module.maxiAudio.prototype.getNumChannels = function () {
     return this.numChannels;

@@ -433,8 +433,6 @@ const sendAudioArray = (float32Array, customNode) => {
 
 // Module.maxiAudio.loadSampleToArray = function (audioContext, url, samplePlayer) {
 export const loadSampleToArray = (audioContext, sampleObjectName, url, sendDataToWorklet) => {
-    // Module.maxiAudio.loadSampleToArray = function (audioContext, url, samplePlayer) {
-
     var data = [];
 
     var context = audioContext;
@@ -497,8 +495,6 @@ export const loadSampleToArray = (audioContext, sampleObjectName, url, sendDataT
                 console.log("Error decoding source!");
             }
         );
-
-
     } else {
         // Load asynchronously
         // NOTE: This is giving me an error
@@ -525,7 +521,6 @@ export const loadSampleToArray = (audioContext, sampleObjectName, url, sendDataT
         };
         request.send();
     }
-
     return "Loading module";
 };
 

@@ -29,7 +29,7 @@
 
   <script type="text/javascript">
     let audioContext;
-    let customNode;
+    let audioWorkletNode;
     let customProcessorName = 'maxi-processor';
     let workletUrl = 'maxi-processor.js';
 
@@ -95,11 +95,14 @@
       synthButton.addEventListener("click", () => changeSynth());
 
       const checkBox = document.getElementById('box');
-      checkBox.addEventListener("click", () => { if(audioContext.state === "suspended") playAudio(); setInterval('changeSynth()', SYNTH_CHANGE_MS) }  );
+      checkBox.addEventListener("click", () => {
+        if (audioContext.state === "suspended") playAudio();
+        setInterval('changeSynth()', SYNTH_CHANGE_MS)
+      });
     }
 
     function playAudio() {
-      if(audioContext === undefined) {
+      if (audioContext === undefined) {
         try {
           audioContext = new AudioContext();
           audioContext.audioWorklet.addModule(workletUrl).then(() => {
@@ -110,20 +113,27 @@
               numberOfOutputs: 1,
               outputChannelCount: [2]
             }
-            // customNode = new MaxiNode(audioContext, customProcessorName, options);
-            customNode = new AudioWorkletNode(audioContext, customProcessorName);
-            customNode.onprocessorerror = event => { console.log(`MaxiProcessor Error detected: ` + event.data); }
-            customNode.onprocessorstatechange =  event => { console.log(`MaxiProcessor state change detected: ` + customNode.processorState); }
-            customNode.port.onmessage = event => { console.log(`Message from processor: ` + event.data); }; //  data from the processor.
-            customNode.port.onmessageerror = event => { console.log(`Error message from port: ` + event.data); }; //  error from the message port.
-            customNode.connect(audioContext.destination);
+            // audioWorkletNode = new MaxiNode(audioContext, customProcessorName, options);
+            audioWorkletNode = new AudioWorkletNode(audioContext, customProcessorName);
+            audioWorkletNode.onprocessorerror = event => {
+              console.log(`MaxiProcessor Error detected: ` + event.data);
+            }
+            audioWorkletNode.onprocessorstatechange = event => {
+              console.log(`MaxiProcessor state change detected: ` + audioWorkletNode.processorState);
+            }
+            audioWorkletNode.port.onmessage = event => {
+              console.log(`Message from processor: ` + event.data);
+            }; //  data from the processor.
+            audioWorkletNode.port.onmessageerror = event => {
+              console.log(`Error message from port: ` + event.data);
+            }; //  error from the message port.
+            audioWorkletNode.connect(audioContext.destination);
           }).catch((e => console.log("Error on loading worklet: ", e)));
         } catch (err) {
           console.log("AudioWorklet not supported in this browser: ", err.message);
         }
-      }
-      else {
-        if(audioContext.state !== "suspended")
+      } else {
+        if (audioContext.state !== "suspended")
           stopAudio();
         else
           audioContext.resume();
@@ -131,42 +141,47 @@
     }
 
     function stopAudio() {
-      if (customNode !== undefined) {
+      if (audioWorkletNode !== undefined) {
         audioContext.suspend();
-        // customNode.disconnect(audioContext.destination);
-        // customNode = undefined;
+        // audioWorkletNode.disconnect(audioContext.destination);
+        // audioWorkletNode = undefined;
       }
     }
 
     function increaseVolume() {
-      if (customNode !== undefined) {
-        const gainParam = customNode.parameters.get('gain');
-        gainParam.value += 0.01;
-      }
+      if (audioWorkletNode !== undefined) {
+        const gainParam = audioWorkletNode.parameters.get('gain');
+        gainParam.value += 0.5;
+        return true;
+      } else return false;
     }
 
     function decreaseVolume() {
-      if (customNode !== undefined) {
-        const gainParam = customNode.parameters.get('gain');
-        gainParam.value -= 0.01;
-      }
+      if (audioWorkletNode !== undefined) {
+        const gainParam = audioWorkletNode.parameters.get('gain');
+        gainParam.value -= 0.5;
+        return true;
+      } else return false;
     }
 
     function changeSynth() {
-      if (customNode !== undefined){
+      if (audioWorkletNode !== undefined) {
         let userDefinedFunction;
-        if(arguments.length == 0){
+        if (arguments.length == 0) {
           userDefinedFunction = fs[Math.floor(Math.random() * fs.length)];
-          customNode.port.postMessage({ eval: `() => { return ${userDefinedFunction} }` }); // Send JSON object with eval prop for evaluation in processor
-        }
-        else {
+          console.log("Change synth: " + userDefinedFunction);
+        } else {
           userDefinedFunction = arguments[0];
-          customNode.port.postMessage({ eval: `() => { return ${userDefinedFunction} }` }); // Send JSON object with eval prop for evaluation in processor
         }
         // DEBUG:
-        console.log("Change synth: " + userDefinedFunction);
-      }
+        audioWorkletNode.port.postMessage({
+          eval: `() => { return ${userDefinedFunction} }`
+        }); // Send JSON object with eval prop for evaluation in processor
+        return true;
+      } else return false;
+
     }
   </script>
 </body>
+
 </html>

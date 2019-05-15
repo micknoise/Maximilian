@@ -25,13 +25,19 @@
   <button id="stopButton">Stop</button>
   <button id="plusButton">vol+</button>
   <button id="minusButton">vol–</button>
-  <button id="synthButton">Change Synth</button>
+  <!-- <button id="synthButton">Change Synth</button> -->
+  <button id="sequenceButton">Change Sequence</button>
   <button id="loadSamplesButton">Load Samples</button>
   <input type="checkbox" id="box" value="false">Load test<br>
+  <!-- <input id="audioFile" type="file" accept="audio/*" />
+  <audio id="audioPlayer" /> -->
 
   <script type="module">
     import Module from '../build/maximilian.wasmmodule.js';
-    import { loadSampleToArray } from '../build/maximilian.wasmmodule.js';
+    import {
+      loadSampleToArray
+    } from '../build/maximilian.wasmmodule.js';
+
     // var maxiAudio = new Module.maxiAudio();
     // console.log('maxiAudio Module.object: ' + Module.maxiAudio);
     // console.log('maxiAudio instance in variable: ' + maxiAudio);
@@ -39,7 +45,6 @@
     // console.log('maxiAudio output: ' + maxiAudio.output);
     // console.log('maxiAudio init: ' + maxiAudio.init);
     // console.log('maxiAudio loadSampleToArray: ' + loadSampleToArray('909.wav')); // Need to work with AudioContext initialised
-
 
     let audioContext;
     let audioWorkletNode;
@@ -79,8 +84,11 @@
       const minusButton = document.getElementById('minusButton');
       minusButton.addEventListener("click", () => decreaseVolume());
 
-      const synthButton = document.getElementById('synthButton');
-      synthButton.addEventListener("click", () => changeSynth());
+      // const synthButton = document.getElementById('synthButton');
+      // synthButton.addEventListener("click", () => changeSynth());
+
+      const sequenceButton = document.getElementById('sequenceButton');
+      sequenceButton.addEventListener("click", () => changeSequence());
 
       const loadSamplesButton = document.getElementById('loadSamplesButton');
       // loadSamplesButton.addEventListener("click", () => loadSampleToAudioArray('909.wav'));
@@ -94,6 +102,7 @@
       });
     }
 
+    
     function playAudio() {
       if (audioContext === undefined) {
         try {
@@ -144,15 +153,19 @@
     function increaseVolume() {
       if (audioWorkletNode !== undefined) {
         const gainParam = audioWorkletNode.parameters.get('gain');
-        gainParam.value += 0.01;
+        gainParam.value += 0.5;
+        return true;
       }
+      else return false; 
     }
 
     function decreaseVolume() {
       if (audioWorkletNode !== undefined) {
         const gainParam = audioWorkletNode.parameters.get('gain');
-        gainParam.value -= 0.01;
+        gainParam.value -= 0.5;
+        return true;
       }
+      else return false; 
     }
 
 
@@ -186,28 +199,54 @@
     }
 
     function sendFloat32NoiseBuffer() {
-      this.sendAudioArray( this.generateNoiseBuffer(44100) );
+      this.sendAudioArray(this.generateNoiseBuffer(44100));
     }
 
     function loadSampleToAudioArray(url) {
 
-      if(audioContext !== undefined){
-        loadSampleToArray(audioContext, url, sendAudioArray); 
-      }
-      else throw "Audio Context is not initialised!"; 
+      if (audioContext !== undefined) {
+        loadSampleToArray(audioContext, url, sendAudioArray);
+      } else throw "Audio Context is not initialised!";
     }
+
+
+    // audioFile.onchange = () => {
+    //   var files = this.files;
+    //   var file = URL.createObjectURL(files[0]); 
+    //   audioPlayer.src = file; 
+    //   audioPlayer.play();
+    // };
+
 
     function loadSamples() {
-      if(audioContext !== undefined){
-        loadSampleToArray(audioContext, "snare", "909.wav", sendAudioArray); 
-        loadSampleToArray(audioContext, "kick", "909b.wav", sendAudioArray); 
-        loadSampleToArray(audioContext, "closed", "909closed.wav", sendAudioArray); 
-        loadSampleToArray(audioContext, "open", "909open.wav", sendAudioArray); 
-      }
-      else throw "Audio Context is not initialised!"; 
+      if (audioContext !== undefined) {
+        loadSampleToArray(audioContext, "snare", "909.wav", sendAudioArray);
+        loadSampleToArray(audioContext, "kick", "909b.wav", sendAudioArray);
+        loadSampleToArray(audioContext, "closed", "909closed.wav", sendAudioArray);
+        loadSampleToArray(audioContext, "open", "909open.wav", sendAudioArray);
+      } else throw "Audio Context is not initialised!";
     }
 
-    
+    function changeSequence() {
+      if (audioWorkletNode !== undefined) {
+        let sequence;
+        if (arguments.length == 0) {
+          sequence = fs[Math.floor(Math.random() * fs.length)]; // Choose random entry
+          audioWorkletNode.port.postMessage({
+            sequence: `${sequence}`
+          }); // Send JSON object with eval prop for evaluation in processor
+        } else {
+          sequence = arguments[0];
+          audioWorkletNode.port.postMessage({
+            sequence: `${sequence}`
+          }); // Send JSON object with eval prop for evaluation in processor
+        }
+        // DEBUG:
+        // console.log("Change Sequence: " + sequence);
+      }
+
+    }
+
     function changeSynth() {
       if (audioWorkletNode !== undefined) {
         let userDefinedFunction;
@@ -223,7 +262,7 @@
           }); // Send JSON object with eval prop for evaluation in processor
         }
         // DEBUG:
-        console.log("Change synth: " + userDefinedFunction);
+        // console.log("Change synth: " + userDefinedFunction);
       }
     }
   </script>

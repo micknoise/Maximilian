@@ -200,7 +200,8 @@ class MaxiProcessor extends AudioWorkletProcessor {
       this.ADSR[0].setRelease(1000);
     }
 
-    this.port.postMessage(`polysynth SET`);
+    //DEBUG
+    // this.port.postMessage(`polysynth SET`);
   }
 
   /**
@@ -281,11 +282,11 @@ class MaxiProcessor extends AudioWorkletProcessor {
 
         if (parameters.gain.length === 1) { // if gain is constant, lenght === 1, gain[0]
           for (let i = 0; i < 128; ++i) {
-            outputChannel[i] = this.signal() * this.sampleIndex / this.sampleRate * logGain(parameters.gain[0]);
+            outputChannel[i] = this.signal() * this.sampleIndex / this.sampleRate * this.logGain(parameters.gain[0]);
           }
         } else { // if gain is varying, lenght === 128, gain[i] for each sample of the render quantum
           for (let i = 0; i < 128; ++i) {
-            outputChannel[i] = this.signal() * this.sampleIndex / this.sampleRate * logGain(parameters.gain[i]);
+            outputChannel[i] = this.signal() * this.sampleIndex / this.sampleRate * this.logGain(parameters.gain[i]);
           }
         }
         // DEBUG:

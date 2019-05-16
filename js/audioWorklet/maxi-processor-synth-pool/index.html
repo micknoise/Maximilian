@@ -24,7 +24,7 @@
   <button id="stopButton">Stop</button>
   <button id="plusButton">vol+</button>
   <button id="minusButton">vol–</button>
-  <button id="synthButton">Change Synth</button>
+  <button id="evalSynthButton">Eval Synth</button>
   <input type="checkbox" id="box" value="false">Load test<br>
 
   <script type="text/javascript">
@@ -91,8 +91,8 @@
       const minusButton = document.getElementById('minusButton');
       minusButton.addEventListener("click", () => decreaseVolume());
 
-      const synthButton = document.getElementById('synthButton');
-      synthButton.addEventListener("click", () => changeSynth());
+      const evalSynthButton = document.getElementById('evalSynthButton');
+      evalSynthButton.addEventListener("click", () => evalSynth());
 
       const checkBox = document.getElementById('box');
       checkBox.addEventListener("click", () => {
@@ -164,12 +164,12 @@
       } else return false;
     }
 
-    function changeSynth() {
+    function evalSynth() {
       if (audioWorkletNode !== undefined) {
         let userDefinedFunction;
         if (arguments.length == 0) {
           userDefinedFunction = fs[Math.floor(Math.random() * fs.length)];
-          console.log("Change synth: " + userDefinedFunction);
+          console.log("Eval synth: " + userDefinedFunction);
         } else {
           userDefinedFunction = arguments[0];
         }

@@ -64,15 +64,25 @@ class MaxiProcessor extends AudioWorkletProcessor {
 
 
     this.port.onmessage = event => { // message port async handler
-      for (const key in event.data) { // event from node scope packs JSON object
-        this[key] = event.data[key]; // de-structure into local props
-      }
-      // TODO: explore SharedArrayBtuffer
+
       try {
+        console.log("Receving message in Worklet evaluation: ");
+        for (const key in event.data) { // event from node scope packs JSON object
+          this[key] = event.data[key]; // de-structure into local props
+        }
+        // TODO: explore SharedArrayBtuffer
+
+        console.log("Before Error in Worklet evaluation: ");
         this.signal = eval(this.eval);
+        console.log("After Error in Worklet evaluation: ");
       } // eval a property function, need to check if it changed
       catch (err) {
-        console.log("Error in Worklet evaluation: " + err);
+        console.log("Error in Worklet evaluation: " + err.name + " – " + err.message);
+
+        if (error instanceof TypeError) {} else {
+
+        }
+
         this.signal = () => {
           return this.osc.sinewave(440);
         };

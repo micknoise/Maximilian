@@ -26,18 +26,25 @@
   <button id="plusButton">vol+</button>
   <button id="minusButton">vol–</button>
   <!-- <button id="synthButton">Change Synth</button> -->
-  <button id="sequenceButton">Change Sequence</button>
   <button id="loadSamplesButton">Load Samples</button>
+  <button id="sequenceButton">Eval Sequence</button>
   <input type="checkbox" id="box" value="false">Load test<br>
   <!-- <input id="audioFile" type="file" accept="audio/*" />
   <audio id="audioPlayer" /> -->
 
   <script type="module">
-    import Module from '../build/maximilian.wasmmodule.js';
+    // NOTE: We don't need to conflate the WASM with utils for loading samples, so we segregate them from post.js
+    // import Module from '../build/maximilian.wasmmodule.js';
+    // import {
+    //   loadSampleToArray
+    // } from '../build/maximilian.wasmmodule.js';
     import {
       loadSampleToArray
-    } from '../build/maximilian.wasmmodule.js';
+    } from '../common/maximilian.util.js';
 
+    window.loadSampleToArray = loadSampleToArray; 
+  </script>
+  <script type="text/javascript">
     // var maxiAudio = new Module.maxiAudio();
     // console.log('maxiAudio Module.object: ' + Module.maxiAudio);
     // console.log('maxiAudio instance in variable: ' + maxiAudio);
@@ -88,12 +95,11 @@
       // synthButton.addEventListener("click", () => changeSynth());
 
       const sequenceButton = document.getElementById('sequenceButton');
-      sequenceButton.addEventListener("click", () => changeSequence());
+      sequenceButton.addEventListener("click", () => evalSequence());
 
       const loadSamplesButton = document.getElementById('loadSamplesButton');
       // loadSamplesButton.addEventListener("click", () => loadSampleToAudioArray('909.wav'));
       loadSamplesButton.addEventListener("click", () => loadSamples());
-
 
       const checkBox = document.getElementById('box');
       checkBox.addEventListener("click", () => {
@@ -102,7 +108,7 @@
       });
     }
 
-    
+
     function playAudio() {
       if (audioContext === undefined) {
         try {
@@ -155,8 +161,7 @@
         const gainParam = audioWorkletNode.parameters.get('gain');
         gainParam.value += 0.5;
         return true;
-      }
-      else return false; 
+      } else return false;
     }
 
     function decreaseVolume() {
@@ -164,8 +169,7 @@
         const gainParam = audioWorkletNode.parameters.get('gain');
         gainParam.value -= 0.5;
         return true;
-      }
-      else return false; 
+      } else return false;
     }
 
 
@@ -227,7 +231,7 @@
       } else throw "Audio Context is not initialised!";
     }
 
-    function changeSequence() {
+    function evalSequence() {
       if (audioWorkletNode !== undefined) {
         let sequence;
         if (arguments.length == 0) {
@@ -247,23 +251,21 @@
 
     }
 
-    function changeSynth() {
+    function evalSynth() {
       if (audioWorkletNode !== undefined) {
         let userDefinedFunction;
         if (arguments.length == 0) {
           userDefinedFunction = fs[Math.floor(Math.random() * fs.length)];
-          audioWorkletNode.port.postMessage({
-            eval: `() => { return ${userDefinedFunction} }`
-          }); // Send JSON object with eval prop for evaluation in processor
+          console.log("Eval synth: " + userDefinedFunction);
         } else {
           userDefinedFunction = arguments[0];
-          audioWorkletNode.port.postMessage({
-            eval: `() => { return ${userDefinedFunction} }`
-          }); // Send JSON object with eval prop for evaluation in processor
         }
         // DEBUG:
-        // console.log("Change synth: " + userDefinedFunction);
-      }
+        audioWorkletNode.port.postMessage({
+          eval: `() => { return ${userDefinedFunction} }`
+        }); // Send JSON object with eval prop for evaluation in processor
+        return true;
+      } else return false;
     }
   </script>
 </body>

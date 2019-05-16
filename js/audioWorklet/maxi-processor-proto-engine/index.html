@@ -190,20 +190,20 @@
       }
     }
 
-    function increaseVolume() {
+    function increaseVolume(gain) {
       if (audioWorkletNode !== undefined) {
-        const gainParam = audioWorkletNode.parameters.get('gain');
+        const gainParam = audioWorkletNode.parameters.get(gain);
         gainParam.value += 0.5;
-        console.log("gain: " + gainParam.value);
+        console.log(gain + ": " + gainParam.value);
         return true;
       } else return false;
     }
 
-    function decreaseVolume() {
+    function decreaseVolume(gain) {
       if (audioWorkletNode !== undefined) {
-        const gainParam = audioWorkletNode.parameters.get('gain');
+        const gainParam = audioWorkletNode.parameters.get(gain);
         gainParam.value -= 0.5;
-        console.log("gain: " + gainParam.value);
+        console.log(gain + ": " + gainParam.value);
         return true;
       } else return false;
     }
@@ -295,6 +295,7 @@
         audioWorkletNode.port.postMessage({
           eval: `() => { return ${userDefinedFunction} }`
         }); // Send JSON object with eval prop for evaluation in processor
+        console.log("eval: " + userDefinedFunction);
         return true;
       } else return false;
     }

@@ -13,9 +13,12 @@ class MaxiProcessor extends AudioWorkletProcessor {
    */
   static get parameterDescriptors() { // TODO: parameters are static? can we not change this map with a setter?
     return [{
-      name: 'gain',
-      defaultValue: 5.0
-    }, ];
+      name: 'gainSyn',
+      defaultValue: 2.5
+    }, {
+      name: 'gainSeq',
+      defaultValue: 6.5
+    }];
   }
 
   /**
@@ -48,8 +51,7 @@ class MaxiProcessor extends AudioWorkletProcessor {
 
     this.initialised = false;
 
-
-    // Synth pool
+    // TODO: Synth pool
     this.osc = new Module.maxiOsc();
     this.oOsc = new Module.maxiOsc();
     this.aOsc = new Module.maxiOsc();
@@ -62,19 +64,19 @@ class MaxiProcessor extends AudioWorkletProcessor {
 
     this.port.onmessage = event => { // message port async handler
       for (const key in event.data) { // event from node scope packs JSON object
-        console.log(key + ": " + event.data[key]);
-        // console.log(this[key] + ": " + typeof this[key]);
 
-        if (key === 'sequence') {
+        // console.log(key + ": " + event.data[key]); // DEBUG
+
+        if (key === 'sequence') { // User-defined DRUM sequence
           this[key] = event.data[key];
 
-        } else if (key === 'eval') {
-          try {
+        } else if (key === 'eval') { // User-defined SIGNAL expression
+
+          try { // eval a property function, need to check if it changed   
             this.eval = eval(event.data[key]); // Make a function out of the synth-def string tranferred from the WebAudio Node scope
             this.eval(); // Evaluate the validity of the function before accepting it as the signal. If it is not valid, it will throw a TypeError here.
             this.signal = this.eval; // If function is valid, set it as a this.signal() function. this.signal() wil be used in the process() loop
-          } // eval a property function, need to check if it changed            
-          catch (err) {
+          } catch (err) {
             if (err instanceof TypeError) {
               console.log("Error in worklet evaluation: " + err.name + " – " + err.message);
             } else {
@@ -85,7 +87,6 @@ class MaxiProcessor extends AudioWorkletProcessor {
         } else {
           this[key].setSample(this.translateFloat32ArrayToBuffer(event.data[key]));
         }
-
 
       }
     };
@@ -374,13 +375,13 @@ class MaxiProcessor extends AudioWorkletProcessor {
           }
         }
 
-        if (parameters.gain.length === 1) { // if gain is constant, lenght === 1, gain[0]
+        if (parameters.gainSyn.length === 1 && parameters.gainSeq.length === 1) { // if gain is constant, lenght === 1, gain[0]
           for (let i = 0; i < 128; ++i) {
-            outputChannel[i] = this.signal() * this.logGain(parameters.gain[0]) + this.loopPlayer() * this.logGain(parameters.gain[0]);
+            outputChannel[i] = this.signal() * this.logGain(parameters.gainSyn[0]) + this.loopPlayer() * this.logGain(parameters.gainSeq[0]);
           }
         } else { // if gain is varying, lenght === 128, gain[i] for each sample of the render quantum
           for (let i = 0; i < 128; ++i) {
-            outputChannel[i] = this.signal() * this.logGain(parameters.gain[i]) + this.loopPlayer() * this.logGain(parameters.gain[i]);
+            outputChannel[i] = this.signal() * this.logGain(parameters.gainSyn[i]) + this.loopPlayer() * this.logGain(parameters.gainSeq[i]);
           }
         }
         // DEBUG:

@@ -23,8 +23,8 @@
 
   <button id="playButton">Play</button>
   <button id="stopButton">Stop</button>
-  <button id="plusButton">vol+</button>
-  <button id="minusButton">vol–</button>
+  <button id="plusButton">Vol+</button>
+  <button id="minusButton">Vol–</button>
   <!-- <button id="synthButton">Change Synth</button> -->
   <button id="loadSamplesButton">Load Samples</button>
   <button id="sequenceButton">Eval Sequence</button>
@@ -136,15 +136,20 @@
               console.log(`Error message from port: ` + event.data);
             }; // error from the message port.
             audioWorkletNode.connect(audioContext.destination);
+            return true;
           }).catch((e => console.log("Error on loading worklet: ", e)));
         } catch (err) {
           console.log("AudioWorklet not supported in this browser: ", err.message);
+          return false;
         }
       } else {
-        if (audioContext.state !== "suspended")
+        if (audioContext.state !== "suspended") {
           stopAudio();
-        else
+          return false;
+        } else {
           audioContext.resume();
+          return true;
+        }
       }
     }
 
@@ -160,6 +165,7 @@
       if (audioWorkletNode !== undefined) {
         const gainParam = audioWorkletNode.parameters.get('gain');
         gainParam.value += 0.5;
+        console.log("gain: " + gainParam.value);
         return true;
       } else return false;
     }
@@ -168,6 +174,7 @@
       if (audioWorkletNode !== undefined) {
         const gainParam = audioWorkletNode.parameters.get('gain');
         gainParam.value -= 0.5;
+        console.log("gain: " + gainParam.value);
         return true;
       } else return false;
     }
@@ -213,15 +220,6 @@
       } else throw "Audio Context is not initialised!";
     }
 
-
-    // audioFile.onchange = () => {
-    //   var files = this.files;
-    //   var file = URL.createObjectURL(files[0]); 
-    //   audioPlayer.src = file; 
-    //   audioPlayer.play();
-    // };
-
-
     function loadSamples() {
       if (audioContext !== undefined) {
         loadSampleToArray(audioContext, "snare", "909.wav", sendAudioArray);
@@ -245,10 +243,11 @@
             sequence: `${sequence}`
           }); // Send JSON object with eval prop for evaluation in processor
         }
+        return true;
         // DEBUG:
         // console.log("Change Sequence: " + sequence);
       }
-
+      return false;
     }
 
     function evalSynth() {
@@ -256,7 +255,7 @@
         let userDefinedFunction;
         if (arguments.length == 0) {
           userDefinedFunction = fs[Math.floor(Math.random() * fs.length)];
-          console.log("Eval synth: " + userDefinedFunction);
+          console.log("eval: " + userDefinedFunction);
         } else {
           userDefinedFunction = arguments[0];
         }

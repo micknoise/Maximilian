@@ -1,9 +1,5 @@
 import Module from '../build/maximilian.wasmmodule.js';
 
-// import * from './maximilian.wasmmodule.js';
-
-// import './maximilian.wasmmodule.js';
-
 /**
  * The main Maxi Audio wrapper with a WASM-powered AudioWorkletProcessor.
  *
@@ -33,8 +29,6 @@ class MaxiProcessor extends AudioWorkletProcessor {
   constructor() {
     super();
     this.sampleRate = 44100;
-    this.sampleIndex = 0;
-
     this.DAC = [0];
 
     // let m = maximilian;
@@ -65,8 +59,8 @@ class MaxiProcessor extends AudioWorkletProcessor {
           this[key] = event.data[key]; // De-structure into local props
         }
         this.eval = eval(this.eval); // Make a function out of the synth-def string tranferred from the WebAudio Node scope
-        this.eval(); // Evaluate the validity of the function before accepting it as the signal. It will throw a TypeError here if it is not valid.
-        this.signal = eval(this.eval); // If function is valid, set it as a this.signal() function. this.signal() wil be used in the process() loop
+        this.eval(); // Evaluate the validity of the function before accepting it as the signal. If it is not valid, it will throw a TypeError here.
+        this.signal = this.eval; // If function is valid, set it as a this.signal() function. this.signal() wil be used in the process() loop
       } // eval a property function, need to check if it changed
       catch (err) {
         if (err instanceof TypeError) {
@@ -280,17 +274,16 @@ class MaxiProcessor extends AudioWorkletProcessor {
 
         if (parameters.gain.length === 1) { // if gain is constant, lenght === 1, gain[0]
           for (let i = 0; i < 128; ++i) {
-            outputChannel[i] = this.signal() * this.sampleIndex / this.sampleRate * this.logGain(parameters.gain[0]);
+            outputChannel[i] = this.signal() * this.logGain(parameters.gain[0]);
           }
         } else { // if gain is varying, lenght === 128, gain[i] for each sample of the render quantum
           for (let i = 0; i < 128; ++i) {
-            outputChannel[i] = this.signal() * this.sampleIndex / this.sampleRate * this.logGain(parameters.gain[i]);
+            outputChannel[i] = this.signal() * this.logGain(parameters.gain[i]);
           }
         }
         // DEBUG:
         // console.log(`inputs ${inputs.length}, outputsLen ${outputs.length}, outputLen ${output.length}, outputChannelLen ${outputChannel.length}`);
       }
-      this.sampleIndex++;
     }
     return true;
   }

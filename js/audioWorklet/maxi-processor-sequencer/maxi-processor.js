@@ -14,7 +14,7 @@ class MaxiProcessor extends AudioWorkletProcessor {
   static get parameterDescriptors() { // TODO: parameters are static? can we not change this map with a setter?
     return [{
       name: 'gain',
-      defaultValue: 0.5
+      defaultValue: 5.0
     }, ];
   }
 
@@ -24,7 +24,6 @@ class MaxiProcessor extends AudioWorkletProcessor {
   constructor() {
     super();
     this.sampleRate = 44100;
-    this.sampleIndex = 0;
 
     this.DAC = [0];
 
@@ -73,7 +72,7 @@ class MaxiProcessor extends AudioWorkletProcessor {
         // console.log("key: " + key);
         // console.log("key: " + );
         console.log(key + ": " + event.data[key]);
-        console.log(this[key] + ": " + typeof this[key]);
+        // console.log(this[key] + ": " + typeof this[key]);
         if (key !== 'sequence')
           this[key].setSample(this.translateFloat32ArrayToBuffer(event.data[key]));
         else
@@ -146,9 +145,6 @@ class MaxiProcessor extends AudioWorkletProcessor {
         case "c":
           this.closed.trigger();
           break;
-        case "m":
-          this.mnistrel.trigger();
-          break;
           // default:
           //   this.kick.trigger();
       }
@@ -209,17 +205,16 @@ class MaxiProcessor extends AudioWorkletProcessor {
 
         if (parameters.gain.length === 1) { // if gain is constant, lenght === 1, gain[0]
           for (let i = 0; i < 128; ++i) {
-            outputChannel[i] = this.loopPlayer() * this.sampleIndex / this.sampleRate * this.logGain(parameters.gain[0]);
+            outputChannel[i] = this.loopPlayer() * this.logGain(parameters.gain[0]);
           }
         } else { // if gain is varying, lenght === 128, gain[i] for each sample of the render quantum
           for (let i = 0; i < 128; ++i) {
-            outputChannel[i] = this.loopPlayer() * this.sampleIndex / this.sampleRate * this.logGain(parameters.gain[i]);
+            outputChannel[i] = this.loopPlayer() * this.logGain(parameters.gain[i]);
           }
         }
         // DEBUG:
         // console.log(`inputs ${inputs.length}, outputsLen ${outputs.length}, outputLen ${output.length}, outputChannelLen ${outputChannel.length}`);
       }
-      this.sampleIndex++;
     }
     return true;
   }

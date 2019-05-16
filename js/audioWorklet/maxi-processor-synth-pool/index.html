@@ -22,9 +22,10 @@
 
   <button id="playButton">Play</button>
   <button id="stopButton">Stop</button>
-  <button id="plusButton">vol+</button>
-  <button id="minusButton">vol–</button>
-  <button id="evalSynthButton">Eval Synth</button>
+  <button id="plusButton">Vol+</button>
+  <button id="minusButton">Vol–</button>
+  <button id="synthButton">Change Synth</button>
+  <!-- <button id="evalSynthButton">Eval Synth</button> -->
   <input type="checkbox" id="box" value="false">Load test<br>
 
   <script type="text/javascript">
@@ -91,14 +92,14 @@
       const minusButton = document.getElementById('minusButton');
       minusButton.addEventListener("click", () => decreaseVolume());
 
-      const evalSynthButton = document.getElementById('evalSynthButton');
-      evalSynthButton.addEventListener("click", () => evalSynth());
+      const synthButton = document.getElementById('synthButton');
+      synthButton.addEventListener("click", () => changeSynth());
+
+      // const evalSynthButton = document.getElementById('evalSynthButton');
+      // evalSynthButton.addEventListener("click", () => evalSynth());
 
       const checkBox = document.getElementById('box');
-      checkBox.addEventListener("click", () => {
-        if (audioContext.state === "suspended") playAudio();
-        setInterval('changeSynth()', SYNTH_CHANGE_MS)
-      });
+      checkBox.addEventListener("click", () => loadTest());
     }
 
     function playAudio() {
@@ -152,6 +153,7 @@
       if (audioWorkletNode !== undefined) {
         const gainParam = audioWorkletNode.parameters.get('gain');
         gainParam.value += 0.5;
+        console.log("gain: " + gainParam.value);
         return true;
       } else return false;
     }
@@ -160,8 +162,13 @@
       if (audioWorkletNode !== undefined) {
         const gainParam = audioWorkletNode.parameters.get('gain');
         gainParam.value -= 0.5;
+        console.log("gain: " + gainParam.value);
         return true;
       } else return false;
+    }
+
+    function changeSynth() {
+      evalSynth();
     }
 
     function evalSynth() {
@@ -169,7 +176,7 @@
         let userDefinedFunction;
         if (arguments.length == 0) {
           userDefinedFunction = fs[Math.floor(Math.random() * fs.length)];
-          console.log("Eval synth: " + userDefinedFunction);
+          console.log("eval: " + userDefinedFunction);
         } else {
           userDefinedFunction = arguments[0];
         }
@@ -179,7 +186,12 @@
         }); // Send JSON object with eval prop for evaluation in processor
         return true;
       } else return false;
+    }
 
+    function loadTest() {
+      if (audioContext.state === "suspended")
+        playAudio();
+      setInterval('changeSynth()', SYNTH_CHANGE_MS)
     }
   </script>
 </body>

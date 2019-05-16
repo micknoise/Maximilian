@@ -45,47 +45,35 @@ class MaxiProcessor extends AudioWorkletProcessor {
     // this.oOsc = new m.maxiOsc();
     // this.aOsc = new m.maxiOsc();
 
-
-
     this.osc = new Module.maxiOsc();
     this.oOsc = new Module.maxiOsc();
     this.aOsc = new Module.maxiOsc();
-
 
     // this.setupMonosynth();
 
     this.setupPolysynth();
 
-
-
     this.signal = () => {
       return this.osc.sinewave(440);
     };
 
-
     this.port.onmessage = event => { // message port async handler
 
       try {
-        console.log("Receving message in Worklet evaluation: ");
-        for (const key in event.data) { // event from node scope packs JSON object
-          this[key] = event.data[key]; // de-structure into local props
+        // console.log("Receving message in Worklet evaluation: ");
+        for (const key in event.data) { // Event from WebAudio Node scope packs JSON object
+          this[key] = event.data[key]; // De-structure into local props
         }
-        // TODO: explore SharedArrayBtuffer
-
-        console.log("Before Error in Worklet evaluation: ");
-        this.signal = eval(this.eval);
-        console.log("After Error in Worklet evaluation: ");
+        this.eval = eval(this.eval); // Make a function out of the synth-def string tranferred from the WebAudio Node scope
+        this.eval(); // Evaluate the validity of the function before accepting it as the signal. It will throw a TypeError here if it is not valid.
+        this.signal = eval(this.eval); // If function is valid, set it as a this.signal() function. this.signal() wil be used in the process() loop
       } // eval a property function, need to check if it changed
       catch (err) {
-        console.log("Error in Worklet evaluation: " + err.name + " – " + err.message);
-
-        if (error instanceof TypeError) {} else {
-
+        if (err instanceof TypeError) {
+          console.log("Error in worklet evaluation: " + err.name + " – " + err.message);
+        } else {
+          console.log("Error in worklet evaluation: " + err.name + " – " + err.message);
         }
-
-        this.signal = () => {
-          return this.osc.sinewave(440);
-        };
       }
     };
 

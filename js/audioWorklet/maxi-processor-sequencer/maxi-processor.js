@@ -34,32 +34,13 @@ class MaxiProcessor extends AudioWorkletProcessor {
     this.oldClock = 0;
     this.phase = 0;
 
-    this.maxiAudio = new Module.maxiAudio();
     this.clock = new Module.maxiOsc();
     this.kick = new Module.maxiSample();
     this.snare = new Module.maxiSample();
     this.closed = new Module.maxiSample();
     this.open = new Module.maxiSample();
-    this.mnistrel = new Module.maxiSample();
-
-    // this.maxiAudio.loadSample("./909b.wav", this.kick);
-    // this.maxiAudio.loadSample("./909.wav", this.snare);
-    // this.maxiAudio.loadSample("./909closed.wav", this.closedHat);
-    // this.maxiAudio.loadSample("./909open.wav", this.openHat);
-
-    // this.kick.setSample(this.generateNoiseBuffer(44100));
-    // this.snare.setSample(this.generateNoiseBuffer(44100));
-    // this.closedHat.setSample(this.generateNoiseBuffer(44100));
-    // this.openHat.setSample(this.generateNoiseBuffer(44100));
-
-
-    // this.snare.setSample(this.generateNoiseBuffer(44100));
-    // this.closedHat.setSample(this.generateNoiseBuffer(44100));
-    // this.openHat.setSample(this.generateNoiseBuffer(44100));
-
 
     this.initialised = false;
-
 
     // this.sequence = "k k s o c k";
     this.sequence = "ksc o o ";
@@ -78,11 +59,6 @@ class MaxiProcessor extends AudioWorkletProcessor {
         else
           this[key] = event.data[key];
       }
-      // source.buffer = buffer;
-      // source.loop = true;
-      // source.start(0);
-      // this.kick.setSample(this.translateBlobToBuffer(this.audioBlob));
-      // this.kick.setSample(this.audioArray));
     };
   }
 
@@ -170,7 +146,6 @@ class MaxiProcessor extends AudioWorkletProcessor {
   }
 
   logGain(gain) {
-    // return 0.095 * Math.exp(this.gain * 0.465);
     return 0.0375 * Math.exp(gain * 0.465);
   }
 

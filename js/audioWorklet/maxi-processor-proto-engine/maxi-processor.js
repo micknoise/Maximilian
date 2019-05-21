@@ -1,3 +1,5 @@
+// 'use strict';
+
 import Module from '../build/maximilian.wasmmodule.js';
 
 /**
@@ -37,7 +39,7 @@ class MaxiProcessor extends AudioWorkletProcessor {
     this.oldClock = 0;
     this.phase = 0;
 
-    this.maxiAudio = new Module.maxiAudio();
+    // this.maxiAudio = new Module.maxiAudio();
     this.clock = new Module.maxiOsc();
     this.kick = new Module.maxiSample();
     this.snare = new Module.maxiSample();

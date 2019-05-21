@@ -59,8 +59,8 @@ class MaxiProcessor extends AudioWorkletProcessor {
           this[key] = event.data[key]; // De-structure into local props
         }
         this.eval = eval(this.eval); // Make a function out of the synth-def string tranferred from the WebAudio Node scope
-        this.eval(); // Evaluate the validity of the function before accepting it as the signal. If it is not valid, it will throw a TypeError here.
-        this.signal = this.eval; // If function is valid, set it as a this.signal() function. this.signal() wil be used in the process() loop
+        this.eval(); // Evaluate the validity of the function before accepting it as the signal. If it is not valid, it will throw a TypeError here, and this.signal will not change
+        this.signal = this.eval; // If function is valid, assign it to this.signal() function. this.signal() wil be used in the process() loop
       } // eval a property function, need to check if it changed
       catch (err) {
         if (err instanceof TypeError) {
@@ -96,7 +96,6 @@ class MaxiProcessor extends AudioWorkletProcessor {
     this.VCO1out = [];
     this.VCO2out = [];
     this.LFO1out = [];
-    this.LFO2out = [];
     this.VCFout = [];
     this.ADSRout = [];
 

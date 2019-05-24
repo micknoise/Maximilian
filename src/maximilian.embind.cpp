@@ -343,21 +343,21 @@ EMSCRIPTEN_BINDINGS(my_module) {
 
 	// TODO:FB – Uncomment – this is giving me compilation errors on EM
 	// MAXI CLOCK
-	// class_<maxiClock>("maxiClock")
-	// //	.constructor<>()
-	// .smart_ptr_constructor("shared_ptr<maxiClock>",&std::make_shared<maxiClock>)
-	// .function("ticker", &maxiClock::ticker)
-	// .function("setTempo", &maxiClock::setTempo)
-	// .function("setTicksPerBeat", &maxiClock::setTicksPerBeat)
-	// .function("isTick", &maxiClock::isTick)
-	// .property("currentCount", &maxiClock::getCurrentCount, &maxiClock::setCurrentCount)
-	// .property("currentCount", &maxiClock::getLastCount, &maxiClock::setLastCount)
-	// .property("playHead", &maxiClock::getPlayHead, &maxiClock::setPlayHead)
-	// .property("bps", &maxiClock::getBps, &maxiClock::setBps)
-	// .property("bpm", &maxiClock::getBpm, &maxiClock::setBpm)
-	// .property("tick", &maxiClock::getTick, &maxiClock::setTick)
-	// .property("ticks", &maxiClock::getTicks, &maxiClock::setTicks)
-	// ;
+	class_<maxiClock>("maxiClock")
+	//	.constructor<>()
+	.smart_ptr_constructor("shared_ptr<maxiClock>",&std::make_shared<maxiClock>)
+	.function("ticker", &maxiClock::ticker)
+	.function("setTempo", &maxiClock::setTempo)
+	.function("setTicksPerBeat", &maxiClock::setTicksPerBeat)
+	.function("isTick", &maxiClock::isTick)
+	.property("currentCount", &maxiClock::getCurrentCount, &maxiClock::setCurrentCount)
+	.property("lastCount", &maxiClock::getLastCount, &maxiClock::setLastCount)
+	.property("playHead", &maxiClock::getPlayHead, &maxiClock::setPlayHead)
+	.property("bps", &maxiClock::getBps, &maxiClock::setBps)
+	.property("bpm", &maxiClock::getBpm, &maxiClock::setBpm)
+	.property("tick", &maxiClock::getTick, &maxiClock::setTick)
+	.property("ticks", &maxiClock::getTicks, &maxiClock::setTicks)
+	;
 
   //	class_<testVectorHolder>("testVectorHolder")
 	//	.constructor<>()
@@ -404,19 +404,19 @@ EMSCRIPTEN_BINDINGS(my_module) {
 //     // LIBS
 //
 //
-//     // MAXI TIMESTRETCH
-//     class_<maxiTimestretch<hannWinFunctor> >("maxiTimestretch")
-//     .smart_ptr_constructor("shared_ptr<maxiTimestretch<hannWinFunctor> >",&std::make_shared<maxiTimestretch<hannWinFunctor> >)
-//     //    .smart_ptr_constructor<maxiSample*>("shared_ptr<maxiTimestretch<hannWinFunctor> >",&std::make_shared<maxiTimestretch<hannWinFunctor> >)
-//     .function("setSample", &maxiTimestretch<hannWinFunctor>::setSample, allow_raw_pointers())
-//
-//     .function("getNormalisedPosition", &maxiTimestretch<hannWinFunctor>::getNormalisedPosition)
-//     .function("getPosition", &maxiTimestretch<hannWinFunctor>::getPosition)
-//     .function("setPosition", &maxiTimestretch<hannWinFunctor>::setPosition)
-//
-//     .function("play", &maxiTimestretch<hannWinFunctor>::play)
-//     .function("play2", &maxiTimestretch<hannWinFunctor>::play2)
-//     ;
+    // MAXI TIMESTRETCH
+    // class_<maxiTimestretch<hannWinFunctor> >("maxiTimestretch")
+    // .smart_ptr_constructor("shared_ptr<maxiTimestretch<hannWinFunctor> >",&std::make_shared<maxiTimestretch<hannWinFunctor> >)
+    // //    .smart_ptr_constructor<maxiSample*>("shared_ptr<maxiTimestretch<hannWinFunctor> >",&std::make_shared<maxiTimestretch<hannWinFunctor> >)
+    // .function("setSample", &maxiTimestretch<hannWinFunctor>::setSample, allow_raw_pointers())
+		//
+    // .function("getNormalisedPosition", &maxiTimestretch<hannWinFunctor>::getNormalisedPosition)
+    // .function("getPosition", &maxiTimestretch<hannWinFunctor>::getPosition)
+    // .function("setPosition", &maxiTimestretch<hannWinFunctor>::setPosition)
+		//
+    // .function("play", &maxiTimestretch<hannWinFunctor>::play)
+    // .function("play2", &maxiTimestretch<hannWinFunctor>::play2)
+    // ;
 //
 //     // MAXI PITCHSHIFT
 //

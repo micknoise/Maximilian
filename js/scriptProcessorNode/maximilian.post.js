@@ -172,7 +172,6 @@ Module.maxiAudio.play = function () {
 
 Module.INPUT_TYPE = {NONE:-2, DEFAULT:-1};
 Module.maxiAudio.prototype.init = function (audioIn = Module.INPUT_TYPE.NONE) {
-
     // Temporary patch until all browsers support unprefixed context.
     this.context = new (window.AudioContext || window.webkitAudioContext)();
     this.source = this.context.createBufferSource();

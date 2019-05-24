@@ -5,7 +5,7 @@ EMSCR=em++
 SRC=../../src/maximilian.cpp
 SRC_EM=../../src/maximilian.embind.cpp
 # SRC_LIBS=../../src/libs/*.cpp
-SRC_LIBS=../../src/libs/maxiSynths.cpp ../../src/libs/maxiGrains.cpp
+SRC_LIBS=../../src/libs/maxiSynths.cpp ../../src/libs/maxiGrains.cpp ../../src/libs/maxiFFT.cpp ../../src/libs/fft.cpp
 # SRC_LIBS=../../src/libs/maxiGrains.cpp
 
 # POST_JS – external js handling web audio etc

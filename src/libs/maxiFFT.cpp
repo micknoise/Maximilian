@@ -42,34 +42,21 @@ using namespace std;
 //F F T
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void maxiFFT::setup(int _fftSize, int _windowSize, int _hopSize) {
+void maxiFFT::setup(int _fftSize, int _hopSize, int _windowSize) {
 	_fft.setup(_fftSize);
 	fftSize = _fftSize;
-	windowSize = _windowSize;
+    windowSize = _windowSize ? _windowSize : fftSize;
 	bins = fftSize / 2;
 	hopSize = _hopSize;
-//    buffer = (float *) malloc(fftSize * sizeof(float));
-//    magnitudes = (float *) malloc(bins * sizeof(float));
-//    magnitudesDB = (float *) malloc(bins * sizeof(float));
-//    phases = (float *) malloc(bins * sizeof(float));
     buffer.resize(fftSize,0);
     magnitudes.resize(bins,0);
     magnitudesDB.resize(bins,0);
     phases.resize(bins,0);
-//    avgPower = new float;
-//    memset(buffer, 0, fftSize * sizeof(float));
-//    memset(magnitudes, 0, bins * sizeof(float));
-//    memset(magnitudesDB, 0, bins * sizeof(float));
-//    memset(phases, 0, bins * sizeof(float));
-	avgPower = 0;
-	pos =windowSize - hopSize;
+    pos =windowSize - hopSize;
 	newFFT = 0;
-//    window = (float*) malloc(fftSize * sizeof(float));
-//    memset(window, 0, fftSize * sizeof(float));
     window.resize(fftSize,0);
 	fft::genWindow(3, windowSize, &window[0]);
-//    real = _fft.getReal();
-//    imag = _fft.getImg();
+    recalc = true;
 }
 
 bool maxiFFT::process(float value, fftModes mode) {
@@ -93,21 +80,23 @@ bool maxiFFT::process(float value, fftModes mode) {
 #endif
 		//shift buffer back by one hop size
 		memcpy(&buffer[0], &buffer[0] + hopSize, (windowSize - hopSize) * sizeof(float));
-		//set the new data to zero (is this necessary?, it will get overwritten)
-		memset(&buffer[0] + windowSize - hopSize, 0, hopSize * sizeof(float));
 		//reset pos to start of hop
 		pos= windowSize - hopSize;
+        recalc = true;
 	}
 	return newFFT;
 }
 
-float* maxiFFT::magsToDB() {
+vector<float> & maxiFFT::magsToDB() {
+    if(recalc) {
 #if defined(__APPLE_CC__) && !defined(_NO_VDSP)
-	_fft.convToDB_vdsp(&magnitudes[0], &magnitudesDB[0]);
+        _fft.convToDB_vdsp(&magnitudes[0], &magnitudesDB[0]);
 #else
-	_fft.convToDB(&magnitudes[0], &magnitudesDB[0]);
+        _fft.convToDB(&magnitudes[0], &magnitudesDB[0]);
 #endif
-	return &magnitudesDB[0];
+        recalc = false;
+    }
+	return magnitudesDB;
 }
 
 float maxiFFT::spectralFlatness() {
@@ -133,59 +122,47 @@ float maxiFFT::spectralCentroid() {
 
 
 
-//maxiFFT::~maxiFFT() {
-////    delete _fft;
-////    if (buffer)
-////        delete[] buffer,magnitudes,phases,window, avgPower, magnitudesDB;
-//}
-
-
-
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //I N V E R S E  F F T
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void maxiIFFT::setup(int _fftSize, int _windowSize, int _hopSize) {
+void maxiIFFT::setup(int _fftSize, int _hopSize, int _windowSize) {
 	_fft.setup(_fftSize);
 	fftSize = _fftSize;
-	windowSize = _windowSize;
+    windowSize = _windowSize ? _windowSize : fftSize;
 	bins = fftSize / 2;
 	hopSize = _hopSize;
-//    buffer = (float *) malloc(fftSize * sizeof(float));
-//    ifftOut = (float *) malloc(fftSize * sizeof(float));
     buffer.resize(fftSize,0);
     ifftOut.resize(fftSize,0);
 	pos =0;
-//    window = (float*) malloc(fftSize * sizeof(float));
     window.resize(fftSize,0);
-//    memset(window, 0, fftSize * sizeof(float));
 	fft::genWindow(3, windowSize, &window[0]);
 }
 
-float maxiIFFT::process(float *data1, float *data2, fftModes mode) {
+float maxiIFFT::process(vector<float> &mags, vector<float> &phases, fftModes mode) {
 	if (0==pos) {
 		//do ifft
 //        memset(ifftOut, 0, fftSize * sizeof(float));
         std::fill(ifftOut.begin(), ifftOut.end(), 0);
 #if defined(__APPLE_CC__) && !defined(_NO_VDSP)
         if (mode == maxiIFFT::SPECTRUM) {
-            _fft.inversePowerSpectrum_vdsp(0, &ifftOut[0], &window[0], data1, data2);
+            _fft.inversePowerSpectrum_vdsp(0, &ifftOut[0], &window[0], mags.data(), phases.data());
         }else{
-            _fft.inverseFFTComplex_vdsp(0, &ifftOut[0], &window[0], data1, data2);
+            _fft.inverseFFTComplex_vdsp(0, &ifftOut[0], &window[0], mags.data(), phases.data());
         }
 #else
         if (mode == maxiIFFT::SPECTRUM) {
-            _fft.inversePowerSpectrum(0, &ifftOut[0], &window[0], data1, data2);
+            _fft.inversePowerSpectrum(0, &ifftOut[0], &window[0], mags.data(), phases.data());
         }else{
-            _fft.inverseFFTComplex(0, &ifftOut[0], &window[0], data1, data2);
+            _fft.inverseFFTComplex(0, &ifftOut[0], &window[0], mags.data(), phases.data());
         }
 #endif
 		//add to output
 		//shift back by one hop
 		memcpy(&buffer[0], &buffer[0]+hopSize, (fftSize - hopSize) * sizeof(float));
 		//clear the end chunk
-		memset(&buffer[0] + (fftSize - hopSize), 0, hopSize * sizeof(float));
+        memset(&buffer[0] + (fftSize - hopSize), 0, hopSize * sizeof(float));
 		//merge new output
 		for(int i=0; i < fftSize; i++) {
 			buffer[i] += ifftOut[i];
@@ -194,8 +171,8 @@ float maxiIFFT::process(float *data1, float *data2, fftModes mode) {
 
 	nextValue = buffer[pos];
 	//limit the values, this alg seems to spike occasionally (and break the audio drivers)
-	if (nextValue > 0.99999f) nextValue = 0.99999f;
-	if (nextValue < -0.99999f) nextValue = -0.99999f;
+    if (nextValue > 0.99999f) nextValue = 0.99999f;
+    if (nextValue < -0.99999f) nextValue = -0.99999f;
 	if (hopSize == ++pos ) {
 		pos=0;
 	}

@@ -1,5 +1,6 @@
 #include "maximilian.h"
 #include "maxiGrains.h"
+#include "maxiFFT.h"
 
 //
 maxiOsc osc1, osc2, osc3, osc4, osc5;
@@ -8,6 +9,8 @@ maxiDistortion dist;
 maxiBiquad biquad;
 maxiSample samp;
 maxiStretch<hannWinFunctor> ts;
+maxiFFT fft;
+maxiIFFT ifft;
 
 void setup() {//some inits
     cout << "Setup";
@@ -17,6 +20,9 @@ void setup() {//some inits
     samp.trigger();
 //    samp.save("/tmp/test.wav");
     ts.setSample(&samp);
+    fft.setup(2048, 512);
+    ifft.setup(2048, 512);
+
 }
 
 void play(double *output) {
@@ -28,7 +34,10 @@ void play(double *output) {
 ////    w = biquad.play(w);
 //    w = dist.atanDist(w,10);
 //    w = w + samp.play();
-    w = w + ts.playAtPosition(2.0, osc1.phasor(0.4), 0.05, 2);
+    w = w + ts.play(1, 1, 0.05, 2);
+    if (fft.process(w)) {
+    };
+    w = ifft.process(fft.getMagnitudes(), fft.getPhases());
 //    w = w + samp.play();
     output[0]= output[1] = w;
 }

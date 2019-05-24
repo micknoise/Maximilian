@@ -15,22 +15,36 @@
 
 <body>
 
-  <h1>Load-testing an audio worklet loaded with Maximilian</h1>
+  <h1>Sequencer with Markov with an audio worklet loaded with Maximilian</h1>
   <p id="funcs"></p>
-  <p>Synth defs on the UI thread are posted to the worklet. Check out your dev console (Command+Option+J).</p>
+  <p>Samples are loaded at initialisation from global scope sequences injected from. Check out your dev console
+    (Command+Option+J).</p>
   <p>You might need to clean the cache when you are testing your worklet processor code</p>
 
   <button id="playButton">Play</button>
   <button id="stopButton">Stop</button>
-  <button id="plusButton">vol+</button>
-  <button id="minusButton">vol–</button>
-  <button id="synthButton">Change Synth</button>
+  <button id="plusButton">Vol+</button>
+  <button id="minusButton">Vol–</button>
+  <!-- <button id="synthButton">Change Synth</button> -->
   <button id="loadSamplesButton">Load Samples</button>
+  <button id="sequenceButton">Eval Sequence</button>
   <input type="checkbox" id="box" value="false">Load test<br>
+  <!-- <input id="audioFile" type="file" accept="audio/*" />
+  <audio id="audioPlayer" /> -->
 
   <script type="module">
-    import Module from '../build/maximilian.wasmmodule.js';
-    import { loadSampleToArray } from '../build/maximilian.wasmmodule.js';
+    // NOTE: We don't need to conflate the WASM with utils for loading samples, so we segregate them from post.js
+    // import Module from '../build/maximilian.wasmmodule.js';
+    // import {
+    //   loadSampleToArray
+    // } from '../build/maximilian.wasmmodule.js';
+    import {
+      loadSampleToArray
+    } from '../common/maximilian.util.js';
+
+    window.loadSampleToArray = loadSampleToArray; 
+  </script>
+  <script type="text/javascript">
     // var maxiAudio = new Module.maxiAudio();
     // console.log('maxiAudio Module.object: ' + Module.maxiAudio);
     // console.log('maxiAudio instance in variable: ' + maxiAudio);
@@ -38,7 +52,6 @@
     // console.log('maxiAudio output: ' + maxiAudio.output);
     // console.log('maxiAudio init: ' + maxiAudio.init);
     // console.log('maxiAudio loadSampleToArray: ' + loadSampleToArray('909.wav')); // Need to work with AudioContext initialised
-
 
     let audioContext;
     let audioWorkletNode;
@@ -51,10 +64,7 @@
       `kc sss kccs skckos`,
     ];
 
-
-
     const SYNTH_CHANGE_MS = 50;
-
 
     class MaxiNode extends AudioWorkletNode {
 
@@ -81,13 +91,15 @@
       const minusButton = document.getElementById('minusButton');
       minusButton.addEventListener("click", () => decreaseVolume());
 
-      const synthButton = document.getElementById('synthButton');
-      synthButton.addEventListener("click", () => changeSynth());
+      // const synthButton = document.getElementById('synthButton');
+      // synthButton.addEventListener("click", () => changeSynth());
+
+      const sequenceButton = document.getElementById('sequenceButton');
+      sequenceButton.addEventListener("click", () => evalSequence());
 
       const loadSamplesButton = document.getElementById('loadSamplesButton');
       // loadSamplesButton.addEventListener("click", () => loadSampleToAudioArray('909.wav'));
       loadSamplesButton.addEventListener("click", () => loadSamples());
-
 
       const checkBox = document.getElementById('box');
       checkBox.addEventListener("click", () => {
@@ -95,6 +107,7 @@
         setInterval('changeSynth()', SYNTH_CHANGE_MS)
       });
     }
+
 
     function playAudio() {
       if (audioContext === undefined) {
@@ -123,15 +136,20 @@
               console.log(`Error message from port: ` + event.data);
             }; // error from the message port.
             audioWorkletNode.connect(audioContext.destination);
+            return true;
           }).catch((e => console.log("Error on loading worklet: ", e)));
         } catch (err) {
           console.log("AudioWorklet not supported in this browser: ", err.message);
+          return false;
         }
       } else {
-        if (audioContext.state !== "suspended")
+        if (audioContext.state !== "suspended") {
           stopAudio();
-        else
+          return false;
+        } else {
           audioContext.resume();
+          return true;
+        }
       }
     }
 
@@ -146,15 +164,19 @@
     function increaseVolume() {
       if (audioWorkletNode !== undefined) {
         const gainParam = audioWorkletNode.parameters.get('gain');
-        gainParam.value += 0.01;
-      }
+        gainParam.value += 0.5;
+        console.log("gain: " + gainParam.value);
+        return true;
+      } else return false;
     }
 
     function decreaseVolume() {
       if (audioWorkletNode !== undefined) {
         const gainParam = audioWorkletNode.parameters.get('gain');
-        gainParam.value -= 0.01;
-      }
+        gainParam.value -= 0.5;
+        console.log("gain: " + gainParam.value);
+        return true;
+      } else return false;
     }
 
 
@@ -188,45 +210,61 @@
     }
 
     function sendFloat32NoiseBuffer() {
-      this.sendAudioArray( this.generateNoiseBuffer(44100) );
+      this.sendAudioArray(this.generateNoiseBuffer(44100));
     }
 
     function loadSampleToAudioArray(url) {
 
-      if(audioContext !== undefined){
-        loadSampleToArray(audioContext, url, sendAudioArray); 
-      }
-      else throw "Audio Context is not initialised!"; 
+      if (audioContext !== undefined) {
+        loadSampleToArray(audioContext, url, sendAudioArray);
+      } else throw "Audio Context is not initialised!";
     }
 
     function loadSamples() {
-      if(audioContext !== undefined){
-        loadSampleToArray(audioContext, "snare", "909.wav", sendAudioArray); 
-        loadSampleToArray(audioContext, "kick", "909b.wav", sendAudioArray); 
-        loadSampleToArray(audioContext, "closed", "909closed.wav", sendAudioArray); 
-        loadSampleToArray(audioContext, "open", "909open.wav", sendAudioArray); 
-      }
-      else throw "Audio Context is not initialised!"; 
+      if (audioContext !== undefined) {
+        loadSampleToArray(audioContext, "snare", "909.wav", sendAudioArray);
+        loadSampleToArray(audioContext, "kick", "909b.wav", sendAudioArray);
+        loadSampleToArray(audioContext, "closed", "909closed.wav", sendAudioArray);
+        loadSampleToArray(audioContext, "open", "909open.wav", sendAudioArray);
+      } else throw "Audio Context is not initialised!";
     }
 
-    
-    function changeSynth() {
+    function evalSequence() {
+      if (audioWorkletNode !== undefined) {
+        let sequence;
+        if (arguments.length == 0) {
+          sequence = fs[Math.floor(Math.random() * fs.length)]; // Choose random entry
+          audioWorkletNode.port.postMessage({
+            sequence: `${sequence}`
+          }); // Send JSON object with eval prop for evaluation in processor
+        } else {
+          sequence = arguments[0];
+          audioWorkletNode.port.postMessage({
+            sequence: `${sequence}`
+          }); // Send JSON object with eval prop for evaluation in processor
+        }
+        return true;
+        // DEBUG:
+        // console.log("Change Sequence: " + sequence);
+      }
+      return false;
+    }
+
+    function evalSynth() {
       if (audioWorkletNode !== undefined) {
         let userDefinedFunction;
         if (arguments.length == 0) {
           userDefinedFunction = fs[Math.floor(Math.random() * fs.length)];
-          audioWorkletNode.port.postMessage({
-            eval: `() => { return ${userDefinedFunction} }`
-          }); // Send JSON object with eval prop for evaluation in processor
+          console.log("eval: " + userDefinedFunction);
         } else {
           userDefinedFunction = arguments[0];
-          audioWorkletNode.port.postMessage({
-            eval: `() => { return ${userDefinedFunction} }`
-          }); // Send JSON object with eval prop for evaluation in processor
         }
         // DEBUG:
-        console.log("Change synth: " + userDefinedFunction);
-      }
+        audioWorkletNode.port.postMessage({
+          eval: `() => { return ${userDefinedFunction} }`
+        }); // Send JSON object with eval prop for evaluation in processor
+        return true;
+      } else return false;
     }
   </script>
 </body>

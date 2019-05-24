@@ -1,3 +1,5 @@
+// 'use strict';
+
 import Module from '../build/maximilian.wasmmodule.js';
 
 /**
@@ -13,14 +15,12 @@ class MaxiProcessor extends AudioWorkletProcessor {
    */
   static get parameterDescriptors() { // TODO: parameters are static? can we not change this map with a setter?
     return [{
-        name: 'gain',
-        defaultValue: 0.2
-      },
-      { // NOTE: Frequencies can be user-defined hence they should be param from async message port, NOT AudioParams
-        name: 'frequency',
-        defaultValue: 440.0
-      }
-    ];
+      name: 'gainSyn',
+      defaultValue: 2.5
+    }, {
+      name: 'gainSeq',
+      defaultValue: 6.5
+    }];
   }
 
   /**
@@ -29,21 +29,34 @@ class MaxiProcessor extends AudioWorkletProcessor {
   constructor() {
     super();
     this.sampleRate = 44100;
+
     this.DAC = [0];
 
-    // let m = maximilian;
+    this.tempo = 120.0; // tempo (in beats per minute);
+    this.secondsPerBeat = (60.0 / this.tempo);
+    this.counterTimeValue = (this.secondsPerBeat / 4); //___16th note
 
-    // let m = Module();
-    // TODO: Implement Obj Pool pattern
-    // this.osc = new m.maxiOsc();
-    // this.oOsc = new m.maxiOsc();
-    // this.aOsc = new m.maxiOsc();
+    this.oldClock = 0;
+    this.phase = 0;
 
+    // this.maxiAudio = new Module.maxiAudio();
+    this.clock = new Module.maxiOsc();
+    this.kick = new Module.maxiSample();
+    this.snare = new Module.maxiSample();
+    this.closed = new Module.maxiSample();
+    this.open = new Module.maxiSample();
+
+    // this.sequence = "k k s o c k";
+    this.sequence = "ksc o o ";
+    // this.sequence = "m";
+    // this.sequence = "kc kc k scos";
+
+    this.initialised = false;
+
+    // TODO: Synth pool
     this.osc = new Module.maxiOsc();
     this.oOsc = new Module.maxiOsc();
     this.aOsc = new Module.maxiOsc();
-
-    // this.setupMonosynth();
 
     this.setupPolysynth();
 
@@ -52,27 +65,72 @@ class MaxiProcessor extends AudioWorkletProcessor {
     };
 
     this.port.onmessage = event => { // message port async handler
+      for (const key in event.data) { // event from node scope packs JSON object
 
-      try {
-        // console.log("Receving message in Worklet evaluation: ");
-        for (const key in event.data) { // Event from WebAudio Node scope packs JSON object
-          this[key] = event.data[key]; // De-structure into local props
-        }
-        this.eval = eval(this.eval); // Make a function out of the synth-def string tranferred from the WebAudio Node scope
-        this.eval(); // Evaluate the validity of the function before accepting it as the signal. If it is not valid, it will throw a TypeError here, and this.signal will not change
-        this.signal = this.eval; // If function is valid, assign it to this.signal() function. this.signal() wil be used in the process() loop
-      } // eval a property function, need to check if it changed
-      catch (err) {
-        if (err instanceof TypeError) {
-          console.log("Error in worklet evaluation: " + err.name + " – " + err.message);
+        // console.log(key + ": " + event.data[key]); // DEBUG
+
+        if (key === 'sequence') { // User-defined DRUM sequence
+          this[key] = event.data[key];
+
+        } else if (key === 'eval') { // User-defined SIGNAL expression
+
+          try { // eval a property function, need to check if it changed   
+            this.eval = eval(event.data[key]); // Make a function out of the synth-def string tranferred from the WebAudio Node scope
+            this.eval(); // Evaluate the validity of the function before accepting it as the signal. If it is not valid, it will throw a TypeError here.
+            this.signal = this.eval; // If function is valid, set it as a this.signal() function. this.signal() wil be used in the process() loop
+          } catch (err) {
+            if (err instanceof TypeError) {
+              console.log("Error in worklet evaluation: " + err.name + " – " + err.message);
+            } else {
+              console.log("Error in worklet evaluation: " + err.name + " – " + err.message);
+            }
+          }
+
         } else {
-          console.log("Error in worklet evaluation: " + err.name + " – " + err.message);
+          this[key].setSample(this.translateFloat32ArrayToBuffer(event.data[key]));
         }
+
       }
     };
-
-
   }
+
+  //Deprecated
+  generateNoiseBuffer(length) {
+    var bufferData = new Module.VectorDouble();
+    for (var n = 0; n < length; n++) {
+      bufferData.push_back(Math.random(1));
+    }
+    return bufferData;
+  }
+
+  //Deprecated
+  translateBlobToBuffer(blob) {
+
+    let arrayBuffer = null;
+    let float32Array = null;
+    var fileReader = new FileReader();
+    fileReader.onload = function (event) {
+      arrayBuffer = event.target.result;
+      float32Array = new Float32Array(arrayBuffer);
+    };
+    fileReader.readAsArrayBuffer(blob);
+    let audioFloat32Array = fileReader.result;
+    var maxiSampleBufferData = new Module.VectorDouble();
+    for (var i = 0; i < audioFloat32Array.length; i++) {
+      maxiSampleBufferData.push_back(audioFloat32Array[i]);
+    }
+    return maxiSampleBufferData;
+  }
+
+  translateFloat32ArrayToBuffer(audioFloat32Array) {
+
+    var maxiSampleBufferData = new Module.VectorDouble();
+    for (var i = 0; i < audioFloat32Array.length; i++) {
+      maxiSampleBufferData.push_back(audioFloat32Array[i]);
+    }
+    return maxiSampleBufferData;
+  }
+
 
   /**
    * @setupMonosynth
@@ -96,6 +154,7 @@ class MaxiProcessor extends AudioWorkletProcessor {
     this.VCO1out = [];
     this.VCO2out = [];
     this.LFO1out = [];
+    this.LFO2out = [];
     this.VCFout = [];
     this.ADSRout = [];
 
@@ -139,7 +198,6 @@ class MaxiProcessor extends AudioWorkletProcessor {
   /**
    * @setupPolysynth
    */
-
   setupPolysynth() {
 
     let VCO_ArraySize = 6;
@@ -237,6 +295,54 @@ class MaxiProcessor extends AudioWorkletProcessor {
     return this.mix;
   }
 
+  /**
+   * @loopPlayer
+   */
+  loopPlayer() {
+
+    let now = this.clock.sinewave(7);
+
+    if (this.oldClock <= 0 && now > 0) {
+
+      var sampleSelector = this.sequence[this.phase++ % this.sequence.length];
+
+      switch (sampleSelector) {
+        case "k":
+          this.kick.trigger();
+          break;
+        case "s":
+          this.snare.trigger();
+          break;
+        case "o":
+          this.open.trigger();
+          break;
+        case "c":
+          this.closed.trigger();
+          break;
+          // default:
+          //   this.kick.trigger();
+      }
+    }
+
+    this.oldClock = now;
+
+    var w = 0.0;
+
+    if (this.kick.isReady()) {
+      w += this.kick.playOnce();
+    }
+    if (this.snare.isReady()) {
+      w += this.snare.playOnce();
+    }
+    if (this.closed.isReady()) {
+      w += this.closed.playOnce();
+    }
+    if (this.open.isReady()) {
+      w += this.open.playOnce();
+    }
+    return w * 0.5;
+  }
+
   logGain(gain) {
     // return 0.095 * Math.exp(this.gain * 0.465);
     return 0.0375 * Math.exp(gain * 0.465);
@@ -271,13 +377,13 @@ class MaxiProcessor extends AudioWorkletProcessor {
           }
         }
 
-        if (parameters.gain.length === 1) { // if gain is constant, lenght === 1, gain[0]
+        if (parameters.gainSyn.length === 1 && parameters.gainSeq.length === 1) { // if gain is constant, lenght === 1, gain[0]
           for (let i = 0; i < 128; ++i) {
-            outputChannel[i] = this.signal() * this.logGain(parameters.gain[0]);
+            outputChannel[i] = this.signal() * this.logGain(parameters.gainSyn[0]) + this.loopPlayer() * this.logGain(parameters.gainSeq[0]);
           }
         } else { // if gain is varying, lenght === 128, gain[i] for each sample of the render quantum
           for (let i = 0; i < 128; ++i) {
-            outputChannel[i] = this.signal() * this.logGain(parameters.gain[i]);
+            outputChannel[i] = this.signal() * this.logGain(parameters.gainSyn[i]) + this.loopPlayer() * this.logGain(parameters.gainSeq[i]);
           }
         }
         // DEBUG:

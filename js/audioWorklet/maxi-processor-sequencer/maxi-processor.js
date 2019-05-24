@@ -13,11 +13,9 @@ class MaxiProcessor extends AudioWorkletProcessor {
    */
   static get parameterDescriptors() { // TODO: parameters are static? can we not change this map with a setter?
     return [{
-        name: 'gain',
-        defaultValue: 0.2
-      },
-
-    ];
+      name: 'gain',
+      defaultValue: 5.0
+    }, ];
   }
 
   /**
@@ -26,7 +24,6 @@ class MaxiProcessor extends AudioWorkletProcessor {
   constructor() {
     super();
     this.sampleRate = 44100;
-    this.sampleIndex = 0;
 
     this.DAC = [0];
 
@@ -37,34 +34,17 @@ class MaxiProcessor extends AudioWorkletProcessor {
     this.oldClock = 0;
     this.phase = 0;
 
-    this.maxiAudio = new Module.maxiAudio();
     this.clock = new Module.maxiOsc();
     this.kick = new Module.maxiSample();
     this.snare = new Module.maxiSample();
     this.closed = new Module.maxiSample();
     this.open = new Module.maxiSample();
 
-    // this.maxiAudio.loadSample("./909b.wav", this.kick);
-    // this.maxiAudio.loadSample("./909.wav", this.snare);
-    // this.maxiAudio.loadSample("./909closed.wav", this.closedHat);
-    // this.maxiAudio.loadSample("./909open.wav", this.openHat);
-
-    // this.kick.setSample(this.generateNoiseBuffer(44100));
-    // this.snare.setSample(this.generateNoiseBuffer(44100));
-    // this.closedHat.setSample(this.generateNoiseBuffer(44100));
-    // this.openHat.setSample(this.generateNoiseBuffer(44100));
-
-
-    // this.snare.setSample(this.generateNoiseBuffer(44100));
-    // this.closedHat.setSample(this.generateNoiseBuffer(44100));
-    // this.openHat.setSample(this.generateNoiseBuffer(44100));
-
-
     this.initialised = false;
 
-
     // this.sequence = "k k s o c k";
-    this.sequence = "ksco    ";
+    this.sequence = "ksc o o ";
+    // this.sequence = "m";
     // this.sequence = "kc kc k scos";
 
     this.port.onmessage = event => { // message port async handler
@@ -73,15 +53,12 @@ class MaxiProcessor extends AudioWorkletProcessor {
         // console.log("key: " + key);
         // console.log("key: " + );
         console.log(key + ": " + event.data[key]);
-        console.log(this[key] + ": " + typeof this[key]);
-        this[key].setSample(this.translateFloat32ArrayToBuffer(event.data[key]));
-
+        // console.log(this[key] + ": " + typeof this[key]);
+        if (key !== 'sequence')
+          this[key].setSample(this.translateFloat32ArrayToBuffer(event.data[key]));
+        else
+          this[key] = event.data[key];
       }
-      // source.buffer = buffer;
-      // source.loop = true;
-      // source.start(0);
-      // this.kick.setSample(this.translateBlobToBuffer(this.audioBlob));
-      // this.kick.setSample(this.audioArray));
     };
   }
 
@@ -144,8 +121,8 @@ class MaxiProcessor extends AudioWorkletProcessor {
         case "c":
           this.closed.trigger();
           break;
-        default:
-          this.kick.trigger();
+          // default:
+          //   this.kick.trigger();
       }
     }
 
@@ -166,6 +143,10 @@ class MaxiProcessor extends AudioWorkletProcessor {
       w += this.open.playOnce();
     }
     return w * 0.5;
+  }
+
+  logGain(gain) {
+    return 0.0375 * Math.exp(gain * 0.465);
   }
 
   /**
@@ -199,17 +180,16 @@ class MaxiProcessor extends AudioWorkletProcessor {
 
         if (parameters.gain.length === 1) { // if gain is constant, lenght === 1, gain[0]
           for (let i = 0; i < 128; ++i) {
-            outputChannel[i] = this.loopPlayer() * this.sampleIndex / this.sampleRate * parameters.gain[0];
+            outputChannel[i] = this.loopPlayer() * this.logGain(parameters.gain[0]);
           }
         } else { // if gain is varying, lenght === 128, gain[i] for each sample of the render quantum
           for (let i = 0; i < 128; ++i) {
-            outputChannel[i] = this.loopPlayer() * this.sampleIndex / this.sampleRate * parameters.gain[i];
+            outputChannel[i] = this.loopPlayer() * this.logGain(parameters.gain[i]);
           }
         }
         // DEBUG:
         // console.log(`inputs ${inputs.length}, outputsLen ${outputs.length}, outputLen ${output.length}, outputChannelLen ${outputChannel.length}`);
       }
-      this.sampleIndex++;
     }
     return true;
   }

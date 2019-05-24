@@ -24,24 +24,24 @@ OUTPUT_AW=$(BUILD_DIR)/maximilian.wasmmodule.js
 
 # -s ALLOW_MEMORY_GROWTH=1 \
 
-# ScriptProcessorNode – No WASM generation, outputs everything in one JS file
+# ScriptProcessorNode – No WASM generation, invokes SPN macro in embindings for smart pointer ctor, outputs everything in one JS file
 CFLAGS=--bind -O1 \
 				-s WASM=0 \
 				-s DISABLE_EXCEPTION_CATCHING=0 \
 				-s ASSERTIONS=1 \
 				-s SINGLE_FILE=1 \
-				-s --memory-init-file 0 --profiling -std=c++11 \
+				-s --memory-init-file 0 --profiling -std=c++11 -DSPN \
 				-s MODULARIZE=1 \
 				-s EXPORT_NAME="'maximilian'" \
 
 
-# ScriptProcessorNode – with WASM generation, outputs JS file + WASM module
+# ScriptProcessorNode – with WASM generation, invokes SPN macro in embindings for smart pointer ctor, outputs JS file + WASM module
 WASMCFLAGS=--bind -O3 \
 				-s WASM=1 \
 				-s DISABLE_EXCEPTION_CATCHING=0 \
 				-s ALLOW_MEMORY_GROWTH=1 \
 				-s ASSERTIONS=1 \
-				-s --memory-init-file 0 --profiling -std=c++11 \
+				-s --memory-init-file 0 --profiling -std=c++11 -DSPN \
 				# -s EXPORT_NAME="'maximilian'" \
 				-s MODULARIZE=1
 

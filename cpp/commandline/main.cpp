@@ -1,4 +1,5 @@
 #include "maximilian.h"
+#include "maxiGrains.h"
 
 //
 maxiOsc osc1, osc2, osc3, osc4, osc5;
@@ -6,6 +7,7 @@ maxiFilter filt1;
 maxiDistortion dist;
 maxiBiquad biquad;
 maxiSample samp;
+maxiStretch<hannWinFunctor> ts;
 
 void setup() {//some inits
     cout << "Setup";
@@ -14,6 +16,7 @@ void setup() {//some inits
 //    samp.loadOgg("/Volumes/LocalDataHD/src/Maximilian/cpp/commandline/crebit2.ogg");
     samp.trigger();
 //    samp.save("/tmp/test.wav");
+    ts.setSample(&samp);
 }
 
 void play(double *output) {
@@ -24,7 +27,8 @@ void play(double *output) {
 //    w = filt1.lores(w, maxiMap::linexp(osc5.phasor(0.4),0,1,40,4000), 0.9);
 ////    w = biquad.play(w);
 //    w = dist.atanDist(w,10);
-    w = w + samp.play();
+//    w = w + samp.play();
+    w = w + ts.playAtPosition(2.0, osc1.phasor(0.4), 0.05, 2);
 //    w = w + samp.play();
     output[0]= output[1] = w;
 }

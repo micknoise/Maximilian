@@ -8,7 +8,7 @@
 #include <emscripten/bind.h>
 #include "maximilian.h"
 // #include "libs/maxiFFT.h"
-// #include "libs/maxiGrains.h"
+#include "libs/maxiGrains.h"
 // #include "libs/maxiMFCC.h"
 // #include "libs/maxiReverb.h"
 #include "libs/maxiSynths.h"
@@ -389,52 +389,53 @@ EMSCRIPTEN_BINDINGS(my_module)
 //     ;
 // };
 //
-// EMSCRIPTEN_BINDINGS(my_module_maxiGrains) {
+EMSCRIPTEN_BINDINGS(my_module_maxiGrains) {
 //
 //     // -------------------------------------------------------------------------------------------
 //     // LIBS
 //
 //
     // MAXI TIMESTRETCH
-    // class_<maxiTimestretch<hannWinFunctor> >("maxiTimestretch")
-    // .smart_ptr_constructor("shared_ptr<maxiTimestretch<hannWinFunctor> >",&std::make_shared<maxiTimestretch<hannWinFunctor> >)
-    // //    .smart_ptr_constructor<maxiSample*>("shared_ptr<maxiTimestretch<hannWinFunctor> >",&std::make_shared<maxiTimestretch<hannWinFunctor> >)
-    // .function("setSample", &maxiTimestretch<hannWinFunctor>::setSample, allow_raw_pointers())
-		//
-    // .function("getNormalisedPosition", &maxiTimestretch<hannWinFunctor>::getNormalisedPosition)
-    // .function("getPosition", &maxiTimestretch<hannWinFunctor>::getPosition)
-    // .function("setPosition", &maxiTimestretch<hannWinFunctor>::setPosition)
-		//
-    // .function("play", &maxiTimestretch<hannWinFunctor>::play)
-    // .function("play2", &maxiTimestretch<hannWinFunctor>::play2)
-    // ;
-//
-//     // MAXI PITCHSHIFT
-//
-//     class_<maxiPitchShift<hannWinFunctor> >("maxiPitchShift")
-//     .smart_ptr_constructor("shared_ptr<maxiPitchShift<hannWinFunctor> >",&std::make_shared<maxiPitchShift<hannWinFunctor> >)
-//     .function("setSample", &maxiPitchShift<hannWinFunctor>::setSample, allow_raw_pointers())
-//
-//     .function("play", &maxiPitchShift<hannWinFunctor>::play)
-//     ;
-//
-//
-//     // MAXI PITCHSTRETCH
-//     class_<maxiPitchStretch<hannWinFunctor> >("maxiPitchStretch")
-//     .smart_ptr_constructor("shared_ptr<maxiTimestretch<hannWinFunctor> >",&std::make_shared<maxiPitchStretch<hannWinFunctor> >)
-//     //    .smart_ptr_constructor<maxiSample*>("shared_ptr<maxiTimestretch<hannWinFunctor> >",&std::make_shared<maxiTimestretch<hannWinFunctor> >)
-//     .function("setSample", &maxiPitchStretch<hannWinFunctor>::setSample, allow_raw_pointers())
-//
-//     .function("getNormalisedPosition", &maxiPitchStretch<hannWinFunctor>::getNormalisedPosition)
-//     .function("getPosition", &maxiPitchStretch<hannWinFunctor>::getPosition)
-//     .function("setPosition", &maxiPitchStretch<hannWinFunctor>::setPosition)
-//
-//     .function("setLoopStart", &maxiPitchStretch<hannWinFunctor>::setLoopStart)
-//     .function("setLoopEnd", &maxiPitchStretch<hannWinFunctor>::setLoopEnd)
-//
-//     .function("play", &maxiPitchStretch<hannWinFunctor>::play)
-//     ;
-// };
+    class_<maxiTimeStretch<hannWinFunctor> >("maxiTimeStretch")
+    .smart_ptr_constructor("shared_ptr<maxiTimestretch<hannWinFunctor> >",&std::make_shared<maxiTimeStretch<hannWinFunctor> >)
+    //    .smart_ptr_constructor<maxiSample*>("shared_ptr<maxiTimestretch<hannWinFunctor> >",&std::make_shared<maxiTimestretch<hannWinFunctor> >)
+    .function("setSample", &maxiTimeStretch<hannWinFunctor>::setSample, allow_raw_pointers())
+
+    .function("getNormalisedPosition", &maxiTimeStretch<hannWinFunctor>::getNormalisedPosition)
+    .function("getPosition", &maxiTimeStretch<hannWinFunctor>::getPosition)
+    .function("setPosition", &maxiTimeStretch<hannWinFunctor>::setPosition)
+
+    .function("play", &maxiTimeStretch<hannWinFunctor>::play)
+    .function("playAtPosition", &maxiTimeStretch<hannWinFunctor>::playAtPosition)
+    ;
+
+    // MAXI PITCHSHIFT
+
+    class_<maxiPitchShift<hannWinFunctor> >("maxiPitchShift")
+    .smart_ptr_constructor("shared_ptr<maxiPitchShift<hannWinFunctor> >",&std::make_shared<maxiPitchShift<hannWinFunctor> >)
+    .function("setSample", &maxiPitchShift<hannWinFunctor>::setSample, allow_raw_pointers())
+
+    .function("play", &maxiPitchShift<hannWinFunctor>::play)
+    ;
+
+
+    // MAXI PITCHSTRETCH
+    class_<maxiStretch<hannWinFunctor> >("maxiStretch")
+    .smart_ptr_constructor("shared_ptr<maxiStretch<hannWinFunctor> >",&std::make_shared<maxiStretch<hannWinFunctor> >)
+    .function("setSample", &maxiStretch<hannWinFunctor>::setSample, allow_raw_pointers())
+
+    .function("getNormalisedPosition", &maxiStretch<hannWinFunctor>::getNormalisedPosition)
+    .function("getPosition", &maxiStretch<hannWinFunctor>::getPosition)
+    .function("setPosition", &maxiStretch<hannWinFunctor>::setPosition)
+
+    .function("setLoopStart", &maxiStretch<hannWinFunctor>::setLoopStart)
+		.function("setLoopEnd", &maxiStretch<hannWinFunctor>::setLoopEnd)
+		.function("getLoopEnd", &maxiStretch<hannWinFunctor>::getLoopEnd)
+
+		.function("play", &maxiStretch<hannWinFunctor>::play)
+		.function("playAtPosition", &maxiStretch<hannWinFunctor>::playAtPosition)
+    ;
+};
 //
 // EMSCRIPTEN_BINDINGS(my_module_maxiFFT) {
 //

@@ -182,7 +182,7 @@ public:
 
 };
 
-class maxiClock {
+class maxiClock  {
 public:
   maxiClock();
   void ticker();

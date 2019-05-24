@@ -33,6 +33,7 @@ CFLAGS=--bind -O1 \
 				-s --memory-init-file 0 --profiling -std=c++11 -DSPN \
 				-s MODULARIZE=1 \
 				-s EXPORT_NAME="'maximilian'" \
+				-s TOTAL_MEMORY=67108864 \
 
 
 # ScriptProcessorNode – with WASM generation, invokes SPN macro in embindings for smart pointer ctor, outputs JS file + WASM module

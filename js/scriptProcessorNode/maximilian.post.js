@@ -281,7 +281,7 @@ Module.maxiAudio.prototype.resetAudio = function () {
 };
 
 // option to load sample if a different context is used
-Module.maxiAudio.prototype.loadSample = function (url, samplePlayer, contextIn) {
+Module.maxiAudio.prototype.loadSample = function (url, samplePlayer, onLoaded, contextIn ) {
     var data = [];
     var context;
 
@@ -390,6 +390,9 @@ Module.maxiAudio.prototype.loadSample = function (url, samplePlayer, contextIn) 
                         }
 
                         samplePlayer.setSample(myBufferData/*, context.sampleRate*/);
+                        if (onLoaded) {
+                          onLoaded(samplePlayer);
+                        };
                     }
 
                 },

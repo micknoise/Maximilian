@@ -13,6 +13,7 @@
 // #include "libs/maxiReverb.h"
 #include "libs/maxiSynths.h"
 // #include "libs/fft.cpp"
+#include "libs/stb_vorbis.h"
 
 // #define SPN
 
@@ -36,6 +37,7 @@ EMSCRIPTEN_BINDINGS(my_module)
 	register_vector<int>("VectorInt");
 	register_vector<double>("VectorDouble");
 	register_vector<char>("VectorChar");
+	register_vector<unsigned char>("VectorUChar");
 	register_vector<float>("VectorFloat");
 
 	class_<vectorTools>("vectorTools")
@@ -163,6 +165,7 @@ EMSCRIPTEN_BINDINGS(my_module)
 			//	.function("setSample", &maxiSample::setSample)
 			.function("setSample", select_overload<void(vector<double> &)>(&maxiSample::setSample))
 			.function("setSample", select_overload<void(vector<double> &, int)>(&maxiSample::setSample))
+			.function("setSampleFromOggBlob", &maxiSample::setSampleFromOggBlob)
 			//	.function("getSummary", &maxiSample::getSummary)
 			.function("isReady", &maxiSample::isReady)
 			.function("playOnce", select_overload<double()>(&maxiSample::playOnce))
@@ -177,6 +180,7 @@ EMSCRIPTEN_BINDINGS(my_module)
 			.function("autoTrim", &maxiSample::autoTrim)
 			.function("load", &maxiSample::load)
 			.function("read", &maxiSample::read, allow_raw_pointers());
+
 
 	// MAXI MAP
 	class_<maxiMap>("maxiMap")

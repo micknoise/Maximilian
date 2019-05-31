@@ -267,6 +267,10 @@
 				);
 				INSTALL_PATH = /usr/local/bin;
 				LIBRARY_SEARCH_PATHS = "\"$(SRCROOT)/../../src\"";
+				OTHER_CPLUSPLUSFLAGS = (
+					"$(OTHER_CFLAGS)",
+					"-DVORBIS",
+				);
 				PRODUCT_NAME = maximilianTest;
 				SDKROOT = macosx;
 			};
@@ -282,6 +286,10 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				INSTALL_PATH = /usr/local/bin;
 				LIBRARY_SEARCH_PATHS = "\"$(SRCROOT)/../../src\"";
+				OTHER_CPLUSPLUSFLAGS = (
+					"$(OTHER_CFLAGS)",
+					"-DVORBIS",
+				);
 				PRODUCT_NAME = maximilianTest;
 				SDKROOT = macosx;
 			};

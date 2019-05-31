@@ -33,18 +33,18 @@
 
 #include "maximilian.h"
 #include "math.h"
-
+#include <iterator>
 
 /*  Maximilian can be configured to load ogg vorbis format files using the
  *   loadOgg() method.
  *   Uncomment the following to include Sean Barrett's Ogg Vorbis decoder.
  *   If you're on windows, make sure to add the files std_vorbis.c and std_vorbis.h to your project*/
 
-// #define VORBIS
+//#define VORBIS
 
 #ifdef VORBIS
 extern "C" {
-#include "stb_vorbis.h"
+#include "libs/stb_vorbis.h"
 }
 #endif
 
@@ -544,36 +544,48 @@ bool maxiSample::load(string fileName, int channel) {
 // This is for OGG loading
 bool maxiSample::loadOgg(string fileName, int channel) {
 #ifdef VORBIS
-	bool result;
-	readChannel=channel;
-	int channelx;
-    short* temp;
-	int myDataSize = stb_vorbis_decode_filename(const_cast<char*>(fileName.c_str()), &channelx, &temp);
-	result = myDataSize > 0;
-	printf("\nchannels = %d\nlength = %d",channelx,myDataSize);
-	printf("\n");
-	myChannels=(short)channelx;
-	mySampleRate=44100;
-    amplitudes.resize(myDataSize);
+    std::ifstream oggFile(fileName, std::ios::binary);
+    std::vector<unsigned char> fileContents((std::istreambuf_iterator<char>(oggFile)),
+                                   std::istreambuf_iterator<char>());
+    
+    return setSampleFromOggBlob(fileContents, channel);
+#endif
+	return 0;
+}
 
-	if (myChannels>1) {
-		int position=0;
-		int channel=readChannel;
-		for (int i=channel;i<myDataSize*2;i+=myChannels) {
+int maxiSample::setSampleFromOggBlob(vector<unsigned char> &oggBlob, int channel) {
+#ifdef VORBIS
+    bool result=0;
+    readChannel=channel;
+    int channelx;
+    short* temp;
+    int myDataSize = stb_vorbis_decode_memory(oggBlob.data(), oggBlob.size(), &channelx, &temp);
+    result = myDataSize > 0;
+    printf("\nchannels = %d\nlength = %d",channelx,myDataSize);
+    printf("\n");
+    myChannels=(short)channelx;
+    mySampleRate=44100;
+    amplitudes.resize(myDataSize);
+    
+    if (myChannels>1) {
+        int position=0;
+        int channel=readChannel;
+        for (int i=channel;i<myDataSize*2;i+=myChannels) {
             amplitudes[position]=temp[i]/32767.0;
-			position++;
-		}
+            position++;
+        }
     }else{
         for(int i=0; i < myDataSize; i++) {
             amplitudes[i] = temp[i] / 32767.0;
         }
     }
     free(temp);
-
-	return result; // this should probably be something more descriptive
+    
+    return result; // this should probably be something more descriptive
 #endif
-	return 0;
+    return 0;
 }
+
 // -------------------------
 // js bits
 bool maxiSample::isReady(){

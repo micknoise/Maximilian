@@ -7,8 +7,8 @@ gate oscillator - gateOsc.play([1,0,0,0,0,1,0,0], 400ms)
 
 */
 /*
+*  platform independent synthesis library using portaudio or rtaudio
  *  maximilian.h
- *  platform independent synthesis library using portaudio or rtaudio
  *
  *  Created by Mick Grierson on 29/12/2009.
  *  Copyright 2009 Mick Grierson & Strangeloop Limited. All rights reserved.
@@ -332,7 +332,7 @@ public:
     short 	myBitsPerSample;
 
 	vector<double> amplitudes;
-    
+
 	~maxiSample() {}
 
     maxiSample():position(0), recordPosition(0), myChannels(1), mySampleRate(maxiSettings::sampleRate) {};
@@ -352,6 +352,7 @@ public:
 	bool load(string fileName, int channel=0);
 
     bool loadOgg(string filename,int channel=0);
+    int setSampleFromOggBlob(vector<unsigned char> &oggBlob, int channel=0);
 
 	// -------------------------
 	// js bits
@@ -747,7 +748,7 @@ public:
                 b1 = 2.0 * (K * K - 1.0) * norm;
                 b2 = (1.0 - K / Q + K * K) * norm;
                 break;
-                
+
             case HIGHPASS:
                 norm = 1. / (1. + K / Q + K * K);
                 a0 = 1 * norm;
@@ -756,7 +757,7 @@ public:
                 b1 = 2 * (K * K - 1) * norm;
                 b2 = (1 - K / Q + K * K) * norm;
                 break;
-                
+
             case BANDPASS:
                 norm = 1. / (1. + K / Q + K * K);
                 a0 = K / Q * norm;
@@ -765,7 +766,7 @@ public:
                 b1 = 2. * (K * K - 1.) * norm;
                 b2 = (1. - K / Q + K * K) * norm;
                 break;
-                
+
             case NOTCH:
                 norm = 1. / (1. + K / Q + K * K);
                 a0 = (1. + K * K) * norm;
@@ -774,7 +775,7 @@ public:
                 b1 = a1;
                 b2 = (1. - K / Q + K * K) * norm;
                 break;
-                
+
             case PEAK:
                 if (peakGain >= 0.0) {    // boost
                     norm = 1. / (1. + 1./Q * K + K * K);

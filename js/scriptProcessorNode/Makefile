@@ -1,4 +1,5 @@
 # change '../../em++' to path to em++ in emscripten folder
+# EMSCR=EMCC_DEBUG=1 em++
 EMSCR=em++
 
 # Maximilian
@@ -6,7 +7,7 @@ SRC=../../src/maximilian.cpp
 SRC_EM=../../src/maximilian.embind.cpp
 # SRC_LIBS=../../src/libs/*.cpp
 SRC_LIBS=../../src/libs/maxiSynths.cpp ../../src/libs/maxiGrains.cpp ../../src/libs/maxiFFT.cpp ../../src/libs/fft.cpp
-# SRC_LIBS=../../src/libs/maxiGrains.cpp
+C_SRC_LIBS=../../src/libs/stb_vorbis.c
 
 # POST_JS – external js handling web audio etc
 POST_JS=./maximilian.post.js
@@ -30,10 +31,12 @@ CFLAGS=--bind -O1 \
 				-s DISABLE_EXCEPTION_CATCHING=0 \
 				-s ASSERTIONS=1 \
 				-s SINGLE_FILE=1 \
-				-s --memory-init-file 0 --profiling -std=c++11 -DSPN \
+				-s --memory-init-file 0 --profiling -std=c++11 -DSPN -DVORBIS \
 				-s MODULARIZE=1 \
 				-s EXPORT_NAME="'maximilian'" \
 				-s TOTAL_MEMORY=67108864 \
+
+
 
 
 # ScriptProcessorNode – with WASM generation, invokes SPN macro in embindings for smart pointer ctor, outputs JS file + WASM module
@@ -42,7 +45,7 @@ WASMCFLAGS=--bind -O3 \
 				-s DISABLE_EXCEPTION_CATCHING=0 \
 				-s ALLOW_MEMORY_GROWTH=1 \
 				-s ASSERTIONS=1 \
-				-s --memory-init-file 0 --profiling -std=c++11 -DSPN \
+				-s --memory-init-file 0 --profiling -std=c++11 -DSPN  \
 				# -s EXPORT_NAME="'maximilian'" \
 				-s MODULARIZE=1
 
@@ -65,7 +68,7 @@ $(BUILD_DIR):
 
 full: directory
 	@echo "${RED}\r\nBUILD WITHOUT WASM – maximilian.js \r\n ${RESET}"
-	$(EMSCR) $(CFLAGS) --post-js $(POST_JS) -o $(OUTPUT) $(SRC) $(SRC_EM) $(SRC_LIBS)
+	$(EMSCR) $(CFLAGS)  --post-js $(POST_JS) -o $(OUTPUT) $(SRC) $(SRC_EM) $(SRC_LIBS) $(C_SRC_LIBS)
 
 wasm: directory
 	@echo "${RED}\r\nBUILD WITH WASM – maximilian.wasm + maximilian.js \r\n ${RESET}"

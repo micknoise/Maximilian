@@ -15,11 +15,11 @@ maxiIFFT ifft;
 void setup() {//some inits
     cout << "Setup";
 //    biquad.set(maxiBiquad::PEAK, 800, 0.1,-10);
-    samp.load("/Volumes/LocalDataHD/src/Maximilian/cpp/commandline/beat2.wav");
-//    samp.loadOgg("/Volumes/LocalDataHD/src/Maximilian/cpp/commandline/crebit2.ogg");
+//    samp.load("/Volumes/LocalDataHD/src/Maximilian/cpp/commandline/beat2.wav");
+    samp.loadOgg("/Volumes/LocalDataHD/src/Maximilian/cpp/commandline/crebit2.ogg");
     samp.trigger();
 //    samp.save("/tmp/test.wav");
-    ts.setSample(&samp);
+//    ts.setSample(&samp);
     fft.setup(2048, 512);
     ifft.setup(2048, 512);
 
@@ -33,8 +33,8 @@ void play(double *output) {
 //    w = filt1.lores(w, maxiMap::linexp(osc5.phasor(0.4),0,1,40,4000), 0.9);
 ////    w = biquad.play(w);
 //    w = dist.atanDist(w,10);
-//    w = w + samp.play();
-    w = w + ts.play(1, 1, 0.05, 2);
+    w = w + samp.play();
+//    w = w + ts.play(1, 1, 0.05, 2);
     if (fft.process(w)) {
     };
     w = ifft.process(fft.getMagnitudes(), fft.getPhases());

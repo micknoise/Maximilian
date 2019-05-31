@@ -41,19 +41,28 @@
 	var samp = new maxi.maxiSample();
 	var ts = new maxi.maxiStretch();
 
+
 	maxiEngine.listInputDevices();
 	let playAudio = () => {
 
 		maxiEngine.init(0);
-		maxiEngine.loadSample("audio/beat2.wav", samp, (sample)=>{ts.setSample(sample);});
+		// maxiEngine.loadSample("audio/beat2.wav", samp, (sample)=>{ts.setSample(sample);});
+		// maxiEngine.loadSample("audio/beat2.wav", samp, (sample)=>{console.log("Loaded")});
+		maxiEngine.loadSample("audio/fbc_transitions.ogg", samp, (sample)=>{console.log("Loaded an ogg " + sample.getLength())});
+		// maxiEngine.loadOgg("audio/beat2.wav", samp);
 		let count=0;
 		maxiEngine.play = function(input) {
 			// return osc1.sinewave(1000) * osc2.sinewave(300) * input[0];
 			// console.log(ts.getPosition());
-			if (count % 1000 == 0) {
+			// if (count % 1000 == 0) {
+			// }
+			// count++;
+			// return ts.playAtPosition(0.6, osc1.phasor(0.3), 0.05, 2);
+			let w=0;
+			if(samp.isReady()) {
+				w = samp.play();
 			}
-			count++;
-			return ts.playAtPosition(0.6, osc1.phasor(0.3), 0.05, 2);
+			return w;
 		}
 	}
 

@@ -840,4 +840,73 @@ private:
 };
 
 
+class maxiXFade {
+public:
+    static vector<double> xfade(vector<double> &ch1, vector<double> &ch2, double xfader) {
+        xfader = maxiMap::clamp<double>(xfader, -1, 1);
+        double xfNorm = maxiMap::linlin(xfader, -1, 1, 0, 1);
+        double gainCh1 = sqrt(1.0-xfNorm);
+        double gainCh2 = sqrt(xfNorm);
+        vector<double> output(ch1.size(), 0.0);
+        for (int i=0; i < output.size(); i++) {
+            output[i] = (ch1[i] * gainCh1) + (ch2[i] * gainCh2);
+        }
+        return output;
+    }
+    static double xfade(double ch1, double ch2, double xfader) {
+        vector<double> vch1 = {ch1};
+        vector<double> vch2 = {ch2};
+        return maxiXFade::xfade(vch1, vch2, xfader)[0];
+    }
+
+};
+
+class maxiLine {
+public:
+    inline double play(double trigger) {
+        if (!lineComplete) {
+            if (trigEnable && !triggered) {
+                triggered =(trigger > 0.0 && lastTrigVal <= 0.0);
+            }
+            if (triggered) {
+                lineValue += inc;
+                if (inc <=0) {
+                    lineComplete = lineValue <= lineEnd;
+                }else{
+                    lineComplete = lineValue >= lineEnd;
+                }
+            }
+            lastTrigVal = trigger;
+        }
+        return lineValue;
+        
+    }
+    inline void prepare(double start, double end, double durationMs) {
+        lineValue = start;
+        lineEnd = end;
+        double lineMag = end - start;
+        double durInSamples = durationMs / 1000.0 * maxiSettings::sampleRate;
+        inc =  lineMag / durInSamples;
+        triggered = false;
+        lineComplete = false;
+    }
+    inline void triggerEnable(double on) {
+        trigEnable = on > 0.0;
+    }
+    inline bool isLineComplete() {
+        return lineComplete;
+    }
+private:
+    double phase=0;
+    double lineValue=0;
+    double inc=0;
+    double lastTrigVal = -1;
+    double trigEnable = false;
+    double triggered = false;
+    bool lineComplete = false;
+    double lineEnd =0;
+    
+};
+
+
 #endif

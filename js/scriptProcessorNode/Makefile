@@ -45,7 +45,7 @@ WASMCFLAGS=--bind -O3 \
 				-s DISABLE_EXCEPTION_CATCHING=0 \
 				-s ALLOW_MEMORY_GROWTH=1 \
 				-s ASSERTIONS=1 \
-				-s --memory-init-file 0 --profiling -std=c++11 -DSPN  \
+				-s --memory-init-file 0 --profiling -std=c++11 -DSPN -DVORBIS \
 				# -s EXPORT_NAME="'maximilian'" \
 				-s MODULARIZE=1
 
@@ -72,7 +72,7 @@ full: directory
 
 wasm: directory
 	@echo "${RED}\r\nBUILD WITH WASM – maximilian.wasm + maximilian.js \r\n ${RESET}"
-	$(EMSCR) $(WASMCFLAGS) --post-js $(POST_JS) -o $(OUTPUT) $(SRC)
+	$(EMSCR) $(WASMCFLAGS) --post-js $(POST_JS) -o $(OUTPUT) $(SRC) $(SRC_LIBS) $(C_SRC_LIBS)
 
 clean:
 	@echo "Cleaning up"

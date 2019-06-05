@@ -11,6 +11,7 @@ maxiSample samp;
 maxiStretch<hannWinFunctor> ts;
 maxiFFT fft;
 maxiIFFT ifft;
+maxiLine line;
 
 void setup() {//some inits
     cout << "Setup";
@@ -22,7 +23,8 @@ void setup() {//some inits
 //    ts.setSample(&samp);
     fft.setup(2048, 512);
     ifft.setup(2048, 512);
-
+    line.prepare(-1, 1, 10000);
+    line.triggerEnable(1);
 }
 
 void play(double *output) {
@@ -33,12 +35,19 @@ void play(double *output) {
 //    w = filt1.lores(w, maxiMap::linexp(osc5.phasor(0.4),0,1,40,4000), 0.9);
 ////    w = biquad.play(w);
 //    w = dist.atanDist(w,10);
-    w = w + samp.play();
-//    w = w + ts.play(1, 1, 0.05, 2);
-    if (fft.process(w)) {
-    };
-    w = ifft.process(fft.getMagnitudes(), fft.getPhases());
 //    w = w + samp.play();
-    output[0]= output[1] = w;
+//    w = w + ts.play(1, 1, 0.05, 2);
+//    if (fft.process(w)) {
+//    };
+//    w = ifft.process(fft.getMagnitudes(), fft.getPhases());
+//    w = w + samp.play();
+    vector<double> ch1 = {osc1.sinewave(100), osc2.sinewave(101)};
+    vector<double> ch2 = {osc3.saw(200), osc4.saw(201)};
+//    double freq = line.play(osc2.sinewave(0.4));
+//    w = osc1.saw(100 + (freq * 1000));
+//    output[0]= output[1] = w;
+    vector<double> mix = maxiXFade::xfade(ch1, ch2, line.play(1));
+    output[0] = mix[0];
+    output[1] = mix[1];
 }
 

@@ -3,7 +3,10 @@ EMSCR=em++
 SRC=../../src/maximilian.cpp
 SRC_EM=../../src/maximilian.embind.cpp
 # SRC_LIBS=../../../src/libs/*.cpp
-SRC_LIBS=../../src/libs/maxiSynths.cpp
+# SRC_LIBS=../../src/libs/maxiSynths.cpp
+SRC_LIBS=../../src/libs/maxiSynths.cpp ../../src/libs/maxiGrains.cpp ../../src/libs/maxiFFT.cpp ../../src/libs/fft.cpp
+C_SRC_LIBS=../../src/libs/stb_vorbis.c
+
 
 BUILD_DIR=build
 MKDIR_P = mkdir -p
@@ -20,7 +23,7 @@ CFLAGS=--bind -O1 \
 	-s SINGLE_FILE=1 \
 	-s ALLOW_MEMORY_GROWTH=1 \
 	-s ABORTING_MALLOC=0 \
-	-s TOTAL_MEMORY=128Mb
+	-s TOTAL_MEMORY=128Mb -DVORBIS \
 	# -s MODULARIZE_INSTANCE=1 \
 	# -s DISABLE_EXCEPTION_CATCHING=0 \
 	# -s ASSERTIONS=1 \
@@ -46,7 +49,7 @@ ${BUILD_DIR}:
 
 full: directory
 	@echo "${YELLOW}\r\nBUILD for Web Audio Worklets – maximilian.wasmmodule.js \r\n ${RESET}"
-	@emcc $(CFLAGS) $(SRC_EM) $(SRC) $(SRC_LIBS) -o $(OUTPUT) --post-js $(POST_JS)
+	@emcc $(CFLAGS)  --post-js $(POST_JS) -o $(OUTPUT) $(SRC_EM) $(SRC) $(SRC_LIBS) $(C_SRC_LIBS)
 
 clean:
 	@echo "Cleaning up"

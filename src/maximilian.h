@@ -879,7 +879,7 @@ public:
             lastTrigVal = trigger;
         }
         return lineValue;
-        
+
     }
     inline void prepare(double start, double end, double durationMs) {
         lineValue = start;
@@ -905,7 +905,7 @@ private:
     double triggered = false;
     bool lineComplete = false;
     double lineEnd =0;
-    
+
 };
 
 

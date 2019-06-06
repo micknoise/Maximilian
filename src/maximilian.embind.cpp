@@ -206,10 +206,14 @@ EMSCRIPTEN_BINDINGS(my_module)
 #else
 			.constructor<>()
 #endif
-			.function("linlin", &maxiMap::linlin)
-			.function("linexp", &maxiMap::linexp)
-			.function("explin", &maxiMap::explin)
-			.function("clamp", &maxiMap::clamp<double>);
+	.function("linlin", &maxiMap::linlin)
+	.function("linexp", &maxiMap::linexp)
+	.function("explin", &maxiMap::explin)
+	.function("clamp", &maxiMap::clamp<double>)
+	.class_function("linlin", &maxiMap::linlin)
+	.class_function("linexp", &maxiMap::linexp)
+	.class_function("explin", &maxiMap::explin)
+	.class_function("clamp", &maxiMap::clamp<double>);
 
 	// MAXI DYN
 	class_<maxiDyn>("maxiDyn")

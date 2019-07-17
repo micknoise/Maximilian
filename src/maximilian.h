@@ -547,7 +547,6 @@ public:
     }
 private:
     double previous_x;
-    bool init = true;
 };
 
 

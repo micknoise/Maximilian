@@ -138,6 +138,23 @@ EMSCRIPTEN_BINDINGS(my_module)
 	//	.function("getMember", &TemplateClass<int>::getMember)
 	//	;
 
+	class_<maxiLine>("maxiLine")
+	#ifdef SPN
+				.smart_ptr_constructor("shared_ptr<maxiLine>", &std::make_shared<maxiLine>)
+	#else
+				.constructor<>()
+	#endif
+		.function("play", &maxiLine::play)
+		.function("prepare", &maxiLine::prepare)
+		.function("triggerEnable", &maxiLine::triggerEnable)
+		.function("isLineComplete", &maxiLine::isLineComplete)
+		;
+
+	class_<maxiXFade>("maxiXFade")
+	.class_function("xfade", select_overload<vector<double> (vector<double> &, vector<double> &, double)>(&maxiXFade::xfade))
+	.class_function("xfade", select_overload<double(double, double, double)>(&maxiXFade::xfade))
+		;
+
 	class_<maxiLagExp<double>>("maxiLagExp")
 #ifdef SPN
 			// not sure how to override constructors with smart_ptr
@@ -189,10 +206,14 @@ EMSCRIPTEN_BINDINGS(my_module)
 #else
 			.constructor<>()
 #endif
-			.function("linlin", &maxiMap::linlin)
-			.function("linexp", &maxiMap::linexp)
-			.function("explin", &maxiMap::explin)
-			.function("clamp", &maxiMap::clamp<double>);
+	.function("linlin", &maxiMap::linlin)
+	.function("linexp", &maxiMap::linexp)
+	.function("explin", &maxiMap::explin)
+	.function("clamp", &maxiMap::clamp<double>)
+	.class_function("linlin", &maxiMap::linlin)
+	.class_function("linexp", &maxiMap::linexp)
+	.class_function("explin", &maxiMap::explin)
+	.class_function("clamp", &maxiMap::clamp<double>);
 
 	// MAXI DYN
 	class_<maxiDyn>("maxiDyn")

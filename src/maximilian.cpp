@@ -44,7 +44,7 @@
 
 #ifdef VORBIS
 extern "C" {
-#include "libs/stb_vorbis.h"
+#include "stb_vorbis.h"
 }
 #endif
 

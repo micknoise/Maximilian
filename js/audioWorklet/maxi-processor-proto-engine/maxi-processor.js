@@ -1,4 +1,4 @@
-// 'use strict';
+'use strict';
 
 import Module from '../build/maximilian.wasmmodule.js';
 
@@ -93,6 +93,13 @@ class MaxiProcessor extends AudioWorkletProcessor {
       }
     };
   }
+  /*
+  1.startup,  make single very large float32 array
+  2. when sample arrives via message, append this into the array, keep starting index
+  2b. pass starting index to maxiSample
+  3. add sample size to starting index
+  */
+
 
   //Deprecated
   generateNoiseBuffer(length) {

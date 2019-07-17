@@ -126,8 +126,8 @@ public:
 	double noise();
 	double sinebuf(double frequency);
 	double sinebuf4(double frequency);
-  double sawn(double frequency);
-  double rect(double frequency, double duty=0.5);
+    double sawn(double frequency);
+    double rect(double frequency, double duty=0.5);
 	void phaseReset(double phaseIn);
 
 };
@@ -533,6 +533,21 @@ public:
 class convert {
 public:
 	double mtof(int midinote);
+};
+
+class maxiZeroCrossingDetector {
+public:
+    inline bool zx(double x){
+        bool res=0;
+        if (previous_x <=0 && x > 0) {
+            res=1;
+        }
+        previous_x=x;
+        return res;
+    }
+private:
+    double previous_x;
+    bool init = true;
 };
 
 

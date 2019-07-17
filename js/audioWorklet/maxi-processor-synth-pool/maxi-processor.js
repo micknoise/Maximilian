@@ -64,9 +64,9 @@ class MaxiProcessor extends AudioWorkletProcessor {
       } // eval a property function, need to check if it changed
       catch (err) {
         if (err instanceof TypeError) {
-          console.log("Error in worklet evaluation: " + err.name + " – " + err.message);
+          console.log("Type Error in worklet evaluation: " + err.name + " – " + err.message);
         } else {
-          console.log("Error in worklet evaluation: " + err.name + " – " + err.message);
+          console.log("Error in worklet evaluation: " + typeof (err) + " – " + err.message);
         }
       }
     };

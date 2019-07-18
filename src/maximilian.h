@@ -391,6 +391,8 @@ public:
     double playLoop(double start, double end); // start and end are between 0.0 and 1.0
 
     double playOnce();
+    double playOnZX(double trigger);
+    double prevTriggerVal=0;
 
     double playOnce(double speed);
 
@@ -546,7 +548,7 @@ public:
         return res;
     }
 private:
-    double previous_x;
+    double previous_x=0;
 };
 
 

@@ -44,7 +44,7 @@
 
 #ifdef VORBIS
 extern "C" {
-#include "stb_vorbis.h"
+#include "./libs/stb_vorbis.h"
 }
 #endif
 
@@ -927,6 +927,15 @@ double maxiSample::playOnce() {
 	return output;
 
 }
+
+double maxiSample::playOnZX(double trig) {
+    if (prevTriggerVal <=0 && trig > 0) {
+        trigger();
+    }
+    prevTriggerVal=trig;
+    return playOnce();
+}
+
 
 //Same as above but takes a speed value specified as a ratio, with 1.0 as original speed
 double maxiSample::playOnce(double speed) {

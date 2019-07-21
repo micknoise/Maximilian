@@ -306,6 +306,14 @@ double maxiOsc::pulse(double frequency, double duty) {
 	if (phase>duty) output=1.;
 	return(output);
 }
+double maxiOsc::impulse(double frequency) {
+    //this is an impulse generator
+    if ( phase >= 1.0 ) phase -= 1.0;
+    double phaseInc = (1./(maxiSettings::sampleRate/(frequency)));
+    double output = phase < phaseInc ? 1.0 : 0.0;
+    phase += phaseInc;
+    return output;
+}
 
 double maxiOsc::phasor(double frequency, double startphase, double endphase) {
 	//This is a phasor that takes a value for the start and end of the ramp.

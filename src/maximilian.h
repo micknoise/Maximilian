@@ -123,11 +123,13 @@ public:
 	double triangle(double frequency);
 	double square(double frequency);
 	double pulse(double frequency, double duty);
+    double impulse(double frequency);
 	double noise();
 	double sinebuf(double frequency);
 	double sinebuf4(double frequency);
     double sawn(double frequency);
     double rect(double frequency, double duty=0.5);
+    
 	void phaseReset(double phaseIn);
 
 };
@@ -556,8 +558,8 @@ private:
 class maxiDistortion {
 public:
     /*atan distortion, see http://www.musicdsp.org/showArchiveComment.php?ArchiveID=104*/
+		double atanDist(const double in, const double shape);
     /*shape from 1 (soft clipping) to infinity (hard clipping)*/
-    double atanDist(const double in, const double shape);
     double fastAtanDist(const double in, const double shape);
     double fastatan( double x );
 };

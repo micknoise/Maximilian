@@ -74,11 +74,12 @@ EMSCRIPTEN_BINDINGS(my_module)
 			.function("triangle", &maxiOsc::triangle)
 			.function("square", &maxiOsc::square)
 			.function("pulse", &maxiOsc::pulse)
+			.function("impulse", &maxiOsc::impulse)
 			.function("noise", &maxiOsc::noise)
 			.function("sinebuf", &maxiOsc::sinebuf)
 			.function("sinebuf4", &maxiOsc::sinebuf4)
 			.function("sawn", &maxiOsc::sawn)
-			.function("rect", &maxiOsc::rect)
+			// .function("rect", &maxiOsc::rect)
 			.function("phaseReset", &maxiOsc::phaseReset);
 
 	// MAXI ENVELOPE

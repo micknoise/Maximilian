@@ -507,7 +507,6 @@ public:
     unsigned long getLoopEnd() {
         return loopEnd;
     }
-    
 
 	
 	inline double play(double pitchstretch=1, double timestretch=1, double grainLength=0.05, int overlaps=2, double posMod=0.0) {

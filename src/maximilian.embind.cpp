@@ -256,9 +256,22 @@ EMSCRIPTEN_BINDINGS(my_module)
 #else
 			.constructor<>()
 #endif
-			.function("mtof", &convert::mtof)
+		.function("mtof", &convert::mtof)
+		.class_function("mtof", &convert::mtof)
+		.function("msToSamps", &convert::msToSamps)
+		.class_function("msToSamps", &convert::msToSamps)
 			//	.class_function("mtof", &convert::mtof)
 			;
+
+class_<maxiSampleAndHold>("maxiSampleAndHold")
+		#ifdef SPN
+					.smart_ptr_constructor("shared_ptr<maxiSampleAndHold>", &std::make_shared<maxiSampleAndHold>)
+		#else
+					.constructor<>()
+		#endif
+				.function("sah", &maxiSampleAndHold::sah)
+					;
+
 
 	// MAXI DISTORTION
 	class_<maxiDistortion>("maxiDistortion")
@@ -308,16 +321,36 @@ EMSCRIPTEN_BINDINGS(my_module)
 #endif
 			.function("play", &maxiDCBlocker::play);
 
-	// MAXI SVF
-	class_<maxiSVF>("maxiSVF")
+			// MAXI SVF
+class_<maxiSVF>("maxiSVF")
 #ifdef SPN
-			.smart_ptr_constructor("shared_ptr<maxiSVF>", &std::make_shared<maxiSVF>)
+		.smart_ptr_constructor("shared_ptr<maxiSVF>", &std::make_shared<maxiSVF>)
 #else
-			.constructor<>()
+		.constructor<>()
 #endif
-			.function("setCutoff", &maxiSVF::setCutoff)
-			.function("setResonance", &maxiSVF::setResonance)
-			.function("play", &maxiSVF::play);
+		.function("setCutoff", &maxiSVF::setCutoff)
+		.function("setResonance", &maxiSVF::setResonance)
+		.function("play", &maxiSVF::play);
+
+		// MAXI SVF
+class_<maxiMath>("maxiMath")
+#ifdef SPN
+		.smart_ptr_constructor("shared_ptr<maxiMath>", &std::make_shared<maxiMath>)
+#else
+		.constructor<>()
+#endif
+	.class_function("add", &maxiMath::add)
+	.class_function("sub", &maxiMath::sub)
+	.class_function("mul", &maxiMath::mul)
+	.class_function("div", &maxiMath::div)
+	.class_function("gt", &maxiMath::gt)
+	.class_function("lt", &maxiMath::lt)
+	.class_function("gte", &maxiMath::gte)
+	.class_function("lte", &maxiMath::lte)
+	.class_function("mod", &maxiMath::mod)
+	.class_function("abs", &maxiMath::abs)
+	.class_function("pow", &maxiMath::xpowy);
+
 
 	// TODO:FB – Uncomment – this is giving me compilation errors on EM
 	// MAXI KICK
@@ -448,7 +481,12 @@ EMSCRIPTEN_BINDINGS(my_module_maxiGrains) {
 
     // MAXI PITCHSTRETCH
     class_<maxiStretch<hannWinFunctor> >("maxiStretch")
-    .smart_ptr_constructor("shared_ptr<maxiStretch<hannWinFunctor> >",&std::make_shared<maxiStretch<hannWinFunctor> >)
+		#ifdef SPN
+			.smart_ptr_constructor("shared_ptr<maxiStretch<hannWinFunctor> >",&std::make_shared<maxiStretch<hannWinFunctor> >)
+		#else
+			.constructor<>()
+		#endif
+
     .function("setSample", &maxiStretch<hannWinFunctor>::setSample, allow_raw_pointers())
 
     .function("getNormalisedPosition", &maxiStretch<hannWinFunctor>::getNormalisedPosition)

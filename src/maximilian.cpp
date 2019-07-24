@@ -1363,7 +1363,6 @@ void maxiEnv::setDecay(double decayMS) {
 
 
 
-
 double convert::mtof(int midinote) {
 
 	return mtofarray[midinote];

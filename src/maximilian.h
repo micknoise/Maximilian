@@ -51,7 +51,9 @@ gate oscillator - gateOsc.play([1,0,0,0,0,1,0,0], 400ms)
 #include <string.h>
 #include <cstdlib>
 #include "math.h"
+#include <cmath>
 #include <vector>
+#include <cfloat>
 #ifdef _WIN32 //|| _WIN64
 #include <algorithm>
 #endif
@@ -101,6 +103,8 @@ public:
 		return bufferSize;
 	}
 };
+
+
 
 
 class maxiOsc {
@@ -536,7 +540,29 @@ public:
 
 class convert {
 public:
-	double mtof(int midinote);
+	static double mtof(int midinote);
+    static double msToSamps(double timeMs) {
+        return timeMs / 1000.0 * maxiSettings::sampleRate;
+    }
+};
+
+class maxiSampleAndHold {
+public:
+    inline double sah(double sigIn, double holdTimeMs) {
+        double holdTimeSamples = convert::msToSamps(holdTimeMs);
+        
+        if (phase >= holdTimeSamples) {
+            phase -= holdTimeSamples;
+        }
+        if (phase < 1.0)
+            holdValue = sigIn;
+        phase++;
+        return holdValue;
+    }
+private:
+    double phase = 0;
+    double holdValue=0;
+    bool firstRun = 1;
 };
 
 class maxiZeroCrossingDetector {
@@ -924,6 +950,43 @@ private:
     bool lineComplete = false;
     double lineEnd =0;
 
+};
+
+class maxiMath {
+public:
+    static double add(double x, double y) {
+        return x+y;
+    };
+    static double div(double x, double y) {
+        return x/y;
+    };
+    static double mul(double x, double y) {
+        return x*y;
+    };
+    static double sub(double x, double y) {
+        return x-y;
+    };
+    static double gt(double x, double y) {
+        return x > y;
+    }
+    static double lt(double x, double y) {
+        return x < y;
+    }
+    static double gte(double x, double y) {
+        return x >= y;
+    }
+    static double lte(double x, double y) {
+        return x <= y;
+    }
+    static double mod(double x, double y) {
+        return fmod(x,y);
+    }
+    static double abs(double x) {
+        return fabs(x);
+    }
+    static double xpowy(double x, double y) {
+        return pow(x,y);
+    }
 };
 
 

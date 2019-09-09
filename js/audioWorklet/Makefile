@@ -49,7 +49,7 @@ ${BUILD_DIR}:
 
 full: directory
 	@echo "${YELLOW}\r\nBUILD for Web Audio Worklets – maximilian.wasmmodule.js \r\n ${RESET}"
-	@emcc $(CFLAGS)  --post-js $(POST_JS) -o $(OUTPUT) $(SRC_EM) $(SRC) $(SRC_LIBS) $(C_SRC_LIBS)
+	$(EMSCR) $(CFLAGS)  --post-js $(POST_JS) -o $(OUTPUT) $(SRC_EM) $(SRC) $(SRC_LIBS) $(C_SRC_LIBS)
 
 clean:
 	@echo "Cleaning up"

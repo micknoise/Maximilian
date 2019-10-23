@@ -7,15 +7,14 @@ SRC_EM=../../src/maximilian.embind.cpp
 SRC_LIBS=../../src/libs/maxiSynths.cpp ../../src/libs/maxiGrains.cpp ../../src/libs/maxiFFT.cpp ../../src/libs/fft.cpp
 C_SRC_LIBS=../../src/libs/stb_vorbis.c
 
-
+COMMON_DIR=common
 BUILD_DIR=build
 MKDIR_P = mkdir -p
 
 # POST_JS – external js handling web audio etc
-POST_JS=maximilian.post.js
+POST_JS=$(COMMON_DIR)/maximilian.post.js
 
 OUTPUT=$(BUILD_DIR)/maximilian.wasmmodule.js
-
 
 CFLAGS=--bind -O1 \
 	-s WASM=1 \
@@ -48,7 +47,7 @@ ${BUILD_DIR}:
 	${MKDIR_P} ${BUILD_DIR}
 
 full: directory
-	@echo "${YELLOW}\r\nBUILD for Web Audio Worklets – maximilian.wasmmodule.js \r\n ${RESET}"
+	@echo "${YELLOW}\r\nBuild for Web Audio API AudioWorklet (WebAssembly) – maximilian.wasmmodule.js \r\n ${RESET}"
 	$(EMSCR) $(CFLAGS)  --post-js $(POST_JS) -o $(OUTPUT) $(SRC_EM) $(SRC) $(SRC_LIBS) $(C_SRC_LIBS)
 
 clean:

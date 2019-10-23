@@ -26,9 +26,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 "use strict";
 
-// console.log("maximilian: " + Date());
+console.log("running%c Maximilian v2.0.2 (asm.js)", "font-weight: bold; background: #222; color: #fa7a55");
 
-console.log("maximilian v2.0.1: " + Date());
 
 // ------------------------------------------------
 // maxiArray - could extend Array object?

@@ -18,7 +18,10 @@
   <h1> Test simple tone and gain processor </h1>
   <p id="funcs"></p>
   <p>
-    A simple sinewave with gain control. [You might need to clean the cache when you are testing your worklet processor code]
+    A simple sinewave with gain control.
+  </p>
+  <p>
+    You might need to clear the cache to make sure your latest worklet processor code is loading.
   </p>
 
   <button id="playButton">Play</button>
@@ -39,21 +42,15 @@
       }
     }
 
-    document.addEventListener("DOMContentLoaded", () => {
-      setButtonEventHandlers();
-    });
+
 
     function setButtonEventHandlers() {
-
       const playButton = document.getElementById('playButton');
       playButton.addEventListener("click", () => playAudio());
-
       const stopButton = document.getElementById('stopButton');
       stopButton.addEventListener("click", () => stopAudio());
-
       const plusButton = document.getElementById('plusButton');
       plusButton.addEventListener("click", () => increaseVolume());
-
       const minusButton = document.getElementById('minusButton');
       minusButton.addEventListener("click", () => decreaseVolume());
     }
@@ -100,6 +97,10 @@
         gainParam.value -= 0.01;
       }
     }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      setButtonEventHandlers();
+    });
   </script>
 </body>
 </html>

@@ -2,7 +2,12 @@
 
 "use strict";
 
-console.log("maximilian v2.0.2: " + Date());
+console.log(
+	"running%c Maximilian v2.0.2 (Wasm)",
+	"font-weight: bold; background: #222; color: #bada55"
+);
+
+
 
 //NOTE: This is the main thing that post.js adds to Maximilian setup, a Module export definition which is required for the WASM design pattern
 export default Module;

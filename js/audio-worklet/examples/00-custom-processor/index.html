@@ -28,7 +28,8 @@
   <button id="stopButton">Stop</button>
   <button id="plusButton">+</button>
   <button id="minusButton">–</button>
-  <pre class="prettyprint lang-js linenums:true" id="quine" style="border:4px solid #88c">
+
+  <pre class="prettyprint lang-js linenums:true" id="quine" style="border:1px solid #88c">
     class CustomProcessor extends AudioWorkletProcessor {
 
       static get parameterDescriptors() {
@@ -58,7 +59,7 @@
       }
     };
   </pre>
-  <pre class="prettyprint lang-js linenums:true" id="quine" style="border:4px solid #88c">
+  <pre class="prettyprint lang-js linenums:true" id="quine" style="border:1px solid #88c">
     let audioContext = new AudioContext();
     let customNode;
     let customProcessorName = 'custom-processor';
@@ -136,7 +137,7 @@
         gainParam.value -= 0.1;
       }
     }
-</pre>
+  </pre>
 
   <script type="text/javascript">
     let audioContext = new AudioContext();

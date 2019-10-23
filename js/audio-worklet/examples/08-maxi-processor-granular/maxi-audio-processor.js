@@ -1,4 +1,4 @@
-import Module from '../build/maximilian.wasmmodule.js';
+import Module from '../../build/maximilian.wasmmodule.js';
 
 
 /**

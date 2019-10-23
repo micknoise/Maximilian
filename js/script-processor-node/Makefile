@@ -33,8 +33,8 @@ CFLAGS=--bind -O1 \
 				-s SINGLE_FILE=1 \
 				-s --memory-init-file 0 --profiling -std=c++11 -DSPN -DVORBIS \
 				-s MODULARIZE=1 \
-				-s EXPORT_NAME="'maximilian'" \
-				-s TOTAL_MEMORY=67108864 \
+				-s EXPORT_NAME="'maximilian'"
+
 
 
 
@@ -46,6 +46,7 @@ WASMCFLAGS=--bind -O3 \
 				-s ALLOW_MEMORY_GROWTH=1 \
 				-s ASSERTIONS=1 \
 				-s --memory-init-file 0 --profiling -std=c++11 -DSPN -DVORBIS \
+				-s TOTAL_MEMORY=67108864 \
 				# -s EXPORT_NAME="'maximilian'" \
 				-s MODULARIZE=1
 
@@ -57,7 +58,7 @@ CYAN=\033[0;36m
 RESET=\x1b[0m
 
 
-all: full
+all: asm.js
 
 .PHONY: directory
 directory: $(BUILD_DIR)
@@ -66,12 +67,12 @@ directory: $(BUILD_DIR)
 $(BUILD_DIR):
 	$(MKDIR_P) $(BUILD_DIR)
 
-full: directory
-	@echo "${RED}\r\nBUILD WITHOUT WASM – maximilian.js \r\n ${RESET}"
+asm.js: directory
+	@echo "${RED}\r\nBuild asm.js – maximilian.js \r\n ${RESET}"
 	$(EMSCR) $(CFLAGS)  --post-js $(POST_JS) -o $(OUTPUT) $(SRC) $(SRC_EM) $(SRC_LIBS) $(C_SRC_LIBS)
 
 wasm: directory
-	@echo "${RED}\r\nBUILD WITH WASM – maximilian.wasm + maximilian.js \r\n ${RESET}"
+	@echo "${RED}\r\nBuild Wasm – maximilian.wasm + maximilian.js \r\n ${RESET}"
 	$(EMSCR) $(WASMCFLAGS) --post-js $(POST_JS) -o $(OUTPUT) $(SRC) $(SRC_LIBS) $(C_SRC_LIBS)
 
 clean:

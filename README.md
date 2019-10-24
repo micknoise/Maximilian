@@ -11,12 +11,12 @@
 [![Build Status](https://travis-ci.com/mimic-sussex/sema.svg?branch=master)](https://travis-ci.com/mimic-sussex/sema)
 <br />
 
-::::::::::::::::::::::::::What's Maximilian?
+# What's Maximilian?
 
-Maximilian is an audio synthesis and signal processing library written in C++. It's cross-platform compatible with MacOS, Windows, Linux and IOS systems.  The main features are:
+Maximilian is an audio synthesis and signal processing library written in C++. It's cross-platform compatible with MacOS, Windows, Linux and IOS systems. The main features are:
 
 - sample playback, recording and looping
-- read from WAV and OGG files.
+- support for WAV and OGG files.
 - a selection of oscillators and filters
 - enveloping
 - multichannel mixing for 1, 2, 4 and 8 channel setups
@@ -27,8 +27,7 @@ Maximilian is an audio synthesis and signal processing library written in C++. I
 - realtime music information retrieval functions: spectrum analysis, spectral features, octave analysis, Bark scale analysis, and MFCCs
 - example projects for Windows and MacOS, using command line and OpenFrameworks environments
 
-
-:::::::::::::::::::::::::::BASIC EXAMPLES
+# BASIC EXAMPLES
 
 You can choose between using RTAudio and PortAudio drivers in player.h by uncommenting the appropriate line.  To use PortAudio, you will need to compile the portAudio library from http://http://www.portaudio.com/ and link it with your executable.
 

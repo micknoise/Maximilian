@@ -4,7 +4,6 @@
 |  Y Y  \/ __ \_>    <|  |  Y Y  \  |  |_|  |/ __ \|   |  \
 |__|_|  (____  /__/\_ \__|__|_|  /__|____/__(____  /___|  /
       \/     \/      \/        \/                \/     \/ 
-#
 
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/mimic-sussex/eppEditor/blob/master/LICENSE)
 [![GitHub version](https://badge.fury.io/gh/Naereen%2FStrapDown.js.svg)](https://github.com/Naereen/StrapDown.js)

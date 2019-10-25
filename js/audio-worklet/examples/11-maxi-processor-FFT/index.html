@@ -6,107 +6,57 @@
   <title>
     Javascript Audio Processing
   </title>
-
-  <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?lang=js&amp;skin=sunburst">
-  </script>
-  <!-- show all line numbers-->
+  <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js?autoload=true&amp;skin=sunburst&amp;lang=css" defer="defer"></script>
   <style type="text/css">
+    body {
+			font-family:Arial, Helvetica, sans-serif;
+		}
     .prettyprint ol.linenums>li {
       list-style-type: decimal
     }
   </style>
 </head>
-
 <body>
 
-  <h1> Test simple tone and gain processor </h1>
+  <h1> FFT Analysis </h1>
   <p id="funcs"></p>
   <p>
-    A simple sinewave with gain control. [You might need to clean the cache when you are testing your worklet processor
-    code]
+		The Fast Fourrier Transform analysis.
+  </p>
+  <p>
+    You might need to clear the cache to make sure your latest worklet processor code is loading.
   </p>
 
   <button id="playButton">Play</button>
   <button id="stopButton">Stop</button>
   <button id="plusButton">+</button>
   <button id="minusButton">–</button>
-  <pre class="prettyprint lang-js linenums:true" id="quine" style="border:4px solid #88c">
+  <button id="loadSampleButton">Load</button>
+  <script type="module">
+    // NOTE: We don't need to conflate the WASM with utils for loading samples, so we segregate them from post.js
+    // import Module from '../build/maximilian.wasmmodule.js';
+    // import {
+    //   loadSampleToArray
+    // } from '../build/maximilian.wasmmodule.js';
+    import {
+      loadSampleToArray
+    } from '../../common/maximilian.util.js';
 
-  </pre>
-
+    window.loadSampleToArray = loadSampleToArray; 
+  </script>
   <script type="text/javascript">
     let audioContext;
-    let customNode;
-    let customProcessorName = 'custom-processor';
-    let workletUrl = 'custom-processor.js';
+    let audioWorkletNode;
+    let customProcessorName = 'maxi-processor';
+    let workletUrl = 'maxi-processor.js';
 
-    class CustomAudioNode extends AudioWorkletNode {
+    class MaxiNode extends AudioWorkletNode {
 
       constructor(audioContext, processorName) {
-
-        super(audioContext, processorName, {
-          numberOfInputs: 0,
-          numberOfOutputs: 1,
-          outputChannelCount: [2]
-        });
+        super(audioContext, processorName);
       }
     }
 
-    /**
-     * Initialises audio context and sets worklet processor code
-     * @init
-     */
-    async function init() {
-      if (this.audioContext === undefined) {
-        this.audioContext = new AudioContext();
-        await this.loadWorkletProcessorCode();
-      }
-    }
-
-    /**
-     * Initialises audio context and sets worklet processor code
-     * @loadWorkletProcessorCode
-     */
-    async function loadWorkletProcessorCode() {
-      if (this.audioContext !== undefined) {
-        try {
-          await this.audioContext.audioWorklet.addModule(this.audioWorkletUrl);
-          // Custom node constructor with required parameters
-          this.audioWorkletNode = new MaxiNode(this.audioContext, this.audioWorkletProcessorName);
-
-          // All possible error event handlers subscribed
-          this.audioWorkletNode.onprocessorerror = event => {
-            // Errors from the processor
-            console.log(`MaxiProcessor Error detected`);
-          };          
-          this.audioWorkletNode.port.onmessageerror = event => {
-            //  error from the processor port
-            console.log(`Error message from port: ` + event.data);
-          };
-          // State changes in the audio worklet processor
-          this.audioWorkletNode.onprocessorstatechange = event => {
-            console.log(`MaxiProcessor state change detected: ` +  audioWorkletNode.processorState);
-          };
-          // Worklet Processor message handler 
-          this.audioWorkletNode.port.onmessage = event => {
-            this.messageHandler(event.data);
-          };
-          // Connect the worklet node to the audio graph
-          this.audioWorkletNode.connect(this.audioContext.destination);
-          return true;
-        } catch (err) {
-          console.log("AudioWorklet not supported in this browser: ", err.message);
-            return false;
-        }
-      } else {
-        return false;
-      }
-    }
-
-    /**
-     * Subscribes button events to playback and volume control functions
-     * @setButtonEventHandlers
-     */
     function setButtonEventHandlers() {
       const playButton = document.getElementById('playButton');
       playButton.addEventListener("click", () => playAudio());
@@ -116,69 +66,72 @@
       plusButton.addEventListener("click", () => increaseVolume());
       const minusButton = document.getElementById('minusButton');
       minusButton.addEventListener("click", () => decreaseVolume());
+      const loadSampleButton = document.getElementById('loadSampleButton');
+      loadSampleButton.addEventListener("click", () => loadSample());
     }
 
-	/**
-	 * Initialises audio context and sets worklet processor code
-	 * or re-starts audio playback by stopping and running the latest Audio Worklet Processor code
-	 * @play
-	 */
-	function play() {
-		if (this.audioContext !== undefined) {
-			if (this.audioContext.state !== "suspended") {
-				this.stop();
-				return false;
-			} else {
-				this.audioContext.resume();
-				return true;
-			}
-		}
-	}
+    function playAudio() {
 
-	/**
-	 * Stops audio by disconnecting Audio None with Audio Worklet Processor code
-	 * from Web Audio graph
-	 * TODO: Investigate when it is best to just STOP the graph exectution
-	 * @stop
-	 */
-	function stop() {
-		if (this.audioWorkletNode !== undefined) {
-			this.audioContext.suspend();
-		}
-	}
+      if(audioContext === undefined)
+        audioContext = new AudioContext();
 
-	function stopAndRelease() {
-		if (this.audioWorkletNode !== undefined) {
-			this.audioWorkletNode.disconnect(this.audioContext.destination);
-			this.audioWorkletNode = undefined;
-		}
-	}
+      try {
+        audioContext.audioWorklet.addModule(workletUrl).then(() => {
+          stopAudio();
+          audioWorkletNode = new MaxiNode(audioContext, customProcessorName);
 
-	function more(gain) {
-		if (this.audioWorkletNode !== undefined) {
-			const gainParam = this.audioWorkletNode.parameters.get(gain);
-			gainParam.value += 0.5;
-			console.log(gain + ": " + gainParam.value); // DEBUG
-			return true;
-		} else return false;
-	}
+          audioWorkletNode.port.onmessage = (event) => {
+            //  data from the processor.
+            console.log("from processor: " + event.data);
+          };
 
-	function less(gain) {
-		if (this.audioWorkletNode !== undefined) {
-			const gainParam = this.audioWorkletNode.parameters.get(gain);
-			gainParam.value -= 0.5;
-			console.log(gain + ": " + gainParam.value); // DEBUG
-			return true;
-		} else return false;
-	}
- 
+          audioWorkletNode.connect(audioContext.destination);
+        }).catch((e => console.log("Error on loading worklet: ", e)));
+      } catch (err) {
+        console.log("AudioWorklet not supported in this browser: ", err.message);
+      }
+    }
 
+    function sendAudioArray(sampleWorkletObjectName, float32Array) {
+      if (float32Array !== undefined && audioWorkletNode !== undefined) {
+        // console.log('f32array: ' + float32Array);
+        audioWorkletNode.port.postMessage({
+          [sampleWorkletObjectName]: float32Array,
+        });
+      }
+    }
 
-  document.addEventListener("DOMContentLoaded", () => {
-    setButtonEventHandlers();
-  });
+    function loadSample() {
+      if (audioContext !== undefined) {
+        loadSampleToArray(audioContext, "beat", "beat2.wav", sendAudioArray);
 
+      } else throw "Audio Context is not initialised!";
+    }
+
+    function stopAudio() {
+      if (audioWorkletNode !== undefined) {
+        audioWorkletNode.disconnect(audioContext.destination);
+        audioWorkletNode = undefined;
+      }
+    }
+
+    function increaseVolume() {
+      if (audioWorkletNode !== undefined) {
+        const gainParam = audioWorkletNode.parameters.get('gain');
+        gainParam.value += 0.01;
+      }
+    }
+
+    function decreaseVolume() {
+      if (audioWorkletNode !== undefined) {
+        const gainParam = audioWorkletNode.parameters.get('gain');
+        gainParam.value -= 0.01;
+      }
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      setButtonEventHandlers();
+    });
   </script>
 </body>
-
 </html>

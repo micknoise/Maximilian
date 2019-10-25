@@ -91,12 +91,12 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	var magnitudesDB = new Module.VectorFloat();
 
 	// will store mfcc output
-	// var mfccs = new Module.VectorDouble();
+	var mfccs = new Module.VectorDouble();
 
 
-	// for (var i = 0; i < 13; ++i) {
-	// 	mfccs.push_back(0);
-	// }
+	for (var i = 0; i < 13; ++i) {
+		mfccs.push_back(0);
+	}
 
 	for (var i = 0; i < fftSize / 2; ++i) {
 		magnitudes.push_back(0);
@@ -117,19 +117,19 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		magMult: 6
 	};
 
-	// var mfccDraw = {
-	// 	barsBottom: 350,
-	// 	barsLeft: 350,
-	// 	barsSize: 10,
-	// 	magMult: 24
-	// };
+	var mfccDraw = {
+		barsBottom: 350,
+		barsLeft: 350,
+		barsSize: 10,
+		magMult: 24
+	};
 
-	// var octDraw = {
-	// 	barsBottom: 150,
-	// 	barsLeft: 350,
-	// 	barsSize: 10,
-	// 	magMult: 0.5
-	// };
+	var octDraw = {
+		barsBottom: 150,
+		barsLeft: 350,
+		barsSize: 10,
+		magMult: 0.5
+	};
 
 	var amtAvgs = 15;
 	var pitchHist = [];

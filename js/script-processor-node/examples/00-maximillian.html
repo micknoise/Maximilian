@@ -52,6 +52,7 @@
 		maxiEngine.loadSample("audio/crebit2.ogg", samp, (sample) => { console.log("Loaded an ogg " + sample.getLength())} );
 		// maxiEngine.loadOgg("audio/beat2.wav", samp);
 		let count=0;
+	
 		maxiEngine.play = function(input) {
 			// return osc1.sinewave(1000) * osc2.sinewave(300) * input[0];
 			// console.log(ts.getPosition());
@@ -59,8 +60,8 @@
 			// }
 			// count++;
 			// return ts.playAtPosition(0.6, osc1.phasor(0.3), 0.05, 2);
-			let	w = samp.play();
-			return w;
+			return samp.play();
+			
 		}
 	}
 

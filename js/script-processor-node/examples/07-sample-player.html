@@ -29,69 +29,85 @@ THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html><head>
-<meta http-equiv="content-type" content="text/html; charset=UTF-8">
-<title>
-	Javascript Audio Processing
-</title>
-<script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js?autoload=true&amp;skin=sunburst&amp;lang=css" defer="defer"></script>
-<!-- <link rel="stylesheet" type="text/css" href="javascript-processing_files/simple.css"> -->
-
-
-<script src="../maxiLib.js"></script>
-
-<!-- Our javascript code -->
-<script type="text/javascript">
-var audio = new maximJs.maxiAudio();
-audio.init();
-
-var samplePlayer = new maximJs.maxiSample();
-var mySine = new maximJs.maxiOsc();
-
-// load sample to 'samplePlayer' using 'audio' object
-audio.loadSample("audio/beat2.wav", samplePlayer);
-
-audio.play = function(){
-	// this is necessary as file loading may not complete in setup
-	if(samplePlayer.isReady()){
-		this.output = samplePlayer.play();//just play the file. Looping is default for all play functions.
-		// this.output=samplePlayer.play(0.69) ;//play the file with a speed setting. 1. is normal speed.
-		// this.output=samplePlayer.play(0.5,0,44100);//linear interpolationplay with a frequency input, start point and end point. Useful for syncing.
-		// this.output=samplePlayer.play4(0.5,0,44100);//cubic interpolation play with a frequency input, start point and end point. Useful for syncing.
-	}
-}
-
-
-</script>
-
+<html>
+	
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<title>
+		Javascript Audio Processing
+	</title>
+	<script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js?autoload=true&amp;skin=sunburst&amp;lang=css" defer="defer"></script>
+	<!-- show all line numbers-->
+	<style type="text/css">
+		body {
+			font-family:Arial, Helvetica, sans-serif;
+		}
+		.prettyprint ol.linenums>li {
+			list-style-type: decimal
+		}
+	</style>
+	<script src="../build/maximilian.js"></script>
 </head>
 
 <body>
+	<h1> Sample Player Example </h1>
+	<p> Load and playback an audio sample from a .wav file </p>
+	<button id="playButton">Play</button>
+  <pre class="prettyprint lang-js linenums:true" id="quine" style="border:4px solid #88c" >
 
-	<h1> Sample Example </h1>
+let m = maximilian();
+let myOsc = new m.maxiOsc();
+let maxiAudio = new m.maxiAudio();
+var samplePlayer = new m.maxiSample();
 
-	<p>
+/**	
+ * maxiAudio.init() initialises the Audio Context and should execute in a button click event handler to prevent the console warning 
+ * "The AudioContext was not allowed to start. It must be resumed (or created) after a user gesture on the page. https://goo.gl/7K7WLu"
+ */
+let playAudio = () => {
 
-	</p>
+  maxiAudio.init();
+  maxiAudio.loadSample("audio/beat2.wav", samplePlayer);
 
-    <pre class="prettyprint lang-js linenums:true" id="quine" style="border:4px solid #88c" >
-var audio = new maximJs.maxiAudio();
-audio.init();
-
-var samplePlayer = new maximJs.maxiSample();
-var mySine = new maximJs.maxiOsc();
-
-// load sample using 'audio' object
-audio.loadSample("audio/beat2.wav", samplePlayer);
-
-audio.play = function(){
-	// this is necessary as file loading may not complete in setup
-	if(samplePlayer.isReady()){
-		this.output = samplePlayer.play();//just play the file. Looping is default for all play functions.
-		// this.output=samplePlayer.play(0.69) ;//play the file with a speed setting. 1. is normal speed.
-		// this.output=samplePlayer.play(0.5,0,44100);//linear interpolationplay with a frequency input, start point and end point. Useful for syncing.
-		// this.output=samplePlayer.play4(0.5,0,44100);//cubic interpolation play with a frequency input, start point and end point. Useful for syncing.
-	}
+  maxiAudio.play = function () {
+    if( samplePlayer.isReady() ){
+      return samplePlayer.play();
+    }
+  }
 }
-    </pre>
+
+const playButton = document.getElementById('playButton');
+playButton.addEventListener("click", () => playAudio());
+  
+	</pre>
 </body></html>
+
+<!-- Our javascript code -->
+<script type="text/javascript">
+
+	let m = maximilian();
+	let myOsc = new m.maxiOsc();
+	let maxiAudio = new m.maxiAudio();
+	var samplePlayer = new m.maxiSample();
+
+	/**	
+	 * maxiAudio.init() initialises the Audio Context and should execute in a button click event handler to prevent the console warning 
+	 * "The AudioContext was not allowed to start. It must be resumed (or created) after a user gesture on the page. https://goo.gl/7K7WLu"
+	 */
+	let playAudio = () => {
+
+		maxiAudio.init();
+		maxiAudio.loadSample("audio/beat2.wav", samplePlayer);	
+		maxiAudio.play = function () {
+			if( samplePlayer.isReady() ){
+				return samplePlayer.play();
+			}
+		}
+	}
+
+	const playButton = document.getElementById('playButton');
+	playButton.addEventListener("click", () => playAudio());
+
+</script>
+</html>
+

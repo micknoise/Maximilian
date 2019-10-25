@@ -40,7 +40,7 @@
     // } from '../build/maximilian.wasmmodule.js';
     import {
       loadSampleToArray
-    } from '../common/maximilian.util.js';
+    } from '../../common/maximilian.util.js';
 
     window.loadSampleToArray = loadSampleToArray; 
   </script>
@@ -180,14 +180,7 @@
     }
 
 
-    function sendAudioArray(sampleWorkletObjectName, float32Array) {
-      if (float32Array !== undefined && audioWorkletNode !== undefined) {
-        // console.log('f32array: ' + float32Array);
-        audioWorkletNode.port.postMessage({
-          [sampleWorkletObjectName]: float32Array,
-        });
-      }
-    }
+
 
     function generateNoiseBuffer(length) {
       var float32Array = new Float32Array(length);
@@ -218,6 +211,15 @@
       if (audioContext !== undefined) {
         loadSampleToArray(audioContext, url, sendAudioArray);
       } else throw "Audio Context is not initialised!";
+    }
+
+    function sendAudioArray(sampleWorkletObjectName, float32Array) {
+      if (float32Array !== undefined && audioWorkletNode !== undefined) {
+        // console.log('f32array: ' + float32Array);
+        audioWorkletNode.port.postMessage({
+          [sampleWorkletObjectName]: float32Array,
+        });
+      }
     }
 
     function loadSamples() {

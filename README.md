@@ -68,7 +68,7 @@ then:
 > ./maximilian
 
 
-
+i
 :::::::::::::::::::::::::::OPENFRAMEWORKS
 
 Maximilian works well with the OpenFrameworks C++ creative coding toolkit (http://www.openframeworks.cc).

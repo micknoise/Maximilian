@@ -450,11 +450,7 @@ class_<maxiMath>("maxiMath")
 // };
 //
 EMSCRIPTEN_BINDINGS(my_module_maxiGrains) {
-//
-//     // -------------------------------------------------------------------------------------------
-//     // LIBS
-//
-//
+    
     // MAXI TIMESTRETCH
     class_<maxiTimeStretch<hannWinFunctor> >("maxiTimeStretch")
     .smart_ptr_constructor("shared_ptr<maxiTimestretch<hannWinFunctor> >",&std::make_shared<maxiTimeStretch<hannWinFunctor> >)

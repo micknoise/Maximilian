@@ -58,6 +58,12 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 </body>
 
 <script type="text/javascript">
+  
+  let m = maximilian();
+
+	let fftSize = 1024;
+  let magMult = 6;
+  let wave = 0;
 
 	var fftDraw = {
 		barsBottom: 600,
@@ -66,64 +72,26 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		magMult: 6
 	};
 
-	let m = maximilian();
-	let myOsc = new m.maxiOsc();
-	let maxiAudio = new m.maxiAudio();
-	let samplePlayer = new m.maxiSample();
-	let fft = new m.maxiFFT();
-
-  // for storing fft values (required as passing a vector from one class to another isn't currently working)
-  let magnitudes = new m.VectorFloat();
-  let magnitudesDB = new m.VectorFloat();
-
-	let fftSize = 1024;
-	let sampleRate = 44100;
-	let nAverages = 12;
-
-	fft.setup(fftSize, 512, 256);
-
-  for (var i = 0; i < fftSize / 2; ++i) {
-  	magnitudes.push_back(0);
-  }
-  
-  let magMult = 6;
-	let amtAvgs = 15;
-  let pitchHist = [];
-
-
-  var fftDraw = {
-  	barsBottom: 600,
-  	barsLeft: 50,
-  	barsSize: 1,
-  	magMult: 6
-  };
-  
-
 	let playAudio = () => {
 
-  	maxiAudio.init();
-  
+    let myOsc = new m.maxiOsc();
+    let myOsc2 = new m.maxiOsc();
+    let maxiAudio = new m.maxiAudio();
+    let samplePlayer = new m.maxiSample();
+    let fft = new m.maxiFFT();
+
+	  fft.setup(fftSize, 512, 256);
+  	
+    maxiAudio.init();
 	 	maxiAudio.loadSample("audio/beat2.wav", samplePlayer);	
 
 		maxiAudio.play = function () {
-		// create wave for fft
-  		var wave = myOsc.square(220);
-  
-  		// or use a sample
-  		// var wave = samplePlayer.isReady() ? samplePlayer.play() : 0.0;
+      // create wave for fft
+      wave = myOsc.sinebuf(10000 + myOsc2.sinewave(1000)*10000);
   
   		// process wave
   		if (fft.process(wave)) {
   			fft.magsToDB();
-  
-  			// sorry, this is not nice
-  			// Module.vectorTools.clearVectorFloat(magnitudes);
-  			// Module.vectorTools.clearVectorFloat(magnitudesDB);
-  
-  			for (var i = 0; i < fftSize / 2; ++i) {
-  				magnitudes.push_back(fft.getMagnitude(i));
-  				magnitudesDB.push_back(fft.getMagnitudeDB(i));
-  			}
   		}
   		return wave;
   	}
@@ -147,20 +115,6 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 				fftDraw.barsBottom,
 				fftDraw.barsSize,
 				-(fft.getMagnitude(i) * fftDraw.magMult));
-			context.fill();
-			context.closePath();
-		}
-
-		context.fillStyle = "rgba(0, 0, 255, 0.5)"
-		context.font = "30px Arial";
-		context.fillText("OCT", 350, 50);
-		for (var i = 0; i < amtAvgs; i++) {
-			context.beginPath();
-			context.rect(
-				octDraw.barsLeft + i * (octDraw.barsSize * 1.5),
-				octDraw.barsBottom,
-				octDraw.barsSize,
-				-(pitchHist[i] * octDraw.magMult));
 			context.fill();
 			context.closePath();
 		}

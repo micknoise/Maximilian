@@ -39,8 +39,9 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js?autoload=true&amp;skin=sunburst&amp;lang=css" defer="defer"></script>
 	<!-- show all line numbers-->
 	<style type="text/css">
-		body {
+		body, button {
 			font-family:Arial, Helvetica, sans-serif;
+      font-size: 16px;
 		}
 		.prettyprint ol.linenums>li {
 			list-style-type: decimal
@@ -50,15 +51,13 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 </head>
 
 <body>
-	<h1> Sample Player Example </h1>
-	<p> Load and playback an audio sample from a .wav file </p>
-	<button id="playButton">Play</button>
-  <pre class="prettyprint lang-js linenums:true" id="quine" style="border:4px solid #88c" >
+  <div style="display: inline-block;">
+  	<h1> Sample Player Example </h1>
+  	<p> Load and playback an audio sample from a .wav file </p>
+    <div>
+      <pre class="prettyprint lang-js linenums:true" id="quine" style="border:1px solid #88c; width: 750px; float: left;" >
 
 let m = maximilian();
-let myOsc = new m.maxiOsc();
-let maxiAudio = new m.maxiAudio();
-var samplePlayer = new m.maxiSample();
 
 /**	
  * maxiAudio.init() initialises the Audio Context and should execute in a button click event handler to prevent the console warning 
@@ -66,9 +65,12 @@ var samplePlayer = new m.maxiSample();
  */
 let playAudio = () => {
 
-  maxiAudio.init();
-  maxiAudio.loadSample("audio/beat2.wav", samplePlayer);
+  let myOsc = new m.maxiOsc();
+  let maxiAudio = new m.maxiAudio();
+  var samplePlayer = new m.maxiSample();
 
+  maxiAudio.init();
+  maxiAudio.loadSample("audio/beat2.wav", samplePlayer);	
   maxiAudio.play = function () {
     if( samplePlayer.isReady() ){
       return samplePlayer.play();
@@ -78,35 +80,40 @@ let playAudio = () => {
 
 const playButton = document.getElementById('playButton');
 playButton.addEventListener("click", () => playAudio());
-  
-	</pre>
-</body></html>
+
+    	</pre>
+    </div>
+    <button id="playButton">Play</button>
+  </div>
+</body>
+</html>
 
 <!-- Our javascript code -->
 <script type="text/javascript">
 
-	let m = maximilian();
-	let myOsc = new m.maxiOsc();
-	let maxiAudio = new m.maxiAudio();
-	var samplePlayer = new m.maxiSample();
+  let m = maximilian();
 
-	/**	
-	 * maxiAudio.init() initialises the Audio Context and should execute in a button click event handler to prevent the console warning 
-	 * "The AudioContext was not allowed to start. It must be resumed (or created) after a user gesture on the page. https://goo.gl/7K7WLu"
-	 */
-	let playAudio = () => {
+  /**	
+   * maxiAudio.init() initialises the Audio Context and should execute in a button click event handler to prevent the console warning 
+   * "The AudioContext was not allowed to start. It must be resumed (or created) after a user gesture on the page. https://goo.gl/7K7WLu"
+   */
+  let playAudio = () => {
 
-		maxiAudio.init();
-		maxiAudio.loadSample("audio/beat2.wav", samplePlayer);	
-		maxiAudio.play = function () {
-			if( samplePlayer.isReady() ){
-				return samplePlayer.play();
-			}
-		}
-	}
+    let myOsc = new m.maxiOsc();
+    let maxiAudio = new m.maxiAudio();
+    var samplePlayer = new m.maxiSample();
 
-	const playButton = document.getElementById('playButton');
-	playButton.addEventListener("click", () => playAudio());
+    maxiAudio.init();
+    maxiAudio.loadSample("audio/beat2.wav", samplePlayer);	
+    maxiAudio.play = function () {
+      if( samplePlayer.isReady() ){
+        return samplePlayer.play();
+      }
+    }
+  }
+
+  const playButton = document.getElementById('playButton');
+  playButton.addEventListener("click", () => playAudio());
 
 </script>
 </html>

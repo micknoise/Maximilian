@@ -55,24 +55,18 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<canvas id="myCanvas" width="700" height="700" style="border:1px solid #c3c3c3;">
 		Your browser does not support the canvas element. 	<!-- It's a good idea to warn people whose browsers don't support the tag -->
 	</canvas>
+  <button id="playButton">Play</button>
 </body>
 
 <script type="text/javascript">
   
   let m = maximilian();
 
-	let fftSize = 1024;
+  let fftSize = 1024;
   let magMult = 6;
   let wave = 0;
 
-	var fftDraw = {
-		barsBottom: 600,
-		barsLeft: 50,
-		barsSize: 1,
-		magMult: 6
-	};
-
-	let playAudio = () => {
+  let playAudio = () => {
 
     let myOsc = new m.maxiOsc();
     let myOsc2 = new m.maxiOsc();
@@ -80,22 +74,34 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     let samplePlayer = new m.maxiSample();
     let fft = new m.maxiFFT();
 
-	  fft.setup(fftSize, 512, 256);
+    fft.setup(fftSize, 512, 256);
   	
     maxiAudio.init();
-	 	maxiAudio.loadSample("audio/beat2.wav", samplePlayer);	
+    // maxiAudio.loadSample("audio/beat2.wav", samplePlayer);	
 
-		maxiAudio.play = function () {
+    maxiAudio.play = function () {
       // create wave for fft
       wave = myOsc.sinebuf(10000 + myOsc2.sinewave(1000)*10000);
-  
-  		// process wave
-  		if (fft.process(wave)) {
-  			fft.magsToDB();
-  		}
-  		return wave;
-  	}
-	}
+
+      // process wave
+      if (fft.process(wave, 1)) {
+        let mag = ""
+        for (var i = 0; i < fftSize / 2; i++){
+          mag += fft.getMagnitudes()[i] + " ";
+        }
+        console.log("Mags: " + mag);
+      }
+      return wave;
+    }
+  }
+
+	// var fftDraw = {
+	// 	barsBottom: 600,
+	// 	barsLeft: 50,
+	// 	barsSize: 1,
+	// 	magMult: 6
+	// };
+
 
 	//The stuff inside the script tag is very similar to processing code.
 	function draw() {

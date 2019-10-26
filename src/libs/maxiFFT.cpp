@@ -59,6 +59,9 @@ void maxiFFT::setup(int _fftSize, int _hopSize, int _windowSize) {
     recalc = true;
 }
 
+
+
+
 bool maxiFFT::process(float value, fftModes mode) {
 	//add value to buffer at current pos
 	buffer[pos++] = value;
@@ -85,6 +88,14 @@ bool maxiFFT::process(float value, fftModes mode) {
         recalc = true;
 	}
 	return newFFT;
+}
+
+bool maxiFFT::process(float value, int mode){
+
+  if(mode==0) 
+    return maxiFFT::process(value, maxiFFT::fftModes::NO_POLAR_CONVERSION);
+  else 
+    return maxiFFT::process(value, maxiFFT::fftModes::WITH_POLAR_CONVERSION); 
 }
 
 vector<float> & maxiFFT::magsToDB() {

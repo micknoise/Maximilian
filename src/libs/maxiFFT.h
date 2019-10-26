@@ -44,18 +44,19 @@ class maxiFFT {
 	
 public:
     
-    enum fftModes {NO_POLAR_CONVERSION, WITH_POLAR_CONVERSION};
-    
-    maxiFFT() {};
-    ~maxiFFT() {};
-	void setup(int fftSize=1024, int hopSize=512, int windowSize=0);
-    bool process(float value, fftModes mode = maxiFFT::WITH_POLAR_CONVERSION);
-    inline float *getReal() {return _fft.getReal();};
-    inline float *getImag() {return _fft.getImg();};
-    
-    std::vector<float> & getMagnitudes() {return magnitudes;}
-    std::vector<float> & getMagnitudesDB() {return magsToDB();}
-    std::vector<float> & getPhases() {return phases;}
+  enum fftModes {NO_POLAR_CONVERSION = 0, WITH_POLAR_CONVERSION = 1};
+  
+  maxiFFT() {};
+  ~maxiFFT() {};
+  void setup(int fftSize=1024, int hopSize=512, int windowSize=0);
+  bool process(float value, int fftMode=1);
+  bool process(float value, fftModes mode=maxiFFT::WITH_POLAR_CONVERSION);
+  inline float *getReal() {return _fft.getReal();};
+  inline float *getImag() {return _fft.getImg();};
+  
+  std::vector<float> & getMagnitudes() {return magnitudes;}
+  std::vector<float> & getMagnitudesDB() {return magsToDB();}
+  std::vector<float> & getPhases() {return phases;}
 
 	//features
 	float spectralFlatness();
@@ -63,29 +64,29 @@ public:
     
 private:
 //    float *buffer, *window;
-    std::vector<float> magnitudes, phases, magnitudesDB;
-    std::vector<float> buffer, window;
+  std::vector<float> magnitudes, phases, magnitudesDB;
+  std::vector<float> buffer, window;
 	int pos;
 	float nextValue;
 	int fftSize;
 	fft _fft;
 	bool newFFT;
-    int windowSize;
-    int hopSize;
-    int bins;
-    float recalc;
-    std::vector<float> & magsToDB();
+  int windowSize;
+  int hopSize;
+  int bins;
+  float recalc;
+  std::vector<float> & magsToDB();
 
 };
 
 class maxiIFFT {
 	
 public:
-    enum fftModes {SPECTRUM, COMPLEX};
+  enum fftModes {SPECTRUM, COMPLEX};
 
 	maxiIFFT(){
 	};
-    ~maxiIFFT() {};
+  ~maxiIFFT() {};
 	void setup(int fftSize=1024, int hopSize=512, int windowSize=0);
     float process(std::vector<float> &data1, std::vector<float> &data2, fftModes mode = maxiIFFT::SPECTRUM);
 	

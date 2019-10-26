@@ -408,31 +408,57 @@ class_<maxiMath>("maxiMath")
 			.property("bps", &maxiClock::getBps, &maxiClock::setBps)
 			.property("bpm", &maxiClock::getBpm, &maxiClock::setBpm)
 			.property("tick", &maxiClock::getTick, &maxiClock::setTick)
-			.property("ticks", &maxiClock::getTicks, &maxiClock::setTicks);
+			.property("ticks", &maxiClock::getTicks, &maxiClock::setTicks)
+      ;
 
-	//	class_<testVectorHolder>("testVectorHolder")
-	//	.constructor<>()
-	/*
-	 Using a smart_ptr_constructor ensures lifetime management  on the js side
-	 by returning a smart_ptr when a constructor is used
-	 */
-	//	.smart_ptr_constructor("shared_ptr<testVectorHolder>",&std::make_shared<testVectorHolder>)
-	//	.function("at", &testVectorHolder::at)
-	//	.function("coswave", &maxiOsc::coswave)
-	//	;
 
-	// -----------------------------------------
 
-	//	class_<maxiTest>("maxiTest")
-	//	.constructor<>()
-	/*
-	 Using a smart_ptr_constructor ensures lifetime management  on the js side
-	 by returning a smart_ptr when a constructor is used
-	 */
-	//	.smart_ptr_constructor("shared_ptr<maxiOsc>",&std::make_shared<maxiTest>)
-	//	.function("sumArray", &maxiTest::sumArray, allow_raw_pointers())
-	//	;
+
+  // MAXI FFT
+  class_<maxiFFT>("maxiFFT")
+#ifdef SPN
+		.smart_ptr_constructor("shared_ptr<maxiFFT>", &std::make_shared<maxiFFT>)
+#else
+		.constructor<>()
+#endif
+    .function("setup", &maxiFFT::setup)
+    .function("process", select_overload<bool(float, maxiFFT::fftModes)>(&maxiFFT::process) )
+    .function("process", select_overload<bool(float,int)>(&maxiFFT::process))
+    // .function("process", &maxiFFT::process)
+    .function("spectralFlatness", &maxiFFT::spectralFlatness)
+    .function("spectralCentroid", &maxiFFT::spectralCentroid)
+    .function("getMagnitudes", &maxiFFT::getMagnitudes)
+    .function("getMagnitudesDB", &maxiFFT::getMagnitudesDB)
+    .function("getPhase", &maxiFFT::getPhases)
+    // // .property("windowSize", &maxiFFT::getWindowSize, &maxiFFT::setWindowSize)
+    // // .property("hopSize", &maxiFFT::getHopSize, &maxiFFT::setHopSize)
+    // // .property("bins", &maxiFFT::getNumBins, &maxiFFT::setNumBins)
+    ;
+
+  enum_<maxiFFT::fftModes>("maxiFFT.fftModes")
+    .value("NO_POLAR_CONVERSION", maxiFFT::fftModes::NO_POLAR_CONVERSION)
+    .value("WITH_POLAR_CONVERSION", maxiFFT::fftModes::WITH_POLAR_CONVERSION)
+    ;
+
+
+  // MAXI FFT
+  class_<maxiIFFT>("maxiIFFT")
+#ifdef SPN
+			.smart_ptr_constructor("shared_ptr<maxiIFFT>", &std::make_shared<maxiIFFT>)
+#else
+			.constructor<>()
+#endif
+    .function("setup", &maxiIFFT::setup)
+    .function("process", &maxiIFFT::process)
+    ;
+    
 };
+
+
+
+
+
+
 //
 // EMSCRIPTEN_BINDINGS(my_module_maxiMFCC) {
 //
@@ -504,37 +530,37 @@ EMSCRIPTEN_BINDINGS(my_module_maxiFFT) {
     // LIBS
 
 
-    // MAXI FFT
-    class_<maxiFFT>("maxiFFT")
-    //    .constructor<>()
-    //    .constructor<int>()
+    // // MAXI FFT
+    // class_<maxiFFT>("maxiFFT")
+    // //    .constructor<>()
+    // //    .constructor<int>()
 
 
-    .smart_ptr_constructor("shared_ptr<maxiFFT>",&std::make_shared<maxiFFT>)
-    .function("setup", &maxiFFT::setup)
-    .function("process", &maxiFFT::process)
-    .function("spectralFlatness", &maxiFFT::spectralFlatness)
-    .function("spectralCentroid", &maxiFFT::spectralCentroid)
-    .function("getMagnitudes", &maxiFFT::getMagnitudes)
-    .function("getMagnitudesDB", &maxiFFT::getMagnitudesDB)
-    .function("getPhase", &maxiFFT::getPhases)
+    // .smart_ptr_constructor("shared_ptr<maxiFFT>",&std::make_shared<maxiFFT>)
+    // .function("setup", &maxiFFT::setup)
+    // .function("process", &maxiFFT::process)
+    // .function("spectralFlatness", &maxiFFT::spectralFlatness)
+    // .function("spectralCentroid", &maxiFFT::spectralCentroid)
+    // .function("getMagnitudes", &maxiFFT::getMagnitudes)
+    // .function("getMagnitudesDB", &maxiFFT::getMagnitudesDB)
+    // .function("getPhase", &maxiFFT::getPhases)
 
-    // .property("windowSize", &maxiFFT::getWindowSize, &maxiFFT::setWindowSize)
-    // .property("hopSize", &maxiFFT::getHopSize, &maxiFFT::setHopSize)
-    // .property("bins", &maxiFFT::getNumBins, &maxiFFT::setNumBins)
+    // // .property("windowSize", &maxiFFT::getWindowSize, &maxiFFT::setWindowSize)
+    // // .property("hopSize", &maxiFFT::getHopSize, &maxiFFT::setHopSize)
+    // // .property("bins", &maxiFFT::getNumBins, &maxiFFT::setNumBins)
 
-    ;
+    // ;
 
-    // MAXI IFFT
-    class_<maxiIFFT>("maxiIFFT")
-    //    .constructor<>()
-    //    .constructor<int>()
+    // // MAXI IFFT
+    // class_<maxiIFFT>("maxiIFFT")
+    // //    .constructor<>()
+    // //    .constructor<int>()
 
-    .smart_ptr_constructor("shared_ptr<maxiIFFT>",&std::make_shared<maxiIFFT>)
-    .function("setup", &maxiIFFT::setup)
-    .function("process", &maxiIFFT::process)
+    // .smart_ptr_constructor("shared_ptr<maxiIFFT>",&std::make_shared<maxiIFFT>)
+    // .function("setup", &maxiIFFT::setup)
+    // .function("process", &maxiIFFT::process)
 
-    ;
+    // ;
 
     // MAXI IFFT
     // class_<maxiFFTOctaveAnalyzer>("maxiFFTOctaveAnalyzer")

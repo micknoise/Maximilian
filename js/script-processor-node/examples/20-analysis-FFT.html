@@ -65,7 +65,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   let fftSize = 1024;
   let magMult = 6;
   let wave = 0;
-
+ 
   let playAudio = () => {
 
     let myOsc = new m.maxiOsc();
@@ -73,23 +73,31 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     let maxiAudio = new m.maxiAudio();
     let samplePlayer = new m.maxiSample();
     let fft = new m.maxiFFT();
+    let magnitudes = new m.VectorFloat();
+    let mags = new Float32Array();
 
     fft.setup(fftSize, 512, 256);
   	
     maxiAudio.init();
-    // maxiAudio.loadSample("audio/beat2.wav", samplePlayer);	
+    maxiAudio.loadSample("audio/beat2.wav", samplePlayer);	
+    for(var i = 0; i < fftSize/2; ++i){
+      magnitudes.push_back(0);
+    }
+
+
 
     maxiAudio.play = function () {
       // create wave for fft
-      wave = myOsc.sinebuf(10000 + myOsc2.sinewave(1000)*10000);
-
+      // wave = myOsc.sinebuf(10000 + myOsc2.sinewave(1000)*10000);
+      wave = samplePlayer.play();
       // process wave
-      if (fft.process(wave, 1)) {
-        let mag = ""
+      if (fft.process(wave, 0)) {
+        magnitudes = fft.getMagnitudesDB();
+        console.log(magnitudes);        
         for (var i = 0; i < fftSize / 2; i++){
-          mag += fft.getMagnitudes()[i] + " ";
+          mags[i] = magnitudes.get(i);
         }
-        console.log("Mags: " + mag);
+        console.log(mags); 
       }
       return wave;
     }

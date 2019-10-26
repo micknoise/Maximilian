@@ -1,9 +1,9 @@
 ```                                     
-  _____ _____ ___   __ _  _____  __ __   __ ____    ___  
- /     \\_   \\  \/  /  |/     \|  |  | |  \_   \  /   \ 
-|  Y Y  \/ /_ \>    <|  |  Y Y  \  |  |_|  |/ /_ \|  Y  \
-|__|_|  (___  / _/\  \__|__|_|  /__|____/__(___  /|__|  /
-      \/    \/      \/        \/               \/     \/
+  _____ _____ ___   __ _  _____  __ __   __ ____  ____  
+ /     \\_   \\  \/  /  |/     \|  |  | |  \_   \/    \ 
+|  Y Y  \/ /_ \>    <|  |  Y Y  \  |  |_|  |/ /_ \  Y  \
+|__|_|  (___  / _/\  \__|__|_|  /__|____/__(___  /__|  /
+      \/    \/      \/        \/               \/    \/
 ``` 
 ![version](https://img.shields.io/badge/version-2.0.2-red)
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/mimic-sussex/eppEditor/blob/master/LICENSE)

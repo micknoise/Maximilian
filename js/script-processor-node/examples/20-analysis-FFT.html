@@ -73,11 +73,11 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     let fft = new m.maxiFFT();
     let magnitudes = new m.VectorFloat();
     let mags = new Float32Array();
-
-    fft.setup(fftSize, 512, 256);
   	
     maxiAudio.init();
     maxiAudio.loadSample("audio/beat2.wav", samplePlayer);	
+    fft.setup(fftSize, 512, 256);
+
     maxiAudio.play = function () {
 
       wave = samplePlayer.play();
@@ -139,20 +139,18 @@ function draw() {
     let fft = new m.maxiFFT();
     let magnitudes = new m.VectorFloat();
     let mags = new Float32Array();
-
-    fft.setup(fftSize, 512, 256);
   	
     maxiAudio.init();
     maxiAudio.loadSample("audio/beat2.wav", samplePlayer);	
-    
+    fft.setup(fftSize, 512, 256);
+     
     maxiAudio.play = function () {
 
-      wave = samplePlayer.play();      
+      wave = samplePlayer.play();
+      
       if (fft.process(wave, 0)) {
-        
         magnitudes = fft.getMagnitudesDB();
         console.log(magnitudes);        
-        
         for (let i = 0; i < fftSize / 2; i++){
           mags[i] = magnitudes.get(i);
         }
@@ -167,7 +165,6 @@ function draw() {
     context.fillStyle = "#FF0000";
     context.font = "30px Arial";
     context.fillText("FFT", 70, 200);
-
     for (let i = 0; i < fftSize / 2; i++) {
       context.beginPath();
       context.rect(
@@ -188,6 +185,7 @@ function draw() {
     context = canvas.getContext("2d");
     // return setInterval(draw, 40);
   }
+
 </pre>
 
 </html>

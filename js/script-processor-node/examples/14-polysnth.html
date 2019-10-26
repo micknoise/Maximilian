@@ -1,0 +1,298 @@
+
+<!--
+Copyright 2010, Google Inc.
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are
+met:
+
+    * Redistributions of source code must retain the above copyright
+notice, this list of conditions and the following disclaimer.
+    * Redistributions in binary form must reproduce the above
+copyright notice, this list of conditions and the following disclaimer
+in the documentation and/or other materials provided with the
+distribution.
+    * Neither the name of Google Inc. nor the names of its
+contributors may be used to endorse or promote products derived from
+this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+"AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<title>
+	Javascript Audio Processing
+</title>
+<script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js?autoload=true&amp;skin=sunburst&amp;lang=css" defer="defer"></script>
+<!-- <link rel="stylesheet" type="text/css" href="javascript-processing_files/simple.css"> -->
+
+
+<script src="../maxiLib.js"></script>
+<!-- <script src="../maxi_webAudio.js"></script> -->
+
+<!-- Our javascript code -->
+<script type="text/javascript">
+var audio = new maximJs.maxiAudio();
+audio.init();
+  // change output to an array
+  audio.outputIsArray(true, 2);
+
+//This shows how to use maximilian to build a polyphonic synth.
+// Chrome doesn't like this one for some reason
+var VCO_ArraySize = 6;
+
+//These are the synthesiser bits
+var VCO1 = [];
+for(var i = 0; i < VCO_ArraySize; ++i){
+VCO1.push(new maximJs.maxiOsc());
+}
+
+var VCO2 = [];
+for(var i = 0; i < VCO_ArraySize; ++i){
+VCO2.push(new maximJs.maxiOsc());
+}
+
+var LFO1 = [];
+for(var i = 0; i < VCO_ArraySize; ++i){
+LFO1.push(new maximJs.maxiOsc());
+}
+
+var LFO2 = [];
+for(var i = 0; i < VCO_ArraySize; ++i){
+LFO2.push(new maximJs.maxiOsc());
+}
+
+var VCF = [];
+for(var i = 0; i < VCO_ArraySize; ++i){
+VCF.push(new maximJs.maxiFilter());
+}
+
+var ADSR = [];
+for(var i = 0; i < VCO_ArraySize; ++i){
+ADSR.push(new maximJs.maxiEnv());
+}
+
+//and these are some variables we can use to pass stuff around
+var VCO1out = [], VCO2out = [], LFO1out = [],LFO2out = [], VCFout = [], ADSRout = [];
+
+var pitch = [];
+
+// fill arrays with 0s
+for(var i = 0; i < VCO_ArraySize; i++){
+	VCO1out.push(0);
+	VCO2out.push(0);
+	LFO1out.push(0);
+	LFO2out.push(0);
+	VCFout.push(0);
+	ADSRout.push(0);
+	pitch.push(0);
+}
+
+//This is a bunch of control signals so that we can hear something
+var timer = new maximJs.maxiOsc();//this is the metronome
+var currentCount = 0,lastCount = 0, voice = 0;//these values are used to check if we have a new beat this sample
+
+var mix;
+
+for (var i=0;i<VCO_ArraySize;i++) {
+
+  ADSR[i].setAttack(0);
+  ADSR[i].setDecay(200);
+  ADSR[i].setSustain(0.2);
+  ADSR[i].setRelease(2000);
+
+}
+
+audio.play = function(){
+	mix=0;//we're adding up the samples each update and it makes sense to clear them each time first.
+
+    //so this first bit is just a basic metronome so we can hear what we're doing.
+
+    currentCount=Math.floor(timer.phasor(8));//this sets up a metronome that ticks 8 times a second
+
+    if (lastCount!=currentCount) {//if we have a new timer int this sample, play the sound
+
+    	if (voice>=VCO_ArraySize) {
+    		voice=0;
+    	}
+
+        ADSR[voice].trigger=1;//trigger the envelope from the start
+        pitch[voice]=voice+1;
+        voice++;
+        // lastCount = 0;
+    }
+
+    //and this is where we build the synth
+    for (var i=0; i<VCO_ArraySize; i++) {
+
+
+        ADSRout[i]=ADSR[i].adsr(1.,ADSR[i].trigger);//our ADSR env is passed a constant signal of 1 to generate the transient.
+
+        LFO1out[i]=LFO1[i].sinebuf(0.2);//this lfo is a sinewave at 0.2 hz
+
+        VCO1out[i]=VCO1[i].pulse(55*pitch[i],0.6);//here's VCO1. it's a pulse wave at 55 hz, with a pulse width of 0.6
+        VCO2out[i]=VCO2[i].pulse((110*pitch[i])+LFO1out[i],0.2);//here's VCO2. it's a pulse wave at 110hz with LFO modulation on the frequency, and width of 0.2
+
+
+        VCFout[i]=VCF[i].lores((VCO1out[i]+VCO2out[i])*0.5, 250+((pitch[i]+LFO1out[i])*1000), 10);//now we stick the VCO's into the VCF, using the ADSR as the filter cutoff
+
+        mix+=VCFout[i]*ADSRout[i]/VCO_ArraySize;//finally we add the ADSR as an amplitude modulator
+
+
+    }
+
+    this.output[0]=mix*0.5;//left channel
+    this.output[1]=mix*0.5;//right channel
+
+    // This just sends note-off messages.
+    for (var i=0; i<VCO_ArraySize; i++) {
+    	ADSR[i].trigger=0;
+    }
+}
+
+
+</script>
+
+</head>
+
+<body>
+
+	<h1> polysynth </h1>
+
+	<p>
+		This shows how to use maximilian to build a polyphonic synth.
+	</p>
+
+   <pre class="prettyprint lang-js linenums:true" id="quine" style="border:4px solid #88c" >
+var audio = new maximJs.maxiAudio();
+audio.init();
+  // change output to an array
+  audio.outputIsArray(true, 2);
+
+//This shows how to use maximilian to build a polyphonic synth.
+// Chrome doesn't like this one for some reason
+var VCO_ArraySize = 6;
+
+//These are the synthesiser bits
+var VCO1 = [];
+for(var i = 0; i < VCO_ArraySize; ++i){
+VCO1.push(new maximJs.maxiOsc());
+}
+
+var VCO2 = [];
+for(var i = 0; i < VCO_ArraySize; ++i){
+VCO2.push(new maximJs.maxiOsc());
+}
+
+var LFO1 = [];
+for(var i = 0; i < VCO_ArraySize; ++i){
+LFO1.push(new maximJs.maxiOsc());
+}
+
+var LFO2 = [];
+for(var i = 0; i < VCO_ArraySize; ++i){
+LFO2.push(new maximJs.maxiOsc());
+}
+
+var VCF = [];
+for(var i = 0; i < VCO_ArraySize; ++i){
+VCF.push(new maximJs.maxiFilter());
+}
+
+var ADSR = [];
+for(var i = 0; i < VCO_ArraySize; ++i){
+ADSR.push(new maximJs.maxiEnv());
+}
+
+//and these are some variables we can use to pass stuff around
+var VCO1out = [], VCO2out = [], LFO1out = [],LFO2out = [], VCFout = [], ADSRout = [];
+
+var pitch = [];
+
+// fill arrays with 0s
+for(var i = 0; i < VCO_ArraySize; i++){
+    VCO1out.push(0);
+    VCO2out.push(0);
+    LFO1out.push(0);
+    LFO2out.push(0);
+    VCFout.push(0);
+    ADSRout.push(0);
+    pitch.push(0);
+}
+
+//This is a bunch of control signals so that we can hear something
+var timer = new maximJs.maxiOsc();//this is the metronome
+var currentCount = 0,lastCount = 0, voice = 0;//these values are used to check if we have a new beat this sample
+
+var mix;
+
+for (var i=0;i<VCO_ArraySize;i++) {
+
+  ADSR[i].setAttack(0);
+  ADSR[i].setDecay(200);
+  ADSR[i].setSustain(0.2);
+  ADSR[i].setRelease(2000);
+
+}
+
+audio.play = function(){
+    mix=0;//we're adding up the samples each update and it makes sense to clear them each time first.
+
+    //so this first bit is just a basic metronome so we can hear what we're doing.
+
+    currentCount=Math.floor(timer.phasor(8));//this sets up a metronome that ticks 8 times a second
+
+    if (lastCount!=currentCount) {//if we have a new timer int this sample, play the sound
+
+        if (voice>=VCO_ArraySize) {
+            voice=0;
+        }
+
+        ADSR[voice].trigger=1;//trigger the envelope from the start
+        pitch[voice]=voice+1;
+        voice++;
+        // lastCount = 0;
+    }
+
+    //and this is where we build the synth
+    for (var i=0; i<VCO_ArraySize; i++) {
+
+
+        ADSRout[i]=ADSR[i].adsr(1.,ADSR[i].trigger);//our ADSR env is passed a constant signal of 1 to generate the transient.
+
+        LFO1out[i]=LFO1[i].sinebuf(0.2);//this lfo is a sinewave at 0.2 hz
+
+        VCO1out[i]=VCO1[i].pulse(55*pitch[i],0.6);//here's VCO1. it's a pulse wave at 55 hz, with a pulse width of 0.6
+        VCO2out[i]=VCO2[i].pulse((110*pitch[i])+LFO1out[i],0.2);//here's VCO2. it's a pulse wave at 110hz with LFO modulation on the frequency, and width of 0.2
+
+
+        VCFout[i]=VCF[i].lores((VCO1out[i]+VCO2out[i])*0.5, 250+((pitch[i]+LFO1out[i])*1000), 10);//now we stick the VCO's into the VCF, using the ADSR as the filter cutoff
+
+        mix+=VCFout[i]*ADSRout[i]/VCO_ArraySize;//finally we add the ADSR as an amplitude modulator
+
+
+    }
+
+    this.output[0]=mix*0.5;//left channel
+    this.output[1]=mix*0.5;//right channel
+
+    // This just sends note-off messages.
+    for (var i=0; i<VCO_ArraySize; i++) {
+        ADSR[i].trigger=0;
+    }
+}
+
+</pre>
+</body></html>

@@ -1,0 +1,206 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>
+    Javascript Audio Processing
+  </title>
+  <style type="text/css">
+    .prettyprint ol.linenums>li {
+      list-style-type: decimal
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>Load-testing an audio worklet loaded with Maximilian</h1>
+  <p id="funcs"></p>
+  <p>Synth defs on the UI thread are posted to the worklet. Check out your dev console (Command+Option+J).</p>
+  <p>You might need to clean the cache when you are testing your worklet processor code</p>
+
+  <button id="playButton">Play</button>
+  <button id="stopButton">Stop</button>
+  <button id="plusButton">Vol+</button>
+  <button id="minusButton">Vol–</button>
+  <button id="synthButton">Change Synth</button>
+  <!-- <button id="evalSynthButton">Eval Synth</button> -->
+  <input type="checkbox" id="box" value="false">Load test<br>
+
+  <script type="text/javascript">
+    let audioContext;
+    let audioWorkletNode;
+    let customProcessorName = 'maxi-processor';
+    let workletUrl = 'maxi-processor.js';
+    let loadTestIntervals = [];
+
+    let fs = [
+      `this.osc.sawn(60) * this.oOsc.sinewave(0.4)`,
+      `this.osc.sawn(60)`,
+      `this.monosynth()`,
+      `this.osc.sinewave(440)`,
+      `this.osc.sawn(440)`,
+      `this.osc.triangle(440)`,
+      `this.osc.square(440)`,
+      `this.monosynth(10, 1, 500, 500)`,
+      `this.monosynth(500, 500, 500, 500)`,
+      `this.osc.sinewave(440) + this.oOsc.sinewave(441)`,
+      `this.osc.sinewave(440) * this.oOsc.sinewave(1)`,
+      `this.osc.sinewave(440 + (this.oOsc.sinewave(1) * 100))`,
+      `this.polysynth()`,
+      `this.polysynth(10, 1, 500, 500)`,
+      `this.polysynth(1000, 500, 500, 500)`,
+      `this.osc.sinewave(this.oOsc.sinewave(30) * 440)`,
+      `this.osc.sinewave(this.oOsc.sinewave(this.aOsc.sinewave(0.1) * 30) * 440)`,
+      // ,  Interesting case of failure, it seems we can't instantiate because of EM heap limits
+      // `new Module.maxiOsc()`,
+      // `new Module.maxiOsc().sinewave(400)`
+      // , `this.mySine.tri(440) >> DAC`, // Stereo by default
+      // `this.mySine.tri(440) >> DAC(1)`, // Mono to 1
+      // `this.mySine.tri(440) >> DAC(0)` // Mono to 2
+      // `this.mySine.tri(440) >> DAC(0,3,5)` // Channel indices
+      // `ADC >> this.mySine.tri(440) >> DAC(0,3,5)` // Channel indices
+      // `ADC >> this.mySine.tri(440) >> DAC(0,3,5)` // Channel indices
+      // `ADC >> this.mySine.tri(440) >> DAC(0,3,5)` // Channel indices
+    ];
+
+    const SYNTH_CHANGE_MS = 50;
+
+
+    class MaxiNode extends AudioWorkletNode {
+
+      constructor(audioContext, processorName, options) {
+        super(audioContext, processorName, options);
+      }
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      setButtonEventHandlers();
+    });
+
+    function setButtonEventHandlers() {
+
+      const playButton = document.getElementById('playButton');
+      playButton.addEventListener("click", () => playAudio());
+
+      const stopButton = document.getElementById('stopButton');
+      stopButton.addEventListener("click", () => stopAudio());
+
+      const plusButton = document.getElementById('plusButton');
+      plusButton.addEventListener("click", () => increaseVolume());
+
+      const minusButton = document.getElementById('minusButton');
+      minusButton.addEventListener("click", () => decreaseVolume());
+
+      const synthButton = document.getElementById('synthButton');
+      synthButton.addEventListener("click", () => changeSynth());
+
+      // const evalSynthButton = document.getElementById('evalSynthButton');
+      // evalSynthButton.addEventListener("click", () => evalSynth());
+
+      const checkBox = document.getElementById('box');
+      checkBox.addEventListener("click", () => loadTest());
+    }
+
+    function playAudio() {
+      if (audioContext === undefined) {
+        try {
+          audioContext = new AudioContext();
+          audioContext.audioWorklet.addModule(workletUrl).then(() => {
+
+            // options initialize named AudioParams automatically.
+            let options = {
+              numberOfInputs: 1,
+              numberOfOutputs: 1,
+              outputChannelCount: [2]
+            }
+            // audioWorkletNode = new MaxiNode(audioContext, customProcessorName, options);
+            audioWorkletNode = new AudioWorkletNode(audioContext, customProcessorName);
+            audioWorkletNode.onprocessorerror = event => {
+              console.log(`MaxiProcessor Error detected: ` + event.data);
+            }
+            audioWorkletNode.onprocessorstatechange = event => {
+              console.log(`MaxiProcessor state change detected: ` + audioWorkletNode.processorState);
+            }
+            audioWorkletNode.port.onmessage = event => {
+              console.log(`Message from processor: ` + event.data);
+            }; //  data from the processor.
+            audioWorkletNode.port.onmessageerror = event => {
+              console.log(`Error message from port: ` + event.data);
+            }; //  error from the message port.
+            audioWorkletNode.connect(audioContext.destination);
+          }).catch((e => console.log("Error on loading worklet: ", e)));
+        } catch (err) {
+          console.log("AudioWorklet not supported in this browser: ", err.message);
+        }
+      } else {
+        if (audioContext.state !== "suspended")
+          stopAudio();
+        else
+          audioContext.resume();
+      }
+    }
+
+    function stopAudio() {
+      if (audioWorkletNode !== undefined) {
+        audioContext.suspend();
+        // audioWorkletNode.disconnect(audioContext.destination);
+        // audioWorkletNode = undefined;
+      }
+    }
+
+    function increaseVolume() {
+      if (audioWorkletNode !== undefined) {
+        const gainParam = audioWorkletNode.parameters.get('gain');
+        gainParam.value += 0.5;
+        console.log("gain: " + gainParam.value);
+        return true;
+      } else return false;
+    }
+
+    function decreaseVolume() {
+      if (audioWorkletNode !== undefined) {
+        const gainParam = audioWorkletNode.parameters.get('gain');
+        gainParam.value -= 0.5;
+        console.log("gain: " + gainParam.value);
+        return true;
+      } else return false;
+    }
+
+    function changeSynth() {
+      evalSynth();
+    }
+
+    function evalSynth() {
+      if (audioWorkletNode !== undefined) {
+        let userDefinedFunction;
+        if (arguments.length == 0) {
+          userDefinedFunction = fs[Math.floor(Math.random() * fs.length)];
+          console.log("eval: " + userDefinedFunction);
+        } else {
+          userDefinedFunction = arguments[0];
+        }
+        // DEBUG:
+        audioWorkletNode.port.postMessage({
+          eval: `() => { return ${userDefinedFunction} }`
+        }); // Send JSON object with eval prop for evaluation in processor
+        return true;
+      } else return false;
+    }
+
+    function loadTest() {
+      if (audioContext.state === "suspended")
+        playAudio();
+      loadTestIntervals.push(setInterval('changeSynth()', SYNTH_CHANGE_MS));
+    }
+
+    function stopLoadTest() {
+      loadTestIntervals.forEach(interval => {
+        clearInterval(interval);
+      });
+    }
+  </script>
+</body>
+
+</html>

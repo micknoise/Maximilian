@@ -1,0 +1,319 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>
+    Javascript Audio Processing
+  </title>
+  <style type="text/css">
+    .prettyprint ol.linenums>li {
+      list-style-type: decimal
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>Sequencer with Markov with an audio worklet loaded with Maximilian</h1>
+  <p id="funcs"></p>
+  <p>Samples are loaded at initialisation from global scope sequences injected from. Check out your dev console
+    (Command+Option+J).</p>
+  <p>You might need to clean the cache when you are testing your worklet processor code</p>
+
+  <button id="playButton">Play</button>
+  <button id="stopButton">Stop</button>
+  <button id="plusButton">Vol+</button>
+  <button id="minusButton">Vol–</button>
+  <button id="synthButton">Change Synth</button>
+  <button id="loadSamplesButton">Load Samples</button>
+  <button id="sequenceButton">Eval Sequence</button>
+  <input type="checkbox" id="box" value="false">Load test<br>
+  <!-- <input id="audioFile" type="file" accept="audio/*" />
+  <audio id="audioPlayer" /> -->
+
+  <script type="module">
+    // NOTE: We don't need to conflate the WASM with utils for loading samples, so we segregate them from post.js
+    // import Module from '../build/maximilian.wasmmodule.js';
+    // import {
+    //   loadSampleToArray
+    // } from '../build/maximilian.wasmmodule.js';
+    import {
+      loadSampleToArray
+    } from '../common/maximilian.util.js';
+
+    window.loadSampleToArray = loadSampleToArray; 
+  </script>
+  <script type="text/javascript">
+    // var maxiAudio = new Module.maxiAudio();
+    // console.log('maxiAudio Module.object: ' + Module.maxiAudio);
+    // console.log('maxiAudio instance in variable: ' + maxiAudio);
+    // console.log('maxiAudio init(): ' + maxiAudio.init());
+    // console.log('maxiAudio output: ' + maxiAudio.output);
+    // console.log('maxiAudio init: ' + maxiAudio.init);
+    // console.log('maxiAudio loadSampleToArray: ' + loadSampleToArray('909.wav')); // Need to work with AudioContext initialised
+
+    'use strict';
+
+    let audioContext;
+    let audioWorkletNode;
+    let customProcessorName = 'maxi-processor';
+    let workletUrl = 'maxi-processor.js';
+
+    let sequences = [
+      `kc kc k scos`,
+      `kc kc k`,
+      `kc sss kccs skckos`,
+    ];
+
+    let synthDefs = [
+      `this.osc.sawn(60) * this.oOsc.sinewave(0.4)`,
+      `this.osc.sawn(60)`,
+      // `this.monosynth()`,
+      `this.osc.sinewave(440)`,
+      `this.osc.sawn(440)`,
+      `this.osc.triangle(440)`,
+      `this.osc.square(440)`,
+      // `this.monosynth(10, 1, 500, 500)`,
+      // `this.monosynth(500, 500, 500, 500)`,
+      `this.osc.sinewave(440) + this.oOsc.sinewave(441)`,
+      `this.osc.sinewave(440) * this.oOsc.sinewave(1)`,
+      `this.osc.sinewave(440 + (this.oOsc.sinewave(1) * 100))`,
+      // `this.polysynth()`,
+      // `this.polysynth(10, 1, 500, 500)`,
+      // `this.polysynth(1000, 500, 500, 500)`,
+      `this.osc.sinewave(this.oOsc.sinewave(30) * 440)`,
+      `this.osc.sinewave(this.oOsc.sinewave(this.aOsc.sinewave(0.1) * 30) * 440)`,
+      // ,  Interesting case of failure, it seems we can't instantiate because of EM heap limits
+      // `new Module.maxiOsc()`,
+      // `new Module.maxiOsc().sinewave(400)`
+      // , `this.mySine.tri(440) >> DAC`, // Stereo by default
+      // `this.mySine.tri(440) >> DAC(1)`, // Mono to 1
+      // `this.mySine.tri(440) >> DAC(0)` // Mono to 2
+      // `this.mySine.tri(440) >> DAC(0,3,5)` // Channel indices
+      // `ADC >> this.mySine.tri(440) >> DAC(0,3,5)` // Channel indices
+      // `ADC >> this.mySine.tri(440) >> DAC(0,3,5)` // Channel indices
+      // `ADC >> this.mySine.tri(440) >> DAC(0,3,5)` // Channel indices
+    ];
+
+    const SYNTH_CHANGE_MS = 50;
+
+    class MaxiNode extends AudioWorkletNode {
+
+      constructor(audioContext, processorName, options) {
+        super(audioContext, processorName, options);
+      }
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      setButtonEventHandlers();
+    });
+
+    function setButtonEventHandlers() {
+
+      const playButton = document.getElementById('playButton');
+      playButton.addEventListener("click", () => playAudio());
+
+      const stopButton = document.getElementById('stopButton');
+      stopButton.addEventListener("click", () => stopAudio());
+
+      const plusButton = document.getElementById('plusButton');
+      plusButton.addEventListener("click", () => increaseVolume());
+
+      const minusButton = document.getElementById('minusButton');
+      minusButton.addEventListener("click", () => decreaseVolume());
+
+      const synthButton = document.getElementById('synthButton');
+      synthButton.addEventListener("click", () => changeSynth());
+
+      const sequenceButton = document.getElementById('sequenceButton');
+      sequenceButton.addEventListener("click", () => evalSequence());
+
+      const loadSamplesButton = document.getElementById('loadSamplesButton');
+      loadSamplesButton.addEventListener("click", () => loadSamples());
+
+      const checkBox = document.getElementById('box');
+      checkBox.addEventListener("click", () => {
+        if (audioContext.state === "suspended") playAudio();
+        setInterval('changeSynth()', SYNTH_CHANGE_MS)
+      });
+    }
+
+
+    function playAudio() {
+      if (audioContext === undefined) {
+        try {
+          audioContext = new AudioContext();
+          audioContext.audioWorklet.addModule(workletUrl).then(() => {
+
+            // options initialize named AudioParams automatically.
+            let options = {
+              numberOfInputs: 1,
+              numberOfOutputs: 1,
+              outputChannelCount: [2]
+            }
+            // audioWorkletNode = new MaxiNode(audioContext, customProcessorName, options);
+            audioWorkletNode = new AudioWorkletNode(audioContext, customProcessorName);
+            audioWorkletNode.onprocessorerror = event => {
+              console.log(`MaxiProcessor Error detected: ` + event.data);
+            }
+            audioWorkletNode.onprocessorstatechange = event => {
+              console.log(`MaxiProcessor state change detected: ` + audioWorkletNode.processorState);
+            }
+            audioWorkletNode.port.onmessage = event => {
+              console.log(`Message from processor: ` + event.data);
+            }; // data from the processor.
+            audioWorkletNode.port.onmessageerror = event => {
+              console.log(`Error message from port: ` + event.data);
+            }; // error from the message port.
+            audioWorkletNode.connect(audioContext.destination);
+            return true;
+          }).catch((e => console.log("Error on loading worklet: ", e)));
+        } catch (err) {
+          console.log("AudioWorklet not supported in this browser: ", err.message);
+          return false;
+        }
+      } else {
+        if (audioContext.state !== "suspended") {
+          stopAudio();
+          return false;
+        } else {
+          audioContext.resume();
+          return true;
+        }
+      }
+    }
+
+    function stopAudio() {
+      if (audioWorkletNode !== undefined) {
+        audioContext.suspend();
+        // audioWorkletNode.disconnect(audioContext.destination);
+        // audioWorkletNode = undefined;
+      }
+    }
+
+    function increaseVolume(gain) {
+      if (audioWorkletNode !== undefined) {
+        const gainParam = audioWorkletNode.parameters.get(gain);
+        gainParam.value += 0.5;
+        console.log(gain + ": " + gainParam.value);
+        return true;
+      } else return false;
+    }
+
+    function decreaseVolume(gain) {
+      if (audioWorkletNode !== undefined) {
+        const gainParam = audioWorkletNode.parameters.get(gain);
+        gainParam.value -= 0.5;
+        console.log(gain + ": " + gainParam.value);
+        return true;
+      } else return false;
+    }
+
+
+    function sendAudioArray(sampleWorkletObjectName, float32Array) {
+      if (float32Array !== undefined && audioWorkletNode !== undefined) {
+        // console.log('f32array: ' + float32Array);
+        audioWorkletNode.port.postMessage({
+          [sampleWorkletObjectName]: float32Array,
+        });
+      }
+    }
+
+    function generateNoiseBuffer(length) {
+      var float32Array = new Float32Array(length);
+      for (var n = 0; n < length; n++) {
+        float32Array[n] = Math.random(1);
+      }
+      return float32Array;
+    }
+
+    function sendNoiseBlob() {
+      if (audioWorkletNode !== undefined) {
+        var blob = new Blob([generateNoiseBuffer(44100)], {
+          type: "application/octet-stream"
+        }); // TODO: Check for memory leaks // URL.revokeObjectURL() const
+        workletUrl = window.URL.createObjectURL(blob);
+        audioWorkletNode.port.postMessage({
+          audioBlob: blob,
+        }); // Send JSON
+      }
+    }
+
+    function sendFloat32NoiseBuffer() {
+      this.sendAudioArray(this.generateNoiseBuffer(44100));
+    }
+
+    function loadSampleToAudioArray(url) {
+
+      if (audioContext !== undefined) {
+        loadSampleToArray(audioContext, url, sendAudioArray);
+      } else throw "Audio Context is not initialised!";
+    }
+
+    function loadSamples() {
+      if (audioContext !== undefined) {
+        loadSampleToArray(audioContext, "snare", "909.wav", sendAudioArray);
+        loadSampleToArray(audioContext, "kick", "909b.wav", sendAudioArray);
+        loadSampleToArray(audioContext, "closed", "909closed.wav", sendAudioArray);
+        loadSampleToArray(audioContext, "open", "909open.wav", sendAudioArray);
+      } else throw "Audio Context is not initialised!";
+    }
+
+    function evalSequence() {
+      if (audioWorkletNode !== undefined) {
+        let sequence;
+        if (arguments.length == 0) {
+          sequence = sequences[Math.floor(Math.random() * sequences.length)]; // Choose random entry
+          audioWorkletNode.port.postMessage({
+            sequence: `${sequence}`
+          }); // Send JSON object with eval prop for evaluation in processor
+        } else {
+          sequence = arguments[0];
+          audioWorkletNode.port.postMessage({
+            sequence: `${sequence}`
+          }); // Send JSON object with eval prop for evaluation in processor
+        }
+        return true;
+        // DEBUG:
+        // console.log("Change Sequence: " + sequence);
+      }
+      return false;
+    }
+
+    function changeSynth() {
+      evalSynth();
+    }
+
+    function evalSynth() {
+      if (audioWorkletNode !== undefined) {
+        let userDefinedFunction;
+        if (arguments.length == 0) {
+          userDefinedFunction = synthDefs[Math.floor(Math.random() * synthDefs.length)];
+        } else {
+          userDefinedFunction = arguments[0];
+        }
+        // DEBUG:
+        audioWorkletNode.port.postMessage({
+          eval: `() => { return ${userDefinedFunction} }`
+        }); // Send JSON object with eval prop for evaluation in processor
+        console.log("eval: " + userDefinedFunction);
+        return true;
+      } else return false;
+    }
+
+    function loadTest() {
+      if (audioContext.state === "suspended")
+        playAudio();
+      loadTestIntervals.push(setInterval('changeSynth()', SYNTH_CHANGE_MS));
+    }
+
+    function stopLoadTest() {
+      loadTestIntervals.forEach(interval => {
+        clearInterval(interval);
+      });
+    }
+  </script>
+</body>
+
+</html>

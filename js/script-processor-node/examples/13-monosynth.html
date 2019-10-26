@@ -1,0 +1,170 @@
+
+<!--
+Copyright 2010, Google Inc.
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are
+met:
+
+    * Redistributions of source code must retain the above copyright
+notice, this list of conditions and the following disclaimer.
+    * Redistributions in binary form must reproduce the above
+copyright notice, this list of conditions and the following disclaimer
+in the documentation and/or other materials provided with the
+distribution.
+    * Neither the name of Google Inc. nor the names of its
+contributors may be used to endorse or promote products derived from
+this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+"AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<title>
+	Javascript Audio Processing
+</title>
+<script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js?autoload=true&amp;skin=sunburst&amp;lang=css" defer="defer"></script>
+<!-- <link rel="stylesheet" type="text/css" href="javascript-processing_files/simple.css"> -->
+
+
+<script src="../maxiLib.js"></script>
+<!-- <script src="../maxi_webAudio.js"></script> -->
+
+<!-- Our javascript code -->
+<script type="text/javascript">
+var audio = new maximJs.maxiAudio();
+audio.init();
+//This shows how to use maximilian to build a monophonic synth
+
+//These are the synthesiser bits
+var VCO1 = new maximJs.maxiOsc();
+var VCO2 = new maximJs.maxiOsc();
+var LFO1 = new maximJs.maxiOsc();
+var LFO2 = new maximJs.maxiOsc();
+
+var VCF = new maximJs.maxiFilter();
+var ADSR = new maximJs.maxiEnv();
+
+//This is a bunch of control signals so that we can hear something
+var timer = new maximJs.maxiOsc();//this is the metronome
+var currentCount,lastCount;//these values are used to check if we have a new beat this sample
+
+//and these are some variables we can use to pass stuff around
+var VCO1out,VCO2out,LFO1out,LFO2out,VCFout,ADSRout;
+
+ADSR.setAttack(1000);
+ADSR.setDecay(1);
+ADSR.setSustain(1);
+ADSR.setRelease(1000);
+
+
+audio.play = function(){
+	//so this first bit is just a basic metronome so we can hear what we're doing.
+	currentCount=Math.round(timer.phasor(0.5));//this sets up a metronome that ticks every 2 seconds
+	
+	if (lastCount!=currentCount) {//if we have a new timer int this sample, play the sound
+				
+		ADSR.trigger = 1;//trigger the envelope from the start
+		
+		// console.log("tick\n");//the clock ticks
+	
+		lastCount=0;//set lastCount to 0
+	}
+	
+	 //and this is where we build the synth
+    
+    ADSRout=ADSR.adsr(1.0,ADSR.trigger);
+    
+    LFO1out=LFO1.sinebuf(0.2);//this lfo is a sinewave at 0.2 hz
+    
+    VCO1out=VCO1.pulse(55,0.6);//here's VCO1. it's a pulse wave at 55 hz, with a pulse width of 0.6
+    VCO2out=VCO2.pulse(110+LFO1out,0.2);//here's VCO2. it's a pulse wave at 110hz with LFO modulation on the frequency, and width of 0.2
+    
+    
+    VCFout=VCF.lores((VCO1out+VCO2out)*0.5, ADSRout*10000, 10);//now we stick the VCO's into the VCF, using the ADSR as the filter cutoff
+    
+    var finalSound=VCFout*ADSRout;//finally we add the ADSR as an amplitude modulator
+    ADSR.trigger=0;
+    this.output=finalSound;
+}
+</script>
+
+</head>
+
+<body>
+
+	<h1> monosynth </h1>
+
+	<p>
+		This shows how to use maximilian to build a monophonic synth
+	</p>
+
+     <pre class="prettyprint lang-js linenums:true" id="quine" style="border:4px solid #88c" >
+audio.init();
+//This shows how to use maximilian to build a monophonic synth
+
+//These are the synthesiser bits
+var VCO1 = new maximJs.maxiOsc();
+var VCO2 = new maximJs.maxiOsc();
+var LFO1 = new maximJs.maxiOsc();
+var LFO2 = new maximJs.maxiOsc();
+
+var VCF = new maximJs.maxiFilter();
+var ADSR = new maximJs.maxiEnv();
+
+//This is a bunch of control signals so that we can hear something
+var timer = new maximJs.maxiOsc();//this is the metronome
+var currentCount,lastCount;//these values are used to check if we have a new beat this sample
+
+//and these are some variables we can use to pass stuff around
+var VCO1out,VCO2out,LFO1out,LFO2out,VCFout,ADSRout;
+
+ADSR.setAttack(1000);
+ADSR.setDecay(1);
+ADSR.setSustain(1);
+ADSR.setRelease(1000);
+
+
+audio.play = function(){
+	//so this first bit is just a basic metronome so we can hear what we're doing.
+	currentCount=Math.round(timer.phasor(0.5));//this sets up a metronome that ticks every 2 seconds
+	
+	if (lastCount!=currentCount) {//if we have a new timer int this sample, play the sound
+				
+		ADSR.trigger = 1;//trigger the envelope from the start
+		
+		// console.log("tick\n");//the clock ticks
+	
+		lastCount=0;//set lastCount to 0
+	}
+	
+	 //and this is where we build the synth
+    
+    ADSRout=ADSR.adsr(1.0,ADSR.trigger);
+    
+    LFO1out=LFO1.sinebuf(0.2);//this lfo is a sinewave at 0.2 hz
+    
+    VCO1out=VCO1.pulse(55,0.6);//here's VCO1. it's a pulse wave at 55 hz, with a pulse width of 0.6
+    VCO2out=VCO2.pulse(110+LFO1out,0.2);//here's VCO2. it's a pulse wave at 110hz with LFO modulation on the frequency, and width of 0.2
+    
+    
+    VCFout=VCF.lores((VCO1out+VCO2out)*0.5, ADSRout*10000, 10);//now we stick the VCO's into the VCF, using the ADSR as the filter cutoff
+    
+    var finalSound=VCFout*ADSRout;//finally we add the ADSR as an amplitude modulator
+    ADSR.trigger=0;
+    this.output=finalSound;
+}
+      </pre>
+</body></html>

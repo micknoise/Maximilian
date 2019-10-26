@@ -1,14 +1,13 @@
-                      .__        .__.__  .__               
+```                      .__        .__.__  .__               
   _____ _____  ___  __|__| _____ |__|  | |__|____    ____  
  /     \\__  \ \  \/  /  |/     \|  |  | |  \__  \  /    \ 
 |  Y Y  \/ __ \_>    <|  |  Y Y  \  |  |_|  |/ __ \|   |  \
 |__|_|  (____  /__/\_ \__|__|_|  /__|____/__(____  /___|  /
-      \/     \/      \/        \/                \/     \/ 
+      \/     \/      \/        \/                \/     \/``` 
 
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/mimic-sussex/eppEditor/blob/master/LICENSE)
 ![version](https://img.shields.io/badge/version-2.0.2-red)
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/mimic-sussex/eppEditor/blob/master/CONTRIBUTING.md)
-[![Build Status](https://travis-ci.com/mimic-sussex/sema.svg?branch=master)](https://travis-ci.com/mimic-sussex/sema)
+
 
 <br />
 

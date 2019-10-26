@@ -5,9 +5,9 @@
 |__|_|  (____  /__/\_ \__|__|_|  /__|____/__(____  /___|  /
       \/     \/      \/        \/                \/     \/
 ``` 
-
-[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/mimic-sussex/eppEditor/blob/master/LICENSE)
 ![version](https://img.shields.io/badge/version-2.0.2-red)
+[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/mimic-sussex/eppEditor/blob/master/LICENSE)
+
 
 
 <br />

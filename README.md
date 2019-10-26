@@ -1,9 +1,17 @@
 ```                                     
+<<<<<<< HEAD
   _____ _____ ___   __ _  _____  __ __   __ ____    ___  
  /     \\_   \   \/  /  |/     \|  |  | |  \_   \  /   \ 
 |  Y Y  \/ /_ \>    <|  |  Y Y  \  |  |_|  |/ /_ \|  Y  \
 |__|_|  (____  /_/\  \__|__|_|  /__|____/__(____  /__|  /
       \/     \/     \/        \/                \/    \/
+=======
+  _____ _____  ___   __ _  _____  __ __   __ ____    ___  
+ /     \\__  \ \  \/  /  |/     \|  |  | |  \_   \  /   \ 
+|  Y Y  \/ /_ \_>    <|  |  Y Y  \  |  |_|  |/ /_ \|  Y  \
+|__|_|  (____  /__/\  \__|__|_|  /__|____/__(____  /__|  /
+      \/     \/      \/        \/                \/    \/
+>>>>>>> fd62510956ab0f03045fa45eea16317be415019a
 ``` 
 ![version](https://img.shields.io/badge/version-2.0.2-red)
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/mimic-sussex/eppEditor/blob/master/LICENSE)

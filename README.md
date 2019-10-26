@@ -1,12 +1,11 @@
-```
-                      .__        .__.__  .__               
-  _____ _____  ___  __|__| _____ |__|  | |__|____    ____  
+        
+
+                      .__        .__.__  .__       
+_____ _____  ___  __|__| _____ |__|  | |__|____    ____  
  /     \\__  \ \  \/  /  |/     \|  |  | |  \__  \  /    \ 
 |  Y Y  \/ __ \_>    <|  |  Y Y  \  |  |_|  |/ __ \|   |  \
 |__|_|  (____  /__/\_ \__|__|_|  /__|____/__(____  /___|  /
       \/     \/      \/        \/                \/     \/ 
-```
-#
 
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/mimic-sussex/eppEditor/blob/master/LICENSE)
 [![GitHub version](https://badge.fury.io/gh/Naereen%2FStrapDown.js.svg)](https://github.com/Naereen/StrapDown.js)
@@ -70,7 +69,7 @@ then:
 > ./maximilian
 
 
-
+i
 :::::::::::::::::::::::::::OPENFRAMEWORKS
 
 Maximilian works well with the OpenFrameworks C++ creative coding toolkit (http://www.openframeworks.cc).

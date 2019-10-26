@@ -1,16 +1,14 @@
-        
-
-                      .__        .__.__  .__       
-_____ _____  ___  __|__| _____ |__|  | |__|____    ____  
+```                                     
+  _____ _____  ___  __ __  _____  __ __   __ ____    ____  
  /     \\__  \ \  \/  /  |/     \|  |  | |  \__  \  /    \ 
 |  Y Y  \/ __ \_>    <|  |  Y Y  \  |  |_|  |/ __ \|   |  \
 |__|_|  (____  /__/\_ \__|__|_|  /__|____/__(____  /___|  /
-      \/     \/      \/        \/                \/     \/ 
-
+      \/     \/      \/        \/                \/     \/
+``` 
+![version](https://img.shields.io/badge/version-2.0.2-red)
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/mimic-sussex/eppEditor/blob/master/LICENSE)
-[![GitHub version](https://badge.fury.io/gh/Naereen%2FStrapDown.js.svg)](https://github.com/Naereen/StrapDown.js)
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/mimic-sussex/eppEditor/blob/master/CONTRIBUTING.md)
-[![Build Status](https://travis-ci.com/mimic-sussex/sema.svg?branch=master)](https://travis-ci.com/mimic-sussex/sema)
+
+
 
 <br />
 
@@ -30,31 +28,31 @@ Maximilian is an audio synthesis and signal processing library written in C++. I
 - realtime music information retrieval functions: spectrum analysis, spectral features, octave analysis, Bark scale analysis, and MFCCs
 - example projects for Windows and MacOS, using command line and OpenFrameworks environments
 
-### BASIC EXAMPLES
+### Basic Examples
 
 You can choose between using RTAudio and PortAudio drivers in player.h by uncommenting the appropriate line.  To use PortAudio, you will need to compile the portAudio library from http://http://www.portaudio.com/ and link it with your executable.
 
 Examples demonstrating different features can be found in the maximilian_examples folder.  To try them, replace the contents of main.cpp with the contents of a tutorial file and compile.
 
 
-:::MAC OSX XCODE PROJECT
+### MAC OS XCode Project
 
 You can run the examples using the 'maximilianTest' XCode 3 project provided.
 
 
-::WINDOWS VISUAL STUDIO 2010 PROJECT
+### MS Windows Visual Studio Project
 
 This is in the maximilianTestWindowsVS2010 folder. You will need to install the DirectX SDK, so that the program can use DirectSound.
 
 
-:::COMMAND LINE COMPILATION IN MACOSX
+### Command Line Compilation in MAC OS
 
 > g++ -Wall -D__MACOSX_CORE__ -o maximilian main.cpp RtAudio.cpp player.cpp maximilian.cpp -framework CoreAudio -framework CoreFoundation -lpthread
 
 > ./maximilian
 
 
-::COMMAND LINE COMPILATION IN LINUX
+### Command Line Compilation in LINUX
 
 With OSS:
 > g++ -Wall -D__LINUX_OSS__ -o maximilian main.cpp RtAudio.cpp player.cpp maximilian.cpp -lpthread
@@ -69,8 +67,8 @@ then:
 > ./maximilian
 
 
-i
-:::::::::::::::::::::::::::OPENFRAMEWORKS
+
+### OpenFrameworks Project
 
 Maximilian works well with the OpenFrameworks C++ creative coding toolkit (http://www.openframeworks.cc).
 

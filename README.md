@@ -12,7 +12,7 @@
 
 ### What's Maximilian?
 
-Maximilian is a cross-platform and multi-target audio synthesis and signal processing library. It was written in C++ and transpiled to Javascript. It's compatible with native implementations for MacOS, Windows, Linux and iOS systems, as well client-side browser-based applications. The main features are:
+Maximilian is a cross-platform and multi-target audio synthesis and signal processing library. It was written in C++ and transpiled to Javascript. It's compatible with native implementations for MacOS, Windows, Linux and iOS systems, as well as client-side browser-based applications. The main features are:
 
 - sample playback, recording and looping
 - support for WAV and OGG files.

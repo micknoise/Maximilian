@@ -12,7 +12,7 @@
 
 ### What's Maximilian?
 
-Maximilian is a cross-platform and multi-target audio synthesis and signal processing library. It was written in C++ and transpiled to Javascript. It's compatible with native implementations for MacOS, Windows, Linux and iOS systems, as well as client-side browser-based applications. The main features are:
+Maximilian is a cross-platform and multi-target audio synthesis and signal processing library. It was written in C++ and it provides bindings to Javascript. It's compatible with native implementations for MacOS, Windows, Linux and iOS systems, as well as client-side browser-based applications. The main features are:
 
 - sample playback, recording and looping
 - support for WAV and OGG files.
@@ -33,7 +33,7 @@ You can choose between using RTAudio and PortAudio drivers in player.h by uncomm
 Examples demonstrating different features can be found in the maximilian_examples folder.  To try them, replace the contents of main.cpp with the contents of a tutorial file and compile.
 
 
-### MAC OS XCode Project
+### Mac OS XCode Project
 
 You can run the examples using the 'maximilianTest' XCode 3 project provided.
 
@@ -43,7 +43,7 @@ You can run the examples using the 'maximilianTest' XCode 3 project provided.
 This is in the maximilianTestWindowsVS2010 folder. You will need to install the DirectX SDK, so that the program can use DirectSound.
 
 
-### Command Line Compilation in MAC OS
+### Command Line Compilation in Mac OS
 
 > g++ -Wall -D__MACOSX_CORE__ -o maximilian main.cpp RtAudio.cpp player.cpp maximilian.cpp -framework CoreAudio -framework CoreFoundation -lpthread
 

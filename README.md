@@ -41,7 +41,7 @@ Examples demonstrating different features can be found in the maximilian_example
 You can run the examples using the 'maximilianTest' XCode 3 project provided.
 
 
-### MS Windows Visual Studio Project
+### MS Windows Visual Studio Project
 
 This is in the maximilianTestWindowsVS2010 folder. You will need to install the DirectX SDK, so that the program can use DirectSound.
 

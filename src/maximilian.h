@@ -989,5 +989,113 @@ public:
     }
 };
 
+//https://tutorials.siam.org/dsweb/cotutorial/index.php?s=3&p=0
+//https://www.complexity-explorables.org/explorables/ride-my-kuramotocycle/
+class kuramotoOscillator {
+public:
+    
+    inline double play(double freq, double K, std::vector<double> phases) {
+        
+        double phaseAdj = 0;
+        for(double v: phases) {
+            phaseAdj += sin(v - phase);
+        }
+        phase +=  dt * (freq + ((K / phases.size()) * phaseAdj));
+        if (phase >= 1.0) phase -= 1.0;
+        else if (phase <0) phase += 1.0;
+        return phase;
+    }
+    void setPhase(double newPhase) {phase = newPhase;}
+    double getPhase() {return phase;}
+private:
+    double phase=0.0;
+    double dt = 1.0/maxiSettings::sampleRate;
+};
+
+//a local group of oscillators
+class kuramotoOscillatorSet {
+public:
+    kuramotoOscillatorSet(const size_t N) {
+        oscs.resize(N);
+        phases.resize(N);
+    };
+    void setPhases(const std::vector<double> &phases) {
+        size_t iOsc = 0;
+        for(double v: phases) {
+            oscs[iOsc].setPhase(v);
+            iOsc++;
+        }
+    }
+    
+    void setPhase(const double phase, const size_t oscillatorIdx) {
+        oscs[oscillatorIdx].setPhase(phase);
+    }
+    
+    double getPhase(size_t i) {
+        return oscs[i].getPhase();
+    }
+    
+    size_t size() {
+        return oscs.size();
+    }
+    
+    double play(double freq, double K) {
+        double mix=0.0;
+        //gather phases
+        for(size_t i=0; i < phases.size(); i++) {
+            phases[i] = oscs[i].getPhase();
+        }
+        for(auto &v: oscs) {
+            mix += v.play(freq, K, phases);
+        }
+        return mix  / phases.size();
+    }
+    
+    
+protected:
+    std::vector<kuramotoOscillator> oscs;
+    std::vector<double> phases;
+};
+
+//a single oscillator, updated according to phase information from remote oscillators
+//best guesses of the remote oscillators are maintained, and asynchronously updated
+//use case: a networked clock
+class asyncKuramotoOscillator : public kuramotoOscillatorSet {
+public:
+    //1 local oscillator and N-1 remote oscillators
+    asyncKuramotoOscillator(const size_t N) : kuramotoOscillatorSet(N) {
+    };
+    void setPhase(const double phase, const size_t oscillatorIdx) {
+        oscs[oscillatorIdx].setPhase(phase);
+        update=1;
+    }
+    void setPhases(const std::vector<double> &phases) {
+        size_t iOsc = 0;
+        for(double v: phases) {
+            oscs[iOsc].setPhase(v);
+            iOsc++;
+        }
+        update=1;
+    }
+    
+    double play(double freq, double K) {
+        double mix=0.0;
+        //gather phases
+        if (update) {
+            for(size_t i=0; i < phases.size(); i++) {
+                phases[i] = oscs[i].getPhase();
+            }
+        }
+        for(auto &v: oscs) {
+            mix += v.play(freq, update? K : 0, phases);
+        }
+        update=0;
+        return mix  / phases.size();
+    }
+
+private:
+    bool update=0;
+    
+};
 
 #endif

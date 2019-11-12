@@ -390,9 +390,8 @@ class_<maxiMath>("maxiMath")
 	// .function("trigger", &maxiHats::trigger)
 	// ;
 
-	// TODO:FB – Uncomment – this is giving me compilation errors on EM
 	// MAXI CLOCK
-	class_<maxiClock>("maxiClock")
+class_<maxiClock>("maxiClock")
 #ifdef SPN
 			.smart_ptr_constructor("shared_ptr<maxiClock>", &std::make_shared<maxiClock>)
 #else
@@ -412,7 +411,43 @@ class_<maxiMath>("maxiMath")
       ;
 
 
+class_<maxiKuramotoOscillator>("maxiKuramotoOscillator")
+#ifdef SPN
+			.smart_ptr_constructor("shared_ptr<maxiKuramotoOscillator>", &std::make_shared<maxiKuramotoOscillator>)
+#else
+			.constructor<>()
+#endif
+			.function("play", &maxiKuramotoOscillator::play)
+			.function("setPhase", &maxiKuramotoOscillator::setPhase)
+			.function("getPhase", &maxiKuramotoOscillator::getPhase)
+      ;
 
+class_<maxiKuramotoOscillatorSet>("maxiKuramotoOscillatorSet")
+#ifdef SPN
+			.smart_ptr_constructor("shared_ptr<maxiKuramotoOscillatorSet>", &std::make_shared<maxiKuramotoOscillatorSet, const size_t>)
+#else
+			.constructor<const size_t>()
+#endif
+			.function("play", &maxiKuramotoOscillatorSet::play)
+			.function("setPhase", &maxiKuramotoOscillatorSet::setPhase)
+			.function("setPhases", &maxiKuramotoOscillatorSet::setPhases)
+			.function("getPhase", &maxiKuramotoOscillatorSet::getPhase)
+			.function("size", &maxiKuramotoOscillatorSet::size)
+      ;
+
+
+class_<maxiAsyncKuramotoOscillator, base<maxiKuramotoOscillatorSet>>("maxiAsyncKuramotoOscillator")
+#ifdef SPN
+			.smart_ptr_constructor("shared_ptr<maxiAsyncKuramotoOscillator>", &std::make_shared<maxiAsyncKuramotoOscillator, const size_t>)
+#else
+			.constructor<const size_t>()
+#endif
+			.function("play", &maxiAsyncKuramotoOscillator::play)
+			.function("setPhase", &maxiAsyncKuramotoOscillator::setPhase)
+			.function("setPhases", &maxiAsyncKuramotoOscillator::setPhases)
+			.function("getPhase", &maxiAsyncKuramotoOscillator::getPhase)
+			.function("size", &maxiAsyncKuramotoOscillator::size)
+      ;
 
   // MAXI FFT
   class_<maxiFFT>("maxiFFT")
@@ -451,7 +486,7 @@ class_<maxiMath>("maxiMath")
     .function("setup", &maxiIFFT::setup)
     .function("process", &maxiIFFT::process)
     ;
-    
+
 };
 
 
@@ -476,7 +511,7 @@ class_<maxiMath>("maxiMath")
 // };
 //
 EMSCRIPTEN_BINDINGS(my_module_maxiGrains) {
-    
+
     // MAXI TIMESTRETCH
     class_<maxiTimeStretch<hannWinFunctor> >("maxiTimeStretch")
     .smart_ptr_constructor("shared_ptr<maxiTimestretch<hannWinFunctor> >",&std::make_shared<maxiTimeStretch<hannWinFunctor> >)

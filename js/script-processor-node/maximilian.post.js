@@ -233,7 +233,7 @@ Module.maxiAudio.prototype.init = function(audioIn = Module.INPUT_TYPE.NONE) {
 
 
 Module.maxiAudio.prototype.listInputDevices = function() {
-  navigator.mediaDevices.enumerateDevices().then((devices) => {
+  window.navigator.mediaDevices.enumerateDevices().then((devices) => {
     devices = devices.filter((d) => d.kind === 'audioinput');
     console.log(devices);
   });

@@ -557,7 +557,54 @@ EMSCRIPTEN_BINDINGS(my_module_maxiGrains) {
 		.function("play", &maxiStretch<hannWinFunctor>::play)
 		.function("playAtPosition", &maxiStretch<hannWinFunctor>::playAtPosition)
     ;
+
 };
+//
+// class maxiBitsWrapper : public maxiBits {
+// public:
+// 	maxiBitsWrapper() : maxiBits() {}
+// 	maxiBitsWrapper(const bitsig v) : maxiBits(v) {}
+// 	void sett(maxiBits::bitsig v){t=v;}
+// 	maxiBits::bitsig gett() {return t;};
+// };
+
+EMSCRIPTEN_BINDINGS(my_module_maxibits) {
+	class_<maxiBits>("maxiBits")
+	// #ifdef SPN
+	// // .smart_ptr_constructor("shared_ptr<maxiBits>",&std::make_shared<maxiBits>)
+	// .smart_ptr_constructor("shared_ptr<maxiBits, uint32_t>",&std::make_shared<maxiBits, uint32_t>)
+	// #else
+	// // .constructor<>()
+	// .constructor<uint32_t>()
+	// #endif
+
+	.class_function("sig", &maxiBits::sig)
+	.class_function("at", &maxiBits::at)
+	.class_function("shl", &maxiBits::shl)
+	.class_function("shr", &maxiBits::shr)
+	.class_function("r", &maxiBits::r)
+	.class_function("land", &maxiBits::land)
+	.class_function("lor", &maxiBits::lor)
+	.class_function("lxor", &maxiBits::lxor)
+	.class_function("neg", &maxiBits::neg)
+	.class_function("inc", &maxiBits::inc)
+	.class_function("dec", &maxiBits::dec)
+	.class_function("add", &maxiBits::add)
+	.class_function("sub", &maxiBits::sub)
+	.class_function("mul", &maxiBits::mul)
+	.class_function("div", &maxiBits::div)
+	.class_function("gt", &maxiBits::gt)
+	.class_function("lt", &maxiBits::lt)
+	.class_function("gte", &maxiBits::gte)
+	.class_function("lte", &maxiBits::lte)
+	.class_function("eq", &maxiBits::eq)
+	.class_function("toSignal", &maxiBits::toSignal)
+	// .property("t", &maxiBits::gett, &maxiBits::sett)
+	;
+
+};
+
+
 
 EMSCRIPTEN_BINDINGS(my_module_maxiFFT) {
 

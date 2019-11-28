@@ -1001,15 +1001,15 @@ public:
             phaseAdj += sin(v - phase);
         }
         phase +=  dt * (freq + ((K / phases.size()) * phaseAdj));
-        if (phase >= 1.0) phase -= 1.0;
-        else if (phase <0) phase += 1.0;
+        if (phase >= TWOPI) phase -= TWOPI;
+        else if (phase <0) phase += TWOPI;
         return phase;
     }
     inline void setPhase(double newPhase) {phase = newPhase;}
     inline double getPhase() {return phase;}
 private:
     double phase=0.0;
-    double dt = 1.0/maxiSettings::sampleRate;
+    double dt = TWOPI/maxiSettings::sampleRate;
 };
 
 //a local group of oscillators
@@ -1106,6 +1106,102 @@ public:
 private:
     bool update=0;
 
+};
+
+class maxiBits {
+public:
+    typedef uint32_t bitsig;
+
+		// static bitsig sig(bitsig v) return v;
+    // maxiBits() {}
+    // maxiBits(const bitsig v) : t(v) {}
+
+		static bitsig sig(bitsig v) {return v;}
+
+    static bitsig at(const bitsig v, const bitsig idx) {
+        return 1 & (v >> idx);
+    }
+    static bitsig shl (const bitsig v, const bitsig shift) {
+        return v<< shift;
+    }
+    static bitsig shr (const bitsig v, const bitsig shift) {
+        return v >> shift;
+    }
+    static bitsig  r (const bitsig v, const bitsig offset, const bitsig width) {
+        bitsig mask = maxiBits::l(width);
+        bitsig shift = offset - width + 1;
+				bitsig x = 0;
+        x = v &  shl(mask, shift);
+        x = x >> shift;
+        return x;
+    }
+    static bitsig land (const bitsig v, const bitsig x) {
+        return v & x;
+    }
+    static bitsig  lor (const bitsig v, const bitsig x) {
+        return v | x;
+    }
+    static bitsig  lxor (const bitsig v, const bitsig x) {
+        return v ^ x;
+    }
+    static bitsig neg (const bitsig v) {
+        return ~v;
+    }
+    static bitsig  inc (const bitsig v) {
+        return v+1;
+    }
+    static bitsig  dec (const bitsig v) {
+        return v-1;
+    }
+    static bitsig  add (const bitsig v, const bitsig m) {
+        return v + m;
+    }
+    static bitsig  sub (const bitsig v, const bitsig m) {
+        return v - m;
+    }
+    static bitsig  mul (const bitsig v, const bitsig m) {
+        return v * m;
+    }
+    static bitsig  div (const bitsig v, const bitsig m) {
+        return v / m;
+    }
+		static bitsig  gt (const bitsig v, const bitsig m) {
+        return v > m;
+    }
+    static bitsig  lt (const bitsig v, const bitsig m) {
+        return v < m;
+    }
+		static bitsig  gte (const bitsig v, const bitsig m) {
+        return v >= m;
+    }
+		static bitsig  lte (const bitsig v, const bitsig m) {
+        return v <= m;
+    }
+		static bitsig  eq (const bitsig v, const bitsig m) {
+        return v == m;
+    }
+    static bitsig  ct (const bitsig v, const bitsig width) {
+				bitsig x=0;
+        for(int i=0; i < width; i++) {
+            x += (v & (1 << i)) > 0;
+        }
+        return x;
+    }
+    static bitsig l(const bitsig width) {
+        bitsig v=0;
+        for(size_t i=0; i < width; i++) {
+            v += (1 << i);
+        }
+        return v;
+    }
+    static double toSignal(const bitsig t) {
+        return maxiMap::linlin(t, 0,  (double) std::numeric_limits<uint32_t>::max(), -1, 1);
+    }
+
+		// void sett(maxiBits::bitsig v){t=v;}
+		// maxiBits::bitsig gett() const {return t;};
+
+    // maxiBits::bitsig t=0;
 };
 
 #endif

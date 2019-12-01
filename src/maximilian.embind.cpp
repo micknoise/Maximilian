@@ -678,4 +678,44 @@ EMSCRIPTEN_BINDINGS(my_module_maxiFFT) {
 
 };
 
+EMSCRIPTEN_BINDINGS(maxiTrigger) {
+
+    class_<maxiTrigger >("maxiTrigger")
+		#ifdef SPN
+    .smart_ptr_constructor("shared_ptr<maxiTrigger>",&std::make_shared<maxiTrigger>)
+		#else
+			.constructor<>()
+		#endif
+
+    //    .smart_ptr_constructor<maxiSample*>("shared_ptr<maxiTimestretch<hannWinFunctor> >",&std::make_shared<maxiTimestretch<hannWinFunctor> >)
+		.function("onZX", &maxiTrigger::onZX)
+		.function("onChanged", &maxiTrigger::onChanged)
+		;
+};
+
+EMSCRIPTEN_BINDINGS(maxiCounter) {
+
+    class_<maxiCounter >("maxiCounter")
+		#ifdef SPN
+    .smart_ptr_constructor("shared_ptr<maxiCounter>",&std::make_shared<maxiCounter>)
+		#else
+			.constructor<>()
+		#endif
+    //    .smart_ptr_constructor<maxiSample*>("shared_ptr<maxiTimestretch<hannWinFunctor> >",&std::make_shared<maxiTimestretch<hannWinFunctor> >)
+		.function("count", &maxiCounter::count)
+		;
+};
+
+EMSCRIPTEN_BINDINGS(maxiIndex) {
+
+    class_<maxiIndex >("maxiIndex")
+		#ifdef SPN
+    .smart_ptr_constructor("shared_ptr<maxiIndex>",&std::make_shared<maxiIndex>)
+		#else
+			.constructor<>()
+		#endif
+		.function("pull", &maxiIndex::pull)
+		;
+};
+
 #endif

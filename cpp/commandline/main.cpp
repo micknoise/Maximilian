@@ -156,16 +156,16 @@ double kuraSyncTest() {
 size_t tm=0;
 double kuraASyncTest() {
     double w=0;
-    if (tm % 4000 == 0) {
+    if (tm % 2000 == 0) {
 //        if (rand() % 100 < 1) {
         kuraASyncSet.setPhase(kuraASyncSet2.getPhase(0) , 1);
     }
-    if (tm % 4000 == 0) {
+    if (tm % 2000 == 0) {
 //    if (rand() % 100 < 1) {
         kuraASyncSet2.setPhase(kuraASyncSet.getPhase(0), 1);
     }
-    kuraASyncSet.play(0.5, 1900);
-    kuraASyncSet2.play(0.5, 1900);
+    kuraASyncSet.play(0.1, 1900);
+    kuraASyncSet2.play(0.2, 1900);
     
     w += osc1.sinewave(maxiMap::linexp(kuraASyncSet.getPhase(0), 0, TWOPI, 200,500));
     w += osc2.sinewave(maxiMap::linexp(kuraASyncSet2.getPhase(0), 0, TWOPI, 200,500));
@@ -199,6 +199,83 @@ double bitsTest() {
     return 0;
 }
 
+
+class maxiTrigger {
+public:
+    //zerocrossing
+    double onZX(double input) {
+        double isZX=0.0;
+        if (previousValue <= 0.0 && input > 0) {
+            isZX=1.0;
+        }
+        previousValue = input;
+        return isZX;
+    }
+    
+    //change detector
+    double onChanged(double input, double tolerance) {
+        double changed=0;
+        if (abs(input - previousValue) > tolerance) {
+            changed=1;
+        }
+        previousValue = input;
+        return changed;
+    }
+    
+private:
+    double previousValue=1;
+};
+
+class maxiCounter {
+public:
+    double count(double incTrigger, double resetTrigger) {
+        if (inctrig.onZX(incTrigger)) {
+            value++;
+        }
+        if (rstrig.onZX(resetTrigger)) {
+            value = 0;
+        }
+        return value;
+    }
+private:
+    double value=0;
+    maxiTrigger inctrig, rstrig;
+};
+
+class maxiIndex {
+public:
+    double pull(const double trigSig, double indexSig, vector<double> values) {
+        if (trig.onZX(trigSig)) {
+            if (indexSig < 0) indexSig=0;
+            if (indexSig > 1) indexSig=1;
+            size_t arrayIndex = static_cast<size_t>(floor(indexSig * values.size() * 0.999999999999999999999999));
+            value = values[arrayIndex];
+        }
+        return value;
+    }
+private:
+    maxiTrigger trig;
+    double value=0;
+};
+
+maxiTrigger zx;
+maxiCounter ct;
+maxiIndex idx;
+double trigSeqTest() {
+    double w = 0;
+    int t=0;
+    double pulse = osc2.saw(10);
+    double seqidx = maxiMap::linlin(osc3.sinewave(1), -1, 1, 0,1);
+    double trig = zx.onZX(pulse);
+    double count = ct.count(trig,osc4.saw(0.3));
+    double seq = idx.pull(trig, seqidx, {0,1,2,3,4,5,6,7,8,9});
+    if (trig) {
+        cout << count << endl;
+    }
+    w = trig;
+    return w;
+}
+
 void play(double *output) {
     double w = 0;
 //    double ramp = osc4.phasor(0.1) * 20.0;
@@ -211,7 +288,8 @@ void play(double *output) {
 //    w = w + samp.playOnZX(osc1.impulse(5));
 //    w=0;
 //    w = bitsTest();
-    w = kuraASyncTest();
+//    w = kuraASyncTest();
+    w = trigSeqTest();
 
 //    w = w + ts.play(1, 1, 0.05, 2);
 //    if (fft.process(w)) {

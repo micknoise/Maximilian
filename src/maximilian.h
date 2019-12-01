@@ -398,7 +398,7 @@ public:
 
     double playOnce();
     double playOnZX(double trigger);
-    double prevTriggerVal=0;
+    double prevTriggerVal=1;
 
     double playOnce(double speed);
 
@@ -1202,6 +1202,65 @@ public:
 		// maxiBits::bitsig gett() const {return t;};
 
     // maxiBits::bitsig t=0;
+};
+
+class maxiTrigger {
+public:
+    //zerocrossing
+    double onZX(double input) {
+        double isZX=0.0;
+        if (previousValue <= 0.0 && input > 0) {
+            isZX=1.0;
+        }
+        previousValue = input;
+        return isZX;
+    }
+    
+    //change detector
+    double onChanged(double input, double tolerance) {
+        double changed=0;
+        if (abs(input - previousValue) > tolerance) {
+            changed=1;
+        }
+        previousValue = input;
+        return changed;
+    }
+    
+private:
+    double previousValue=1;
+};
+
+class maxiCounter {
+public:
+    double count(double incTrigger, double resetTrigger) {
+        if (inctrig.onZX(incTrigger)) {
+            value++;
+        }
+        if (rstrig.onZX(resetTrigger)) {
+            value = 0;
+        }
+        return value;
+    }
+    
+private:
+    double value=0;
+    maxiTrigger inctrig, rstrig;
+};
+
+class maxiIndex {
+public:
+    double pull(const double trigSig, double indexSig, vector<double> values) {
+        if (trig.onZX(trigSig)) {
+            if (indexSig < 0) indexSig=0;
+            if (indexSig > 1) indexSig=1;
+            size_t arrayIndex = static_cast<size_t>(floor(indexSig * values.size() * 0.999999999999999999999999));
+            value = values[arrayIndex];
+        }
+        return value;
+    }
+private:
+    maxiTrigger trig;
+    double value=0;
 };
 
 #endif

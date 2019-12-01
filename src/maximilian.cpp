@@ -331,7 +331,7 @@ double maxiOsc::saw(double frequency) {
 	//Sawtooth generator. This is like a phasor but goes between -1 and 1
 	output=phase;
 	if ( phase >= 1.0 ) phase -= 2.0;
-	phase += (1./(maxiSettings::sampleRate/(frequency)));
+	phase += (1./(maxiSettings::sampleRate/(frequency))) * 2.0;
 	return(output);
 
 }
@@ -603,13 +603,14 @@ bool maxiSample::isReady(){
 	return false;
 }
 
-void maxiSample::setSample(vector<double>& temp){
-    amplitudes = temp;
+void maxiSample::setSample(vector<double>& sampleData){
+    amplitudes = sampleData;
 	mySampleRate = 44100;
+    position=amplitudes.size()-1;
 }
 
-void maxiSample::setSample(vector<double>& temp, int sampleRate){
-    amplitudes = temp;
+void maxiSample::setSample(vector<double>& sampleData, int sampleRate){
+    setSample(sampleData);
 	mySampleRate = sampleRate;
 }
 

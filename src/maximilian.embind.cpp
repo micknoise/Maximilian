@@ -598,7 +598,10 @@ EMSCRIPTEN_BINDINGS(my_module_maxibits) {
 	.class_function("gte", &maxiBits::gte)
 	.class_function("lte", &maxiBits::lte)
 	.class_function("eq", &maxiBits::eq)
+	.class_function("noise", &maxiBits::noise)
 	.class_function("toSignal", &maxiBits::toSignal)
+	.class_function("toTrigSignal", &maxiBits::toTrigSignal)
+	.class_function("fromSignal", &maxiBits::fromSignal)
 	// .property("t", &maxiBits::gett, &maxiBits::sett)
 	;
 

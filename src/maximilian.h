@@ -1194,8 +1194,24 @@ public:
         }
         return v;
     }
+    
+    static bitsig noise() {
+        bitsig v = static_cast<bitsig>(rand());
+        return v;
+    }
+    
     static double toSignal(const bitsig t) {
         return maxiMap::linlin(t, 0,  (double) std::numeric_limits<uint32_t>::max(), -1, 1);
+    }
+    
+    static double toTrigSignal(const bitsig t) {
+        return t > 0 ? 1.0 : -1.0;
+    }
+    
+    static bitsig fromSignal(const double t) {
+        const bitsig halfRange = (std::numeric_limits<uint32_t>::max() / 2 );
+        const bitsig val = halfRange + (t * (halfRange-1));
+        return val;
     }
 
 		// void sett(maxiBits::bitsig v){t=v;}

@@ -39,6 +39,7 @@
 #include <iostream>
 #include <fstream>
 #include <string.h>
+#include <cassert>
 #include <cstdlib>
 #include "math.h"
 #include <cerrno>
@@ -109,16 +110,29 @@ public:
 
 class maxiEnvelope {
 	
-	double period;
+	double period=0;
 	double output;
-	double startval;
+    double phase;
+	double startVal;
+    double endVal;
 	double currentval;
 	double nextval;
+    bool noteOn;
+    bool releaseMode;
+    bool decayMode;
+    bool sustainMode;
+    bool attackMode;
 	int isPlaying;
 
-public:	
+public:
+    int trig;
 	double line(int numberofsegments,double segments[100]);
+    double ramp(double startVal=0, double endVal=1, double duration=1);
+    double ramps(std::vector<double> rampsArray);
+    double ar(double attack=0.1, double release=0.1);
+    double adsr(double attack=0.1, double decay=0.1, double sustain=0.1, double release=0.1);
 	void trigger(int index,double amp);
+    void trigger(bool noteOn=false);
 	int valindex;
 	double amplitude;
 	
@@ -462,7 +476,10 @@ public:
 
 class convert {
 public:
-	double mtof(int midinote);
+	static double mtof(int midinote);
+    static int ftom(double frequency);
+    static double atodb(double amplitude);
+    static double dbtoa(double amplitude);
 };
 
 

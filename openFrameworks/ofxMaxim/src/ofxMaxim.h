@@ -51,7 +51,7 @@ typedef maxiIFFT ofxMaxiIFFT;
 typedef maxiFFTOctaveAnalyzer ofxMaxiFFTOctaveAnalyzer;
 typedef maxiSettings ofxMaxiSettings;
 typedef maxiMFCC ofxMaxiMFCC;
-
+typedef maxiRecorder ofxMaxiRecorder;
 
 //typedef maxiSignal vector<double>;
 //

@@ -458,20 +458,20 @@ class_<maxiAsyncKuramotoOscillator, base<maxiKuramotoOscillatorSet>>("maxiAsyncK
 		.constructor<>()
 #endif
     .function("setup", &maxiFFT::setup)
-    .function("process", select_overload<bool(float, maxiFFT::fftModes)>(&maxiFFT::process) )
-    .function("process", select_overload<bool(float,int)>(&maxiFFT::process))
-    // .function("process", &maxiFFT::process)
+    // .function("process", select_overload<bool(float, maxiFFT::fftModes)>(&maxiFFT::process) )
+    // .function("process", select_overload<bool(float,int)>(&maxiFFT::process))
+    .function("process", &maxiFFT::process)
     .function("spectralFlatness", &maxiFFT::spectralFlatness)
     .function("spectralCentroid", &maxiFFT::spectralCentroid)
     .function("getMagnitudes", &maxiFFT::getMagnitudes)
     .function("getMagnitudesDB", &maxiFFT::getMagnitudesDB)
-    .function("getPhase", &maxiFFT::getPhases)
+    .function("getPhases", &maxiFFT::getPhases)
     // // .property("windowSize", &maxiFFT::getWindowSize, &maxiFFT::setWindowSize)
     // // .property("hopSize", &maxiFFT::getHopSize, &maxiFFT::setHopSize)
     // // .property("bins", &maxiFFT::getNumBins, &maxiFFT::setNumBins)
     ;
 
-  enum_<maxiFFT::fftModes>("maxiFFT.fftModes")
+  enum_<maxiFFT::fftModes>("maxiFFTModes")
     .value("NO_POLAR_CONVERSION", maxiFFT::fftModes::NO_POLAR_CONVERSION)
     .value("WITH_POLAR_CONVERSION", maxiFFT::fftModes::WITH_POLAR_CONVERSION)
     ;
@@ -487,6 +487,12 @@ class_<maxiAsyncKuramotoOscillator, base<maxiKuramotoOscillatorSet>>("maxiAsyncK
     .function("setup", &maxiIFFT::setup)
     .function("process", &maxiIFFT::process)
     ;
+
+	enum_<maxiIFFT::fftModes>("maxiIFFTModes")
+    .value("SPECTRUM", maxiIFFT::fftModes::SPECTRUM)
+    .value("COMPLEX", maxiIFFT::fftModes::COMPLEX)
+    ;
+
 
 };
 

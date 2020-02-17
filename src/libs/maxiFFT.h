@@ -81,13 +81,13 @@ private:
 class maxiIFFT {
 
 public:
-  enum fftModes {SPECTRUM, COMPLEX};
+  enum fftModes {SPECTRUM=0, COMPLEX=1};
 
 	maxiIFFT(){
 	};
   ~maxiIFFT() {};
 	void setup(int fftSize=1024, int hopSize=512, int windowSize=0);
-    float process(std::vector<float> &data1, std::vector<float> &data2, fftModes mode = maxiIFFT::SPECTRUM);
+  float process(std::vector<float> &data1, std::vector<float> &data2, fftModes mode = maxiIFFT::SPECTRUM);
 
 
 private:

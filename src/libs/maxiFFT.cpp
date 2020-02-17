@@ -45,18 +45,18 @@ using namespace std;
 void maxiFFT::setup(int _fftSize, int _hopSize, int _windowSize) {
 	_fft.setup(_fftSize);
 	fftSize = _fftSize;
-    windowSize = _windowSize ? _windowSize : fftSize;
+  windowSize = _windowSize ? _windowSize : fftSize;
 	bins = fftSize / 2;
 	hopSize = _hopSize;
-    buffer.resize(fftSize,0);
-    magnitudes.resize(bins,0);
-    magnitudesDB.resize(bins,0);
-    phases.resize(bins,0);
-    pos =windowSize - hopSize;
+  buffer.resize(fftSize,0);
+  magnitudes.resize(bins,0);
+  magnitudesDB.resize(bins,0);
+  phases.resize(bins,0);
+  pos =windowSize - hopSize;
 	newFFT = 0;
-    window.resize(fftSize,0);
+  window.resize(fftSize,0);
 	fft::genWindow(3, windowSize, &window[0]);
-    recalc = true;
+  recalc = true;
 }
 
 
@@ -85,7 +85,7 @@ bool maxiFFT::process(float value, fftModes mode) {
 		memcpy(&buffer[0], &buffer[0] + hopSize, (windowSize - hopSize) * sizeof(float));
 		//reset pos to start of hop
 		pos= windowSize - hopSize;
-        recalc = true;
+    recalc = true;
 	}
 	return newFFT;
 }
@@ -141,13 +141,13 @@ float maxiFFT::spectralCentroid() {
 void maxiIFFT::setup(int _fftSize, int _hopSize, int _windowSize) {
 	_fft.setup(_fftSize);
 	fftSize = _fftSize;
-    windowSize = _windowSize ? _windowSize : fftSize;
+  windowSize = _windowSize ? _windowSize : fftSize;
 	bins = fftSize / 2;
 	hopSize = _hopSize;
-    buffer.resize(fftSize,0);
-    ifftOut.resize(fftSize,0);
+  buffer.resize(fftSize,0);
+  ifftOut.resize(fftSize,0);
 	pos =0;
-    window.resize(fftSize,0);
+  window.resize(fftSize,0);
 	fft::genWindow(3, windowSize, &window[0]);
 }
 
@@ -173,7 +173,7 @@ float maxiIFFT::process(vector<float> &mags, vector<float> &phases, fftModes mod
 		//shift back by one hop
 		memcpy(&buffer[0], &buffer[0]+hopSize, (fftSize - hopSize) * sizeof(float));
 		//clear the end chunk
-        memset(&buffer[0] + (fftSize - hopSize), 0, hopSize * sizeof(float));
+    memset(&buffer[0] + (fftSize - hopSize), 0, hopSize * sizeof(float));
 		//merge new output
 		for(int i=0; i < fftSize; i++) {
 			buffer[i] += ifftOut[i];
@@ -182,8 +182,8 @@ float maxiIFFT::process(vector<float> &mags, vector<float> &phases, fftModes mod
 
 	nextValue = buffer[pos];
 	//limit the values, this alg seems to spike occasionally (and break the audio drivers)
-    if (nextValue > 0.99999f) nextValue = 0.99999f;
-    if (nextValue < -0.99999f) nextValue = -0.99999f;
+  // if (nextValue > 0.99999f) nextValue = 0.99999f;
+  // if (nextValue < -0.99999f) nextValue = -0.99999f;
 	if (hopSize == ++pos ) {
 		pos=0;
 	}

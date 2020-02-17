@@ -28,7 +28,7 @@ void play(double *output) {
         }
       }
     }
-    w = ifft.process(mags,phases);
+    w = ifft.process(mags,phases, maxiIFFT::fftModes::SPECTRUM);
     output[0] = w;
     output[1] = w;
 }

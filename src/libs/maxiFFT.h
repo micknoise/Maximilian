@@ -6,7 +6,7 @@
  *  Copyright 2009 Mick Grierson & Strangeloop Limited. All rights reserved.
  *	Thanks to the Goldsmiths Creative Computing Team.
  *	Special thanks to Arturo Castro for the PortAudio implementation.
- * 
+ *
  *	Permission is hereby granted, free of charge, to any person
  *	obtaining a copy of this software and associated documentation
  *	files (the "Software"), to deal in the Software without
@@ -15,11 +15,11 @@
  *	copies of the Software, and to permit persons to whom the
  *	Software is furnished to do so, subject to the following
  *	conditions:
- *	
+ *
  *	The above copyright notice and this permission notice shall be
  *	included in all copies or substantial portions of the Software.
  *
- *	THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,	
+ *	THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
  *	EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
  *	OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
  *	NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
@@ -41,19 +41,19 @@
 #include <vector>
 
 class maxiFFT {
-	
+
 public:
-    
+
   enum fftModes {NO_POLAR_CONVERSION = 0, WITH_POLAR_CONVERSION = 1};
-  
+
   maxiFFT() {};
   ~maxiFFT() {};
   void setup(int fftSize=1024, int hopSize=512, int windowSize=0);
-  bool process(float value, int fftMode=1);
+//  bool process(float value, int fftMode=1);
   bool process(float value, fftModes mode=maxiFFT::WITH_POLAR_CONVERSION);
   inline float *getReal() {return _fft.getReal();};
   inline float *getImag() {return _fft.getImg();};
-  
+
   std::vector<float> & getMagnitudes() {return magnitudes;}
   std::vector<float> & getMagnitudesDB() {return magsToDB();}
   std::vector<float> & getPhases() {return phases;}
@@ -61,9 +61,8 @@ public:
 	//features
 	float spectralFlatness();
 	float spectralCentroid();
-    
+
 private:
-//    float *buffer, *window;
   std::vector<float> magnitudes, phases, magnitudesDB;
   std::vector<float> buffer, window;
 	int pos;
@@ -80,7 +79,7 @@ private:
 };
 
 class maxiIFFT {
-	
+
 public:
   enum fftModes {SPECTRUM, COMPLEX};
 
@@ -89,8 +88,8 @@ public:
   ~maxiIFFT() {};
 	void setup(int fftSize=1024, int hopSize=512, int windowSize=0);
     float process(std::vector<float> &data1, std::vector<float> &data2, fftModes mode = maxiIFFT::SPECTRUM);
-	
-    
+
+
 private:
     std::vector<float> ifftOut, buffer, window;
 	int windowSize;
@@ -107,7 +106,7 @@ class maxiFFTOctaveAnalyzer {
     /*based on code by David Bollinger, http://www.davebollinger.com/
      */
 public:
-	
+
 	float samplingRate; // sampling rate in Hz (needed to calculate frequency spans)
 	int nSpectrum; // number of spectrum bins in the fft
 	int nAverages; // number of averaging bins here
@@ -129,11 +128,13 @@ public:
 	// the formula is:  spectrum[i] * (linearEQIntercept + i * linearEQSlope)
 	// so.. note that clever use of it can also provide a "gain" control of sorts
 	// (fe: set intercept to 2f and slope to 0f to double gain)
-	
+
 	void setup(float samplingRate, int nBandsInTheFFT, int nAveragesPerOctave);
-	
+
 	void calculate(float * fftData);
-	
+
 };
+
+
 
 #endif

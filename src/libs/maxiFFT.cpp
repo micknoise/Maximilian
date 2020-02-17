@@ -90,13 +90,13 @@ bool maxiFFT::process(float value, fftModes mode) {
 	return newFFT;
 }
 
-bool maxiFFT::process(float value, int mode){
-
-  if(mode==0) 
-    return maxiFFT::process(value, maxiFFT::fftModes::NO_POLAR_CONVERSION);
-  else 
-    return maxiFFT::process(value, maxiFFT::fftModes::WITH_POLAR_CONVERSION); 
-}
+// bool maxiFFT::process(float value, int mode){
+//
+//   if(mode==0)
+//     return maxiFFT::process(value, maxiFFT::fftModes::NO_POLAR_CONVERSION);
+//   else
+//     return maxiFFT::process(value, maxiFFT::fftModes::WITH_POLAR_CONVERSION);
+// }
 
 vector<float> & maxiFFT::magsToDB() {
     if(recalc) {

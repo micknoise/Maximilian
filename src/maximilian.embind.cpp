@@ -198,7 +198,8 @@ EMSCRIPTEN_BINDINGS(my_module)
 			.function("normalise", &maxiSample::normalise)
 			.function("autoTrim", &maxiSample::autoTrim)
 			.function("load", &maxiSample::load)
-			.function("read", &maxiSample::read, allow_raw_pointers());
+			.function("read", &maxiSample::read, allow_raw_pointers())
+			.function("loopSetPosOnZX", &maxiSample::loopSetPosOnZX);
 
 
 	// MAXI MAP

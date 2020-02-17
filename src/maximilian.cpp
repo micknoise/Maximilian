@@ -555,7 +555,7 @@ bool maxiSample::loadOgg(string fileName, int channel) {
     std::ifstream oggFile(fileName, std::ios::binary);
     std::vector<unsigned char> fileContents((std::istreambuf_iterator<char>(oggFile)),
                                    std::istreambuf_iterator<char>());
-    
+
     return setSampleFromOggBlob(fileContents, channel);
 #endif
 	return 0;
@@ -574,7 +574,7 @@ int maxiSample::setSampleFromOggBlob(vector<unsigned char> &oggBlob, int channel
     myChannels=(short)channelx;
     mySampleRate=44100;
     amplitudes.resize(myDataSize);
-    
+
     if (myChannels>1) {
         int position=0;
         int channel=readChannel;
@@ -588,7 +588,7 @@ int maxiSample::setSampleFromOggBlob(vector<unsigned char> &oggBlob, int channel
         }
     }
     free(temp);
-    
+
     return result; // this should probably be something more descriptive
 #endif
     return 0;
@@ -944,6 +944,15 @@ double maxiSample::playOnZX(double trig) {
     prevTriggerVal=trig;
     return playOnce();
 }
+
+double maxiSample::loopSetPosOnZX(double trig, double pos) {
+    if (prevTriggerVal <=0 && trig > 0) {
+        setPosition(pos);
+    }
+    prevTriggerVal=trig;
+    return play();
+}
+
 
 
 //Same as above but takes a speed value specified as a ratio, with 1.0 as original speed

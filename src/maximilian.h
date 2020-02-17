@@ -397,7 +397,8 @@ public:
     double playLoop(double start, double end); // start and end are between 0.0 and 1.0
 
     double playOnce();
-    double playOnZX(double trigger);
+		double playOnZX(double trigger);
+		double loopSetPosOnZX(double trigger, double position); // position between 0 and 1.0
     double prevTriggerVal=1;
 
     double playOnce(double speed);
@@ -722,15 +723,13 @@ public:
     maxiSVF() : v0z(0), v1(0), v2(0) { setParams(1000, 1);}
 
     //20 < cutoff < 20000
-    inline maxiSVF& setCutoff(double cutoff) {
+    inline void setCutoff(double cutoff) {
         setParams(cutoff, res);
-        return *this;
     }
 
     //from 0 upwards, starts to ring from 2-3ish, cracks a bit around 10
-    inline maxiSVF& setResonance(double q) {
+    inline void setResonance(double q) {
         setParams(freq, q);
-        return *this;
     }
 
     //run the filter, and get a mixture of lowpass, bandpass, highpass and notch outputs
@@ -892,7 +891,7 @@ public:
         double gainCh1 = sqrt(1.0-xfNorm);
         double gainCh2 = sqrt(xfNorm);
         vector<double> output(ch1.size(), 0.0);
-        for (int i=0; i < output.size(); i++) {
+        for (size_t i=0; i < output.size(); i++) {
             output[i] = (ch1[i] * gainCh1) + (ch2[i] * gainCh2);
         }
         return output;
@@ -1182,7 +1181,7 @@ public:
     }
     static bitsig  ct (const bitsig v, const bitsig width) {
 				bitsig x=0;
-        for(int i=0; i < width; i++) {
+        for(size_t i=0; i < width; i++) {
             x += (v & (1 << i)) > 0;
         }
         return x;
@@ -1194,20 +1193,20 @@ public:
         }
         return v;
     }
-    
+
     static bitsig noise() {
         bitsig v = static_cast<bitsig>(rand());
         return v;
     }
-    
+
     static double toSignal(const bitsig t) {
         return maxiMap::linlin(t, 0,  (double) std::numeric_limits<uint32_t>::max(), -1, 1);
     }
-    
+
     static double toTrigSignal(const bitsig t) {
         return t > 0 ? 1.0 : -1.0;
     }
-    
+
     static bitsig fromSignal(const double t) {
         const bitsig halfRange = (std::numeric_limits<uint32_t>::max() / 2 );
         const bitsig val = halfRange + (t * (halfRange-1));
@@ -1231,7 +1230,7 @@ public:
         previousValue = input;
         return isZX;
     }
-    
+
     //change detector
     double onChanged(double input, double tolerance) {
         double changed=0;
@@ -1241,7 +1240,7 @@ public:
         previousValue = input;
         return changed;
     }
-    
+
 private:
     double previousValue=1;
 };
@@ -1257,7 +1256,7 @@ public:
         }
         return value;
     }
-    
+
 private:
     double value=0;
     maxiTrigger inctrig, rstrig;

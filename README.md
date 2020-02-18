@@ -1,11 +1,11 @@
 ```                                     
   _____ _____ ___   __ _  _____  __ __   __ ____  ____  
- /     \\_   \\  \/  /  |/     \|  |  | |  \_   \/    \ 
+ /     \\_   \\  \/  /  |/     \|  |  | |  \_   \/    \
 |  Y Y  \/ /_ \>    <|  |  Y Y  \  |  |_|  |/ /_ \  Y  \
 |__|_|  (___  /__/\__\__|__|_|  /__|____/__(___  /__|  /
       \/    \/                \/               \/    \/
-``` 
-![version](https://img.shields.io/badge/version-2.0.2-red)
+```
+![version](https://img.shields.io/badge/version-2.1-red)
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/mimic-sussex/eppEditor/blob/master/LICENSE)
 
 <br />
@@ -24,7 +24,7 @@ Maximilian is a cross-platform and multi-target audio synthesis and signal proce
 - granular synthesis, including time and pitch stretching
 - atom synthesis
 - real-time music information retrieval functions: spectrum analysis, spectral features, octave analysis, Bark scale analysis, and MFCCs
-- example projects for Windows and MacOS, using command line and OpenFrameworks environments
+- example projects for Windows and MacOS, susing command line and OpenFrameworks environments
 - example projects for Firefox and Chromium-based browsers using the Web Audio API ScriptProcessorNode (deprecated!)
 - example projects for Chromium-based browsers using the Web Audio API AudioWorklet (e.g., Chrome, Brave, Edge, Opera)
 
@@ -78,3 +78,8 @@ In the ofxMaxim directory you will find examples to run in Windows, OSX and iOS,
 You can install the ofxMaxim addon by copying the ofxMaxim/ofxMaxim folder into your openframeworks addons directory.
 
 Important: when using Maximilian on OSX, link against the Accelerate framework.
+
+
+### Web Audio
+
+A transpiled javascript version of the library is included in this repository, for both Script Processor Nodes and Audio AudioWorklets.  Try this out at (https://mimicproject.com/guides/maximJS). 

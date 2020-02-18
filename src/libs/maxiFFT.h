@@ -58,6 +58,11 @@ public:
   std::vector<float> & getMagnitudesDB() {return magsToDB();}
   std::vector<float> & getPhases() {return phases;}
 
+  int getNumBins() {return bins;}
+  int getFFTSize() {return fftSize;}
+  int getHopSize() {return hopSize;}
+  int getWindowSize() {return windowSize;}
+
 	//features
 	float spectralFlatness();
 	float spectralCentroid();

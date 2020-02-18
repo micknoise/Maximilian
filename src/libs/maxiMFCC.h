@@ -5,7 +5,7 @@
  *  Created by Chris on 08/03/2011.
  *  Copyright 2011 Goldsmiths Creative Computing. All rights reserved.
  *
- 
+
  Based on Matthew Yee-King's MFCCMYK java class
  */
 
@@ -21,7 +21,7 @@
 #ifdef __APPLE_CC__
 #include <Accelerate/Accelerate.h>
 #endif
-
+#include "maximilian.h"
 using namespace std;
 
 
@@ -52,14 +52,14 @@ public:
 #endif
 		}
 	}
-	
-	void setup(unsigned int numBins, unsigned int numFilters, unsigned int numCoeffs, double minFreq, double maxFreq, unsigned int sampleRate) 
+
+	void setup(unsigned int numBins, unsigned int numFilters, unsigned int numCoeffs, double minFreq, double maxFreq)
 	{
 		this->numFilters = numFilters;
 		this->numCoeffs = numCoeffs;
 		this->minFreq = minFreq;
 		this->maxFreq = maxFreq;
-		this->sampleRate = sampleRate;
+		this->sampleRate = maxiSettings::sampleRate;
 		this->numBins = numBins;
 		melFilters = NULL;
 		melBands = (T*) malloc(sizeof(T) * numFilters);
@@ -72,11 +72,11 @@ public:
 		createDCTCoeffs();
 	}
 //	void mfcc(float* powerSpectrum, T *mfccs) {
-		void mfcc(vector<float>& powerSpectrum, vector<T>& mfccs) {
+	void mfcc(vector<float>& powerSpectrum, vector<T>& mfccs) {
 		melFilterAndLogSquare(powerSpectrum.data());
 		dct(mfccs.data());
 	}
-	
+
 private:
 	unsigned int numFilters, numCoeffs;
 	double minFreq, maxFreq;
@@ -87,7 +87,7 @@ private:
 #ifdef __APPLE_CC__
 	T *doubleSpec;
 #endif
-	
+
 #ifdef __APPLE_CC__
 	void dct(T *mfccs); //define later
 #else
@@ -106,31 +106,31 @@ private:
 		}
 	}
 #endif
-	
+
 	void melFilterAndLogSquare(float* powerSpectrum);
 	void melFilterAndLogSq_Part2(float *powerSpectrum);
 
-	
+
 	void calcMelFilterBank(double sampleRate, int numBins) {
 
 		double mel, dMel, maxMel, minMel, nyquist, binFreq, start, end, thisF, nextF, prevF;
 		int numValidBins;
-		
+
 		// ignore bins over nyquist
 		numValidBins = numBins;
-		
+
 		nyquist = sampleRate/2;
 		if (maxFreq > nyquist) {
 			maxFreq = nyquist;
 		}
-		
+
 		maxMel = hzToMel(maxFreq);
 		minMel = hzToMel(minFreq);
-		
+
 		dMel = (maxMel - minMel) / (numFilters + 2 - 1);
-		
+
 		T *filtPos = (T*) malloc(sizeof(double) * (numFilters + 2));
-		
+
 		// first generate an array of start and end freqs for each triangle
 		mel = minMel;
 		for (int i=0;i<numFilters + 2;i++) {
@@ -141,7 +141,7 @@ private:
 		}
 		// now generate the coefficients for the mag spectrum
 		melFilters = (T*) malloc(sizeof(T) * numFilters * numValidBins);
-		
+
 		for (int filter = 1; filter < numFilters; filter++) {
 			for (int bin=0;bin<numValidBins;bin++) {
 				// frequency this bin represents
@@ -157,18 +157,18 @@ private:
 				}
 				else {
 					T height = 2.0 / (nextF - prevF);
-					
+
 					if (binFreq < thisF) {
 						// up
 						start = prevF;
 						end = thisF;
-						melFilters[idx] = (binFreq - start) * (height / (thisF - start));	  
+						melFilters[idx] = (binFreq - start) * (height / (thisF - start));
 					}
 					else {
 						// down
 						start = thisF;
 						end = nextF;
-						melFilters[idx] = height + ((binFreq - thisF) * (-height /(nextF - thisF)));	  
+						melFilters[idx] = height + ((binFreq - thisF) * (-height /(nextF - thisF)));
 					}
 					//				cout << "MFCCMYK: filter at " <<thisF << " bin at " <<binFreq <<" coeff " <<melFilters[filter][bin] << endl;
 					//cout << "MFCCMYK: filter at " <<thisF << " bin at " <<binFreq <<" coeff " <<melFilters[idx] << endl;
@@ -180,8 +180,8 @@ private:
 		T k = 3.14159265358979323846/numFilters;
 		T w1 = 1.0/(sqrt(numFilters));
 		T w2 = sqrt(2.0/numFilters);
-		
-		
+
+
 		//generate dct matrix
 		for(int i = 0; i < numCoeffs; i++)
 		{
@@ -194,12 +194,12 @@ private:
 					dctMatrix[idx] = w2 * cos(k * (i+1) * (j + 0.5));
 			}
 		}
-		
-		
+
+
 	}
-		
-	
-	
+
+
+
 };
 
 

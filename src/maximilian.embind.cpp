@@ -9,7 +9,7 @@
 #include "maximilian.h"
 #include "libs/maxiFFT.h"
 #include "libs/maxiGrains.h"
-// #include "libs/maxiMFCC.h"
+#include "libs/maxiMFCC.h"
 // #include "libs/maxiReverb.h"
 #include "libs/maxiSynths.h"
 // #include "libs/fft.cpp"
@@ -465,19 +465,22 @@ class_<maxiAsyncKuramotoOscillator, base<maxiKuramotoOscillatorSet>>("maxiAsyncK
     .function("spectralCentroid", &maxiFFT::spectralCentroid)
     .function("getMagnitudes", &maxiFFT::getMagnitudes)
     .function("getMagnitudesDB", &maxiFFT::getMagnitudesDB)
-    .function("getPhases", &maxiFFT::getPhases)
-    // // .property("windowSize", &maxiFFT::getWindowSize, &maxiFFT::setWindowSize)
-    // // .property("hopSize", &maxiFFT::getHopSize, &maxiFFT::setHopSize)
-    // // .property("bins", &maxiFFT::getNumBins, &maxiFFT::setNumBins)
-    ;
+		.function("getPhases", &maxiFFT::getPhases)
+
+		.function("getNumBins", &maxiFFT::getNumBins)
+		.function("getFFTSize", &maxiFFT::getFFTSize)
+		.function("getHopSize", &maxiFFT::getHopSize)
+		.function("getWindowSize", &maxiFFT::getWindowSize)
+
+		;
 
   enum_<maxiFFT::fftModes>("maxiFFTModes")
+	.value("WITH_POLAR_CONVERSION", maxiFFT::fftModes::WITH_POLAR_CONVERSION)
     .value("NO_POLAR_CONVERSION", maxiFFT::fftModes::NO_POLAR_CONVERSION)
-    .value("WITH_POLAR_CONVERSION", maxiFFT::fftModes::WITH_POLAR_CONVERSION)
     ;
 
 
-  // MAXI FFT
+  // MAXI IFFT
   class_<maxiIFFT>("maxiIFFT")
 #ifdef SPN
 			.smart_ptr_constructor("shared_ptr<maxiIFFT>", &std::make_shared<maxiIFFT>)
@@ -493,6 +496,16 @@ class_<maxiAsyncKuramotoOscillator, base<maxiKuramotoOscillatorSet>>("maxiAsyncK
     .value("COMPLEX", maxiIFFT::fftModes::COMPLEX)
     ;
 
+		// MAXI IFFT
+	  class_<maxiMFCC>("maxiMFCC")
+	#ifdef SPN
+				.smart_ptr_constructor("shared_ptr<maxiMFCC>", &std::make_shared<maxiMFCC>)
+	#else
+				.constructor<>()
+	#endif
+	    .function("setup", &maxiMFCC::setup)
+	    .function("mfcc", &maxiMFCC::mfcc)
+	    ;
 
 };
 
@@ -501,22 +514,7 @@ class_<maxiAsyncKuramotoOscillator, base<maxiKuramotoOscillatorSet>>("maxiAsyncK
 
 
 
-//
-// EMSCRIPTEN_BINDINGS(my_module_maxiMFCC) {
-//
-//     // -------------------------------------------------------------------------------------------
-//     // LIBS
-//     // MAXI MFCC
-//     class_<maxiMFCC>("maxiMFCC")
-//     //    .constructor<>()
-//     //    .constructor<int>()
-//
-//     .smart_ptr_constructor("shared_ptr<maxiMFCC>",&std::make_shared<maxiMFCC>)
-//     .function("setup", &maxiMFCC::setup)
-//     .function("mfcc", &maxiMFCC::mfcc, allow_raw_pointers())
-//     ;
-// };
-//
+
 EMSCRIPTEN_BINDINGS(my_module_maxiGrains) {
 
     // MAXI TIMESTRETCH
@@ -566,8 +564,8 @@ EMSCRIPTEN_BINDINGS(my_module_maxiGrains) {
     ;
 
 };
-//
 // class maxiBitsWrapper : public maxiBits {
+//
 // public:
 // 	maxiBitsWrapper() : maxiBits() {}
 // 	maxiBitsWrapper(const bitsig v) : maxiBits(v) {}
@@ -615,78 +613,6 @@ EMSCRIPTEN_BINDINGS(my_module_maxibits) {
 };
 
 
-
-EMSCRIPTEN_BINDINGS(my_module_maxiFFT) {
-
-    // -------------------------------------------------------------------------------------------
-    // LIBS
-
-
-    // // MAXI FFT
-    // class_<maxiFFT>("maxiFFT")
-    // //    .constructor<>()
-    // //    .constructor<int>()
-
-
-    // .smart_ptr_constructor("shared_ptr<maxiFFT>",&std::make_shared<maxiFFT>)
-    // .function("setup", &maxiFFT::setup)
-    // .function("process", &maxiFFT::process)
-    // .function("spectralFlatness", &maxiFFT::spectralFlatness)
-    // .function("spectralCentroid", &maxiFFT::spectralCentroid)
-    // .function("getMagnitudes", &maxiFFT::getMagnitudes)
-    // .function("getMagnitudesDB", &maxiFFT::getMagnitudesDB)
-    // .function("getPhase", &maxiFFT::getPhases)
-
-    // // .property("windowSize", &maxiFFT::getWindowSize, &maxiFFT::setWindowSize)
-    // // .property("hopSize", &maxiFFT::getHopSize, &maxiFFT::setHopSize)
-    // // .property("bins", &maxiFFT::getNumBins, &maxiFFT::setNumBins)
-
-    // ;
-
-    // // MAXI IFFT
-    // class_<maxiIFFT>("maxiIFFT")
-    // //    .constructor<>()
-    // //    .constructor<int>()
-
-    // .smart_ptr_constructor("shared_ptr<maxiIFFT>",&std::make_shared<maxiIFFT>)
-    // .function("setup", &maxiIFFT::setup)
-    // .function("process", &maxiIFFT::process)
-
-    // ;
-
-    // MAXI IFFT
-    // class_<maxiFFTOctaveAnalyzer>("maxiFFTOctaveAnalyzer")
-    // //    .constructor<>()
-    // //    .constructor<int>()
-		//
-    // .smart_ptr_constructor("shared_ptr<maxiFFTOctaveAnalyzer>",&std::make_shared<maxiFFTOctaveAnalyzer>)
-    // .function("setup", &maxiFFTOctaveAnalyzer::setup)
-    // .function("calculate", &maxiFFTOctaveAnalyzer::calculate)
-		//
-    // //properties
-    // .property("samplingRate", &maxiFFTOctaveAnalyzer::getSamplingRate, &maxiFFTOctaveAnalyzer::setSamplingRate)
-    // .property("nSpectrum", &maxiFFTOctaveAnalyzer::getNSpectrum, &maxiFFTOctaveAnalyzer::setNSpectrum)
-    // .property("nAverages", &maxiFFTOctaveAnalyzer::getNAverages, &maxiFFTOctaveAnalyzer::setNAverages)
-    // .property("nAveragesPerOctave", &maxiFFTOctaveAnalyzer::getNAveragesPerOct, &maxiFFTOctaveAnalyzer::setNAveragesPerOct)
-    // .property("spectrumFrequencySpan", &maxiFFTOctaveAnalyzer::getSpecFreqSpan, &maxiFFTOctaveAnalyzer::setSpecFreqSpan)
-    // .property("firstOctaveFrequency", &maxiFFTOctaveAnalyzer::getFirstOctFreq, &maxiFFTOctaveAnalyzer::setFirstOctFreq)
-    // .property("averageFrequencyIncrement", &maxiFFTOctaveAnalyzer::getAvgFreqIncr, &maxiFFTOctaveAnalyzer::setAvgFreqIncr)
-		//
-		//
-    // .function("getAverage", &maxiFFTOctaveAnalyzer::getAverage)
-    // .function("getPeak", &maxiFFTOctaveAnalyzer::getPeak)
-    // .function("getPeakHoldTime", &maxiFFTOctaveAnalyzer::getPeakHoldTime)
-		//
-    // .property("peakHoldTime", &maxiFFTOctaveAnalyzer::getPeakHoldTimeTotal, &maxiFFTOctaveAnalyzer::setPeakHoldTimeTotal)
-    // .property("peakDecayRate", &maxiFFTOctaveAnalyzer::getPeakDecayRate, &maxiFFTOctaveAnalyzer::setPeakDecayRate)
-		//
-    // .function("getSpe2Avg", &maxiFFTOctaveAnalyzer::getSpe2Avg)
-		//
-    // .property("linearEQSlope", &maxiFFTOctaveAnalyzer::getLinEQSlope, &maxiFFTOctaveAnalyzer::setLinEQSlope)
-    // .property("linearEQIntercept", &maxiFFTOctaveAnalyzer::getLinEQIntercept, &maxiFFTOctaveAnalyzer::setLinEQIntercept)
-    // ;
-
-};
 
 EMSCRIPTEN_BINDINGS(maxiTrigger) {
 

@@ -24,7 +24,7 @@ void play(double *output) {
   if (fft.process(w, maxiFFT::WITH_POLAR_CONVERSION)) {
     mags = fft.getMagnitudes();
     phases = fft.getPhases();
-    mfcc.mfcc(mags, mfccs);
+    mfccs = mfcc.mfcc(mags);
     cout << mfccs[1] << endl;
   }
   output[0] = w;

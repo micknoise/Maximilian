@@ -21,7 +21,7 @@
 #ifdef __APPLE_CC__
 #include <Accelerate/Accelerate.h>
 #endif
-#include "maximilian.h"
+#include "../maximilian.h"
 using namespace std;
 
 
@@ -63,18 +63,21 @@ public:
 		this->numBins = numBins;
 		melFilters = NULL;
 		melBands = (T*) malloc(sizeof(T) * numFilters);
+    coeffs.resize(numCoeffs,0);
 #ifdef __APPLE_CC__
 		doubleSpec = (T*)malloc(sizeof(T) * numBins);
 #endif
 		//create new matrix
 		dctMatrix = (T*)malloc(sizeof(T) * numCoeffs * numFilters);
+
 		calcMelFilterBank(sampleRate, numBins);
 		createDCTCoeffs();
 	}
 //	void mfcc(float* powerSpectrum, T *mfccs) {
-	void mfcc(vector<float>& powerSpectrum, vector<T>& mfccs) {
+	vector<T>& mfcc(vector<float>& powerSpectrum) {
 		melFilterAndLogSquare(powerSpectrum.data());
-		dct(mfccs.data());
+		dct(coeffs.data());
+    return coeffs;
 	}
 
 private:
@@ -84,6 +87,7 @@ private:
 	T *melFilters;
 	unsigned int numBins;
 	T *dctMatrix;
+  vector<T> coeffs;
 #ifdef __APPLE_CC__
 	T *doubleSpec;
 #endif

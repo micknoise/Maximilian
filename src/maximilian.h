@@ -1268,7 +1268,7 @@ public:
         if (trig.onZX(trigSig)) {
             if (indexSig < 0) indexSig=0;
             if (indexSig > 1) indexSig=1;
-            size_t arrayIndex = static_cast<size_t>(floor(indexSig * values.size() * 0.999999999999999999999999));
+            size_t arrayIndex = static_cast<size_t>(floor(indexSig * 0.99999999 * values.size() ));
             value = values[arrayIndex];
         }
         return value;

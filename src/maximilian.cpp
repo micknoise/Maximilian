@@ -331,7 +331,7 @@ double maxiOsc::saw(double frequency) {
 	//Sawtooth generator. This is like a phasor but goes between -1 and 1
 	output=phase;
 	if ( phase >= 1.0 ) phase -= 2.0;
-	phase += (1./(maxiSettings::sampleRate/(frequency)));
+	phase += (1./(maxiSettings::sampleRate/(frequency))) * 2.0;
 	return(output);
 
 }
@@ -555,7 +555,7 @@ bool maxiSample::loadOgg(string fileName, int channel) {
     std::ifstream oggFile(fileName, std::ios::binary);
     std::vector<unsigned char> fileContents((std::istreambuf_iterator<char>(oggFile)),
                                    std::istreambuf_iterator<char>());
-    
+
     return setSampleFromOggBlob(fileContents, channel);
 #endif
 	return 0;
@@ -574,7 +574,7 @@ int maxiSample::setSampleFromOggBlob(vector<unsigned char> &oggBlob, int channel
     myChannels=(short)channelx;
     mySampleRate=44100;
     amplitudes.resize(myDataSize);
-    
+
     if (myChannels>1) {
         int position=0;
         int channel=readChannel;
@@ -588,7 +588,7 @@ int maxiSample::setSampleFromOggBlob(vector<unsigned char> &oggBlob, int channel
         }
     }
     free(temp);
-    
+
     return result; // this should probably be something more descriptive
 #endif
     return 0;
@@ -603,13 +603,14 @@ bool maxiSample::isReady(){
 	return false;
 }
 
-void maxiSample::setSample(vector<double>& temp){
-    amplitudes = temp;
+void maxiSample::setSample(vector<double>& sampleData){
+    amplitudes = sampleData;
 	mySampleRate = 44100;
+    position=amplitudes.size()-1;
 }
 
-void maxiSample::setSample(vector<double>& temp, int sampleRate){
-    amplitudes = temp;
+void maxiSample::setSample(vector<double>& sampleData, int sampleRate){
+    setSample(sampleData);
 	mySampleRate = sampleRate;
 }
 
@@ -943,6 +944,15 @@ double maxiSample::playOnZX(double trig) {
     prevTriggerVal=trig;
     return playOnce();
 }
+
+double maxiSample::loopSetPosOnZX(double trig, double pos) {
+    if (prevTriggerVal <=0 && trig > 0) {
+        setPosition(pos);
+    }
+    prevTriggerVal=trig;
+    return play();
+}
+
 
 
 //Same as above but takes a speed value specified as a ratio, with 1.0 as original speed

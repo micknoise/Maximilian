@@ -4,7 +4,7 @@ SRC=../../src/maximilian.cpp
 SRC_EM=../../src/maximilian.embind.cpp
 # SRC_LIBS=../../../src/libs/*.cpp
 # SRC_LIBS=../../src/libs/maxiSynths.cpp
-SRC_LIBS=../../src/libs/maxiSynths.cpp ../../src/libs/maxiGrains.cpp ../../src/libs/maxiFFT.cpp ../../src/libs/fft.cpp
+SRC_LIBS=../../src/libs/maxiSynths.cpp ../../src/libs/maxiGrains.cpp ../../src/libs/maxiFFT.cpp ../../src/libs/fft.cpp ../../src/libs/maxiMFCC.cpp
 C_SRC_LIBS=../../src/libs/stb_vorbis.c
 
 COMMON_DIR=common
@@ -16,7 +16,7 @@ POST_JS=$(COMMON_DIR)/maximilian.post.js
 
 OUTPUT=$(BUILD_DIR)/maximilian.wasmmodule.js
 
-CFLAGS=--bind -O1 \
+CFLAGS=--bind -O3\
 	-s WASM=1 \
 	-s BINARYEN_ASYNC_COMPILATION=0 \
 	-s SINGLE_FILE=1 \

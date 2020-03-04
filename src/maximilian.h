@@ -133,7 +133,7 @@ public:
 	double sinebuf4(double frequency);
     double sawn(double frequency);
     double rect(double frequency, double duty=0.5);
-    
+
 	void phaseReset(double phaseIn);
 
 };
@@ -397,8 +397,9 @@ public:
     double playLoop(double start, double end); // start and end are between 0.0 and 1.0
 
     double playOnce();
-    double playOnZX(double trigger);
-    double prevTriggerVal=0;
+		double playOnZX(double trigger);
+		double loopSetPosOnZX(double trigger, double position); // position between 0 and 1.0
+    double prevTriggerVal=1;
 
     double playOnce(double speed);
 
@@ -550,7 +551,7 @@ class maxiSampleAndHold {
 public:
     inline double sah(double sigIn, double holdTimeMs) {
         double holdTimeSamples = convert::msToSamps(holdTimeMs);
-        
+
         if (phase >= holdTimeSamples) {
             phase -= holdTimeSamples;
         }
@@ -722,15 +723,13 @@ public:
     maxiSVF() : v0z(0), v1(0), v2(0) { setParams(1000, 1);}
 
     //20 < cutoff < 20000
-    inline maxiSVF& setCutoff(double cutoff) {
+    inline void setCutoff(double cutoff) {
         setParams(cutoff, res);
-        return *this;
     }
 
     //from 0 upwards, starts to ring from 2-3ish, cracks a bit around 10
-    inline maxiSVF& setResonance(double q) {
+    inline void setResonance(double q) {
         setParams(freq, q);
-        return *this;
     }
 
     //run the filter, and get a mixture of lowpass, bandpass, highpass and notch outputs
@@ -892,7 +891,7 @@ public:
         double gainCh1 = sqrt(1.0-xfNorm);
         double gainCh2 = sqrt(xfNorm);
         vector<double> output(ch1.size(), 0.0);
-        for (int i=0; i < output.size(); i++) {
+        for (size_t i=0; i < output.size(); i++) {
             output[i] = (ch1[i] * gainCh1) + (ch2[i] * gainCh2);
         }
         return output;
@@ -989,5 +988,294 @@ public:
     }
 };
 
+//https://tutorials.siam.org/dsweb/cotutorial/index.php?s=3&p=0
+//https://www.complexity-explorables.org/explorables/ride-my-kuramotocycle/
+class maxiKuramotoOscillator {
+public:
+
+    inline double play(double freq, double K, std::vector<double> phases) {
+
+        double phaseAdj = 0;
+        for(double v: phases) {
+            phaseAdj += sin(v - phase);
+        }
+        phase +=  dt * (freq + ((K / phases.size()) * phaseAdj));
+        if (phase >= TWOPI) phase -= TWOPI;
+        else if (phase <0) phase += TWOPI;
+        return phase;
+    }
+    inline void setPhase(double newPhase) {phase = newPhase;}
+    inline double getPhase() {return phase;}
+private:
+    double phase=0.0;
+    double dt = TWOPI/maxiSettings::sampleRate;
+};
+
+//a local group of oscillators
+class maxiKuramotoOscillatorSet {
+public:
+    maxiKuramotoOscillatorSet(const size_t N) {
+        oscs.resize(N);
+        phases.resize(N);
+    };
+    void setPhases(const std::vector<double> &phases) {
+        size_t iOsc = 0;
+        for(double v: phases) {
+            oscs[iOsc].setPhase(v);
+            iOsc++;
+        }
+    }
+
+    void setPhase(const double phase, const size_t oscillatorIdx) {
+        oscs[oscillatorIdx].setPhase(phase);
+    }
+
+    double getPhase(size_t i) {
+        return oscs[i].getPhase();
+    }
+
+    size_t size() {
+        return oscs.size();
+    }
+
+    double play(double freq, double K) {
+        double mix=0.0;
+        //gather phases
+        for(size_t i=0; i < phases.size(); i++) {
+            phases[i] = oscs[i].getPhase();
+        }
+        for(auto &v: oscs) {
+            mix += v.play(freq, K, phases);
+        }
+        return mix  / phases.size();
+    }
+
+
+protected:
+    std::vector<maxiKuramotoOscillator> oscs;
+    std::vector<double> phases;
+};
+
+//a single oscillator, updated according to phase information from remote oscillators
+//best guesses of the remote oscillators are maintained, and asynchronously updated
+//use case: a networked clock
+class maxiAsyncKuramotoOscillator : public maxiKuramotoOscillatorSet {
+public:
+    //1 local oscillator and N-1 remote oscillators
+    maxiAsyncKuramotoOscillator(const size_t N) : maxiKuramotoOscillatorSet(N) {
+    };
+
+    void setPhase(const double phase, const size_t oscillatorIdx) {
+        oscs[oscillatorIdx].setPhase(phase);
+        update=1;
+    }
+    void setPhases(const std::vector<double> &phases) {
+        size_t iOsc = 0;
+        for(double v: phases) {
+            oscs[iOsc].setPhase(v);
+            iOsc++;
+        }
+        update=1;
+    }
+
+    double play(double freq, double K) {
+        double mix=0.0;
+        //gather phases
+        if (update) {
+            for(size_t i=0; i < phases.size(); i++) {
+                phases[i] = oscs[i].getPhase();
+            }
+        }
+        for(auto &v: oscs) {
+            mix += v.play(freq, update? K : 0, phases);
+        }
+        update=0;
+        return mix  / phases.size();
+    }
+
+		double getPhase(size_t i) {
+        return maxiKuramotoOscillatorSet::getPhase(i);
+    }
+
+    size_t size() {
+        return maxiKuramotoOscillatorSet::size();
+    }
+
+
+private:
+    bool update=0;
+
+};
+
+class maxiBits {
+public:
+    typedef uint32_t bitsig;
+
+		// static bitsig sig(bitsig v) return v;
+    // maxiBits() {}
+    // maxiBits(const bitsig v) : t(v) {}
+
+		static bitsig sig(bitsig v) {return v;}
+
+    static bitsig at(const bitsig v, const bitsig idx) {
+        return 1 & (v >> idx);
+    }
+    static bitsig shl (const bitsig v, const bitsig shift) {
+        return v<< shift;
+    }
+    static bitsig shr (const bitsig v, const bitsig shift) {
+        return v >> shift;
+    }
+    static bitsig  r (const bitsig v, const bitsig offset, const bitsig width) {
+        bitsig mask = maxiBits::l(width);
+        bitsig shift = offset - width + 1;
+				bitsig x = 0;
+        x = v &  shl(mask, shift);
+        x = x >> shift;
+        return x;
+    }
+    static bitsig land (const bitsig v, const bitsig x) {
+        return v & x;
+    }
+    static bitsig  lor (const bitsig v, const bitsig x) {
+        return v | x;
+    }
+    static bitsig  lxor (const bitsig v, const bitsig x) {
+        return v ^ x;
+    }
+    static bitsig neg (const bitsig v) {
+        return ~v;
+    }
+    static bitsig  inc (const bitsig v) {
+        return v+1;
+    }
+    static bitsig  dec (const bitsig v) {
+        return v-1;
+    }
+    static bitsig  add (const bitsig v, const bitsig m) {
+        return v + m;
+    }
+    static bitsig  sub (const bitsig v, const bitsig m) {
+        return v - m;
+    }
+    static bitsig  mul (const bitsig v, const bitsig m) {
+        return v * m;
+    }
+    static bitsig  div (const bitsig v, const bitsig m) {
+        return v / m;
+    }
+		static bitsig  gt (const bitsig v, const bitsig m) {
+        return v > m;
+    }
+    static bitsig  lt (const bitsig v, const bitsig m) {
+        return v < m;
+    }
+		static bitsig  gte (const bitsig v, const bitsig m) {
+        return v >= m;
+    }
+		static bitsig  lte (const bitsig v, const bitsig m) {
+        return v <= m;
+    }
+		static bitsig  eq (const bitsig v, const bitsig m) {
+        return v == m;
+    }
+    static bitsig  ct (const bitsig v, const bitsig width) {
+				bitsig x=0;
+        for(size_t i=0; i < width; i++) {
+            x += (v & (1 << i)) > 0;
+        }
+        return x;
+    }
+    static bitsig l(const bitsig width) {
+        bitsig v=0;
+        for(size_t i=0; i < width; i++) {
+            v += (1 << i);
+        }
+        return v;
+    }
+
+    static bitsig noise() {
+        bitsig v = static_cast<bitsig>(rand());
+        return v;
+    }
+
+    static double toSignal(const bitsig t) {
+        return maxiMap::linlin(t, 0,  (double) std::numeric_limits<uint32_t>::max(), -1, 1);
+    }
+
+    static double toTrigSignal(const bitsig t) {
+        return t > 0 ? 1.0 : -1.0;
+    }
+
+    static bitsig fromSignal(const double t) {
+        const bitsig halfRange = (std::numeric_limits<uint32_t>::max() / 2 );
+        const bitsig val = halfRange + (t * (halfRange-1));
+        return val;
+    }
+
+		// void sett(maxiBits::bitsig v){t=v;}
+		// maxiBits::bitsig gett() const {return t;};
+
+    // maxiBits::bitsig t=0;
+};
+
+class maxiTrigger {
+public:
+    //zerocrossing
+    double onZX(double input) {
+        double isZX=0.0;
+        if (previousValue <= 0.0 && input > 0) {
+            isZX=1.0;
+        }
+        previousValue = input;
+        return isZX;
+    }
+
+    //change detector
+    double onChanged(double input, double tolerance) {
+        double changed=0;
+        if (abs(input - previousValue) > tolerance) {
+            changed=1;
+        }
+        previousValue = input;
+        return changed;
+    }
+
+private:
+    double previousValue=1;
+};
+
+class maxiCounter {
+public:
+    double count(double incTrigger, double resetTrigger) {
+        if (inctrig.onZX(incTrigger)) {
+            value++;
+        }
+        if (rstrig.onZX(resetTrigger)) {
+            value = 0;
+        }
+        return value;
+    }
+
+private:
+    double value=0;
+    maxiTrigger inctrig, rstrig;
+};
+
+class maxiIndex {
+public:
+    double pull(const double trigSig, double indexSig, vector<double> values) {
+        if (trig.onZX(trigSig)) {
+            if (indexSig < 0) indexSig=0;
+            if (indexSig > 1) indexSig=1;
+            size_t arrayIndex = static_cast<size_t>(floor(indexSig * 0.99999999 * values.size() ));
+            value = values[arrayIndex];
+        }
+        return value;
+    }
+private:
+    maxiTrigger trig;
+    double value=0;
+};
 
 #endif

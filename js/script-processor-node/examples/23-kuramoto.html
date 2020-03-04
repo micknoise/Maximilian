@@ -22,8 +22,7 @@
 	<h1> Maximilian.js Test Zone </h1>
 	<p></p>
 	<ul>
-		<li>Listing input devices in the javascript console</li>
-		<li>loading and playing back an .ogg file</li>
+		<li>Kuramoto Oscillator Demo</li>
 	</ul>
 	<button id="playButton">Play</button>
 	<!-- <pre class="prettyprint lang-js linenums:true" id="quine" style="border:4px solid #88c" > -->
@@ -37,32 +36,25 @@
 
 	// em++ -s WASM=0
 	var maxiEngine = new maxi.maxiAudio();
-	var osc1= new maxi.maxiOsc();
-	var osc2= new maxi.maxiOsc();
-	var samp = new maxi.maxiSample();
-	var ts = new maxi.maxiStretch();
+	var oscs = [];
 
+	var kOscs = new maxi.maxiKuramotoOscillatorSet(3);
+	for(i=0; i < kOscs.size(); i++) {
+		oscs[i] = new maxi.maxiOsc();
+		kOscs.setPhase(Math.random() * Math.PI, i);
+	}
 
 	let playAudio = () => {
 
-		console.log("Listing input devices: ");
-		maxiEngine.listInputDevices();
-
 		maxiEngine.init(0);
-		// maxiEngine.loadSample("audio/beat2.wav", samp, (sample) => { console.log("Loaded a w " + sample.getLength())} );
-		maxiEngine.loadSample("audio/crebit2.ogg", samp, (sample) => { console.log("Loaded an ogg " + sample.getLength())} );
-		// maxiEngine.loadOgg("audio/beat2.wav", samp);
-		let count=0;
 
 		maxiEngine.play = function(input) {
-			// return osc1.sinewave(1000) * osc2.sinewave(300) * input[0];
-			// console.log(ts.getPosition());
-			// if (count % 1000 == 0) {
-			// }
-			// count++;
-			// return ts.playAtPosition(0.6, osc1.phasor(0.3), 0.05, 2);
-			return samp.play();
-
+			kOscs.play(0.1,6.5);
+			var mix=0;
+	    for(i=0; i < kOscs.size(); i++) {
+	        mix += oscs[i].sinewave(200 + (kOscs.getPhase(i) * 200));
+	    }
+			return mix;
 		}
 	}
 

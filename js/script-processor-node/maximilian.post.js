@@ -26,7 +26,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 "use strict";
 
-console.log("running%c Maximilian v2.0.2 (asm.js)", "font-weight: bold; background: #222; color: #fa7a55");
+console.log("running%c Maximilian v2.1.0 (asm.js)", "font-weight: bold; background: #222; color: #fa7a55");
 
 
 // ------------------------------------------------
@@ -233,7 +233,7 @@ Module.maxiAudio.prototype.init = function(audioIn = Module.INPUT_TYPE.NONE) {
 
 
 Module.maxiAudio.prototype.listInputDevices = function() {
-  navigator.mediaDevices.enumerateDevices().then((devices) => {
+  window.navigator.mediaDevices.enumerateDevices().then((devices) => {
     devices = devices.filter((d) => d.kind === 'audioinput');
     console.log(devices);
   });

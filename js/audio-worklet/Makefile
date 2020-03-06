@@ -16,17 +16,18 @@ POST_JS=$(COMMON_DIR)/maximilian.post.js
 
 OUTPUT=$(BUILD_DIR)/maximilian.wasmmodule.js
 
-CFLAGS=--bind -O3\
+CFLAGS=--bind -O1\
 	-s WASM=1 \
 	-s BINARYEN_ASYNC_COMPILATION=0 \
 	-s SINGLE_FILE=1 \
 	-s ALLOW_MEMORY_GROWTH=1 \
 	-s ABORTING_MALLOC=0 \
-	-s TOTAL_MEMORY=128Mb -DVORBIS \
-	# -s MODULARIZE_INSTANCE=1 \
+	-s TOTAL_MEMORY=128Mb -DVORBIS
+	# -s MODULARIZE_INSTANCE=1 
+	# -s EXPORT_NAME="default" \ 
 	# -s DISABLE_EXCEPTION_CATCHING=0 \
 	# -s ASSERTIONS=1 \
-	# -s EXPORT_NAME="'maximilian'"
+	
 	# -s --memory-init-file 0 --profiling -std=c++11 \
 	# -s ALLOW_MEMORY_GROWTH=1 \
 

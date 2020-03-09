@@ -6,6 +6,11 @@ class CustomProcessor extends AudioWorkletProcessor {
 
   constructor() {
     super();
+
+    this.time = 0;
+    this.frequency = 440;
+    this.sampleRate = 44100;
+
     this.port.onmessage = (event) => {
       console.log(event.data);
     };
@@ -13,17 +18,14 @@ class CustomProcessor extends AudioWorkletProcessor {
 
   process(inputs, outputs, parameters) {
     
-    const output = outputs[0];
-    for (let channel = 0; channel < output.length; ++channel) {
-
-      const outputChannel = output[channel];
-      for (let i = 0; i < outputChannel.length; ++i) {
-
-        const signal = Math.sin(600);
-        const gain = parameters.gain[i];
-        outputChannel[i] = signal * gain;
-      }
-    }
+    for (let i = 0; i < outputs[0][0].length; ++i) {
+			// outputChannel.length == 128 samples (fixed render quanta)
+			const signal = Math.sin(2 * Math.PI * this.frequency * this.time); // generating a sinewave, 1 sample at the time
+		  const gain = parameters.gain.length === 1? parameters.gain[0] : parameters.gain[i];
+			outputs[0][0][i] = signal * gain; // [out][left][samplei]
+      outputs[0][1][i] = signal * gain; // [out][right][samplei]
+			this.time += 1/this.sampleRate;
+		}
     return true;
   }
 };

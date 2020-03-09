@@ -43,22 +43,13 @@ class MaxiProcessor extends AudioWorkletProcessor {
 
     const outputsLength = outputs.length;
     for (let outputId = 0; outputId < outputsLength; ++outputId) {
-
       let output = outputs[outputId];
       const channelLenght = output.length;
       for (let channelId = 0; channelId < channelLenght; ++channelId) {
-      
         let outputChannel = output[channelId];
-        if (parameters.gain.length === 1) { // if gain is constant, lenght === 1, gain[0]
-      
-          for (let i = 0; i < outputChannel.length; ++i) {
-            outputChannel[i] = this.osc.sinewave(400) * parameters.gain[0];
-          }
-        }
-        else { // if gain is varying, lenght === 128, gain[i]
-          for (let i = 0; i < outputChannel.length; ++i) {
-            outputChannel[i] = this.osc.sinewave(400) * parameters.gain[i];
-          }
+        const gain = parameters.gain.length === 1? parameters.gain[0] : parameters.gain[i];
+        for (let i = 0; i < outputChannel.length; ++i) {
+            outputChannel[i] = this.osc.sinewave(440) * gain;
         }
       }
     }

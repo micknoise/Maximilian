@@ -24,6 +24,7 @@
 
   <button id="playButton">Play</button>
   <button id="stopButton">Stop</button>
+  <button id="swapButton">swap</button>
   <button id="plusButton">+</button>
   <button id="minusButton">–</button>
 
@@ -62,14 +63,6 @@
       minusButton.addEventListener("click", () => decreaseVolume());
     }
 
-
-    /**
-     * @translateIntermediateToLanguageProcessorCode
-     */
-    function translateIntermediateLanguageToProcessorCode(expression) {
-
-    }
-
     /**
      * @createAndRegisterCustomProcessorCode
      */
@@ -89,8 +82,9 @@
 
       // We get an "Error on loading worklet:  DOMException" with the following import:
       // import Module from './maximilian.wasmmodule.js';
+      // import Module from "${new URL("./maximilian.wasmmodule.js", location.href)}";
       return `
-        import Module from "${new URL("./maximilian.wasmmodule.js", location.href)}";
+       
         class CustomProcessor extends AudioWorkletProcessor {
           static get parameterDescriptors() {
             return [{
@@ -173,6 +167,9 @@
         };
         customNode.connect(audioContext.destination);
       }).catch(e => console.log("Error on loading worklet: ", e));
+    
+      processorCount++;
+    
     }
 
 

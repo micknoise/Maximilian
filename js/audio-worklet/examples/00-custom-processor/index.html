@@ -140,7 +140,7 @@
   </pre>
 
   <script type="text/javascript">
-    let audioContext = new AudioContext();
+    let audioContext; 
     let customNode;
     let customProcessorName = 'custom-processor';
     let workletUrl = 'custom-processor.js';
@@ -148,7 +148,7 @@
     class CustomAudioNode extends AudioWorkletNode {
 
       constructor(audioContext, processorName) {
-
+        
         super(audioContext, processorName, {
           numberOfInputs: 0,
           numberOfOutputs: 1,
@@ -179,6 +179,9 @@
 
     function playAudio() {
       try {
+
+        audioContext = new AudioContext();
+
         // window.CustomAudioNode = audioContext.audioWorklet.addModule(workletUrl).then(() => {
         window.CustomAudioNode = audioContext.audioWorklet.addModule(workletUrl).then(() => {
           stopAudio();

@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<title>
+		Javascript Audio Processing
+	</title>
+	<script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js?autoload=true&amp;skin=sunburst&amp;lang=css" defer="defer"></script>
+	<!-- show all line numbers-->
+	<style type="text/css">
+		body {
+			font-family:Arial, Helvetica, sans-serif;
+		}
+		.prettyprint ol.linenums>li {
+			list-style-type: decimal
+		}
+	</style>
+	<script src="../build/maximilian.js"></script>
+</head>
+
+<body>
+	<h1> Maximilian.js Test Zone </h1>
+	<p></p>
+	<ul>
+		<li>maxiBits Demo</li>
+	</ul>
+	<button id="playButton">Play</button>
+	<!-- <pre class="prettyprint lang-js linenums:true" id="quine" style="border:4px solid #88c" > -->
+	</pre>
+</body>
+
+<!-- Our javascript code -->
+<script type="text/javascript">
+
+	let maxi = maximilian();
+
+	// em++ -s WASM=0
+	var maxiEngine = new maxi.maxiAudio();
+
+	let playAudio = () => {
+
+		maxiEngine.init(0);
+
+		var b = maxi.maxiBits;
+		var t = b.sig(0);
+
+		maxiEngine.play = function(input) {
+			var mix=0;
+			// mix=b.shl(b.land(t,511*2), 23);
+			mix = b.mul(t, b.land(b.land(b.lor(b.shr(t,9), b.shr(t,13)),25), b.shr(t,6)));
+			// mix = b.land(t, 511);
+			mix = b.shl(mix, b.land(b.shr(mix,14),31));
+			t = b.inc(t);
+			return b.toSignal(mix);
+		}
+	}
+
+	const playButton = document.getElementById('playButton');
+	playButton.addEventListener("click", () => playAudio());
+
+</script>
+
+</html>

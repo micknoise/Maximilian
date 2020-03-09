@@ -1,0 +1,224 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>
+    Javascript Audio Processing
+  </title>
+
+  <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?lang=js&amp;skin=sunburst"></script>
+  <!-- show all line numbers-->
+  <style type="text/css">
+    .prettyprint ol.linenums>li {
+      list-style-type: decimal
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1> Test simple tone and gain processor </h1>
+  <p id="funcs"></p>
+  <p>
+    A simple sinewave with gain control. [You might need to clean the cache when you are testing your worklet processor code]
+  </p>
+
+  <button id="playButton">Play</button>
+  <button id="stopButton">Stop</button>
+  <button id="plusButton">+</button>
+  <button id="minusButton">–</button>
+
+  <pre class="prettyprint lang-js linenums:true" id="quine" style="border:1px solid #88c">
+    class CustomProcessor extends AudioWorkletProcessor {
+
+      static get parameterDescriptors() {
+        return [{ name: 'gain', defaultValue: 0.1 }];
+      }
+
+      constructor() {
+        super();
+        this.sampleRate = 44100;
+
+        this.port.onmessage = (event) => {
+          console.log(event.data);
+        };
+      }
+
+      process(inputs, outputs, parameters) {
+
+        const speakers = outputs[0];
+        for (let i = 0; i < speakers[0].length; i++) {
+
+          const func = Math.sin(i) + 0.4;
+          const gain = parameters.gain[i];
+          speakers[0][i] = func * gain;
+          speakers[1][i] = func * gain;
+        }
+        return true;
+      }
+    };
+  </pre>
+  <pre class="prettyprint lang-js linenums:true" id="quine" style="border:1px solid #88c">
+    let audioContext = new AudioContext();
+    let customNode;
+    let customProcessorName = 'custom-processor';
+    let customNodeName = 'custom-node';
+    let workletUrl = 'custom-processor.js';
+
+    class CustomAudioNode extends AudioWorkletNode {
+
+      constructor(audioContext, processorName) {
+
+        super(audioContext, processorName, {
+          numberOfInputs: 0,
+          numberOfOutputs: 1,
+          outputChannelCount: [2]
+        });
+      }
+    }
+
+
+    document.addEventListener("DOMContentLoaded", () => {
+      setButtonEventHandlers();
+    });
+
+    function setButtonEventHandlers() {
+
+      const playButton = document.getElementById('playButton');
+      playButton.addEventListener("click", () => playAudio());
+
+      const stopButton = document.getElementById('stopButton');
+      stopButton.addEventListener("click", () => stopAudio());
+
+      const plusButton = document.getElementById('plusButton');
+      plusButton.addEventListener("click", () => increaseVolume());
+
+      const minusButton = document.getElementById('minusButton');
+      minusButton.addEventListener("click", () => decreaseVolume());
+    }
+
+    function playAudio() {
+      try {
+        // window.CustomAudioNode = audioContext.audioWorklet.addModule(workletUrl).then(() => {
+        window.CustomAudioNode = audioContext.audioWorklet.addModule(workletUrl).then(() => {
+          stopAudio();
+          customNode = new CustomAudioNode(audioContext, customProcessorName);
+
+          customNode.port.onmessage = (event) => {
+            // Handling data from the processor.
+            console.log("from processor: " + event.data);
+          };
+
+          customNode.connect(audioContext.destination);
+        });
+      } catch (err) {
+        console.log("AudioWorklet not supported in this browser: ", err.message);
+      }
+    }
+
+    function stopAudio() {
+      if (customNode !== undefined) {
+        customNode.disconnect(audioContext.destination);
+        customNode = undefined;
+      }
+    }
+
+    function increaseVolume() {
+      if (customNode !== undefined) {
+        const gainParam = customNode.parameters.get('gain');
+        gainParam.value += 0.1;
+      }
+    }
+
+    function decreaseVolume() {
+      if (customNode !== undefined) {
+        const gainParam = customNode.parameters.get('gain');
+        gainParam.value -= 0.1;
+      }
+    }
+  </pre>
+
+  <script type="text/javascript">
+    let audioContext; 
+    let customNode;
+    let customProcessorName = 'custom-processor';
+    let workletUrl = 'custom-processor.js';
+
+    class CustomAudioNode extends AudioWorkletNode {
+
+      constructor(audioContext, processorName) {
+        
+        super(audioContext, processorName, {
+          numberOfInputs: 0,
+          numberOfOutputs: 1,
+          outputChannelCount: [2]
+        });
+      }
+    }
+
+
+    document.addEventListener("DOMContentLoaded", () => {
+      setButtonEventHandlers();
+    });
+
+    function setButtonEventHandlers() {
+
+      const playButton = document.getElementById('playButton');
+      playButton.addEventListener("click", () => playAudio());
+
+      const stopButton = document.getElementById('stopButton');
+      stopButton.addEventListener("click", () => stopAudio());
+
+      const plusButton = document.getElementById('plusButton');
+      plusButton.addEventListener("click", () => increaseVolume());
+
+      const minusButton = document.getElementById('minusButton');
+      minusButton.addEventListener("click", () => decreaseVolume());
+    }
+
+    function playAudio() {
+      try {
+
+        audioContext = new AudioContext();
+
+        // window.CustomAudioNode = audioContext.audioWorklet.addModule(workletUrl).then(() => {
+        window.CustomAudioNode = audioContext.audioWorklet.addModule(workletUrl).then(() => {
+          stopAudio();
+          customNode = new CustomAudioNode(audioContext, customProcessorName);
+
+          customNode.port.onmessage = (event) => {
+            // Handling data from the processor.
+            console.log("from processor: " + event.data);
+          };
+
+          customNode.connect(audioContext.destination);
+        });
+      } catch (err) {
+        console.log("AudioWorklet not supported in this browser: ", err.message);
+      }
+    }
+
+    function stopAudio() {
+      if (customNode !== undefined) {
+        customNode.disconnect(audioContext.destination);
+        customNode = undefined;
+      }
+    }
+
+    function increaseVolume() {
+      if (customNode !== undefined) {
+        const gainParam = customNode.parameters.get('gain');
+        gainParam.value += 0.1;
+      }
+    }
+
+    function decreaseVolume() {
+      if (customNode !== undefined) {
+        const gainParam = customNode.parameters.get('gain');
+        gainParam.value -= 0.1;
+      }
+    }
+  </script>
+</body>
+</html>

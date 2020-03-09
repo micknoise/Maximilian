@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<title>
+		Javascript Audio Processing
+	</title>
+	<script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js?autoload=true&amp;skin=sunburst&amp;lang=css" defer="defer"></script>
+	<!-- show all line numbers-->
+	<style type="text/css">
+		body {
+			font-family:Arial, Helvetica, sans-serif;
+		}
+		.prettyprint ol.linenums>li {
+			list-style-type: decimal
+		}
+	</style>
+	<script src="../build/maximilian.js"></script>
+</head>
+
+<body>
+	<h1> Maximilian.js Test Zone </h1>
+	<p></p>
+	<ul>
+		<li>Listing input devices in the javascript console</li>
+		<li>loading and playing back an .ogg file</li>
+	</ul>
+	<button id="playButton">Play</button>
+	<!-- <pre class="prettyprint lang-js linenums:true" id="quine" style="border:4px solid #88c" > -->
+	</pre>
+</body>
+
+<!-- Our javascript code -->
+<script type="text/javascript">
+
+	let maxi = maximilian();
+
+	// em++ -s WASM=0
+	var maxiEngine = new maxi.maxiAudio();
+	var osc1= new maxi.maxiOsc();
+	var osc2= new maxi.maxiOsc();
+	var samp = new maxi.maxiSample();
+	var ts = new maxi.maxiStretch();
+
+
+	let playAudio = () => {
+
+		console.log("Listing input devices: ");
+		maxiEngine.listInputDevices();
+
+		maxiEngine.init(0);
+		// maxiEngine.loadSample("audio/beat2.wav", samp, (sample) => { console.log("Loaded a w " + sample.getLength())} );
+		maxiEngine.loadSample("audio/crebit2.ogg", samp, (sample) => { console.log("Loaded an ogg " + sample.getLength())} );
+		// maxiEngine.loadOgg("audio/beat2.wav", samp);
+		let count=0;
+
+		maxiEngine.play = function(input) {
+			// return osc1.sinewave(1000) * osc2.sinewave(300) * input[0];
+			// console.log(ts.getPosition());
+			// if (count % 1000 == 0) {
+			// }
+			// count++;
+			// return ts.playAtPosition(0.6, osc1.phasor(0.3), 0.05, 2);
+			return samp.play();
+
+		}
+	}
+
+	const playButton = document.getElementById('playButton');
+	playButton.addEventListener("click", () => playAudio());
+
+</script>
+
+</html>

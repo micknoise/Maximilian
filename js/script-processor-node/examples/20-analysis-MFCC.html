@@ -1,0 +1,425 @@
+<!--
+Copyright 2010, Google Inc.
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are
+met:
+
+    * Redistributions of source code must retain the above copyright
+notice, this list of conditions and the following disclaimer.
+    * Redistributions in binary form must reproduce the above
+copyright notice, this list of conditions and the following disclaimer
+in the documentation and/or other materials provided with the
+distribution.
+    * Neither the name of Google Inc. nor the names of its
+contributors may be used to endorse or promote products derived from
+this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+"AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<title>
+		Javascript Audio Processing
+	</title>
+	<script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js?autoload=true&amp;skin=sunburst&amp;lang=css" defer="defer"></script>
+	<!-- show all line numbers-->
+	<style type="text/css">
+		body {
+			font-family:Arial, Helvetica, sans-serif;
+		}
+		.prettyprint ol.linenums>li {
+			list-style-type: decimal
+		}
+	</style>
+	<script src="../build/maximilian.js"></script>
+</head>
+
+<body>
+	<h1> FFT </h1>
+	<p>
+		The Fast Fourrier Transform analysis.
+	</p>
+
+	<canvas id="myCanvas" width="700" height="700" style="border:1px solid #c3c3c3;">
+
+		<!-- It's a good idea to warn people whose browsers don't support the tag -->
+
+		Your browser does not support the canvas element.
+	</canvas>
+
+</body>
+<script type="text/javascript">
+
+	// var audio = new maximJs.maxiAudio();
+	// audio.init();
+
+	let m = maximilian();
+	let myOsc = new m.maxiOsc();
+	let maxiAudio = new m.maxiAudio();
+
+	let fftSize = 1024;
+	let sampleRate = 44100;
+
+	let fft = new m.maxiFFT();
+	// let mfcc = new m.maxiMFCC();
+	// let oct = new m.maxiFFTOctaveAnalyzer();
+
+	var nAverages = 12;
+
+	fft.setup(fftSize, 512, 256);
+	// mfcc.setup(512, 42, 13, 20, 20000, sampleRate);
+	oct.setup(sampleRate, fftSize / 2, nAverages);
+
+	// for storing fft values
+	/* 
+	required as passing a vector from one class 
+	to another isn't currently working
+	*/
+	var magnitudes = new Module.VectorFloat();
+	var magnitudesDB = new Module.VectorFloat();
+
+	// will store mfcc output
+	var mfccs = new Module.VectorDouble();
+
+
+	for (var i = 0; i < 13; ++i) {
+		mfccs.push_back(0);
+	}
+
+	for (var i = 0; i < fftSize / 2; ++i) {
+		magnitudes.push_back(0);
+	}
+
+	var osc = new m.maxiOsc();
+
+	// if you want to play a sample...
+	var samplePlayer = new m.maxiSample();
+	audio.loadSample("./audio/beat2.wav", samplePlayer);
+
+	var magMult = 6;
+
+	var fftDraw = {
+		barsBottom: 600,
+		barsLeft: 50,
+		barsSize: 1,
+		magMult: 6
+	};
+
+	var mfccDraw = {
+		barsBottom: 350,
+		barsLeft: 350,
+		barsSize: 10,
+		magMult: 24
+	};
+
+	var octDraw = {
+		barsBottom: 150,
+		barsLeft: 350,
+		barsSize: 10,
+		magMult: 0.5
+	};
+
+	var amtAvgs = 15;
+	var pitchHist = [];
+
+	window.onload = setup;
+	function setup() {
+
+		// This gets the window in the browser
+		var canvas = document.getElementById("myCanvas");
+
+		// This creates a 2d drawing context in it.
+		context = canvas.getContext("2d");
+
+		//finally, we return setInterval, which wants a function to call,
+		//and a period in milliseconds to wait between calling it.  
+		return setInterval(draw, 40);
+	}
+
+	audio.play = function () {
+		// create wave for fft
+		var wave = osc.square(220);
+
+		// or use a sample
+		// var wave = samplePlayer.isReady() ? samplePlayer.play() : 0.0;
+
+		// process wave
+		if (fft.process(wave)) {
+			fft.magsToDB();
+
+			// 	// sorry, this is not nice
+			Module.vectorTools.clearVectorFloat(magnitudes);
+			Module.vectorTools.clearVectorFloat(magnitudesDB);
+
+			for (var i = 0; i < fftSize / 2; ++i) {
+				magnitudes.push_back(fft.getMagnitude(i));
+				magnitudesDB.push_back(fft.getMagnitudeDB(i));
+			}
+
+			// 	// pass magnitudes to mfcc and store in mfccs vector
+			// mfcc.mfcc(magnitudes, mfccs);
+			// oct.calculate(magnitudesDB);
+		}
+
+		this.output = wave;
+
+	}
+
+
+	//The stuff inside the script tag is very similar to processing code.
+	function draw() {
+		//This is basically the same as any other 2D processing draw routine.
+		//clear the screen
+		context.clearRect(0, 0, 700, 700);
+
+		// fft
+		context.fillStyle = "#FF0000";
+		context.font = "30px Arial";
+		context.fillText("FFT", 70, 200);
+
+		for (var i = 0; i < fftSize / 2; i++) {
+			context.beginPath();
+			context.rect(
+				fftDraw.barsLeft + i,
+				fftDraw.barsBottom,
+				fftDraw.barsSize,
+				-(fft.getMagnitude(i) * fftDraw.magMult));
+			context.fill();
+			context.closePath();
+		}
+
+		// mfcc
+		context.fillStyle = "rgba(0, 220, 0, 0.5)"
+		context.font = "30px Arial";
+		context.fillText("MFCC", 350, 250);
+		for (var i = 0; i < 13; i++) {
+			context.beginPath();
+
+			context.rect(
+				mfccDraw.barsLeft + i * mfccDraw.barsSize,
+				mfccDraw.barsBottom,
+				mfccDraw.barsSize,
+				(mfccs.get(i) * mfccDraw.magMult));
+			context.fill();
+			context.closePath();
+		}
+
+		// octave analyser
+		var j = 0;
+		for (var i = 0; i < amtAvgs; ++i) {
+			pitchHist[i] = 0;
+		}
+
+		for (var i = 0; i < oct.nAverages; ++i) {
+			pitchHist[j] += oct.getAverage(i);
+			j++;
+			j = j % amtAvgs;
+		}
+
+		context.fillStyle = "rgba(0, 0, 255, 0.5)"
+		context.font = "30px Arial";
+		context.fillText("OCT", 350, 50);
+		for (var i = 0; i < amtAvgs; i++) {
+			context.beginPath();
+			context.rect(
+				octDraw.barsLeft + i * (octDraw.barsSize * 1.5),
+				octDraw.barsBottom,
+				octDraw.barsSize,
+				-(pitchHist[i] * octDraw.magMult));
+			context.fill();
+			context.closePath();
+		}
+	}
+</script>
+
+<pre class="prettyprint lang-js linenums:true" id="quine" style="border:4px solid #88c">
+	var audio = new maximJs.maxiAudio();
+	audio.init();
+
+	var fft = new maximJs.maxiFFT();
+	var mfcc = new maximJs.maxiMFCC();
+	var oct = new maximJs.maxiFFTOctaveAnalyzer();
+
+	var nAverages = 12;
+
+	// for storing fft values
+	/* 
+	required as passing a vector from one class 
+	to another isn't currently working
+	*/
+	var magnitudes = new Module.VectorFloat();
+	var magnitudesDB = new Module.VectorFloat();
+
+	// will store mfcc output
+	var mfccs = new Module.VectorDouble(); 
+
+	var osc = new maximJs.maxiOsc();
+
+	// if you want to play a sample...
+	// var samplePlayer = new maximJs.maxiSample();
+	// audio.loadSample("./audio/beat2.wav", samplePlayer);
+
+
+	var fftSize = 1024;
+	var sampleRate = 44100;
+
+	var magMult = 6;
+
+	var fftDraw = {
+	barsBottom: 600,
+	barsLeft: 50,
+	barsSize:1,
+	magMult: 6
+};
+
+var mfccDraw = {
+barsBottom: 350,
+barsLeft: 350,
+barsSize:10,
+magMult: 24
+};
+
+var octDraw = {
+barsBottom: 150,
+barsLeft: 350,
+barsSize:10,
+magMult: 0.5
+};
+
+var amtAvgs = 15;
+var pitchHist = [];
+
+window.onload = setup;
+function setup(){
+fft.setup(fftSize, 512, 256);
+mfcc.setup(512, 42, 13, 20, 20000, sampleRate);
+oct.setup(sampleRate, fftSize/2, nAverages);
+
+for(var i = 0; i < 13; ++i){
+mfccs.push_back(0);
+}
+
+for(var i = 0; i < fftSize/2; ++i){
+magnitudes.push_back(0);
+}
+
+// This gets the window in the browser
+var canvas=document.getElementById("myCanvas");
+
+// This creates a 2d drawing context in it.
+context=canvas.getContext("2d");
+
+//finally, we return setInterval, which wants a function to call,
+//and a period in milliseconds to wait between calling it.  
+return setInterval(draw, 40);
+}
+
+audio.play = function(){
+// create wave for fft
+var wave = osc.square(220);
+
+// or use a sample
+// var wave = samplePlayer.isReady() ? samplePlayer.play() : 0.0;
+
+// process wave
+if(fft.process(wave)){
+fft.magsToDB();
+
+// 	// sorry, this is not nice
+Module.vectorTools.clearVectorFloat(magnitudes);
+Module.vectorTools.clearVectorFloat(magnitudesDB);
+
+for(var i = 0; i < fftSize/2; ++i){
+magnitudes.push_back(fft.getMagnitude(i));
+magnitudesDB.push_back(fft.getMagnitudeDB(i));
+}
+
+// 	// pass magnitudes to mfcc and store in mfccs vector
+mfcc.mfcc(magnitudes, mfccs);
+oct.calculate(magnitudesDB);
+}
+
+this.output = wave; 
+
+}
+
+
+//The stuff inside the script tag is very similar to processing code.
+function draw() {
+//This is basically the same as any other 2D processing draw routine.
+//clear the screen
+context.clearRect(0,0,700,700);
+
+// fft
+context.fillStyle="#FF0000";
+context.font = "30px Arial";
+context.fillText("FFT",70,200);
+
+for(var i=0; i < fftSize / 2; i++) {
+context.beginPath();
+context.rect(
+fftDraw.barsLeft + i,
+fftDraw.barsBottom,
+fftDraw.barsSize,
+-(fft.getMagnitude(i) * fftDraw.magMult)); 
+context.fill();
+context.closePath();
+}
+
+// mfcc
+context.fillStyle="rgba(0, 220, 0, 0.5)"
+context.font = "30px Arial";
+context.fillText("MFCC",350,250);
+for(var i=0; i < 13; i++) {
+context.beginPath();
+
+context.rect(
+mfccDraw.barsLeft + i*mfccDraw.barsSize,
+mfccDraw.barsBottom,
+mfccDraw.barsSize,
+(mfccs.get(i) * mfccDraw.magMult)); 
+context.fill();
+context.closePath();
+}
+
+// octave analyser
+var j = 0;
+for(var i=0; i < amtAvgs; ++i) {
+pitchHist[i] = 0;
+}
+
+for (var i = 0; i < oct.nAverages; ++i) {
+pitchHist[j] += oct.getAverage(i);
+j++;
+j = j % amtAvgs;
+}
+
+context.fillStyle="rgba(0, 0, 255, 0.5)"
+context.font = "30px Arial";
+context.fillText("OCT",350,50);
+for(var i=0; i < amtAvgs; i++) {
+context.beginPath();
+context.rect(
+octDraw.barsLeft + i*(octDraw.barsSize*1.5),
+octDraw.barsBottom,
+octDraw.barsSize,
+-(pitchHist[i] * octDraw.magMult)); 
+context.fill();
+context.closePath();
+}
+}
+</pre>
+
+</html>

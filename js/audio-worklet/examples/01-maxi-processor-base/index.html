@@ -1,0 +1,104 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>
+    Javascript Audio Processing
+  </title>
+  <style type="text/css">
+    .prettyprint ol.linenums>li {
+      list-style-type: decimal
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1> Test simple tone and gain processor </h1>
+  <p id="funcs"></p>
+  <p>
+    A simple sinewave with gain control.
+  </p>
+  <p>
+    You might need to clear the cache to make sure your latest worklet processor code is loading.
+  </p>
+
+  <button id="playButton">Play</button>
+  <button id="stopButton">Stop</button>
+  <button id="plusButton">+</button>
+  <button id="minusButton">–</button>
+
+  <script type="text/javascript">
+    let audioContext;
+    let customNode;
+    let customProcessorName = 'maxi-processor';
+    let workletUrl = 'maxi-processor.js';
+
+    class MaxiNode extends AudioWorkletNode {
+
+      constructor(audioContext, processorName) {
+        super(audioContext, processorName);
+      }
+    }
+
+    function setButtonEventHandlers() {
+      const playButton = document.getElementById('playButton');
+      playButton.addEventListener("click", () => playAudio());
+      const stopButton = document.getElementById('stopButton');
+      stopButton.addEventListener("click", () => stopAudio());
+      const plusButton = document.getElementById('plusButton');
+      plusButton.addEventListener("click", () => increaseVolume());
+      const minusButton = document.getElementById('minusButton');
+      minusButton.addEventListener("click", () => decreaseVolume());
+    }
+
+    function playAudio() {
+
+      if(audioContext === undefined)
+        audioContext = new AudioContext();
+
+      try {
+        audioContext.audioWorklet.addModule(workletUrl).then(() => {
+          stopAudio();
+          customNode = new MaxiNode(audioContext, customProcessorName);
+
+          customNode.port.onmessage = (event) => {
+            //  data from the processor.
+            console.log("from processor: " + event.data);
+          };
+
+          customNode.connect(audioContext.destination);
+        }).catch((e => console.log("Error on loading worklet: ", e)));
+      } catch (err) {
+        console.log("AudioWorklet not supported in this browser: ", err.message);
+      }
+    }
+
+    function stopAudio() {
+      if (customNode !== undefined) {
+        customNode.disconnect(audioContext.destination);
+        customNode = undefined;
+      }
+    }
+
+    function increaseVolume() {
+      if (customNode !== undefined) {
+        const gainParam = customNode.parameters.get('gain');
+        gainParam.value += 0.01;
+      }
+    }
+
+    function decreaseVolume() {
+      if (customNode !== undefined) {
+        const gainParam = customNode.parameters.get('gain');
+        gainParam.value -= 0.01;
+      }
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      setButtonEventHandlers();
+    });
+  </script>
+</body>
+</html>

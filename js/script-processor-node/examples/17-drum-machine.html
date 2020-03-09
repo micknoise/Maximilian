@@ -1,0 +1,181 @@
+
+<!--
+Copyright 2010, Google Inc.
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are
+met:
+
+    * Redistributions of source code must retain the above copyright
+notice, this list of conditions and the following disclaimer.
+    * Redistributions in binary form must reproduce the above
+copyright notice, this list of conditions and the following disclaimer
+in the documentation and/or other materials provided with the
+distribution.
+    * Neither the name of Google Inc. nor the names of its
+contributors may be used to endorse or promote products derived from
+this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+"AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<title>
+	Javascript Audio Processing
+</title>
+<script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js?autoload=true&amp;skin=sunburst&amp;lang=css" defer="defer"></script>
+<!-- <link rel="stylesheet" type="text/css" href="javascript-processing_files/simple.css"> -->
+
+
+<script src="../maxiLib.js"></script>
+<!-- <script src="../maxi_webAudio.js"></script> -->
+
+<!-- Our javascript code -->
+<script type="text/javascript">
+var audio = new maximJs.maxiAudio();
+audio.init();
+
+var kick = new maximJs.maxiSample();
+var snare = new maximJs.maxiSample();
+var hat = new maximJs.maxiSample();
+
+var timer = new maximJs.maxiOsc();
+
+var currentCount,lastCount,playHead = 0;
+var kickhit = [1,0,0,1,0,0,1,0,0,1,0,0,1,0,0,1]; //This is the sequence for the kick
+var snarehit=[0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0];//This is the sequence for the snare
+var hathit=[0,0,1,0, 0,0,1,0, 0,0,1,0, 0,0,1,1];//This is the sequence for the snare
+
+var kicktrigger,snaretrigger, hattrigger;
+var sampleOut;
+
+audio.loadSample('audio/kick1.wav', kick);
+audio.loadSample('audio/snare1.wav', snare);
+audio.loadSample('audio/hat12.wav', hat);
+
+
+audio.play = function(){
+	// if(kick.isReady() && snare.isReady()){
+	currentCount=Math.floor(timer.phasor(8));//this sets up a metronome that ticks 8 times a second
+	
+	
+	if (lastCount!=currentCount) {//if we have a new timer int this sample, play the sound
+		
+		kicktrigger=kickhit[playHead%16];//get the value out of the array for the kick
+		snaretrigger=snarehit[playHead%16];//same for the snare
+		hattrigger=hathit[playHead%16];
+
+		playHead++;//iterate the playhead
+		lastCount=0;//reset the metrotest
+	}
+
+	if (kicktrigger==1) {//if the sequence has a 1 in it
+		kick.trigger();//reset the playback position of the sample to 0 (the beginning)
+		
+	}
+	
+	if (snaretrigger==1) {
+		snare.trigger();//likewise for the snare
+		
+	}
+
+	if (hattrigger==1) {
+		hat.trigger();//likewise for the snare	
+	}
+	
+	sampleOut=hat.playOnce()*0.2+kick.playOnce()+snare.playOnce();//just play the files. No looping.
+	
+	this.output=sampleOut;//left channel
+
+	kicktrigger = 0;//set trigger to 0 at the end of each sample to guarantee retriggering.
+	snaretrigger = 0;
+	hattrigger = 0;
+}
+
+
+</script>
+
+</head>
+
+<body>
+
+	<h1> Drum Machine </h1>
+
+	<p>
+		using samples to make a drum machine
+	</p>
+
+	<pre class="prettyprint lang-js linenums:true" id="quine" style="border:4px solid #88c" >
+var audio = new maximJs.maxiAudio();
+audio.init();
+
+var kick = new maximJs.maxiSample();
+var snare = new maximJs.maxiSample();
+var hat = new maximJs.maxiSample();
+
+var timer = new maximJs.maxiOsc();
+
+var currentCount,lastCount,playHead = 0;
+var kickhit = [1,0,0,1,0,0,1,0,0,1,0,0,1,0,0,1]; //This is the sequence for the kick
+var snarehit=[0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0];//This is the sequence for the snare
+var hathit=[0,0,1,0, 0,0,1,0, 0,0,1,0, 0,0,1,1];//This is the sequence for the snare
+
+var kicktrigger,snaretrigger, hattrigger;
+var sampleOut;
+
+audio.loadSample('audio/kick1.wav', kick);
+audio.loadSample('audio/snare1.wav', snare);
+audio.loadSample('audio/hat12.wav', hat);
+
+
+audio.play = function(){
+	// if(kick.isReady() && snare.isReady()){
+	currentCount=Math.floor(timer.phasor(8));//this sets up a metronome that ticks 8 times a second
+	
+	
+	if (lastCount!=currentCount) {//if we have a new timer int this sample, play the sound
+		
+		kicktrigger=kickhit[playHead%16];//get the value out of the array for the kick
+		snaretrigger=snarehit[playHead%16];//same for the snare
+		hattrigger=hathit[playHead%16];
+
+		playHead++;//iterate the playhead
+		lastCount=0;//reset the metrotest
+	}
+
+	if (kicktrigger==1) {//if the sequence has a 1 in it
+		kick.trigger();//reset the playback position of the sample to 0 (the beginning)
+		
+	}
+	
+	if (snaretrigger==1) {
+		snare.trigger();//likewise for the snare
+		
+	}
+
+	if (hattrigger==1) {
+		hat.trigger();//likewise for the snare	
+	}
+	
+	sampleOut=hat.playOnce()*0.2+kick.playOnce()+snare.playOnce();//just play the files. No looping.
+	
+	this.output=sampleOut;//left channel
+
+	kicktrigger = 0;//set trigger to 0 at the end of each sample to guarantee retriggering.
+	snaretrigger = 0;
+	hattrigger = 0;
+}
+</pre>
+</body></html>

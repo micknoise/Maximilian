@@ -1,0 +1,169 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>
+    Javascript Audio Processing
+  </title>
+  <style type="text/css">
+    .prettyprint ol.linenums>li {
+      list-style-type: decimal
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1> Test asynchronous messaging to the worklet </h1>
+  <p id="funcs"></p>
+  <p>
+    A simple synths on the UI thread are posted to the worklet [You might need to clean the cache when you are testing
+    your worklet processor code]
+  </p>
+
+  <button id="playButton">Play</button>
+  <button id="stopButton">Stop</button>
+  <button id="plusButton">vol+</button>
+  <button id="minusButton">vol–</button>
+  <button id="synthButton">Change Synth</button>
+  <input type="checkbox" id="box" value="false">Load test<br>
+
+  <script type="text/javascript">
+    let audioContext;
+    let customNode;
+    let customProcessorName = 'maxi-processor';
+    let workletUrl = 'maxi-processor.js';
+    let serialisedFunc = "";
+
+    let fs = [
+      // `Math.sin(2 * Math.PI * 440)`,
+      `this.mySine.sawn(60) * this.myOtherSine.sinewave(0.4)`,
+      `this.mySine.sawn(60)`,
+      `this.myOtherSine.sinewave(440)`,
+      `this.myOtherSine.sawn(440)`,
+      `this.myOtherSine.triangle(440)`,
+      `this.myOtherSine.square(440)`,
+      `this.myOtherSine.square(440)`,
+      `this.mySine.sinewave(440) + this.myOtherSine.sinewave(441)`,
+      `this.mySine.sinewave(440) * this.myOtherSine.sinewave(1)`,
+      `this.mySine.sinewave(440 + (this.myOtherSine.sinewave(1) * 100))`,
+      `this.mySine.sinewave(this.myOtherSine.sinewave(30) * 440)`,
+      `this.mySine.sinewave(this.myOtherSine.sinewave(this.myLastSine.sinewave(0.1) * 30) * 440)`
+      //,  Interesting case of failure, it seems we can't instantiate because of EM heap limits
+      // `new Module.maxiOsc()`,
+      // `new Module.maxiOsc().sinewave(400)`
+    ];
+
+    const SYNTH_CHANGE_MS = 50;
+
+
+    class MaxiNode extends AudioWorkletNode {
+
+      constructor(audioContext, processorName, options) {
+        super(audioContext, processorName, options);
+      }
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      setButtonEventHandlers();
+    });
+
+    function setButtonEventHandlers() {
+
+      const playButton = document.getElementById('playButton');
+      playButton.addEventListener("click", () => playAudio());
+
+      const stopButton = document.getElementById('stopButton');
+      stopButton.addEventListener("click", () => stopAudio());
+
+      const plusButton = document.getElementById('plusButton');
+      plusButton.addEventListener("click", () => increaseVolume());
+
+      const minusButton = document.getElementById('minusButton');
+      minusButton.addEventListener("click", () => decreaseVolume());
+
+      const synthButton = document.getElementById('synthButton');
+      synthButton.addEventListener("click", () => testWorkletEval());
+
+      const checkBox = document.getElementById('box');
+      checkBox.addEventListener("click", () => {
+        playAudio();
+        setInterval('testWorkletEval()', SYNTH_CHANGE_MS)
+      });
+    }
+
+    function playAudio() {
+      if (audioContext === undefined) {
+        try {
+          audioContext = new AudioContext();
+          audioContext.audioWorklet.addModule(workletUrl).then(() => {
+            let options = {
+              numberOfInputs: 1,
+              numberOfOutputs: 1,
+              outputChannelCount: [2]
+            }
+            // customNode = new MaxiNode(audioContext, customProcessorName, options);
+            customNode = new AudioWorkletNode(audioContext, customProcessorName);
+            customNode.onprocessorerror = event => {
+              console.log(`MaxiProcessor Error detected` + event.data);
+            }
+            customNode.onprocessorstatechange = event => {
+              console.log(`MaxiProcessor state change detected ` + customNode.processorState);
+            }
+            customNode.port.onmessage = event => {
+              console.log(`Message from processor: ` + event.data);
+            }; //  data from the processor.
+            customNode.port.onmessageerror = event => {
+              console.log(`Error message from port: ` + event.data);
+            }; //  error from the message port.
+            customNode.connect(audioContext.destination);
+          })
+          .catch((e => console.log("Error on loading worklet: ", e)));
+        } catch (err) {
+          console.log("AudioWorklet not supported in this browser: ", err.message);
+        }
+      } else {
+        if (audioContext.state !== "suspended")
+          stopAudio();
+        else
+          audioContext.resume();
+      }
+    }
+
+    function stopAudio() {
+      if (customNode !== undefined) {
+        audioContext.suspend();
+        // customNode.disconnect(audioContext.destination);
+        // customNode = undefined;
+      }
+    }
+
+    function increaseVolume() {
+      if (customNode !== undefined) {
+        const gainParam = customNode.parameters.get('gain');
+        gainParam.value += 0.01;
+      }
+    }
+
+    function decreaseVolume() {
+      if (customNode !== undefined) {
+        const gainParam = customNode.parameters.get('gain');
+        gainParam.value -= 0.01;
+      }
+    }
+
+    function testWorkletEval() {
+      if (customNode !== undefined) {
+        let serialisedFunction = fs[Math.floor(Math.random() * fs.length)];
+        customNode.port.postMessage({
+          eval: `() => { return ${serialisedFunction} }`
+        });
+        // DEBUG:
+        console.log("Test Worklet Eval() serialised function: " + serialisedFunction);
+      }
+    }
+  </script>
+</body>
+
+</html>

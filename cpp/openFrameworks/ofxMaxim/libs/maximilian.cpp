@@ -364,6 +364,8 @@ double maxiOsc::triangle(double frequency) {
 	
 } 
 
+// don't use this nonsense. Use ramps instead.
+// ..er... I mean "This method is deprecated"
 double maxiEnvelope::line(int numberofsegments,double segments[1000]) {
 	//This is a basic multi-segment ramp generator that you can use for more or less anything.
     //However, it's not that intuitive.
@@ -372,14 +374,14 @@ double maxiEnvelope::line(int numberofsegments,double segments[1000]) {
 	nextval=segments[valindex+2];
 	currentval=segments[valindex];
 	if (currentval-amplitude > 0.0000001 && valindex < numberofsegments) {
-		amplitude += ((currentval-startval)/(maxiSettings::sampleRate/period));
+		amplitude += ((currentval-startVal)/(maxiSettings::sampleRate/period));
 	} else if (currentval-amplitude < -0.0000001 && valindex < numberofsegments) {
-		amplitude -= (((currentval-startval)*(-1))/(maxiSettings::sampleRate/period));
+		amplitude -= (((currentval-startVal)*(-1))/(maxiSettings::sampleRate/period));
 	} else if (valindex >numberofsegments-1) {
 		valindex=numberofsegments-2;
 	} else {
 		valindex=valindex+2;
-		startval=currentval;
+		startVal=currentval;
 	}
 	output=amplitude;
 		
@@ -391,13 +393,202 @@ double maxiEnvelope::line(int numberofsegments,double segments[1000]) {
 	return(output);
 }
 
-//and this
+//and this is also deprecated
 void maxiEnvelope::trigger(int index, double amp) {
 	isPlaying=1;//ok the envelope is being used now.
 	valindex=index;
 	amplitude=amp;
 	
 }
+
+void maxiEnvelope::trigger(bool noteOn) {
+    
+    if (noteOn) trig=1;
+    if (noteOn==false) trig=0;
+
+}
+
+double maxiEnvelope::ramp(double startVal, double endVal, double duration){
+
+    if (trig!=0) {
+        phase=startVal;
+        isPlaying=true;
+        trig=0;
+    }
+
+    if (isPlaying) {
+    
+    if (startVal<endVal) {
+        phase += ((endVal-startVal)/(maxiSettings::sampleRate/(1./duration)));
+        if ( phase >= endVal ) phase = endVal;
+    }
+    
+    if (startVal > endVal) {
+        phase += ((endVal-startVal)/(maxiSettings::sampleRate/(1./duration)));
+        if ( phase <= endVal ) phase = endVal;
+    }
+    return(phase);
+    } else {
+        
+        return(0);
+        
+    }
+        
+
+}
+
+
+double maxiEnvelope::ramps(std::vector<double> rampsArray){
+    
+    if (trig!=0) {
+        valindex=0;
+        endVal=rampsArray[valindex+1];
+        isPlaying=true;
+        trig=0;
+        
+    }
+    
+    if (isPlaying) {
+        
+        if (valindex>0 && rampsArray[valindex-1]==rampsArray[valindex+1]) {
+            period += (1/(maxiSettings::sampleRate/(1./rampsArray[valindex])));
+            if (period>=1) {
+                phase=endVal;
+                startVal=phase;
+                if (valindex+2<rampsArray.size()){
+                    valindex+=2;
+                    endVal=rampsArray[valindex+1];
+                    period=0;
+                }
+            } output=phase;
+        }
+        
+        if (valindex==0 && output==endVal) {
+            period += (1/(maxiSettings::sampleRate/(1./rampsArray[valindex])));
+            if (period>=1) {
+                phase=endVal;
+                startVal=phase;
+                if (valindex+2<rampsArray.size()){
+                    valindex+=2;
+                    endVal=rampsArray[valindex+1];
+                    period=0;
+                }
+            } output=phase;
+        }
+        
+        if (phase<endVal) {
+            phase += ((endVal-startVal)/(maxiSettings::sampleRate/(1./rampsArray[valindex])));
+            if ( phase >= endVal ) {
+                phase=endVal;
+                startVal=phase;
+                if (valindex+2<rampsArray.size()){
+                    valindex+=2;
+                    endVal=rampsArray[valindex+1];
+
+                }
+            }
+            output=phase;
+        }
+        
+        if (phase > endVal) {
+            phase += ((endVal-startVal)/(maxiSettings::sampleRate/(1./rampsArray[valindex])));
+            if ( phase <= endVal ) {
+                phase=endVal;
+                startVal=phase;
+                if (valindex+2<rampsArray.size()){
+                    valindex+=2;
+                    endVal=rampsArray[valindex+1];
+
+                }
+            } output=phase;
+        }
+        
+        return(output);
+    
+    } else {
+        
+        return(0);
+    }
+}
+
+double maxiEnvelope::ar(double attack, double release) {
+    
+    if (trig!=0) {
+        //phase=0;
+        releaseMode=false;
+        trig=0;
+    }
+
+    if (phase<1 && releaseMode==false) {
+        phase += ((1)/(maxiSettings::sampleRate/(1./attack)));
+        if ( phase >= 1 ) {
+            phase=1;
+            releaseMode=true;
+        };
+    }
+    
+    if (releaseMode==true) {
+        phase += ((-1)/(maxiSettings::sampleRate/(1./release)));
+        if ( phase <= 0 ) phase = 0;
+    }
+    
+    return phase;
+}
+
+
+double maxiEnvelope::adsr(double attack, double decay, double sustain, double release) {
+    
+    if (trig!=0 && !attackMode) {
+//        phase=0.;
+        releaseMode=false;
+        decayMode=false;
+        sustainMode=false;
+        attackMode=true;
+        trig=0;
+    }
+    
+    if (attackMode) {
+        phase += ((1)/(maxiSettings::sampleRate/(1./attack)));
+
+        if ( phase >= 1 ) {
+            phase=1;
+            attackMode=false;
+            decayMode=true;
+        };
+    }
+    
+    if (decayMode) {
+        phase += ((-1)/(maxiSettings::sampleRate/(1./decay)));
+        if ( phase <= sustain ) {
+            phase=sustain;
+            decayMode=false;
+            sustainMode=true;
+        };
+    }
+    
+    if (sustainMode) {
+
+        if (noteOn) {
+            phase=sustain;
+        }
+        
+        if (!noteOn) {
+            sustainMode=false;
+            releaseMode=true;
+        }
+    }
+    
+    if (releaseMode) {
+        phase += ((-sustain)/(maxiSettings::sampleRate/(1./release)));
+        if ( phase <= 0 ) {
+            phase = 0;
+            releaseMode=false;
+        }
+    }
+    
+    return phase;
+}
+
 
 //Delay with feedback
 maxiDelayline::maxiDelayline() {
@@ -457,6 +648,7 @@ double maxiFractionalDelay::dl ( double sig, double delayTime, double feedback )
     if (++writePointer >= delaySize)
         writePointer -= delaySize;
     return y;
+    
 }
 
 
@@ -594,6 +786,8 @@ bool maxiSample::loadOgg(string fileName, int channel) {
         }
     }
 	return result; // this should probably be something more descriptive
+#else
+  assert(false); // called but VORBIS not defined!
 #endif
     return 0;
 }
@@ -664,7 +858,7 @@ bool maxiSample::read()
 		if (myChannels>1) {
 			int position=0;
 			int channel=readChannel*2;
-			for (int i=channel;i<myDataSize+6;i+=(myChannels*2)) {
+			for (int i=channel;i<myDataSize;i+=(myChannels*2)) {
 				myData[position]=myData[i];
 				myData[position+1]=myData[i+1];
 				position+=2;
@@ -1128,7 +1322,7 @@ void maxiSample::setLength(unsigned long numSamples) {
         memcpy(newData, temp, sizeof(short) * copyLength);
     }
     temp = newData;
-    myDataSize = numSamples * 2;
+    myDataSize = int(numSamples * 2);
     length=numSamples;
     position=0;
     recordPosition=0;
@@ -1169,7 +1363,7 @@ void maxiSample::autoTrim(float alpha, float threshold, bool trimStart, bool tri
         }
     }
     
-    int endMarker = length-1;
+    int endMarker = int(length-1);
     if(trimEnd) {
         maxiLagExp<float> endLag(alpha, 0);
         while(endMarker > 0) {
@@ -1196,7 +1390,7 @@ void maxiSample::autoTrim(float alpha, float threshold, bool trimStart, bool tri
         position=0;
         recordPosition=0;
         //envelope the start
-        int fadeSize=min((long)100, length);
+        int fadeSize=int(min((long)100, length));
         for(int i=0; i < fadeSize; i++) {
             float factor = i / (float) fadeSize;
             temp[i] = round(temp[i] * factor);
@@ -1499,12 +1693,22 @@ void maxiDyn::setRatio(double ratioF) {
     ratio = ratioF;
 }
 
-
 double convert::mtof(int midinote) {
-	
 	return mtofarray[midinote];
 }
 
+int convert::ftom(double frequency) {
+    double baseFrequency = 440;
+    return round(12 * log2(frequency/baseFrequency)) + 69;
+}
+
+double convert::atodb(double amplitude) {
+    return 20 * log10(amplitude);
+}
+
+double convert::dbtoa(double decibels) {
+    return pow(10, (decibels * 0.5));
+}
 
 template<> void maxiEnvelopeFollower::setAttack(double attackMS) {
     attack = pow( 0.01, 1.0 / ( attackMS * maxiSettings::sampleRate * 0.001 ) );
@@ -2126,7 +2330,7 @@ void* maxiRecorder::update(void* _context)
 	_this->threadRunning = true;
 	while (_this->doRecord)
 	{
-		usleep((long)(10000. / bufferSize / maxiSettings::sampleRate));
+		usleep((useconds_t)(10000. / bufferSize / maxiSettings::sampleRate));
 		while (_this->bufferQueueSize > _this->bufferQueue.size())
 		{
 			_this->enqueueBuffer();
@@ -2235,7 +2439,7 @@ void maxiRecorder::saveToWav()
 
     int sampleRate = maxiSettings::sampleRate;
     short channels = maxiSettings::channels;
-    int   buffSize = pcmDataInt.size() * 2;
+    int   buffSize = int(pcmDataInt.size()) * 2;
 
     std::ofstream stream(filename.c_str(), std::ios::binary);
 
@@ -2283,7 +2487,7 @@ void maxiRecorder::saveToWav()
 std::vector<double> maxiRecorder::getProcessedData()
 {
     std::vector<double> userData;
-    int dataSize = savedBuffers.size() * bufferSize;
+    int dataSize = int(savedBuffers.size()) * bufferSize;
     userData.resize(dataSize);
 
     int savedIndex = 0;

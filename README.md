@@ -37,7 +37,7 @@ Examples demonstrating different features can be found in the maximilian_example
 
 ### Web Audio
 
-A transpiled javascript version of the library is included in this repository, for both Script Processor Nodes and Audio AudioWorklets.  Try this out at (https://mimicproject.com/guides/maximJS). 
+A transpiled javascript version of the library is included in this repository, for both Script Processor Nodes and AudioWorklets. Try this out at (https://mimicproject.com/guides/maximJS). 
 
 
 ### Mac OS XCode Project

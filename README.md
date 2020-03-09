@@ -26,7 +26,7 @@ Maximilian is a cross-platform and multi-target audio synthesis and signal proce
 - real-time music information retrieval functions: spectrum analysis, spectral features, octave analysis, Bark scale analysis, and MFCCs
 - example projects for Windows and MacOS, susing command line and OpenFrameworks environments
 - example projects for Firefox and Chromium-based browsers using the Web Audio API ScriptProcessorNode (deprecated!)
-- example projects for Chromium-based browsers using the Web Audio API AudioWorklet (e.g., Chrome, Brave, Edge, Opera)
+- example projects for Chromium-based browsers using the Web Audio API AudioWorklet (e.g. Chrome, Brave, Edge, Opera, Vivaldi)
 
 
 ### Basic Examples

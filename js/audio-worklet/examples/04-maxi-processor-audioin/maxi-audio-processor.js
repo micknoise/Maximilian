@@ -1,4 +1,4 @@
-import Module from '../build/maximilian.wasmmodule.js';
+import Module from '../../build/maximilian.wasmmodule.js';
 /**
  * The main Maxi Audio wrapper with a WASM-powered AudioWorkletProcessor.
  *
@@ -37,17 +37,10 @@ class MaxiAudioProcessor extends AudioWorkletProcessor {
       for (let channelId = 0; channelId < channelLenght; ++channelId) {
         let inputChannel = input[channelId];
         let outputChannel = output[channelId];
-        if(parameters.gain === 1) {
-          for (let i = 0; i < outputChannel.length; ++i) {
-            outputChannel[i] = inputChannel[i] * this.osc.sinewave(900) * this.sampleIndex/this.sampleRate * parameters.gain[0];
-          }
+        const gain = parameters.gain.length === 1? parameters.gain[0] : parameters.gain[i];
+        for (let i = 0; i < outputChannel.length; ++i) {
+          outputChannel[i] = inputChannel[i] * this.osc.sinewave(900) * gain;
         }
-        else {
-          for (let i = 0; i < outputChannel.length; ++i) {
-            outputChannel[i] = inputChannel[i] * this.osc.sinewave(900) * this.sampleIndex/this.sampleRate * parameters.gain[i];
-          }
-        }
-        this.sampleIndex++;
       }
     }
     return true;

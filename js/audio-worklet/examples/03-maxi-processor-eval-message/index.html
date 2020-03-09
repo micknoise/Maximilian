@@ -37,29 +37,22 @@
     let serialisedFunc = "";
 
     let fs = [
-      `Math.sin(2 * Math.PI * 440)`,
-      // `this.mySine.sawn(60) * this.myOtherSine.sinewave(0.4)`,
-      // `this.mySine.sawn(60)`,
-      // `this.myOtherSine.sinewave(440)`,
-      // `this.myOtherSine.sawn(440)`,
-      // `this.myOtherSine.triangle(440)`,
-      // `this.myOtherSine.square(440)`,
-      // `this.myOtherSine.square(440)`,
-      // `this.mySine.sinewave(440) + this.myOtherSine.sinewave(441)`,
-      // `this.mySine.sinewave(440) * this.myOtherSine.sinewave(1)`,
-      // `this.mySine.sinewave(440 + (this.myOtherSine.sinewave(1) * 100))`,
-      // `this.mySine.sinewave(this.myOtherSine.sinewave(30) * 440)`,
-      // `this.mySine.sinewave(this.myOtherSine.sinewave(this.myLastSine.sinewave(0.1) * 30) * 440)`,
+      // `Math.sin(2 * Math.PI * 440)`,
+      `this.mySine.sawn(60) * this.myOtherSine.sinewave(0.4)`,
+      `this.mySine.sawn(60)`,
+      `this.myOtherSine.sinewave(440)`,
+      `this.myOtherSine.sawn(440)`,
+      `this.myOtherSine.triangle(440)`,
+      `this.myOtherSine.square(440)`,
+      `this.myOtherSine.square(440)`,
+      `this.mySine.sinewave(440) + this.myOtherSine.sinewave(441)`,
+      `this.mySine.sinewave(440) * this.myOtherSine.sinewave(1)`,
+      `this.mySine.sinewave(440 + (this.myOtherSine.sinewave(1) * 100))`,
+      `this.mySine.sinewave(this.myOtherSine.sinewave(30) * 440)`,
+      `this.mySine.sinewave(this.myOtherSine.sinewave(this.myLastSine.sinewave(0.1) * 30) * 440)`
       //,  Interesting case of failure, it seems we can't instantiate because of EM heap limits
       // `new Module.maxiOsc()`,
       // `new Module.maxiOsc().sinewave(400)`
-      // , `this.mySine.tri(440) >> DAC`, // Stereo by default
-      // `this.mySine.tri(440) >> DAC(1)`, // Mono to 1
-      // `this.mySine.tri(440) >> DAC(0)` // Mono to 2
-      // `this.mySine.tri(440) >> DAC(0,3,5)` // Channel indices
-      // `ADC >> this.mySine.tri(440) >> DAC(0,3,5)` // Channel indices
-      // `ADC >> this.mySine.tri(440) >> DAC(0,3,5)` // Channel indices
-      // `ADC >> this.mySine.tri(440) >> DAC(0,3,5)` // Channel indices
     ];
 
     const SYNTH_CHANGE_MS = 50;
@@ -125,7 +118,8 @@
               console.log(`Error message from port: ` + event.data);
             }; //  error from the message port.
             customNode.connect(audioContext.destination);
-          }).catch((e => console.log("Error on loading worklet: ", e)));
+          })
+          .catch((e => console.log("Error on loading worklet: ", e)));
         } catch (err) {
           console.log("AudioWorklet not supported in this browser: ", err.message);
         }
@@ -159,37 +153,12 @@
       }
     }
 
-    function inflateSortingJSBlob() {
-
-      var file = "./sorting.js"
-      var reader = new FileReader();
-      reader.onload = function (e) {
-        console.log(e.target.result)
-      };
-      reader.readAsText(file);
-
-      // const blob = new Blob([code], {
-      //   type: "application/javascript; charset=utf-8"
-      // });
-
-      // // TODO: Check for memory leaks
-      // // URL.revokeObjectURL()
-      // const url = window.URL.createObjectURL(blob);
-      // return url;
-    }
-
-
     function testWorkletEval() {
       if (customNode !== undefined) {
-        let serialisedFunction;
-        if (arguments.length == 0) {
-          // serialisedFunction = fs[Math.floor(Math.random() * fs.length)];
-          serialisedFunction = `Math.sin(2 * Math.PI * 440)`;
-          customNode.port.postMessage(`() => { return ${serialisedFunction} }`);
-        } else {
-          serialisedFunction = arguments[0];
-          customNode.port.postMessage(`() => { return ${serialisedFunction} }`);
-        }
+        let serialisedFunction = fs[Math.floor(Math.random() * fs.length)];
+        customNode.port.postMessage({
+          eval: `() => { return ${serialisedFunction} }`
+        });
         // DEBUG:
         console.log("Test Worklet Eval() serialised function: " + serialisedFunction);
       }

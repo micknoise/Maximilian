@@ -74,10 +74,10 @@
           userDefinedFunction = `Math.random() * 2`;
           break;
         case 1:
-          userDefinedFunction = `(Math.sin(400) + 0.4)`;
+          userDefinedFunction = `Math.sin(2 * Math.PI * this.frequency * this.time)`;
           break;
         default:
-          userDefinedFunction = `(Math.sin(440) + 0.4)`;
+          userDefinedFunction = `Math.sin(2 * Math.PI * this.frequency * this.time)`;
       }
 
       // We get an "Error on loading worklet:  DOMException" with the following import:
@@ -94,6 +94,8 @@
           }
           constructor() {
             super();
+            this.time = 0;
+            this.frequency = 440;
             this.sampleRate = 44100;
 
             this.port.onmessage = (event) => {
@@ -112,10 +114,10 @@
                 const gain = parameters.gain;
                 const isConstant = gain.length === 1
                 let outputChannel = output[channelId];
-
                 for (let i = 0; i < outputChannel.length; ++i) {
-                  const amp = isConstant ? gain[0] : gain[i]
-                  outputChannel[i] = ${userDefinedFunction} * amp;
+                  const gain = parameters.gain.length === 1? parameters.gain[0] : parameters.gain[i];
+                  outputChannel[i] = ${userDefinedFunction} * gain;
+                  this.time += 1/this.sampleRate;
                 }
               }
             }

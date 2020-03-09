@@ -35,6 +35,10 @@ You can choose between using RTAudio and PortAudio drivers in player.h by uncomm
 
 Examples demonstrating different features can be found in the maximilian_examples folder.  To try them, replace the contents of main.cpp with the contents of a tutorial file and compile.
 
+### Web Audio
+
+A transpiled javascript version of the library is included in this repository, for both Script Processor Nodes and Audio AudioWorklets.  Try this out at (https://mimicproject.com/guides/maximJS). 
+
 
 ### Mac OS XCode Project
 
@@ -80,6 +84,3 @@ You can install the ofxMaxim addon by copying the ofxMaxim/ofxMaxim folder into 
 Important: when using Maximilian on OSX, link against the Accelerate framework.
 
 
-### Web Audio
-
-A transpiled javascript version of the library is included in this repository, for both Script Processor Nodes and Audio AudioWorklets.  Try this out at (https://mimicproject.com/guides/maximJS). 

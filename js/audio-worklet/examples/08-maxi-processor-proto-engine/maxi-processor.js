@@ -1,6 +1,6 @@
 'use strict';
 
-import Module from '../../build/maximilian.wasmmodule.js';
+import Maximilian from "../../build/maximilian.wasmmodule.js";
 
 /**
  * The main Maxi Audio wrapper with a WASM-powered AudioWorkletProcessor.
@@ -40,11 +40,11 @@ class MaxiProcessor extends AudioWorkletProcessor {
     this.phase = 0;
 
     // this.maxiAudio = new Module.maxiAudio();
-    this.clock = new Module.maxiOsc();
-    this.kick = new Module.maxiSample();
-    this.snare = new Module.maxiSample();
-    this.closed = new Module.maxiSample();
-    this.open = new Module.maxiSample();
+    this.clock = new Maximilian.maxiOsc();
+    this.kick = new Maximilian.maxiSample();
+    this.snare = new Maximilian.maxiSample();
+    this.closed = new Maximilian.maxiSample();
+    this.open = new Maximilian.maxiSample();
 
     // this.sequence = "k k s o c k";
     this.sequence = "ksc o o ";

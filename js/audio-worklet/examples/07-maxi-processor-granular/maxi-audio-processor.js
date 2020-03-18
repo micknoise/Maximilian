@@ -1,4 +1,4 @@
-import Module from '../../build/maximilian.wasmmodule.js';
+import Maximilian from '../../build/maximilian.wasmmodule.js';
 
 
 /**
@@ -24,9 +24,9 @@ class MaxiAudioProcessor extends AudioWorkletProcessor {
       console.log(event.data);
     };
 
-    this.maxiAudio = new Module.maxiAudio();
-    this.samplePlayer = new Module.maxiSample();
-    this.stretch = new Module.maxiPitchStretch();
+    this.maxiAudio = new Maximilian.maxiAudio();
+    this.samplePlayer = new Maximilian.maxiSample();
+    this.stretch = new Maximilian.maxiPitchStretch();
     // var grains = new Module.maxiTimestretch();
     // var shift = new Module.maxiPitchShift();
 

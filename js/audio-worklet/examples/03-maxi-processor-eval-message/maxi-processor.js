@@ -1,4 +1,4 @@
-import Module from '../../build/maximilian.wasmmodule.js';
+import Maximilian from '../../build/maximilian.wasmmodule.js';
 /**
  * The main Maxi Audio wrapper with a WASM-powered AudioWorkletProcessor.
  *
@@ -27,9 +27,9 @@ class MaxiProcessor extends AudioWorkletProcessor {
     this.sampleRate = 44100;
     this.sampleIndex = 1;
 
-    this.mySine = new Module.maxiOsc();
-    this.myOtherSine = new Module.maxiOsc();
-    this.myLastSine = new Module.maxiOsc();
+    this.mySine = new Maximilian.maxiOsc();
+    this.myOtherSine = new Maximilian.maxiOsc();
+    this.myLastSine = new Maximilian.maxiOsc();
 
     this.signal = eval(`() => { return this.mySine.sinewave(440)}`);
 

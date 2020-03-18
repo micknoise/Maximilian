@@ -1,4 +1,4 @@
-import Module from '../../build/maximilian.wasmmodule.js';
+import Maximilian from "../../build/maximilian.wasmmodule.js";
 /**
  * The main Maxi Audio wrapper with a WASM-powered AudioWorkletProcessor.
  *
@@ -33,7 +33,8 @@ class MaxiProcessor extends AudioWorkletProcessor {
       }
     };
 
-    this.osc = new Module.maxiOsc();
+    // this.osc = new Module.maxiOsc();
+    this.osc = new Maximilian.maxiOsc();
   }
 
   /**

@@ -1,4 +1,4 @@
-import Module from "../../build/maximilian.wasmmodule.js";
+import Maximilian from "../../build/maximilian.wasmmodule.js";
 /**
  * The main Maxi Audio wrapper with a WASM-powered AudioWorkletProcessor.
  *
@@ -40,7 +40,7 @@ class MaxiProcessor extends AudioWorkletProcessor {
 				console.log(key + ": " + event.data[key]);
 				// console.log(this[key] + ": " + typeof this[key]);
 				if (key !== "sequence") {
-					this[key] = new Module.maxiSample(); 
+					this[key] = new Maximilian.maxiSample(); 
 					this[key].setSample( this.translateFloat32ArrayToBuffer(event.data[key]) );
 				}
 				else 
@@ -48,13 +48,13 @@ class MaxiProcessor extends AudioWorkletProcessor {
 			}
 	  };
 
-  	this.osc = new Module.maxiOsc();
-  	this.samplePlayer = new Module.maxiSample();
-  	this.fft = new Module.maxiFFT();
+  	this.osc = new Maximilian.maxiOsc();
+  	this.samplePlayer = new Maximilian.maxiSample();
+  	this.fft = new Maximilian.maxiFFT();
 
   	// for storing fft values (required as passing a vector from one class to another isn't currently working)
-  	this.magnitudes = new Module.VectorFloat();
-  	this.magnitudesDB = new Module.VectorFloat();
+  	this.magnitudes = new Maximilian.VectorFloat();
+  	this.magnitudesDB = new Maximilian.VectorFloat();
 	}
 
 	/**

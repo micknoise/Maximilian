@@ -1,4 +1,4 @@
-import Module from '../../build/maximilian.wasmmodule.js';
+import Maximilian from "../../build/maximilian.wasmmodule.js";
 
 /**
  * The main Maxi Audio wrapper with a WASM-powered AudioWorkletProcessor.
@@ -34,11 +34,11 @@ class MaxiProcessor extends AudioWorkletProcessor {
     this.oldClock = 0;
     this.phase = 0;
 
-    this.clock = new Module.maxiOsc();
-    this.kick = new Module.maxiSample();
-    this.snare = new Module.maxiSample();
-    this.closed = new Module.maxiSample();
-    this.open = new Module.maxiSample();
+    this.clock = new Maximilian.maxiOsc();
+    this.kick = new Maximilian.maxiSample();
+    this.snare = new Maximilian.maxiSample();
+    this.closed = new Maximilian.maxiSample();
+    this.open = new Maximilian.maxiSample();
 
     this.initialised = false;
 
@@ -64,7 +64,7 @@ class MaxiProcessor extends AudioWorkletProcessor {
 
   //Deprecated
   generateNoiseBuffer(length) {
-    var bufferData = new Module.VectorDouble();
+    var bufferData = new Maximilian.VectorDouble();
     for (var n = 0; n < length; n++) {
       bufferData.push_back(Math.random(1));
     }
@@ -83,7 +83,7 @@ class MaxiProcessor extends AudioWorkletProcessor {
     };
     fileReader.readAsArrayBuffer(blob);
     let audioFloat32Array = fileReader.result;
-    var maxiSampleBufferData = new Module.VectorDouble();
+    var maxiSampleBufferData = new Maximilian.VectorDouble();
     for (var i = 0; i < audioFloat32Array.length; i++) {
       maxiSampleBufferData.push_back(audioFloat32Array[i]);
     }
@@ -92,7 +92,7 @@ class MaxiProcessor extends AudioWorkletProcessor {
 
   translateFloat32ArrayToBuffer(audioFloat32Array) {
 
-    var maxiSampleBufferData = new Module.VectorDouble();
+    var maxiSampleBufferData = new Maximilian.VectorDouble();
     for (var i = 0; i < audioFloat32Array.length; i++) {
       maxiSampleBufferData.push_back(audioFloat32Array[i]);
     }

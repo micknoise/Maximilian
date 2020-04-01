@@ -93,13 +93,13 @@ public:
   ~maxiIFFT() {};
 	void setup(int fftSize=1024, int hopSize=512, int windowSize=0);
   float process(std::vector<float> &data1, std::vector<float> &data2, fftModes mode = maxiIFFT::SPECTRUM);
-
+  int getNumBins() { return bins; }
 
 private:
     std::vector<float> ifftOut, buffer, window;
 	int windowSize;
-	int bins;
 	int hopSize;
+	int bins;
 	int pos;
 	float nextValue;
 	int fftSize;

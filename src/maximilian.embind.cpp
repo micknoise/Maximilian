@@ -654,4 +654,17 @@ EMSCRIPTEN_BINDINGS(maxiIndex) {
 		;
 };
 
+EMSCRIPTEN_BINDINGS(maxiRatioSeq) {
+
+    class_<maxiRatioSeq >("maxiRatioSeq")
+		#ifdef SPN
+    .smart_ptr_constructor("shared_ptr<maxiRatioSeq>",&std::make_shared<maxiRatioSeq>)
+		#else
+			.constructor<>()
+		#endif
+		.function("playTrig", &maxiRatioSeq::playTrig)
+		.function("playValues", &maxiRatioSeq::playValues)
+		;
+};
+
 #endif

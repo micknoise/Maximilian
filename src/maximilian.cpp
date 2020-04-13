@@ -927,29 +927,27 @@ double maxiSample::playUntil(double end) {
 
 //This plays back at the correct speed. Only plays once. To retrigger, you have to manually reset the position
 double maxiSample::playOnce() {
-	position++;
 	if ((long) position<amplitudes.size())
 		output = amplitudes[(long)position];
 	else {
 		output=0;
 	}
+	position++;
 	return output;
 
 }
 
 double maxiSample::playOnZX(double trig) {
-    if (prevTriggerVal <=0 && trig > 0) {
-        trigger();
-    }
-    prevTriggerVal=trig;
-    return playOnce();
+	if (zxTrig.onZX(trig)) {
+		trigger();
+	}
+  return playOnce();
 }
 
 double maxiSample::loopSetPosOnZX(double trig, double pos) {
-    if (prevTriggerVal <=0 && trig > 0) {
-        setPosition(pos);
-    }
-    prevTriggerVal=trig;
+		if (zxTrig.onZX(trig)) {
+			setPosition(pos);
+		}
     return play();
 }
 
@@ -957,12 +955,13 @@ double maxiSample::loopSetPosOnZX(double trig, double pos) {
 
 //Same as above but takes a speed value specified as a ratio, with 1.0 as original speed
 double maxiSample::playOnce(double speed) {
-	position=position+((speed*chandiv)/(maxiSettings::sampleRate/mySampleRate));
 	double remainder = position - (long) position;
 	if ((long) position<amplitudes.size())
 		output = ((1-remainder) * amplitudes[1+ (long) position] + remainder * amplitudes[2+(long) position]);//linear interpolation
 	else
 		output=0;
+
+	position=position+((speed*chandiv)/(maxiSettings::sampleRate/mySampleRate));
 	return(output);
 }
 

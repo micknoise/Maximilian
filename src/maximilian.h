@@ -57,6 +57,7 @@ gate oscillator - gateOsc.play([1,0,0,0,0,1,0,0], 400ms)
 #ifdef _WIN32 //|| _WIN64
 #include <algorithm>
 #endif
+#include <numeric>
 
 using namespace std;
 #ifndef PI
@@ -314,6 +315,34 @@ public:
 };
 
 
+class maxiTrigger {
+public:
+    //zerocrossing
+    double onZX(double input) {
+        double isZX=0.0;
+        if ((previousValue <= 0.0 || firstTrigger) && input > 0){
+            isZX=1.0;
+        }
+        previousValue = input;
+				firstTrigger = 0;
+        return isZX;
+    }
+
+    //change detector
+    double onChanged(double input, double tolerance) {
+        double changed=0;
+        if (abs(input - previousValue) > tolerance) {
+            changed=1;
+        }
+        previousValue = input;
+        return changed;
+    }
+
+private:
+    double previousValue=1;
+		bool firstTrigger = 1;
+};
+
 class maxiSample  {
 
 private:
@@ -399,7 +428,8 @@ public:
     double playOnce();
 		double playOnZX(double trigger);
 		double loopSetPosOnZX(double trigger, double position); // position between 0 and 1.0
-    double prevTriggerVal=1;
+		maxiTrigger zxTrig;
+    // double prevTriggerVal=1;
 
     double playOnce(double speed);
 
@@ -919,7 +949,7 @@ public:
                     lineComplete = lineValue >= lineEnd;
                 }
             }
-            lastTrigVal = trigger;
+						lastTrigVal = trigger;
         }
         return lineValue;
 
@@ -1219,35 +1249,9 @@ public:
     // maxiBits::bitsig t=0;
 };
 
-class maxiTrigger {
-public:
-    //zerocrossing
-    double onZX(double input) {
-        double isZX=0.0;
-        if (previousValue <= 0.0 && input > 0) {
-            isZX=1.0;
-        }
-        previousValue = input;
-        return isZX;
-    }
-
-    //change detector
-    double onChanged(double input, double tolerance) {
-        double changed=0;
-        if (abs(input - previousValue) > tolerance) {
-            changed=1;
-        }
-        previousValue = input;
-        return changed;
-    }
-
-private:
-    double previousValue=1;
-};
-
 class maxiCounter {
 public:
-    double count(double incTrigger, double resetTrigger) {
+	double count(double incTrigger, double resetTrigger) {
         if (inctrig.onZX(incTrigger)) {
             value++;
         }
@@ -1276,6 +1280,45 @@ public:
 private:
     maxiTrigger trig;
     double value=0;
+};
+
+class maxiRatioSeq {
+public:
+
+	double playTrig(double phase, vector<double> times) {
+		double trig=0;
+		double sum = std::accumulate(times.begin(), times.end(), 0);
+		double accumulatedTime=0;
+		for(size_t i=0; i < times.size(); i++) {
+			accumulatedTime += times[i];
+			double normalisedTime =  accumulatedTime / sum;
+			if (normalisedTime==1.0) normalisedTime=0.0;
+			if (prevPhase > phase) {
+				//wrapping point
+				prevPhase = - 1.0/maxiSettings::sampleRate;
+			}
+			if ((prevPhase <= normalisedTime && phase > normalisedTime)) {
+				trig=1;
+				break;
+			}
+		}
+		prevPhase = phase;
+		return trig;
+	}
+
+	double playValues(double phase, vector<double> times, vector<double> values) {
+		if (playTrig(phase, times)) {
+			counter++;
+			if (counter==values.size()) {
+				counter=0;
+			}
+		}
+		return values[counter];
+	}
+
+private:
+	double prevPhase=0;
+	size_t counter=0;
 };
 
 #endif

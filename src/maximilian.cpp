@@ -944,6 +944,21 @@ double maxiSample::playOnZX(double trig) {
   return playOnce();
 }
 
+double maxiSample::playOnZX(double trig, double speed) {
+	if (zxTrig.onZX(trig)) {
+		trigger();
+	}
+  return playOnce(speed);
+}
+
+double maxiSample::playOnZX(double trig, double speed, double offset) {
+	if (zxTrig.onZX(trig)) {
+		trigger();
+		position = offset * amplitudes.size();
+	}
+  return playOnce(speed);
+}
+
 double maxiSample::loopSetPosOnZX(double trig, double pos) {
 		if (zxTrig.onZX(trig)) {
 			setPosition(pos);

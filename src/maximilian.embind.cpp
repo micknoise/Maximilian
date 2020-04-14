@@ -10,7 +10,7 @@
 #include "libs/maxiFFT.h"
 #include "libs/maxiGrains.h"
 #include "libs/maxiMFCC.h"
-// #include "libs/maxiReverb.h"
+#include "libs/maxiReverb.h"
 #include "libs/maxiSynths.h"
 // #include "libs/fft.cpp"
 #include "libs/stb_vorbis.h"
@@ -188,7 +188,9 @@ EMSCRIPTEN_BINDINGS(my_module)
 			.function("isReady", &maxiSample::isReady)
 			.function("playOnce", select_overload<double()>(&maxiSample::playOnce))
 			.function("playOnce", select_overload<double(double)>(&maxiSample::playOnce))
-			.function("playOnZX", &maxiSample::playOnZX)
+			.function("playOnZX", select_overload<double(double)>(&maxiSample::playOnZX))
+			.function("playOnZX", select_overload<double(double,double)>(&maxiSample::playOnZX))
+			.function("playOnZX", select_overload<double(double,double,double)>(&maxiSample::playOnZX))
 			.function("play", select_overload<double()>(&maxiSample::play))
 			.function("play", select_overload<double(double)>(&maxiSample::play))
 			.function("play", select_overload<double(double, double, double)>(&maxiSample::play))
@@ -665,6 +667,27 @@ EMSCRIPTEN_BINDINGS(maxiRatioSeq) {
 		.function("playTrig", &maxiRatioSeq::playTrig)
 		.function("playValues", &maxiRatioSeq::playValues)
 		;
+};
+
+EMSCRIPTEN_BINDINGS(maxiVerb) {
+
+	class_<maxiSatReverb >("maxiSatReverb")
+	#ifdef SPN
+	.smart_ptr_constructor("shared_ptr<maxiSatReverb>",&std::make_shared<maxiSatReverb>)
+	#else
+		.constructor<>()
+	#endif
+	.function("play", &maxiSatReverb::play)
+	;
+
+	class_<maxiFreeVerb >("maxiFreeVerb")
+	#ifdef SPN
+	.smart_ptr_constructor("shared_ptr<maxiFreeVerb>",&std::make_shared<maxiFreeVerb>)
+	#else
+		.constructor<>()
+	#endif
+	.function("play", select_overload<double(double, double, double)>(&maxiFreeVerb::play))
+	;
 };
 
 #endif

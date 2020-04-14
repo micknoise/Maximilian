@@ -4,7 +4,7 @@ SRC=../../src/maximilian.cpp
 SRC_EM=../../src/maximilian.embind.cpp
 # SRC_LIBS=../../../src/libs/*.cpp
 # SRC_LIBS=../../src/libs/maxiSynths.cpp
-SRC_LIBS=../../src/libs/maxiSynths.cpp ../../src/libs/maxiGrains.cpp ../../src/libs/maxiFFT.cpp ../../src/libs/fft.cpp ../../src/libs/maxiMFCC.cpp
+SRC_LIBS=../../src/libs/maxiSynths.cpp ../../src/libs/maxiGrains.cpp ../../src/libs/maxiFFT.cpp ../../src/libs/fft.cpp ../../src/libs/maxiMFCC.cpp ../../src/libs/maxiReverb.cpp
 C_SRC_LIBS=../../src/libs/stb_vorbis.c
 
 COMMON_DIR=common

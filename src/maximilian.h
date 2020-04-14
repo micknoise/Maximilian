@@ -427,6 +427,9 @@ public:
 
     double playOnce();
 		double playOnZX(double trigger);
+		double playOnZX(double trig, double speed);
+		double playOnZX(double trig, double speed, double offset);
+
 		double loopSetPosOnZX(double trigger, double position); // position between 0 and 1.0
 		maxiTrigger zxTrig;
     // double prevTriggerVal=1;

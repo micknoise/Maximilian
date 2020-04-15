@@ -943,6 +943,7 @@ public:
         if (!lineComplete) {
             if (trigEnable && !triggered) {
                 triggered =(trigger > 0.0 && lastTrigVal <= 0.0);
+								lineValue = lineStart;
             }
             if (triggered) {
                 lineValue += inc;
@@ -951,20 +952,26 @@ public:
                 }else{
                     lineComplete = lineValue >= lineEnd;
                 }
+								if (lineComplete) {
+									if (!oneShot) {
+										reset();
+									}
+								}
             }
 						lastTrigVal = trigger;
         }
         return lineValue;
 
     }
-    inline void prepare(double start, double end, double durationMs) {
-        lineValue = start;
-        lineEnd = end;
+    inline void prepare(double start, double end, double durationMs, bool isOneShot=1) {
+				lineValue = lineStart;
+				lineStart = start;
+				lineEnd = end;
         double lineMag = end - start;
         double durInSamples = durationMs / 1000.0 * maxiSettings::sampleRate;
         inc =  lineMag / durInSamples;
-        triggered = false;
-        lineComplete = false;
+				oneShot = isOneShot;
+				reset();
     }
     inline void triggerEnable(double on) {
         trigEnable = on > 0.0;
@@ -980,7 +987,13 @@ private:
     double trigEnable = false;
     double triggered = false;
     bool lineComplete = false;
+		double lineStart=0;
     double lineEnd =0;
+		bool oneShot = 1;
+		void reset() {
+			triggered = false;
+			lineComplete = false;
+		}
 
 };
 

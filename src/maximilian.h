@@ -614,33 +614,68 @@ private:
 };
 
 
-
-class maxiDistortion {
+//needs oversampling
+class maxiNonlinearity {
 public:
     /*atan distortion, see http://www.musicdsp.org/showArchiveComment.php?ArchiveID=104*/
 		double atanDist(const double in, const double shape);
     /*shape from 1 (soft clipping) to infinity (hard clipping)*/
     double fastAtanDist(const double in, const double shape);
-    double fastatan( double x );
+		double softclip(double x);
+		double hardclip(double x);
+		//asymmetric clipping: chose the shape of curves for both positive and negative values of x
+		//try it here https://www.desmos.com/calculator/to6eixatsa
+		double asymclip(double x, double a,double b);
+		double fastatan( double x );
 };
 
-inline double maxiDistortion::fastatan(double x)
+inline double maxiNonlinearity::asymclip(double x, double a, double b) {
+
+		if (x >= 1) {
+			x = 1;
+		}else if (x <= -1) {
+			x = -1;
+		}else if (x < 0) {
+			x = -(pow(-x, a));
+		}else{
+			x = pow(x,b);
+		}
+		return x;
+}
+
+inline double maxiNonlinearity::hardclip(double x) {
+	x = x >= 1 ? 1 : (x <= -1 ? -1 : x);
+	return x;
+}
+inline double maxiNonlinearity::softclip(double x) {
+	if (x >=1) {
+		x = 1;
+	}else if (x <= -1) {
+		x = -1;
+	}else{
+		x = (2/3.0) * (x - pow(x,3)/3.0);
+	}
+	return x;
+}
+
+inline double maxiNonlinearity::fastatan(double x)
 {
     return (x / (1.0 + 0.28 * (x * x)));
 }
 
-inline double maxiDistortion::atanDist(const double in, const double shape) {
+inline double maxiNonlinearity::atanDist(const double in, const double shape) {
     double out;
     out = (1.0 / atan(shape)) * atan(in * shape);
     return out;
 }
 
-inline double maxiDistortion::fastAtanDist(const double in, const double shape) {
+inline double maxiNonlinearity::fastAtanDist(const double in, const double shape) {
     double out;
     out = (1.0 / fastatan(shape)) * fastatan(in * shape);
     return out;
 }
 
+using maxiDistortion = maxiNonlinearity; // backwards compatibility
 
 class maxiFlanger {
 public:

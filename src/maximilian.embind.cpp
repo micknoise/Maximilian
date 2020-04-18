@@ -276,16 +276,30 @@ class_<maxiSampleAndHold>("maxiSampleAndHold")
 					;
 
 
-	// MAXI DISTORTION
+	// MAXI DISTORTION - for backward compatibility, new stuff in maxiNonlinearity below
 	class_<maxiDistortion>("maxiDistortion")
-#ifdef SPN
-			.smart_ptr_constructor("shared_ptr<maxiDistortion>", &std::make_shared<maxiDistortion>)
-#else
-			.constructor<>()
-#endif
-			.function("fastAtan", &maxiDistortion::fastatan)
-			.function("atanDist", &maxiDistortion::atanDist)
-			.function("fastAtanDist", &maxiDistortion::fastAtanDist);
+	#ifdef SPN
+				.smart_ptr_constructor("shared_ptr<maxiDistortion>", &std::make_shared<maxiDistortion>)
+	#else
+				.constructor<>()
+	#endif
+				.function("fastAtan", &maxiDistortion::fastatan)
+				.function("atanDist", &maxiDistortion::atanDist)
+				.function("fastAtanDist", &maxiDistortion::fastAtanDist);
+
+		class_<maxiNonlinearity>("maxiNonlinearity")
+				#ifdef SPN
+							.smart_ptr_constructor("shared_ptr<maxiNonlinearity>", &std::make_shared<maxiNonlinearity>)
+				#else
+							.constructor<>()
+				#endif
+							.function("fastAtan", &maxiNonlinearity::fastatan)
+							.function("atanDist", &maxiNonlinearity::atanDist)
+							.function("fastAtanDist", &maxiNonlinearity::fastAtanDist)
+							.function("softclip", &maxiNonlinearity::softclip)
+							.function("hardclip", &maxiNonlinearity::hardclip)
+							.function("asymclip", &maxiNonlinearity::asymclip)
+						;
 
 	// MAXI FLANGER
 	class_<maxiFlanger>("maxiFlanger")

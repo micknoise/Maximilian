@@ -20,6 +20,7 @@ OUTPUT=$(BUILD_DIR)/maximilian.wasmmodule.js
 # AudioWorklet working configuration
 
 CFLAGS=--bind -O3\
+	--llvm-lto 1 \
 	-s WASM=1 \
 	-s BINARYEN_ASYNC_COMPILATION=0 \
 	-s SINGLE_FILE=1 \
@@ -62,7 +63,7 @@ ${BUILD_DIR}:
 	${MKDIR_P} ${BUILD_DIR}
 
 full: directory
-	@echo "${YELLOW}\r\nBuild for Web Audio API AudioWorklet (WebAssembly) – open303.wasmmodule.js \r\n ${RESET}"
+	@echo "${YELLOW}\r\nBuild for Web Audio API AudioWorklet (WebAssembly) – maximilian.wasmmodule.js \r\n ${RESET}"
 	$(EMSCR) $(CFLAGS) --post-js $(POST_JS) -o $(OUTPUT) $(SRC_EM) $(SRC) $(SRC_LIBS) $(C_SRC_LIBS)
 
 clean:

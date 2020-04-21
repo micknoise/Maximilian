@@ -277,15 +277,15 @@ class_<maxiSampleAndHold>("maxiSampleAndHold")
 
 
 	// MAXI DISTORTION - for backward compatibility, new stuff in maxiNonlinearity below
-	class_<maxiDistortion>("maxiDistortion")
-	#ifdef SPN
-				.smart_ptr_constructor("shared_ptr<maxiDistortion>", &std::make_shared<maxiDistortion>)
-	#else
-				.constructor<>()
-	#endif
-				.function("fastAtan", &maxiDistortion::fastatan)
-				.function("atanDist", &maxiDistortion::atanDist)
-				.function("fastAtanDist", &maxiDistortion::fastAtanDist);
+	// class_<maxiDistortion>("maxiDistortion")
+	// #ifdef SPN
+	// 			.smart_ptr_constructor("shared_ptr<maxiDistortion>", &std::make_shared<maxiDistortion>)
+	// #else
+	// 			.constructor<>()
+	// #endif
+	// 			.function("fastAtan", &maxiDistortion::fastatan)
+	// 			.function("atanDist", &maxiDistortion::atanDist)
+	// 			.function("fastAtanDist", &maxiDistortion::fastAtanDist);
 
 		class_<maxiNonlinearity>("maxiNonlinearity")
 				#ifdef SPN

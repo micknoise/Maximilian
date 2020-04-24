@@ -51,6 +51,10 @@ extern "C" {
 //This used to be important for dealing with multichannel playback
 float chandiv= 1;
 
+maxiSettings::maxiSettings() {
+
+}
+
 int maxiSettings::sampleRate = 44100;
 int maxiSettings::channels = 2;
 int maxiSettings::bufferSize = 1024;
@@ -722,7 +726,7 @@ double maxiSample::play() {
 }
 
 void maxiSample::setPosition(double newPos) {
-	position = maxiMap::clamp<double>(newPos, 0.0, 1.0) * amplitudes.size();
+	position = maxiMap::clamp(newPos, 0.0, 1.0) * amplitudes.size();
 }
 
 bool maxiSample::save() {
@@ -1082,7 +1086,7 @@ void maxiSample::autoTrim(float alpha, float threshold, bool trimStart, bool tri
         position=0;
         recordPosition=0;
         //envelope the start
-        int fadeSize=min((unsigned long)100, amplitudes.size());
+        int fadeSize=min((size_t)100, amplitudes.size());
         for(int i=0; i < fadeSize; i++) {
             double factor = i / (double) fadeSize;
             amplitudes[i] = round(amplitudes[i] * factor);
@@ -1386,9 +1390,7 @@ void maxiEnv::setDecay(double decayMS) {
 
 
 
-
 double convert::mtof(int midinote) {
-
 	return mtofarray[midinote];
 }
 
@@ -1400,3 +1402,11 @@ template<> void maxiEnvelopeFollower::setAttack(double attackMS) {
 template<> void maxiEnvelopeFollower::setRelease(double releaseMS) {
 	release = pow( 0.01, 1.0 / ( releaseMS * maxiSettings::sampleRate * 0.001 ) );
 }
+
+
+//there are a bunch of constructors here. it's a quick of CHEERP that constructors need to be defined in the cpp unless completely header only
+maxiRatioSeq::maxiRatioSeq() {}
+maxiTrigger::maxiTrigger() {}
+maxiMap::maxiMap() {}
+maxiNonlinearity::maxiNonlinearity() {}
+maxiFilter::maxiFilter():x(0.0), y(0.0), z(0.0), c(0.0) {}

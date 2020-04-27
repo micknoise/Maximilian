@@ -479,6 +479,7 @@ public:
         return (log(val/inMin) / log(inMax/inMin) * (outMax - outMin)) + outMin;
     }
 
+		//replacing the templated version
 		static double inline clamp(double v, const double low, const double high) {
         if (v > high) {v = high;}
         else if (v < low) {v = low;}

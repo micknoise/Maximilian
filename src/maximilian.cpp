@@ -51,9 +51,7 @@ extern "C" {
 //This used to be important for dealing with multichannel playback
 float chandiv= 1;
 
-maxiSettings::maxiSettings() {
-
-}
+maxiSettings::maxiSettings() {}
 
 int maxiSettings::sampleRate = 44100;
 int maxiSettings::channels = 2;
@@ -1410,3 +1408,4 @@ maxiTrigger::maxiTrigger() {}
 maxiMap::maxiMap() {}
 maxiNonlinearity::maxiNonlinearity() {}
 maxiFilter::maxiFilter():x(0.0), y(0.0), z(0.0), c(0.0) {}
+maxiBiquad::maxiBiquad() {}

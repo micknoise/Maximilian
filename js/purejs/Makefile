@@ -45,6 +45,7 @@ ${BUILD_DIR}:
 full: directory
 	@echo "${YELLOW}\r\nTranspiling to pure JS – maximilian.transpile.js \r\n ${RESET}"
 	$(CLANGBIN) $(CFLAGS) -target cheerp -I$(HEADERS) -o $(OUTPUT) $(SRC_CHEERP) $(SRC)
+	cat module-bindings.js >> build/maximilian.transpile.js
 
 clean:
 	@echo "Cleaning up"

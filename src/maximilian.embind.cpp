@@ -49,38 +49,38 @@ EMSCRIPTEN_BINDINGS(my_module)
 
 	// maxi stuff
 	class_<maxiSettings>("maxiSettings")
-			.constructor<>()
-			.class_function("setup", &maxiSettings::setup)
-			.property("sampleRate", &maxiSettings::getSampleRate, &maxiSettings::setSampleRate)
-			.property("channels", &maxiSettings::getNumChannels, &maxiSettings::setNumChannels)
-			.property("bufferSize", &maxiSettings::getBufferSize, &maxiSettings::setBufferSize);
+			// .constructor<>()
+			.class_function("setup", &maxiSettings::setup);
+			// .property("sampleRate", &maxiSettings::getSampleRate, &maxiSettings::setSampleRate)
+			// .property("channels", &maxiSettings::getNumChannels, &maxiSettings::setNumChannels)
+			// .property("bufferSize", &maxiSettings::getBufferSize, &maxiSettings::setBufferSize);
 
 	// MAXI OSC
-	class_<maxiOsc>("maxiOsc")
-#ifdef SPN
-			/*
-	 		Using a smart_ptr_constructor ensures lifetime management  on the js side
-	 		by returning a smart_ptr when a constructor is used
-	 		*/
-			.smart_ptr_constructor("shared_ptr<maxiOsc>", &std::make_shared<maxiOsc>)
-#else
-			.constructor<>()
-#endif
-			.function("sinewave", &maxiOsc::sinewave)
-			.function("coswave", &maxiOsc::coswave)
-			.function("phasor", select_overload<double(double)>(&maxiOsc::phasor))
-			.function("phasor", select_overload<double(double, double, double)>(&maxiOsc::phasor))
-			.function("saw", &maxiOsc::saw)
-			.function("triangle", &maxiOsc::triangle)
-			.function("square", &maxiOsc::square)
-			.function("pulse", &maxiOsc::pulse)
-			.function("impulse", &maxiOsc::impulse)
-			.function("noise", &maxiOsc::noise)
-			.function("sinebuf", &maxiOsc::sinebuf)
-			.function("sinebuf4", &maxiOsc::sinebuf4)
-			.function("sawn", &maxiOsc::sawn)
-			// .function("rect", &maxiOsc::rect)
-			.function("phaseReset", &maxiOsc::phaseReset);
+// 	class_<maxiOsc>("maxiOsc")
+// #ifdef SPN
+// 			/*
+// 	 		Using a smart_ptr_constructor ensures lifetime management  on the js side
+// 	 		by returning a smart_ptr when a constructor is used
+// 	 		*/
+// 			.smart_ptr_constructor("shared_ptr<maxiOsc>", &std::make_shared<maxiOsc>)
+// #else
+// 			.constructor<>()
+// #endif
+// 			.function("sinewave", &maxiOsc::sinewave)
+// 			.function("coswave", &maxiOsc::coswave)
+// 			.function("phasor", select_overload<double(double)>(&maxiOsc::phasor))
+// 			.function("phasor", select_overload<double(double, double, double)>(&maxiOsc::phasor))
+// 			.function("saw", &maxiOsc::saw)
+// 			.function("triangle", &maxiOsc::triangle)
+// 			.function("square", &maxiOsc::square)
+// 			.function("pulse", &maxiOsc::pulse)
+// 			.function("impulse", &maxiOsc::impulse)
+// 			.function("noise", &maxiOsc::noise)
+// 			.function("sinebuf", &maxiOsc::sinebuf)
+// 			.function("sinebuf4", &maxiOsc::sinebuf4)
+// 			.function("sawn", &maxiOsc::sawn)
+// 			// .function("rect", &maxiOsc::rect)
+// 			.function("phaseReset", &maxiOsc::phaseReset);
 
 	// MAXI ENVELOPE
 	class_<maxiEnvelope>("maxiEnvelope")
@@ -204,21 +204,21 @@ EMSCRIPTEN_BINDINGS(my_module)
 			.function("loopSetPosOnZX", &maxiSample::loopSetPosOnZX);
 
 
-	// MAXI MAP
-	class_<maxiMap>("maxiMap")
-#ifdef SPN
-			.smart_ptr_constructor("shared_ptr<maxiMap>", &std::make_shared<maxiMap>)
-#else
-			.constructor<>()
-#endif
-	.function("linlin", &maxiMap::linlin)
-	.function("linexp", &maxiMap::linexp)
-	.function("explin", &maxiMap::explin)
-	.function("clamp", &maxiMap::clamp<double>)
-	.class_function("linlin", &maxiMap::linlin)
-	.class_function("linexp", &maxiMap::linexp)
-	.class_function("explin", &maxiMap::explin)
-	.class_function("clamp", &maxiMap::clamp<double>);
+// 	// MAXI MAP
+// 	class_<maxiMap>("maxiMap")
+// #ifdef SPN
+// 			.smart_ptr_constructor("shared_ptr<maxiMap>", &std::make_shared<maxiMap>)
+// #else
+// 			.constructor<>()
+// #endif
+// 	.function("linlin", &maxiMap::linlin)
+// 	.function("linexp", &maxiMap::linexp)
+// 	.function("explin", &maxiMap::explin)
+// 	.function("clamp", &maxiMap::clamp)
+// 	.class_function("linlin", &maxiMap::linlin)
+// 	.class_function("linexp", &maxiMap::linexp)
+// 	.class_function("explin", &maxiMap::explin)
+// 	.class_function("clamp", &maxiMap::clamp);
 
 	// MAXI DYN
 	class_<maxiDyn>("maxiDyn")
@@ -287,19 +287,19 @@ class_<maxiSampleAndHold>("maxiSampleAndHold")
 	// 			.function("atanDist", &maxiDistortion::atanDist)
 	// 			.function("fastAtanDist", &maxiDistortion::fastAtanDist);
 
-		class_<maxiNonlinearity>("maxiNonlinearity")
-				#ifdef SPN
-							.smart_ptr_constructor("shared_ptr<maxiNonlinearity>", &std::make_shared<maxiNonlinearity>)
-				#else
-							.constructor<>()
-				#endif
-							.function("fastAtan", &maxiNonlinearity::fastatan)
-							.function("atanDist", &maxiNonlinearity::atanDist)
-							.function("fastAtanDist", &maxiNonlinearity::fastAtanDist)
-							.function("softclip", &maxiNonlinearity::softclip)
-							.function("hardclip", &maxiNonlinearity::hardclip)
-							.function("asymclip", &maxiNonlinearity::asymclip)
-						;
+		// class_<maxiNonlinearity>("maxiNonlinearity")
+		// 		#ifdef SPN
+		// 					.smart_ptr_constructor("shared_ptr<maxiNonlinearity>", &std::make_shared<maxiNonlinearity>)
+		// 		#else
+		// 					.constructor<>()
+		// 		#endif
+		// 					.function("fastAtan", &maxiNonlinearity::fastatan)
+		// 					.function("atanDist", &maxiNonlinearity::atanDist)
+		// 					.function("fastAtanDist", &maxiNonlinearity::fastAtanDist)
+		// 					.function("softclip", &maxiNonlinearity::softclip)
+		// 					.function("hardclip", &maxiNonlinearity::hardclip)
+		// 					.function("asymclip", &maxiNonlinearity::asymclip)
+		// 				;
 
 	// MAXI FLANGER
 	class_<maxiFlanger>("maxiFlanger")
@@ -630,20 +630,20 @@ EMSCRIPTEN_BINDINGS(my_module_maxibits) {
 
 
 
-EMSCRIPTEN_BINDINGS(maxiTrigger) {
-
-    class_<maxiTrigger >("maxiTrigger")
-		#ifdef SPN
-    .smart_ptr_constructor("shared_ptr<maxiTrigger>",&std::make_shared<maxiTrigger>)
-		#else
-			.constructor<>()
-		#endif
-
-    //    .smart_ptr_constructor<maxiSample*>("shared_ptr<maxiTimestretch<hannWinFunctor> >",&std::make_shared<maxiTimestretch<hannWinFunctor> >)
-		.function("onZX", &maxiTrigger::onZX)
-		.function("onChanged", &maxiTrigger::onChanged)
-		;
-};
+// EMSCRIPTEN_BINDINGS(maxiTrigger) {
+//
+//     class_<maxiTrigger >("maxiTrigger")
+// 		#ifdef SPN
+//     .smart_ptr_constructor("shared_ptr<maxiTrigger>",&std::make_shared<maxiTrigger>)
+// 		#else
+// 			.constructor<>()
+// 		#endif
+//
+//     //    .smart_ptr_constructor<maxiSample*>("shared_ptr<maxiTimestretch<hannWinFunctor> >",&std::make_shared<maxiTimestretch<hannWinFunctor> >)
+// 		.function("onZX", &maxiTrigger::onZX)
+// 		.function("onChanged", &maxiTrigger::onChanged)
+// 		;
+// };
 
 EMSCRIPTEN_BINDINGS(maxiCounter) {
 
@@ -670,18 +670,18 @@ EMSCRIPTEN_BINDINGS(maxiIndex) {
 		;
 };
 
-EMSCRIPTEN_BINDINGS(maxiRatioSeq) {
-
-    class_<maxiRatioSeq >("maxiRatioSeq")
-		#ifdef SPN
-    .smart_ptr_constructor("shared_ptr<maxiRatioSeq>",&std::make_shared<maxiRatioSeq>)
-		#else
-			.constructor<>()
-		#endif
-		.function("playTrig", &maxiRatioSeq::playTrig)
-		.function("playValues", &maxiRatioSeq::playValues)
-		;
-};
+// EMSCRIPTEN_BINDINGS(maxiRatioSeq) {
+//
+//     class_<maxiRatioSeq >("maxiRatioSeq")
+// 		#ifdef SPN
+//     .smart_ptr_constructor("shared_ptr<maxiRatioSeq>",&std::make_shared<maxiRatioSeq>)
+// 		#else
+// 			.constructor<>()
+// 		#endif
+// 		.function("playTrig", &maxiRatioSeq::playTrig)
+// 		.function("playValues", &maxiRatioSeq::playValues)
+// 		;
+// };
 
 EMSCRIPTEN_BINDINGS(maxiVerb) {
 

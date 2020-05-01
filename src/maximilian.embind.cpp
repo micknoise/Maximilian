@@ -657,18 +657,18 @@ EMSCRIPTEN_BINDINGS(maxiCounter) {
 		.function("count", &maxiCounter::count)
 		;
 };
-
-EMSCRIPTEN_BINDINGS(maxiIndex) {
-
-    class_<maxiIndex >("maxiIndex")
-		#ifdef SPN
-    .smart_ptr_constructor("shared_ptr<maxiIndex>",&std::make_shared<maxiIndex>)
-		#else
-			.constructor<>()
-		#endif
-		.function("pull", &maxiIndex::pull)
-		;
-};
+//
+// EMSCRIPTEN_BINDINGS(maxiIndex) {
+//
+//     class_<maxiIndex >("maxiIndex")
+// 		#ifdef SPN
+//     .smart_ptr_constructor("shared_ptr<maxiIndex>",&std::make_shared<maxiIndex>)
+// 		#else
+// 			.constructor<>()
+// 		#endif
+// 		.function("pull", &maxiIndex::pull)
+// 		;
+// };
 
 // EMSCRIPTEN_BINDINGS(maxiRatioSeq) {
 //

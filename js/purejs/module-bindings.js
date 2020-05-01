@@ -6,3 +6,9 @@ Module.maxiJSSettings = maxiSettings;
 Module.maxiBiquad = maxiBiquad;
 Module.maxiOsc = maxiOsc;
 Module.maxiRatioSeq = maxiRatioSeq;
+Module.cheerpTypes = cheerpTypes;
+// Module.maxiFilter = maxiFilter;
+// Module.maxiZeroCrossingDetector = maxiZeroCrossingDetector;
+
+Module.cheerpTypes2 = cheerpTypes2;
+Module.vectorTest = vectorTest;

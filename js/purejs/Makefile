@@ -18,7 +18,6 @@ CFLAGS= -DCHEERP \
 -cheerp-no-math-imul \
 -cheerp-no-math-fround \
 -cheerp-force-typed-arrays \
--cheerp-global-prefix='maxijs' \
 -cheerp-preexecute \
 -O3
 

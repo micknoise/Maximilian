@@ -191,6 +191,7 @@ public:
 
 
 class maxiFilter {
+private:
 	double gain;
 	double input;
 	double output;
@@ -595,6 +596,7 @@ private:
 
 class maxiZeroCrossingDetector {
 public:
+		maxiZeroCrossingDetector();
     inline bool zx(double x){
         bool res=0;
         if (previous_x <=0 && x > 0) {

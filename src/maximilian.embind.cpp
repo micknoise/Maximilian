@@ -109,19 +109,19 @@ EMSCRIPTEN_BINDINGS(my_module)
 			.function("dl", select_overload<double(double, int, double, int)>(&maxiDelayline::dl));
 
 	// MAXI FILTER
-	class_<maxiFilter>("maxiFilter")
-#ifdef SPN
-			.smart_ptr_constructor("shared_ptr<maxiFilter>", &std::make_shared<maxiFilter>)
-#else
-			.constructor<>()
-#endif
-			.function("lores", &maxiFilter::lores)
-			.function("hires", &maxiFilter::hires)
-			.function("bandpass", &maxiFilter::bandpass)
-			.function("lopass", &maxiFilter::lopass)
-			.function("hipass", &maxiFilter::hipass)
-			.property("cutoff", &maxiFilter::getCutoff, &maxiFilter::setCutoff)
-			.property("resonance", &maxiFilter::getResonance, &maxiFilter::setResonance);
+// 	class_<maxiFilter>("maxiFilter")
+// #ifdef SPN
+// 			.smart_ptr_constructor("shared_ptr<maxiFilter>", &std::make_shared<maxiFilter>)
+// #else
+// 			.constructor<>()
+// #endif
+// 			.function("lores", &maxiFilter::lores)
+// 			.function("hires", &maxiFilter::hires)
+// 			.function("bandpass", &maxiFilter::bandpass)
+// 			.function("lopass", &maxiFilter::lopass)
+// 			.function("hipass", &maxiFilter::hipass)
+// 			.property("cutoff", &maxiFilter::getCutoff, &maxiFilter::setCutoff)
+// 			.property("resonance", &maxiFilter::getResonance, &maxiFilter::setResonance);
 
 	// MAXI MIX
 	class_<maxiMix>("maxiMix")

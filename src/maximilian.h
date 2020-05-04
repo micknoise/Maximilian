@@ -199,7 +199,7 @@ public:
 };
 
 
-class maxiDelayline {
+class CHEERP_EXPORT maxiDelayline {
 	double frequency;
 	int phase;
 	double startphase;
@@ -216,7 +216,7 @@ public:
 };
 
 
-class maxiFilter {
+class CHEERP_EXPORT maxiFilter {
 private:
 	double gain;
 	double input;
@@ -249,11 +249,11 @@ public:
 		resonance = res;
 	}
 
-	double getCutoff() const{
+	double getCutoff() {
 		return cutoff;
 	}
 
-	double getResonance() const{
+	double getResonance() {
 		return resonance;
 	}
 	// ------------------------------------------------
@@ -385,101 +385,109 @@ public:
 //    int    myDataSize;
 	short 	myChannels;
 	int   	mySampleRate;
-    inline unsigned long getLength() const {return amplitudes.size();};
-    void setLength(unsigned long numSamples);
-    short 	myBitsPerSample;
+  inline unsigned long getLength() const {return amplitudes.size();};
+  void setLength(unsigned long numSamples);
+  short 	myBitsPerSample;
 
 	vector<double> amplitudes;
 
-	~maxiSample() {}
+  maxiSample();
 
-    maxiSample():position(0), recordPosition(0), myChannels(1), mySampleRate(maxiSettings::sampleRate) {};
-
-    maxiSample& operator=(const maxiSample &source) {
-        if (this == &source)
-            return *this;
-        position=0;
-        recordPosition = 0;
-        myChannels = source.myChannels;
-        mySampleRate = maxiSettings::sampleRate;
-		amplitudes.clear();
-		amplitudes = source.amplitudes;
-        return *this;
+  maxiSample& operator=(const maxiSample &source) {
+			if (this == &source)
+			  return *this;
+			position=0;
+			recordPosition = 0;
+			myChannels = source.myChannels;
+			mySampleRate = maxiSettings::sampleRate;
+			amplitudes.clear();
+			amplitudes = source.amplitudes;
+			return *this;
     }
 
+#ifndef CHEERP
 	bool load(string fileName, int channel=0);
-
-    bool loadOgg(string filename,int channel=0);
-    int setSampleFromOggBlob(vector<unsigned char> &oggBlob, int channel=0);
-
+	bool save();
+  bool save(string filename);
+	// read a wav file into this class
+  bool read();
+#endif
 	// -------------------------
 	// js bits
 	// as loading is currently asynchronous in js this can be useful
 	bool isReady();
 
-	void setSample(vector<double>& temp);
-	void setSample(vector<double>& temp, int sampleRate);
+	bool loadOgg(string filename,int channel=0);
+	int setSampleFromOggBlob(vector<unsigned char> &oggBlob, int channel=0);
+
+	// void setSample(vector<double>& temp);
+	// void setSample(vector<double>& temp, int sampleRate);
+	void setSample(DOUBLEARRAY _sampleData){
+		NORMALISE_ARRAY_TYPE(_sampleData, sampleData)
+    amplitudes = sampleData;
+		mySampleRate = 44100;
+    position=amplitudes.size()-1;
+	}
+
+	void setSample(DOUBLEARRAY _sampleData, int sampleRate){
+		// void setSample(vector<double>& sampleData, int sampleRate){
+	  setSample(_sampleData);
+		mySampleRate = sampleRate;
+	}
 
 	void clear(){amplitudes.clear();}
 	// -------------------------
 
 	void trigger();
 
-	// read a wav file into this class
-    bool read();
+  void loopRecord(double newSample, const bool recordEnabled, const double recordMix, double start = 0.0, double end = 1.0) {
+      loopRecordLag.addSample(recordEnabled);
+      if (recordPosition < start * amplitudes.size()) recordPosition = start * amplitudes.size();
+      if(recordEnabled) {
+          double currentSample = amplitudes[(unsigned long)recordPosition] / 32767.0;
+          newSample = (recordMix * currentSample) + ((1.0 - recordMix) * newSample);
+          newSample *= loopRecordLag.value();
+          amplitudes[(unsigned long)recordPosition] = newSample * 32767;
+      }
+      ++recordPosition;
+      if (recordPosition >= end * amplitudes.size())
+          recordPosition= start * amplitudes.size();
+  }
 
-    void loopRecord(double newSample, const bool recordEnabled, const double recordMix, double start = 0.0, double end = 1.0) {
-        loopRecordLag.addSample(recordEnabled);
-        if (recordPosition < start * amplitudes.size()) recordPosition = start * amplitudes.size();
-        if(recordEnabled) {
-            double currentSample = amplitudes[(unsigned long)recordPosition] / 32767.0;
-            newSample = (recordMix * currentSample) + ((1.0 - recordMix) * newSample);
-            newSample *= loopRecordLag.value();
-            amplitudes[(unsigned long)recordPosition] = newSample * 32767;
-        }
-        ++recordPosition;
-        if (recordPosition >= end * amplitudes.size())
-            recordPosition= start * amplitudes.size();
-    }
+  void reset();
 
-    void reset();
+  double play();
 
-    double play();
+  double playLoop(double start, double end); // start and end are between 0.0 and 1.0
 
-    double playLoop(double start, double end); // start and end are between 0.0 and 1.0
+  double playOnce();
+	double playOnZX(double trigger);
+	double playOnZX(double trig, double speed);
+	double playOnZX(double trig, double speed, double offset);
 
-    double playOnce();
-		double playOnZX(double trigger);
-		double playOnZX(double trig, double speed);
-		double playOnZX(double trig, double speed, double offset);
+	double loopSetPosOnZX(double trigger, double position); // position between 0 and 1.0
+	maxiTrigger zxTrig;
+  // double prevTriggerVal=1;
 
-		double loopSetPosOnZX(double trigger, double position); // position between 0 and 1.0
-		maxiTrigger zxTrig;
-    // double prevTriggerVal=1;
+  double playOnce(double speed);
 
-    double playOnce(double speed);
+  void setPosition(double newPos); // between 0.0 and 1.0
 
-    void setPosition(double newPos); // between 0.0 and 1.0
+  double playUntil(double end);
 
-    double playUntil(double end);
+  double play(double speed);
 
-    double play(double speed);
+  double play(double frequency, double start, double end, double &pos);
 
-    double play(double frequency, double start, double end, double &pos);
+  double play(double frequency, double start, double end);
 
-    double play(double frequency, double start, double end);
+  double play4(double frequency, double start, double end);
 
-    double play4(double frequency, double start, double end);
+// return a printable summary of the wav file
+  char *getSummary();
 
-
-    bool save();
-    bool save(string filename);
-
-	// return a printable summary of the wav file
-    char *getSummary();
-
-    void normalise(double maxLevel = 0.99);  //0 < maxLevel < 1.0
-    void autoTrim(float alpha = 0.3, float threshold = 6000, bool trimStart = true, bool trimEnd = true); //alpha of lag filter (lower == slower reaction), threshold to mark start and end, < 32767
+  void normalise(double maxLevel = 0.99);  //0 < maxLevel < 1.0
+  void autoTrim(float alpha = 0.3, float threshold = 6000, bool trimStart = true, bool trimEnd = true); //alpha of lag filter (lower == slower reaction), threshold to mark start and end, < 32767
 };
 
 

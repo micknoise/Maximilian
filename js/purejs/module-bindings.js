@@ -7,7 +7,8 @@ Module.maxiBiquad = maxiBiquad;
 Module.maxiOsc = maxiOsc;
 Module.maxiRatioSeq = maxiRatioSeq;
 Module.maxiIndex = maxiIndex;
-Module.maxiRatioSeq = maxiRatioSeq;
+Module.maxiFilter = maxiFilter;
+Module.maxiDelayline = maxiDelayline;
 
 // Module.cheerpTypes = cheerpTypes;
 // Module.maxiFilter = maxiFilter;

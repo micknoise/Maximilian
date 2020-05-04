@@ -544,12 +544,9 @@ void maxiMix::ambisonic(double input,std::vector<double>&eight,double x,double y
 }
 // --------------------------------------------------------------------------------
 // MAXI_SAMPLE
-//This is the maxiSample load function. It just calls read.
-bool maxiSample::load(string fileName, int channel) {
-	myPath = fileName;
-	readChannel=channel;
-	return read();
-}
+
+
+maxiSample::maxiSample():position(0), recordPosition(0), myChannels(1), mySampleRate(maxiSettings::sampleRate) {};
 
 // This is for OGG loading
 bool maxiSample::loadOgg(string fileName, int channel) {
@@ -605,16 +602,6 @@ bool maxiSample::isReady(){
 	return false;
 }
 
-void maxiSample::setSample(vector<double>& sampleData){
-    amplitudes = sampleData;
-	mySampleRate = 44100;
-    position=amplitudes.size()-1;
-}
-
-void maxiSample::setSample(vector<double>& sampleData, int sampleRate){
-    setSample(sampleData);
-	mySampleRate = sampleRate;
-}
 
 //void maxiSample::setSampleChar(vector<char>& temp){
 //	this->temp = temp.data();
@@ -627,6 +614,15 @@ void maxiSample::setSample(vector<double>& sampleData, int sampleRate){
 void maxiSample::trigger() {
 	position = 0;
 	recordPosition = 0;
+}
+
+#ifndef CHEERP
+
+//This is the maxiSample load function. It just calls read.
+bool maxiSample::load(string fileName, int channel) {
+	myPath = fileName;
+	readChannel=channel;
+	return read();
 }
 
 //This is the main read function.
@@ -712,21 +708,6 @@ bool maxiSample::read()
     return result; // this should probably be something more descriptive
 }
 
-// -----------------
-
-
-//This plays back at the correct speed. Always loops.
-double maxiSample::play() {
-    position++;
-    if ((long) position >= amplitudes.size()) position=0;
-    output = amplitudes[(long)position];
-    return output;
-}
-
-void maxiSample::setPosition(double newPos) {
-	position = maxiMap::clamp(newPos, 0.0, 1.0) * amplitudes.size();
-}
-
 bool maxiSample::save() {
     return save(myPath);
 }
@@ -759,6 +740,23 @@ bool maxiSample::save(string filename)
     myFile.write ((char*) shortAmps.data(), myDataSize);
     return true;
 }
+
+#endif
+// -----------------
+
+
+//This plays back at the correct speed. Always loops.
+double maxiSample::play() {
+    position++;
+    if ((long) position >= amplitudes.size()) position=0;
+    output = amplitudes[(long)position];
+    return output;
+}
+
+void maxiSample::setPosition(double newPos) {
+	position = maxiMap::clamp(newPos, 0.0, 1.0) * amplitudes.size();
+}
+
 
 char *maxiSample::getSummary()
 {

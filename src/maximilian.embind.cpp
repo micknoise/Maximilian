@@ -652,6 +652,27 @@ EMSCRIPTEN_BINDINGS(maxiVerb) {
 
 
 
+template <typename T>
+emscripten::val getJSArray(vector<T> & buffer) {
+		return emscripten::val(
+			 emscripten::typed_memory_view(buffer.size(),
+																		 buffer.data()));
+}
+
+// template <typename T>
+//  std::vector<T> vecFromJSArray(const emscripten::val &v)
+// {
+//     std::vector<T> rv;
+//
+//     const auto l = v["length"].as<unsigned>();
+//     rv.resize(l);
+//
+//     emscripten::val memoryView{emscripten::typed_memory_view(l, rv.data())};
+//     memoryView.call<void>("set", v);
+//
+//     return rv;
+// }
+
 
 class maxiFFTAdaptor : public maxiFFT {
 public:
@@ -669,18 +690,28 @@ public:
 	float spectralFlatness() {return maxiFFT::spectralFlatness();};
 	float spectralCentroid() {return maxiFFT::spectralCentroid();};
 
-	emscripten::val getFloatArray(vector<float> & buffer) {
-	    return emscripten::val(
-	       emscripten::typed_memory_view(buffer.size(),
-	                                     buffer.data()));
-	}
 
-	emscripten::val getMagnitudesAsJSArray() {return getFloatArray(getMagnitudes());}
-  emscripten::val getMagnitudesDBAsJSArray() {return getFloatArray(getMagnitudesDB());}
-  emscripten::val getPhasesAsJSArray() {return getFloatArray(getPhases());}
+	emscripten::val getMagnitudesAsJSArray() {return getJSArray<float>(getMagnitudes());}
+  emscripten::val getMagnitudesDBAsJSArray() {return getJSArray<float>(getMagnitudesDB());}
+  emscripten::val getPhasesAsJSArray() {return getJSArray<float>(getPhases());}
 };
 
+//TODO: the IFFT adaptor, using https://github.com/emscripten-core/emscripten/issues/5519 to pass in data
 
+class maxiMFCCAdaptor : public maxiMFCC {
+public:
+
+	void setup(unsigned int numBins, unsigned int numFilters, unsigned int numCoeffs, double minFreq, double maxFreq) {
+		maxiMFCC::setup(numBins, numFilters, numCoeffs, minFreq, maxFreq);
+	}
+
+	emscripten::val mfcc(const emscripten::val& powerSpectrum) {
+		auto spectrumVector = vecFromJSArray<float>(powerSpectrum);
+		vector<double> coeffs = maxiMFCC::mfcc(spectrumVector);
+		return getJSArray<double>(coeffs);
+	}
+
+};
 
 
 EMSCRIPTEN_BINDINGS(maxiSpectral) {

@@ -764,14 +764,14 @@ EMSCRIPTEN_BINDINGS(maxiSpectral) {
 	    ;
 
 			// MAXI IFFT
-		  class_<maxiMFCC>("maxiMFCC")
+		  class_<maxiMFCCAdaptor>("maxiMFCCAdaptor")
 		#ifdef SPN
-					.smart_ptr_constructor("shared_ptr<maxiMFCC>", &std::make_shared<maxiMFCC>)
+					.smart_ptr_constructor("shared_ptr<maxiMFCCAdaptor>", &std::make_shared<maxiMFCCAdaptor>)
 		#else
 					.constructor<>()
 		#endif
-		    .function("setup", &maxiMFCC::setup)
-		    .function("mfcc", &maxiMFCC::mfcc)
+		    .function("setup", &maxiMFCCAdaptor::setup)
+		    .function("mfcc", &maxiMFCCAdaptor::mfcc)
 		    ;
 
 }

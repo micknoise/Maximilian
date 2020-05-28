@@ -466,63 +466,6 @@ class_<maxiAsyncKuramotoOscillator, base<maxiKuramotoOscillatorSet>>("maxiAsyncK
 			.function("size", &maxiAsyncKuramotoOscillator::size)
       ;
 
-  // MAXI FFT
-  class_<maxiFFT>("maxiFFT")
-#ifdef SPN
-		.smart_ptr_constructor("shared_ptr<maxiFFT>", &std::make_shared<maxiFFT>)
-#else
-		.constructor<>()
-#endif
-    .function("setup", &maxiFFT::setup)
-    // .function("process", select_overload<bool(float, maxiFFT::fftModes)>(&maxiFFT::process) )
-    // .function("process", select_overload<bool(float,int)>(&maxiFFT::process))
-    .function("process", &maxiFFT::process)
-    .function("spectralFlatness", &maxiFFT::spectralFlatness)
-    .function("spectralCentroid", &maxiFFT::spectralCentroid)
-    .function("getMagnitudes", &maxiFFT::getMagnitudes)
-    .function("getMagnitudesDB", &maxiFFT::getMagnitudesDB)
-		.function("getPhases", &maxiFFT::getPhases)
-
-		.function("getNumBins", &maxiFFT::getNumBins)
-		.function("getFFTSize", &maxiFFT::getFFTSize)
-		.function("getHopSize", &maxiFFT::getHopSize)
-		.function("getWindowSize", &maxiFFT::getWindowSize)
-
-		;
-
-  enum_<maxiFFT::fftModes>("maxiFFTModes")
-	.value("WITH_POLAR_CONVERSION", maxiFFT::fftModes::WITH_POLAR_CONVERSION)
-    .value("NO_POLAR_CONVERSION", maxiFFT::fftModes::NO_POLAR_CONVERSION)
-    ;
-
-
-  // MAXI IFFT
-  class_<maxiIFFT>("maxiIFFT")
-#ifdef SPN
-			.smart_ptr_constructor("shared_ptr<maxiIFFT>", &std::make_shared<maxiIFFT>)
-#else
-			.constructor<>()
-#endif
-    .function("setup", &maxiIFFT::setup)
-    .function("process", &maxiIFFT::process)
-    ;
-
-	enum_<maxiIFFT::fftModes>("maxiIFFTModes")
-    .value("SPECTRUM", maxiIFFT::fftModes::SPECTRUM)
-    .value("COMPLEX", maxiIFFT::fftModes::COMPLEX)
-    ;
-
-		// MAXI IFFT
-	  class_<maxiMFCC>("maxiMFCC")
-	#ifdef SPN
-				.smart_ptr_constructor("shared_ptr<maxiMFCC>", &std::make_shared<maxiMFCC>)
-	#else
-				.constructor<>()
-	#endif
-	    .function("setup", &maxiMFCC::setup)
-	    .function("mfcc", &maxiMFCC::mfcc)
-	    ;
-
 };
 
 
@@ -703,5 +646,103 @@ EMSCRIPTEN_BINDINGS(maxiVerb) {
 	.function("play", select_overload<double(double, double, double)>(&maxiFreeVerb::play))
 	;
 };
+
+
+
+
+
+
+
+class maxiFFTAdaptor : public maxiFFT {
+public:
+
+	void setup(int fftSize, int hopSize, int windowSize) {
+		maxiFFT::setup(fftSize, hopSize, windowSize);
+	};
+	bool process(float value, fftModes mode=maxiFFT::WITH_POLAR_CONVERSION) {return maxiFFT::process(value, mode);};
+	int getNumBins() {return maxiFFT::getNumBins();}
+  int getFFTSize() {return maxiFFT::getFFTSize();}
+  int getHopSize() {return maxiFFT::getHopSize();}
+  int getWindowSize() {return maxiFFT::getWindowSize();}
+
+	//features
+	float spectralFlatness() {return maxiFFT::spectralFlatness();};
+	float spectralCentroid() {return maxiFFT::spectralCentroid();};
+
+	emscripten::val getFloatArray(vector<float> & buffer) {
+	    return emscripten::val(
+	       emscripten::typed_memory_view(buffer.size(),
+	                                     buffer.data()));
+	}
+
+	emscripten::val getMagnitudesAsJSArray() {return getFloatArray(getMagnitudes());}
+  emscripten::val getMagnitudesDBAsJSArray() {return getFloatArray(getMagnitudesDB());}
+  emscripten::val getPhasesAsJSArray() {return getFloatArray(getPhases());}
+};
+
+
+
+
+EMSCRIPTEN_BINDINGS(maxiSpectral) {
+
+
+	  // MAXI FFT
+	  class_<maxiFFTAdaptor>("maxiFFTAdaptor")
+	#ifdef SPN
+			.smart_ptr_constructor("shared_ptr<maxiFFTAdaptor>", &std::make_shared<maxiFFTAdaptor>)
+	#else
+			.constructor<>()
+	#endif
+	    .function("setup", &maxiFFTAdaptor::setup)
+	    // .function("process", select_overload<bool(float, maxiFFT::fftModes)>(&maxiFFT::process) )
+	    // .function("process", select_overload<bool(float,int)>(&maxiFFT::process))
+	    .function("process", &maxiFFTAdaptor::process)
+	    .function("spectralFlatness", &maxiFFTAdaptor::spectralFlatness)
+	    .function("spectralCentroid", &maxiFFTAdaptor::spectralCentroid)
+	    .function("getMagnitudesAsJSArray", &maxiFFTAdaptor::getMagnitudesAsJSArray)
+	    .function("getMagnitudesDBAsJSArray", &maxiFFTAdaptor::getMagnitudesDBAsJSArray)
+			.function("getPhasesAsJSArray", &maxiFFTAdaptor::getPhasesAsJSArray)
+
+			.function("getNumBins", &maxiFFTAdaptor::getNumBins)
+			.function("getFFTSize", &maxiFFTAdaptor::getFFTSize)
+			.function("getHopSize", &maxiFFTAdaptor::getHopSize)
+			.function("getWindowSize", &maxiFFTAdaptor::getWindowSize)
+
+			;
+
+	  enum_<maxiFFT::fftModes>("maxiFFTModes")
+		.value("WITH_POLAR_CONVERSION", maxiFFT::fftModes::WITH_POLAR_CONVERSION)
+	    .value("NO_POLAR_CONVERSION", maxiFFT::fftModes::NO_POLAR_CONVERSION)
+	    ;
+
+
+	  // MAXI IFFT
+	  class_<maxiIFFT>("maxiIFFT")
+	#ifdef SPN
+				.smart_ptr_constructor("shared_ptr<maxiIFFT>", &std::make_shared<maxiIFFT>)
+	#else
+				.constructor<>()
+	#endif
+	    .function("setup", &maxiIFFT::setup)
+	    .function("process", &maxiIFFT::process)
+	    ;
+
+		enum_<maxiIFFT::fftModes>("maxiIFFTModes")
+	    .value("SPECTRUM", maxiIFFT::fftModes::SPECTRUM)
+	    .value("COMPLEX", maxiIFFT::fftModes::COMPLEX)
+	    ;
+
+			// MAXI IFFT
+		  class_<maxiMFCC>("maxiMFCC")
+		#ifdef SPN
+					.smart_ptr_constructor("shared_ptr<maxiMFCC>", &std::make_shared<maxiMFCC>)
+		#else
+					.constructor<>()
+		#endif
+		    .function("setup", &maxiMFCC::setup)
+		    .function("mfcc", &maxiMFCC::mfcc)
+		    ;
+
+}
 
 #endif

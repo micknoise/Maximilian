@@ -11,6 +11,7 @@ C_SRC_LIBS=../../src/libs/stb_vorbis.c
 
 # POST_JS – external js handling web audio etc
 POST_JS=./maximilian.post.js
+MAXITRANSPILE=../purejs/build/maximilian.transpile.js
 
 BUILD_DIR=build
 MKDIR_P = mkdir -p
@@ -70,7 +71,7 @@ $(BUILD_DIR):
 
 asm.js: directory
 	@echo "${RED}\r\nBuild asm.js – maximilian.js \r\n ${RESET}"
-	$(EMSCR) $(CFLAGS)  --post-js $(POST_JS) -o $(OUTPUT) $(SRC) $(SRC_EM) $(SRC_LIBS) $(C_SRC_LIBS)
+	$(EMSCR) $(CFLAGS)  --post-js $(POST_JS)  --post-js $(MAXITRANSPILE) -o $(OUTPUT) $(SRC) $(SRC_EM) $(SRC_LIBS) $(C_SRC_LIBS)
 
 wasm: directory
 	@echo "${RED}\r\nBuild Wasm – maximilian.wasm + maximilian.js \r\n ${RESET}"

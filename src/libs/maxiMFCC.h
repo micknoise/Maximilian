@@ -73,7 +73,7 @@ public:
 		calcMelFilterBank(sampleRate, numBins);
 		createDCTCoeffs();
 	}
-//	void mfcc(float* powerSpectrum, T *mfccs) {
+
 	vector<T>& mfcc(vector<float>& powerSpectrum) {
 		melFilterAndLogSquare(powerSpectrum.data());
 		dct(coeffs.data());

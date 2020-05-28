@@ -1,12 +1,4 @@
 /*
-todo: new things
-
-bus class
-pattern oscillator - patternOsc.play([1,3,4,5,1,3],800ms)
-gate oscillator - gateOsc.play([1,0,0,0,0,1,0,0], 400ms)
-
-*/
-/*
 *  platform independent synthesis library using portaudio or rtaudio
  *  maximilian.h
  *
@@ -65,12 +57,43 @@ using namespace std;
 #endif
 #define TWOPI 6.283185307179586476925286766559
 
+//transpiling some functions to Javascript?
+#ifdef CHEERP
+#define CHEERP_EXPORT [[cheerp::jsexport]]
+#include <cheerp/clientlib.h>
+#else
+#define CHEERP_EXPORT
+#endif
+
+//if using CHEERP, then convert incoming arrays to vectors inplace, otherwise, preserve the C++ vector interface
+//see maxiIndex for a simple example
+#ifdef CHEERP
+
+#define DOUBLEARRAY client::Float64Array*
+
+inline vector<double> convertArrayFromJS(DOUBLEARRAY x) {
+	double *__arrayStart = __builtin_cheerp_make_regular<double>(x, 0);
+	size_t __arrayLength = x->get_length();
+	return vector<double>(__arrayStart, __arrayStart + __arrayLength);
+}
+
+#define NORMALISE_ARRAY_TYPE(invar,outvar) vector<double> outvar = convertArrayFromJS(invar);
+
+#else
+
+#define DOUBLEARRAY vector<double>&
+
+#define NORMALISE_ARRAY_TYPE(invar,outvar) vector<double> outvar = vector<double>(invar.begin(), invar.end()); //emplace into new variable
+
+#endif
+
 
 const double pitchRatios[256]= {0.0006517771980725,0.0006905338959768,0.0007315951515920, 0.0007750981021672, 0.0008211878011934, 0.0008700182079338, 0.0009217521874234, 0.0009765623835847, 0.0010346318595111, 0.0010961542138830, 0.0011613349197432, 0.0012303915573284, 0.0013035543961450, 0.0013810677919537, 0.0014631903031841, 0.0015501962043345, 0.0016423756023869, 0.0017400364158675, 0.0018435043748468, 0.0019531247671694, 0.0020692637190223, 0.0021923084277660, 0.0023226698394865, 0.0024607831146568, 0.0026071087922901, 0.0027621355839074, 0.0029263808391988, 0.0031003924086690, 0.0032847514376044, 0.0034800728317350, 0.0036870087496936, 0.0039062497671694, 0.0041385274380445, 0.0043846168555319, 0.0046453396789730, 0.0049215662293136, 0.0052142175845802, 0.0055242711678147, 0.0058527616783977, 0.0062007848173380, 0.0065695028752089, 0.0069601456634700, 0.0073740174993873, 0.0078124995343387, 0.0082770548760891, 0.0087692337110639, 0.0092906802892685, 0.0098431324586272, 0.0104284351691604, 0.0110485423356295, 0.0117055233567953, 0.0124015696346760, 0.0131390057504177, 0.0139202913269401, 0.0147480349987745, 0.0156249990686774, 0.0165541097521782, 0.0175384692847729, 0.0185813605785370, 0.0196862649172544, 0.0208568722009659, 0.0220970865339041, 0.0234110467135906, 0.0248031392693520, 0.0262780115008354, 0.0278405826538801, 0.0294960699975491, 0.0312499981373549, 0.0331082195043564, 0.0350769385695457, 0.0371627211570740, 0.0393725298345089, 0.0417137444019318, 0.0441941730678082, 0.0468220934271812, 0.0496062822639942, 0.0525560230016708, 0.0556811690330505, 0.0589921437203884, 0.0624999962747097, 0.0662164390087128, 0.0701538771390915, 0.0743254423141479, 0.0787450596690178, 0.0834274888038635, 0.0883883461356163, 0.0936441868543625, 0.0992125645279884, 0.1051120460033417, 0.1113623380661011, 0.1179842874407768, 0.1249999925494194, 0.1324328780174255, 0.1403077542781830, 0.1486508846282959, 0.1574901193380356, 0.1668549776077271, 0.1767766922712326, 0.1872883737087250, 0.1984251290559769, 0.2102240920066833, 0.2227246761322021, 0.2359685748815536, 0.2500000000000000, 0.2648657560348511, 0.2806155085563660, 0.2973017692565918, 0.3149802684783936, 0.3337099552154541, 0.3535533845424652, 0.3745767772197723, 0.3968502581119537, 0.4204482138156891, 0.4454493522644043, 0.4719371497631073, 0.5000000000000000, 0.5297315716743469, 0.5612310171127319, 0.5946035385131836, 0.6299605369567871, 0.6674199104309082, 0.7071067690849304, 0.7491535544395447, 0.7937005162239075, 0.8408964276313782, 0.8908987045288086, 0.9438742995262146, 1.0000000000000000, 1.0594631433486938, 1.1224620342254639, 1.1892070770263672, 1.2599210739135742, 1.3348398208618164, 1.4142135381698608, 1.4983071088790894, 1.5874010324478149, 1.6817928552627563, 1.7817974090576172, 1.8877485990524292, 2.0000000000000000, 2.1189262866973877, 2.2449240684509277, 2.3784141540527344, 2.5198421478271484, 2.6696796417236328, 2.8284270763397217, 2.9966142177581787, 3.1748020648956299, 3.3635857105255127, 3.5635950565338135, 3.7754974365234375, 4.0000000000000000, 4.2378525733947754, 4.4898481369018555, 4.7568287849426270, 5.0396842956542969, 5.3393597602844238, 5.6568546295166016, 5.9932284355163574, 6.3496046066284180, 6.7271714210510254, 7.1271901130676270, 7.5509948730468750, 8.0000000000000000, 8.4757051467895508, 8.9796962738037109, 9.5136575698852539, 10.0793685913085938, 10.6787195205688477, 11.3137092590332031, 11.9864568710327148, 12.6992092132568359, 13.4543428421020508, 14.2543802261352539, 15.1019897460937500, 16.0000000000000000, 16.9514102935791016, 17.9593944549560547, 19.0273151397705078, 20.1587371826171875, 21.3574390411376953, 22.6274185180664062, 23.9729137420654297, 25.3984184265136719, 26.9086875915527344, 28.5087604522705078, 30.2039794921875000, 32.0000000000000000, 33.9028205871582031, 35.9187889099121094, 38.0546302795410156, 40.3174743652343750, 42.7148780822753906, 45.2548370361328125, 47.9458274841308594, 50.7968368530273438, 53.8173751831054688, 57.0175209045410156, 60.4079589843750000, 64.0000076293945312, 67.8056411743164062, 71.8375778198242188, 76.1092605590820312, 80.6349563598632812, 85.4297561645507812, 90.5096740722656250, 95.8916625976562500, 101.5936737060546875, 107.6347503662109375, 114.0350418090820312, 120.8159179687500000, 128.0000152587890625, 135.6112823486328125, 143.6751556396484375, 152.2185211181640625, 161.2699127197265625, 170.8595123291015625, 181.0193481445312500, 191.7833251953125000, 203.1873474121093750, 215.2695007324218750, 228.0700836181640625, 241.6318511962890625, 256.0000305175781250, 271.2225646972656250, 287.3503112792968750, 304.4370422363281250, 322.5398254394531250, 341.7190246582031250, 362.0386962890625000, 383.5666503906250000, 406.3746948242187500, 430.5390014648437500, 456.1401977539062500, 483.2637023925781250, 512.0000610351562500, 542.4451293945312500, 574.7006225585937500, 608.8740844726562500, 645.0796508789062500, 683.4380493164062500, 724.0773925781250000, 767.1333007812500000, 812.7494506835937500, 861.0780029296875000, 912.2803955078125000, 966.5274047851562500, 1024.0001220703125000, 1084.8903808593750000, 1149.4012451171875000, 1217.7481689453125000, 1290.1593017578125000, 1366.8762207031250000, 1448.1549072265625000, 1534.2666015625000000, 1625.4989013671875000};
 
 
-class maxiSettings {
+class CHEERP_EXPORT maxiSettings {
 public:
+	maxiSettings();
 	static int sampleRate;
 	static int channels;
 	static int bufferSize;
@@ -79,36 +102,34 @@ public:
 		maxiSettings::channels = initChannels;
 		maxiSettings::bufferSize = initBufferSize;
 	}
-
-	void setSampleRate(int sampleRate_){
-		sampleRate = sampleRate_;
-	}
-
-	void setNumChannels(int channels_){
-		channels = channels_;
-	}
-
-	void setBufferSize(int bufferSize_){
-		bufferSize = bufferSize_;
-	}
-
-	int getSampleRate() const{
-		return sampleRate;
-	}
-
-	int getNumChannels() const{
-		return channels;
-	}
-
-	int getBufferSize() const{
-		return bufferSize;
-	}
+	//
+	// static void setSampleRate(int sampleRate_){
+	// 	maxiSettings::sampleRate = sampleRate_;
+	// }
+	//
+	// static void setNumChannels(int channels_){
+	// 	maxiSettings::channels = channels_;
+	// }
+	//
+	// static void setBufferSize(int bufferSize_){
+	// 	maxiSettings::bufferSize = bufferSize_;
+	// }
+	//
+	// static int getSampleRate() {
+	// 	return maxiSettings::sampleRate;
+	// }
+	//
+	// static int getNumChannels() {
+	// 	return maxiSettings::channels;
+	// }
+	//
+	// static int getBufferSize() {
+	// 	return maxiSettings::bufferSize;
+	// }
 };
 
 
-
-
-class maxiOsc {
+class CHEERP_EXPORT maxiOsc {
 
 	double frequency;
 	double phase;
@@ -128,13 +149,12 @@ public:
 	double triangle(double frequency);
 	double square(double frequency);
 	double pulse(double frequency, double duty);
-    double impulse(double frequency);
+  double impulse(double frequency);
 	double noise();
 	double sinebuf(double frequency);
 	double sinebuf4(double frequency);
-    double sawn(double frequency);
-    double rect(double frequency, double duty=0.5);
-
+  double sawn(double frequency);
+  double rect(double frequency, double duty=0.5);
 	void phaseReset(double phaseIn);
 
 };
@@ -150,6 +170,7 @@ class maxiEnvelope {
 	int isPlaying;
 
 public:
+	maxiEnvelope() {}
 //	double line(int numberofsegments,double segments[100]);
 	double line(int numberofsegments, std::vector<double>& segments);
 
@@ -178,13 +199,13 @@ public:
 };
 
 
-class maxiDelayline {
+class CHEERP_EXPORT maxiDelayline {
 	double frequency;
 	int phase;
 	double startphase;
 	double endphase;
 	double output;
-	double memory[88200];
+	double memory[88200 * 2];
 
 public:
 	maxiDelayline();
@@ -195,7 +216,8 @@ public:
 };
 
 
-class maxiFilter {
+class CHEERP_EXPORT maxiFilter {
+private:
 	double gain;
 	double input;
 	double output;
@@ -208,7 +230,7 @@ class maxiFilter {
 	double c;//filter coefficient
 
 public:
-	maxiFilter():x(0.0), y(0.0), z(0.0), c(0.0){};
+	maxiFilter();
 	double cutoff;
 	double resonance;
 	double lores(double input, double cutoff1, double resonance);
@@ -227,11 +249,11 @@ public:
 		resonance = res;
 	}
 
-	double getCutoff() const{
+	double getCutoff() {
 		return cutoff;
 	}
 
-	double getResonance() const{
+	double getResonance() {
 		return resonance;
 	}
 	// ------------------------------------------------
@@ -315,8 +337,9 @@ public:
 };
 
 
-class maxiTrigger {
+class CHEERP_EXPORT maxiTrigger {
 public:
+		maxiTrigger();
     //zerocrossing
     double onZX(double input) {
         double isZX=0.0;
@@ -362,106 +385,115 @@ public:
 //    int    myDataSize;
 	short 	myChannels;
 	int   	mySampleRate;
-    inline unsigned long getLength() const {return amplitudes.size();};
-    void setLength(unsigned long numSamples);
-    short 	myBitsPerSample;
+  inline unsigned long getLength() const {return amplitudes.size();};
+  void setLength(unsigned long numSamples);
+  short 	myBitsPerSample;
 
 	vector<double> amplitudes;
 
-	~maxiSample() {}
+  maxiSample();
 
-    maxiSample():position(0), recordPosition(0), myChannels(1), mySampleRate(maxiSettings::sampleRate) {};
-
-    maxiSample& operator=(const maxiSample &source) {
-        if (this == &source)
-            return *this;
-        position=0;
-        recordPosition = 0;
-        myChannels = source.myChannels;
-        mySampleRate = maxiSettings::sampleRate;
-		amplitudes.clear();
-		amplitudes = source.amplitudes;
-        return *this;
+  maxiSample& operator=(const maxiSample &source) {
+			if (this == &source)
+			  return *this;
+			position=0;
+			recordPosition = 0;
+			myChannels = source.myChannels;
+			mySampleRate = maxiSettings::sampleRate;
+			amplitudes.clear();
+			amplitudes = source.amplitudes;
+			return *this;
     }
 
+#ifndef CHEERP
 	bool load(string fileName, int channel=0);
-
-    bool loadOgg(string filename,int channel=0);
-    int setSampleFromOggBlob(vector<unsigned char> &oggBlob, int channel=0);
-
+	bool save();
+  bool save(string filename);
+	// read a wav file into this class
+  bool read();
+#endif
 	// -------------------------
 	// js bits
 	// as loading is currently asynchronous in js this can be useful
 	bool isReady();
 
-	void setSample(vector<double>& temp);
-	void setSample(vector<double>& temp, int sampleRate);
+	bool loadOgg(string filename,int channel=0);
+	int setSampleFromOggBlob(vector<unsigned char> &oggBlob, int channel=0);
+
+	// void setSample(vector<double>& temp);
+	// void setSample(vector<double>& temp, int sampleRate);
+	void setSample(DOUBLEARRAY _sampleData){
+		NORMALISE_ARRAY_TYPE(_sampleData, sampleData)
+    amplitudes = sampleData;
+		mySampleRate = 44100;
+    position=amplitudes.size()-1;
+	}
+
+	void setSample(DOUBLEARRAY _sampleData, int sampleRate){
+		// void setSample(vector<double>& sampleData, int sampleRate){
+	  setSample(_sampleData);
+		mySampleRate = sampleRate;
+	}
 
 	void clear(){amplitudes.clear();}
 	// -------------------------
 
 	void trigger();
 
-	// read a wav file into this class
-    bool read();
+  void loopRecord(double newSample, const bool recordEnabled, const double recordMix, double start = 0.0, double end = 1.0) {
+      loopRecordLag.addSample(recordEnabled);
+      if (recordPosition < start * amplitudes.size()) recordPosition = start * amplitudes.size();
+      if(recordEnabled) {
+          double currentSample = amplitudes[(unsigned long)recordPosition] / 32767.0;
+          newSample = (recordMix * currentSample) + ((1.0 - recordMix) * newSample);
+          newSample *= loopRecordLag.value();
+          amplitudes[(unsigned long)recordPosition] = newSample * 32767;
+      }
+      ++recordPosition;
+      if (recordPosition >= end * amplitudes.size())
+          recordPosition= start * amplitudes.size();
+  }
 
-    void loopRecord(double newSample, const bool recordEnabled, const double recordMix, double start = 0.0, double end = 1.0) {
-        loopRecordLag.addSample(recordEnabled);
-        if (recordPosition < start * amplitudes.size()) recordPosition = start * amplitudes.size();
-        if(recordEnabled) {
-            double currentSample = amplitudes[(unsigned long)recordPosition] / 32767.0;
-            newSample = (recordMix * currentSample) + ((1.0 - recordMix) * newSample);
-            newSample *= loopRecordLag.value();
-            amplitudes[(unsigned long)recordPosition] = newSample * 32767;
-        }
-        ++recordPosition;
-        if (recordPosition >= end * amplitudes.size())
-            recordPosition= start * amplitudes.size();
-    }
+  void reset();
 
-    void reset();
+  double play();
 
-    double play();
+  double playLoop(double start, double end); // start and end are between 0.0 and 1.0
 
-    double playLoop(double start, double end); // start and end are between 0.0 and 1.0
+  double playOnce();
+	double playOnZX(double trigger);
+	double playOnZX(double trig, double speed);
+	double playOnZX(double trig, double speed, double offset);
 
-    double playOnce();
-		double playOnZX(double trigger);
-		double playOnZX(double trig, double speed);
-		double playOnZX(double trig, double speed, double offset);
+	double loopSetPosOnZX(double trigger, double position); // position between 0 and 1.0
+	maxiTrigger zxTrig;
+  // double prevTriggerVal=1;
 
-		double loopSetPosOnZX(double trigger, double position); // position between 0 and 1.0
-		maxiTrigger zxTrig;
-    // double prevTriggerVal=1;
+  double playOnce(double speed);
 
-    double playOnce(double speed);
+  void setPosition(double newPos); // between 0.0 and 1.0
 
-    void setPosition(double newPos); // between 0.0 and 1.0
+  double playUntil(double end);
 
-    double playUntil(double end);
+  double play(double speed);
 
-    double play(double speed);
+  double play(double frequency, double start, double end, double &pos);
 
-    double play(double frequency, double start, double end, double &pos);
+  double play(double frequency, double start, double end);
 
-    double play(double frequency, double start, double end);
+  double play4(double frequency, double start, double end);
 
-    double play4(double frequency, double start, double end);
+// return a printable summary of the wav file
+  char *getSummary();
 
-
-    bool save();
-    bool save(string filename);
-
-	// return a printable summary of the wav file
-    char *getSummary();
-
-    void normalise(double maxLevel = 0.99);  //0 < maxLevel < 1.0
-    void autoTrim(float alpha = 0.3, float threshold = 6000, bool trimStart = true, bool trimEnd = true); //alpha of lag filter (lower == slower reaction), threshold to mark start and end, < 32767
+  void normalise(double maxLevel = 0.99);  //0 < maxLevel < 1.0
+  void autoTrim(float alpha = 0.3, float threshold = 6000, bool trimStart = true, bool trimEnd = true); //alpha of lag filter (lower == slower reaction), threshold to mark start and end, < 32767
 };
 
 
-class maxiMap {
+class CHEERP_EXPORT maxiMap {
 public:
+		maxiMap();
     static double inline linlin(double val, double inMin, double inMax, double outMin, double outMax) {
         val = max(min(val, inMax), inMin);
         return ((val - inMin) / (inMax - inMin) * (outMax - outMin)) + outMin;
@@ -479,14 +511,10 @@ public:
         return (log(val/inMin) / log(inMax/inMin) * (outMax - outMin)) + outMin;
     }
 
-    //changed to templated function, e.g. maxiMap::maxiClamp<int>(v, l, h);
-    template<typename T>
-    static T inline clamp(T v, const T low, const T high) {
-        if (v > high)
-            v = high;
-        else if (v < low) {
-            v = low;
-        }
+		//replacing the templated version
+		static double inline clamp(double v, const double low, const double high) {
+        if (v > high) {v = high;}
+        else if (v < low) {v = low;}
         return v;
     }
 
@@ -575,9 +603,10 @@ public:
 class convert {
 public:
 	static double mtof(int midinote);
-    static double msToSamps(double timeMs) {
-        return timeMs / 1000.0 * maxiSettings::sampleRate;
-    }
+
+	static double msToSamps(double timeMs) {
+  	return timeMs / 1000.0 * maxiSettings::sampleRate;
+  }
 };
 
 class maxiSampleAndHold {
@@ -601,6 +630,7 @@ private:
 
 class maxiZeroCrossingDetector {
 public:
+		maxiZeroCrossingDetector();
     inline bool zx(double x){
         bool res=0;
         if (previous_x <=0 && x > 0) {
@@ -615,8 +645,9 @@ private:
 
 
 //needs oversampling
-class maxiNonlinearity {
+class CHEERP_EXPORT maxiNonlinearity {
 public:
+		maxiNonlinearity();
     /*atan distortion, see http://www.musicdsp.org/showArchiveComment.php?ArchiveID=104*/
 		double atanDist(const double in, const double shape);
     /*shape from 1 (soft clipping) to infinity (hard clipping)*/
@@ -836,8 +867,9 @@ private:
 };
 
 //based on http://www.earlevel.com/main/2011/01/02/biquad-formulas/ and https://ccrma.stanford.edu/~jos/fp/Direct_Form_II.html
-class maxiBiquad {
+class CHEERP_EXPORT maxiBiquad {
 public:
+		maxiBiquad();
     enum filterTypes {LOWPASS, HIGHPASS, BANDPASS, NOTCH, PEAK, LOWSHELF, HIGHSHELF};
     inline double play(double input) {
         v[0] = input - (b1 * v[1]) - (b2 * v[2]);
@@ -953,8 +985,9 @@ private:
 
 class maxiXFade {
 public:
+		maxiXFade() {}
     static vector<double> xfade(vector<double> &ch1, vector<double> &ch2, double xfader) {
-        xfader = maxiMap::clamp<double>(xfader, -1, 1);
+        xfader = maxiMap::clamp(xfader, -1, 1);
         double xfNorm = maxiMap::linlin(xfader, -1, 1, 0, 1);
         double gainCh1 = sqrt(1.0-xfNorm);
         double gainCh2 = sqrt(xfNorm);
@@ -974,6 +1007,7 @@ public:
 
 class maxiLine {
 public:
+		maxiLine() {}
     inline double play(double trigger) {
         if (!lineComplete) {
             if (trigEnable && !triggered) {
@@ -1073,7 +1107,7 @@ public:
 //https://www.complexity-explorables.org/explorables/ride-my-kuramotocycle/
 class maxiKuramotoOscillator {
 public:
-
+		maxiKuramotoOscillator() {}
     inline double play(double freq, double K, std::vector<double> phases) {
 
         double phaseAdj = 0;
@@ -1317,9 +1351,16 @@ private:
     maxiTrigger inctrig, rstrig;
 };
 
-class maxiIndex {
+
+
+class CHEERP_EXPORT maxiIndex {
 public:
-    double pull(const double trigSig, double indexSig, vector<double> values) {
+		maxiIndex();
+    double pull(const double trigSig, double indexSig, DOUBLEARRAY _values) {
+				// double *__arrayStart = __builtin_cheerp_make_regular<double>(_values, 0);
+				// size_t __arrayLength = _values->get_length();
+				// vector<double> values = vector<double>(__arrayStart, __arrayStart + __arrayLength);
+				NORMALISE_ARRAY_TYPE(_values, values)
         if (trig.onZX(trigSig)) {
             if (indexSig < 0) indexSig=0;
             if (indexSig > 1) indexSig=1;
@@ -1333,10 +1374,11 @@ private:
     double value=0;
 };
 
-class maxiRatioSeq {
+class CHEERP_EXPORT maxiRatioSeq {
 public:
-
-	double playTrig(double phase, vector<double> times) {
+	maxiRatioSeq();
+	double playTrig(double phase, DOUBLEARRAY _times) {
+		NORMALISE_ARRAY_TYPE(_times, times)
 		double trig=0;
 		double sum = std::accumulate(times.begin(), times.end(), 0);
 		double accumulatedTime=0;
@@ -1357,8 +1399,10 @@ public:
 		return trig;
 	}
 
-	double playValues(double phase, vector<double> times, vector<double> values) {
-		if (playTrig(phase, times)) {
+	double playValues(double phase, DOUBLEARRAY _times, DOUBLEARRAY _values) {
+		NORMALISE_ARRAY_TYPE(_times, times)
+		NORMALISE_ARRAY_TYPE(_values, values)
+		if (playTrig(phase, _times)) {
 			counter++;
 			if (counter==values.size()) {
 				counter=0;
@@ -1371,5 +1415,7 @@ private:
 	double prevPhase=0;
 	size_t counter=0;
 };
+
+
 
 #endif

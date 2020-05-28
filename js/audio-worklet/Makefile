@@ -13,6 +13,7 @@ MKDIR_P = mkdir -p
 
 # POST_JS – external js handling web audio etc
 POST_JS=$(COMMON_DIR)/maximilian.post.js
+MAXITRANSPILE=../purejs/build/maximilian.transpile.js
 
 OUTPUT=$(BUILD_DIR)/maximilian.wasmmodule.js
 
@@ -64,7 +65,7 @@ ${BUILD_DIR}:
 
 full: directory
 	@echo "${YELLOW}\r\nBuild for Web Audio API AudioWorklet (WebAssembly) – maximilian.wasmmodule.js \r\n ${RESET}"
-	$(EMSCR) $(CFLAGS) --post-js $(POST_JS) -o $(OUTPUT) $(SRC_EM) $(SRC) $(SRC_LIBS) $(C_SRC_LIBS)
+	$(EMSCR) $(CFLAGS) --post-js $(POST_JS) --post-js $(MAXITRANSPILE) -o $(OUTPUT) $(SRC_EM) $(SRC) $(SRC_LIBS) $(C_SRC_LIBS)
 
 clean:
 	@echo "Cleaning up"

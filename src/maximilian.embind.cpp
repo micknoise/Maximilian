@@ -49,38 +49,38 @@ EMSCRIPTEN_BINDINGS(my_module)
 
 	// maxi stuff
 	class_<maxiSettings>("maxiSettings")
-			.constructor<>()
-			.class_function("setup", &maxiSettings::setup)
-			.property("sampleRate", &maxiSettings::getSampleRate, &maxiSettings::setSampleRate)
-			.property("channels", &maxiSettings::getNumChannels, &maxiSettings::setNumChannels)
-			.property("bufferSize", &maxiSettings::getBufferSize, &maxiSettings::setBufferSize);
+			// .constructor<>()
+			.class_function("setup", &maxiSettings::setup);
+			// .property("sampleRate", &maxiSettings::getSampleRate, &maxiSettings::setSampleRate)
+			// .property("channels", &maxiSettings::getNumChannels, &maxiSettings::setNumChannels)
+			// .property("bufferSize", &maxiSettings::getBufferSize, &maxiSettings::setBufferSize);
 
 	// MAXI OSC
-	class_<maxiOsc>("maxiOsc")
-#ifdef SPN
-			/*
-	 		Using a smart_ptr_constructor ensures lifetime management  on the js side
-	 		by returning a smart_ptr when a constructor is used
-	 		*/
-			.smart_ptr_constructor("shared_ptr<maxiOsc>", &std::make_shared<maxiOsc>)
-#else
-			.constructor<>()
-#endif
-			.function("sinewave", &maxiOsc::sinewave)
-			.function("coswave", &maxiOsc::coswave)
-			.function("phasor", select_overload<double(double)>(&maxiOsc::phasor))
-			.function("phasor", select_overload<double(double, double, double)>(&maxiOsc::phasor))
-			.function("saw", &maxiOsc::saw)
-			.function("triangle", &maxiOsc::triangle)
-			.function("square", &maxiOsc::square)
-			.function("pulse", &maxiOsc::pulse)
-			.function("impulse", &maxiOsc::impulse)
-			.function("noise", &maxiOsc::noise)
-			.function("sinebuf", &maxiOsc::sinebuf)
-			.function("sinebuf4", &maxiOsc::sinebuf4)
-			.function("sawn", &maxiOsc::sawn)
-			// .function("rect", &maxiOsc::rect)
-			.function("phaseReset", &maxiOsc::phaseReset);
+// 	class_<maxiOsc>("maxiOsc")
+// #ifdef SPN
+// 			/*
+// 	 		Using a smart_ptr_constructor ensures lifetime management  on the js side
+// 	 		by returning a smart_ptr when a constructor is used
+// 	 		*/
+// 			.smart_ptr_constructor("shared_ptr<maxiOsc>", &std::make_shared<maxiOsc>)
+// #else
+// 			.constructor<>()
+// #endif
+// 			.function("sinewave", &maxiOsc::sinewave)
+// 			.function("coswave", &maxiOsc::coswave)
+// 			.function("phasor", select_overload<double(double)>(&maxiOsc::phasor))
+// 			.function("phasor", select_overload<double(double, double, double)>(&maxiOsc::phasor))
+// 			.function("saw", &maxiOsc::saw)
+// 			.function("triangle", &maxiOsc::triangle)
+// 			.function("square", &maxiOsc::square)
+// 			.function("pulse", &maxiOsc::pulse)
+// 			.function("impulse", &maxiOsc::impulse)
+// 			.function("noise", &maxiOsc::noise)
+// 			.function("sinebuf", &maxiOsc::sinebuf)
+// 			.function("sinebuf4", &maxiOsc::sinebuf4)
+// 			.function("sawn", &maxiOsc::sawn)
+// 			// .function("rect", &maxiOsc::rect)
+// 			.function("phaseReset", &maxiOsc::phaseReset);
 
 	// MAXI ENVELOPE
 	class_<maxiEnvelope>("maxiEnvelope")
@@ -109,19 +109,19 @@ EMSCRIPTEN_BINDINGS(my_module)
 			.function("dl", select_overload<double(double, int, double, int)>(&maxiDelayline::dl));
 
 	// MAXI FILTER
-	class_<maxiFilter>("maxiFilter")
-#ifdef SPN
-			.smart_ptr_constructor("shared_ptr<maxiFilter>", &std::make_shared<maxiFilter>)
-#else
-			.constructor<>()
-#endif
-			.function("lores", &maxiFilter::lores)
-			.function("hires", &maxiFilter::hires)
-			.function("bandpass", &maxiFilter::bandpass)
-			.function("lopass", &maxiFilter::lopass)
-			.function("hipass", &maxiFilter::hipass)
-			.property("cutoff", &maxiFilter::getCutoff, &maxiFilter::setCutoff)
-			.property("resonance", &maxiFilter::getResonance, &maxiFilter::setResonance);
+// 	class_<maxiFilter>("maxiFilter")
+// #ifdef SPN
+// 			.smart_ptr_constructor("shared_ptr<maxiFilter>", &std::make_shared<maxiFilter>)
+// #else
+// 			.constructor<>()
+// #endif
+// 			.function("lores", &maxiFilter::lores)
+// 			.function("hires", &maxiFilter::hires)
+// 			.function("bandpass", &maxiFilter::bandpass)
+// 			.function("lopass", &maxiFilter::lopass)
+// 			.function("hipass", &maxiFilter::hipass)
+// 			.property("cutoff", &maxiFilter::getCutoff, &maxiFilter::setCutoff)
+// 			.property("resonance", &maxiFilter::getResonance, &maxiFilter::setResonance);
 
 	// MAXI MIX
 	class_<maxiMix>("maxiMix")
@@ -204,21 +204,21 @@ EMSCRIPTEN_BINDINGS(my_module)
 			.function("loopSetPosOnZX", &maxiSample::loopSetPosOnZX);
 
 
-	// MAXI MAP
-	class_<maxiMap>("maxiMap")
-#ifdef SPN
-			.smart_ptr_constructor("shared_ptr<maxiMap>", &std::make_shared<maxiMap>)
-#else
-			.constructor<>()
-#endif
-	.function("linlin", &maxiMap::linlin)
-	.function("linexp", &maxiMap::linexp)
-	.function("explin", &maxiMap::explin)
-	.function("clamp", &maxiMap::clamp<double>)
-	.class_function("linlin", &maxiMap::linlin)
-	.class_function("linexp", &maxiMap::linexp)
-	.class_function("explin", &maxiMap::explin)
-	.class_function("clamp", &maxiMap::clamp<double>);
+// 	// MAXI MAP
+// 	class_<maxiMap>("maxiMap")
+// #ifdef SPN
+// 			.smart_ptr_constructor("shared_ptr<maxiMap>", &std::make_shared<maxiMap>)
+// #else
+// 			.constructor<>()
+// #endif
+// 	.function("linlin", &maxiMap::linlin)
+// 	.function("linexp", &maxiMap::linexp)
+// 	.function("explin", &maxiMap::explin)
+// 	.function("clamp", &maxiMap::clamp)
+// 	.class_function("linlin", &maxiMap::linlin)
+// 	.class_function("linexp", &maxiMap::linexp)
+// 	.class_function("explin", &maxiMap::explin)
+// 	.class_function("clamp", &maxiMap::clamp);
 
 	// MAXI DYN
 	class_<maxiDyn>("maxiDyn")
@@ -287,19 +287,19 @@ class_<maxiSampleAndHold>("maxiSampleAndHold")
 	// 			.function("atanDist", &maxiDistortion::atanDist)
 	// 			.function("fastAtanDist", &maxiDistortion::fastAtanDist);
 
-		class_<maxiNonlinearity>("maxiNonlinearity")
-				#ifdef SPN
-							.smart_ptr_constructor("shared_ptr<maxiNonlinearity>", &std::make_shared<maxiNonlinearity>)
-				#else
-							.constructor<>()
-				#endif
-							.function("fastAtan", &maxiNonlinearity::fastatan)
-							.function("atanDist", &maxiNonlinearity::atanDist)
-							.function("fastAtanDist", &maxiNonlinearity::fastAtanDist)
-							.function("softclip", &maxiNonlinearity::softclip)
-							.function("hardclip", &maxiNonlinearity::hardclip)
-							.function("asymclip", &maxiNonlinearity::asymclip)
-						;
+		// class_<maxiNonlinearity>("maxiNonlinearity")
+		// 		#ifdef SPN
+		// 					.smart_ptr_constructor("shared_ptr<maxiNonlinearity>", &std::make_shared<maxiNonlinearity>)
+		// 		#else
+		// 					.constructor<>()
+		// 		#endif
+		// 					.function("fastAtan", &maxiNonlinearity::fastatan)
+		// 					.function("atanDist", &maxiNonlinearity::atanDist)
+		// 					.function("fastAtanDist", &maxiNonlinearity::fastAtanDist)
+		// 					.function("softclip", &maxiNonlinearity::softclip)
+		// 					.function("hardclip", &maxiNonlinearity::hardclip)
+		// 					.function("asymclip", &maxiNonlinearity::asymclip)
+		// 				;
 
 	// MAXI FLANGER
 	class_<maxiFlanger>("maxiFlanger")
@@ -466,63 +466,6 @@ class_<maxiAsyncKuramotoOscillator, base<maxiKuramotoOscillatorSet>>("maxiAsyncK
 			.function("size", &maxiAsyncKuramotoOscillator::size)
       ;
 
-  // MAXI FFT
-  class_<maxiFFT>("maxiFFT")
-#ifdef SPN
-		.smart_ptr_constructor("shared_ptr<maxiFFT>", &std::make_shared<maxiFFT>)
-#else
-		.constructor<>()
-#endif
-    .function("setup", &maxiFFT::setup)
-    // .function("process", select_overload<bool(float, maxiFFT::fftModes)>(&maxiFFT::process) )
-    // .function("process", select_overload<bool(float,int)>(&maxiFFT::process))
-    .function("process", &maxiFFT::process)
-    .function("spectralFlatness", &maxiFFT::spectralFlatness)
-    .function("spectralCentroid", &maxiFFT::spectralCentroid)
-    .function("getMagnitudes", &maxiFFT::getMagnitudes)
-    .function("getMagnitudesDB", &maxiFFT::getMagnitudesDB)
-		.function("getPhases", &maxiFFT::getPhases)
-
-		.function("getNumBins", &maxiFFT::getNumBins)
-		.function("getFFTSize", &maxiFFT::getFFTSize)
-		.function("getHopSize", &maxiFFT::getHopSize)
-		.function("getWindowSize", &maxiFFT::getWindowSize)
-
-		;
-
-  enum_<maxiFFT::fftModes>("maxiFFTModes")
-	.value("WITH_POLAR_CONVERSION", maxiFFT::fftModes::WITH_POLAR_CONVERSION)
-    .value("NO_POLAR_CONVERSION", maxiFFT::fftModes::NO_POLAR_CONVERSION)
-    ;
-
-
-  // MAXI IFFT
-  class_<maxiIFFT>("maxiIFFT")
-#ifdef SPN
-			.smart_ptr_constructor("shared_ptr<maxiIFFT>", &std::make_shared<maxiIFFT>)
-#else
-			.constructor<>()
-#endif
-    .function("setup", &maxiIFFT::setup)
-    .function("process", &maxiIFFT::process)
-    ;
-
-	enum_<maxiIFFT::fftModes>("maxiIFFTModes")
-    .value("SPECTRUM", maxiIFFT::fftModes::SPECTRUM)
-    .value("COMPLEX", maxiIFFT::fftModes::COMPLEX)
-    ;
-
-		// MAXI IFFT
-	  class_<maxiMFCC>("maxiMFCC")
-	#ifdef SPN
-				.smart_ptr_constructor("shared_ptr<maxiMFCC>", &std::make_shared<maxiMFCC>)
-	#else
-				.constructor<>()
-	#endif
-	    .function("setup", &maxiMFCC::setup)
-	    .function("mfcc", &maxiMFCC::mfcc)
-	    ;
-
 };
 
 
@@ -630,20 +573,20 @@ EMSCRIPTEN_BINDINGS(my_module_maxibits) {
 
 
 
-EMSCRIPTEN_BINDINGS(maxiTrigger) {
-
-    class_<maxiTrigger >("maxiTrigger")
-		#ifdef SPN
-    .smart_ptr_constructor("shared_ptr<maxiTrigger>",&std::make_shared<maxiTrigger>)
-		#else
-			.constructor<>()
-		#endif
-
-    //    .smart_ptr_constructor<maxiSample*>("shared_ptr<maxiTimestretch<hannWinFunctor> >",&std::make_shared<maxiTimestretch<hannWinFunctor> >)
-		.function("onZX", &maxiTrigger::onZX)
-		.function("onChanged", &maxiTrigger::onChanged)
-		;
-};
+// EMSCRIPTEN_BINDINGS(maxiTrigger) {
+//
+//     class_<maxiTrigger >("maxiTrigger")
+// 		#ifdef SPN
+//     .smart_ptr_constructor("shared_ptr<maxiTrigger>",&std::make_shared<maxiTrigger>)
+// 		#else
+// 			.constructor<>()
+// 		#endif
+//
+//     //    .smart_ptr_constructor<maxiSample*>("shared_ptr<maxiTimestretch<hannWinFunctor> >",&std::make_shared<maxiTimestretch<hannWinFunctor> >)
+// 		.function("onZX", &maxiTrigger::onZX)
+// 		.function("onChanged", &maxiTrigger::onChanged)
+// 		;
+// };
 
 EMSCRIPTEN_BINDINGS(maxiCounter) {
 
@@ -657,31 +600,31 @@ EMSCRIPTEN_BINDINGS(maxiCounter) {
 		.function("count", &maxiCounter::count)
 		;
 };
+//
+// EMSCRIPTEN_BINDINGS(maxiIndex) {
+//
+//     class_<maxiIndex >("maxiIndex")
+// 		#ifdef SPN
+//     .smart_ptr_constructor("shared_ptr<maxiIndex>",&std::make_shared<maxiIndex>)
+// 		#else
+// 			.constructor<>()
+// 		#endif
+// 		.function("pull", &maxiIndex::pull)
+// 		;
+// };
 
-EMSCRIPTEN_BINDINGS(maxiIndex) {
-
-    class_<maxiIndex >("maxiIndex")
-		#ifdef SPN
-    .smart_ptr_constructor("shared_ptr<maxiIndex>",&std::make_shared<maxiIndex>)
-		#else
-			.constructor<>()
-		#endif
-		.function("pull", &maxiIndex::pull)
-		;
-};
-
-EMSCRIPTEN_BINDINGS(maxiRatioSeq) {
-
-    class_<maxiRatioSeq >("maxiRatioSeq")
-		#ifdef SPN
-    .smart_ptr_constructor("shared_ptr<maxiRatioSeq>",&std::make_shared<maxiRatioSeq>)
-		#else
-			.constructor<>()
-		#endif
-		.function("playTrig", &maxiRatioSeq::playTrig)
-		.function("playValues", &maxiRatioSeq::playValues)
-		;
-};
+// EMSCRIPTEN_BINDINGS(maxiRatioSeq) {
+//
+//     class_<maxiRatioSeq >("maxiRatioSeq")
+// 		#ifdef SPN
+//     .smart_ptr_constructor("shared_ptr<maxiRatioSeq>",&std::make_shared<maxiRatioSeq>)
+// 		#else
+// 			.constructor<>()
+// 		#endif
+// 		.function("playTrig", &maxiRatioSeq::playTrig)
+// 		.function("playValues", &maxiRatioSeq::playValues)
+// 		;
+// };
 
 EMSCRIPTEN_BINDINGS(maxiVerb) {
 
@@ -703,5 +646,134 @@ EMSCRIPTEN_BINDINGS(maxiVerb) {
 	.function("play", select_overload<double(double, double, double)>(&maxiFreeVerb::play))
 	;
 };
+
+
+
+
+
+
+template <typename T>
+emscripten::val getJSArray(vector<T> & buffer) {
+		return emscripten::val(
+			 emscripten::typed_memory_view(buffer.size(),
+																		 buffer.data()));
+}
+
+// template <typename T>
+//  std::vector<T> vecFromJSArray(const emscripten::val &v)
+// {
+//     std::vector<T> rv;
+//
+//     const auto l = v["length"].as<unsigned>();
+//     rv.resize(l);
+//
+//     emscripten::val memoryView{emscripten::typed_memory_view(l, rv.data())};
+//     memoryView.call<void>("set", v);
+//
+//     return rv;
+// }
+
+
+class maxiFFTAdaptor : public maxiFFT {
+public:
+
+	void setup(int fftSize, int hopSize, int windowSize) {
+		maxiFFT::setup(fftSize, hopSize, windowSize);
+	};
+	bool process(float value, fftModes mode=maxiFFT::WITH_POLAR_CONVERSION) {return maxiFFT::process(value, mode);};
+	int getNumBins() {return maxiFFT::getNumBins();}
+  int getFFTSize() {return maxiFFT::getFFTSize();}
+  int getHopSize() {return maxiFFT::getHopSize();}
+  int getWindowSize() {return maxiFFT::getWindowSize();}
+
+	//features
+	float spectralFlatness() {return maxiFFT::spectralFlatness();};
+	float spectralCentroid() {return maxiFFT::spectralCentroid();};
+
+
+	emscripten::val getMagnitudesAsJSArray() {return getJSArray<float>(getMagnitudes());}
+  emscripten::val getMagnitudesDBAsJSArray() {return getJSArray<float>(getMagnitudesDB());}
+  emscripten::val getPhasesAsJSArray() {return getJSArray<float>(getPhases());}
+};
+
+//TODO: the IFFT adaptor, using https://github.com/emscripten-core/emscripten/issues/5519 to pass in data
+
+class maxiMFCCAdaptor : public maxiMFCC {
+public:
+
+	void setup(unsigned int numBins, unsigned int numFilters, unsigned int numCoeffs, double minFreq, double maxFreq) {
+		maxiMFCC::setup(numBins, numFilters, numCoeffs, minFreq, maxFreq);
+	}
+
+	emscripten::val mfcc(const emscripten::val& powerSpectrum) {
+		auto spectrumVector = vecFromJSArray<float>(powerSpectrum);
+		vector<double> coeffs = maxiMFCC::mfcc(spectrumVector);
+		return getJSArray<double>(coeffs);
+	}
+
+};
+
+
+EMSCRIPTEN_BINDINGS(maxiSpectral) {
+
+
+	  // MAXI FFT
+	  class_<maxiFFTAdaptor>("maxiFFTAdaptor")
+	#ifdef SPN
+			.smart_ptr_constructor("shared_ptr<maxiFFTAdaptor>", &std::make_shared<maxiFFTAdaptor>)
+	#else
+			.constructor<>()
+	#endif
+	    .function("setup", &maxiFFTAdaptor::setup)
+	    // .function("process", select_overload<bool(float, maxiFFT::fftModes)>(&maxiFFT::process) )
+	    // .function("process", select_overload<bool(float,int)>(&maxiFFT::process))
+	    .function("process", &maxiFFTAdaptor::process)
+	    .function("spectralFlatness", &maxiFFTAdaptor::spectralFlatness)
+	    .function("spectralCentroid", &maxiFFTAdaptor::spectralCentroid)
+	    .function("getMagnitudesAsJSArray", &maxiFFTAdaptor::getMagnitudesAsJSArray)
+	    .function("getMagnitudesDBAsJSArray", &maxiFFTAdaptor::getMagnitudesDBAsJSArray)
+			.function("getPhasesAsJSArray", &maxiFFTAdaptor::getPhasesAsJSArray)
+
+			.function("getNumBins", &maxiFFTAdaptor::getNumBins)
+			.function("getFFTSize", &maxiFFTAdaptor::getFFTSize)
+			.function("getHopSize", &maxiFFTAdaptor::getHopSize)
+			.function("getWindowSize", &maxiFFTAdaptor::getWindowSize)
+
+			;
+
+	  enum_<maxiFFT::fftModes>("maxiFFTModes")
+		.value("WITH_POLAR_CONVERSION", maxiFFT::fftModes::WITH_POLAR_CONVERSION)
+	    .value("NO_POLAR_CONVERSION", maxiFFT::fftModes::NO_POLAR_CONVERSION)
+	    ;
+
+
+	  // MAXI IFFT
+	  class_<maxiIFFT>("maxiIFFT")
+	#ifdef SPN
+				.smart_ptr_constructor("shared_ptr<maxiIFFT>", &std::make_shared<maxiIFFT>)
+	#else
+				.constructor<>()
+	#endif
+	    .function("setup", &maxiIFFT::setup)
+	    .function("process", &maxiIFFT::process)
+	    ;
+
+		enum_<maxiIFFT::fftModes>("maxiIFFTModes")
+	    .value("SPECTRUM", maxiIFFT::fftModes::SPECTRUM)
+	    .value("COMPLEX", maxiIFFT::fftModes::COMPLEX)
+	    ;
+
+			// MAXI IFFT
+		  class_<maxiMFCCAdaptor>("maxiMFCCAdaptor")
+		#ifdef SPN
+					.smart_ptr_constructor("shared_ptr<maxiMFCCAdaptor>", &std::make_shared<maxiMFCCAdaptor>)
+		#else
+					.constructor<>()
+		#endif
+		    .function("setup", &maxiMFCCAdaptor::setup)
+		    .function("mfcc", &maxiMFCCAdaptor::mfcc)
+		    ;
+
+}
 
 #endif

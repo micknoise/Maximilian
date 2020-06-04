@@ -696,7 +696,23 @@ public:
   emscripten::val getPhasesAsJSArray() {return getJSArray<float>(getPhases());}
 };
 
-//TODO: the IFFT adaptor, using https://github.com/emscripten-core/emscripten/issues/5519 to pass in data
+class maxiIFFTAdaptor : public maxiIFFT {
+public:
+	void setup(int fftSize=1024, int hopSize=512, int windowSize=0) {
+		maxiIFFT::setup(fftSize, hopSize, windowSize);
+		data1Vec = vector<float>(fftSize/2);
+		data2Vec = vector<float>(fftSize/2);
+	}
+  float process(double trig, const emscripten::val& data1, const emscripten::val& data2, fftModes mode = maxiIFFT::SPECTRUM) {
+		if (trig) {
+			data1Vec = vecFromJSArray<float>(data1);
+			data2Vec = vecFromJSArray<float>(data2);
+		}
+		return maxiIFFT::process(data1Vec, data2Vec, mode);
+	}
+private:
+	vector<float> data1Vec, data2Vec;
+};
 
 class maxiMFCCAdaptor : public maxiMFCC {
 public:
@@ -748,14 +764,14 @@ EMSCRIPTEN_BINDINGS(maxiSpectral) {
 
 
 	  // MAXI IFFT
-	  class_<maxiIFFT>("maxiIFFT")
+	  class_<maxiIFFTAdaptor>("maxiIFFTAdaptor")
 	#ifdef SPN
-				.smart_ptr_constructor("shared_ptr<maxiIFFT>", &std::make_shared<maxiIFFT>)
+				.smart_ptr_constructor("shared_ptr<maxiIFFTAdaptor>", &std::make_shared<maxiIFFTAdaptor>)
 	#else
 				.constructor<>()
 	#endif
-	    .function("setup", &maxiIFFT::setup)
-	    .function("process", &maxiIFFT::process)
+	    .function("setup", &maxiIFFTAdaptor::setup)
+	    .function("process", &maxiIFFTAdaptor::process)
 	    ;
 
 		enum_<maxiIFFT::fftModes>("maxiIFFTModes")
@@ -763,7 +779,7 @@ EMSCRIPTEN_BINDINGS(maxiSpectral) {
 	    .value("COMPLEX", maxiIFFT::fftModes::COMPLEX)
 	    ;
 
-			// MAXI IFFT
+			// MAXI MFCC
 		  class_<maxiMFCCAdaptor>("maxiMFCCAdaptor")
 		#ifdef SPN
 					.smart_ptr_constructor("shared_ptr<maxiMFCCAdaptor>", &std::make_shared<maxiMFCCAdaptor>)

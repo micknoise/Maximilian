@@ -50,10 +50,11 @@ EMSCRIPTEN_BINDINGS(my_module)
 	// maxi stuff
 	class_<maxiSettings>("maxiSettings")
 			// .constructor<>()
-			.class_function("setup", &maxiSettings::setup);
-			// .property("sampleRate", &maxiSettings::getSampleRate, &maxiSettings::setSampleRate)
+			.class_function("setup", &maxiSettings::setup)
+			.class_function("getSampleRate", &maxiSettings::getSampleRate)
 			// .property("channels", &maxiSettings::getNumChannels, &maxiSettings::setNumChannels)
 			// .property("bufferSize", &maxiSettings::getBufferSize, &maxiSettings::setBufferSize);
+			;
 
 	// MAXI OSC
 // 	class_<maxiOsc>("maxiOsc")
@@ -99,14 +100,14 @@ EMSCRIPTEN_BINDINGS(my_module)
 			;
 
 	// MAXI DELAYLINE
-	class_<maxiDelayline>("maxiDelayline")
-#ifdef SPN
-			.smart_ptr_constructor("shared_ptr<maxiDelayline>", &std::make_shared<maxiDelayline>)
-#else
-			.constructor<>()
-#endif
-			.function("dl", select_overload<double(double, int, double)>(&maxiDelayline::dl))
-			.function("dl", select_overload<double(double, int, double, int)>(&maxiDelayline::dl));
+// 	class_<maxiDelayline>("maxiDelayline")
+// #ifdef SPN
+// 			.smart_ptr_constructor("shared_ptr<maxiDelayline>", &std::make_shared<maxiDelayline>)
+// #else
+// 			.constructor<>()
+// #endif
+// 			.function("dl", select_overload<double(double, int, double)>(&maxiDelayline::dl))
+// 			.function("dl", select_overload<double(double, int, double, int)>(&maxiDelayline::dl));
 
 	// MAXI FILTER
 // 	class_<maxiFilter>("maxiFilter")
@@ -191,6 +192,9 @@ EMSCRIPTEN_BINDINGS(my_module)
 			.function("playOnZX", select_overload<double(double)>(&maxiSample::playOnZX))
 			.function("playOnZX", select_overload<double(double,double)>(&maxiSample::playOnZX))
 			.function("playOnZX", select_overload<double(double,double,double)>(&maxiSample::playOnZX))
+			.function("playOnZX", select_overload<double(double,double,double,double)>(&maxiSample::playOnZX))
+			.function("playUntil", select_overload<double(double)>(&maxiSample::playUntil))
+			.function("playUntil", select_overload<double(double,double)>(&maxiSample::playUntil))
 			.function("play", select_overload<double()>(&maxiSample::play))
 			.function("play", select_overload<double(double)>(&maxiSample::play))
 			.function("play", select_overload<double(double, double, double)>(&maxiSample::play))

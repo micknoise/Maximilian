@@ -32,7 +32,8 @@ CFLAGS=--bind -O1 \
 				-s DISABLE_EXCEPTION_CATCHING=0 \
 				-s ASSERTIONS=1 \
 				-s SINGLE_FILE=1 \
-				-s --memory-init-file 0 --profiling -std=c++11 -DSPN -DVORBIS \
+				-s --memory-init-file 0 \
+				-std=c++11 -DSPN -DVORBIS \
 				-s MODULARIZE=1 \
 				-s EXPORT_NAME="'maximilian'" \
 				-s TOTAL_MEMORY=67108864
@@ -47,7 +48,9 @@ WASMCFLAGS=--bind -O3 \
 				-s DISABLE_EXCEPTION_CATCHING=0 \
 				-s ALLOW_MEMORY_GROWTH=1 \
 				-s ASSERTIONS=1 \
-				-s --memory-init-file 0 --profiling -std=c++11 -DSPN -DVORBIS \
+				-s --memory-init-file 0 \
+				 -std=c++11 \
+				 -DSPN -DVORBIS \
 				-s TOTAL_MEMORY=67108864
 				# -s EXPORT_NAME="'maximilian'" \
 				-s MODULARIZE=1

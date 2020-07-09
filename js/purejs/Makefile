@@ -14,11 +14,9 @@ OUTPUT=$(BUILD_DIR)/maximilian.transpile.js
 
 CFLAGS= -DCHEERP \
 -cheerp-pretty-code \
--cheerp-no-type-optimizer \
 -cheerp-no-math-imul \
 -cheerp-no-math-fround \
 -cheerp-force-typed-arrays \
--cheerp-preexecute \
 -O3
 
 #-cheerp-no-native-math \ --is this faster??? possibly browser dependent...

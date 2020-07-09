@@ -916,6 +916,7 @@ double maxiSample::playLoop(double start, double end) {
 
 double maxiSample::playUntil(double end) {
 	position++;
+	if (end > 1.0) end = 1.0;
 	if ((long) position<amplitudes.size() * end)
 		output =  amplitudes[(long)position];
 	else {
@@ -959,6 +960,15 @@ double maxiSample::playOnZX(double trig, double speed, double offset) {
   return playOnce(speed);
 }
 
+double maxiSample::playOnZX(double trig, double speed, double offset, double length) {
+	if (zxTrig.onZX(trig)) {
+		trigger();
+		position = offset * amplitudes.size();
+	}
+  return playUntil(offset+length, speed);
+}
+
+
 double maxiSample::loopSetPosOnZX(double trig, double pos) {
 		if (zxTrig.onZX(trig)) {
 			setPosition(pos);
@@ -979,6 +989,19 @@ double maxiSample::playOnce(double speed) {
 	position=position+((speed*chandiv)/(maxiSettings::sampleRate/mySampleRate));
 	return(output);
 }
+
+double maxiSample::playUntil(double end, double speed) {
+	double remainder = position - (long) position;
+	if (end > 1.0) end = 1.0;
+	if ((long) position<amplitudes.size() * end)
+		output = ((1-remainder) * amplitudes[1+ (long) position] + remainder * amplitudes[2+(long) position]);//linear interpolation
+	else
+		output=0;
+
+	position=position+((speed*chandiv)/(maxiSettings::sampleRate/mySampleRate));
+	return output;
+}
+
 
 //As above but looping
 double maxiSample::play(double speed) {
@@ -1400,7 +1423,7 @@ template<> void maxiEnvelopeFollower::setRelease(double releaseMS) {
 }
 
 
-//there are a bunch of constructors here. it's a quick of CHEERP that constructors need to be defined in the cpp unless completely header only
+//there are a bunch of constructors here. it's a quirk of CHEERP that constructors need to be defined in the cpp unless completely header only
 maxiRatioSeq::maxiRatioSeq() {}
 maxiTrigger::maxiTrigger() {}
 maxiMap::maxiMap() {}

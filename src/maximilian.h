@@ -115,9 +115,9 @@ public:
 	// 	maxiSettings::bufferSize = bufferSize_;
 	// }
 	//
-	// static int getSampleRate() {
-	// 	return maxiSettings::sampleRate;
-	// }
+	static int getSampleRate() {
+		return maxiSettings::sampleRate;
+	}
 	//
 	// static int getNumChannels() {
 	// 	return maxiSettings::channels;
@@ -464,6 +464,7 @@ public:
 	double playOnZX(double trigger);
 	double playOnZX(double trig, double speed);
 	double playOnZX(double trig, double speed, double offset);
+	double playOnZX(double trig, double speed, double offset, double length);
 
 	double loopSetPosOnZX(double trigger, double position); // position between 0 and 1.0
 	maxiTrigger zxTrig;
@@ -473,7 +474,8 @@ public:
 
   void setPosition(double newPos); // between 0.0 and 1.0
 
-  double playUntil(double end);
+	double playUntil(double end);
+	double playUntil(double end, double length);
 
   double play(double speed);
 

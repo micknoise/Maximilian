@@ -51,6 +51,8 @@ extern "C" {
 //This used to be important for dealing with multichannel playback
 float chandiv= 1;
 
+maxiSettings::maxiSettings() {}
+
 int maxiSettings::sampleRate = 44100;
 int maxiSettings::channels = 2;
 int maxiSettings::bufferSize = 1024;
@@ -542,12 +544,9 @@ void maxiMix::ambisonic(double input,std::vector<double>&eight,double x,double y
 }
 // --------------------------------------------------------------------------------
 // MAXI_SAMPLE
-//This is the maxiSample load function. It just calls read.
-bool maxiSample::load(string fileName, int channel) {
-	myPath = fileName;
-	readChannel=channel;
-	return read();
-}
+
+
+maxiSample::maxiSample():position(0), recordPosition(0), myChannels(1), mySampleRate(maxiSettings::sampleRate) {};
 
 // This is for OGG loading
 bool maxiSample::loadOgg(string fileName, int channel) {
@@ -603,16 +602,6 @@ bool maxiSample::isReady(){
 	return false;
 }
 
-void maxiSample::setSample(vector<double>& sampleData){
-    amplitudes = sampleData;
-	mySampleRate = 44100;
-    position=amplitudes.size()-1;
-}
-
-void maxiSample::setSample(vector<double>& sampleData, int sampleRate){
-    setSample(sampleData);
-	mySampleRate = sampleRate;
-}
 
 //void maxiSample::setSampleChar(vector<char>& temp){
 //	this->temp = temp.data();
@@ -625,6 +614,15 @@ void maxiSample::setSample(vector<double>& sampleData, int sampleRate){
 void maxiSample::trigger() {
 	position = 0;
 	recordPosition = 0;
+}
+
+#ifndef CHEERP
+
+//This is the maxiSample load function. It just calls read.
+bool maxiSample::load(string fileName, int channel) {
+	myPath = fileName;
+	readChannel=channel;
+	return read();
 }
 
 //This is the main read function.
@@ -710,21 +708,6 @@ bool maxiSample::read()
     return result; // this should probably be something more descriptive
 }
 
-// -----------------
-
-
-//This plays back at the correct speed. Always loops.
-double maxiSample::play() {
-    position++;
-    if ((long) position >= amplitudes.size()) position=0;
-    output = amplitudes[(long)position];
-    return output;
-}
-
-void maxiSample::setPosition(double newPos) {
-	position = maxiMap::clamp<double>(newPos, 0.0, 1.0) * amplitudes.size();
-}
-
 bool maxiSample::save() {
     return save(myPath);
 }
@@ -757,6 +740,23 @@ bool maxiSample::save(string filename)
     myFile.write ((char*) shortAmps.data(), myDataSize);
     return true;
 }
+
+#endif
+// -----------------
+
+
+//This plays back at the correct speed. Always loops.
+double maxiSample::play() {
+    position++;
+    if ((long) position >= amplitudes.size()) position=0;
+    output = amplitudes[(long)position];
+    return output;
+}
+
+void maxiSample::setPosition(double newPos) {
+	position = maxiMap::clamp(newPos, 0.0, 1.0) * amplitudes.size();
+}
+
 
 char *maxiSample::getSummary()
 {
@@ -927,29 +927,42 @@ double maxiSample::playUntil(double end) {
 
 //This plays back at the correct speed. Only plays once. To retrigger, you have to manually reset the position
 double maxiSample::playOnce() {
-	position++;
 	if ((long) position<amplitudes.size())
 		output = amplitudes[(long)position];
 	else {
 		output=0;
 	}
+	position++;
 	return output;
 
 }
 
 double maxiSample::playOnZX(double trig) {
-    if (prevTriggerVal <=0 && trig > 0) {
-        trigger();
-    }
-    prevTriggerVal=trig;
-    return playOnce();
+	if (zxTrig.onZX(trig)) {
+		trigger();
+	}
+  return playOnce();
+}
+
+double maxiSample::playOnZX(double trig, double speed) {
+	if (zxTrig.onZX(trig)) {
+		trigger();
+	}
+  return playOnce(speed);
+}
+
+double maxiSample::playOnZX(double trig, double speed, double offset) {
+	if (zxTrig.onZX(trig)) {
+		trigger();
+		position = offset * amplitudes.size();
+	}
+  return playOnce(speed);
 }
 
 double maxiSample::loopSetPosOnZX(double trig, double pos) {
-    if (prevTriggerVal <=0 && trig > 0) {
-        setPosition(pos);
-    }
-    prevTriggerVal=trig;
+		if (zxTrig.onZX(trig)) {
+			setPosition(pos);
+		}
     return play();
 }
 
@@ -957,12 +970,13 @@ double maxiSample::loopSetPosOnZX(double trig, double pos) {
 
 //Same as above but takes a speed value specified as a ratio, with 1.0 as original speed
 double maxiSample::playOnce(double speed) {
-	position=position+((speed*chandiv)/(maxiSettings::sampleRate/mySampleRate));
 	double remainder = position - (long) position;
 	if ((long) position<amplitudes.size())
 		output = ((1-remainder) * amplitudes[1+ (long) position] + remainder * amplitudes[2+(long) position]);//linear interpolation
 	else
 		output=0;
+
+	position=position+((speed*chandiv)/(maxiSettings::sampleRate/mySampleRate));
 	return(output);
 }
 
@@ -1068,7 +1082,7 @@ void maxiSample::autoTrim(float alpha, float threshold, bool trimStart, bool tri
         position=0;
         recordPosition=0;
         //envelope the start
-        int fadeSize=min((unsigned long)100, amplitudes.size());
+        int fadeSize=min((size_t)100, amplitudes.size());
         for(int i=0; i < fadeSize; i++) {
             double factor = i / (double) fadeSize;
             amplitudes[i] = round(amplitudes[i] * factor);
@@ -1372,9 +1386,7 @@ void maxiEnv::setDecay(double decayMS) {
 
 
 
-
 double convert::mtof(int midinote) {
-
 	return mtofarray[midinote];
 }
 
@@ -1386,3 +1398,14 @@ template<> void maxiEnvelopeFollower::setAttack(double attackMS) {
 template<> void maxiEnvelopeFollower::setRelease(double releaseMS) {
 	release = pow( 0.01, 1.0 / ( releaseMS * maxiSettings::sampleRate * 0.001 ) );
 }
+
+
+//there are a bunch of constructors here. it's a quick of CHEERP that constructors need to be defined in the cpp unless completely header only
+maxiRatioSeq::maxiRatioSeq() {}
+maxiTrigger::maxiTrigger() {}
+maxiMap::maxiMap() {}
+maxiNonlinearity::maxiNonlinearity() {}
+maxiFilter::maxiFilter():x(0.0), y(0.0), z(0.0), c(0.0) {}
+maxiBiquad::maxiBiquad() {}
+maxiZeroCrossingDetector::maxiZeroCrossingDetector() {}
+maxiIndex::maxiIndex() {}

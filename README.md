@@ -1,5 +1,5 @@
-```                                     
-  _____ _____ ___   __ _  _____  __ __   __ ____  ____  
+```
+  _____ _____ ___   __ _  _____  __ __   __ ____  ____
  /     \\_   \\  \/  /  |/     \|  |  | |  \_   \/    \
 |  Y Y  \/ /_ \>    <|  |  Y Y  \  |  |_|  |/ /_ \  Y  \
 |__|_|  (___  /__/\__\__|__|_|  /__|____/__(___  /__|  /
@@ -31,13 +31,13 @@ Maximilian is a cross-platform and multi-target audio synthesis and signal proce
 
 ### Basic Examples
 
-You can choose between using RTAudio and PortAudio drivers in player.h by uncommenting the appropriate line.  To use PortAudio, you will need to compile the portAudio library from http://http://www.portaudio.com/ and link it with your executable.
+You can choose between using RTAudio and PortAudio drivers in player.h by uncommenting the appropriate line.  To use PortAudio, you will need to compile the portAudio library from http://www.portaudio.com/ and link it with your executable.
 
 Examples demonstrating different features can be found in the maximilian_examples folder.  To try them, replace the contents of main.cpp with the contents of a tutorial file and compile.
 
 ### Web Audio
 
-A transpiled javascript version of the library is included in this repository, for both Script Processor Nodes and AudioWorklets. Try this out at (https://mimicproject.com/guides/maximJS). 
+A transpiled javascript version of the library is included in this repository, for both Script Processor Nodes and AudioWorklets. Try this out at (https://mimicproject.com/guides/maximJS).
 
 
 ### Mac OS XCode Project
@@ -77,7 +77,7 @@ then:
 
 Maximilian works well with the OpenFrameworks C++ creative coding toolkit (http://www.openframeworks.cc).
 
-In the ofxMaxim directory you will find examples to run in Windows, OSX and iOS, including FFT analysis and granular synthesis.  
+In the ofxMaxim directory you will find examples to run in Windows, OSX and iOS, including FFT analysis and granular synthesis.
 
 You can install the ofxMaxim addon by copying the ofxMaxim/ofxMaxim folder into your openframeworks addons directory.
 

@@ -144,7 +144,7 @@ public:
 	double sinewave(double frequency);
 	double coswave(double frequency);
 	double phasor(double frequency);
-	double phasor(double frequency, double startphase, double endphase);
+	double phasorBetween(double frequency, double startphase, double endphase); //renamed to avoid overrides
 	double saw(double frequency);
 	double triangle(double frequency);
 	double square(double frequency);
@@ -210,7 +210,7 @@ class CHEERP_EXPORT maxiDelayline {
 public:
 	maxiDelayline();
 	double dl(double input, int size, double feedback);
-	double dl(double input, int size, double feedback, int position);
+	double dlFromPosition(double input, int size, double feedback, int position); //renamed to avoid overrides
 
 
 };
@@ -1034,7 +1034,7 @@ public:
         return lineValue;
 
     }
-    inline void prepare(double start, double end, double durationMs, bool isOneShot=1) {
+    inline void prepare(double start, double end, double durationMs, bool isOneShot) {
 				lineValue = lineStart;
 				lineStart = start;
 				lineEnd = end;

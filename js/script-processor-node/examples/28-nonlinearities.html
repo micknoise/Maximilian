@@ -19,7 +19,7 @@
 	<script src="../build/maximilian.js"></script>
 </head>
 
-<body>
+<body >
 	<div style="display: inline-block;">
 		<h1> Nonlinearities</h1>
 		<p> Asymetric distortion on saw waves </p>
@@ -51,32 +51,39 @@ let playAudio = () => {
 
 <!-- Our javascript code -->
 <script type="text/javascript">
+	async function maxi(){
+		let m = await maximilian();
+			console.log(m);
 
-	let m = maximilian();
 
-/**
- * maxiAudio.init() initialises the Audio Context and should execute in a button click event handler to prevent the console warning
- * "The AudioContext was not allowed to start. It must be resumed (or created) after a user gesture on the page. https://goo.gl/7K7WLu"
- */
-	let playAudio = () => {
+			/**
+			 * maxiAudio.init() initialises the Audio Context and should execute in a button click event handler to prevent the console warning
+			 * "The AudioContext was not allowed to start. It must be resumed (or created) after a user gesture on the page. https://goo.gl/7K7WLu"
+			 */
+			let playAudio = () => {
 
-		let myOsc = new m.maxiOsc();
-		let lfo1 = new m.maxiOsc();
-		let lfo2 = new m.maxiOsc();
-		let maxiAudio = new m.maxiAudio();
-		let dist = new m.maxiNonlinearity();
 
-		maxiAudio.init();
+				let myOsc = new m.maxiOsc();
+				let lfo1 = new m.maxiOsc();
+				let lfo2 = new m.maxiOsc();
+				let maxiAudio = new m.maxiAudio();
+				let dist = new m.maxiNonlinearity();
 
-		maxiAudio.play = function () {
-			let w = myOsc.saw(50);
-			w = dist.asymclip(w*50, lfo1.sinewave(0.5) * 3, lfo2.coswave(0.6) * 3);
-			return w;
-		}
-	}
+				maxiAudio.init();
 
-	const playButton = document.getElementById('playButton');
-	playButton.addEventListener("click", () => playAudio());
+				maxiAudio.play = function () {
+					let w = myOsc.saw(50);
+					w = dist.asymclip(w*50, lfo1.sinewave(0.5) * 3, lfo2.coswave(0.6) * 3);
+					return w;
+				}
+			}
+
+			const playButton = document.getElementById('playButton');
+			playButton.addEventListener("click", () => playAudio());
+
+	 };
+
+	 maxi();
 
 </script>
 </html>

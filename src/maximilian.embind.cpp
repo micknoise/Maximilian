@@ -1,5 +1,7 @@
 /*
- contains all bindings for use with emscripten
+ contains  bindings for use with emscripten
+ there are some functions that are transpiled using CHEERP instead for speed - see the purejs folder
+
  */
 #ifndef Maxi_Emscripten_maxi_embind_h
 #define Maxi_Emscripten_maxi_embind_h

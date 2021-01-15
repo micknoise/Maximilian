@@ -317,7 +317,7 @@ double maxiOsc::impulse(double frequency) {
     return output;
 }
 
-double maxiOsc::phasor(double frequency, double startphase, double endphase) {
+double maxiOsc::phasorBetween(double frequency, double startphase, double endphase) {
 	//This is a phasor that takes a value for the start and end of the ramp.
 	output=phase;
 	if (phase<startphase) {
@@ -431,7 +431,7 @@ double maxiDelayline::dl(double input, int size, double feedback)  {
 
 }
 
-double maxiDelayline::dl(double input, int size, double feedback, int position)  {
+double maxiDelayline::dlFromPosition(double input, int size, double feedback, int position)  {
 	if ( phase >=size ) phase = 0;
 	if ( position >=size ) position = 0;
 	output=memory[position];

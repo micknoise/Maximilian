@@ -7,6 +7,7 @@
 //
 
 #include "maxiConvolve.h"
+
 using namespace std;
 
 void maxiConvolve::setup(std::string impulseFile, int fftsize, int hopsize) {
@@ -17,13 +18,13 @@ void maxiConvolve::setup(std::string impulseFile, int fftsize, int hopsize) {
 
         auto pushFFTFrame = [&impulseReal, &impulseImag](maxiFFT &fft, float &maxReal, float &maxImag) {
             vector<float> realVector;
-            realVector.assign(fft.getReal(), fft.getReal() + fft.bins);
+            realVector.assign(fft.getReal(), fft.getReal() + fft.getNumBins());
             impulseReal.push_back(realVector);
             for(int i=0; i < realVector.size(); i++) {
                 if (realVector[i] > maxReal) maxReal = realVector[i];
             }
             vector<float> imagVector;
-            imagVector.assign(fft.getImag(), fft.getImag() + fft.bins);
+            imagVector.assign(fft.getImag(), fft.getImag() + fft.getNumBins());
             impulseImag.push_back(imagVector);
             for(int i=0; i < imagVector.size(); i++) {
                 if (imagVector[i] > maxImag) maxImag = imagVector[i];
@@ -32,12 +33,12 @@ void maxiConvolve::setup(std::string impulseFile, int fftsize, int hopsize) {
 
         maxiFFT fft;
         fft.setup(fftsize,fftsize,hopsize);
-        for(int i=0; i < impulse.length; i++) {
+        for(int i=0; i < impulse.getLength(); i++) {
             if (fft.process(impulse.play(), maxiFFT::NO_POLAR_CONVERSION)) {
                 pushFFTFrame(fft, maxReal, maxImag);
             };
         }
-        for(int i=0; i < fft.bins - (impulse.length % fft.bins); i++) {
+        for(int i=0; i < fft.getNumBins() - (impulse.getLength() % fft.getNumBins()); i++) {
             if (fft.process(0, maxiFFT::NO_POLAR_CONVERSION)) {
                 pushFFTFrame(fft, maxReal, maxImag);
             };
@@ -62,26 +63,23 @@ void maxiConvolve::setup(std::string impulseFile, int fftsize, int hopsize) {
 
     for(int i=0; i < impulseReal.size(); i++) {
         vector<float> blank;
-        blank.resize(inFFT.bins, 0);
+        blank.resize(inFFT.getNumBins(), 0);
         FDLReal.push_front(blank);
         FDLImag.push_front(blank);
     }
-
     sumReal.resize(inFFT.bins, 0);
     sumImag.resize(inFFT.bins, 0);
-
 }
 
 float maxiConvolve::play(float w) {
     if (inFFT.process(w, maxiFFT::NO_POLAR_CONVERSION)) {
         vector<float> realFrame;
         realFrame.assign(inFFT.getReal(), inFFT.getReal() + inFFT.bins);
-
         FDLReal.push_front(realFrame);
         FDLReal.pop_back();
 
         vector<float> imagFrame;
-        imagFrame.assign(inFFT.getImag(), inFFT.getImag() + inFFT.bins);
+        imagFrame.assign(inFFT.getImag(), inFFT.getImag() + inFFT.getNumBins());
         FDLImag.push_front(imagFrame);
         FDLImag.pop_back();
 

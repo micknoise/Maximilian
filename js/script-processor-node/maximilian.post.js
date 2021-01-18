@@ -26,7 +26,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 "use strict";
 
-console.log("running%c Maximilian v2.1.0 (asm.js)", "font-weight: bold; background: #222; color: #fa7a55");
+console.log("running%c Maximilian v2.2.0 (asm.js)", "font-weight: bold; background: #222; color: #fa7a55");
 
 
 // ------------------------------------------------

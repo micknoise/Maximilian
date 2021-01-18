@@ -35,16 +35,29 @@
 
 	let maxi = maximilian();
 
+	function phtest(Larg0,Larg1){
+		var tmp0=-0.,tmp1=-0.;
+		tmp0=+Larg0.d1;
+		Larg0.d4=tmp0;
+		if(tmp0>=1){
+			tmp1=tmp0+-1;
+			Larg0.d1=tmp1;
+		}else{
+			tmp1=tmp0;
+		}
+		Larg0.d1=tmp1+1/((+(44100|0))/Larg1);
+		return tmp0;
+	}
+
 
 
 	let playAudio = () => {
 
 		// em++ -s WASM=0
 		var maxiEngine = new maxi.maxiAudio();
-		// var osc1= new maxi.maxiOsc();
-		// var osc2= new maxi.maxiOsc();
 		var samp = new maxi.maxiSample();
-		// var ts = new maxi.maxiStretch();
+		var imp = new maxi.maxiOsc();
+		var ph=new maxi.maxiOsc();
 
 		console.log("Listing input devices: ");
 		maxiEngine.listInputDevices();
@@ -55,14 +68,11 @@
 		// maxiEngine.loadOgg("audio/beat2.wav", samp);
 		let count=0;
 
+
 		maxiEngine.play = function(input) {
-			// return osc1.sinewave(1000) * osc2.sinewave(300) * input[0];
-			// console.log(ts.getPosition());
-			// if (count % 1000 == 0) {
-			// }
-			// count++;
-			// return ts.playAtPosition(0.6, osc1.phasor(0.3), 0.05, 2);
-			return samp.play();
+			let trig = imp.impulse(3);
+			let len = (ph.saw(0.1) + 1) * 0.1 ;
+			return samp.playOnZX(trig, 2, 0, len + 0.01);
 
 		}
 	}

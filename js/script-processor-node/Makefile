@@ -29,14 +29,15 @@ OUTPUT_AW=$(BUILD_DIR)/maximilian.wasmmodule.js
 # ScriptProcessorNode – No WASM generation, invokes SPN macro in embindings for smart pointer ctor, outputs everything in one JS file
 CFLAGS=--bind -O1 \
 				-s WASM=0 \
+				-s WASM_ASYNC_COMPILATION=1 \
 				-s DISABLE_EXCEPTION_CATCHING=0 \
 				-s ASSERTIONS=1 \
 				-s SINGLE_FILE=1 \
-				-s --memory-init-file 0 --profiling -std=c++11 -DSPN -DVORBIS \
-				-s MODULARIZE=1 \
+				-s --memory-init-file 0 \
+				-std=c++11 -DSPN -DVORBIS \
 				-s EXPORT_NAME="'maximilian'" \
-				-s TOTAL_MEMORY=67108864
-
+				-s TOTAL_MEMORY=67108864 \
+				-s MODULARIZE=1 \
 
 
 
@@ -47,9 +48,11 @@ WASMCFLAGS=--bind -O3 \
 				-s DISABLE_EXCEPTION_CATCHING=0 \
 				-s ALLOW_MEMORY_GROWTH=1 \
 				-s ASSERTIONS=1 \
-				-s --memory-init-file 0 --profiling -std=c++11 -DSPN -DVORBIS \
-				-s TOTAL_MEMORY=67108864
-				# -s EXPORT_NAME="'maximilian'" \
+				-s --memory-init-file 0 \
+				-std=c++11 \
+				-DSPN -DVORBIS \
+				-s TOTAL_MEMORY=67108864 
+#				-s EXPORT_NAME="'maximilian'" \
 				-s MODULARIZE=1
 
 
@@ -75,7 +78,7 @@ asm.js: directory
 
 wasm: directory
 	@echo "${RED}\r\nBuild Wasm – maximilian.wasm + maximilian.js \r\n ${RESET}"
-	$(EMSCR) $(WASMCFLAGS) --post-js $(POST_JS) -o $(OUTPUT) $(SRC) $(SRC_LIBS) $(C_SRC_LIBS)
+	$(EMSCR) $(WASMCFLAGS) --post-js $(POST_JS) --post-js $(MAXITRANSPILE) -o $(OUTPUT) $(SRC) $(SRC_LIBS) $(C_SRC_LIBS)
 
 clean:
 	@echo "Cleaning up"

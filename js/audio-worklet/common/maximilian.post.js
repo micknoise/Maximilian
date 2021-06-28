@@ -3,7 +3,7 @@
 "use strict";
 
 console.log(
-	"running %cMaximilian v2.3.0 (Wasm)",
+	"running %cMaximilian v2.3.1 (Wasm)",
 	"font-weight: bold; background: #222; color: #bada55"
 );
 

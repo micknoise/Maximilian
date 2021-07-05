@@ -154,7 +154,7 @@ public:
 	double sinebuf(double frequency);
 	double sinebuf4(double frequency);
   double sawn(double frequency);
-  double rect(double frequency, double duty=0.5);
+  double rect(double frequency, double duty);
 	void phaseReset(double phaseIn);
 
 };
@@ -392,6 +392,7 @@ public:
 	vector<double> amplitudes;
 
   maxiSample();
+  ~maxiSample();
 
   maxiSample& operator=(const maxiSample &source) {
 			if (this == &source)
@@ -468,7 +469,6 @@ public:
 
 	double loopSetPosOnZX(double trigger, double position); // position between 0 and 1.0
 	maxiTrigger zxTrig;
-  // double prevTriggerVal=1;
 
   double playOnce(double speed);
 
@@ -1404,6 +1404,10 @@ public:
 	double playValues(double phase, DOUBLEARRAY _times, DOUBLEARRAY _values) {
 		NORMALISE_ARRAY_TYPE(_times, times)
 		NORMALISE_ARRAY_TYPE(_values, values)
+        if (lengthOfValues != values.size()) {
+            lengthOfValues = values.size();
+            counter = lengthOfValues-1;
+        }
 		if (playTrig(phase, _times)) {
 			counter++;
 			if (counter==values.size()) {
@@ -1416,6 +1420,7 @@ public:
 private:
 	double prevPhase=0;
 	size_t counter=0;
+    size_t lengthOfValues=0;
 };
 
 

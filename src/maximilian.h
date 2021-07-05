@@ -392,6 +392,7 @@ public:
 	vector<double> amplitudes;
 
   maxiSample();
+  ~maxiSample();
 
   maxiSample& operator=(const maxiSample &source) {
 			if (this == &source)
@@ -468,7 +469,6 @@ public:
 
 	double loopSetPosOnZX(double trigger, double position); // position between 0 and 1.0
 	maxiTrigger zxTrig;
-  // double prevTriggerVal=1;
 
   double playOnce(double speed);
 

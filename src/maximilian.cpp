@@ -548,6 +548,10 @@ void maxiMix::ambisonic(double input,std::vector<double>&eight,double x,double y
 
 maxiSample::maxiSample():position(0), recordPosition(0), myChannels(1), mySampleRate(maxiSettings::sampleRate) {};
 
+maxiSample::~maxiSample() {
+	amplitudes.clear();
+};
+
 // This is for OGG loading
 bool maxiSample::loadOgg(string fileName, int channel) {
 #ifdef VORBIS

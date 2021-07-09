@@ -2,7 +2,7 @@ cmake_minimum_required (VERSION 3.15)
 
 project (maximilian)
 
-set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD 11)
 
 include_directories(../../src)
 include_directories(../../src/libs)
@@ -17,9 +17,10 @@ if (LINUX)
   add_definitions(-D__LINUX_ALSA__)
 endif()
 
-if (OSX)
+if (APPLE)
   MESSAGE(STATUS "OSX build")
-  target_link_libraries(maximilian PUBLIC -lasound)
+  find_library(CA CoreAudio)
+  find_library(CF CoreFoundation)
+  target_link_libraries(maximilian PUBLIC ${CA} ${CF})
   add_definitions(-D__MACOSX_CORE__)
-  #incomplete - need to add frameworks -framework CoreAudio -framework CoreFoundation
 endif()

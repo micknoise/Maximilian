@@ -14,7 +14,7 @@ maxiAsyncKuramotoOscillator kuraASyncSet(2), kuraASyncSet2(2);
 void setup() {//some inits
     cout << "Setup";
 //    biquad.set(maxiBiquad::PEAK, 800, 0.1,-10);
-    samp.load("/Volumes/LocalDataHD/src/Maximilian/cpp/commandline/beat2.wav");
+    samp.load("../beat2.wav");
 //    samp.loadOgg("/Volumes/LocalDataHD/src/Maximilian/cpp/commandline/crebit2.ogg");
     samp.trigger();
 //    samp.save("/tmp/test.wav");

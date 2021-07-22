@@ -1,5 +1,8 @@
 #include <cheerp/clientlib.h>
 #include "maximilian.h"
+#include "libs/maxiPolyBLEP.h"
+#include "libs/PolyBLEP/PolyBLEP.h"
+
 // #include <vector>
 // #include "tester.h"
 // #include "math.h"

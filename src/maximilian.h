@@ -1620,15 +1620,18 @@ class CHEERP_EXPORT maxiRatioSeq
 {
 public:
     maxiRatioSeq();
-    double playTrig(double phase, DOUBLEARRAY_REF _times)
+    double playTrig(double phase, DOUBLEARRAY_REF times)
     {
-        NORMALISE_ARRAY_TYPE(_times, times)
+        // NORMALISE_ARRAY_TYPE(_times, times)
         double trig = 0;
-        double sum = std::accumulate(times.begin(), times.end(), 0);
+        // double sum = std::accumulate(times.begin(), times.end(), 0);
+        double sum=0;
+        size_t seqlen = F64_ARRAY_SIZE(times);
+        for(size_t i=0; i < seqlen; i++) sum += F64_ARRAY_AT(times,i);
         double accumulatedTime = 0;
-        for (size_t i = 0; i < times.size(); i++)
+        for (size_t i = 0; i < seqlen; i++)
         {
-            accumulatedTime += times[i];
+            accumulatedTime += F64_ARRAY_AT(times,i);
             double normalisedTime = accumulatedTime / sum;
             if (normalisedTime == 1.0)
                 normalisedTime = 0.0;
@@ -1647,24 +1650,25 @@ public:
         return trig;
     }
 
-    double playValues(double phase, DOUBLEARRAY_REF _times, DOUBLEARRAY_REF _values)
+    double playValues(double phase, DOUBLEARRAY_REF times, DOUBLEARRAY_REF values)
     {
-        NORMALISE_ARRAY_TYPE(_times, times)
-        NORMALISE_ARRAY_TYPE(_values, values)
-        if (lengthOfValues != values.size())
+        // NORMALISE_ARRAY_TYPE(_times, times)
+        // NORMALISE_ARRAY_TYPE(_values, values)
+        size_t vallen = F64_ARRAY_SIZE(values);
+        if (lengthOfValues != vallen)
         {
-            lengthOfValues = values.size();
+            lengthOfValues = vallen;
             counter = lengthOfValues - 1;
         }
-        if (playTrig(phase, _times))
+        if (playTrig(phase, times))
         {
             counter++;
-            if (counter == values.size())
+            if (counter == vallen)
             {
                 counter = 0;
             }
         }
-        return values[counter];
+        return F64_ARRAY_AT(values,counter);
     }
 
 private:

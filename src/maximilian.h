@@ -576,7 +576,7 @@ public:
 
 
     void normalise(double maxLevel);                                                               //0 < maxLevel < 1.0
-    // void autoTrim(float alpha = 0.3, float threshold = 6000, bool trimStart = true, bool trimEnd = true); //alpha of lag filter (lower == slower reaction), threshold to mark start and end, < 32767
+    void autoTrim(float alpha, float threshold, bool trimStart, bool trimEnd); //alpha of lag filter (lower == slower reaction), threshold to mark start and end, < 32767
 };
 
 class CHEERP_EXPORT maxiMap

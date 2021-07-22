@@ -1055,52 +1055,58 @@ void maxiSample::normalise(double maxLevel) {
 	}
 }
 
-// void maxiSample::autoTrim(float alpha, float threshold, bool trimStart, bool trimEnd) {
+void maxiSample::autoTrim(float alpha, float threshold, bool trimStart, bool trimEnd) {
 
-//     int startMarker=0;
-//     if(trimStart) {
-//         maxiLagExp<double> startLag(alpha, 0);
-//         while(startMarker < amplitudes.size()) {
-//             startLag.addSample(abs(amplitudes[startMarker]));
-//             if (startLag.value() > threshold) {
-//                 break;
-//             }
-//             startMarker++;
-//         }
-//     }
+    int startMarker=0;
+    if(trimStart) {
+        maxiLagExp<double> startLag(alpha, 0);
+        while(startMarker < F64_ARRAY_SIZE(amplitudes)) {
+            startLag.addSample(abs(F64_ARRAY_AT(amplitudes,startMarker)));
+            if (startLag.value() > threshold) {
+                break;
+            }
+            startMarker++;
+        }
+    }
 
-//     int endMarker = amplitudes.size()-1;
-//     if(trimEnd) {
-//         maxiLagExp<float> endLag(alpha, 0);
-//         while(endMarker > 0) {
-//             endLag.addSample(abs(amplitudes[endMarker]));
-//             if (endLag.value() > threshold) {
-//                 break;
-//             }
-//             endMarker--;
-//         }
-//     }
+    int endMarker = F64_ARRAY_SIZE(amplitudes)-1;
+    if(trimEnd) {
+        maxiLagExp<float> endLag(alpha, 0);
+        while(endMarker > 0) {
+            endLag.addSample(abs(F64_ARRAY_AT(amplitudes,endMarker)));
+            if (endLag.value() > threshold) {
+                break;
+            }
+            endMarker--;
+        }
+    }
 
-//     cout << "Autotrim: start: " << startMarker << ", end: " << endMarker << endl;
+    cout << "Autotrim: start: " << startMarker << ", end: " << endMarker << endl;
 
-//     int newLength = endMarker - startMarker;
-//     if (newLength > 0) {
-//         vector<double> newAmps(newLength);
-//         for(int i=0; i < newLength; i++) {
-//             newAmps[i] = amplitudes[i+startMarker];
-//         }
-//         amplitudes = newAmps;
-//         position=0;
-//         recordPosition=0;
-//         //envelope the start
-//         int fadeSize=min((size_t)100, amplitudes.size());
-//         for(int i=0; i < fadeSize; i++) {
-//             double factor = i / (double) fadeSize;
-//             amplitudes[i] = round(amplitudes[i] * factor);
-//             amplitudes[amplitudes.size() - 1 - i] = round(amplitudes[amplitudes.size() - 1 - i] * factor);
-//         }
-//     }
-// }
+    int newLength = endMarker - startMarker;
+    if (newLength > 0) {
+				DECLARE_F64_ARRAY(newAmps)
+				F64_ARRAY_SETFROM(amplitudes, newAmps);
+        // vector<double> newAmps(newLength);
+        for(int i=0; i < newLength; i++) {
+            newAmps[i] = F64_ARRAY_AT(amplitudes,i+startMarker);
+        }
+
+        // amplitudes = newAmps;
+				F64_ARRAY_SETFROM(newAmps, amplitudes);
+        position=0;
+        recordPosition=0;
+        //envelope the start
+				size_t fadeSize = 100;
+				if (F64_ARRAY_SIZE(amplitudes) > fadeSize)
+					fadeSize = F64_ARRAY_SIZE(amplitudes);
+        for(int i=0; i < fadeSize; i++) {
+            double factor = i / (double) fadeSize;
+            F64_ARRAY_AT(amplitudes,i) = round(F64_ARRAY_AT(amplitudes,i) * factor);
+            F64_ARRAY_AT(amplitudes,F64_ARRAY_SIZE(amplitudes) - 1 - i) = round(F64_ARRAY_AT(amplitudes,F64_ARRAY_SIZE(amplitudes) - 1 - i) * factor);
+        }
+    }
+}
 
 
 

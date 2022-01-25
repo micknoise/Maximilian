@@ -54,6 +54,9 @@ This is in the maximilianTestWindowsVS2010 folder. You will need to install the 
 
 > g++ -Wall -D__MACOSX_CORE__ -o maximilian main.cpp RtAudio.cpp player.cpp maximilian.cpp -framework CoreAudio -framework CoreFoundation -lpthread
 
+For M1 Mac OS
+> g++ -Wall -D__MACOSX_CORE__ -o maximilian main.cpp RtAudio.cpp player.cpp maximilian.cpp -framework CoreAudio -framework CoreServices -framework AudioToolbox -framework AudioUnit -framework Accelerate -lpthread
+
 > ./maximilian
 
 

@@ -11,10 +11,4 @@ Module.maxiFilter = maxiFilter;
 Module.maxiDelayline = maxiDelayline;
 Module.maxiSample = maxiSample;
 Module.maxiPolyBLEP = maxiPolyBLEP;
-
-// Module.cheerpTypes = cheerpTypes;
-// Module.maxiFilter = maxiFilter;
-// Module.maxiZeroCrossingDetector = maxiZeroCrossingDetector;
-
-// Module.cheerpTypes2 = cheerpTypes2;
-// Module.vectorTest = vectorTest;
+Module.maxiZXToPulse = maxiZXToPulse;

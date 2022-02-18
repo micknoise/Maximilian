@@ -1426,3 +1426,4 @@ maxiFilter::maxiFilter():x(0.0), y(0.0), z(0.0), c(0.0) {}
 maxiBiquad::maxiBiquad() {}
 maxiZeroCrossingDetector::maxiZeroCrossingDetector() {}
 maxiIndex::maxiIndex() {}
+maxiZXToPulse::maxiZXToPulse() {}

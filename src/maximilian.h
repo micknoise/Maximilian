@@ -203,6 +203,7 @@ public:
     // ------------------------------------------------
 };
 
+
 class CHEERP_EXPORT maxiDelayline
 {
     double frequency;
@@ -1675,6 +1676,29 @@ private:
     double prevPhase = 0;
     size_t counter = 0;
     size_t lengthOfValues = 0;
+};
+
+class CHEERP_EXPORT maxiZXToPulse
+{
+public:
+    maxiZXToPulse();
+    double play(double input, double holdTimeInSamples) {
+        double output =0;
+        
+        if (trig.onZX(input)) {
+            holdCounter = holdTimeInSamples;
+        }
+
+        if (holdCounter > 0) {
+            output = 1;
+            holdCounter--;
+        }
+
+        return output;
+    }
+private:
+    maxiTrigger trig;
+    double holdCounter = 0;
 };
 
 #endif

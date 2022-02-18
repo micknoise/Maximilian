@@ -9,6 +9,8 @@ Module.maxiRatioSeq = maxiRatioSeq;
 Module.maxiIndex = maxiIndex;
 Module.maxiFilter = maxiFilter;
 Module.maxiDelayline = maxiDelayline;
+Module.maxiSample = maxiSample;
+Module.maxiPolyBLEP = maxiPolyBLEP;
 
 // Module.cheerpTypes = cheerpTypes;
 // Module.maxiFilter = maxiFilter;

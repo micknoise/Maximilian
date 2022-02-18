@@ -1,5 +1,8 @@
 #include <cheerp/clientlib.h>
 #include "maximilian.h"
+#include "libs/maxiPolyBLEP.h"
+#include "libs/PolyBLEP/PolyBLEP.h"
+
 // #include <vector>
 // #include "tester.h"
 // #include "math.h"
@@ -51,5 +54,5 @@
 // webMain is the entry point for web applications written in Cheerp
 void webMain()
 {
-        client::console.log("Maximilian 2 - Javascript Transpile");
+        client::console.log("Maximilian 2 - Javascript Transpile 0.2");
 }

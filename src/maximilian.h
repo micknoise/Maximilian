@@ -437,12 +437,14 @@ private:
 #define F64_ARRAY_SETFROM(to,from) to = new client::Float64Array(from);
 #define F64_ARRAY_CLEAR(x) x->fill(0);
 #define F64_ARRAY_AT(x,i) (*x)[i]
+#define LOG(x) client::console.log(x)
 #else
 #define DECLARE_F64_ARRAY(x) std::vector<double> x;
 #define F64_ARRAY_SIZE(x) x.size()
 #define F64_ARRAY_SETFROM(to,from) to = from;
 #define F64_ARRAY_CLEAR(x) x.clear();
 #define F64_ARRAY_AT(x,i) x[i]
+#define LOG(x) cout << x << endl
 
 #endif
 
@@ -1617,18 +1619,125 @@ private:
     double value = 0;
 };
 
+//read from an array of signals - like supercollider Select.ar
+class CHEERP_EXPORT maxiSelect {
+public:
+    maxiSelect();
+
+    double play(double index, DOUBLEARRAY_REF values, bool normalised) {
+        auto arrayLen = F64_ARRAY_SIZE(values); 
+
+        if (normalised) {
+            index *= (arrayLen - 1e-9); 
+        }else{
+            //assume index is direct mapping to array element
+        }
+        if (index < 0) {
+            index = 0;
+        }else if (index >= arrayLen) {
+            index = arrayLen - 1;
+        }
+        double value = F64_ARRAY_AT(values, static_cast<size_t>(index));
+        return value;
+    }
+private:
+
+};
+
+//read from an array of signals, linear interpolation between neighbours - like supercollider SelectX.ar
+class CHEERP_EXPORT maxiSelectX {
+public:
+    maxiSelectX();
+    double play(double index, DOUBLEARRAY_REF values, bool normalised) {
+        auto arrayLen = F64_ARRAY_SIZE(values); 
+
+        if (normalised) {
+            index *= (arrayLen - 1e-9); 
+        }else{
+            //assume index is direct mapping to array element
+        }
+        if (index < 0) {
+            index = 0;
+        }else if (index >= arrayLen) {
+            index = arrayLen - 1;
+        }
+        //get indices and interpolation factor
+        size_t a1 = floor(index);
+        double mix = index - a1;
+        size_t a2 = a1 + 1;
+        if (a2  == arrayLen) a2=0;
+        //interpolate
+        double value = (F64_ARRAY_AT(values, a1) * (1.0 -mix)) + 
+                        (F64_ARRAY_AT(values, a2) * mix);
+        return value;
+    }
+private:
+
+};
+
+//pull sequential values from an array
+class CHEERP_EXPORT maxiStep
+{
+public:
+    maxiStep();
+    double pull(const double trigSig, DOUBLEARRAY_REF values, double step)
+    {
+        if (trig.onZX(trigSig))
+        {
+            if (first) {
+                first=false;
+                index = 0;
+            }else{
+                auto arrayLen = F64_ARRAY_SIZE(values); 
+                //should this be step % arraylen?  how about -ve vals?
+                if (step > arrayLen) {
+                    step = arrayLen;
+                }
+                // LOG(index);
+                // LOG(arrayLen);
+                index = index + step;
+                // LOG(index);
+                if (index < 0) {
+                    index = arrayLen + index;
+                // LOG(index);
+                }else if (index >= arrayLen) {
+                    index = index - arrayLen;
+                }
+            }
+        }
+        double value = F64_ARRAY_AT(values, static_cast<size_t>(index));
+        return value;
+    }
+
+    double getIndex() {
+        return index;
+    }
+
+private:
+    maxiTrigger trig;
+    bool first=true;
+    double index=0;
+};
+
 class CHEERP_EXPORT maxiRatioSeq
 {
 public:
     maxiRatioSeq();
     double playTrig(double phase, DOUBLEARRAY_REF times)
     {
-        // NORMALISE_ARRAY_TYPE(_times, times)
+        if (first) {
+            first=false;
+            prevPhase = phase - 1.0 / maxiSettings::sampleRate;
+        }
         double trig = 0;
-        // double sum = std::accumulate(times.begin(), times.end(), 0);
         double sum=0;
         size_t seqlen = F64_ARRAY_SIZE(times);
         for(size_t i=0; i < seqlen; i++) sum += F64_ARRAY_AT(times,i);
+        if (prevPhase > phase)
+        {
+            //wrapping point
+            prevPhase = -1.0 / maxiSettings::sampleRate;
+        }
         double accumulatedTime = 0;
         for (size_t i = 0; i < seqlen; i++)
         {
@@ -1636,11 +1745,6 @@ public:
             double normalisedTime = accumulatedTime / sum;
             if (normalisedTime == 1.0)
                 normalisedTime = 0.0;
-            if (prevPhase > phase)
-            {
-                //wrapping point
-                prevPhase = -1.0 / maxiSettings::sampleRate;
-            }
             if ((prevPhase <= normalisedTime && phase > normalisedTime))
             {
                 trig = 1;
@@ -1676,6 +1780,7 @@ private:
     double prevPhase = 0;
     size_t counter = 0;
     size_t lengthOfValues = 0;
+    bool first=true;
 };
 
 class CHEERP_EXPORT maxiZXToPulse

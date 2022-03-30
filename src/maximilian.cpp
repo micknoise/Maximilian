@@ -1427,3 +1427,6 @@ maxiBiquad::maxiBiquad() {}
 maxiZeroCrossingDetector::maxiZeroCrossingDetector() {}
 maxiIndex::maxiIndex() {}
 maxiZXToPulse::maxiZXToPulse() {}
+maxiStep::maxiStep() {}
+maxiSelect::maxiSelect() {}
+maxiSelectX::maxiSelectX() {}

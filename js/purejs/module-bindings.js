@@ -12,3 +12,6 @@ Module.maxiDelayline = maxiDelayline;
 Module.maxiSample = maxiSample;
 Module.maxiPolyBLEP = maxiPolyBLEP;
 Module.maxiZXToPulse = maxiZXToPulse;
+Module.maxiStep = maxiStep;
+Module.maxiSelect = maxiSelect;
+Module.maxiSelectX = maxiSelectX;

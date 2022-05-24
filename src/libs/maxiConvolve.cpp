@@ -67,14 +67,14 @@ void maxiConvolve::setup(std::string impulseFile, int fftsize, int hopsize) {
         FDLReal.push_front(blank);
         FDLImag.push_front(blank);
     }
-    sumReal.resize(inFFT.bins, 0);
-    sumImag.resize(inFFT.bins, 0);
+    sumReal.resize(inFFT.getNumBins(), 0);
+    sumImag.resize(inFFT.getNumBins(), 0);
 }
 
 float maxiConvolve::play(float w) {
     if (inFFT.process(w, maxiFFT::NO_POLAR_CONVERSION)) {
         vector<float> realFrame;
-        realFrame.assign(inFFT.getReal(), inFFT.getReal() + inFFT.bins);
+        realFrame.assign(inFFT.getReal(), inFFT.getReal() + inFFT.getNumBins());
         FDLReal.push_front(realFrame);
         FDLReal.pop_back();
 

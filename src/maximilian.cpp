@@ -417,7 +417,7 @@ void maxiEnvelope::trigger(int index, double amp) {
 
 //Delay with feedback
 maxiDelayline::maxiDelayline() {
-	memset( memory, 0, 88200*sizeof (double) );
+	memset( memory, 0, 88200 * 8 *sizeof (double) );
 }
 
 
@@ -751,6 +751,72 @@ double maxiSample::play() {
 void maxiSample::setPosition(double newPos) {
 	position = maxiMap::clamp(newPos, 0.0, 1.0) * F64_ARRAY_SIZE(amplitudes);
 }
+
+double maxiSample::playWithPhasor(double pha) {
+	size_t amplen = F64_ARRAY_SIZE(amplitudes);
+	//clamping
+	if (pha > 1) pha=1;
+	if (pha < 0) pha=0;
+	double pos = pha * amplen * 0.99999999999999;
+
+	if (phasorFirst) {
+		phasorFirst=0;
+		phasorPrev = pos;
+	}
+
+	size_t pos1 = static_cast<size_t>(round(phasorPrev));
+	size_t pos2 = static_cast<size_t>(round(pos));
+	if (pos1==pos2) {
+		if (pos >= phasorPrev) {
+			pos2++;
+		}else{
+			pos1--;
+		}
+	}
+
+	//constraints / wrapping
+	if (pos2 >= amplen) {
+		pos2=0;
+	}
+	if (pos1 >= amplen) {
+		pos1=0;
+	}
+	if (pos1 < 0) {
+		pos1 = amplen-1;
+	}
+	if (pos2 < 0) {
+		pos2 = amplen-1;
+	}
+
+	//get interpolation coeffs
+	double q1,q2;
+	if (pos2 > pos1) {
+		double dist = pos2-pos1;
+		if (dist == 0)
+			q1 = 0;
+		else
+			q1 = (pos-pos1) / dist;
+	}else {
+		double dist = (amplen - pos1) + pos2;
+		if (dist==0) 
+			q1 = 0;
+		else{
+			if (pos > pos1) {
+				q1 = (pos - pos1) / dist;
+			}else{
+				q1 = ((amplen - pos1) + pos) / dist;
+			}
+		}
+	}
+	q2 = 1 - q1;
+
+	output = (q1 * F64_ARRAY_AT(amplitudes,pos1) +
+							q2 * F64_ARRAY_AT(amplitudes,pos2));
+	phasorPrev = pos;
+
+	return output;
+}
+
 
 
 
@@ -1385,20 +1451,31 @@ double maxiEnv::adsr(double input, int trigger) {
 }
 
 
-void maxiEnv::setAttack(double attackMS) {
-	attack = 1-pow( 0.01, 1.0 / ( attackMS * maxiSettings::sampleRate * 0.001 ) );
-}
-
 void maxiEnv::setRelease(double releaseMS) {
 	release = pow( 0.01, 1.0 / ( releaseMS * maxiSettings::sampleRate * 0.001 ) );
 }
 
-void maxiEnv::setSustain(double sustainL) {
-	sustain = sustainL;
-}
 
 void maxiEnv::setDecay(double decayMS) {
 	decay = pow( 0.01, 1.0 / ( decayMS * maxiSettings::sampleRate * 0.001 ) );
+}
+
+//old method - depreacated
+void maxiEnv::setAttack(double attackMS) {
+	attack = 1-pow( 0.01, 1.0 / ( attackMS * maxiSettings::sampleRate * 0.001 ) );
+}
+
+//new method - in MS
+
+void maxiEnv::setAttackMS(double attackMS) {
+	attack = 1.0 / (attackMS /1000.0 *  maxiSettings::sampleRate);
+}
+
+////
+
+
+void maxiEnv::setSustain(double sustainL) {
+	sustain = sustainL;
 }
 
 

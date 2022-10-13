@@ -211,7 +211,7 @@ class CHEERP_EXPORT maxiDelayline
     double startphase;
     double endphase;
     double output;
-    double memory[88200 * 2];
+    double memory[88200 * 8];
 
 public:
     maxiDelayline();
@@ -552,6 +552,10 @@ public:
 
     double play();
 
+    double playWithPhasor(double pha);
+    bool phasorFirst=1;
+    double phasorPrev=0;
+
     double playLoop(double start, double end); // start and end are between 0.0 and 1.0
 
     double playOnce();
@@ -676,10 +680,16 @@ public:
     double release;
     double amplitude;
 
-    void setAttack(double attackMS);
     void setRelease(double releaseMS);
     void setDecay(double decayMS);
+
+    //old method - not actually in MS
+    void setAttack(double attackMS);
+    //new methods: these are in MS
+    void setAttackMS(double attackMS);
+
     void setSustain(double sustainL);
+
     int trigger;
 
     long holdtime = 1;

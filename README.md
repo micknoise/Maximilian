@@ -39,6 +39,8 @@ Examples demonstrating different features can be found in the maximilian_example
 
 A transpiled javascript version of the library is included in this repository, for both Script Processor Nodes and AudioWorklets. Try this out at (https://mimicproject.com/guides/maximJS).
 
+To run this on your on site, locally, or on GitHub Pages, check out [this repo](https://github.com/Louismac/maximilian-js-local).
+
 
 ### Mac OS XCode Project
 

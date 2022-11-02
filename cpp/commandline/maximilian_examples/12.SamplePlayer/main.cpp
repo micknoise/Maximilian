@@ -4,7 +4,8 @@ maxiSample beats; //We give our sample a name. It's called beats this time. We c
 
 void setup() {//some inits
     
-    beats.load("/Users/michaelgrierson/Documents/workspace/Maximilian/beat2.wav");//load in your samples. Provide the full path to a wav file.
+    //relative path to maximilian_examples/12.SamplePlayer/build - please replace if running from a different location
+    beats.load("../../../beat2.wav");//load in your samples. Provide the full path to a wav file.
     printf("Summary:\n%s", beats.getSummary());//get info on samples if you like.
     
 }

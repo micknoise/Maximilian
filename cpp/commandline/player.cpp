@@ -12,105 +12,57 @@
 #include <iostream>
 
 
-#ifdef MAXIMILIAN_PORTAUDIO
-#include "portaudio.h"
-//#include "pa_mac_core.h"
-#elif defined(MAXIMILIAN_RT_AUDIO)
-	#if defined( __WIN32__ ) || defined( _WIN32 )
-		#include <dsound.h>
-	#endif
-#include "RtAudio.h"
+#if defined( __WIN32__ ) || defined( _WIN32 )
+	#include <dsound.h>
 #endif
+#include "RtAudio.h"
 
 
 void setup();//use this to do any initialisation if you want.
 
 void play(double *output);//run dac! Very very often. Too often in fact. er...
 
-#ifdef MAXIMILIAN_PORTAUDIO
-int routing(const void *inputBuffer,
-		void *outputBuffer,
-		unsigned long nBufferFrames,
-		const PaStreamCallbackTimeInfo* timeInfo,
-		PaStreamCallbackFlags status,
-		void *userData ){
-#elif defined(MAXIMILIAN_RT_AUDIO)
 int routing	(void *outputBuffer, void *inputBuffer, unsigned int nBufferFrames,
 			 double streamTime, RtAudioStreamStatus status, void *userData ) {
-#endif
 	
-	unsigned int i, j;
 	
-#ifdef MAXIMILIAN_PORTAUDIO
-	float *buffer = (float *) outputBuffer;
-#elif defined(MAXIMILIAN_RT_AUDIO)
 	double *buffer = (double *) outputBuffer;
-#endif
 	double *lastValues = (double *) userData;
 	//	double currentTime = (double) streamTime; Might come in handy for control
 	if ( status )
 		std::cout << "Stream underflow detected!" << std::endl;
-	for ( i=0; i<nBufferFrames; i++ ) {	
+	for (size_t i=0; i<nBufferFrames; i++ ) {	
 	}
 	// Write interleaved audio data.
-	for ( i=0; i<nBufferFrames; i++ ) {
+	for (size_t i=0; i<nBufferFrames; i++ ) {
 		play(lastValues);			
-		for ( j=0; j<maxiSettings::channels; j++ ) {
+		for (size_t j=0; j<maxiSettings::channels; j++ ) {
 			*buffer++=lastValues[j];
 		}
 	}
 	return 0;
 }
 
+void errorCallback( RtAudioErrorType /*type*/, const std::string &errorText )
+{
+  std::cerr << "\nRtAudio errorCallback: " << errorText << "\n\n";
+}
+
 //This is main()
 int main()
 {
 	setup();
-	
-#ifdef MAXIMILIAN_PORTAUDIO
-	PaStream *stream;
-	PaError err;
-	err = Pa_Initialize();
-	if( err != paNoError )
-		std::cout <<   "PortAudio error: " << Pa_GetErrorText( err ) << std::endl;
-	
-	double data[maxiSettings::channels];
-	
-	err = Pa_OpenDefaultStream( &stream,
-							   0,          /* no input channels */
-							   maxiSettings::channels,          /* stereo output */
-							   paFloat32,  /* 64 bit floating point output */
-							   maxiSettings::sampleRate,
-							   maxiSettings::bufferSize,        /* frames per buffer, i.e. the number
-												   of sample frames that PortAudio will
-												   request from the callback. Many apps
-												   may want to use
-												   paFramesPerBufferUnspecified, which
-												   tells PortAudio to pick the best,
-												   possibly changing, buffer size.*/
-							   &routing, /* this is your callback function */
-							   &data ); /*This is a pointer that will be passed to
-										 your callback*/
-	
-	//PaAlsa_EnableRealtimeScheduling(stream,true);
-	
-	err = Pa_StartStream( stream );
-	if( err != paNoError )
-		std::cout <<   "PortAudio error: " << Pa_GetErrorText( err ) << std::endl;
-	
-	
-	char input;
-	std::cout << "\nMaximilian is playing ... press <enter> to quit.\n";
-	std::cin.get( input );
-	
-	
-	
-	err = Pa_Terminate();
-	if( err != paNoError )
-		std::cout <<  "PortAudio error: "<< Pa_GetErrorText( err ) << std::endl;
-	
-#elif defined(MAXIMILIAN_RT_AUDIO)
-	RtAudio dac(RtAudio::WINDOWS_DS);
+  // // Specify our own error callback function.
+  // RtAudio dac( RtAudio::UNSPECIFIED, &errorCallback );
+
+  // std::vector<unsigned int> deviceIds = dac.getDeviceIds();
+  // if ( deviceIds.size() < 1 ) {
+  //   std::cout << "\nNo audio devices found!\n";
+  //   exit( 1 );
+  // }	
+
+
+	RtAudio dac(RtAudio::UNSPECIFIED, &errorCallback);
 	if ( dac.getDeviceCount() < 1 ) {
 		std::cout << "\nNo audio devices found!\n";
 		char input;
@@ -124,34 +76,22 @@ int main()
 	parameters.firstChannel = 0;
 	unsigned int sampleRate = maxiSettings::sampleRate;
 	unsigned int bufferFrames = maxiSettings::bufferSize; 
-	//double data[maxiSettings::channels];
 	vector<double> data(maxiSettings::channels,0);
 	
-	try {
-		dac.openStream( &parameters, NULL, RTAUDIO_FLOAT64,
-					   sampleRate, &bufferFrames, &routing, (void *)&(data[0]));
+	dac.openStream( &parameters, NULL, RTAUDIO_FLOAT64,
+						sampleRate, &bufferFrames, &routing, (void *)&(data[0]));
+	
+	dac.startStream();
+	if ( dac.isStreamOpen()){
+
 		
-		dac.startStream();
-	}
-	catch ( RtError& e ) {
-		e.printMessage();
-		exit( 0 );
-	}
-	
-	char input;
-	std::cout << "\nMaximilian is playing ... press <enter> to quit.\n";
-	std::cin.get( input );
-	
-	try {
-		// Stop the stream
+		char input;
+		std::cout << "\nMaximilian is playing ... press <enter> to quit.\n";
+		std::cin.get( input );
+		
 		dac.stopStream();
 	}
-	catch (RtError& e) {
-		e.printMessage();
-	}
-	
 	if ( dac.isStreamOpen() ) dac.closeStream();
-#endif
 	
 	return 0;
 }

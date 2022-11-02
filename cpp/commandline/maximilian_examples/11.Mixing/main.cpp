@@ -1,7 +1,7 @@
 #include "maximilian.h"
 
 maxiOsc myOsc,myAutoPanner;//
-double myStereoOutput[2];
+vector<double> myStereoOutput(2);
 maxiMix myOutputs;//this is the stereo mixer channel.
 
 void setup() {//some inits

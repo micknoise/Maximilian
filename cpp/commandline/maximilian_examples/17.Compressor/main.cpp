@@ -6,7 +6,7 @@ double out;
 
 void setup() {//some inits
     
-    beats.load("/Users/michaelgrierson/Documents/workspace/Maximilian/ofxMaxim/examples/OSX/ofMaximExample007OSX_Granular/bin/data/beat2.wav");//load in your samples. Provide the full path to a wav file.
+    beats.load("../../../beat2.wav");//load in your samples. Provide the full path to a wav file.
     printf("Summary:\n%s", beats.getSummary());//get info on samples if you like.
     
     compressor.setAttack(100);

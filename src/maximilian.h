@@ -94,10 +94,10 @@ const double pitchRatios[256]= {0.0006517771980725,0.0006905338959768,0.00073159
 class CHEERP_EXPORT maxiSettings {
 public:
 	maxiSettings();
-	static int sampleRate;
-	static int channels;
-	static int bufferSize;
-	static void setup(int initSampleRate, int initChannels, int initBufferSize) {
+	static size_t sampleRate;
+	static size_t channels;
+	static size_t bufferSize;
+	static void setup(size_t initSampleRate, size_t initChannels, size_t initBufferSize) {
 		maxiSettings::sampleRate = initSampleRate;
 		maxiSettings::channels = initChannels;
 		maxiSettings::bufferSize = initBufferSize;
@@ -142,7 +142,7 @@ class CHEERP_EXPORT maxiOsc {
 public:
 	maxiOsc();
 	double sinewave(double frequency);
-	double coswave(double frequency);
+	    double coswave(double frequency);
 	double phasor(double frequency);
 	double phasorBetween(double frequency, double startphase, double endphase); //renamed to avoid overrides
 	double saw(double frequency);

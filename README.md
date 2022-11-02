@@ -35,14 +35,14 @@ Maximilian is a cross-platform and multi-target audio synthesis and signal proce
 
 Examples demonstrating different features can be found in the maximilian_examples folder.  Each example is in a subfolder, and can be built as follows using cmake:
 
-'''
+```
 cd [example folder]
 mkdir build
 cd build
 cmake ..
 make
 ./maximilian
-'''
+```
 
 ### Web Audio
 

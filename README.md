@@ -31,9 +31,18 @@ Maximilian is a cross-platform and multi-target audio synthesis and signal proce
 
 ### Basic Examples
 
-You can choose between using RTAudio and PortAudio drivers in player.h by uncommenting the appropriate line.  To use PortAudio, you will need to compile the portAudio library from http://www.portaudio.com/ and link it with your executable.
 
-Examples demonstrating different features can be found in the maximilian_examples folder.  To try them, replace the contents of main.cpp with the contents of a tutorial file and compile.
+
+Examples demonstrating different features can be found in the maximilian_examples folder.  Each example is in a subfolder, and can be built as follows using cmake:
+
+'''
+cd [example folder]
+mkdir build
+cd build
+cmake ..
+make
+./maximilian
+'''
 
 ### Web Audio
 

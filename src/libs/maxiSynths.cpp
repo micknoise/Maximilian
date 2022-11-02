@@ -296,7 +296,7 @@ double maxiSampler::play() {
             envOut[i]=envelopes[i].adsr(envOutGain[i],envelopes[i].trigger);
 
           if (envOut[i]>0.) {
-              outputs[i]=samples[i].play(pitchRatios[(int)pitch[i]+originalPitch]*((1./samples[i].getLength())*maxiSettings::sampleRate),0,samples[i].getLength())*envOut[i];
+              outputs[i]=samples[i].play4(pitchRatios[(int)pitch[i]+originalPitch]*((1./samples[i].getLength())*maxiSettings::sampleRate),0,samples[i].getLength())*envOut[i];
             output+=outputs[i]/voices;
 
             if (envelopes[i].trigger==1 && !sustain) {

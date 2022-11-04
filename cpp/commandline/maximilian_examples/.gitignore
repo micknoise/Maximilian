@@ -1,0 +1,6 @@
+build
+CMakeFiles
+*.CMakeFiles
+CMakeCache.txt
+Makefile
+maximilian

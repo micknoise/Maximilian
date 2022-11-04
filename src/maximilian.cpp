@@ -54,9 +54,9 @@ float chandiv= 1;
 
 maxiSettings::maxiSettings() {}
 
-int maxiSettings::sampleRate = 44100;
-int maxiSettings::channels = 2;
-int maxiSettings::bufferSize = 1024;
+size_t maxiSettings::sampleRate = 44100;
+size_t maxiSettings::channels = 2;
+size_t maxiSettings::bufferSize = 1024;
 
 
 //this is a 514-point sinewave table that has many uses.
@@ -679,7 +679,7 @@ bool maxiSample::read()
             }
         }
         amplitudes.resize(shortAmps.size());
-        for(int i=0; i < shortAmps.size(); i++) {
+        for(size_t i=0; i < shortAmps.size(); i++) {
             amplitudes[i] = shortAmps[i] / 32767.0;
         }
         position = amplitudes.size();
@@ -704,7 +704,7 @@ bool maxiSample::save(string filename)
     fstream myFile (filename.c_str(), ios::out | ios::binary);
 
     vector<short> shortAmps(amplitudes.size());
-    for(int i=0; i < shortAmps.size(); i++) {
+    for(size_t i=0; i < shortAmps.size(); i++) {
         shortAmps[i] = static_cast<short>(round(amplitudes[i] * 32767.0));
     }
     // write the wav file per the wav file format
@@ -743,7 +743,6 @@ string maxiSample::getSummary()
 //This plays back at the correct speed. Always loops.
 double maxiSample::play() {
     position++;
-    if ((long) position >= F64_ARRAY_SIZE(amplitudes)) position=0;
     output = F64_ARRAY_AT(amplitudes,(long)position);
     return output;
 }
@@ -1123,7 +1122,7 @@ void maxiSample::normalise(double maxLevel) {
 
 void maxiSample::autoTrim(float alpha, float threshold, bool trimStart, bool trimEnd) {
 
-    int startMarker=0;
+    size_t startMarker=0;
     if(trimStart) {
         maxiLagExp<double> startLag(alpha, 0);
         while(startMarker < F64_ARRAY_SIZE(amplitudes)) {
@@ -1149,7 +1148,7 @@ void maxiSample::autoTrim(float alpha, float threshold, bool trimStart, bool tri
 
     cout << "Autotrim: start: " << startMarker << ", end: " << endMarker << endl;
 
-    int newLength = endMarker - startMarker;
+    size_t newLength = endMarker - startMarker;
     if (newLength > 0) {
 				DECLARE_F64_ARRAY(newAmps)
 				F64_ARRAY_SETFROM(amplitudes, newAmps);

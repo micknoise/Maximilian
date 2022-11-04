@@ -1,5 +1,4 @@
 #include "maximilian.h"
-
 //This shows how the fundamental building block of digital audio - the sine wave.
 //
 maxiOsc mySine;//One oscillator - can be called anything. Can be any of the available waveforms.

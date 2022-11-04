@@ -95,10 +95,10 @@ class CHEERP_EXPORT maxiSettings
 {
 public:
     maxiSettings();
-    static int sampleRate;
-    static int channels;
-    static int bufferSize;
-    static void setup(int initSampleRate, int initChannels, int initBufferSize)
+    static size_t sampleRate;
+    static size_t channels;
+    static size_t bufferSize;
+    static void setup(size_t initSampleRate, size_t initChannels, size_t initBufferSize)
     {
         maxiSettings::sampleRate = initSampleRate;
         maxiSettings::channels = initChannels;
@@ -117,7 +117,7 @@ public:
     // 	maxiSettings::bufferSize = bufferSize_;
     // }
     //
-    static int getSampleRate()
+    static size_t getSampleRate()
     {
         return maxiSettings::sampleRate;
     }
@@ -143,17 +143,17 @@ class CHEERP_EXPORT maxiOsc
 
 public:
     maxiOsc();
+    double square(double frequency);
     double sinewave(double frequency);
     double coswave(double frequency);
+    double saw(double frequency);
     double phasor(double frequency);
     double phasorBetween(double frequency, double startphase, double endphase); //renamed to avoid overrides
-    double saw(double frequency);
     double triangle(double frequency);
-    double square(double frequency);
     double pulse(double frequency, double duty);
     double impulse(double frequency);
-    double noise();
     double sinebuf(double frequency);
+    double noise();
     double sinebuf4(double frequency);
     double sawn(double frequency);
     double rect(double frequency, double duty);

@@ -10,10 +10,11 @@
 #include <emscripten/bind.h>
 #include "maximilian.h"
 #include "libs/maxiFFT.h"
-#include "libs/maxiGrains.h"
+// #include "libs/maxiGrains.h"
 #include "libs/maxiMFCC.h"
 #include "libs/maxiReverb.h"
-#include "libs/maxiSynths.h"
+#include "libs/maxiClock.h"
+// #include "libs/maxiSynths.h"
 // #include "libs/fft.cpp"
 #include "libs/stb_vorbis.h"
 
@@ -174,40 +175,41 @@ EMSCRIPTEN_BINDINGS(my_module)
 			.property("alphaReciprocal", &maxiLagExp<double>::getAlphaReciprocal, &maxiLagExp<double>::setAlphaReciprocal)
 			.property("val", &maxiLagExp<double>::value, &maxiLagExp<double>::setVal);
 
-	// MAXI SAMPLE
-	class_<maxiSample>("maxiSample")
-#ifdef SPN
-			.smart_ptr_constructor("shared_ptr<maxiSample>", &std::make_shared<maxiSample>)
-#else
-			.constructor<>()
-#endif
-			//	.property("length", &maxiSample::getLength, &maxiSample::setLength) // no work???
-			.function("getLength", &maxiSample::getLength)
-			//	.function("setSample", &maxiSample::setSample)
-			.function("setSample", select_overload<void(vector<double> &)>(&maxiSample::setSample))
-			.function("setSample", select_overload<void(vector<double> &, int)>(&maxiSample::setSample))
-			.function("setSampleFromOggBlob", &maxiSample::setSampleFromOggBlob)
-			//	.function("getSummary", &maxiSample::getSummary)
-			.function("isReady", &maxiSample::isReady)
-			.function("playOnce", select_overload<double()>(&maxiSample::playOnce))
-			.function("playOnce", select_overload<double(double)>(&maxiSample::playOnce))
-			.function("playOnZX", select_overload<double(double)>(&maxiSample::playOnZX))
-			.function("playOnZX", select_overload<double(double,double)>(&maxiSample::playOnZX))
-			.function("playOnZX", select_overload<double(double,double,double)>(&maxiSample::playOnZX))
-			.function("playOnZX", select_overload<double(double,double,double,double)>(&maxiSample::playOnZX))
-			.function("playUntil", select_overload<double(double)>(&maxiSample::playUntil))
-			.function("playUntil", select_overload<double(double,double)>(&maxiSample::playUntil))
-			.function("play", select_overload<double()>(&maxiSample::play))
-			.function("play", select_overload<double(double)>(&maxiSample::play))
-			.function("play", select_overload<double(double, double, double)>(&maxiSample::play))
-			.function("play4", &maxiSample::play4)
-			.function("trigger", &maxiSample::trigger)
-			.function("clear", &maxiSample::clear)
-			.function("normalise", &maxiSample::normalise)
-			.function("autoTrim", &maxiSample::autoTrim)
-			.function("load", &maxiSample::load)
-			.function("read", &maxiSample::read, allow_raw_pointers())
-			.function("loopSetPosOnZX", &maxiSample::loopSetPosOnZX);
+
+// 	// MAXI SAMPLE
+// 	class_<maxiSample>("maxiSample")
+// #ifdef SPN
+// 			.smart_ptr_constructor("shared_ptr<maxiSample>", &std::make_shared<maxiSample>)
+// #else
+// 			.constructor<>()
+// #endif
+// 			//	.property("length", &maxiSample::getLength, &maxiSample::setLength) // no work???
+// 			.function("getLength", &maxiSample::getLength)
+// 			//	.function("setSample", &maxiSample::setSample)
+// 			.function("setSample", select_overload<void(vector<double> &)>(&maxiSample::setSample))
+// 			.function("setSample", select_overload<void(vector<double> &, int)>(&maxiSample::setSample))
+// 			.function("setSampleFromOggBlob", &maxiSample::setSampleFromOggBlob)
+// 			//	.function("getSummary", &maxiSample::getSummary)
+// 			.function("isReady", &maxiSample::isReady)
+// 			.function("playOnce", select_overload<double()>(&maxiSample::playOnce))
+// 			.function("playOnce", select_overload<double(double)>(&maxiSample::playOnce))
+// 			.function("playOnZX", select_overload<double(double)>(&maxiSample::playOnZX))
+// 			.function("playOnZX", select_overload<double(double,double)>(&maxiSample::playOnZX))
+// 			.function("playOnZX", select_overload<double(double,double,double)>(&maxiSample::playOnZX))
+// 			.function("playOnZX", select_overload<double(double,double,double,double)>(&maxiSample::playOnZX))
+// 			.function("playUntil", select_overload<double(double)>(&maxiSample::playUntil))
+// 			.function("playUntil", select_overload<double(double,double)>(&maxiSample::playUntil))
+// 			.function("play", select_overload<double()>(&maxiSample::play))
+// 			.function("play", select_overload<double(double)>(&maxiSample::play))
+// 			.function("play", select_overload<double(double, double, double)>(&maxiSample::play))
+// 			.function("play4", &maxiSample::play4)
+// 			.function("trigger", &maxiSample::trigger)
+// 			.function("clear", &maxiSample::clear)
+// 			.function("normalise", &maxiSample::normalise)
+// 			.function("autoTrim", &maxiSample::autoTrim)
+// 			.function("load", &maxiSample::load)
+// 			.function("read", &maxiSample::read, allow_raw_pointers())
+// 			.function("loopSetPosOnZX", &maxiSample::loopSetPosOnZX);
 
 
 // 	// MAXI MAP
@@ -253,6 +255,7 @@ EMSCRIPTEN_BINDINGS(my_module)
 			.function("adsr", select_overload<double(double, double, double, double, double, long, int)>(&maxiEnv::adsr))
 			.function("adsr", select_overload<double(double, int)>(&maxiEnv::adsr))
 			.function("setAttack", &maxiEnv::setAttack)
+			.function("setAttackMS", &maxiEnv::setAttackMS)
 			.function("setRelease", &maxiEnv::setRelease)
 			.function("setDecay", &maxiEnv::setDecay)
 			.function("setSustain", &maxiEnv::setSustain)
@@ -477,58 +480,58 @@ class_<maxiAsyncKuramotoOscillator, base<maxiKuramotoOscillatorSet>>("maxiAsyncK
 
 
 
+// maxiGrains is being rewritten
 
 
+// EMSCRIPTEN_BINDINGS(my_module_maxiGrains) {
 
-EMSCRIPTEN_BINDINGS(my_module_maxiGrains) {
+//     // MAXI TIMESTRETCH
+//     class_<maxiTimeStretch<hannWinFunctor> >("maxiTimeStretch")
+//     .smart_ptr_constructor("shared_ptr<maxiTimestretch<hannWinFunctor> >",&std::make_shared<maxiTimeStretch<hannWinFunctor> >)
+//     //    .smart_ptr_constructor<maxiSample*>("shared_ptr<maxiTimestretch<hannWinFunctor> >",&std::make_shared<maxiTimestretch<hannWinFunctor> >)
+//     .function("setSample", &maxiTimeStretch<hannWinFunctor>::setSample, allow_raw_pointers())
 
-    // MAXI TIMESTRETCH
-    class_<maxiTimeStretch<hannWinFunctor> >("maxiTimeStretch")
-    .smart_ptr_constructor("shared_ptr<maxiTimestretch<hannWinFunctor> >",&std::make_shared<maxiTimeStretch<hannWinFunctor> >)
-    //    .smart_ptr_constructor<maxiSample*>("shared_ptr<maxiTimestretch<hannWinFunctor> >",&std::make_shared<maxiTimestretch<hannWinFunctor> >)
-    .function("setSample", &maxiTimeStretch<hannWinFunctor>::setSample, allow_raw_pointers())
+//     .function("getNormalisedPosition", &maxiTimeStretch<hannWinFunctor>::getNormalisedPosition)
+//     .function("getPosition", &maxiTimeStretch<hannWinFunctor>::getPosition)
+//     .function("setPosition", &maxiTimeStretch<hannWinFunctor>::setPosition)
 
-    .function("getNormalisedPosition", &maxiTimeStretch<hannWinFunctor>::getNormalisedPosition)
-    .function("getPosition", &maxiTimeStretch<hannWinFunctor>::getPosition)
-    .function("setPosition", &maxiTimeStretch<hannWinFunctor>::setPosition)
+//     .function("play", &maxiTimeStretch<hannWinFunctor>::play)
+//     .function("playAtPosition", &maxiTimeStretch<hannWinFunctor>::playAtPosition)
+//     ;
 
-    .function("play", &maxiTimeStretch<hannWinFunctor>::play)
-    .function("playAtPosition", &maxiTimeStretch<hannWinFunctor>::playAtPosition)
-    ;
+//     // MAXI PITCHSHIFT
 
-    // MAXI PITCHSHIFT
+//     class_<maxiPitchShift<hannWinFunctor> >("maxiPitchShift")
+//     .smart_ptr_constructor("shared_ptr<maxiPitchShift<hannWinFunctor> >",&std::make_shared<maxiPitchShift<hannWinFunctor> >)
+//     .function("setSample", &maxiPitchShift<hannWinFunctor>::setSample, allow_raw_pointers())
 
-    class_<maxiPitchShift<hannWinFunctor> >("maxiPitchShift")
-    .smart_ptr_constructor("shared_ptr<maxiPitchShift<hannWinFunctor> >",&std::make_shared<maxiPitchShift<hannWinFunctor> >)
-    .function("setSample", &maxiPitchShift<hannWinFunctor>::setSample, allow_raw_pointers())
-
-    .function("play", &maxiPitchShift<hannWinFunctor>::play)
-    ;
+//     .function("play", &maxiPitchShift<hannWinFunctor>::play)
+//     ;
 
 
-    // MAXI PITCHSTRETCH
-    class_<maxiStretch<hannWinFunctor> >("maxiStretch")
-		#ifdef SPN
-			.smart_ptr_constructor("shared_ptr<maxiStretch<hannWinFunctor> >",&std::make_shared<maxiStretch<hannWinFunctor> >)
-		#else
-			.constructor<>()
-		#endif
+//     // MAXI PITCHSTRETCH
+//     class_<maxiStretch<hannWinFunctor> >("maxiStretch")
+// 		#ifdef SPN
+// 			.smart_ptr_constructor("shared_ptr<maxiStretch<hannWinFunctor> >",&std::make_shared<maxiStretch<hannWinFunctor> >)
+// 		#else
+// 			.constructor<>()
+// 		#endif
 
-    .function("setSample", &maxiStretch<hannWinFunctor>::setSample, allow_raw_pointers())
+//     .function("setSample", &maxiStretch<hannWinFunctor>::setSample, allow_raw_pointers())
 
-    .function("getNormalisedPosition", &maxiStretch<hannWinFunctor>::getNormalisedPosition)
-    .function("getPosition", &maxiStretch<hannWinFunctor>::getPosition)
-    .function("setPosition", &maxiStretch<hannWinFunctor>::setPosition)
+//     .function("getNormalisedPosition", &maxiStretch<hannWinFunctor>::getNormalisedPosition)
+//     .function("getPosition", &maxiStretch<hannWinFunctor>::getPosition)
+//     .function("setPosition", &maxiStretch<hannWinFunctor>::setPosition)
 
-    .function("setLoopStart", &maxiStretch<hannWinFunctor>::setLoopStart)
-		.function("setLoopEnd", &maxiStretch<hannWinFunctor>::setLoopEnd)
-		.function("getLoopEnd", &maxiStretch<hannWinFunctor>::getLoopEnd)
+//     .function("setLoopStart", &maxiStretch<hannWinFunctor>::setLoopStart)
+// 		.function("setLoopEnd", &maxiStretch<hannWinFunctor>::setLoopEnd)
+// 		.function("getLoopEnd", &maxiStretch<hannWinFunctor>::getLoopEnd)
 
-		.function("play", &maxiStretch<hannWinFunctor>::play)
-		.function("playAtPosition", &maxiStretch<hannWinFunctor>::playAtPosition)
-    ;
+// 		.function("play", &maxiStretch<hannWinFunctor>::play)
+// 		.function("playAtPosition", &maxiStretch<hannWinFunctor>::playAtPosition)
+//     ;
 
-};
+// };
 // class maxiBitsWrapper : public maxiBits {
 //
 // public:

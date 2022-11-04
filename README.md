@@ -5,7 +5,7 @@
 |__|_|  (___  /__/\__\__|__|_|  /__|____/__(___  /__|  /
       \/    \/                \/               \/    \/
 ```
-![version](https://img.shields.io/badge/version-2.3-red)
+![version](https://img.shields.io/badge/version-2.4-red)
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/mimic-sussex/eppEditor/blob/master/LICENSE)
 
 <br />
@@ -32,13 +32,24 @@ Maximilian is a cross-platform and multi-target audio synthesis and signal proce
 
 ### Basic Examples
 
-You can choose between using RTAudio and PortAudio drivers in player.h by uncommenting the appropriate line.  To use PortAudio, you will need to compile the portAudio library from http://www.portaudio.com/ and link it with your executable.
 
-Examples demonstrating different features can be found in the maximilian_examples folder.  To try them, replace the contents of main.cpp with the contents of a tutorial file and compile.
+
+Examples demonstrating different features can be found in the maximilian_examples folder.  Each example is in a subfolder, and can be built as follows using cmake:
+
+```
+cd [example folder]
+mkdir build
+cd build
+cmake ..
+make
+./maximilian
+```
 
 ### Web Audio
 
 A transpiled javascript version of the library is included in this repository, for both Script Processor Nodes and AudioWorklets. Try this out at (https://mimicproject.com/guides/maximJS).
+
+To run this on your on site, locally, or on GitHub Pages, check out [this repo](https://github.com/Louismac/maximilian-js-local).
 
 
 ### Mac OS XCode Project
@@ -54,6 +65,9 @@ This is in the maximilianTestWindowsVS2010 folder. You will need to install the 
 ### Command Line Compilation in Mac OS
 
 > g++ -Wall -D__MACOSX_CORE__ -o maximilian main.cpp RtAudio.cpp player.cpp maximilian.cpp -framework CoreAudio -framework CoreFoundation -lpthread
+
+For M1 Mac OS
+> g++ -Wall -D__MACOSX_CORE__ -o maximilian main.cpp RtAudio.cpp player.cpp maximilian.cpp -framework CoreAudio -framework CoreServices -framework AudioToolbox -framework AudioUnit -framework Accelerate -lpthread
 
 > ./maximilian
 

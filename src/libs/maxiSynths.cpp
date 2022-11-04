@@ -259,50 +259,6 @@ void maxiHats::trigger() {
 }
 
 
-
-
-maxiClock::maxiClock() {
-
-    playHead=0;
-    currentCount=0;
-    lastCount=0;
-    bpm=120;
-    ticks=1;
-    maxiClock::setTempo(bpm);
-
-}
-
-
-void maxiClock::ticker() {
-
-    tick=false;
-    currentCount=floor(timer.phasor(bps));//this sets up a metronome that ticks n times a second
-
-    if (lastCount!=currentCount) {//if we have a new timer int this sample,
-
-        tick=true;
-        playHead++;//iterate the playhead
-
-    }
-
-}
-
-
-void maxiClock::setTempo(double bpmIn) {
-
-    bpm=bpmIn;
-    bps=(bpm/60.)*ticks;
-}
-
-
-void maxiClock::setTicksPerBeat(int ticksPerBeat) {
-
-    ticks=ticksPerBeat;
-    maxiClock::setTempo(bpm);
-
-}
-
-
 maxiSampler::maxiSampler() {
 
     maxiSampler::voices=32;
@@ -340,7 +296,7 @@ double maxiSampler::play() {
             envOut[i]=envelopes[i].adsr(envOutGain[i],envelopes[i].trigger);
 
           if (envOut[i]>0.) {
-              outputs[i]=samples[i].play(pitchRatios[(int)pitch[i]+originalPitch]*((1./samples[i].getLength())*maxiSettings::sampleRate),0,samples[i].getLength())*envOut[i];
+              outputs[i]=samples[i].play4(pitchRatios[(int)pitch[i]+originalPitch]*((1./samples[i].getLength())*maxiSettings::sampleRate),0,samples[i].getLength())*envOut[i];
             output+=outputs[i]/voices;
 
             if (envelopes[i].trigger==1 && !sustain) {

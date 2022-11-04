@@ -94,7 +94,41 @@ const double pitchRatios[256] = {0.0006517771980725, 0.0006905338959768, 0.00073
 class CHEERP_EXPORT maxiSettings
 {
 public:
-	static size_t bufferSize;
+    maxiSettings();
+    static size_t sampleRate;
+    static size_t channels;
+    static size_t bufferSize;
+    static void setup(size_t initSampleRate, size_t initChannels, size_t initBufferSize)
+    {
+        maxiSettings::sampleRate = initSampleRate;
+        maxiSettings::channels = initChannels;
+        maxiSettings::bufferSize = initBufferSize;
+    }
+    //
+    // static void setSampleRate(int sampleRate_){
+    // 	maxiSettings::sampleRate = sampleRate_;
+    // }
+    //
+    // static void setNumChannels(int channels_){
+    // 	maxiSettings::channels = channels_;
+    // }
+    //
+    // static void setBufferSize(int bufferSize_){
+    // 	maxiSettings::bufferSize = bufferSize_;
+    // }
+    //
+    static size_t getSampleRate()
+    {
+        return maxiSettings::sampleRate;
+    }
+    //
+    // static int getNumChannels() {
+    // 	return maxiSettings::channels;
+    // }
+    //
+    // static int getBufferSize() {
+    // 	return maxiSettings::bufferSize;
+    // }
 };
 
 class CHEERP_EXPORT maxiOsc
@@ -108,9 +142,8 @@ class CHEERP_EXPORT maxiOsc
     double tri;
 
 public:
-  double impulse(double frequency);
-    double square(double frequency);
     maxiOsc();
+    double square(double frequency);
     double sinewave(double frequency);
     double coswave(double frequency);
     double saw(double frequency);
@@ -1595,18 +1628,19 @@ private:
     maxiTrigger trig;
     double value = 0;
 };
+
 //read from an array of signals - like supercollider Select.ar
 class CHEERP_EXPORT maxiSelect {
 public:
-            //assume index is direct mapping to array element
-        }else{
-        if (normalised) {
-            index *= (arrayLen - 1e-9); 
-        auto arrayLen = F64_ARRAY_SIZE(values); 
-
+    maxiSelect();
 
     double play(double index, DOUBLEARRAY_REF values, bool normalised) {
-    maxiSelect();
+        auto arrayLen = F64_ARRAY_SIZE(values); 
+
+        if (normalised) {
+            index *= (arrayLen - 1e-9); 
+        }else{
+            //assume index is direct mapping to array element
         }
         if (index < 0) {
             index = 0;

@@ -1354,15 +1354,21 @@ private:
 };
 
 
-
+/*!
+\class maxiIndex pulls values from an array when it receives a trigger.  This is useful for sequencing and more.
+*/
 class CHEERP_EXPORT maxiIndex {
 public:
-		maxiIndex();
-    double pull(const double trigSig, double indexSig, DOUBLEARRAY _values) {
-				// double *__arrayStart = __builtin_cheerp_make_regular<double>(_values, 0);
-				// size_t __arrayLength = _values->get_length();
-				// vector<double> values = vector<double>(__arrayStart, __arrayStart + __arrayLength);
-				NORMALISE_ARRAY_TYPE(_values, values)
+	maxiIndex();
+    /*!
+    Returns a value from an array when a trigger is received.
+    */
+    double pull(const double trigSig, /*!<A trigger signal. When received, a value is pulled from the array*/
+        double indexSig, /*!<An unipolar index into the array (between 0 and 1). Values outside this range are clamped.*/
+        DOUBLEARRAY _values /*!<An array of values*/
+        ) 
+    {
+		NORMALISE_ARRAY_TYPE(_values, values)
         if (trig.onZX(trigSig)) {
             if (indexSig < 0) indexSig=0;
             if (indexSig > 1) indexSig=1;

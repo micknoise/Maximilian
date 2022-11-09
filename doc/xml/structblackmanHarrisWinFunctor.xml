@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structblackmanHarrisWinFunctor" kind="struct" language="C++" prot="public">
+    <compoundname>blackmanHarrisWinFunctor</compoundname>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="structblackmanHarrisWinFunctor_1ab9dd7a920159e125abc477446908728a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double blackmanHarrisWinFunctor::operator()</definition>
+        <argsstring>(ulong windowLength, ulong windowPos)</argsstring>
+        <name>operator()</name>
+        <param>
+          <type>ulong</type>
+          <declname>windowLength</declname>
+        </param>
+        <param>
+          <type>ulong</type>
+          <declname>windowPos</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiGrains.h" line="58" column="15" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiGrains.h" bodystart="58" bodyend="63"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/ck84/src/Maximilian/src/libs/maxiGrains.h" line="57" column="1" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiGrains.h" bodystart="57" bodyend="64"/>
+    <listofallmembers>
+      <member refid="structblackmanHarrisWinFunctor_1ab9dd7a920159e125abc477446908728a" prot="public" virt="non-virtual"><scope>blackmanHarrisWinFunctor</scope><name>operator()</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,752 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classmaxiSampler" kind="class" language="C++" prot="public">
+    <compoundname>maxiSampler</compoundname>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classmaxiSampler_1afae9400aab05e4203a594e33dc5a9856" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double maxiSampler::position</definition>
+        <argsstring></argsstring>
+        <name>position</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" line="152" column="12" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" bodystart="152" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiSampler_1ac39738b23a7f3a6b62b89f4ea3cb0ff4" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double maxiSampler::pitch[32]</definition>
+        <argsstring>[32]</argsstring>
+        <name>pitch</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" line="154" column="12" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" bodystart="154" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiSampler_1ae024316549ee71feb22ff90196a3bb78" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int maxiSampler::originalPitch</definition>
+        <argsstring></argsstring>
+        <name>originalPitch</name>
+        <initializer>=67</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" line="155" column="9" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" bodystart="155" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiSampler_1a5dbf18073b4b7614b8bdc34fd541bd2f" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double maxiSampler::outputs[32]</definition>
+        <argsstring>[32]</argsstring>
+        <name>outputs</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" line="156" column="12" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" bodystart="156" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiSampler_1a7a9e8f19708020f82c49c630c7c0cc2c" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double maxiSampler::outputD</definition>
+        <argsstring></argsstring>
+        <name>outputD</name>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" line="157" column="12" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" bodystart="157" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiSampler_1ac420be4ea5c8972c530f32a3da9b25a6" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double maxiSampler::envOut[32]</definition>
+        <argsstring>[32]</argsstring>
+        <name>envOut</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" line="158" column="12" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" bodystart="158" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiSampler_1aa0a9bd4ab7a91ffd0e0e81035874500b" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double maxiSampler::envOutGain[32]</definition>
+        <argsstring>[32]</argsstring>
+        <name>envOutGain</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" line="159" column="12" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" bodystart="159" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiSampler_1ae092f7871f466c28714e871223cefc84" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double maxiSampler::output</definition>
+        <argsstring></argsstring>
+        <name>output</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" line="160" column="12" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" bodystart="160" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiSampler_1aef66510499b625d2af84e813511a2453" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool maxiSampler::useDistortion</definition>
+        <argsstring></argsstring>
+        <name>useDistortion</name>
+        <initializer>= false</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" line="161" column="10" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" bodystart="161" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiSampler_1a932cf720a81447e50ba9ebee8a8bc454" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool maxiSampler::useLimiter</definition>
+        <argsstring></argsstring>
+        <name>useLimiter</name>
+        <initializer>= false</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" line="162" column="10" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" bodystart="162" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiSampler_1a46b34c7fe2e5b064f50730ffd0dc7c53" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool maxiSampler::useFilter</definition>
+        <argsstring></argsstring>
+        <name>useFilter</name>
+        <initializer>= false</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" line="163" column="10" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" bodystart="163" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiSampler_1a7c6e19d91ff6f65053af1a58ab0a8fb3" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double maxiSampler::distortion</definition>
+        <argsstring></argsstring>
+        <name>distortion</name>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" line="164" column="12" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" bodystart="164" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiSampler_1adaa303a934e594e5c7b7a0026108ba41" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool maxiSampler::inverse</definition>
+        <argsstring></argsstring>
+        <name>inverse</name>
+        <initializer>= false</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" line="165" column="10" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" bodystart="165" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiSampler_1afa5b14646ecead84b20604aea4eee0c0" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double maxiSampler::cutoff</definition>
+        <argsstring></argsstring>
+        <name>cutoff</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" line="166" column="12" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" bodystart="166" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiSampler_1abbb46e0241ac299a03aa0fc9562ce92b" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double maxiSampler::resonance</definition>
+        <argsstring></argsstring>
+        <name>resonance</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" line="167" column="12" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" bodystart="167" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiSampler_1ab487022de220ea57ddb21b2e49e37193" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double maxiSampler::gain</definition>
+        <argsstring></argsstring>
+        <name>gain</name>
+        <initializer>= 1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" line="168" column="12" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" bodystart="168" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiSampler_1aaa17547d157aaafa5537d40779168a59" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int maxiSampler::voices</definition>
+        <argsstring></argsstring>
+        <name>voices</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" line="169" column="9" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" bodystart="169" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiSampler_1a879fe5f95b19fe873357071ea6a5e18c" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int maxiSampler::currentVoice</definition>
+        <argsstring></argsstring>
+        <name>currentVoice</name>
+        <initializer>=0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" line="170" column="9" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" bodystart="170" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiSampler_1a8d22549c7647340df986fcec31e1c2fe" prot="public" static="no" mutable="no">
+        <type><ref refid="classconvert" kindref="compound">convert</ref></type>
+        <definition>convert maxiSampler::mtof</definition>
+        <argsstring></argsstring>
+        <name>mtof</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" line="171" column="13" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" bodystart="171" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiSampler_1a7029087f72b88a5a9d02c51e8c8d3162" prot="public" static="no" mutable="no">
+        <type><ref refid="classmaxiOsc" kindref="compound">maxiOsc</ref></type>
+        <definition>maxiOsc maxiSampler::LFO1</definition>
+        <argsstring></argsstring>
+        <name>LFO1</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" line="172" column="13" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" bodystart="172" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiSampler_1a84eae84474543dfa29e50f1e3fa46388" prot="public" static="no" mutable="no">
+        <type><ref refid="classmaxiOsc" kindref="compound">maxiOsc</ref></type>
+        <definition>maxiOsc maxiSampler::LFO2</definition>
+        <argsstring></argsstring>
+        <name>LFO2</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" line="173" column="13" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" bodystart="173" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiSampler_1a64eb018459978c3adf44c60f0f205718" prot="public" static="no" mutable="no">
+        <type><ref refid="classmaxiOsc" kindref="compound">maxiOsc</ref></type>
+        <definition>maxiOsc maxiSampler::LFO3</definition>
+        <argsstring></argsstring>
+        <name>LFO3</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" line="174" column="13" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" bodystart="174" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiSampler_1a8ec346b3c52878c1dec05e568d48a2c2" prot="public" static="no" mutable="no">
+        <type><ref refid="classmaxiOsc" kindref="compound">maxiOsc</ref></type>
+        <definition>maxiOsc maxiSampler::LFO4</definition>
+        <argsstring></argsstring>
+        <name>LFO4</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" line="175" column="13" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" bodystart="175" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiSampler_1a766ca8acd91e2d65075a6b4b3fb3bcb3" prot="public" static="no" mutable="no">
+        <type><ref refid="classmaxiSample" kindref="compound">maxiSample</ref></type>
+        <definition>maxiSample maxiSampler::samples[32]</definition>
+        <argsstring>[32]</argsstring>
+        <name>samples</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" line="176" column="16" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" bodystart="176" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiSampler_1ae366f7b3f7e217674f7dcf26bcb32d03" prot="public" static="no" mutable="no">
+        <type><ref refid="classmaxiEnv" kindref="compound">maxiEnv</ref></type>
+        <definition>maxiEnv maxiSampler::envelopes[32]</definition>
+        <argsstring>[32]</argsstring>
+        <name>envelopes</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" line="177" column="13" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" bodystart="177" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiSampler_1a64bdee787f5e64c3f05e2db5e3a5dda0" prot="public" static="no" mutable="no">
+        <type><ref refid="classmaxiNonlinearity" kindref="compound">maxiDistortion</ref></type>
+        <definition>maxiDistortion maxiSampler::distort</definition>
+        <argsstring></argsstring>
+        <name>distort</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" line="178" column="20" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" bodystart="178" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiSampler_1ab3487a2e34669524c7d94494881b6522" prot="public" static="no" mutable="no">
+        <type><ref refid="classmaxiSVF" kindref="compound">maxiSVF</ref></type>
+        <definition>maxiSVF maxiSampler::filters[32]</definition>
+        <argsstring>[32]</argsstring>
+        <name>filters</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" line="179" column="13" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" bodystart="179" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiSampler_1a619d11831e9fb88414f91f9a8f75cc6c" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool maxiSampler::sustain</definition>
+        <argsstring></argsstring>
+        <name>sustain</name>
+        <initializer>= true</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" line="180" column="10" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" bodystart="180" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classmaxiSampler_1a845b06180762f339ab2a1ebcf0d118d7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>maxiSampler::maxiSampler</definition>
+        <argsstring>()</argsstring>
+        <name>maxiSampler</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" line="140" column="5" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiSynths.cpp" bodystart="262" bodyend="282"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiSampler_1aa1cfec88c21514adb63ecc3126ab56d4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double maxiSampler::play</definition>
+        <argsstring>()</argsstring>
+        <name>play</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" line="141" column="12" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiSynths.cpp" bodystart="290" bodyend="311"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiSampler_1a2a609520364de6407916f987f6253bba" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void maxiSampler::setPitch</definition>
+        <argsstring>(double pitch, bool setall=false)</argsstring>
+        <name>setPitch</name>
+        <param>
+          <type>double</type>
+          <declname>pitch</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>setall</declname>
+          <defval>false</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" line="142" column="10" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiSynths.cpp" bodystart="331" bodyend="346"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiSampler_1ae228ad2503b15ca373d6a2acf8c3d49d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void maxiSampler::midiNoteOn</definition>
+        <argsstring>(double pitch, double velocity, bool setall=false)</argsstring>
+        <name>midiNoteOn</name>
+        <param>
+          <type>double</type>
+          <declname>pitch</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>velocity</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>setall</declname>
+          <defval>false</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" line="143" column="10" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiSynths.cpp" bodystart="348" bodyend="364"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiSampler_1a5826f90bb751ab29d84ce284834da7b3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void maxiSampler::midiNoteOff</definition>
+        <argsstring>(double pitch, double velocity, bool setall=false)</argsstring>
+        <name>midiNoteOff</name>
+        <param>
+          <type>double</type>
+          <declname>pitch</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>velocity</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>setall</declname>
+          <defval>false</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" line="144" column="10" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiSynths.cpp" bodystart="366" bodyend="378"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiSampler_1a62580881a01b4464b4a685c500c9cbe5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void maxiSampler::setAttack</definition>
+        <argsstring>(double attackD, bool setall=true)</argsstring>
+        <name>setAttack</name>
+        <param>
+          <type>double</type>
+          <declname>attackD</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>setall</declname>
+          <defval>true</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" line="145" column="10" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiSynths.cpp" bodystart="381" bodyend="399"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiSampler_1a319d64782a1a46c01b735d727f95f482" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void maxiSampler::setDecay</definition>
+        <argsstring>(double decayD, bool setall=true)</argsstring>
+        <name>setDecay</name>
+        <param>
+          <type>double</type>
+          <declname>decayD</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>setall</declname>
+          <defval>true</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" line="146" column="10" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiSynths.cpp" bodystart="401" bodyend="419"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiSampler_1a3a76baabd3bcd24230b2d23cfb9fe01b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void maxiSampler::setSustain</definition>
+        <argsstring>(double sustainD, bool setall=true)</argsstring>
+        <name>setSustain</name>
+        <param>
+          <type>double</type>
+          <declname>sustainD</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>setall</declname>
+          <defval>true</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" line="147" column="10" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiSynths.cpp" bodystart="421" bodyend="439"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiSampler_1ad24ade94ed41c4154b45f96470b71f8a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void maxiSampler::setRelease</definition>
+        <argsstring>(double releaseD, bool setall=true)</argsstring>
+        <name>setRelease</name>
+        <param>
+          <type>double</type>
+          <declname>releaseD</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>setall</declname>
+          <defval>true</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" line="148" column="10" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiSynths.cpp" bodystart="441" bodyend="459"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiSampler_1af065fb87338f5e84092e6fb46e2d0d34" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void maxiSampler::setPosition</definition>
+        <argsstring>(double positionD, bool setall=true)</argsstring>
+        <name>setPosition</name>
+        <param>
+          <type>double</type>
+          <declname>positionD</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>setall</declname>
+          <defval>true</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" line="149" column="10" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiSynths.cpp" bodystart="461" bodyend="479"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiSampler_1aa210f76f222a5b42d6da18b51e0ff86e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void maxiSampler::load</definition>
+        <argsstring>(string inFile, bool setall=true)</argsstring>
+        <name>load</name>
+        <param>
+          <type>string</type>
+          <declname>inFile</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>setall</declname>
+          <defval>true</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" line="150" column="10" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiSynths.cpp" bodystart="313" bodyend="329"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiSampler_1af3cca5b76091de929d7e3bd37d3b57a9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void maxiSampler::setNumVoices</definition>
+        <argsstring>(int numVoices)</argsstring>
+        <name>setNumVoices</name>
+        <param>
+          <type>int</type>
+          <declname>numVoices</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" line="151" column="10" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiSynths.cpp" bodystart="284" bodyend="288"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiSampler_1aed7285192cd1f61f2e79463a3b4f0f33" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void maxiSampler::trigger</definition>
+        <argsstring>()</argsstring>
+        <name>trigger</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" line="153" column="10" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiSynths.cpp" bodystart="481" bodyend="488"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="8">
+        <label>maxiNonlinearity</label>
+        <link refid="classmaxiNonlinearity"/>
+      </node>
+      <node id="3">
+        <label>maxiTrigger</label>
+        <link refid="classmaxiTrigger"/>
+      </node>
+      <node id="2">
+        <label>maxiSample</label>
+        <link refid="classmaxiSample"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>zxTrig</edgelabel>
+        </childnode>
+      </node>
+      <node id="4">
+        <label>maxiOsc</label>
+        <link refid="classmaxiOsc"/>
+      </node>
+      <node id="5">
+        <label>maxiEnv</label>
+        <link refid="classmaxiEnv"/>
+      </node>
+      <node id="7">
+        <label>convert</label>
+        <link refid="classconvert"/>
+      </node>
+      <node id="6">
+        <label>maxiSVF</label>
+        <link refid="classmaxiSVF"/>
+      </node>
+      <node id="1">
+        <label>maxiSampler</label>
+        <link refid="classmaxiSampler"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>samples</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>LFO1</edgelabel>
+          <edgelabel>LFO2</edgelabel>
+          <edgelabel>LFO3</edgelabel>
+          <edgelabel>LFO4</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>envelopes</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>filters</edgelabel>
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>mtof</edgelabel>
+        </childnode>
+        <childnode refid="8" relation="usage">
+          <edgelabel>distort</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" line="137" column="1" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" bodystart="137" bodyend="183"/>
+    <listofallmembers>
+      <member refid="classmaxiSampler_1a879fe5f95b19fe873357071ea6a5e18c" prot="public" virt="non-virtual"><scope>maxiSampler</scope><name>currentVoice</name></member>
+      <member refid="classmaxiSampler_1afa5b14646ecead84b20604aea4eee0c0" prot="public" virt="non-virtual"><scope>maxiSampler</scope><name>cutoff</name></member>
+      <member refid="classmaxiSampler_1a64bdee787f5e64c3f05e2db5e3a5dda0" prot="public" virt="non-virtual"><scope>maxiSampler</scope><name>distort</name></member>
+      <member refid="classmaxiSampler_1a7c6e19d91ff6f65053af1a58ab0a8fb3" prot="public" virt="non-virtual"><scope>maxiSampler</scope><name>distortion</name></member>
+      <member refid="classmaxiSampler_1ae366f7b3f7e217674f7dcf26bcb32d03" prot="public" virt="non-virtual"><scope>maxiSampler</scope><name>envelopes</name></member>
+      <member refid="classmaxiSampler_1ac420be4ea5c8972c530f32a3da9b25a6" prot="public" virt="non-virtual"><scope>maxiSampler</scope><name>envOut</name></member>
+      <member refid="classmaxiSampler_1aa0a9bd4ab7a91ffd0e0e81035874500b" prot="public" virt="non-virtual"><scope>maxiSampler</scope><name>envOutGain</name></member>
+      <member refid="classmaxiSampler_1ab3487a2e34669524c7d94494881b6522" prot="public" virt="non-virtual"><scope>maxiSampler</scope><name>filters</name></member>
+      <member refid="classmaxiSampler_1ab487022de220ea57ddb21b2e49e37193" prot="public" virt="non-virtual"><scope>maxiSampler</scope><name>gain</name></member>
+      <member refid="classmaxiSampler_1adaa303a934e594e5c7b7a0026108ba41" prot="public" virt="non-virtual"><scope>maxiSampler</scope><name>inverse</name></member>
+      <member refid="classmaxiSampler_1a7029087f72b88a5a9d02c51e8c8d3162" prot="public" virt="non-virtual"><scope>maxiSampler</scope><name>LFO1</name></member>
+      <member refid="classmaxiSampler_1a84eae84474543dfa29e50f1e3fa46388" prot="public" virt="non-virtual"><scope>maxiSampler</scope><name>LFO2</name></member>
+      <member refid="classmaxiSampler_1a64eb018459978c3adf44c60f0f205718" prot="public" virt="non-virtual"><scope>maxiSampler</scope><name>LFO3</name></member>
+      <member refid="classmaxiSampler_1a8ec346b3c52878c1dec05e568d48a2c2" prot="public" virt="non-virtual"><scope>maxiSampler</scope><name>LFO4</name></member>
+      <member refid="classmaxiSampler_1aa210f76f222a5b42d6da18b51e0ff86e" prot="public" virt="non-virtual"><scope>maxiSampler</scope><name>load</name></member>
+      <member refid="classmaxiSampler_1a845b06180762f339ab2a1ebcf0d118d7" prot="public" virt="non-virtual"><scope>maxiSampler</scope><name>maxiSampler</name></member>
+      <member refid="classmaxiSampler_1a5826f90bb751ab29d84ce284834da7b3" prot="public" virt="non-virtual"><scope>maxiSampler</scope><name>midiNoteOff</name></member>
+      <member refid="classmaxiSampler_1ae228ad2503b15ca373d6a2acf8c3d49d" prot="public" virt="non-virtual"><scope>maxiSampler</scope><name>midiNoteOn</name></member>
+      <member refid="classmaxiSampler_1a8d22549c7647340df986fcec31e1c2fe" prot="public" virt="non-virtual"><scope>maxiSampler</scope><name>mtof</name></member>
+      <member refid="classmaxiSampler_1ae024316549ee71feb22ff90196a3bb78" prot="public" virt="non-virtual"><scope>maxiSampler</scope><name>originalPitch</name></member>
+      <member refid="classmaxiSampler_1ae092f7871f466c28714e871223cefc84" prot="public" virt="non-virtual"><scope>maxiSampler</scope><name>output</name></member>
+      <member refid="classmaxiSampler_1a7a9e8f19708020f82c49c630c7c0cc2c" prot="public" virt="non-virtual"><scope>maxiSampler</scope><name>outputD</name></member>
+      <member refid="classmaxiSampler_1a5dbf18073b4b7614b8bdc34fd541bd2f" prot="public" virt="non-virtual"><scope>maxiSampler</scope><name>outputs</name></member>
+      <member refid="classmaxiSampler_1ac39738b23a7f3a6b62b89f4ea3cb0ff4" prot="public" virt="non-virtual"><scope>maxiSampler</scope><name>pitch</name></member>
+      <member refid="classmaxiSampler_1aa1cfec88c21514adb63ecc3126ab56d4" prot="public" virt="non-virtual"><scope>maxiSampler</scope><name>play</name></member>
+      <member refid="classmaxiSampler_1afae9400aab05e4203a594e33dc5a9856" prot="public" virt="non-virtual"><scope>maxiSampler</scope><name>position</name></member>
+      <member refid="classmaxiSampler_1abbb46e0241ac299a03aa0fc9562ce92b" prot="public" virt="non-virtual"><scope>maxiSampler</scope><name>resonance</name></member>
+      <member refid="classmaxiSampler_1a766ca8acd91e2d65075a6b4b3fb3bcb3" prot="public" virt="non-virtual"><scope>maxiSampler</scope><name>samples</name></member>
+      <member refid="classmaxiSampler_1a62580881a01b4464b4a685c500c9cbe5" prot="public" virt="non-virtual"><scope>maxiSampler</scope><name>setAttack</name></member>
+      <member refid="classmaxiSampler_1a319d64782a1a46c01b735d727f95f482" prot="public" virt="non-virtual"><scope>maxiSampler</scope><name>setDecay</name></member>
+      <member refid="classmaxiSampler_1af3cca5b76091de929d7e3bd37d3b57a9" prot="public" virt="non-virtual"><scope>maxiSampler</scope><name>setNumVoices</name></member>
+      <member refid="classmaxiSampler_1a2a609520364de6407916f987f6253bba" prot="public" virt="non-virtual"><scope>maxiSampler</scope><name>setPitch</name></member>
+      <member refid="classmaxiSampler_1af065fb87338f5e84092e6fb46e2d0d34" prot="public" virt="non-virtual"><scope>maxiSampler</scope><name>setPosition</name></member>
+      <member refid="classmaxiSampler_1ad24ade94ed41c4154b45f96470b71f8a" prot="public" virt="non-virtual"><scope>maxiSampler</scope><name>setRelease</name></member>
+      <member refid="classmaxiSampler_1a3a76baabd3bcd24230b2d23cfb9fe01b" prot="public" virt="non-virtual"><scope>maxiSampler</scope><name>setSustain</name></member>
+      <member refid="classmaxiSampler_1a619d11831e9fb88414f91f9a8f75cc6c" prot="public" virt="non-virtual"><scope>maxiSampler</scope><name>sustain</name></member>
+      <member refid="classmaxiSampler_1aed7285192cd1f61f2e79463a3b4f0f33" prot="public" virt="non-virtual"><scope>maxiSampler</scope><name>trigger</name></member>
+      <member refid="classmaxiSampler_1aef66510499b625d2af84e813511a2453" prot="public" virt="non-virtual"><scope>maxiSampler</scope><name>useDistortion</name></member>
+      <member refid="classmaxiSampler_1a46b34c7fe2e5b064f50730ffd0dc7c53" prot="public" virt="non-virtual"><scope>maxiSampler</scope><name>useFilter</name></member>
+      <member refid="classmaxiSampler_1a932cf720a81447e50ba9ebee8a8bc454" prot="public" virt="non-virtual"><scope>maxiSampler</scope><name>useLimiter</name></member>
+      <member refid="classmaxiSampler_1aaa17547d157aaafa5537d40779168a59" prot="public" virt="non-virtual"><scope>maxiSampler</scope><name>voices</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

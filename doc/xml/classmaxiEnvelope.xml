@@ -1,0 +1,253 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classmaxiEnvelope" kind="class" language="C++" prot="public">
+    <compoundname>maxiEnvelope</compoundname>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classmaxiEnvelope_1ad59d83f6e5f9f0a543f1fed8947cf726" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double maxiEnvelope::period</definition>
+        <argsstring></argsstring>
+        <name>period</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="189" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="189" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiEnvelope_1a90481e18d1d9c1f2dbb07cc78546358e" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double maxiEnvelope::output</definition>
+        <argsstring></argsstring>
+        <name>output</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="190" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="190" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiEnvelope_1a77f879161b1e0f3988788d0eea27ceb3" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double maxiEnvelope::startval</definition>
+        <argsstring></argsstring>
+        <name>startval</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="191" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="191" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiEnvelope_1add01956c4bf8e56a8c444862342a3d24" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double maxiEnvelope::currentval</definition>
+        <argsstring></argsstring>
+        <name>currentval</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="192" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="192" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiEnvelope_1af73b5dbbfefb76bc480b8b2a5ced33a0" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double maxiEnvelope::nextval</definition>
+        <argsstring></argsstring>
+        <name>nextval</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="193" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="193" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiEnvelope_1a41230be77b4e4c60c3c3370f80a83366" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int maxiEnvelope::isPlaying</definition>
+        <argsstring></argsstring>
+        <name>isPlaying</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="194" column="9" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="194" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classmaxiEnvelope_1a88e7065aa570172dd2bf037503247d20" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int maxiEnvelope::valindex</definition>
+        <argsstring></argsstring>
+        <name>valindex</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="202" column="9" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="202" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiEnvelope_1a1ce87f680d251d058666b2612421768c" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double maxiEnvelope::amplitude</definition>
+        <argsstring></argsstring>
+        <name>amplitude</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="203" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="203" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classmaxiEnvelope_1ae6898d42eb053f1ddebf48ab4b24af75" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>maxiEnvelope::maxiEnvelope</definition>
+        <argsstring>()</argsstring>
+        <name>maxiEnvelope</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="197" column="5" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="197" bodyend="197"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiEnvelope_1a78db7f645b5804229f124291d9c39c42" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double maxiEnvelope::line</definition>
+        <argsstring>(int numberofsegments, std::vector&lt; double &gt; &amp;segments)</argsstring>
+        <name>line</name>
+        <param>
+          <type>int</type>
+          <declname>numberofsegments</declname>
+        </param>
+        <param>
+          <type>std::vector&lt; double &gt; &amp;</type>
+          <declname>segments</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="199" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.cpp" bodystart="377" bodyend="402"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiEnvelope_1a2df52ca20786352ec05fc1161992d816" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void maxiEnvelope::trigger</definition>
+        <argsstring>(int index, double amp)</argsstring>
+        <name>trigger</name>
+        <param>
+          <type>int</type>
+          <declname>index</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>amp</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="201" column="10" bodyfile="/home/ck84/src/Maximilian/src/maximilian.cpp" bodystart="407" bodyend="412"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiEnvelope_1a9e0e67b6a84c989fa2bedb260b2f1cee" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void maxiEnvelope::setValindex</definition>
+        <argsstring>(int index)</argsstring>
+        <name>setValindex</name>
+        <param>
+          <type>int</type>
+          <declname>index</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="207" column="10" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="207" bodyend="210"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiEnvelope_1acf308ffde88ea13ee00940b6981cf6ca" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void maxiEnvelope::setAmplitude</definition>
+        <argsstring>(double amp)</argsstring>
+        <name>setAmplitude</name>
+        <param>
+          <type>double</type>
+          <declname>amp</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="212" column="10" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="212" bodyend="215"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiEnvelope_1a592eb896fb0631ea8c2ea7deecc8a76e" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int maxiEnvelope::getValindex</definition>
+        <argsstring>() const</argsstring>
+        <name>getValindex</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="217" column="9" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="217" bodyend="220"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiEnvelope_1a3bc8c825f99fcf0ffe551039147d7b4a" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double maxiEnvelope::getAmplitude</definition>
+        <argsstring>() const</argsstring>
+        <name>getAmplitude</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="222" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="222" bodyend="225"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="186" column="1" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="187" bodyend="227"/>
+    <listofallmembers>
+      <member refid="classmaxiEnvelope_1a1ce87f680d251d058666b2612421768c" prot="public" virt="non-virtual"><scope>maxiEnvelope</scope><name>amplitude</name></member>
+      <member refid="classmaxiEnvelope_1add01956c4bf8e56a8c444862342a3d24" prot="private" virt="non-virtual"><scope>maxiEnvelope</scope><name>currentval</name></member>
+      <member refid="classmaxiEnvelope_1a3bc8c825f99fcf0ffe551039147d7b4a" prot="public" virt="non-virtual"><scope>maxiEnvelope</scope><name>getAmplitude</name></member>
+      <member refid="classmaxiEnvelope_1a592eb896fb0631ea8c2ea7deecc8a76e" prot="public" virt="non-virtual"><scope>maxiEnvelope</scope><name>getValindex</name></member>
+      <member refid="classmaxiEnvelope_1a41230be77b4e4c60c3c3370f80a83366" prot="private" virt="non-virtual"><scope>maxiEnvelope</scope><name>isPlaying</name></member>
+      <member refid="classmaxiEnvelope_1a78db7f645b5804229f124291d9c39c42" prot="public" virt="non-virtual"><scope>maxiEnvelope</scope><name>line</name></member>
+      <member refid="classmaxiEnvelope_1ae6898d42eb053f1ddebf48ab4b24af75" prot="public" virt="non-virtual"><scope>maxiEnvelope</scope><name>maxiEnvelope</name></member>
+      <member refid="classmaxiEnvelope_1af73b5dbbfefb76bc480b8b2a5ced33a0" prot="private" virt="non-virtual"><scope>maxiEnvelope</scope><name>nextval</name></member>
+      <member refid="classmaxiEnvelope_1a90481e18d1d9c1f2dbb07cc78546358e" prot="private" virt="non-virtual"><scope>maxiEnvelope</scope><name>output</name></member>
+      <member refid="classmaxiEnvelope_1ad59d83f6e5f9f0a543f1fed8947cf726" prot="private" virt="non-virtual"><scope>maxiEnvelope</scope><name>period</name></member>
+      <member refid="classmaxiEnvelope_1acf308ffde88ea13ee00940b6981cf6ca" prot="public" virt="non-virtual"><scope>maxiEnvelope</scope><name>setAmplitude</name></member>
+      <member refid="classmaxiEnvelope_1a9e0e67b6a84c989fa2bedb260b2f1cee" prot="public" virt="non-virtual"><scope>maxiEnvelope</scope><name>setValindex</name></member>
+      <member refid="classmaxiEnvelope_1a77f879161b1e0f3988788d0eea27ceb3" prot="private" virt="non-virtual"><scope>maxiEnvelope</scope><name>startval</name></member>
+      <member refid="classmaxiEnvelope_1a2df52ca20786352ec05fc1161992d816" prot="public" virt="non-virtual"><scope>maxiEnvelope</scope><name>trigger</name></member>
+      <member refid="classmaxiEnvelope_1a88e7065aa570172dd2bf037503247d20" prot="public" virt="non-virtual"><scope>maxiEnvelope</scope><name>valindex</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

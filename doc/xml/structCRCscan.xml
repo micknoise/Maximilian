@@ -1,0 +1,85 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structCRCscan" kind="struct" language="C++" prot="public">
+    <compoundname>CRCscan</compoundname>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structCRCscan_1a530cd3f5d8a6ee4c095e405695b54d04" prot="public" static="no" mutable="no">
+        <type>uint32</type>
+        <definition>uint32 CRCscan::goal_crc</definition>
+        <argsstring></argsstring>
+        <name>goal_crc</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" line="357" column="12" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="357" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structCRCscan_1a8cfbc584d3b4344d02e5d64b50447d1e" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int CRCscan::bytes_left</definition>
+        <argsstring></argsstring>
+        <name>bytes_left</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" line="358" column="12" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="358" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structCRCscan_1a2604a61beb2f4718d2c0c5641264cebe" prot="public" static="no" mutable="no">
+        <type>uint32</type>
+        <definition>uint32 CRCscan::crc_so_far</definition>
+        <argsstring></argsstring>
+        <name>crc_so_far</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" line="359" column="12" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="359" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structCRCscan_1a74ee9da9e00c74c1f519d31a2d042457" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int CRCscan::bytes_done</definition>
+        <argsstring></argsstring>
+        <name>bytes_done</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" line="360" column="12" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="360" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structCRCscan_1a444610761de18db38c7664e702a5e29a" prot="public" static="no" mutable="no">
+        <type>uint32</type>
+        <definition>uint32 CRCscan::sample_loc</definition>
+        <argsstring></argsstring>
+        <name>sample_loc</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" line="361" column="12" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="361" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" line="355" column="1" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="356" bodyend="362"/>
+    <listofallmembers>
+      <member refid="structCRCscan_1a74ee9da9e00c74c1f519d31a2d042457" prot="public" virt="non-virtual"><scope>CRCscan</scope><name>bytes_done</name></member>
+      <member refid="structCRCscan_1a8cfbc584d3b4344d02e5d64b50447d1e" prot="public" virt="non-virtual"><scope>CRCscan</scope><name>bytes_left</name></member>
+      <member refid="structCRCscan_1a2604a61beb2f4718d2c0c5641264cebe" prot="public" virt="non-virtual"><scope>CRCscan</scope><name>crc_so_far</name></member>
+      <member refid="structCRCscan_1a530cd3f5d8a6ee4c095e405695b54d04" prot="public" virt="non-virtual"><scope>CRCscan</scope><name>goal_crc</name></member>
+      <member refid="structCRCscan_1a444610761de18db38c7664e702a5e29a" prot="public" virt="non-virtual"><scope>CRCscan</scope><name>sample_loc</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

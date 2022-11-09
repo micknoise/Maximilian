@@ -1,0 +1,183 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structFloor1" kind="struct" language="C++" prot="public">
+    <compoundname>Floor1</compoundname>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structFloor1_1a4dee145bcd73bc21fee38a83ef91a056" prot="public" static="no" mutable="no">
+        <type>uint8</type>
+        <definition>uint8 Floor1::partitions</definition>
+        <argsstring></argsstring>
+        <name>partitions</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" line="301" column="10" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="301" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structFloor1_1af59d85fae4137a1926954355056f24dc" prot="public" static="no" mutable="no">
+        <type>uint8</type>
+        <definition>uint8 Floor1::partition_class_list[32]</definition>
+        <argsstring>[32]</argsstring>
+        <name>partition_class_list</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" line="302" column="10" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="302" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structFloor1_1ab7adeb3e2d518eddd510c525e14c0421" prot="public" static="no" mutable="no">
+        <type>uint8</type>
+        <definition>uint8 Floor1::class_dimensions[16]</definition>
+        <argsstring>[16]</argsstring>
+        <name>class_dimensions</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" line="303" column="10" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="303" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structFloor1_1af3004149b67bcab60a25afb51ea07f87" prot="public" static="no" mutable="no">
+        <type>uint8</type>
+        <definition>uint8 Floor1::class_subclasses[16]</definition>
+        <argsstring>[16]</argsstring>
+        <name>class_subclasses</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" line="304" column="10" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="304" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structFloor1_1ad10936c904d13820156191fcc25c7b07" prot="public" static="no" mutable="no">
+        <type>uint8</type>
+        <definition>uint8 Floor1::class_masterbooks[16]</definition>
+        <argsstring>[16]</argsstring>
+        <name>class_masterbooks</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" line="305" column="10" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="305" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structFloor1_1af51fdc5e2e82b6357285e2d302b35230" prot="public" static="no" mutable="no">
+        <type>int16</type>
+        <definition>int16 Floor1::subclass_books[16][8]</definition>
+        <argsstring>[16][8]</argsstring>
+        <name>subclass_books</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" line="306" column="10" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="306" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structFloor1_1a2c09f98b7613ec990add2467ea39f240" prot="public" static="no" mutable="no">
+        <type>uint16</type>
+        <definition>uint16 Floor1::Xlist[31 *8+2]</definition>
+        <argsstring>[31 *8+2]</argsstring>
+        <name>Xlist</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" line="307" column="11" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="307" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structFloor1_1a7e6efe1155cfafd2eeb2cdcc39f121a1" prot="public" static="no" mutable="no">
+        <type>uint8</type>
+        <definition>uint8 Floor1::sorted_order[31 *8+2]</definition>
+        <argsstring>[31 *8+2]</argsstring>
+        <name>sorted_order</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" line="308" column="10" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="308" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structFloor1_1a468a990afb1f3735d90992ec66a959d5" prot="public" static="no" mutable="no">
+        <type>uint8</type>
+        <definition>uint8 Floor1::neighbors[31 *8+2][2]</definition>
+        <argsstring>[31 *8+2][2]</argsstring>
+        <name>neighbors</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" line="309" column="10" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="309" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structFloor1_1a38aa153cbf396cc55c05c67489965c73" prot="public" static="no" mutable="no">
+        <type>uint8</type>
+        <definition>uint8 Floor1::floor1_multiplier</definition>
+        <argsstring></argsstring>
+        <name>floor1_multiplier</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" line="310" column="10" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="310" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structFloor1_1a9edbc16be44c59b3374e7495c300098a" prot="public" static="no" mutable="no">
+        <type>uint8</type>
+        <definition>uint8 Floor1::rangebits</definition>
+        <argsstring></argsstring>
+        <name>rangebits</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" line="311" column="10" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="311" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structFloor1_1a9a426cc6574076ad9e5d969a56af41f4" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int Floor1::values</definition>
+        <argsstring></argsstring>
+        <name>values</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" line="312" column="8" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="312" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" line="299" column="1" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="300" bodyend="313"/>
+    <listofallmembers>
+      <member refid="structFloor1_1ab7adeb3e2d518eddd510c525e14c0421" prot="public" virt="non-virtual"><scope>Floor1</scope><name>class_dimensions</name></member>
+      <member refid="structFloor1_1ad10936c904d13820156191fcc25c7b07" prot="public" virt="non-virtual"><scope>Floor1</scope><name>class_masterbooks</name></member>
+      <member refid="structFloor1_1af3004149b67bcab60a25afb51ea07f87" prot="public" virt="non-virtual"><scope>Floor1</scope><name>class_subclasses</name></member>
+      <member refid="structFloor1_1a38aa153cbf396cc55c05c67489965c73" prot="public" virt="non-virtual"><scope>Floor1</scope><name>floor1_multiplier</name></member>
+      <member refid="structFloor1_1a468a990afb1f3735d90992ec66a959d5" prot="public" virt="non-virtual"><scope>Floor1</scope><name>neighbors</name></member>
+      <member refid="structFloor1_1af59d85fae4137a1926954355056f24dc" prot="public" virt="non-virtual"><scope>Floor1</scope><name>partition_class_list</name></member>
+      <member refid="structFloor1_1a4dee145bcd73bc21fee38a83ef91a056" prot="public" virt="non-virtual"><scope>Floor1</scope><name>partitions</name></member>
+      <member refid="structFloor1_1a9edbc16be44c59b3374e7495c300098a" prot="public" virt="non-virtual"><scope>Floor1</scope><name>rangebits</name></member>
+      <member refid="structFloor1_1a7e6efe1155cfafd2eeb2cdcc39f121a1" prot="public" virt="non-virtual"><scope>Floor1</scope><name>sorted_order</name></member>
+      <member refid="structFloor1_1af51fdc5e2e82b6357285e2d302b35230" prot="public" virt="non-virtual"><scope>Floor1</scope><name>subclass_books</name></member>
+      <member refid="structFloor1_1a9a426cc6574076ad9e5d969a56af41f4" prot="public" virt="non-virtual"><scope>Floor1</scope><name>values</name></member>
+      <member refid="structFloor1_1a2c09f98b7613ec990add2467ea39f240" prot="public" virt="non-virtual"><scope>Floor1</scope><name>Xlist</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

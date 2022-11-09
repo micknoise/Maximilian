@@ -1,0 +1,533 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classmaxiKick" kind="class" language="C++" prot="public">
+    <compoundname>maxiKick</compoundname>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classmaxiKick_1af6f0a22db4dbbe1f62b44c60bbf7478a" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double maxiKick::pitch</definition>
+        <argsstring></argsstring>
+        <name>pitch</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" line="46" column="12" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" bodystart="46" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiKick_1aeca75ede762cdc8ba56f2954bbe70388" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double maxiKick::output</definition>
+        <argsstring></argsstring>
+        <name>output</name>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" line="47" column="12" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" bodystart="47" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiKick_1a81e9dbdacb55c59203b056189a58ceb9" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double maxiKick::outputD</definition>
+        <argsstring></argsstring>
+        <name>outputD</name>
+        <initializer>=0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" line="48" column="12" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" bodystart="48" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiKick_1aa3d728aa26174aae0b2d1d0bd70ab5f8" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double maxiKick::envOut</definition>
+        <argsstring></argsstring>
+        <name>envOut</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" line="49" column="12" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" bodystart="49" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiKick_1a7bdcb2ea3ebe8b325143a9b4491aada7" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool maxiKick::useDistortion</definition>
+        <argsstring></argsstring>
+        <name>useDistortion</name>
+        <initializer>= false</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" line="50" column="10" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" bodystart="50" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiKick_1a17f6f53c421b1c68c574bd24621ce1e2" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool maxiKick::useLimiter</definition>
+        <argsstring></argsstring>
+        <name>useLimiter</name>
+        <initializer>= false</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" line="51" column="10" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" bodystart="51" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiKick_1a3be27eb80ab4d4d230a9bd5b9fffe826" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool maxiKick::useFilter</definition>
+        <argsstring></argsstring>
+        <name>useFilter</name>
+        <initializer>= false</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" line="52" column="10" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" bodystart="52" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiKick_1ab880624666ed2c87f77f1e2224489e50" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double maxiKick::distortion</definition>
+        <argsstring></argsstring>
+        <name>distortion</name>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" line="53" column="12" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" bodystart="53" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiKick_1a1f98b56beed2b783e0d1a2333b0bca5a" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool maxiKick::inverse</definition>
+        <argsstring></argsstring>
+        <name>inverse</name>
+        <initializer>= false</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" line="54" column="10" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" bodystart="54" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiKick_1ab0ca0a9bfb9384562566e572933f9267" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double maxiKick::cutoff</definition>
+        <argsstring></argsstring>
+        <name>cutoff</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" line="55" column="12" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" bodystart="55" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiKick_1a025b5d2ec72715f5e908eddb64e609f4" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double maxiKick::resonance</definition>
+        <argsstring></argsstring>
+        <name>resonance</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" line="56" column="12" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" bodystart="56" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiKick_1aa23ab96f028167e37ec1a61d79c5c98a" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double maxiKick::gain</definition>
+        <argsstring></argsstring>
+        <name>gain</name>
+        <initializer>= 1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" line="57" column="12" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" bodystart="57" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiKick_1abc3c51786d1730e6f424f79a503535b3" prot="private" static="no" mutable="no">
+        <type><ref refid="classmaxiOsc" kindref="compound">maxiOsc</ref></type>
+        <definition>maxiOsc maxiKick::kick</definition>
+        <argsstring></argsstring>
+        <name>kick</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" line="58" column="13" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" bodystart="58" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiKick_1a13d965547cdf9228dc3a889407e3c4ec" prot="private" static="no" mutable="no">
+        <type><ref refid="classmaxiEnv" kindref="compound">maxiEnv</ref></type>
+        <definition>maxiEnv maxiKick::envelope</definition>
+        <argsstring></argsstring>
+        <name>envelope</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" line="59" column="13" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" bodystart="59" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiKick_1ace7f30a5dc060dede3f539d63efef9d9" prot="private" static="no" mutable="no">
+        <type><ref refid="classmaxiNonlinearity" kindref="compound">maxiDistortion</ref></type>
+        <definition>maxiDistortion maxiKick::distort</definition>
+        <argsstring></argsstring>
+        <name>distort</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" line="60" column="20" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" bodystart="60" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiKick_1aa861e77addae4c5cbf6ead084a0ccf60" prot="private" static="no" mutable="no">
+        <type><ref refid="classmaxiFilter" kindref="compound">maxiFilter</ref></type>
+        <definition>maxiFilter maxiKick::filter</definition>
+        <argsstring></argsstring>
+        <name>filter</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" line="61" column="16" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" bodystart="61" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classmaxiKick_1afc8362e62ff49e93fdb4f7cdbfcb24fe" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>maxiKick::maxiKick</definition>
+        <argsstring>()</argsstring>
+        <name>maxiKick</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" line="22" column="5" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiSynths.cpp" bodystart="11" bodyend="21"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiKick_1ac472b30d1f60a5be075bfc30ff643d7f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double maxiKick::play</definition>
+        <argsstring>()</argsstring>
+        <name>play</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" line="23" column="12" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiSynths.cpp" bodystart="23" bodyend="73"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiKick_1a4e2036381d3846044e3315ebd8ec538f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void maxiKick::trigger</definition>
+        <argsstring>()</argsstring>
+        <name>trigger</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" line="24" column="10" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiSynths.cpp" bodystart="87" bodyend="91"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiKick_1a1c8acf2e75ccb62342a1471377db422c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void maxiKick::setRelease</definition>
+        <argsstring>(double releaseD)</argsstring>
+        <name>setRelease</name>
+        <param>
+          <type>double</type>
+          <declname>releaseD</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" line="26" column="10" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiSynths.cpp" bodystart="75" bodyend="79"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiKick_1ac0bf5120aaa99296002505cbee038f57" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void maxiKick::setPitch</definition>
+        <argsstring>(double v)</argsstring>
+        <name>setPitch</name>
+        <param>
+          <type>double</type>
+          <declname>v</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" line="28" column="10" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" bodystart="28" bodyend="28"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiKick_1aa885690dd50f1ff150aca46aebe4978c" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double maxiKick::getPitch</definition>
+        <argsstring>() const</argsstring>
+        <name>getPitch</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" line="29" column="12" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" bodystart="29" bodyend="29"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiKick_1a03ab9fa891381c52e4ae452f63b16bab" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void maxiKick::setDistortion</definition>
+        <argsstring>(double v)</argsstring>
+        <name>setDistortion</name>
+        <param>
+          <type>double</type>
+          <declname>v</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" line="30" column="10" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" bodystart="30" bodyend="30"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiKick_1a1dcc9760be889fccc958c62fc4b776f4" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double maxiKick::getDistortion</definition>
+        <argsstring>() const</argsstring>
+        <name>getDistortion</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" line="31" column="12" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" bodystart="31" bodyend="31"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiKick_1a9681c9829f9d7154985d9cd5b310f266" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void maxiKick::setCutoff</definition>
+        <argsstring>(double v)</argsstring>
+        <name>setCutoff</name>
+        <param>
+          <type>double</type>
+          <declname>v</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" line="32" column="10" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" bodystart="32" bodyend="32"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiKick_1a0196462b2763247abca1c4a6564ddbd4" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double maxiKick::getCutoff</definition>
+        <argsstring>() const</argsstring>
+        <name>getCutoff</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" line="33" column="12" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" bodystart="33" bodyend="33"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiKick_1aa8833751798214016eb0f604db3360e5" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void maxiKick::setResonance</definition>
+        <argsstring>(double v)</argsstring>
+        <name>setResonance</name>
+        <param>
+          <type>double</type>
+          <declname>v</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" line="34" column="10" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" bodystart="34" bodyend="34"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiKick_1a4ca5da578b711419bd0d9352ea0e5818" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double maxiKick::getResonance</definition>
+        <argsstring>() const</argsstring>
+        <name>getResonance</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" line="35" column="12" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" bodystart="35" bodyend="35"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiKick_1a0b9aae5e4923464adb9827100358e9fa" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void maxiKick::setUseDistortion</definition>
+        <argsstring>(bool v)</argsstring>
+        <name>setUseDistortion</name>
+        <param>
+          <type>bool</type>
+          <declname>v</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" line="37" column="10" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" bodystart="37" bodyend="37"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiKick_1abd44e7043356b656af2b094a81a18e36" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double maxiKick::getUseDistortion</definition>
+        <argsstring>() const</argsstring>
+        <name>getUseDistortion</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" line="38" column="12" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" bodystart="38" bodyend="38"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiKick_1a4427c0a66d2f499f17ec88b3cbddd3e6" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void maxiKick::setUseLimiter</definition>
+        <argsstring>(bool v)</argsstring>
+        <name>setUseLimiter</name>
+        <param>
+          <type>bool</type>
+          <declname>v</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" line="39" column="10" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" bodystart="39" bodyend="39"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiKick_1a0faa7969d1494f89d979b0b189f158d8" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double maxiKick::getUseLimiter</definition>
+        <argsstring>() const</argsstring>
+        <name>getUseLimiter</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" line="40" column="12" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" bodystart="40" bodyend="40"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiKick_1ad1750a4a1d281d50d460308416a0465b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void maxiKick::setUseFilter</definition>
+        <argsstring>(bool v)</argsstring>
+        <name>setUseFilter</name>
+        <param>
+          <type>bool</type>
+          <declname>v</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" line="41" column="10" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" bodystart="41" bodyend="41"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiKick_1a2e5211c800017d808fe8f26e96b8b0ba" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double maxiKick::getUseFilter</definition>
+        <argsstring>() const</argsstring>
+        <name>getUseFilter</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" line="42" column="12" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" bodystart="42" bodyend="42"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" line="20" column="1" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" bodystart="20" bodyend="62"/>
+    <listofallmembers>
+      <member refid="classmaxiKick_1ab0ca0a9bfb9384562566e572933f9267" prot="private" virt="non-virtual"><scope>maxiKick</scope><name>cutoff</name></member>
+      <member refid="classmaxiKick_1ace7f30a5dc060dede3f539d63efef9d9" prot="private" virt="non-virtual"><scope>maxiKick</scope><name>distort</name></member>
+      <member refid="classmaxiKick_1ab880624666ed2c87f77f1e2224489e50" prot="private" virt="non-virtual"><scope>maxiKick</scope><name>distortion</name></member>
+      <member refid="classmaxiKick_1a13d965547cdf9228dc3a889407e3c4ec" prot="private" virt="non-virtual"><scope>maxiKick</scope><name>envelope</name></member>
+      <member refid="classmaxiKick_1aa3d728aa26174aae0b2d1d0bd70ab5f8" prot="private" virt="non-virtual"><scope>maxiKick</scope><name>envOut</name></member>
+      <member refid="classmaxiKick_1aa861e77addae4c5cbf6ead084a0ccf60" prot="private" virt="non-virtual"><scope>maxiKick</scope><name>filter</name></member>
+      <member refid="classmaxiKick_1aa23ab96f028167e37ec1a61d79c5c98a" prot="private" virt="non-virtual"><scope>maxiKick</scope><name>gain</name></member>
+      <member refid="classmaxiKick_1a0196462b2763247abca1c4a6564ddbd4" prot="public" virt="non-virtual"><scope>maxiKick</scope><name>getCutoff</name></member>
+      <member refid="classmaxiKick_1a1dcc9760be889fccc958c62fc4b776f4" prot="public" virt="non-virtual"><scope>maxiKick</scope><name>getDistortion</name></member>
+      <member refid="classmaxiKick_1aa885690dd50f1ff150aca46aebe4978c" prot="public" virt="non-virtual"><scope>maxiKick</scope><name>getPitch</name></member>
+      <member refid="classmaxiKick_1a4ca5da578b711419bd0d9352ea0e5818" prot="public" virt="non-virtual"><scope>maxiKick</scope><name>getResonance</name></member>
+      <member refid="classmaxiKick_1abd44e7043356b656af2b094a81a18e36" prot="public" virt="non-virtual"><scope>maxiKick</scope><name>getUseDistortion</name></member>
+      <member refid="classmaxiKick_1a2e5211c800017d808fe8f26e96b8b0ba" prot="public" virt="non-virtual"><scope>maxiKick</scope><name>getUseFilter</name></member>
+      <member refid="classmaxiKick_1a0faa7969d1494f89d979b0b189f158d8" prot="public" virt="non-virtual"><scope>maxiKick</scope><name>getUseLimiter</name></member>
+      <member refid="classmaxiKick_1a1f98b56beed2b783e0d1a2333b0bca5a" prot="private" virt="non-virtual"><scope>maxiKick</scope><name>inverse</name></member>
+      <member refid="classmaxiKick_1abc3c51786d1730e6f424f79a503535b3" prot="private" virt="non-virtual"><scope>maxiKick</scope><name>kick</name></member>
+      <member refid="classmaxiKick_1afc8362e62ff49e93fdb4f7cdbfcb24fe" prot="public" virt="non-virtual"><scope>maxiKick</scope><name>maxiKick</name></member>
+      <member refid="classmaxiKick_1aeca75ede762cdc8ba56f2954bbe70388" prot="private" virt="non-virtual"><scope>maxiKick</scope><name>output</name></member>
+      <member refid="classmaxiKick_1a81e9dbdacb55c59203b056189a58ceb9" prot="private" virt="non-virtual"><scope>maxiKick</scope><name>outputD</name></member>
+      <member refid="classmaxiKick_1af6f0a22db4dbbe1f62b44c60bbf7478a" prot="private" virt="non-virtual"><scope>maxiKick</scope><name>pitch</name></member>
+      <member refid="classmaxiKick_1ac472b30d1f60a5be075bfc30ff643d7f" prot="public" virt="non-virtual"><scope>maxiKick</scope><name>play</name></member>
+      <member refid="classmaxiKick_1a025b5d2ec72715f5e908eddb64e609f4" prot="private" virt="non-virtual"><scope>maxiKick</scope><name>resonance</name></member>
+      <member refid="classmaxiKick_1a9681c9829f9d7154985d9cd5b310f266" prot="public" virt="non-virtual"><scope>maxiKick</scope><name>setCutoff</name></member>
+      <member refid="classmaxiKick_1a03ab9fa891381c52e4ae452f63b16bab" prot="public" virt="non-virtual"><scope>maxiKick</scope><name>setDistortion</name></member>
+      <member refid="classmaxiKick_1ac0bf5120aaa99296002505cbee038f57" prot="public" virt="non-virtual"><scope>maxiKick</scope><name>setPitch</name></member>
+      <member refid="classmaxiKick_1a1c8acf2e75ccb62342a1471377db422c" prot="public" virt="non-virtual"><scope>maxiKick</scope><name>setRelease</name></member>
+      <member refid="classmaxiKick_1aa8833751798214016eb0f604db3360e5" prot="public" virt="non-virtual"><scope>maxiKick</scope><name>setResonance</name></member>
+      <member refid="classmaxiKick_1a0b9aae5e4923464adb9827100358e9fa" prot="public" virt="non-virtual"><scope>maxiKick</scope><name>setUseDistortion</name></member>
+      <member refid="classmaxiKick_1ad1750a4a1d281d50d460308416a0465b" prot="public" virt="non-virtual"><scope>maxiKick</scope><name>setUseFilter</name></member>
+      <member refid="classmaxiKick_1a4427c0a66d2f499f17ec88b3cbddd3e6" prot="public" virt="non-virtual"><scope>maxiKick</scope><name>setUseLimiter</name></member>
+      <member refid="classmaxiKick_1a4e2036381d3846044e3315ebd8ec538f" prot="public" virt="non-virtual"><scope>maxiKick</scope><name>trigger</name></member>
+      <member refid="classmaxiKick_1a7bdcb2ea3ebe8b325143a9b4491aada7" prot="private" virt="non-virtual"><scope>maxiKick</scope><name>useDistortion</name></member>
+      <member refid="classmaxiKick_1a3be27eb80ab4d4d230a9bd5b9fffe826" prot="private" virt="non-virtual"><scope>maxiKick</scope><name>useFilter</name></member>
+      <member refid="classmaxiKick_1a17f6f53c421b1c68c574bd24621ce1e2" prot="private" virt="non-virtual"><scope>maxiKick</scope><name>useLimiter</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,96 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classmaxiMFCCAdaptor" kind="class" language="C++" prot="public">
+    <compoundname>maxiMFCCAdaptor</compoundname>
+    <basecompoundref refid="classmaxiMFCCAnalyser" prot="public" virt="non-virtual">maxiMFCCAnalyser&lt; double &gt;</basecompoundref>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classmaxiMFCCAdaptor_1aba9751489b050de7b4e3c21a7ae399fb" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void maxiMFCCAdaptor::setup</definition>
+        <argsstring>(unsigned int numBins, unsigned int numFilters, unsigned int numCoeffs, double minFreq, double maxFreq)</argsstring>
+        <name>setup</name>
+        <param>
+          <type>unsigned int</type>
+          <declname>numBins</declname>
+        </param>
+        <param>
+          <type>unsigned int</type>
+          <declname>numFilters</declname>
+        </param>
+        <param>
+          <type>unsigned int</type>
+          <declname>numCoeffs</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>minFreq</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>maxFreq</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.embind.cpp" line="729" column="6" bodyfile="/home/ck84/src/Maximilian/src/maximilian.embind.cpp" bodystart="729" bodyend="731"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiMFCCAdaptor_1a32d617db99c6008348d7a331a79b5d3e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>emscripten::val</type>
+        <definition>emscripten::val maxiMFCCAdaptor::mfcc</definition>
+        <argsstring>(const emscripten::val &amp;powerSpectrum)</argsstring>
+        <name>mfcc</name>
+        <param>
+          <type>const emscripten::val &amp;</type>
+          <declname>powerSpectrum</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.embind.cpp" line="733" column="17" bodyfile="/home/ck84/src/Maximilian/src/maximilian.embind.cpp" bodystart="733" bodyend="737"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>maxiMFCCAdaptor</label>
+        <link refid="classmaxiMFCCAdaptor"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>maxiMFCC</label>
+        <link refid="classmaxiMFCCAnalyser"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>maxiMFCCAdaptor</label>
+        <link refid="classmaxiMFCCAdaptor"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>maxiMFCC</label>
+        <link refid="classmaxiMFCCAnalyser"/>
+      </node>
+    </collaborationgraph>
+    <location file="/home/ck84/src/Maximilian/src/maximilian.embind.cpp" line="726" column="1" bodyfile="/home/ck84/src/Maximilian/src/maximilian.embind.cpp" bodystart="726" bodyend="739"/>
+    <listofallmembers>
+      <member refid="classmaxiMFCCAnalyser_1abb9658ac40c732d2f0f10ff727bfd135" prot="public" virt="non-virtual"><scope>maxiMFCCAdaptor</scope><name>maxiMFCCAnalyser</name></member>
+      <member refid="classmaxiMFCCAnalyser_1a4805c7707a06deeddbc3ac7081515346" prot="public" virt="non-virtual"><scope>maxiMFCCAdaptor</scope><name>melBands</name></member>
+      <member refid="classmaxiMFCCAdaptor_1a32d617db99c6008348d7a331a79b5d3e" prot="public" virt="non-virtual"><scope>maxiMFCCAdaptor</scope><name>mfcc</name></member>
+      <member refid="classmaxiMFCCAnalyser_1acd229a37ea6913d187aaa1f24c9b8ba2" prot="public" virt="non-virtual" ambiguityscope="maxiMFCCAnalyser::"><scope>maxiMFCCAdaptor</scope><name>mfcc</name></member>
+      <member refid="classmaxiMFCCAdaptor_1aba9751489b050de7b4e3c21a7ae399fb" prot="public" virt="non-virtual"><scope>maxiMFCCAdaptor</scope><name>setup</name></member>
+      <member refid="classmaxiMFCCAnalyser_1abb5a3435fd41e1bc2aab7e3b76638a78" prot="public" virt="non-virtual"><scope>maxiMFCCAdaptor</scope><name>~maxiMFCCAnalyser</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

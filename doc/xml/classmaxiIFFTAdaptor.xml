@@ -1,0 +1,137 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classmaxiIFFTAdaptor" kind="class" language="C++" prot="public">
+    <compoundname>maxiIFFTAdaptor</compoundname>
+    <basecompoundref refid="classmaxiIFFT" prot="public" virt="non-virtual">maxiIFFT</basecompoundref>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classmaxiIFFTAdaptor_1aa550b07cc7e006b61e71c4a0c15c9f80" prot="private" static="no" mutable="no">
+        <type>vector&lt; float &gt;</type>
+        <definition>vector&lt;float&gt; maxiIFFTAdaptor::data1Vec</definition>
+        <argsstring></argsstring>
+        <name>data1Vec</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.embind.cpp" line="723" column="8" bodyfile="/home/ck84/src/Maximilian/src/maximilian.embind.cpp" bodystart="723" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiIFFTAdaptor_1a1b9ecbdb7240802960e1ab979740f128" prot="private" static="no" mutable="no">
+        <type>vector&lt; float &gt;</type>
+        <definition>vector&lt;float&gt; maxiIFFTAdaptor::data2Vec</definition>
+        <argsstring></argsstring>
+        <name>data2Vec</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.embind.cpp" line="723" column="17" bodyfile="/home/ck84/src/Maximilian/src/maximilian.embind.cpp" bodystart="723" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classmaxiIFFTAdaptor_1aa7572703e60339d3fe297a88a8ab1da0" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void maxiIFFTAdaptor::setup</definition>
+        <argsstring>(int fftSize=1024, int hopSize=512, int windowSize=0)</argsstring>
+        <name>setup</name>
+        <param>
+          <type>int</type>
+          <declname>fftSize</declname>
+          <defval>1024</defval>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>hopSize</declname>
+          <defval>512</defval>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>windowSize</declname>
+          <defval>0</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.embind.cpp" line="710" column="6" bodyfile="/home/ck84/src/Maximilian/src/maximilian.embind.cpp" bodystart="710" bodyend="714"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiIFFTAdaptor_1a42cfcfe93307bbd60c8cd4d1712a3e8e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>float</type>
+        <definition>float maxiIFFTAdaptor::process</definition>
+        <argsstring>(double trig, const emscripten::val &amp;data1, const emscripten::val &amp;data2, fftModes mode=maxiIFFT::SPECTRUM)</argsstring>
+        <name>process</name>
+        <param>
+          <type>double</type>
+          <declname>trig</declname>
+        </param>
+        <param>
+          <type>const emscripten::val &amp;</type>
+          <declname>data1</declname>
+        </param>
+        <param>
+          <type>const emscripten::val &amp;</type>
+          <declname>data2</declname>
+        </param>
+        <param>
+          <type>fftModes</type>
+          <declname>mode</declname>
+          <defval>maxiIFFT::SPECTRUM</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.embind.cpp" line="715" column="9" bodyfile="/home/ck84/src/Maximilian/src/maximilian.embind.cpp" bodystart="715" bodyend="721"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>maxiIFFT</label>
+        <link refid="classmaxiIFFT"/>
+      </node>
+      <node id="1">
+        <label>maxiIFFTAdaptor</label>
+        <link refid="classmaxiIFFTAdaptor"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>maxiIFFT</label>
+        <link refid="classmaxiIFFT"/>
+      </node>
+      <node id="1">
+        <label>maxiIFFTAdaptor</label>
+        <link refid="classmaxiIFFTAdaptor"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/ck84/src/Maximilian/src/maximilian.embind.cpp" line="708" column="1" bodyfile="/home/ck84/src/Maximilian/src/maximilian.embind.cpp" bodystart="708" bodyend="724"/>
+    <listofallmembers>
+      <member refid="classmaxiIFFT_1a394e1ad180d729f7079552a09028ed32ad76cfa6ff7070725b6441c7b90a71320" prot="public" virt="non-virtual"><scope>maxiIFFTAdaptor</scope><name>COMPLEX</name></member>
+      <member refid="classmaxiIFFTAdaptor_1aa550b07cc7e006b61e71c4a0c15c9f80" prot="private" virt="non-virtual"><scope>maxiIFFTAdaptor</scope><name>data1Vec</name></member>
+      <member refid="classmaxiIFFTAdaptor_1a1b9ecbdb7240802960e1ab979740f128" prot="private" virt="non-virtual"><scope>maxiIFFTAdaptor</scope><name>data2Vec</name></member>
+      <member refid="classmaxiIFFT_1a394e1ad180d729f7079552a09028ed32" prot="public" virt="non-virtual"><scope>maxiIFFTAdaptor</scope><name>fftModes</name></member>
+      <member refid="classmaxiIFFT_1add0820f1d745d08162ed397c7733387e" prot="public" virt="non-virtual"><scope>maxiIFFTAdaptor</scope><name>getNumBins</name></member>
+      <member refid="classmaxiIFFT_1a23b4aae8f89ab7c212b6a47b0da94b00" prot="public" virt="non-virtual"><scope>maxiIFFTAdaptor</scope><name>maxiIFFT</name></member>
+      <member refid="classmaxiIFFTAdaptor_1a42cfcfe93307bbd60c8cd4d1712a3e8e" prot="public" virt="non-virtual"><scope>maxiIFFTAdaptor</scope><name>process</name></member>
+      <member refid="classmaxiIFFT_1a5f373344f87ac702547afab6000107a6" prot="public" virt="non-virtual" ambiguityscope="maxiIFFT::"><scope>maxiIFFTAdaptor</scope><name>process</name></member>
+      <member refid="classmaxiIFFTAdaptor_1aa7572703e60339d3fe297a88a8ab1da0" prot="public" virt="non-virtual"><scope>maxiIFFTAdaptor</scope><name>setup</name></member>
+      <member refid="classmaxiIFFT_1a394e1ad180d729f7079552a09028ed32ac59dd14bb5ac6e0d9c8186ccba223e70" prot="public" virt="non-virtual"><scope>maxiIFFTAdaptor</scope><name>SPECTRUM</name></member>
+      <member refid="classmaxiIFFT_1a04ca68b229d7127878b5cdf88c972db2" prot="public" virt="non-virtual"><scope>maxiIFFTAdaptor</scope><name>~maxiIFFT</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

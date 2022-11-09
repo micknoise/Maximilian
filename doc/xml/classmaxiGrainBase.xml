@@ -1,0 +1,73 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classmaxiGrainBase" kind="class" language="C++" prot="public" abstract="yes">
+    <compoundname>maxiGrainBase</compoundname>
+    <derivedcompoundref refid="classmaxiGrain" prot="public" virt="non-virtual">maxiGrain&lt; F &gt;</derivedcompoundref>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classmaxiGrainBase_1af0f2fa8a53f038ce0768184b3c371021" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool maxiGrainBase::finished</definition>
+        <argsstring></argsstring>
+        <name>finished</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiGrains.h" line="134" column="6" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiGrains.h" bodystart="134" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classmaxiGrainBase_1aacfe100b98ffd07e6d5f29a233885ea5" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>double</type>
+        <definition>virtual double maxiGrainBase::play</definition>
+        <argsstring>()=0</argsstring>
+        <name>play</name>
+        <reimplementedby refid="classmaxiGrain_1ae57162ec0870e556fc59231ec10b033e">play</reimplementedby>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiGrains.h" line="132" column="20"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiGrainBase_1adfb092e356374bcf58b540bb03d6cc13" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type></type>
+        <definition>virtual maxiGrainBase::~maxiGrainBase</definition>
+        <argsstring>()</argsstring>
+        <name>~maxiGrainBase</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiGrains.h" line="133" column="13" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiGrains.h" bodystart="133" bodyend="133"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>maxiGrain&lt; F &gt;</label>
+        <link refid="classmaxiGrain"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>maxiGrainBase</label>
+        <link refid="classmaxiGrainBase"/>
+      </node>
+    </inheritancegraph>
+    <location file="/home/ck84/src/Maximilian/src/libs/maxiGrains.h" line="130" column="1" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiGrains.h" bodystart="130" bodyend="135"/>
+    <listofallmembers>
+      <member refid="classmaxiGrainBase_1af0f2fa8a53f038ce0768184b3c371021" prot="public" virt="non-virtual"><scope>maxiGrainBase</scope><name>finished</name></member>
+      <member refid="classmaxiGrainBase_1aacfe100b98ffd07e6d5f29a233885ea5" prot="public" virt="pure-virtual"><scope>maxiGrainBase</scope><name>play</name></member>
+      <member refid="classmaxiGrainBase_1adfb092e356374bcf58b540bb03d6cc13" prot="public" virt="virtual"><scope>maxiGrainBase</scope><name>~maxiGrainBase</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

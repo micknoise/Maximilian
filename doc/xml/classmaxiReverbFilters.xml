@@ -1,0 +1,487 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classmaxiReverbFilters" kind="class" language="C++" prot="public">
+    <compoundname>maxiReverbFilters</compoundname>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classmaxiReverbFilters_1a2609b619bc3d299fe1f20e52ce046a58" prot="private" static="no" mutable="no">
+        <type>std::valarray&lt; double &gt;</type>
+        <definition>std::valarray&lt;double&gt; maxiReverbFilters::delay_line</definition>
+        <argsstring></argsstring>
+        <name>delay_line</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiReverb.h" line="62" column="19" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiReverb.h" bodystart="62" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiReverbFilters_1a3e0d4f42ef5989f3ef435c9b94256df8" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double maxiReverbFilters::a</definition>
+        <argsstring></argsstring>
+        <name>a</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiReverb.h" line="63" column="12" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiReverb.h" bodystart="63" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiReverbFilters_1a8b970ded926bcb7c6cb285623b9017c7" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int maxiReverbFilters::delay_index</definition>
+        <argsstring></argsstring>
+        <name>delay_index</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiReverb.h" line="64" column="9" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiReverb.h" bodystart="64" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiReverbFilters_1a57cfe9a27d5bb6b3343222018753ab37" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int maxiReverbFilters::delay_size</definition>
+        <argsstring></argsstring>
+        <name>delay_size</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiReverb.h" line="65" column="9" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiReverb.h" bodystart="65" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiReverbFilters_1a30981368bd413c6a8b8bafcab9a585ee" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double maxiReverbFilters::output</definition>
+        <argsstring></argsstring>
+        <name>output</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiReverb.h" line="66" column="12" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiReverb.h" bodystart="66" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiReverbFilters_1a88dadd8d6ec0445a434763e88a2317ff" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double maxiReverbFilters::feedback</definition>
+        <argsstring></argsstring>
+        <name>feedback</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiReverb.h" line="67" column="12" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiReverb.h" bodystart="67" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiReverbFilters_1ae8381e358e877f1539a9c14431e98969" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double maxiReverbFilters::gain_cof</definition>
+        <argsstring></argsstring>
+        <name>gain_cof</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiReverb.h" line="68" column="12" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiReverb.h" bodystart="68" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiReverbFilters_1a27458e298ec0616e8b4b3d43d9d1768e" prot="private" static="no" mutable="no">
+        <type><ref refid="classmaxiFilter" kindref="compound">maxiFilter</ref></type>
+        <definition>maxiFilter maxiReverbFilters::mf</definition>
+        <argsstring></argsstring>
+        <name>mf</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiReverb.h" line="70" column="16" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiReverb.h" bodystart="70" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classmaxiReverbFilters_1ad082e3ef55b84dcb8f027fe2e3e70ccd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>maxiReverbFilters::maxiReverbFilters</definition>
+        <argsstring>()</argsstring>
+        <name>maxiReverbFilters</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiReverb.h" line="44" column="5" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiReverb.cpp" bodystart="3" bodyend="11"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiReverbFilters_1a5d9ccd7ee5d4387ef99b0a6b4d32839c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double maxiReverbFilters::twopoint</definition>
+        <argsstring>(double input)</argsstring>
+        <name>twopoint</name>
+        <param>
+          <type>double</type>
+          <declname>input</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiReverb.h" line="45" column="12" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiReverb.cpp" bodystart="13" bodyend="17"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiReverbFilters_1a4183050770e66834dc9959b5c75596ac" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double maxiReverbFilters::comb1</definition>
+        <argsstring>(double input, double size)</argsstring>
+        <name>comb1</name>
+        <param>
+          <type>double</type>
+          <declname>input</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>size</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiReverb.h" line="46" column="12" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiReverb.cpp" bodystart="19" bodyend="26"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiReverbFilters_1a8cfa0a32e1558f2c527a91b3efa8e330" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double maxiReverbFilters::combff</definition>
+        <argsstring>(double input, double size)</argsstring>
+        <name>combff</name>
+        <param>
+          <type>double</type>
+          <declname>input</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>size</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiReverb.h" line="47" column="12" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiReverb.cpp" bodystart="29" bodyend="36"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiReverbFilters_1a039f1857017c898d6d44cb78ac74295f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double maxiReverbFilters::combfb</definition>
+        <argsstring>(double input, double size, double fb)</argsstring>
+        <name>combfb</name>
+        <param>
+          <type>double</type>
+          <declname>input</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>size</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>fb</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiReverb.h" line="48" column="12" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiReverb.cpp" bodystart="38" bodyend="46"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiReverbFilters_1a9f6a9fda22bde735c75c1c71c9f26524" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double maxiReverbFilters::lpcombfb</definition>
+        <argsstring>(double input, double size, double fb, double cutoff)</argsstring>
+        <name>lpcombfb</name>
+        <param>
+          <type>double</type>
+          <declname>input</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>size</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>fb</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>cutoff</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiReverb.h" line="49" column="12" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiReverb.cpp" bodystart="48" bodyend="59"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiReverbFilters_1a04ce5ac9f8bb934950d8ed34f36f113b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double maxiReverbFilters::allpass</definition>
+        <argsstring>(double input, double size)</argsstring>
+        <name>allpass</name>
+        <param>
+          <type>double</type>
+          <declname>input</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>size</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiReverb.h" line="51" column="12" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiReverb.cpp" bodystart="61" bodyend="70"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiReverbFilters_1ac373681994d7f1ecb30b4555d6debdd5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double maxiReverbFilters::allpass</definition>
+        <argsstring>(double input, double size, double fback)</argsstring>
+        <name>allpass</name>
+        <param>
+          <type>double</type>
+          <declname>input</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>size</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>fback</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiReverb.h" line="52" column="12" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiReverb.cpp" bodystart="72" bodyend="80"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiReverbFilters_1a79a116c91d3b1ca42e2ed5e9bb0143fc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double maxiReverbFilters::allpasstap</definition>
+        <argsstring>(double input, double size, int tap)</argsstring>
+        <name>allpasstap</name>
+        <param>
+          <type>double</type>
+          <declname>input</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>size</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>tap</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiReverb.h" line="53" column="12" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiReverb.cpp" bodystart="82" bodyend="96"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiReverbFilters_1a30910036effcc563a6e19c35dda9b676" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void maxiReverbFilters::setlength</definition>
+        <argsstring>(int length)</argsstring>
+        <name>setlength</name>
+        <param>
+          <type>int</type>
+          <declname>length</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiReverb.h" line="54" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiReverbFilters_1ac04a045c7b4dcd0b586ba809765e9af4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double maxiReverbFilters::onetap</definition>
+        <argsstring>(double input, double size)</argsstring>
+        <name>onetap</name>
+        <param>
+          <type>double</type>
+          <declname>input</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>size</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiReverb.h" line="55" column="12" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiReverb.cpp" bodystart="108" bodyend="115"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiReverbFilters_1a7c8454229e3145684f496f66896255a3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double maxiReverbFilters::tapd</definition>
+        <argsstring>(double input, double size, double *taps, int numtaps)</argsstring>
+        <name>tapd</name>
+        <param>
+          <type>double</type>
+          <declname>input</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>size</declname>
+        </param>
+        <param>
+          <type>double *</type>
+          <declname>taps</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>numtaps</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiReverb.h" line="56" column="12" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiReverb.cpp" bodystart="117" bodyend="132"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiReverbFilters_1ac6971d962c8266bc62687aead87016a5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double maxiReverbFilters::tapdwgain</definition>
+        <argsstring>(double input, double size, double *taps, int numtaps, double *gain)</argsstring>
+        <name>tapdwgain</name>
+        <param>
+          <type>double</type>
+          <declname>input</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>size</declname>
+        </param>
+        <param>
+          <type>double *</type>
+          <declname>taps</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>numtaps</declname>
+        </param>
+        <param>
+          <type>double *</type>
+          <declname>gain</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiReverb.h" line="57" column="12" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiReverb.cpp" bodystart="134" bodyend="149"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiReverbFilters_1aba3a9c12ae9f9abdc17fad046b897cc1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double maxiReverbFilters::tapdpos</definition>
+        <argsstring>(double input, int size, int *taps, int numtaps)</argsstring>
+        <name>tapdpos</name>
+        <param>
+          <type>double</type>
+          <declname>input</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>size</declname>
+        </param>
+        <param>
+          <type>int *</type>
+          <declname>taps</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>numtaps</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiReverb.h" line="58" column="12" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiReverb.cpp" bodystart="151" bodyend="162"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiReverbFilters_1a29811546f2e69a8dddb4a1b299f0e754" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double maxiReverbFilters::gettap</definition>
+        <argsstring>(int tap)</argsstring>
+        <name>gettap</name>
+        <param>
+          <type>int</type>
+          <declname>tap</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiReverb.h" line="59" column="12" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiReverb.cpp" bodystart="98" bodyend="106"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/ck84/src/Maximilian/src/libs/maxiReverb.h" line="42" column="1" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiReverb.h" bodystart="42" bodyend="73"/>
+    <listofallmembers>
+      <member refid="classmaxiReverbFilters_1a3e0d4f42ef5989f3ef435c9b94256df8" prot="private" virt="non-virtual"><scope>maxiReverbFilters</scope><name>a</name></member>
+      <member refid="classmaxiReverbFilters_1a04ce5ac9f8bb934950d8ed34f36f113b" prot="public" virt="non-virtual"><scope>maxiReverbFilters</scope><name>allpass</name></member>
+      <member refid="classmaxiReverbFilters_1ac373681994d7f1ecb30b4555d6debdd5" prot="public" virt="non-virtual"><scope>maxiReverbFilters</scope><name>allpass</name></member>
+      <member refid="classmaxiReverbFilters_1a79a116c91d3b1ca42e2ed5e9bb0143fc" prot="public" virt="non-virtual"><scope>maxiReverbFilters</scope><name>allpasstap</name></member>
+      <member refid="classmaxiReverbFilters_1a4183050770e66834dc9959b5c75596ac" prot="public" virt="non-virtual"><scope>maxiReverbFilters</scope><name>comb1</name></member>
+      <member refid="classmaxiReverbFilters_1a039f1857017c898d6d44cb78ac74295f" prot="public" virt="non-virtual"><scope>maxiReverbFilters</scope><name>combfb</name></member>
+      <member refid="classmaxiReverbFilters_1a8cfa0a32e1558f2c527a91b3efa8e330" prot="public" virt="non-virtual"><scope>maxiReverbFilters</scope><name>combff</name></member>
+      <member refid="classmaxiReverbFilters_1a8b970ded926bcb7c6cb285623b9017c7" prot="private" virt="non-virtual"><scope>maxiReverbFilters</scope><name>delay_index</name></member>
+      <member refid="classmaxiReverbFilters_1a2609b619bc3d299fe1f20e52ce046a58" prot="private" virt="non-virtual"><scope>maxiReverbFilters</scope><name>delay_line</name></member>
+      <member refid="classmaxiReverbFilters_1a57cfe9a27d5bb6b3343222018753ab37" prot="private" virt="non-virtual"><scope>maxiReverbFilters</scope><name>delay_size</name></member>
+      <member refid="classmaxiReverbFilters_1a88dadd8d6ec0445a434763e88a2317ff" prot="private" virt="non-virtual"><scope>maxiReverbFilters</scope><name>feedback</name></member>
+      <member refid="classmaxiReverbFilters_1ae8381e358e877f1539a9c14431e98969" prot="private" virt="non-virtual"><scope>maxiReverbFilters</scope><name>gain_cof</name></member>
+      <member refid="classmaxiReverbFilters_1a29811546f2e69a8dddb4a1b299f0e754" prot="public" virt="non-virtual"><scope>maxiReverbFilters</scope><name>gettap</name></member>
+      <member refid="classmaxiReverbFilters_1a9f6a9fda22bde735c75c1c71c9f26524" prot="public" virt="non-virtual"><scope>maxiReverbFilters</scope><name>lpcombfb</name></member>
+      <member refid="classmaxiReverbFilters_1ad082e3ef55b84dcb8f027fe2e3e70ccd" prot="public" virt="non-virtual"><scope>maxiReverbFilters</scope><name>maxiReverbFilters</name></member>
+      <member refid="classmaxiReverbFilters_1a27458e298ec0616e8b4b3d43d9d1768e" prot="private" virt="non-virtual"><scope>maxiReverbFilters</scope><name>mf</name></member>
+      <member refid="classmaxiReverbFilters_1ac04a045c7b4dcd0b586ba809765e9af4" prot="public" virt="non-virtual"><scope>maxiReverbFilters</scope><name>onetap</name></member>
+      <member refid="classmaxiReverbFilters_1a30981368bd413c6a8b8bafcab9a585ee" prot="private" virt="non-virtual"><scope>maxiReverbFilters</scope><name>output</name></member>
+      <member refid="classmaxiReverbFilters_1a30910036effcc563a6e19c35dda9b676" prot="public" virt="non-virtual"><scope>maxiReverbFilters</scope><name>setlength</name></member>
+      <member refid="classmaxiReverbFilters_1a7c8454229e3145684f496f66896255a3" prot="public" virt="non-virtual"><scope>maxiReverbFilters</scope><name>tapd</name></member>
+      <member refid="classmaxiReverbFilters_1aba3a9c12ae9f9abdc17fad046b897cc1" prot="public" virt="non-virtual"><scope>maxiReverbFilters</scope><name>tapdpos</name></member>
+      <member refid="classmaxiReverbFilters_1ac6971d962c8266bc62687aead87016a5" prot="public" virt="non-virtual"><scope>maxiReverbFilters</scope><name>tapdwgain</name></member>
+      <member refid="classmaxiReverbFilters_1a5d9ccd7ee5d4387ef99b0a6b4d32839c" prot="public" virt="non-virtual"><scope>maxiReverbFilters</scope><name>twopoint</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

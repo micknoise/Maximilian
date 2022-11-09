@@ -1,0 +1,231 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classmaxiPitchShift" kind="class" language="C++" prot="public">
+    <compoundname>maxiPitchShift</compoundname>
+    <templateparamlist>
+      <param>
+        <type>typename F</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classmaxiPitchShift_1a18551357a7d1aa4156f656a24e94653e" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double maxiPitchShift&lt; F &gt;::position</definition>
+        <argsstring></argsstring>
+        <name>position</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiGrains.h" line="377" column="8" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiGrains.h" bodystart="377" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiPitchShift_1a02a10f7dfc4ccfabb940bb365abd94ce" prot="public" static="no" mutable="no">
+        <type>long</type>
+        <definition>long maxiPitchShift&lt; F &gt;::cycles</definition>
+        <argsstring></argsstring>
+        <name>cycles</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiGrains.h" line="378" column="6" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiGrains.h" bodystart="378" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiPitchShift_1a7daed50a51a516e8e6d9aa672b6446eb" prot="public" static="no" mutable="no">
+        <type><ref refid="classmaxiSample" kindref="compound">maxiSample</ref> *</type>
+        <definition>maxiSample* maxiPitchShift&lt; F &gt;::sample</definition>
+        <argsstring></argsstring>
+        <name>sample</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiGrains.h" line="379" column="12" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiGrains.h" bodystart="379" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiPitchShift_1a691811060dbd8107643b04d870364982" prot="public" static="no" mutable="no">
+        <type><ref refid="classmaxiGrainPlayer" kindref="compound">maxiGrainPlayer</ref> *</type>
+        <definition>maxiGrainPlayer* maxiPitchShift&lt; F &gt;::grainPlayer</definition>
+        <argsstring></argsstring>
+        <name>grainPlayer</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiGrains.h" line="380" column="17" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiGrains.h" bodystart="380" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiPitchShift_1ad2cac6f397b374e6538f0c735f802dcd" prot="public" static="no" mutable="no">
+        <type><ref refid="classmaxiGrainWindowCache" kindref="compound">maxiGrainWindowCache</ref>&lt; F &gt;</type>
+        <definition>maxiGrainWindowCache&lt;F&gt; maxiPitchShift&lt; F &gt;::windowCache</definition>
+        <argsstring></argsstring>
+        <name>windowCache</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiGrains.h" line="381" column="22" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiGrains.h" bodystart="381" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiPitchShift_1a0e0f419e2ffa98909d7c5eadd591d84e" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double maxiPitchShift&lt; F &gt;::randomOffset</definition>
+        <argsstring></argsstring>
+        <name>randomOffset</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiGrains.h" line="382" column="8" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiGrains.h" bodystart="382" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classmaxiPitchShift_1a13b5e35a331e3238bbae1b3ae9b66ac2" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>maxiPitchShift&lt; F &gt;::maxiPitchShift</definition>
+        <argsstring>()</argsstring>
+        <name>maxiPitchShift</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiGrains.h" line="384" column="1" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiGrains.h" bodystart="384" bodyend="389"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiPitchShift_1a995efb590945d3e60a03d4e962dc4eba" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>maxiPitchShift&lt; F &gt;::maxiPitchShift</definition>
+        <argsstring>(maxiSample *sample)</argsstring>
+        <name>maxiPitchShift</name>
+        <param>
+          <type><ref refid="classmaxiSample" kindref="compound">maxiSample</ref> *</type>
+          <declname>sample</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiGrains.h" line="391" column="1" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiGrains.h" bodystart="391" bodyend="396"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiPitchShift_1aefc59dca5cb421cd17aa4d1747bb4000" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>maxiPitchShift&lt; F &gt;::~maxiPitchShift</definition>
+        <argsstring>()</argsstring>
+        <name>~maxiPitchShift</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiGrains.h" line="398" column="1" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiGrains.h" bodystart="398" bodyend="400"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiPitchShift_1a375e0662264c6fde3e16bd18b433f0ef" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void maxiPitchShift&lt; F &gt;::setSample</definition>
+        <argsstring>(maxiSample *sampleIn)</argsstring>
+        <name>setSample</name>
+        <param>
+          <type><ref refid="classmaxiSample" kindref="compound">maxiSample</ref> *</type>
+          <declname>sampleIn</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiGrains.h" line="402" column="6" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiGrains.h" bodystart="402" bodyend="410"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiPitchShift_1a0046fd841c54f9fd185c0178faa8ef8c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double maxiPitchShift&lt; F &gt;::play</definition>
+        <argsstring>(double speed, double grainLength, int overlaps, double posMod=0.0)</argsstring>
+        <name>play</name>
+        <param>
+          <type>double</type>
+          <declname>speed</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>grainLength</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>overlaps</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>posMod</declname>
+          <defval>0.0</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiGrains.h" line="412" column="8" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiGrains.h" bodystart="412" bodyend="430"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="3">
+        <label>maxiTrigger</label>
+        <link refid="classmaxiTrigger"/>
+      </node>
+      <node id="2">
+        <label>maxiSample</label>
+        <link refid="classmaxiSample"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>zxTrig</edgelabel>
+        </childnode>
+      </node>
+      <node id="1">
+        <label>maxiPitchShift&lt; F &gt;</label>
+        <link refid="classmaxiPitchShift"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>sample</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>grainPlayer</edgelabel>
+        </childnode>
+      </node>
+      <node id="4">
+        <label>maxiGrainPlayer</label>
+        <link refid="classmaxiGrainPlayer"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>sample</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/ck84/src/Maximilian/src/libs/maxiGrains.h" line="375" column="1" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiGrains.h" bodystart="375" bodyend="432"/>
+    <listofallmembers>
+      <member refid="classmaxiPitchShift_1a02a10f7dfc4ccfabb940bb365abd94ce" prot="public" virt="non-virtual"><scope>maxiPitchShift</scope><name>cycles</name></member>
+      <member refid="classmaxiPitchShift_1a691811060dbd8107643b04d870364982" prot="public" virt="non-virtual"><scope>maxiPitchShift</scope><name>grainPlayer</name></member>
+      <member refid="classmaxiPitchShift_1a13b5e35a331e3238bbae1b3ae9b66ac2" prot="public" virt="non-virtual"><scope>maxiPitchShift</scope><name>maxiPitchShift</name></member>
+      <member refid="classmaxiPitchShift_1a995efb590945d3e60a03d4e962dc4eba" prot="public" virt="non-virtual"><scope>maxiPitchShift</scope><name>maxiPitchShift</name></member>
+      <member refid="classmaxiPitchShift_1a0046fd841c54f9fd185c0178faa8ef8c" prot="public" virt="non-virtual"><scope>maxiPitchShift</scope><name>play</name></member>
+      <member refid="classmaxiPitchShift_1a18551357a7d1aa4156f656a24e94653e" prot="public" virt="non-virtual"><scope>maxiPitchShift</scope><name>position</name></member>
+      <member refid="classmaxiPitchShift_1a0e0f419e2ffa98909d7c5eadd591d84e" prot="public" virt="non-virtual"><scope>maxiPitchShift</scope><name>randomOffset</name></member>
+      <member refid="classmaxiPitchShift_1a7daed50a51a516e8e6d9aa672b6446eb" prot="public" virt="non-virtual"><scope>maxiPitchShift</scope><name>sample</name></member>
+      <member refid="classmaxiPitchShift_1a375e0662264c6fde3e16bd18b433f0ef" prot="public" virt="non-virtual"><scope>maxiPitchShift</scope><name>setSample</name></member>
+      <member refid="classmaxiPitchShift_1ad2cac6f397b374e6538f0c735f802dcd" prot="public" virt="non-virtual"><scope>maxiPitchShift</scope><name>windowCache</name></member>
+      <member refid="classmaxiPitchShift_1aefc59dca5cb421cd17aa4d1747bb4000" prot="public" virt="non-virtual"><scope>maxiPitchShift</scope><name>~maxiPitchShift</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

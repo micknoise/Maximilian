@@ -1,0 +1,103 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structgaussianWinFunctor" kind="struct" language="C++" prot="public">
+    <compoundname>gaussianWinFunctor</compoundname>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structgaussianWinFunctor_1a38669a0a41ff39aee834f73c63e98467" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double gaussianWinFunctor::gausDivisor</definition>
+        <argsstring></argsstring>
+        <name>gausDivisor</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiGrains.h" line="76" column="12" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiGrains.h" bodystart="76" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="structgaussianWinFunctor_1a367c6dac6ba5e52958bfe0ab90cfbddb" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>gaussianWinFunctor::gaussianWinFunctor</definition>
+        <argsstring>()</argsstring>
+        <name>gaussianWinFunctor</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiGrains.h" line="77" column="5" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiGrains.h" bodystart="77" bodyend="79"/>
+      </memberdef>
+      <memberdef kind="function" id="structgaussianWinFunctor_1a922707933d29d11c2a46832dff0ab337" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>gaussianWinFunctor::gaussianWinFunctor</definition>
+        <argsstring>(double kurtosis)</argsstring>
+        <name>gaussianWinFunctor</name>
+        <param>
+          <type>double</type>
+          <declname>kurtosis</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiGrains.h" line="80" column="5" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiGrains.h" bodystart="80" bodyend="82"/>
+      </memberdef>
+      <memberdef kind="function" id="structgaussianWinFunctor_1a2804c6eea9e5e134292be72a7ed63bb6" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void gaussianWinFunctor::init</definition>
+        <argsstring>(double kurtosis)</argsstring>
+        <name>init</name>
+        <param>
+          <type>double</type>
+          <declname>kurtosis</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiGrains.h" line="83" column="10" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiGrains.h" bodystart="83" bodyend="85"/>
+      </memberdef>
+      <memberdef kind="function" id="structgaussianWinFunctor_1a5bd7cae6cade60139813479792128465" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double gaussianWinFunctor::operator()</definition>
+        <argsstring>(ulong windowLength, ulong windowPos)</argsstring>
+        <name>operator()</name>
+        <param>
+          <type>ulong</type>
+          <declname>windowLength</declname>
+        </param>
+        <param>
+          <type>ulong</type>
+          <declname>windowPos</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiGrains.h" line="86" column="15" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiGrains.h" bodystart="86" bodyend="89"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/ck84/src/Maximilian/src/libs/maxiGrains.h" line="75" column="1" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiGrains.h" bodystart="75" bodyend="90"/>
+    <listofallmembers>
+      <member refid="structgaussianWinFunctor_1a38669a0a41ff39aee834f73c63e98467" prot="public" virt="non-virtual"><scope>gaussianWinFunctor</scope><name>gausDivisor</name></member>
+      <member refid="structgaussianWinFunctor_1a367c6dac6ba5e52958bfe0ab90cfbddb" prot="public" virt="non-virtual"><scope>gaussianWinFunctor</scope><name>gaussianWinFunctor</name></member>
+      <member refid="structgaussianWinFunctor_1a922707933d29d11c2a46832dff0ab337" prot="public" virt="non-virtual"><scope>gaussianWinFunctor</scope><name>gaussianWinFunctor</name></member>
+      <member refid="structgaussianWinFunctor_1a2804c6eea9e5e134292be72a7ed63bb6" prot="public" virt="non-virtual"><scope>gaussianWinFunctor</scope><name>init</name></member>
+      <member refid="structgaussianWinFunctor_1a5bd7cae6cade60139813479792128465" prot="public" virt="non-virtual"><scope>gaussianWinFunctor</scope><name>operator()</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

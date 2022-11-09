@@ -1,0 +1,271 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classmaxiFFTOctaveAnalyzer" kind="class" language="C++" prot="public">
+    <compoundname>maxiFFTOctaveAnalyzer</compoundname>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classmaxiFFTOctaveAnalyzer_1a050676052c5d63cd95bdfb41db8a22d8" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float maxiFFTOctaveAnalyzer::samplingRate</definition>
+        <argsstring></argsstring>
+        <name>samplingRate</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiFFT.h" line="115" column="7" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiFFT.h" bodystart="115" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiFFTOctaveAnalyzer_1a72837d978c31db70c0eb5b8a760f92f2" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int maxiFFTOctaveAnalyzer::nSpectrum</definition>
+        <argsstring></argsstring>
+        <name>nSpectrum</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiFFT.h" line="116" column="5" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiFFT.h" bodystart="116" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiFFTOctaveAnalyzer_1a3ea76eb09d525f287747b8f72755454a" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int maxiFFTOctaveAnalyzer::nAverages</definition>
+        <argsstring></argsstring>
+        <name>nAverages</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiFFT.h" line="117" column="5" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiFFT.h" bodystart="117" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiFFTOctaveAnalyzer_1aa1ddf1901f68d06a8e03d6ef7659d411" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int maxiFFTOctaveAnalyzer::nAveragesPerOctave</definition>
+        <argsstring></argsstring>
+        <name>nAveragesPerOctave</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiFFT.h" line="118" column="5" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiFFT.h" bodystart="118" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiFFTOctaveAnalyzer_1a6c4fae10cfa098040cd3116b3abef520" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float maxiFFTOctaveAnalyzer::spectrumFrequencySpan</definition>
+        <argsstring></argsstring>
+        <name>spectrumFrequencySpan</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiFFT.h" line="119" column="7" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiFFT.h" bodystart="119" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiFFTOctaveAnalyzer_1a11068fa91199115dd571b6d494d7c7b6" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float maxiFFTOctaveAnalyzer::firstOctaveFrequency</definition>
+        <argsstring></argsstring>
+        <name>firstOctaveFrequency</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiFFT.h" line="120" column="7" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiFFT.h" bodystart="120" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiFFTOctaveAnalyzer_1af3f8ecfdb3bd810047687dea5d26237e" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float maxiFFTOctaveAnalyzer::averageFrequencyIncrement</definition>
+        <argsstring></argsstring>
+        <name>averageFrequencyIncrement</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiFFT.h" line="121" column="7" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiFFT.h" bodystart="121" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiFFTOctaveAnalyzer_1af1a4206764e3ee7155706ecf3c4666aa" prot="public" static="no" mutable="no">
+        <type>float *</type>
+        <definition>float* maxiFFTOctaveAnalyzer::averages</definition>
+        <argsstring></argsstring>
+        <name>averages</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiFFT.h" line="122" column="8" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiFFT.h" bodystart="122" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiFFTOctaveAnalyzer_1aa03807f92a0e8079e8018f3d069fe644" prot="public" static="no" mutable="no">
+        <type>float *</type>
+        <definition>float* maxiFFTOctaveAnalyzer::peaks</definition>
+        <argsstring></argsstring>
+        <name>peaks</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiFFT.h" line="123" column="8" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiFFT.h" bodystart="123" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiFFTOctaveAnalyzer_1adf7c621ad76085c6dcfabca559884c58" prot="public" static="no" mutable="no">
+        <type>int *</type>
+        <definition>int* maxiFFTOctaveAnalyzer::peakHoldTimes</definition>
+        <argsstring></argsstring>
+        <name>peakHoldTimes</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiFFT.h" line="124" column="6" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiFFT.h" bodystart="124" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiFFTOctaveAnalyzer_1a398c527eb312750b44d436a814e64ae0" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int maxiFFTOctaveAnalyzer::peakHoldTime</definition>
+        <argsstring></argsstring>
+        <name>peakHoldTime</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiFFT.h" line="125" column="5" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiFFT.h" bodystart="125" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiFFTOctaveAnalyzer_1a07eb93ebefe24ac07aa9a49b70ccd0e0" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float maxiFFTOctaveAnalyzer::peakDecayRate</definition>
+        <argsstring></argsstring>
+        <name>peakDecayRate</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiFFT.h" line="126" column="7" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiFFT.h" bodystart="126" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiFFTOctaveAnalyzer_1a10d4bae82b198ea5cbb0c6299fb6ff27" prot="public" static="no" mutable="no">
+        <type>int *</type>
+        <definition>int* maxiFFTOctaveAnalyzer::spe2avg</definition>
+        <argsstring></argsstring>
+        <name>spe2avg</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiFFT.h" line="127" column="6" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiFFT.h" bodystart="127" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiFFTOctaveAnalyzer_1af852c67568fe456b6952e8203d4b9f21" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float maxiFFTOctaveAnalyzer::linearEQSlope</definition>
+        <argsstring></argsstring>
+        <name>linearEQSlope</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiFFT.h" line="131" column="7" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiFFT.h" bodystart="131" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiFFTOctaveAnalyzer_1a8985e52b94705b5f02b71a4caa5ccb5f" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float maxiFFTOctaveAnalyzer::linearEQIntercept</definition>
+        <argsstring></argsstring>
+        <name>linearEQIntercept</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiFFT.h" line="132" column="7" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiFFT.h" bodystart="132" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classmaxiFFTOctaveAnalyzer_1a8eabb4e0bb1e081536dd998121bfca4e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void maxiFFTOctaveAnalyzer::setup</definition>
+        <argsstring>(float samplingRate, int nBandsInTheFFT, int nAveragesPerOctave)</argsstring>
+        <name>setup</name>
+        <param>
+          <type>float</type>
+          <declname>samplingRate</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>nBandsInTheFFT</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>nAveragesPerOctave</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiFFT.h" line="137" column="6" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiFFT.cpp" bodystart="207" bodyend="259"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiFFTOctaveAnalyzer_1a6bc67c2593268b8b5659b8dad78e645b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void maxiFFTOctaveAnalyzer::calculate</definition>
+        <argsstring>(float *fftData)</argsstring>
+        <name>calculate</name>
+        <param>
+          <type>float *</type>
+          <declname>fftData</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiFFT.h" line="139" column="6" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiFFT.cpp" bodystart="261" bodyend="300"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/ck84/src/Maximilian/src/libs/maxiFFT.h" line="110" column="1" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiFFT.h" bodystart="110" bodyend="141"/>
+    <listofallmembers>
+      <member refid="classmaxiFFTOctaveAnalyzer_1af3f8ecfdb3bd810047687dea5d26237e" prot="public" virt="non-virtual"><scope>maxiFFTOctaveAnalyzer</scope><name>averageFrequencyIncrement</name></member>
+      <member refid="classmaxiFFTOctaveAnalyzer_1af1a4206764e3ee7155706ecf3c4666aa" prot="public" virt="non-virtual"><scope>maxiFFTOctaveAnalyzer</scope><name>averages</name></member>
+      <member refid="classmaxiFFTOctaveAnalyzer_1a6bc67c2593268b8b5659b8dad78e645b" prot="public" virt="non-virtual"><scope>maxiFFTOctaveAnalyzer</scope><name>calculate</name></member>
+      <member refid="classmaxiFFTOctaveAnalyzer_1a11068fa91199115dd571b6d494d7c7b6" prot="public" virt="non-virtual"><scope>maxiFFTOctaveAnalyzer</scope><name>firstOctaveFrequency</name></member>
+      <member refid="classmaxiFFTOctaveAnalyzer_1a8985e52b94705b5f02b71a4caa5ccb5f" prot="public" virt="non-virtual"><scope>maxiFFTOctaveAnalyzer</scope><name>linearEQIntercept</name></member>
+      <member refid="classmaxiFFTOctaveAnalyzer_1af852c67568fe456b6952e8203d4b9f21" prot="public" virt="non-virtual"><scope>maxiFFTOctaveAnalyzer</scope><name>linearEQSlope</name></member>
+      <member refid="classmaxiFFTOctaveAnalyzer_1a3ea76eb09d525f287747b8f72755454a" prot="public" virt="non-virtual"><scope>maxiFFTOctaveAnalyzer</scope><name>nAverages</name></member>
+      <member refid="classmaxiFFTOctaveAnalyzer_1aa1ddf1901f68d06a8e03d6ef7659d411" prot="public" virt="non-virtual"><scope>maxiFFTOctaveAnalyzer</scope><name>nAveragesPerOctave</name></member>
+      <member refid="classmaxiFFTOctaveAnalyzer_1a72837d978c31db70c0eb5b8a760f92f2" prot="public" virt="non-virtual"><scope>maxiFFTOctaveAnalyzer</scope><name>nSpectrum</name></member>
+      <member refid="classmaxiFFTOctaveAnalyzer_1a07eb93ebefe24ac07aa9a49b70ccd0e0" prot="public" virt="non-virtual"><scope>maxiFFTOctaveAnalyzer</scope><name>peakDecayRate</name></member>
+      <member refid="classmaxiFFTOctaveAnalyzer_1a398c527eb312750b44d436a814e64ae0" prot="public" virt="non-virtual"><scope>maxiFFTOctaveAnalyzer</scope><name>peakHoldTime</name></member>
+      <member refid="classmaxiFFTOctaveAnalyzer_1adf7c621ad76085c6dcfabca559884c58" prot="public" virt="non-virtual"><scope>maxiFFTOctaveAnalyzer</scope><name>peakHoldTimes</name></member>
+      <member refid="classmaxiFFTOctaveAnalyzer_1aa03807f92a0e8079e8018f3d069fe644" prot="public" virt="non-virtual"><scope>maxiFFTOctaveAnalyzer</scope><name>peaks</name></member>
+      <member refid="classmaxiFFTOctaveAnalyzer_1a050676052c5d63cd95bdfb41db8a22d8" prot="public" virt="non-virtual"><scope>maxiFFTOctaveAnalyzer</scope><name>samplingRate</name></member>
+      <member refid="classmaxiFFTOctaveAnalyzer_1a8eabb4e0bb1e081536dd998121bfca4e" prot="public" virt="non-virtual"><scope>maxiFFTOctaveAnalyzer</scope><name>setup</name></member>
+      <member refid="classmaxiFFTOctaveAnalyzer_1a10d4bae82b198ea5cbb0c6299fb6ff27" prot="public" virt="non-virtual"><scope>maxiFFTOctaveAnalyzer</scope><name>spe2avg</name></member>
+      <member refid="classmaxiFFTOctaveAnalyzer_1a6c4fae10cfa098040cd3116b3abef520" prot="public" virt="non-virtual"><scope>maxiFFTOctaveAnalyzer</scope><name>spectrumFrequencySpan</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

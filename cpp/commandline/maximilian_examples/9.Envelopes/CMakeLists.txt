@@ -8,7 +8,7 @@ include_directories(../..)
 include_directories(../../../../src)
 include_directories(../../../../src/libs)
 
-add_executable(maximilian ./main.cpp ../../player.cpp ../../RtAudio.cpp ../../../../src/maximilian.cpp)
+add_executable(maximilian ./main.cpp ../../player.cpp ../../RtAudio.cpp ../../../../src/maximilian.cpp ../../../../src/libs/PolyBLEP/PolyBLEP.cpp)
 target_compile_options(maximilian PUBLIC -Wall)
 target_link_libraries(maximilian PUBLIC -lpthread)
 

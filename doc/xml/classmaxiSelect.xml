@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classmaxiSelect" kind="class" language="C++" prot="public">
+    <compoundname>maxiSelect</compoundname>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classmaxiSelect_1a859410aa2737fae948c232ff1f15dfd8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>maxiSelect::maxiSelect</definition>
+        <argsstring>()</argsstring>
+        <name>maxiSelect</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1659" column="5" bodyfile="/home/ck84/src/Maximilian/src/maximilian.cpp" bodystart="1503" bodyend="1503"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiSelect_1a9ad34bda79f273fbdfa535403949978a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double maxiSelect::play</definition>
+        <argsstring>(double index, DOUBLEARRAY_REF values, bool normalised)</argsstring>
+        <name>play</name>
+        <param>
+          <type>double</type>
+          <declname>index</declname>
+        </param>
+        <param>
+          <type>DOUBLEARRAY_REF</type>
+          <declname>values</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>normalised</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1661" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1661" bodyend="1676"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1657" column="1" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1657" bodyend="1679"/>
+    <listofallmembers>
+      <member refid="classmaxiSelect_1a859410aa2737fae948c232ff1f15dfd8" prot="public" virt="non-virtual"><scope>maxiSelect</scope><name>maxiSelect</name></member>
+      <member refid="classmaxiSelect_1a9ad34bda79f273fbdfa535403949978a" prot="public" virt="non-virtual"><scope>maxiSelect</scope><name>play</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

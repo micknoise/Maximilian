@@ -1,0 +1,444 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classmaxiClock" kind="class" language="C++" prot="public">
+    <compoundname>maxiClock</compoundname>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classmaxiClock_1a4a8cdfb619c7a13d5d93dc749e6269ab" prot="public" static="no" mutable="no">
+        <type><ref refid="classmaxiOsc" kindref="compound">maxiOsc</ref></type>
+        <definition>maxiOsc maxiClock::timer</definition>
+        <argsstring></argsstring>
+        <name>timer</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiClock.h" line="10" column="11" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiClock.h" bodystart="10" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiClock_1a3514a6d25fabc733585e8bbde301c8d7" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int maxiClock::currentCount</definition>
+        <argsstring></argsstring>
+        <name>currentCount</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiClock.h" line="11" column="7" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiClock.h" bodystart="11" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiClock_1ad41f18cf0202b0bb93e260f2719d45c6" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int maxiClock::lastCount</definition>
+        <argsstring></argsstring>
+        <name>lastCount</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiClock.h" line="12" column="7" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiClock.h" bodystart="12" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiClock_1a901a15f3c034b96fd97a0f436d5086f5" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int maxiClock::playHead</definition>
+        <argsstring></argsstring>
+        <name>playHead</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiClock.h" line="13" column="7" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiClock.h" bodystart="13" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiClock_1a3320da0d522d03ba2cefa6d8e0a03392" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double maxiClock::bps</definition>
+        <argsstring></argsstring>
+        <name>bps</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiClock.h" line="14" column="10" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiClock.h" bodystart="14" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiClock_1aa0c475f0295a7d18dbf9f49feaf09f77" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double maxiClock::bpm</definition>
+        <argsstring></argsstring>
+        <name>bpm</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiClock.h" line="15" column="10" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiClock.h" bodystart="15" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiClock_1ae726b37aa12dedf7629da08e185962b3" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int maxiClock::ticks</definition>
+        <argsstring></argsstring>
+        <name>ticks</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiClock.h" line="16" column="7" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiClock.h" bodystart="16" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiClock_1a6efded039f8b2a3a05990ae7963aa774" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool maxiClock::tick</definition>
+        <argsstring></argsstring>
+        <name>tick</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiClock.h" line="17" column="8" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiClock.h" bodystart="17" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classmaxiClock_1acb9414435df5d414c0cc6a0205149d3a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>maxiClock::maxiClock</definition>
+        <argsstring>()</argsstring>
+        <name>maxiClock</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiClock.h" line="6" column="3" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiClock.cpp" bodystart="4" bodyend="13"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiClock_1a235b2926bcd11d9e4cc7a98611fda66e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void maxiClock::ticker</definition>
+        <argsstring>()</argsstring>
+        <name>ticker</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiClock.h" line="7" column="8" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiClock.cpp" bodystart="16" bodyend="28"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiClock_1a8a65eb4814f642ffe701e95aeba42add" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void maxiClock::setTempo</definition>
+        <argsstring>(double bpm)</argsstring>
+        <name>setTempo</name>
+        <param>
+          <type>double</type>
+          <declname>bpm</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiClock.h" line="8" column="8" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiClock.cpp" bodystart="31" bodyend="35"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiClock_1ae6b6506942decd50e3a4c78a9280f3be" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void maxiClock::setTicksPerBeat</definition>
+        <argsstring>(int ticksPerBeat)</argsstring>
+        <name>setTicksPerBeat</name>
+        <param>
+          <type>int</type>
+          <declname>ticksPerBeat</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiClock.h" line="9" column="8" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiClock.cpp" bodystart="38" bodyend="43"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiClock_1acdfca4cef3a0f2a2a3e264b1e757b7e0" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void maxiClock::setCurrentCount</definition>
+        <argsstring>(int n)</argsstring>
+        <name>setCurrentCount</name>
+        <param>
+          <type>int</type>
+          <declname>n</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiClock.h" line="20" column="8" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiClock.h" bodystart="20" bodyend="20"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiClock_1a1092d4737a04428d3ca0885826729789" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void maxiClock::setLastCount</definition>
+        <argsstring>(int n)</argsstring>
+        <name>setLastCount</name>
+        <param>
+          <type>int</type>
+          <declname>n</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiClock.h" line="21" column="8" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiClock.h" bodystart="21" bodyend="21"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiClock_1abcdf509dbdb4cf83a64c091501fd5a42" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void maxiClock::setPlayHead</definition>
+        <argsstring>(int n)</argsstring>
+        <name>setPlayHead</name>
+        <param>
+          <type>int</type>
+          <declname>n</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiClock.h" line="22" column="8" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiClock.h" bodystart="22" bodyend="22"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiClock_1a232bc51e9e0f8eeb1f04baa7b986eef5" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void maxiClock::setBps</definition>
+        <argsstring>(int bps_)</argsstring>
+        <name>setBps</name>
+        <param>
+          <type>int</type>
+          <declname>bps_</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiClock.h" line="23" column="8" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiClock.h" bodystart="23" bodyend="23"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiClock_1ab90e8fdca115acdf8168c54be0b81005" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void maxiClock::setBpm</definition>
+        <argsstring>(int bpm_)</argsstring>
+        <name>setBpm</name>
+        <param>
+          <type>int</type>
+          <declname>bpm_</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiClock.h" line="24" column="8" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiClock.h" bodystart="24" bodyend="24"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiClock_1a5f0fad86c4fb3422a0086c6d98b9b940" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void maxiClock::setTick</definition>
+        <argsstring>(int tick_)</argsstring>
+        <name>setTick</name>
+        <param>
+          <type>int</type>
+          <declname>tick_</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiClock.h" line="25" column="8" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiClock.h" bodystart="25" bodyend="25"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiClock_1a2606213b7795ea406c76e82113accfdb" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void maxiClock::setTicks</definition>
+        <argsstring>(int ticks_)</argsstring>
+        <name>setTicks</name>
+        <param>
+          <type>int</type>
+          <declname>ticks_</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiClock.h" line="26" column="8" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiClock.h" bodystart="26" bodyend="26"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiClock_1a3ae9165473ed9cec296c32d37327750c" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int maxiClock::getCurrentCount</definition>
+        <argsstring>() const</argsstring>
+        <name>getCurrentCount</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiClock.h" line="29" column="7" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiClock.h" bodystart="29" bodyend="29"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiClock_1ae9c5c44f348397a12ffa04b3fa35f555" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int maxiClock::getLastCount</definition>
+        <argsstring>() const</argsstring>
+        <name>getLastCount</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiClock.h" line="30" column="7" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiClock.h" bodystart="30" bodyend="30"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiClock_1a2ab5914b34f5a09a808109fa86310301" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int maxiClock::getPlayHead</definition>
+        <argsstring>() const</argsstring>
+        <name>getPlayHead</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiClock.h" line="31" column="7" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiClock.h" bodystart="31" bodyend="31"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiClock_1ab4d722c3b8095b7ef81fa00d6726c7d9" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double maxiClock::getBps</definition>
+        <argsstring>() const</argsstring>
+        <name>getBps</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiClock.h" line="32" column="10" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiClock.h" bodystart="32" bodyend="32"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiClock_1a5560012248dd234070318937d0e892db" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double maxiClock::getBpm</definition>
+        <argsstring>() const</argsstring>
+        <name>getBpm</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiClock.h" line="33" column="10" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiClock.h" bodystart="33" bodyend="33"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiClock_1ad1e0668133c2a6ba004466a7a7a7f9f4" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool maxiClock::getTick</definition>
+        <argsstring>() const</argsstring>
+        <name>getTick</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiClock.h" line="34" column="8" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiClock.h" bodystart="34" bodyend="34"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiClock_1a48060326c6822dc3c2162fcaccbf457e" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int maxiClock::getTicks</definition>
+        <argsstring>() const</argsstring>
+        <name>getTicks</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiClock.h" line="35" column="7" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiClock.h" bodystart="35" bodyend="35"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiClock_1a6b6e845de25d57119938871143b75f51" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int maxiClock::isTick</definition>
+        <argsstring>() const</argsstring>
+        <name>isTick</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiClock.h" line="36" column="7" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiClock.h" bodystart="36" bodyend="36"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>maxiClock</label>
+        <link refid="classmaxiClock"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>timer</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>maxiOsc</label>
+        <link refid="classmaxiOsc"/>
+      </node>
+    </collaborationgraph>
+    <location file="/home/ck84/src/Maximilian/src/libs/maxiClock.h" line="4" column="1" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiClock.h" bodystart="4" bodyend="37"/>
+    <listofallmembers>
+      <member refid="classmaxiClock_1aa0c475f0295a7d18dbf9f49feaf09f77" prot="public" virt="non-virtual"><scope>maxiClock</scope><name>bpm</name></member>
+      <member refid="classmaxiClock_1a3320da0d522d03ba2cefa6d8e0a03392" prot="public" virt="non-virtual"><scope>maxiClock</scope><name>bps</name></member>
+      <member refid="classmaxiClock_1a3514a6d25fabc733585e8bbde301c8d7" prot="public" virt="non-virtual"><scope>maxiClock</scope><name>currentCount</name></member>
+      <member refid="classmaxiClock_1a5560012248dd234070318937d0e892db" prot="public" virt="non-virtual"><scope>maxiClock</scope><name>getBpm</name></member>
+      <member refid="classmaxiClock_1ab4d722c3b8095b7ef81fa00d6726c7d9" prot="public" virt="non-virtual"><scope>maxiClock</scope><name>getBps</name></member>
+      <member refid="classmaxiClock_1a3ae9165473ed9cec296c32d37327750c" prot="public" virt="non-virtual"><scope>maxiClock</scope><name>getCurrentCount</name></member>
+      <member refid="classmaxiClock_1ae9c5c44f348397a12ffa04b3fa35f555" prot="public" virt="non-virtual"><scope>maxiClock</scope><name>getLastCount</name></member>
+      <member refid="classmaxiClock_1a2ab5914b34f5a09a808109fa86310301" prot="public" virt="non-virtual"><scope>maxiClock</scope><name>getPlayHead</name></member>
+      <member refid="classmaxiClock_1ad1e0668133c2a6ba004466a7a7a7f9f4" prot="public" virt="non-virtual"><scope>maxiClock</scope><name>getTick</name></member>
+      <member refid="classmaxiClock_1a48060326c6822dc3c2162fcaccbf457e" prot="public" virt="non-virtual"><scope>maxiClock</scope><name>getTicks</name></member>
+      <member refid="classmaxiClock_1a6b6e845de25d57119938871143b75f51" prot="public" virt="non-virtual"><scope>maxiClock</scope><name>isTick</name></member>
+      <member refid="classmaxiClock_1ad41f18cf0202b0bb93e260f2719d45c6" prot="public" virt="non-virtual"><scope>maxiClock</scope><name>lastCount</name></member>
+      <member refid="classmaxiClock_1acb9414435df5d414c0cc6a0205149d3a" prot="public" virt="non-virtual"><scope>maxiClock</scope><name>maxiClock</name></member>
+      <member refid="classmaxiClock_1a901a15f3c034b96fd97a0f436d5086f5" prot="public" virt="non-virtual"><scope>maxiClock</scope><name>playHead</name></member>
+      <member refid="classmaxiClock_1ab90e8fdca115acdf8168c54be0b81005" prot="public" virt="non-virtual"><scope>maxiClock</scope><name>setBpm</name></member>
+      <member refid="classmaxiClock_1a232bc51e9e0f8eeb1f04baa7b986eef5" prot="public" virt="non-virtual"><scope>maxiClock</scope><name>setBps</name></member>
+      <member refid="classmaxiClock_1acdfca4cef3a0f2a2a3e264b1e757b7e0" prot="public" virt="non-virtual"><scope>maxiClock</scope><name>setCurrentCount</name></member>
+      <member refid="classmaxiClock_1a1092d4737a04428d3ca0885826729789" prot="public" virt="non-virtual"><scope>maxiClock</scope><name>setLastCount</name></member>
+      <member refid="classmaxiClock_1abcdf509dbdb4cf83a64c091501fd5a42" prot="public" virt="non-virtual"><scope>maxiClock</scope><name>setPlayHead</name></member>
+      <member refid="classmaxiClock_1a8a65eb4814f642ffe701e95aeba42add" prot="public" virt="non-virtual"><scope>maxiClock</scope><name>setTempo</name></member>
+      <member refid="classmaxiClock_1a5f0fad86c4fb3422a0086c6d98b9b940" prot="public" virt="non-virtual"><scope>maxiClock</scope><name>setTick</name></member>
+      <member refid="classmaxiClock_1a2606213b7795ea406c76e82113accfdb" prot="public" virt="non-virtual"><scope>maxiClock</scope><name>setTicks</name></member>
+      <member refid="classmaxiClock_1ae6b6506942decd50e3a4c78a9280f3be" prot="public" virt="non-virtual"><scope>maxiClock</scope><name>setTicksPerBeat</name></member>
+      <member refid="classmaxiClock_1a6efded039f8b2a3a05990ae7963aa774" prot="public" virt="non-virtual"><scope>maxiClock</scope><name>tick</name></member>
+      <member refid="classmaxiClock_1a235b2926bcd11d9e4cc7a98611fda66e" prot="public" virt="non-virtual"><scope>maxiClock</scope><name>ticker</name></member>
+      <member refid="classmaxiClock_1ae726b37aa12dedf7629da08e185962b3" prot="public" virt="non-virtual"><scope>maxiClock</scope><name>ticks</name></member>
+      <member refid="classmaxiClock_1a4a8cdfb619c7a13d5d93dc749e6269ab" prot="public" virt="non-virtual"><scope>maxiClock</scope><name>timer</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

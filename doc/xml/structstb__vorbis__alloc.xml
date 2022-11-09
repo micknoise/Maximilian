@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structstb__vorbis__alloc" kind="struct" language="C++" prot="public">
+    <compoundname>stb_vorbis_alloc</compoundname>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structstb__vorbis__alloc_1a0bb516f56fb154f942d7c8641d33a26e" prot="public" static="no" mutable="no">
+        <type>char *</type>
+        <definition>char* stb_vorbis_alloc::alloc_buffer</definition>
+        <argsstring></argsstring>
+        <name>alloc_buffer</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.h" line="62" column="14" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.h" bodystart="62" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structstb__vorbis__alloc_1a04baf605f33de80c7161b27fb2ec5d86" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int stb_vorbis_alloc::alloc_buffer_length_in_bytes</definition>
+        <argsstring></argsstring>
+        <name>alloc_buffer_length_in_bytes</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.h" line="63" column="15" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.h" bodystart="63" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.h" line="60" column="5" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.h" bodystart="61" bodyend="64"/>
+    <listofallmembers>
+      <member refid="structstb__vorbis__alloc_1a0bb516f56fb154f942d7c8641d33a26e" prot="public" virt="non-virtual"><scope>stb_vorbis_alloc</scope><name>alloc_buffer</name></member>
+      <member refid="structstb__vorbis__alloc_1a04baf605f33de80c7161b27fb2ec5d86" prot="public" virt="non-virtual"><scope>stb_vorbis_alloc</scope><name>alloc_buffer_length_in_bytes</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

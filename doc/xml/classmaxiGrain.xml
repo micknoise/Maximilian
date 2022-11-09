@@ -1,0 +1,354 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classmaxiGrain" kind="class" language="C++" prot="public">
+    <compoundname>maxiGrain</compoundname>
+    <basecompoundref refid="classmaxiGrainBase" prot="public" virt="non-virtual">maxiGrainBase</basecompoundref>
+    <templateparamlist>
+      <param>
+        <type>typename F</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classmaxiGrain_1a1b291a339faf50d24824670f69ff3536" prot="public" static="no" mutable="no">
+        <type><ref refid="classmaxiSample" kindref="compound">maxiSample</ref> *</type>
+        <definition>maxiSample* maxiGrain&lt; F &gt;::sample</definition>
+        <argsstring></argsstring>
+        <name>sample</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiGrains.h" line="140" column="12" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiGrains.h" bodystart="140" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiGrain_1aea8fd2afaf083e48e788ea274850c7fa" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double maxiGrain&lt; F &gt;::pos</definition>
+        <argsstring></argsstring>
+        <name>pos</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiGrains.h" line="141" column="12" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiGrains.h" bodystart="141" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiGrain_1a981620b70c0f53a070418172f89306d8" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double maxiGrain&lt; F &gt;::dur</definition>
+        <argsstring></argsstring>
+        <name>dur</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiGrains.h" line="142" column="8" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiGrains.h" bodystart="142" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiGrain_1a52802398534d381fdfcc15e1d853ad1d" prot="public" static="no" mutable="no">
+        <type>unsigned long</type>
+        <definition>unsigned long maxiGrain&lt; F &gt;::sampleStartPos</definition>
+        <argsstring></argsstring>
+        <name>sampleStartPos</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiGrains.h" line="143" column="15" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiGrains.h" bodystart="143" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiGrain_1a58d20144d5421f9b5ed31cf26bf1e927" prot="public" static="no" mutable="no">
+        <type>unsigned long</type>
+        <definition>unsigned long maxiGrain&lt; F &gt;::sampleIdx</definition>
+        <argsstring></argsstring>
+        <name>sampleIdx</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiGrains.h" line="144" column="15" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiGrains.h" bodystart="144" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiGrain_1a3601757981043f1adc761de9e8094b84" prot="public" static="no" mutable="no">
+        <type>unsigned long</type>
+        <definition>unsigned long maxiGrain&lt; F &gt;::sampleDur</definition>
+        <argsstring></argsstring>
+        <name>sampleDur</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiGrains.h" line="145" column="15" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiGrains.h" bodystart="145" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiGrain_1a3b8cabb2d6afe562b62f5d35e1b35cc5" prot="public" static="no" mutable="no">
+        <type>unsigned long</type>
+        <definition>unsigned long maxiGrain&lt; F &gt;::sampleEndPos</definition>
+        <argsstring></argsstring>
+        <name>sampleEndPos</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiGrains.h" line="146" column="15" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiGrains.h" bodystart="146" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiGrain_1ab002afb90e5f8bc6d394202fe02f387e" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double maxiGrain&lt; F &gt;::freq</definition>
+        <argsstring></argsstring>
+        <name>freq</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiGrains.h" line="147" column="8" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiGrains.h" bodystart="147" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiGrain_1a630ed00d7c87a9e07af15fd5d6af38db" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double maxiGrain&lt; F &gt;::speed</definition>
+        <argsstring></argsstring>
+        <name>speed</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiGrains.h" line="148" column="8" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiGrains.h" bodystart="148" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiGrain_1aa8aa01f9f00ffe8249bcddbaaad8edb7" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double maxiGrain&lt; F &gt;::inc</definition>
+        <argsstring></argsstring>
+        <name>inc</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiGrains.h" line="149" column="8" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiGrains.h" bodystart="149" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiGrain_1aefab196b34a35b64a4caaf1c9d429a66" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double maxiGrain&lt; F &gt;::frequency</definition>
+        <argsstring></argsstring>
+        <name>frequency</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiGrains.h" line="150" column="8" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiGrains.h" bodystart="150" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiGrain_1a6bce4d92588ca9d19fc2512cb386512e" prot="public" static="no" mutable="no">
+        <type>double *</type>
+        <definition>double* maxiGrain&lt; F &gt;::window</definition>
+        <argsstring></argsstring>
+        <name>window</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiGrains.h" line="151" column="8" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiGrains.h" bodystart="151" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiGrain_1afac531f52c01278fe7cec34f37b96f4b" prot="public" static="no" mutable="no">
+        <type>double *</type>
+        <definition>double* maxiGrain&lt; F &gt;::buffer</definition>
+        <argsstring></argsstring>
+        <name>buffer</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiGrains.h" line="152" column="12" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiGrains.h" bodystart="152" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classmaxiGrain_1aefcff29a0ac530b769869d5822ca10e6" prot="protected" static="no" mutable="no">
+        <type>double</type>
+        <definition>double maxiGrain&lt; F &gt;::envValue</definition>
+        <argsstring></argsstring>
+        <name>envValue</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiGrains.h" line="249" column="8" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiGrains.h" bodystart="249" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiGrain_1a5670c2901a39065e6b5f9a58314305a8" prot="protected" static="no" mutable="no">
+        <type>ulong</type>
+        <definition>ulong maxiGrain&lt; F &gt;::sampleDurMinusOne</definition>
+        <argsstring></argsstring>
+        <name>sampleDurMinusOne</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiGrains.h" line="250" column="7" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiGrains.h" bodystart="250" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classmaxiGrain_1a97f8136a2de0c0b4150426cbe2395a3a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>maxiGrain&lt; F &gt;::maxiGrain</definition>
+        <argsstring>(maxiSample *sample, const double position, const double duration, const double speed, maxiGrainWindowCache&lt; F &gt; *windowCache)</argsstring>
+        <name>maxiGrain</name>
+        <param>
+          <type><ref refid="classmaxiSample" kindref="compound">maxiSample</ref> *</type>
+          <declname>sample</declname>
+        </param>
+        <param>
+          <type>const double</type>
+          <declname>position</declname>
+        </param>
+        <param>
+          <type>const double</type>
+          <declname>duration</declname>
+        </param>
+        <param>
+          <type>const double</type>
+          <declname>speed</declname>
+        </param>
+        <param>
+          <type><ref refid="classmaxiGrainWindowCache" kindref="compound">maxiGrainWindowCache</ref>&lt; F &gt; *</type>
+          <declname>windowCache</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiGrains.h" line="160" column="1" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiGrains.h" bodystart="160" bodyend="208"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiGrain_1a93564f8c00f333a0a920a0546a12d08c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>maxiGrain&lt; F &gt;::~maxiGrain</definition>
+        <argsstring>()</argsstring>
+        <name>~maxiGrain</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiGrains.h" line="210" column="1" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiGrains.h" bodystart="210" bodyend="214"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiGrain_1ae57162ec0870e556fc59231ec10b033e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>double</type>
+        <definition>double maxiGrain&lt; F &gt;::play</definition>
+        <argsstring>()</argsstring>
+        <name>play</name>
+        <reimplements refid="classmaxiGrainBase_1aacfe100b98ffd07e6d5f29a233885ea5">play</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiGrains.h" line="216" column="15" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiGrains.h" bodystart="216" bodyend="245"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classmaxiGrain_1a14dd9726b0a70cef0a2992f001d6d7c5" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>maxiGrain&lt; F &gt;::maxiGrain</definition>
+        <argsstring>()</argsstring>
+        <name>maxiGrain</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiGrains.h" line="248" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>maxiGrain&lt; F &gt;</label>
+        <link refid="classmaxiGrain"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>maxiGrainBase</label>
+        <link refid="classmaxiGrainBase"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="4">
+        <label>maxiTrigger</label>
+        <link refid="classmaxiTrigger"/>
+      </node>
+      <node id="1">
+        <label>maxiGrain&lt; F &gt;</label>
+        <link refid="classmaxiGrain"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>sample</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>maxiSample</label>
+        <link refid="classmaxiSample"/>
+        <childnode refid="4" relation="usage">
+          <edgelabel>zxTrig</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>maxiGrainBase</label>
+        <link refid="classmaxiGrainBase"/>
+      </node>
+    </collaborationgraph>
+    <location file="/home/ck84/src/Maximilian/src/libs/maxiGrains.h" line="138" column="1" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiGrains.h" bodystart="138" bodyend="251"/>
+    <listofallmembers>
+      <member refid="classmaxiGrain_1afac531f52c01278fe7cec34f37b96f4b" prot="public" virt="non-virtual"><scope>maxiGrain</scope><name>buffer</name></member>
+      <member refid="classmaxiGrain_1a981620b70c0f53a070418172f89306d8" prot="public" virt="non-virtual"><scope>maxiGrain</scope><name>dur</name></member>
+      <member refid="classmaxiGrain_1aefcff29a0ac530b769869d5822ca10e6" prot="protected" virt="non-virtual"><scope>maxiGrain</scope><name>envValue</name></member>
+      <member refid="classmaxiGrainBase_1af0f2fa8a53f038ce0768184b3c371021" prot="public" virt="non-virtual"><scope>maxiGrain</scope><name>finished</name></member>
+      <member refid="classmaxiGrain_1ab002afb90e5f8bc6d394202fe02f387e" prot="public" virt="non-virtual"><scope>maxiGrain</scope><name>freq</name></member>
+      <member refid="classmaxiGrain_1aefab196b34a35b64a4caaf1c9d429a66" prot="public" virt="non-virtual"><scope>maxiGrain</scope><name>frequency</name></member>
+      <member refid="classmaxiGrain_1aa8aa01f9f00ffe8249bcddbaaad8edb7" prot="public" virt="non-virtual"><scope>maxiGrain</scope><name>inc</name></member>
+      <member refid="classmaxiGrain_1a97f8136a2de0c0b4150426cbe2395a3a" prot="public" virt="non-virtual"><scope>maxiGrain</scope><name>maxiGrain</name></member>
+      <member refid="classmaxiGrain_1a14dd9726b0a70cef0a2992f001d6d7c5" prot="protected" virt="non-virtual"><scope>maxiGrain</scope><name>maxiGrain</name></member>
+      <member refid="classmaxiGrain_1ae57162ec0870e556fc59231ec10b033e" prot="public" virt="virtual"><scope>maxiGrain</scope><name>play</name></member>
+      <member refid="classmaxiGrain_1aea8fd2afaf083e48e788ea274850c7fa" prot="public" virt="non-virtual"><scope>maxiGrain</scope><name>pos</name></member>
+      <member refid="classmaxiGrain_1a1b291a339faf50d24824670f69ff3536" prot="public" virt="non-virtual"><scope>maxiGrain</scope><name>sample</name></member>
+      <member refid="classmaxiGrain_1a3601757981043f1adc761de9e8094b84" prot="public" virt="non-virtual"><scope>maxiGrain</scope><name>sampleDur</name></member>
+      <member refid="classmaxiGrain_1a5670c2901a39065e6b5f9a58314305a8" prot="protected" virt="non-virtual"><scope>maxiGrain</scope><name>sampleDurMinusOne</name></member>
+      <member refid="classmaxiGrain_1a3b8cabb2d6afe562b62f5d35e1b35cc5" prot="public" virt="non-virtual"><scope>maxiGrain</scope><name>sampleEndPos</name></member>
+      <member refid="classmaxiGrain_1a58d20144d5421f9b5ed31cf26bf1e927" prot="public" virt="non-virtual"><scope>maxiGrain</scope><name>sampleIdx</name></member>
+      <member refid="classmaxiGrain_1a52802398534d381fdfcc15e1d853ad1d" prot="public" virt="non-virtual"><scope>maxiGrain</scope><name>sampleStartPos</name></member>
+      <member refid="classmaxiGrain_1a630ed00d7c87a9e07af15fd5d6af38db" prot="public" virt="non-virtual"><scope>maxiGrain</scope><name>speed</name></member>
+      <member refid="classmaxiGrain_1a6bce4d92588ca9d19fc2512cb386512e" prot="public" virt="non-virtual"><scope>maxiGrain</scope><name>window</name></member>
+      <member refid="classmaxiGrain_1a93564f8c00f333a0a920a0546a12d08c" prot="public" virt="non-virtual"><scope>maxiGrain</scope><name>~maxiGrain</name></member>
+      <member refid="classmaxiGrainBase_1adfb092e356374bcf58b540bb03d6cc13" prot="public" virt="virtual"><scope>maxiGrain</scope><name>~maxiGrainBase</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

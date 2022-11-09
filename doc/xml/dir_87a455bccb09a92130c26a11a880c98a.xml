@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="dir_87a455bccb09a92130c26a11a880c98a" kind="dir">
+    <compoundname>/home/ck84/src/Maximilian/src/libs</compoundname>
+    <innerfile refid="fft_8cpp">fft.cpp</innerfile>
+    <innerfile refid="fft_8h">fft.h</innerfile>
+    <innerfile refid="maxiAtoms_8cpp">maxiAtoms.cpp</innerfile>
+    <innerfile refid="maxiAtoms_8h">maxiAtoms.h</innerfile>
+    <innerfile refid="maxiBark_8cpp">maxiBark.cpp</innerfile>
+    <innerfile refid="maxiBark_8h">maxiBark.h</innerfile>
+    <innerfile refid="maxiClock_8cpp">maxiClock.cpp</innerfile>
+    <innerfile refid="maxiClock_8h">maxiClock.h</innerfile>
+    <innerfile refid="maxiConvolve_8cpp">maxiConvolve.cpp</innerfile>
+    <innerfile refid="maxiConvolve_8h">maxiConvolve.h</innerfile>
+    <innerfile refid="maxiFFT_8cpp">maxiFFT.cpp</innerfile>
+    <innerfile refid="maxiFFT_8h">maxiFFT.h</innerfile>
+    <innerfile refid="maxiGrains_8cpp">maxiGrains.cpp</innerfile>
+    <innerfile refid="maxiGrains_8h">maxiGrains.h</innerfile>
+    <innerfile refid="maxim_8h">maxim.h</innerfile>
+    <innerfile refid="maxiMFCC_8cpp">maxiMFCC.cpp</innerfile>
+    <innerfile refid="maxiMFCC_8h">maxiMFCC.h</innerfile>
+    <innerfile refid="maxiPolyBLEP_8h">maxiPolyBLEP.h</innerfile>
+    <innerfile refid="maxiReverb_8cpp">maxiReverb.cpp</innerfile>
+    <innerfile refid="maxiReverb_8h">maxiReverb.h</innerfile>
+    <innerfile refid="maxiSynths_8cpp">maxiSynths.cpp</innerfile>
+    <innerfile refid="maxiSynths_8h">maxiSynths.h</innerfile>
+    <innerfile refid="stb__vorbis_8c">stb_vorbis.c</innerfile>
+    <innerfile refid="stb__vorbis_8h">stb_vorbis.h</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/ck84/src/Maximilian/src/libs/"/>
+  </compounddef>
+</doxygen>

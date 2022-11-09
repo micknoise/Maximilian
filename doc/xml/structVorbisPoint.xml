@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structVorbisPoint" kind="struct" language="C++" prot="public">
+    <compoundname>VorbisPoint</compoundname>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structVorbisPoint_1ac3f9c5026c262e2d128f9e5812212bd7" prot="public" static="no" mutable="no">
+        <type>uint16</type>
+        <definition>uint16 VorbisPoint::x</definition>
+        <argsstring></argsstring>
+        <name>x</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" line="897" column="11" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="897" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structVorbisPoint_1a50973babfa982985c9abbcce453a6819" prot="public" static="no" mutable="no">
+        <type>uint16</type>
+        <definition>uint16 VorbisPoint::y</definition>
+        <argsstring></argsstring>
+        <name>y</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" line="897" column="12" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="897" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" line="895" column="1" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="896" bodyend="898"/>
+    <listofallmembers>
+      <member refid="structVorbisPoint_1ac3f9c5026c262e2d128f9e5812212bd7" prot="public" virt="non-virtual"><scope>VorbisPoint</scope><name>x</name></member>
+      <member refid="structVorbisPoint_1a50973babfa982985c9abbcce453a6819" prot="public" virt="non-virtual"><scope>VorbisPoint</scope><name>y</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

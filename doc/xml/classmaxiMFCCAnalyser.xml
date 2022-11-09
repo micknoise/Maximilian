@@ -1,0 +1,385 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classmaxiMFCCAnalyser" kind="class" language="C++" prot="public">
+    <compoundname>maxiMFCCAnalyser</compoundname>
+    <derivedcompoundref refid="classmaxiMFCCAdaptor" prot="public" virt="non-virtual">maxiMFCCAdaptor</derivedcompoundref>
+    <templateparamlist>
+      <param>
+        <type>class T</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classmaxiMFCCAnalyser_1a4805c7707a06deeddbc3ac7081515346" prot="public" static="no" mutable="no">
+        <type>T *</type>
+        <definition>T* maxiMFCCAnalyser&lt; T &gt;::melBands</definition>
+        <argsstring></argsstring>
+        <name>melBands</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiMFCC.h" line="43" column="3" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiMFCC.h" bodystart="43" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classmaxiMFCCAnalyser_1a5ac9df85988bf74df28b68a84557a181" prot="private" static="no" mutable="no">
+        <type>unsigned int</type>
+        <definition>unsigned int maxiMFCCAnalyser&lt; T &gt;::numFilters</definition>
+        <argsstring></argsstring>
+        <name>numFilters</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiMFCC.h" line="84" column="14" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiMFCC.h" bodystart="84" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiMFCCAnalyser_1a6d04f1f643ff896860bcae6421d0a773" prot="private" static="no" mutable="no">
+        <type>unsigned int</type>
+        <definition>unsigned int maxiMFCCAnalyser&lt; T &gt;::numCoeffs</definition>
+        <argsstring></argsstring>
+        <name>numCoeffs</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiMFCC.h" line="84" column="25" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiMFCC.h" bodystart="84" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiMFCCAnalyser_1a7479a0b1c93eced6c6d08c81b8bc006b" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double maxiMFCCAnalyser&lt; T &gt;::minFreq</definition>
+        <argsstring></argsstring>
+        <name>minFreq</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiMFCC.h" line="85" column="8" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiMFCC.h" bodystart="85" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiMFCCAnalyser_1a6bc6107f3a7a07df3466f273fea2807b" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double maxiMFCCAnalyser&lt; T &gt;::maxFreq</definition>
+        <argsstring></argsstring>
+        <name>maxFreq</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiMFCC.h" line="85" column="16" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiMFCC.h" bodystart="85" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiMFCCAnalyser_1a3c2ac1a9b01c16ad6cb16ae4ba531861" prot="private" static="no" mutable="no">
+        <type>unsigned int</type>
+        <definition>unsigned int maxiMFCCAnalyser&lt; T &gt;::sampleRate</definition>
+        <argsstring></argsstring>
+        <name>sampleRate</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiMFCC.h" line="86" column="14" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiMFCC.h" bodystart="86" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiMFCCAnalyser_1a13488eb724d0e914acd39f6e0a1c9000" prot="private" static="no" mutable="no">
+        <type>T *</type>
+        <definition>T* maxiMFCCAnalyser&lt; T &gt;::melFilters</definition>
+        <argsstring></argsstring>
+        <name>melFilters</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiMFCC.h" line="87" column="3" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiMFCC.h" bodystart="87" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiMFCCAnalyser_1ac55bcf9629f7fc9882ca3cb03c9c90f5" prot="private" static="no" mutable="no">
+        <type>unsigned int</type>
+        <definition>unsigned int maxiMFCCAnalyser&lt; T &gt;::numBins</definition>
+        <argsstring></argsstring>
+        <name>numBins</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiMFCC.h" line="88" column="14" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiMFCC.h" bodystart="88" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiMFCCAnalyser_1ae6cb3de54a08ac419efac50a702f4f57" prot="private" static="no" mutable="no">
+        <type>T *</type>
+        <definition>T* maxiMFCCAnalyser&lt; T &gt;::dctMatrix</definition>
+        <argsstring></argsstring>
+        <name>dctMatrix</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiMFCC.h" line="89" column="3" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiMFCC.h" bodystart="89" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiMFCCAnalyser_1ada476cedce5b3c2ec568b307c95f82cd" prot="private" static="no" mutable="no">
+        <type>vector&lt; T &gt;</type>
+        <definition>vector&lt;T&gt; maxiMFCCAnalyser&lt; T &gt;::coeffs</definition>
+        <argsstring></argsstring>
+        <name>coeffs</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiMFCC.h" line="90" column="10" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiMFCC.h" bodystart="90" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classmaxiMFCCAnalyser_1abb9658ac40c732d2f0f10ff727bfd135" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>maxiMFCCAnalyser&lt; T &gt;::maxiMFCCAnalyser</definition>
+        <argsstring>()</argsstring>
+        <name>maxiMFCCAnalyser</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiMFCC.h" line="44" column="1" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiMFCC.h" bodystart="44" bodyend="44"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiMFCCAnalyser_1abb5a3435fd41e1bc2aab7e3b76638a78" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>maxiMFCCAnalyser&lt; T &gt;::~maxiMFCCAnalyser</definition>
+        <argsstring>()</argsstring>
+        <name>~maxiMFCCAnalyser</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiMFCC.h" line="45" column="1" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiMFCC.h" bodystart="45" bodyend="54"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiMFCCAnalyser_1ab2d8809bf6e2fe59ca57531400bbfd7d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void maxiMFCCAnalyser&lt; T &gt;::setup</definition>
+        <argsstring>(unsigned int numBins, unsigned int numFilters, unsigned int numCoeffs, double minFreq, double maxFreq)</argsstring>
+        <name>setup</name>
+        <param>
+          <type>unsigned int</type>
+          <declname>numBins</declname>
+        </param>
+        <param>
+          <type>unsigned int</type>
+          <declname>numFilters</declname>
+        </param>
+        <param>
+          <type>unsigned int</type>
+          <declname>numCoeffs</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>minFreq</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>maxFreq</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiMFCC.h" line="56" column="6" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiMFCC.h" bodystart="56" bodyend="75"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiMFCCAnalyser_1acd229a37ea6913d187aaa1f24c9b8ba2" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>vector&lt; T &gt; &amp;</type>
+        <definition>vector&lt;T&gt;&amp; maxiMFCCAnalyser&lt; T &gt;::mfcc</definition>
+        <argsstring>(vector&lt; float &gt; &amp;powerSpectrum)</argsstring>
+        <name>mfcc</name>
+        <param>
+          <type>vector&lt; float &gt; &amp;</type>
+          <declname>powerSpectrum</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiMFCC.h" line="77" column="8" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiMFCC.h" bodystart="77" bodyend="81"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classmaxiMFCCAnalyser_1a10b6dd5429c7d48e0fcf347976d27fb6" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void maxiMFCCAnalyser&lt; T &gt;::dct</definition>
+        <argsstring>(T *mfccs)</argsstring>
+        <name>dct</name>
+        <param>
+          <type>T *</type>
+          <declname>mfccs</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiMFCC.h" line="98" column="6" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiMFCC.h" bodystart="98" bodyend="111"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiMFCCAnalyser_1a20dd2143db4da4c2e84af55e757cb49c" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void maxiMFCCAnalyser&lt; T &gt;::melFilterAndLogSquare</definition>
+        <argsstring>(float *powerSpectrum)</argsstring>
+        <name>melFilterAndLogSquare</name>
+        <param>
+          <type>float *</type>
+          <declname>powerSpectrum</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiMFCC.h" line="114" column="6"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiMFCCAnalyser_1a989aeca2376318e6ed2ba4640787b07d" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void maxiMFCCAnalyser&lt; T &gt;::melFilterAndLogSq_Part2</definition>
+        <argsstring>(float *powerSpectrum)</argsstring>
+        <name>melFilterAndLogSq_Part2</name>
+        <param>
+          <type>float *</type>
+          <declname>powerSpectrum</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiMFCC.h" line="115" column="6" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiMFCC.cpp" bodystart="49" bodyend="66"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiMFCCAnalyser_1a9e9dd164b67908e7a0d8c4544d34e2ee" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void maxiMFCCAnalyser&lt; T &gt;::calcMelFilterBank</definition>
+        <argsstring>(double sampleRate, int numBins)</argsstring>
+        <name>calcMelFilterBank</name>
+        <param>
+          <type>double</type>
+          <declname>sampleRate</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>numBins</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiMFCC.h" line="118" column="6" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiMFCC.h" bodystart="118" bodyend="182"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiMFCCAnalyser_1a53a6b76544883641b199444339bb02c6" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void maxiMFCCAnalyser&lt; T &gt;::createDCTCoeffs</definition>
+        <argsstring>()</argsstring>
+        <name>createDCTCoeffs</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiMFCC.h" line="183" column="6" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiMFCC.h" bodystart="183" bodyend="203"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiMFCCAnalyser_1a03aaf0783488ce00f3e5dd723f5f1868" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void maxiMFCCAnalyser&lt; double &gt;::melFilterAndLogSquare</definition>
+        <argsstring>(float *powerSpectrum)</argsstring>
+        <name>melFilterAndLogSquare</name>
+        <param>
+          <type>float *</type>
+          <declname>powerSpectrum</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiMFCC.cpp" line="29" column="23" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiMFCC.cpp" bodystart="29" bodyend="37"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiMFCCAnalyser_1a14391271523b448a5bd4ece41ee1806f" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void maxiMFCCAnalyser&lt; float &gt;::melFilterAndLogSquare</definition>
+        <argsstring>(float *powerSpectrum)</argsstring>
+        <name>melFilterAndLogSquare</name>
+        <param>
+          <type>float *</type>
+          <declname>powerSpectrum</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiMFCC.cpp" line="41" column="23" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiMFCC.cpp" bodystart="41" bodyend="46"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>maxiMFCCAnalyser&lt; T &gt;</label>
+        <link refid="classmaxiMFCCAnalyser"/>
+      </node>
+      <node id="2">
+        <label>maxiMFCCAdaptor&lt; double &gt;</label>
+        <link refid="classmaxiMFCCAdaptor"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <location file="/home/ck84/src/Maximilian/src/libs/maxiMFCC.h" line="41" column="1" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiMFCC.h" bodystart="41" bodyend="207"/>
+    <listofallmembers>
+      <member refid="classmaxiMFCCAnalyser_1a9e9dd164b67908e7a0d8c4544d34e2ee" prot="private" virt="non-virtual"><scope>maxiMFCCAnalyser</scope><name>calcMelFilterBank</name></member>
+      <member refid="classmaxiMFCCAnalyser_1ada476cedce5b3c2ec568b307c95f82cd" prot="private" virt="non-virtual"><scope>maxiMFCCAnalyser</scope><name>coeffs</name></member>
+      <member refid="classmaxiMFCCAnalyser_1a53a6b76544883641b199444339bb02c6" prot="private" virt="non-virtual"><scope>maxiMFCCAnalyser</scope><name>createDCTCoeffs</name></member>
+      <member refid="classmaxiMFCCAnalyser_1a10b6dd5429c7d48e0fcf347976d27fb6" prot="private" virt="non-virtual"><scope>maxiMFCCAnalyser</scope><name>dct</name></member>
+      <member refid="classmaxiMFCCAnalyser_1ae6cb3de54a08ac419efac50a702f4f57" prot="private" virt="non-virtual"><scope>maxiMFCCAnalyser</scope><name>dctMatrix</name></member>
+      <member refid="classmaxiMFCCAnalyser_1a6bc6107f3a7a07df3466f273fea2807b" prot="private" virt="non-virtual"><scope>maxiMFCCAnalyser</scope><name>maxFreq</name></member>
+      <member refid="classmaxiMFCCAnalyser_1abb9658ac40c732d2f0f10ff727bfd135" prot="public" virt="non-virtual"><scope>maxiMFCCAnalyser</scope><name>maxiMFCCAnalyser</name></member>
+      <member refid="classmaxiMFCCAnalyser_1a4805c7707a06deeddbc3ac7081515346" prot="public" virt="non-virtual"><scope>maxiMFCCAnalyser</scope><name>melBands</name></member>
+      <member refid="classmaxiMFCCAnalyser_1a989aeca2376318e6ed2ba4640787b07d" prot="private" virt="non-virtual"><scope>maxiMFCCAnalyser</scope><name>melFilterAndLogSq_Part2</name></member>
+      <member refid="classmaxiMFCCAnalyser_1a20dd2143db4da4c2e84af55e757cb49c" prot="private" virt="non-virtual"><scope>maxiMFCCAnalyser</scope><name>melFilterAndLogSquare</name></member>
+      <member refid="classmaxiMFCCAnalyser_1a03aaf0783488ce00f3e5dd723f5f1868" prot="private" virt="non-virtual"><scope>maxiMFCCAnalyser</scope><name>melFilterAndLogSquare</name></member>
+      <member refid="classmaxiMFCCAnalyser_1a14391271523b448a5bd4ece41ee1806f" prot="private" virt="non-virtual"><scope>maxiMFCCAnalyser</scope><name>melFilterAndLogSquare</name></member>
+      <member refid="classmaxiMFCCAnalyser_1a13488eb724d0e914acd39f6e0a1c9000" prot="private" virt="non-virtual"><scope>maxiMFCCAnalyser</scope><name>melFilters</name></member>
+      <member refid="classmaxiMFCCAnalyser_1acd229a37ea6913d187aaa1f24c9b8ba2" prot="public" virt="non-virtual"><scope>maxiMFCCAnalyser</scope><name>mfcc</name></member>
+      <member refid="classmaxiMFCCAnalyser_1a7479a0b1c93eced6c6d08c81b8bc006b" prot="private" virt="non-virtual"><scope>maxiMFCCAnalyser</scope><name>minFreq</name></member>
+      <member refid="classmaxiMFCCAnalyser_1ac55bcf9629f7fc9882ca3cb03c9c90f5" prot="private" virt="non-virtual"><scope>maxiMFCCAnalyser</scope><name>numBins</name></member>
+      <member refid="classmaxiMFCCAnalyser_1a6d04f1f643ff896860bcae6421d0a773" prot="private" virt="non-virtual"><scope>maxiMFCCAnalyser</scope><name>numCoeffs</name></member>
+      <member refid="classmaxiMFCCAnalyser_1a5ac9df85988bf74df28b68a84557a181" prot="private" virt="non-virtual"><scope>maxiMFCCAnalyser</scope><name>numFilters</name></member>
+      <member refid="classmaxiMFCCAnalyser_1a3c2ac1a9b01c16ad6cb16ae4ba531861" prot="private" virt="non-virtual"><scope>maxiMFCCAnalyser</scope><name>sampleRate</name></member>
+      <member refid="classmaxiMFCCAnalyser_1ab2d8809bf6e2fe59ca57531400bbfd7d" prot="public" virt="non-virtual"><scope>maxiMFCCAnalyser</scope><name>setup</name></member>
+      <member refid="classmaxiMFCCAnalyser_1abb5a3435fd41e1bc2aab7e3b76638a78" prot="public" virt="non-virtual"><scope>maxiMFCCAnalyser</scope><name>~maxiMFCCAnalyser</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

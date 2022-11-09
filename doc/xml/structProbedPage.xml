@@ -1,0 +1,85 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structProbedPage" kind="struct" language="C++" prot="public">
+    <compoundname>ProbedPage</compoundname>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structProbedPage_1aaa50c148dd63b1c5582963aab9a987d9" prot="public" static="no" mutable="no">
+        <type>uint32</type>
+        <definition>uint32 ProbedPage::page_start</definition>
+        <argsstring></argsstring>
+        <name>page_start</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" line="366" column="11" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="366" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structProbedPage_1a70bebe23790fc29c0e904c43e26aac1a" prot="public" static="no" mutable="no">
+        <type>uint32</type>
+        <definition>uint32 ProbedPage::page_end</definition>
+        <argsstring></argsstring>
+        <name>page_end</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" line="366" column="22" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="366" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structProbedPage_1a5040ffa2dafb3a66ea5127069e20e2e8" prot="public" static="no" mutable="no">
+        <type>uint32</type>
+        <definition>uint32 ProbedPage::after_previous_page_start</definition>
+        <argsstring></argsstring>
+        <name>after_previous_page_start</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" line="367" column="11" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="367" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structProbedPage_1ab4cb20df6b91f6f858c0e6a5281e400b" prot="public" static="no" mutable="no">
+        <type>uint32</type>
+        <definition>uint32 ProbedPage::first_decoded_sample</definition>
+        <argsstring></argsstring>
+        <name>first_decoded_sample</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" line="368" column="11" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="368" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structProbedPage_1ad0e2a35e768907ee5f1b7ef9fed20e81" prot="public" static="no" mutable="no">
+        <type>uint32</type>
+        <definition>uint32 ProbedPage::last_decoded_sample</definition>
+        <argsstring></argsstring>
+        <name>last_decoded_sample</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" line="369" column="11" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="369" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" line="364" column="1" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="365" bodyend="370"/>
+    <listofallmembers>
+      <member refid="structProbedPage_1a5040ffa2dafb3a66ea5127069e20e2e8" prot="public" virt="non-virtual"><scope>ProbedPage</scope><name>after_previous_page_start</name></member>
+      <member refid="structProbedPage_1ab4cb20df6b91f6f858c0e6a5281e400b" prot="public" virt="non-virtual"><scope>ProbedPage</scope><name>first_decoded_sample</name></member>
+      <member refid="structProbedPage_1ad0e2a35e768907ee5f1b7ef9fed20e81" prot="public" virt="non-virtual"><scope>ProbedPage</scope><name>last_decoded_sample</name></member>
+      <member refid="structProbedPage_1a70bebe23790fc29c0e904c43e26aac1a" prot="public" virt="non-virtual"><scope>ProbedPage</scope><name>page_end</name></member>
+      <member refid="structProbedPage_1aaa50c148dd63b1c5582963aab9a987d9" prot="public" virt="non-virtual"><scope>ProbedPage</scope><name>page_start</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

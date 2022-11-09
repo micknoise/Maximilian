@@ -358,10 +358,6 @@ double maxiOsc::sawn(double frequency) {
 
 }
 
-double maxiOsc::rect(double frequency, double duty) {
-
-	return (output);
-}
 
 double maxiOsc::triangle(double frequency) {
 	//This is a triangle wave.

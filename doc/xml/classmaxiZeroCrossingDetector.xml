@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classmaxiZeroCrossingDetector" kind="class" language="C++" prot="public">
+    <compoundname>maxiZeroCrossingDetector</compoundname>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classmaxiZeroCrossingDetector_1a0996fec932efc535c1e5698877519b0c" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double maxiZeroCrossingDetector::previous_x</definition>
+        <argsstring></argsstring>
+        <name>previous_x</name>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="788" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="788" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classmaxiZeroCrossingDetector_1a6c104907ac40969661f66177f43634f0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>maxiZeroCrossingDetector::maxiZeroCrossingDetector</definition>
+        <argsstring>()</argsstring>
+        <name>maxiZeroCrossingDetector</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="775" column="5" bodyfile="/home/ck84/src/Maximilian/src/maximilian.cpp" bodystart="1499" bodyend="1499"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiZeroCrossingDetector_1aa7910490989a6a12655ee083fece2eeb" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool maxiZeroCrossingDetector::zx</definition>
+        <argsstring>(double x)</argsstring>
+        <name>zx</name>
+        <param>
+          <type>double</type>
+          <declname>x</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="776" column="17" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="776" bodyend="785"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="772" column="1" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="773" bodyend="789"/>
+    <listofallmembers>
+      <member refid="classmaxiZeroCrossingDetector_1a6c104907ac40969661f66177f43634f0" prot="public" virt="non-virtual"><scope>maxiZeroCrossingDetector</scope><name>maxiZeroCrossingDetector</name></member>
+      <member refid="classmaxiZeroCrossingDetector_1a0996fec932efc535c1e5698877519b0c" prot="private" virt="non-virtual"><scope>maxiZeroCrossingDetector</scope><name>previous_x</name></member>
+      <member refid="classmaxiZeroCrossingDetector_1aa7910490989a6a12655ee083fece2eeb" prot="public" virt="non-virtual"><scope>maxiZeroCrossingDetector</scope><name>zx</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

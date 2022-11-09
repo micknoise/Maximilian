@@ -1,0 +1,308 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classmaxiTimeStretch" kind="class" language="C++" prot="public">
+    <compoundname>maxiTimeStretch</compoundname>
+    <templateparamlist>
+      <param>
+        <type>typename F</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classmaxiTimeStretch_1ae4bb636c07da7acaa78b25ef5bec3135" prot="protected" static="no" mutable="no">
+        <type>double</type>
+        <definition>double maxiTimeStretch&lt; F &gt;::position</definition>
+        <argsstring></argsstring>
+        <name>position</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiGrains.h" line="289" column="12" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiGrains.h" bodystart="289" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classmaxiTimeStretch_1a6d032e053d34a57d7fae17e905c4faec" prot="public" static="no" mutable="no">
+        <type><ref refid="classmaxiSample" kindref="compound">maxiSample</ref> *</type>
+        <definition>maxiSample* maxiTimeStretch&lt; F &gt;::sample</definition>
+        <argsstring></argsstring>
+        <name>sample</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiGrains.h" line="291" column="12" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiGrains.h" bodystart="291" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiTimeStretch_1aa3c06ff7064bf4c1d67db4431320abc2" prot="public" static="no" mutable="no">
+        <type><ref refid="classmaxiGrainPlayer" kindref="compound">maxiGrainPlayer</ref> *</type>
+        <definition>maxiGrainPlayer* maxiTimeStretch&lt; F &gt;::grainPlayer</definition>
+        <argsstring></argsstring>
+        <name>grainPlayer</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiGrains.h" line="292" column="17" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiGrains.h" bodystart="292" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiTimeStretch_1a67ca7e7dfde8beafeca29fee315476f9" prot="public" static="no" mutable="no">
+        <type><ref refid="classmaxiGrainWindowCache" kindref="compound">maxiGrainWindowCache</ref>&lt; F &gt;</type>
+        <definition>maxiGrainWindowCache&lt;F&gt; maxiTimeStretch&lt; F &gt;::windowCache</definition>
+        <argsstring></argsstring>
+        <name>windowCache</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiGrains.h" line="293" column="22" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiGrains.h" bodystart="293" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiTimeStretch_1abc6ebaf18b6d08231ccb424d6276842d" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double maxiTimeStretch&lt; F &gt;::randomOffset</definition>
+        <argsstring></argsstring>
+        <name>randomOffset</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiGrains.h" line="294" column="8" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiGrains.h" bodystart="294" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiTimeStretch_1ac21591c3f9894629ece96528228a30d6" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double maxiTimeStretch&lt; F &gt;::looper</definition>
+        <argsstring></argsstring>
+        <name>looper</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiGrains.h" line="295" column="12" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiGrains.h" bodystart="295" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classmaxiTimeStretch_1a29c6f75394e48f30d30d031b5c122e70" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>maxiTimeStretch&lt; F &gt;::maxiTimeStretch</definition>
+        <argsstring>()</argsstring>
+        <name>maxiTimeStretch</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiGrains.h" line="297" column="1" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiGrains.h" bodystart="297" bodyend="301"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiTimeStretch_1a2c99449b1da4a71a21cda7dc47cb3fb4" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>maxiTimeStretch&lt; F &gt;::maxiTimeStretch</definition>
+        <argsstring>(maxiSample *sample)</argsstring>
+        <name>maxiTimeStretch</name>
+        <param>
+          <type><ref refid="classmaxiSample" kindref="compound">maxiSample</ref> *</type>
+          <declname>sample</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiGrains.h" line="303" column="1" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiGrains.h" bodystart="303" bodyend="308"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiTimeStretch_1a2a2fb82d76682709cda168dbf504e9af" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>maxiTimeStretch&lt; F &gt;::~maxiTimeStretch</definition>
+        <argsstring>()</argsstring>
+        <name>~maxiTimeStretch</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiGrains.h" line="310" column="1" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiGrains.h" bodystart="310" bodyend="312"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiTimeStretch_1abc58e4b0ecb21f4bdd2a98ec6b293cf2" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void maxiTimeStretch&lt; F &gt;::setSample</definition>
+        <argsstring>(maxiSample *sampleIn)</argsstring>
+        <name>setSample</name>
+        <param>
+          <type><ref refid="classmaxiSample" kindref="compound">maxiSample</ref> *</type>
+          <declname>sampleIn</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiGrains.h" line="314" column="6" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiGrains.h" bodystart="314" bodyend="324"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiTimeStretch_1ae24e9a1d08eb2b94336320fdb91170c1" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double maxiTimeStretch&lt; F &gt;::getNormalisedPosition</definition>
+        <argsstring>()</argsstring>
+        <name>getNormalisedPosition</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiGrains.h" line="326" column="12" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiGrains.h" bodystart="326" bodyend="328"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiTimeStretch_1a5d0da64dee4b383ceb93e2108614905f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double maxiTimeStretch&lt; F &gt;::getPosition</definition>
+        <argsstring>()</argsstring>
+        <name>getPosition</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiGrains.h" line="330" column="12" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiGrains.h" bodystart="330" bodyend="332"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiTimeStretch_1a4f003be64ce59172ee8cafd17200b528" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void maxiTimeStretch&lt; F &gt;::setPosition</definition>
+        <argsstring>(double pos)</argsstring>
+        <name>setPosition</name>
+        <param>
+          <type>double</type>
+          <declname>pos</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiGrains.h" line="334" column="10" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiGrains.h" bodystart="334" bodyend="337"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiTimeStretch_1ad3eb38e2b9356c58c8d48be0383e4944" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double maxiTimeStretch&lt; F &gt;::play</definition>
+        <argsstring>(double speed=1, double grainLength=0.05, int overlaps=2, double posMod=0)</argsstring>
+        <name>play</name>
+        <param>
+          <type>double</type>
+          <declname>speed</declname>
+          <defval>1</defval>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>grainLength</declname>
+          <defval>0.05</defval>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>overlaps</declname>
+          <defval>2</defval>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>posMod</declname>
+          <defval>0</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiGrains.h" line="341" column="19" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiGrains.h" bodystart="341" bodyend="355"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiTimeStretch_1a0c0d042797f0e238ba067a42d2be1c60" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double maxiTimeStretch&lt; F &gt;::playAtPosition</definition>
+        <argsstring>(double pos, double grainLength, int overlaps)</argsstring>
+        <name>playAtPosition</name>
+        <param>
+          <type>double</type>
+          <declname>pos</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>grainLength</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>overlaps</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiGrains.h" line="359" column="15" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiGrains.h" bodystart="359" bodyend="367"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="3">
+        <label>maxiTrigger</label>
+        <link refid="classmaxiTrigger"/>
+      </node>
+      <node id="2">
+        <label>maxiSample</label>
+        <link refid="classmaxiSample"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>zxTrig</edgelabel>
+        </childnode>
+      </node>
+      <node id="4">
+        <label>maxiGrainPlayer</label>
+        <link refid="classmaxiGrainPlayer"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>sample</edgelabel>
+        </childnode>
+      </node>
+      <node id="1">
+        <label>maxiTimeStretch&lt; F &gt;</label>
+        <link refid="classmaxiTimeStretch"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>sample</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>grainPlayer</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/ck84/src/Maximilian/src/libs/maxiGrains.h" line="287" column="1" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiGrains.h" bodystart="287" bodyend="368"/>
+    <listofallmembers>
+      <member refid="classmaxiTimeStretch_1ae24e9a1d08eb2b94336320fdb91170c1" prot="public" virt="non-virtual"><scope>maxiTimeStretch</scope><name>getNormalisedPosition</name></member>
+      <member refid="classmaxiTimeStretch_1a5d0da64dee4b383ceb93e2108614905f" prot="public" virt="non-virtual"><scope>maxiTimeStretch</scope><name>getPosition</name></member>
+      <member refid="classmaxiTimeStretch_1aa3c06ff7064bf4c1d67db4431320abc2" prot="public" virt="non-virtual"><scope>maxiTimeStretch</scope><name>grainPlayer</name></member>
+      <member refid="classmaxiTimeStretch_1ac21591c3f9894629ece96528228a30d6" prot="public" virt="non-virtual"><scope>maxiTimeStretch</scope><name>looper</name></member>
+      <member refid="classmaxiTimeStretch_1a29c6f75394e48f30d30d031b5c122e70" prot="public" virt="non-virtual"><scope>maxiTimeStretch</scope><name>maxiTimeStretch</name></member>
+      <member refid="classmaxiTimeStretch_1a2c99449b1da4a71a21cda7dc47cb3fb4" prot="public" virt="non-virtual"><scope>maxiTimeStretch</scope><name>maxiTimeStretch</name></member>
+      <member refid="classmaxiTimeStretch_1ad3eb38e2b9356c58c8d48be0383e4944" prot="public" virt="non-virtual"><scope>maxiTimeStretch</scope><name>play</name></member>
+      <member refid="classmaxiTimeStretch_1a0c0d042797f0e238ba067a42d2be1c60" prot="public" virt="non-virtual"><scope>maxiTimeStretch</scope><name>playAtPosition</name></member>
+      <member refid="classmaxiTimeStretch_1ae4bb636c07da7acaa78b25ef5bec3135" prot="protected" virt="non-virtual"><scope>maxiTimeStretch</scope><name>position</name></member>
+      <member refid="classmaxiTimeStretch_1abc6ebaf18b6d08231ccb424d6276842d" prot="public" virt="non-virtual"><scope>maxiTimeStretch</scope><name>randomOffset</name></member>
+      <member refid="classmaxiTimeStretch_1a6d032e053d34a57d7fae17e905c4faec" prot="public" virt="non-virtual"><scope>maxiTimeStretch</scope><name>sample</name></member>
+      <member refid="classmaxiTimeStretch_1a4f003be64ce59172ee8cafd17200b528" prot="public" virt="non-virtual"><scope>maxiTimeStretch</scope><name>setPosition</name></member>
+      <member refid="classmaxiTimeStretch_1abc58e4b0ecb21f4bdd2a98ec6b293cf2" prot="public" virt="non-virtual"><scope>maxiTimeStretch</scope><name>setSample</name></member>
+      <member refid="classmaxiTimeStretch_1a67ca7e7dfde8beafeca29fee315476f9" prot="public" virt="non-virtual"><scope>maxiTimeStretch</scope><name>windowCache</name></member>
+      <member refid="classmaxiTimeStretch_1a2a2fb82d76682709cda168dbf504e9af" prot="public" virt="non-virtual"><scope>maxiTimeStretch</scope><name>~maxiTimeStretch</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

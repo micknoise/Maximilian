@@ -1,0 +1,163 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classmaxiMix" kind="class" language="C++" prot="public">
+    <compoundname>maxiMix</compoundname>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classmaxiMix_1aa20b4cc5fbb6d3096e9d85382d6c1bfa" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double maxiMix::input</definition>
+        <argsstring></argsstring>
+        <name>input</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="296" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="296" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiMix_1a84eca1985c6d9fa3a9d3cb086fbd5a17" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double maxiMix::two[2]</definition>
+        <argsstring>[2]</argsstring>
+        <name>two</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="297" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="297" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiMix_1af2bd0ff442b02cbeac94365388bd8ced" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double maxiMix::four[4]</definition>
+        <argsstring>[4]</argsstring>
+        <name>four</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="298" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="298" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiMix_1a570e49722f7f90089387476074cae6de" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double maxiMix::eight[8]</definition>
+        <argsstring>[8]</argsstring>
+        <name>eight</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="299" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="299" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classmaxiMix_1a11318d7bbbc883ada570a07a0d0a1bab" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void maxiMix::stereo</definition>
+        <argsstring>(double input, std::vector&lt; double &gt; &amp;two, double x)</argsstring>
+        <name>stereo</name>
+        <param>
+          <type>double</type>
+          <declname>input</declname>
+        </param>
+        <param>
+          <type>std::vector&lt; double &gt; &amp;</type>
+          <declname>two</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>x</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="316" column="10" bodyfile="/home/ck84/src/Maximilian/src/maximilian.cpp" bodystart="503" bodyend="509"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiMix_1ad57bfa7266b5638f0acdff028385650a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void maxiMix::quad</definition>
+        <argsstring>(double input, std::vector&lt; double &gt; &amp;four, double x, double y)</argsstring>
+        <name>quad</name>
+        <param>
+          <type>double</type>
+          <declname>input</declname>
+        </param>
+        <param>
+          <type>std::vector&lt; double &gt; &amp;</type>
+          <declname>four</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>y</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="317" column="10" bodyfile="/home/ck84/src/Maximilian/src/maximilian.cpp" bodystart="512" bodyend="522"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiMix_1a328e0773ca68b2f41b06d63641a93aab" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void maxiMix::ambisonic</definition>
+        <argsstring>(double input, std::vector&lt; double &gt; &amp;eight, double x, double y, double z)</argsstring>
+        <name>ambisonic</name>
+        <param>
+          <type>double</type>
+          <declname>input</declname>
+        </param>
+        <param>
+          <type>std::vector&lt; double &gt; &amp;</type>
+          <declname>eight</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>y</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>z</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="318" column="10" bodyfile="/home/ck84/src/Maximilian/src/maximilian.cpp" bodystart="525" bodyend="541"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="294" column="1" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="295" bodyend="319"/>
+    <listofallmembers>
+      <member refid="classmaxiMix_1a328e0773ca68b2f41b06d63641a93aab" prot="public" virt="non-virtual"><scope>maxiMix</scope><name>ambisonic</name></member>
+      <member refid="classmaxiMix_1a570e49722f7f90089387476074cae6de" prot="private" virt="non-virtual"><scope>maxiMix</scope><name>eight</name></member>
+      <member refid="classmaxiMix_1af2bd0ff442b02cbeac94365388bd8ced" prot="private" virt="non-virtual"><scope>maxiMix</scope><name>four</name></member>
+      <member refid="classmaxiMix_1aa20b4cc5fbb6d3096e9d85382d6c1bfa" prot="private" virt="non-virtual"><scope>maxiMix</scope><name>input</name></member>
+      <member refid="classmaxiMix_1ad57bfa7266b5638f0acdff028385650a" prot="public" virt="non-virtual"><scope>maxiMix</scope><name>quad</name></member>
+      <member refid="classmaxiMix_1a11318d7bbbc883ada570a07a0d0a1bab" prot="public" virt="non-virtual"><scope>maxiMix</scope><name>stereo</name></member>
+      <member refid="classmaxiMix_1a84eca1985c6d9fa3a9d3cb086fbd5a17" prot="private" virt="non-virtual"><scope>maxiMix</scope><name>two</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

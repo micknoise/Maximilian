@@ -1,0 +1,63 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="unionFloor" kind="union" language="C++" prot="public">
+    <compoundname>Floor</compoundname>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="unionFloor_1a2330ff2cbd7ee66f38487546bbe03453" prot="public" static="no" mutable="no">
+        <type><ref refid="structFloor0" kindref="compound">Floor0</ref></type>
+        <definition>Floor0 Floor::floor0</definition>
+        <argsstring></argsstring>
+        <name>floor0</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" line="317" column="11" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="317" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="unionFloor_1adc1ac1b2639d665d8a7df65714a03f95" prot="public" static="no" mutable="no">
+        <type><ref refid="structFloor1" kindref="compound">Floor1</ref></type>
+        <definition>Floor1 Floor::floor1</definition>
+        <argsstring></argsstring>
+        <name>floor1</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" line="318" column="11" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="318" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>Floor</label>
+        <link refid="unionFloor"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>floor0</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>floor1</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>Floor0</label>
+        <link refid="structFloor0"/>
+      </node>
+      <node id="3">
+        <label>Floor1</label>
+        <link refid="structFloor1"/>
+      </node>
+    </collaborationgraph>
+    <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" line="315" column="1" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="316" bodyend="319"/>
+    <listofallmembers>
+      <member refid="unionFloor_1a2330ff2cbd7ee66f38487546bbe03453" prot="public" virt="non-virtual"><scope>Floor</scope><name>floor0</name></member>
+      <member refid="unionFloor_1adc1ac1b2639d665d8a7df65714a03f95" prot="public" virt="non-virtual"><scope>Floor</scope><name>floor1</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

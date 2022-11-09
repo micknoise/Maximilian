@@ -1,0 +1,972 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classmaxiSample" kind="class" language="C++" prot="public">
+    <compoundname>maxiSample</compoundname>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classmaxiSample_1a80a4798fadf7a3e7d190eb295850974c" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double maxiSample::position</definition>
+        <argsstring></argsstring>
+        <name>position</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="479" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="479" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiSample_1a7fc14ee1486241621330df33d8e155ff" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double maxiSample::recordPosition</definition>
+        <argsstring></argsstring>
+        <name>recordPosition</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="479" column="21" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="479" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiSample_1a06345cf864131c91e8b69585401bae64" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double maxiSample::speed</definition>
+        <argsstring></argsstring>
+        <name>speed</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="480" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="480" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiSample_1addc719ba6a8b7a7644052db18f8c2408" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double maxiSample::output</definition>
+        <argsstring></argsstring>
+        <name>output</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="481" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="481" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiSample_1a0ff28bc49186b2af272a06286dcbd3e1" prot="private" static="no" mutable="no">
+        <type><ref refid="classmaxiLagExp" kindref="compound">maxiLagExp</ref>&lt; double &gt;</type>
+        <definition>maxiLagExp&lt;double&gt; maxiSample::loopRecordLag</definition>
+        <argsstring></argsstring>
+        <name>loopRecordLag</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="482" column="16" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="482" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classmaxiSample_1a99fb2bf280a25c41e8b51a2860647006" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short maxiSample::myChannels</definition>
+        <argsstring></argsstring>
+        <name>myChannels</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="487" column="11" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="487" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiSample_1ac8cd71a84e9d90cc83f7329198b23a6b" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int maxiSample::mySampleRate</definition>
+        <argsstring></argsstring>
+        <name>mySampleRate</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="488" column="9" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="488" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiSample_1a72f77e93cf35980c670df4958a3060ea" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short maxiSample::myBitsPerSample</definition>
+        <argsstring></argsstring>
+        <name>myBitsPerSample</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="491" column="11" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="489" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiSample_1a6ba07a4f7d16c379b338a48957607be7" prot="public" static="no" mutable="no">
+        <type><ref refid="classmaxiTrigger" kindref="compound">maxiTrigger</ref></type>
+        <definition>maxiTrigger maxiSample::zxTrig</definition>
+        <argsstring></argsstring>
+        <name>zxTrig</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="492" column="17" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="492" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiSample_1afbd4773536cd475c185b57298d8d7d37" prot="public" static="no" mutable="no">
+        <type>string</type>
+        <definition>string maxiSample::myPath</definition>
+        <argsstring></argsstring>
+        <name>myPath</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="512" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="512" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiSample_1a52fdca32370225bbb107abf305c3d218" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int maxiSample::myChunkSize</definition>
+        <argsstring></argsstring>
+        <name>myChunkSize</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="513" column="9" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="513" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiSample_1aa04500fba26e55532b2526cead9977b9" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int maxiSample::mySubChunk1Size</definition>
+        <argsstring></argsstring>
+        <name>mySubChunk1Size</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="514" column="9" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="514" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiSample_1a76f276a805f0fb3059a86cff1c801272" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int maxiSample::readChannel</definition>
+        <argsstring></argsstring>
+        <name>readChannel</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="515" column="9" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="515" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiSample_1a80276db62c1f0148acf94f1e2bb2bfe4" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short maxiSample::myFormat</definition>
+        <argsstring></argsstring>
+        <name>myFormat</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="516" column="11" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="516" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiSample_1a8eeb094db9eb5a915cc75345ea00b2c6" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int maxiSample::myByteRate</definition>
+        <argsstring></argsstring>
+        <name>myByteRate</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="517" column="9" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="517" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiSample_1a7eb38f0af4b6fed630991b09a1513d64" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short maxiSample::myBlockAlign</definition>
+        <argsstring></argsstring>
+        <name>myBlockAlign</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="518" column="11" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="518" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiSample_1ad583ab97de3e1ae648f7c04144a2202b" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool maxiSample::phasorFirst</definition>
+        <argsstring></argsstring>
+        <name>phasorFirst</name>
+        <initializer>=1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="580" column="10" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="580" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiSample_1a9c8bf9646754528b511b4f91258afdb2" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double maxiSample::phasorPrev</definition>
+        <argsstring></argsstring>
+        <name>phasorPrev</name>
+        <initializer>=0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="581" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="581" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classmaxiSample_1a9b32955d8d70bd946b74919ac2703c56" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>long</type>
+        <definition>long maxiSample::getLength</definition>
+        <argsstring>()</argsstring>
+        <name>getLength</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="489" column="17" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="489" bodyend="489"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiSample_1aec72b1120c5d696825cdd848da0a5271" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>maxiSample::DECLARE_F64_ARRAY</definition>
+        <argsstring>(amplitudes)</argsstring>
+        <name>DECLARE_F64_ARRAY</name>
+        <param>
+          <type>amplitudes</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="495" column="5"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiSample_1af48a45b854755f11c2a08e572532ffdb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>maxiSample::maxiSample</definition>
+        <argsstring>()</argsstring>
+        <name>maxiSample</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="497" column="5" bodyfile="/home/ck84/src/Maximilian/src/maximilian.cpp" bodystart="546" bodyend="546"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiSample_1a3be61f10965fbca8bc2440c5b22c1daa" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classmaxiSample" kindref="compound">maxiSample</ref> &amp;</type>
+        <definition>maxiSample&amp; maxiSample::operator=</definition>
+        <argsstring>(const maxiSample &amp;source)</argsstring>
+        <name>operator=</name>
+        <param>
+          <type>const <ref refid="classmaxiSample" kindref="compound">maxiSample</ref> &amp;</type>
+          <declname>source</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="500" column="16" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="500" bodyend="510"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiSample_1a68c12e14649369d0657eca87a2a2929f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool maxiSample::load</definition>
+        <argsstring>(string fileName, int channel=0)</argsstring>
+        <name>load</name>
+        <param>
+          <type>string</type>
+          <declname>fileName</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>channel</declname>
+          <defval>0</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="520" column="10" bodyfile="/home/ck84/src/Maximilian/src/maximilian.cpp" bodystart="605" bodyend="609"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiSample_1a74b554b7101576bfda87485ebc23bf50" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool maxiSample::save</definition>
+        <argsstring>()</argsstring>
+        <name>save</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="521" column="10" bodyfile="/home/ck84/src/Maximilian/src/maximilian.cpp" bodystart="694" bodyend="696"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiSample_1ae28feb485fe1c5cd3d9303b9a610e3f3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool maxiSample::save</definition>
+        <argsstring>(string filename)</argsstring>
+        <name>save</name>
+        <param>
+          <type>string</type>
+          <declname>filename</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="522" column="10" bodyfile="/home/ck84/src/Maximilian/src/maximilian.cpp" bodystart="698" bodyend="725"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiSample_1a5ae72dd472aff40f3fa420670acc48cf" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool maxiSample::read</definition>
+        <argsstring>()</argsstring>
+        <name>read</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="524" column="10" bodyfile="/home/ck84/src/Maximilian/src/maximilian.cpp" bodystart="612" bodyend="692"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiSample_1a87e0ccbe82846d466057f5387d40074c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>string</type>
+        <definition>string maxiSample::getSummary</definition>
+        <argsstring>()</argsstring>
+        <name>getSummary</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="527" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.cpp" bodystart="727" bodyend="733"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiSample_1acad0809020e1e4a4856e286c423fcdc1" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool maxiSample::isReady</definition>
+        <argsstring>()</argsstring>
+        <name>isReady</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="535" column="10" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="535" bodyend="535"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiSample_1a121b20a694166102d3d1f56b47e22816" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void maxiSample::setSample</definition>
+        <argsstring>(DOUBLEARRAY_REF _sampleData)</argsstring>
+        <name>setSample</name>
+        <param>
+          <type>DOUBLEARRAY_REF</type>
+          <declname>_sampleData</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="537" column="10" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="537" bodyend="545"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiSample_1a64a0821a036614d095496aed6d674521" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void maxiSample::setSampleAndRate</definition>
+        <argsstring>(DOUBLEARRAY_REF _sampleData, int sampleRate)</argsstring>
+        <name>setSampleAndRate</name>
+        <param>
+          <type>DOUBLEARRAY_REF</type>
+          <declname>_sampleData</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>sampleRate</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="547" column="10" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="547" bodyend="551"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiSample_1aec108418582368d630ef47d25f9fefea" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void maxiSample::clear</definition>
+        <argsstring>()</argsstring>
+        <name>clear</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="553" column="10" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="553" bodyend="553"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiSample_1a4c47dacfbb6514804501968dca4f0293" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void maxiSample::trigger</definition>
+        <argsstring>()</argsstring>
+        <name>trigger</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="556" column="10" bodyfile="/home/ck84/src/Maximilian/src/maximilian.cpp" bodystart="597" bodyend="600"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiSample_1acb43b87dab432c7667ce91b0f2410d0c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void maxiSample::loopRecord</definition>
+        <argsstring>(double newSample, const bool recordEnabled, const double recordMix, double start, double end)</argsstring>
+        <name>loopRecord</name>
+        <param>
+          <type>double</type>
+          <declname>newSample</declname>
+        </param>
+        <param>
+          <type>const bool</type>
+          <declname>recordEnabled</declname>
+        </param>
+        <param>
+          <type>const double</type>
+          <declname>recordMix</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>start</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>end</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="558" column="10" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="558" bodyend="573"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiSample_1a16e38d5c8b2b900c63b33faa5cb18748" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void maxiSample::reset</definition>
+        <argsstring>()</argsstring>
+        <name>reset</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="575" column="10" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="575" bodyend="575"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiSample_1a6b55dc845a7c469f694a05f284608a08" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double maxiSample::play</definition>
+        <argsstring>()</argsstring>
+        <name>play</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="577" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.cpp" bodystart="740" bodyend="744"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiSample_1a6ddf6d384be710ef24ecc6f51db7fa6a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double maxiSample::playWithPhasor</definition>
+        <argsstring>(double pha)</argsstring>
+        <name>playWithPhasor</name>
+        <param>
+          <type>double</type>
+          <declname>pha</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="579" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.cpp" bodystart="750" bodyend="813"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiSample_1a4f9b1bc00af98f9d11178ac8cfc87c11" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double maxiSample::playLoop</definition>
+        <argsstring>(double start, double end)</argsstring>
+        <name>playLoop</name>
+        <param>
+          <type>double</type>
+          <declname>start</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>end</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="583" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.cpp" bodystart="957" bodyend="964"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiSample_1ae9acd1c13f043387c395422dfe074ddb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double maxiSample::playOnce</definition>
+        <argsstring>()</argsstring>
+        <name>playOnce</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="585" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.cpp" bodystart="979" bodyend="988"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiSample_1addba352aea15b361b2c134088868e162" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double maxiSample::playOnZX</definition>
+        <argsstring>(double trigger)</argsstring>
+        <name>playOnZX</name>
+        <param>
+          <type>double</type>
+          <declname>trigger</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="586" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.cpp" bodystart="1003" bodyend="1008"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiSample_1aabdceda1434c6b9fffa5ca67127685ea" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double maxiSample::playOnZXAtSpeed</definition>
+        <argsstring>(double trig, double speed)</argsstring>
+        <name>playOnZXAtSpeed</name>
+        <param>
+          <type>double</type>
+          <declname>trig</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>speed</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="587" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.cpp" bodystart="1010" bodyend="1015"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiSample_1acee703cdfa24a665698dc48be1295b07" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double maxiSample::playOnZXAtSpeedFromOffset</definition>
+        <argsstring>(double trig, double speed, double offset)</argsstring>
+        <name>playOnZXAtSpeedFromOffset</name>
+        <param>
+          <type>double</type>
+          <declname>trig</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>speed</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>offset</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="588" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.cpp" bodystart="1017" bodyend="1023"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiSample_1a09b70b7f207dfd889c27f07dc1499b39" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double maxiSample::playOnZXAtSpeedBetweenPoints</definition>
+        <argsstring>(double trig, double speed, double offset, double length)</argsstring>
+        <name>playOnZXAtSpeedBetweenPoints</name>
+        <param>
+          <type>double</type>
+          <declname>trig</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>speed</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>offset</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>length</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="589" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.cpp" bodystart="1025" bodyend="1031"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiSample_1a0d58b0c957296ba0d8b06535616c1630" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double maxiSample::loopSetPosOnZX</definition>
+        <argsstring>(double trigger, double position)</argsstring>
+        <name>loopSetPosOnZX</name>
+        <param>
+          <type>double</type>
+          <declname>trigger</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>position</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="591" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.cpp" bodystart="1034" bodyend="1039"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiSample_1ae2b6fbd44eae6df6b59461b96997cf9d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double maxiSample::playOnceAtSpeed</definition>
+        <argsstring>(double speed)</argsstring>
+        <name>playOnceAtSpeed</name>
+        <param>
+          <type>double</type>
+          <declname>speed</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="593" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.cpp" bodystart="991" bodyend="1000"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiSample_1a678ec42067934e9db35a5c68f8d5ab13" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void maxiSample::setPosition</definition>
+        <argsstring>(double newPos)</argsstring>
+        <name>setPosition</name>
+        <param>
+          <type>double</type>
+          <declname>newPos</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="595" column="10" bodyfile="/home/ck84/src/Maximilian/src/maximilian.cpp" bodystart="746" bodyend="748"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiSample_1aea817557fc69ae5541b56ab8415f1664" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double maxiSample::playUntil</definition>
+        <argsstring>(double end)</argsstring>
+        <name>playUntil</name>
+        <param>
+          <type>double</type>
+          <declname>end</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="597" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.cpp" bodystart="966" bodyend="975"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiSample_1a69b3dc2950e4068fa66e709b4566b8ff" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double maxiSample::playUntilAtSpeed</definition>
+        <argsstring>(double end, double speed)</argsstring>
+        <name>playUntilAtSpeed</name>
+        <param>
+          <type>double</type>
+          <declname>end</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>speed</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="598" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.cpp" bodystart="1044" bodyend="1055"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiSample_1ae5e0e29a78a0a614cda56c8b18c502b9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double maxiSample::playAtSpeed</definition>
+        <argsstring>(double speed)</argsstring>
+        <name>playAtSpeed</name>
+        <param>
+          <type>double</type>
+          <declname>speed</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="600" column="12"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiSample_1a01ee0f3bd478bf1d68d5eef95eedaa0e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double maxiSample::playAtSpeedBetweenPointsFromPos</definition>
+        <argsstring>(double frequency, double start, double end, double pos)</argsstring>
+        <name>playAtSpeedBetweenPointsFromPos</name>
+        <param>
+          <type>double</type>
+          <declname>frequency</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>start</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>end</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>pos</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="602" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.cpp" bodystart="825" bodyend="877"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiSample_1a3c98528d31b07ef965cc35b2de854c3d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double maxiSample::playAtSpeedBetweenPoints</definition>
+        <argsstring>(double frequency, double start, double end)</argsstring>
+        <name>playAtSpeedBetweenPoints</name>
+        <param>
+          <type>double</type>
+          <declname>frequency</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>start</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>end</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="604" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.cpp" bodystart="820" bodyend="822"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiSample_1a9fc13e53377f8c656353d76792030c71" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double maxiSample::play4</definition>
+        <argsstring>(double frequency, double start, double end)</argsstring>
+        <name>play4</name>
+        <param>
+          <type>double</type>
+          <declname>frequency</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>start</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>end</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="606" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.cpp" bodystart="881" bodyend="953"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiSample_1a05feb902469c2e54f5fa5086b9247609" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void maxiSample::normalise</definition>
+        <argsstring>(double maxLevel)</argsstring>
+        <name>normalise</name>
+        <param>
+          <type>double</type>
+          <declname>maxLevel</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="609" column="10" bodyfile="/home/ck84/src/Maximilian/src/maximilian.cpp" bodystart="1106" bodyend="1117"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiSample_1a63dadfb8b26acae6b002469223b3728c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void maxiSample::autoTrim</definition>
+        <argsstring>(float alpha, float threshold, bool trimStart, bool trimEnd)</argsstring>
+        <name>autoTrim</name>
+        <param>
+          <type>float</type>
+          <declname>alpha</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>threshold</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>trimStart</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>trimEnd</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="610" column="10" bodyfile="/home/ck84/src/Maximilian/src/maximilian.cpp" bodystart="1119" bodyend="1170"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="2">
+        <label>maxiTrigger</label>
+        <link refid="classmaxiTrigger"/>
+      </node>
+      <node id="1">
+        <label>maxiSample</label>
+        <link refid="classmaxiSample"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>zxTrig</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="475" column="1" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="476" bodyend="611"/>
+    <listofallmembers>
+      <member refid="classmaxiSample_1a63dadfb8b26acae6b002469223b3728c" prot="public" virt="non-virtual"><scope>maxiSample</scope><name>autoTrim</name></member>
+      <member refid="classmaxiSample_1aec108418582368d630ef47d25f9fefea" prot="public" virt="non-virtual"><scope>maxiSample</scope><name>clear</name></member>
+      <member refid="classmaxiSample_1aec72b1120c5d696825cdd848da0a5271" prot="public" virt="non-virtual"><scope>maxiSample</scope><name>DECLARE_F64_ARRAY</name></member>
+      <member refid="classmaxiSample_1a9b32955d8d70bd946b74919ac2703c56" prot="public" virt="non-virtual"><scope>maxiSample</scope><name>getLength</name></member>
+      <member refid="classmaxiSample_1a87e0ccbe82846d466057f5387d40074c" prot="public" virt="non-virtual"><scope>maxiSample</scope><name>getSummary</name></member>
+      <member refid="classmaxiSample_1acad0809020e1e4a4856e286c423fcdc1" prot="public" virt="non-virtual"><scope>maxiSample</scope><name>isReady</name></member>
+      <member refid="classmaxiSample_1a68c12e14649369d0657eca87a2a2929f" prot="public" virt="non-virtual"><scope>maxiSample</scope><name>load</name></member>
+      <member refid="classmaxiSample_1acb43b87dab432c7667ce91b0f2410d0c" prot="public" virt="non-virtual"><scope>maxiSample</scope><name>loopRecord</name></member>
+      <member refid="classmaxiSample_1a0ff28bc49186b2af272a06286dcbd3e1" prot="private" virt="non-virtual"><scope>maxiSample</scope><name>loopRecordLag</name></member>
+      <member refid="classmaxiSample_1a0d58b0c957296ba0d8b06535616c1630" prot="public" virt="non-virtual"><scope>maxiSample</scope><name>loopSetPosOnZX</name></member>
+      <member refid="classmaxiSample_1af48a45b854755f11c2a08e572532ffdb" prot="public" virt="non-virtual"><scope>maxiSample</scope><name>maxiSample</name></member>
+      <member refid="classmaxiSample_1a72f77e93cf35980c670df4958a3060ea" prot="public" virt="non-virtual"><scope>maxiSample</scope><name>myBitsPerSample</name></member>
+      <member refid="classmaxiSample_1a7eb38f0af4b6fed630991b09a1513d64" prot="public" virt="non-virtual"><scope>maxiSample</scope><name>myBlockAlign</name></member>
+      <member refid="classmaxiSample_1a8eeb094db9eb5a915cc75345ea00b2c6" prot="public" virt="non-virtual"><scope>maxiSample</scope><name>myByteRate</name></member>
+      <member refid="classmaxiSample_1a99fb2bf280a25c41e8b51a2860647006" prot="public" virt="non-virtual"><scope>maxiSample</scope><name>myChannels</name></member>
+      <member refid="classmaxiSample_1a52fdca32370225bbb107abf305c3d218" prot="public" virt="non-virtual"><scope>maxiSample</scope><name>myChunkSize</name></member>
+      <member refid="classmaxiSample_1a80276db62c1f0148acf94f1e2bb2bfe4" prot="public" virt="non-virtual"><scope>maxiSample</scope><name>myFormat</name></member>
+      <member refid="classmaxiSample_1afbd4773536cd475c185b57298d8d7d37" prot="public" virt="non-virtual"><scope>maxiSample</scope><name>myPath</name></member>
+      <member refid="classmaxiSample_1ac8cd71a84e9d90cc83f7329198b23a6b" prot="public" virt="non-virtual"><scope>maxiSample</scope><name>mySampleRate</name></member>
+      <member refid="classmaxiSample_1aa04500fba26e55532b2526cead9977b9" prot="public" virt="non-virtual"><scope>maxiSample</scope><name>mySubChunk1Size</name></member>
+      <member refid="classmaxiSample_1a05feb902469c2e54f5fa5086b9247609" prot="public" virt="non-virtual"><scope>maxiSample</scope><name>normalise</name></member>
+      <member refid="classmaxiSample_1a3be61f10965fbca8bc2440c5b22c1daa" prot="public" virt="non-virtual"><scope>maxiSample</scope><name>operator=</name></member>
+      <member refid="classmaxiSample_1addc719ba6a8b7a7644052db18f8c2408" prot="private" virt="non-virtual"><scope>maxiSample</scope><name>output</name></member>
+      <member refid="classmaxiSample_1ad583ab97de3e1ae648f7c04144a2202b" prot="public" virt="non-virtual"><scope>maxiSample</scope><name>phasorFirst</name></member>
+      <member refid="classmaxiSample_1a9c8bf9646754528b511b4f91258afdb2" prot="public" virt="non-virtual"><scope>maxiSample</scope><name>phasorPrev</name></member>
+      <member refid="classmaxiSample_1a6b55dc845a7c469f694a05f284608a08" prot="public" virt="non-virtual"><scope>maxiSample</scope><name>play</name></member>
+      <member refid="classmaxiSample_1a9fc13e53377f8c656353d76792030c71" prot="public" virt="non-virtual"><scope>maxiSample</scope><name>play4</name></member>
+      <member refid="classmaxiSample_1ae5e0e29a78a0a614cda56c8b18c502b9" prot="public" virt="non-virtual"><scope>maxiSample</scope><name>playAtSpeed</name></member>
+      <member refid="classmaxiSample_1a3c98528d31b07ef965cc35b2de854c3d" prot="public" virt="non-virtual"><scope>maxiSample</scope><name>playAtSpeedBetweenPoints</name></member>
+      <member refid="classmaxiSample_1a01ee0f3bd478bf1d68d5eef95eedaa0e" prot="public" virt="non-virtual"><scope>maxiSample</scope><name>playAtSpeedBetweenPointsFromPos</name></member>
+      <member refid="classmaxiSample_1a4f9b1bc00af98f9d11178ac8cfc87c11" prot="public" virt="non-virtual"><scope>maxiSample</scope><name>playLoop</name></member>
+      <member refid="classmaxiSample_1ae9acd1c13f043387c395422dfe074ddb" prot="public" virt="non-virtual"><scope>maxiSample</scope><name>playOnce</name></member>
+      <member refid="classmaxiSample_1ae2b6fbd44eae6df6b59461b96997cf9d" prot="public" virt="non-virtual"><scope>maxiSample</scope><name>playOnceAtSpeed</name></member>
+      <member refid="classmaxiSample_1addba352aea15b361b2c134088868e162" prot="public" virt="non-virtual"><scope>maxiSample</scope><name>playOnZX</name></member>
+      <member refid="classmaxiSample_1aabdceda1434c6b9fffa5ca67127685ea" prot="public" virt="non-virtual"><scope>maxiSample</scope><name>playOnZXAtSpeed</name></member>
+      <member refid="classmaxiSample_1a09b70b7f207dfd889c27f07dc1499b39" prot="public" virt="non-virtual"><scope>maxiSample</scope><name>playOnZXAtSpeedBetweenPoints</name></member>
+      <member refid="classmaxiSample_1acee703cdfa24a665698dc48be1295b07" prot="public" virt="non-virtual"><scope>maxiSample</scope><name>playOnZXAtSpeedFromOffset</name></member>
+      <member refid="classmaxiSample_1aea817557fc69ae5541b56ab8415f1664" prot="public" virt="non-virtual"><scope>maxiSample</scope><name>playUntil</name></member>
+      <member refid="classmaxiSample_1a69b3dc2950e4068fa66e709b4566b8ff" prot="public" virt="non-virtual"><scope>maxiSample</scope><name>playUntilAtSpeed</name></member>
+      <member refid="classmaxiSample_1a6ddf6d384be710ef24ecc6f51db7fa6a" prot="public" virt="non-virtual"><scope>maxiSample</scope><name>playWithPhasor</name></member>
+      <member refid="classmaxiSample_1a80a4798fadf7a3e7d190eb295850974c" prot="private" virt="non-virtual"><scope>maxiSample</scope><name>position</name></member>
+      <member refid="classmaxiSample_1a5ae72dd472aff40f3fa420670acc48cf" prot="public" virt="non-virtual"><scope>maxiSample</scope><name>read</name></member>
+      <member refid="classmaxiSample_1a76f276a805f0fb3059a86cff1c801272" prot="public" virt="non-virtual"><scope>maxiSample</scope><name>readChannel</name></member>
+      <member refid="classmaxiSample_1a7fc14ee1486241621330df33d8e155ff" prot="private" virt="non-virtual"><scope>maxiSample</scope><name>recordPosition</name></member>
+      <member refid="classmaxiSample_1a16e38d5c8b2b900c63b33faa5cb18748" prot="public" virt="non-virtual"><scope>maxiSample</scope><name>reset</name></member>
+      <member refid="classmaxiSample_1a74b554b7101576bfda87485ebc23bf50" prot="public" virt="non-virtual"><scope>maxiSample</scope><name>save</name></member>
+      <member refid="classmaxiSample_1ae28feb485fe1c5cd3d9303b9a610e3f3" prot="public" virt="non-virtual"><scope>maxiSample</scope><name>save</name></member>
+      <member refid="classmaxiSample_1a678ec42067934e9db35a5c68f8d5ab13" prot="public" virt="non-virtual"><scope>maxiSample</scope><name>setPosition</name></member>
+      <member refid="classmaxiSample_1a121b20a694166102d3d1f56b47e22816" prot="public" virt="non-virtual"><scope>maxiSample</scope><name>setSample</name></member>
+      <member refid="classmaxiSample_1a64a0821a036614d095496aed6d674521" prot="public" virt="non-virtual"><scope>maxiSample</scope><name>setSampleAndRate</name></member>
+      <member refid="classmaxiSample_1a06345cf864131c91e8b69585401bae64" prot="private" virt="non-virtual"><scope>maxiSample</scope><name>speed</name></member>
+      <member refid="classmaxiSample_1a4c47dacfbb6514804501968dca4f0293" prot="public" virt="non-virtual"><scope>maxiSample</scope><name>trigger</name></member>
+      <member refid="classmaxiSample_1a6ba07a4f7d16c379b338a48957607be7" prot="public" virt="non-virtual"><scope>maxiSample</scope><name>zxTrig</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

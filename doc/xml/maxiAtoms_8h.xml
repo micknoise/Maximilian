@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="maxiAtoms_8h" kind="file" language="C++">
+    <compoundname>maxiAtoms.h</compoundname>
+    <includedby refid="maxiAtoms_8cpp" local="yes">/home/ck84/src/Maximilian/src/libs/maxiAtoms.cpp</includedby>
+    <includedby refid="maxim_8h" local="yes">/home/ck84/src/Maximilian/src/libs/maxim.h</includedby>
+    <invincdepgraph>
+      <node id="1">
+        <label>/home/ck84/src/Maximilian/src/libs/maxiAtoms.h</label>
+        <link refid="maxiAtoms_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>/home/ck84/src/Maximilian/src/libs/maxim.h</label>
+        <link refid="maxim_8h_source"/>
+      </node>
+    </invincdepgraph>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">##<sp/>class<sp/>fft</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal">---</highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">######<sp/>API<sp/>documentation<sp/>generated<sp/>using<sp/>[Doxygenmd](https:</highlight><highlight class="comment">//github.com/d99kris/doxygenmd)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="/home/ck84/src/Maximilian/src/libs/maxiAtoms.h"/>
+  </compounddef>
+</doxygen>

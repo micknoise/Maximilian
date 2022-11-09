@@ -1,0 +1,132 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classmaxiPolyBLEP" kind="class" language="C++" prot="public">
+    <compoundname>maxiPolyBLEP</compoundname>
+    <includes refid="maxiPolyBLEP_8h" local="no">maxiPolyBLEP.h</includes>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="classmaxiPolyBLEP_1a6adb656a95c88c2ae9e9b4b1a4dc6b42" prot="public" static="no">
+        <type>PolyBLEP::Waveform</type>
+        <definition>using maxiPolyBLEP::Waveform =  PolyBLEP::Waveform</definition>
+        <argsstring></argsstring>
+        <name>Waveform</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Waveform types: SINE, COSINE, TRIANGLE, SQUARE, RECTANGLE, SAWTOOTH, RAMP, MODIFIED_TRIANGLE, MODIFIED_SQUARE, HALF_WAVE_RECTIFIED_SINE, FULL_WAVE_RECTIFIED_SINE, TRIANGULAR_PULSE, TRAPEZOID_FIXED, TRAPEZOID_VARIABLE </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiPolyBLEP.h" line="36" column="3" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiPolyBLEP.h" bodystart="36" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classmaxiPolyBLEP_1adcd5288632a895bf3a1962b4b94976ae" prot="private" static="no" mutable="no">
+        <type>PolyBLEP</type>
+        <definition>PolyBLEP maxiPolyBLEP::blep</definition>
+        <argsstring></argsstring>
+        <name>blep</name>
+        <initializer>= PolyBLEP(44100)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiPolyBLEP.h" line="63" column="12" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiPolyBLEP.h" bodystart="63" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classmaxiPolyBLEP_1ab41c3fc1529f98d04a031b677a37018e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>maxiPolyBLEP::maxiPolyBLEP</definition>
+        <argsstring>()</argsstring>
+        <name>maxiPolyBLEP</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Constructor </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiPolyBLEP.h" line="39" column="3" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiPolyBLEP.h" bodystart="39" bodyend="41"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiPolyBLEP_1ae5c00dfb703b0ddacf2801fe0a91af8d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double maxiPolyBLEP::play</definition>
+        <argsstring>(double freq)</argsstring>
+        <name>play</name>
+        <param>
+          <type>double</type>
+          <declname>freq</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>play the oscillator <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>freq</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>frequency in Hz </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiPolyBLEP.h" line="47" column="10" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiPolyBLEP.h" bodystart="47" bodyend="50"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiPolyBLEP_1a88cc2d36108a59e58788faa6a46e4519" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void maxiPolyBLEP::setWaveform</definition>
+        <argsstring>(Waveform waveform)</argsstring>
+        <name>setWaveform</name>
+        <param>
+          <type><ref refid="classmaxiPolyBLEP_1a6adb656a95c88c2ae9e9b4b1a4dc6b42" kindref="member">Waveform</ref></type>
+          <declname>waveform</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Set the waveform type </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiPolyBLEP.h" line="53" column="8" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiPolyBLEP.h" bodystart="53" bodyend="55"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiPolyBLEP_1a0538958437a77d7a41833446b7ea0fa8" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void maxiPolyBLEP::setPulseWidth</definition>
+        <argsstring>(double pw)</argsstring>
+        <name>setPulseWidth</name>
+        <param>
+          <type>double</type>
+          <declname>pw</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Change the pulse width (0 &lt;= pw &lt;= 1) </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiPolyBLEP.h" line="58" column="8" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiPolyBLEP.h" bodystart="58" bodyend="60"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>Anti-aliased oscillators; </para>
+    </detaileddescription>
+    <location file="/home/ck84/src/Maximilian/src/libs/maxiPolyBLEP.h" line="17" column="1" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiPolyBLEP.h" bodystart="17" bodyend="65"/>
+    <listofallmembers>
+      <member refid="classmaxiPolyBLEP_1adcd5288632a895bf3a1962b4b94976ae" prot="private" virt="non-virtual"><scope>maxiPolyBLEP</scope><name>blep</name></member>
+      <member refid="classmaxiPolyBLEP_1ab41c3fc1529f98d04a031b677a37018e" prot="public" virt="non-virtual"><scope>maxiPolyBLEP</scope><name>maxiPolyBLEP</name></member>
+      <member refid="classmaxiPolyBLEP_1ae5c00dfb703b0ddacf2801fe0a91af8d" prot="public" virt="non-virtual"><scope>maxiPolyBLEP</scope><name>play</name></member>
+      <member refid="classmaxiPolyBLEP_1a0538958437a77d7a41833446b7ea0fa8" prot="public" virt="non-virtual"><scope>maxiPolyBLEP</scope><name>setPulseWidth</name></member>
+      <member refid="classmaxiPolyBLEP_1a88cc2d36108a59e58788faa6a46e4519" prot="public" virt="non-virtual"><scope>maxiPolyBLEP</scope><name>setWaveform</name></member>
+      <member refid="classmaxiPolyBLEP_1a6adb656a95c88c2ae9e9b4b1a4dc6b42" prot="public" virt="non-virtual"><scope>maxiPolyBLEP</scope><name>Waveform</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

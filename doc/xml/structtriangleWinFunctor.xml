@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structtriangleWinFunctor" kind="struct" language="C++" prot="public">
+    <compoundname>triangleWinFunctor</compoundname>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="structtriangleWinFunctor_1aca631af783f6f14d21804f137b7112f2" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double triangleWinFunctor::operator()</definition>
+        <argsstring>(ulong windowLength, ulong windowPos)</argsstring>
+        <name>operator()</name>
+        <param>
+          <type>ulong</type>
+          <declname>windowLength</declname>
+        </param>
+        <param>
+          <type>ulong</type>
+          <declname>windowPos</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiGrains.h" line="45" column="15" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiGrains.h" bodystart="45" bodyend="47"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/ck84/src/Maximilian/src/libs/maxiGrains.h" line="44" column="1" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiGrains.h" bodystart="44" bodyend="48"/>
+    <listofallmembers>
+      <member refid="structtriangleWinFunctor_1aca631af783f6f14d21804f137b7112f2" prot="public" virt="non-virtual"><scope>triangleWinFunctor</scope><name>operator()</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

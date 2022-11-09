@@ -1,0 +1,175 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classmaxiConvolve" kind="class" language="C++" prot="public">
+    <compoundname>maxiConvolve</compoundname>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classmaxiConvolve_1a7faf0d579321a04a958b1b249cbf0514" prot="private" static="no" mutable="no">
+        <type><ref refid="classmaxiFFT" kindref="compound">maxiFFT</ref></type>
+        <definition>maxiFFT maxiConvolve::inFFT</definition>
+        <argsstring></argsstring>
+        <name>inFFT</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiConvolve.h" line="24" column="13" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiConvolve.h" bodystart="24" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiConvolve_1a44c837ba46b058d4c00060ee63967c8b" prot="private" static="no" mutable="no">
+        <type><ref refid="classmaxiIFFT" kindref="compound">maxiIFFT</ref></type>
+        <definition>maxiIFFT maxiConvolve::ifft</definition>
+        <argsstring></argsstring>
+        <name>ifft</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiConvolve.h" line="25" column="14" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiConvolve.h" bodystart="25" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiConvolve_1ad36b649793f2fff5d4266b83b967d710" prot="private" static="no" mutable="no">
+        <type>std::deque&lt; vector&lt; float &gt; &gt;</type>
+        <definition>std::deque&lt; vector&lt;float&gt; &gt; maxiConvolve::FDLReal</definition>
+        <argsstring></argsstring>
+        <name>FDLReal</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiConvolve.h" line="26" column="16" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiConvolve.h" bodystart="26" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiConvolve_1aa7f6915ee14fde858ce636dbf088e9a8" prot="private" static="no" mutable="no">
+        <type>std::deque&lt; vector&lt; float &gt; &gt;</type>
+        <definition>std::deque&lt; vector&lt;float&gt; &gt; maxiConvolve::FDLImag</definition>
+        <argsstring></argsstring>
+        <name>FDLImag</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiConvolve.h" line="27" column="16" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiConvolve.h" bodystart="27" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiConvolve_1a93e4e4e15964472370ecf28c6ed24324" prot="private" static="no" mutable="no">
+        <type>floatVV</type>
+        <definition>floatVV maxiConvolve::impulseReal</definition>
+        <argsstring></argsstring>
+        <name>impulseReal</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiConvolve.h" line="28" column="13" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiConvolve.h" bodystart="28" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiConvolve_1a7b2eed3c4deed4003139a4285b17e0f8" prot="private" static="no" mutable="no">
+        <type>floatVV</type>
+        <definition>floatVV maxiConvolve::impulseImag</definition>
+        <argsstring></argsstring>
+        <name>impulseImag</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiConvolve.h" line="29" column="13" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiConvolve.h" bodystart="29" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiConvolve_1a58ac5ebbb6eb93ef3726b273345aea0b" prot="private" static="no" mutable="no">
+        <type>vector&lt; float &gt;</type>
+        <definition>vector&lt;float&gt; maxiConvolve::sumReal</definition>
+        <argsstring></argsstring>
+        <name>sumReal</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiConvolve.h" line="30" column="12" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiConvolve.h" bodystart="30" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiConvolve_1ad6a03035cb5e1adbf10bd21fff478415" prot="private" static="no" mutable="no">
+        <type>vector&lt; float &gt;</type>
+        <definition>vector&lt;float&gt; maxiConvolve::sumImag</definition>
+        <argsstring></argsstring>
+        <name>sumImag</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiConvolve.h" line="31" column="12" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiConvolve.h" bodystart="31" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classmaxiConvolve_1adc78de149bea3042eff907313816094a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void maxiConvolve::setup</definition>
+        <argsstring>(std::string impulseFile, int fftsize=1024, int hopsize=256)</argsstring>
+        <name>setup</name>
+        <param>
+          <type>std::string</type>
+          <declname>impulseFile</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>fftsize</declname>
+          <defval>1024</defval>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>hopsize</declname>
+          <defval>256</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiConvolve.h" line="21" column="10" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiConvolve.cpp" bodystart="13" bodyend="72"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiConvolve_1ac2fe2ba34cc5122ceffe0b1c9981f5cb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>float</type>
+        <definition>float maxiConvolve::play</definition>
+        <argsstring>(float w)</argsstring>
+        <name>play</name>
+        <param>
+          <type>float</type>
+          <declname>w</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiConvolve.h" line="22" column="11" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiConvolve.cpp" bodystart="74" bodyend="107"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/ck84/src/Maximilian/src/libs/maxiConvolve.h" line="19" column="1" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiConvolve.h" bodystart="19" bodyend="32"/>
+    <listofallmembers>
+      <member refid="classmaxiConvolve_1aa7f6915ee14fde858ce636dbf088e9a8" prot="private" virt="non-virtual"><scope>maxiConvolve</scope><name>FDLImag</name></member>
+      <member refid="classmaxiConvolve_1ad36b649793f2fff5d4266b83b967d710" prot="private" virt="non-virtual"><scope>maxiConvolve</scope><name>FDLReal</name></member>
+      <member refid="classmaxiConvolve_1a44c837ba46b058d4c00060ee63967c8b" prot="private" virt="non-virtual"><scope>maxiConvolve</scope><name>ifft</name></member>
+      <member refid="classmaxiConvolve_1a7b2eed3c4deed4003139a4285b17e0f8" prot="private" virt="non-virtual"><scope>maxiConvolve</scope><name>impulseImag</name></member>
+      <member refid="classmaxiConvolve_1a93e4e4e15964472370ecf28c6ed24324" prot="private" virt="non-virtual"><scope>maxiConvolve</scope><name>impulseReal</name></member>
+      <member refid="classmaxiConvolve_1a7faf0d579321a04a958b1b249cbf0514" prot="private" virt="non-virtual"><scope>maxiConvolve</scope><name>inFFT</name></member>
+      <member refid="classmaxiConvolve_1ac2fe2ba34cc5122ceffe0b1c9981f5cb" prot="public" virt="non-virtual"><scope>maxiConvolve</scope><name>play</name></member>
+      <member refid="classmaxiConvolve_1adc78de149bea3042eff907313816094a" prot="public" virt="non-virtual"><scope>maxiConvolve</scope><name>setup</name></member>
+      <member refid="classmaxiConvolve_1ad6a03035cb5e1adbf10bd21fff478415" prot="private" virt="non-virtual"><scope>maxiConvolve</scope><name>sumImag</name></member>
+      <member refid="classmaxiConvolve_1a58ac5ebbb6eb93ef3726b273345aea0b" prot="private" virt="non-virtual"><scope>maxiConvolve</scope><name>sumReal</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

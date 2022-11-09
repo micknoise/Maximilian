@@ -1,0 +1,106 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classmaxiSatReverb" kind="class" language="C++" prot="public">
+    <compoundname>maxiSatReverb</compoundname>
+    <basecompoundref refid="classmaxiReverbBase" prot="private" virt="non-virtual">maxiReverbBase</basecompoundref>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classmaxiSatReverb_1a9d5e291be5c64094c923590228612ea6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>maxiSatReverb::maxiSatReverb</definition>
+        <argsstring>()</argsstring>
+        <name>maxiSatReverb</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiReverb.h" line="127" column="5" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiReverb.cpp" bodystart="379" bodyend="388"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiSatReverb_1a7fc239979e89750f2e4a208ffb4f1645" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double maxiSatReverb::play</definition>
+        <argsstring>(double input)</argsstring>
+        <name>play</name>
+        <param>
+          <type>double</type>
+          <declname>input</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiReverb.h" line="128" column="12" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiReverb.cpp" bodystart="390" bodyend="397"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiSatReverb_1aa5502eafc3a7a6314d119d2795478988" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double *</type>
+        <definition>double * maxiSatReverb::playStereo</definition>
+        <argsstring>(double input)</argsstring>
+        <name>playStereo</name>
+        <param>
+          <type>double</type>
+          <declname>input</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiReverb.h" line="129" column="12" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiReverb.cpp" bodystart="399" bodyend="407"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>maxiReverbBase</label>
+        <link refid="classmaxiReverbBase"/>
+      </node>
+      <node id="1">
+        <label>maxiSatReverb</label>
+        <link refid="classmaxiSatReverb"/>
+        <childnode refid="2" relation="private-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>maxiReverbBase</label>
+        <link refid="classmaxiReverbBase"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>earlyref</edgelabel>
+          <edgelabel>fArrayAllP</edgelabel>
+          <edgelabel>fArrayTwo</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>fArrayLP</edgelabel>
+        </childnode>
+      </node>
+      <node id="1">
+        <label>maxiSatReverb</label>
+        <link refid="classmaxiSatReverb"/>
+        <childnode refid="2" relation="private-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>maxiFilter</label>
+        <link refid="classmaxiFilter"/>
+      </node>
+      <node id="3">
+        <label>maxiReverbFilters</label>
+        <link refid="classmaxiReverbFilters"/>
+      </node>
+    </collaborationgraph>
+    <location file="/home/ck84/src/Maximilian/src/libs/maxiReverb.h" line="125" column="1" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiReverb.h" bodystart="125" bodyend="131"/>
+    <listofallmembers>
+      <member refid="classmaxiSatReverb_1a9d5e291be5c64094c923590228612ea6" prot="public" virt="non-virtual"><scope>maxiSatReverb</scope><name>maxiSatReverb</name></member>
+      <member refid="classmaxiSatReverb_1a7fc239979e89750f2e4a208ffb4f1645" prot="public" virt="non-virtual"><scope>maxiSatReverb</scope><name>play</name></member>
+      <member refid="classmaxiSatReverb_1aa5502eafc3a7a6314d119d2795478988" prot="public" virt="non-virtual"><scope>maxiSatReverb</scope><name>playStereo</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

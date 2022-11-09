@@ -1,0 +1,98 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classmaxiGrainWindowCache" kind="class" language="C++" prot="public">
+    <compoundname>maxiGrainWindowCache</compoundname>
+    <templateparamlist>
+      <param>
+        <type>typename F</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classmaxiGrainWindowCache_1a2706247e119b32ba19a41dbdc89c1e40" prot="public" static="no" mutable="no">
+        <type>unsigned int</type>
+        <definition>unsigned int maxiGrainWindowCache&lt; F &gt;::cacheSize</definition>
+        <argsstring></argsstring>
+        <name>cacheSize</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiGrains.h" line="96" column="14" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiGrains.h" bodystart="96" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classmaxiGrainWindowCache_1a9473b87ff4161bf264d083a4ad04e493" prot="private" static="no" mutable="no">
+        <type>double **</type>
+        <definition>double** maxiGrainWindowCache&lt; F &gt;::cache</definition>
+        <argsstring></argsstring>
+        <name>cache</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiGrains.h" line="126" column="8" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiGrains.h" bodystart="126" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classmaxiGrainWindowCache_1a50b4b6cd43930ae49ccfe5dec17b74a9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>maxiGrainWindowCache&lt; F &gt;::maxiGrainWindowCache</definition>
+        <argsstring>()</argsstring>
+        <name>maxiGrainWindowCache</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiGrains.h" line="98" column="1" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiGrains.h" bodystart="98" bodyend="104"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiGrainWindowCache_1a3d27ebb7ddec028f230a7697d6df5fe4" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>maxiGrainWindowCache&lt; F &gt;::~maxiGrainWindowCache</definition>
+        <argsstring>()</argsstring>
+        <name>~maxiGrainWindowCache</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiGrains.h" line="106" column="1" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiGrains.h" bodystart="106" bodyend="113"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiGrainWindowCache_1a354ed65c659c52fdededb189015db963" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>double *</type>
+        <definition>double* maxiGrainWindowCache&lt; F &gt;::getWindow</definition>
+        <argsstring>(const unsigned int length)</argsstring>
+        <name>getWindow</name>
+        <param>
+          <type>const unsigned int</type>
+          <declname>length</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiGrains.h" line="115" column="8" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiGrains.h" bodystart="115" bodyend="123"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/ck84/src/Maximilian/src/libs/maxiGrains.h" line="94" column="1" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiGrains.h" bodystart="94" bodyend="128"/>
+    <listofallmembers>
+      <member refid="classmaxiGrainWindowCache_1a9473b87ff4161bf264d083a4ad04e493" prot="private" virt="non-virtual"><scope>maxiGrainWindowCache</scope><name>cache</name></member>
+      <member refid="classmaxiGrainWindowCache_1a2706247e119b32ba19a41dbdc89c1e40" prot="public" virt="non-virtual"><scope>maxiGrainWindowCache</scope><name>cacheSize</name></member>
+      <member refid="classmaxiGrainWindowCache_1a354ed65c659c52fdededb189015db963" prot="public" virt="non-virtual"><scope>maxiGrainWindowCache</scope><name>getWindow</name></member>
+      <member refid="classmaxiGrainWindowCache_1a50b4b6cd43930ae49ccfe5dec17b74a9" prot="public" virt="non-virtual"><scope>maxiGrainWindowCache</scope><name>maxiGrainWindowCache</name></member>
+      <member refid="classmaxiGrainWindowCache_1a3d27ebb7ddec028f230a7697d6df5fe4" prot="public" virt="non-virtual"><scope>maxiGrainWindowCache</scope><name>~maxiGrainWindowCache</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

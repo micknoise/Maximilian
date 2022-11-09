@@ -1,0 +1,1079 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structstb__vorbis" kind="struct" language="C++" prot="public">
+    <compoundname>stb_vorbis</compoundname>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structstb__vorbis_1aea5df8cb01245c5a3658f2b48cd74ad1" prot="public" static="no" mutable="no">
+        <type>unsigned int</type>
+        <definition>unsigned int stb_vorbis::sample_rate</definition>
+        <argsstring></argsstring>
+        <name>sample_rate</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" line="375" column="17" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="375" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structstb__vorbis_1ad7f03b7568a58e7c92f3a867a1030df3" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int stb_vorbis::channels</definition>
+        <argsstring></argsstring>
+        <name>channels</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" line="376" column="8" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="376" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structstb__vorbis_1af6552029487a8eb38da473b0cc6a60c6" prot="public" static="no" mutable="no">
+        <type>unsigned int</type>
+        <definition>unsigned int stb_vorbis::setup_memory_required</definition>
+        <argsstring></argsstring>
+        <name>setup_memory_required</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" line="378" column="17" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="378" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structstb__vorbis_1a8ed60a85b7e09e19b5eee4068cd983f1" prot="public" static="no" mutable="no">
+        <type>unsigned int</type>
+        <definition>unsigned int stb_vorbis::temp_memory_required</definition>
+        <argsstring></argsstring>
+        <name>temp_memory_required</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" line="379" column="17" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="379" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structstb__vorbis_1a52b6994c72625b043f9ae3fa0bc40893" prot="public" static="no" mutable="no">
+        <type>unsigned int</type>
+        <definition>unsigned int stb_vorbis::setup_temp_memory_required</definition>
+        <argsstring></argsstring>
+        <name>setup_temp_memory_required</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" line="380" column="17" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="380" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structstb__vorbis_1ab345e7bff2cbf3c100593c0d684cb3e7" prot="public" static="no" mutable="no">
+        <type>FILE *</type>
+        <definition>FILE* stb_vorbis::f</definition>
+        <argsstring></argsstring>
+        <name>f</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" line="384" column="9" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="384" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structstb__vorbis_1ab03f15c21c2b01934afaee49ae319991" prot="public" static="no" mutable="no">
+        <type>uint32</type>
+        <definition>uint32 stb_vorbis::f_start</definition>
+        <argsstring></argsstring>
+        <name>f_start</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" line="385" column="11" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="385" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structstb__vorbis_1af5bffde87c285ec4189ac54f12c15c95" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int stb_vorbis::close_on_free</definition>
+        <argsstring></argsstring>
+        <name>close_on_free</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" line="386" column="8" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="386" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structstb__vorbis_1a575e27c795bb140e77927934f66fd4a1" prot="public" static="no" mutable="no">
+        <type>uint8 *</type>
+        <definition>uint8* stb_vorbis::stream</definition>
+        <argsstring></argsstring>
+        <name>stream</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" line="389" column="10" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="389" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structstb__vorbis_1a569b20e3272197b5747efc0909b6258d" prot="public" static="no" mutable="no">
+        <type>uint8 *</type>
+        <definition>uint8* stb_vorbis::stream_start</definition>
+        <argsstring></argsstring>
+        <name>stream_start</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" line="390" column="10" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="390" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structstb__vorbis_1abeabd54843572537ae54ebcddada358b" prot="public" static="no" mutable="no">
+        <type>uint8 *</type>
+        <definition>uint8* stb_vorbis::stream_end</definition>
+        <argsstring></argsstring>
+        <name>stream_end</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" line="391" column="10" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="391" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structstb__vorbis_1a5ebaa90b30f0a7db008b54107d06c8fb" prot="public" static="no" mutable="no">
+        <type>uint32</type>
+        <definition>uint32 stb_vorbis::stream_len</definition>
+        <argsstring></argsstring>
+        <name>stream_len</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" line="393" column="11" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="393" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structstb__vorbis_1af9af266b92087b80f8781088bf256875" prot="public" static="no" mutable="no">
+        <type>uint8</type>
+        <definition>uint8 stb_vorbis::push_mode</definition>
+        <argsstring></argsstring>
+        <name>push_mode</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" line="395" column="11" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="395" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structstb__vorbis_1a810f0a8517e054b49a025e0fc2f47215" prot="public" static="no" mutable="no">
+        <type>uint32</type>
+        <definition>uint32 stb_vorbis::first_audio_page_offset</definition>
+        <argsstring></argsstring>
+        <name>first_audio_page_offset</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" line="397" column="11" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="397" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structstb__vorbis_1afa758c897db7486ded07dcbecb73f130" prot="public" static="no" mutable="no">
+        <type><ref refid="structProbedPage" kindref="compound">ProbedPage</ref></type>
+        <definition>ProbedPage stb_vorbis::p_first</definition>
+        <argsstring></argsstring>
+        <name>p_first</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" line="399" column="15" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="399" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structstb__vorbis_1a87749dd522b1d8915663ee5aec24621d" prot="public" static="no" mutable="no">
+        <type><ref refid="structProbedPage" kindref="compound">ProbedPage</ref></type>
+        <definition>ProbedPage stb_vorbis::p_last</definition>
+        <argsstring></argsstring>
+        <name>p_last</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" line="399" column="23" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="399" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structstb__vorbis_1a0ecaff11857085f1cc89d7ca6dd8193c" prot="public" static="no" mutable="no">
+        <type><ref refid="structstb__vorbis__alloc" kindref="compound">stb_vorbis_alloc</ref></type>
+        <definition>stb_vorbis_alloc stb_vorbis::alloc</definition>
+        <argsstring></argsstring>
+        <name>alloc</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" line="402" column="21" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="402" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structstb__vorbis_1a6aadcb733a64d7f658bf2cf6bf712d42" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int stb_vorbis::setup_offset</definition>
+        <argsstring></argsstring>
+        <name>setup_offset</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" line="403" column="8" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="403" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structstb__vorbis_1af318950da58641c64c5f8fa85d8df1b9" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int stb_vorbis::temp_offset</definition>
+        <argsstring></argsstring>
+        <name>temp_offset</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" line="404" column="8" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="404" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structstb__vorbis_1ad1527c6b0af4f69978444bb4ca326c40" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int stb_vorbis::eof</definition>
+        <argsstring></argsstring>
+        <name>eof</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" line="407" column="8" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="407" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structstb__vorbis_1af7f9c10235b589b2856025951af48590" prot="public" static="no" mutable="no">
+        <type>enum STBVorbisError</type>
+        <definition>enum STBVorbisError stb_vorbis::error</definition>
+        <argsstring></argsstring>
+        <name>error</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" line="407" column="8" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="408" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structstb__vorbis_1aa3ef5c2b66889cd0d06856c04055055a" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int stb_vorbis::blocksize[2]</definition>
+        <argsstring>[2]</argsstring>
+        <name>blocksize</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" line="413" column="8" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="413" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structstb__vorbis_1abb2b7e43b5f6b8c8d20f9ac22b4c0892" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int stb_vorbis::blocksize_0</definition>
+        <argsstring></argsstring>
+        <name>blocksize_0</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" line="414" column="8" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="414" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structstb__vorbis_1a62e62eea3fc36b1e2bed4e78e1cb7d5d" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int stb_vorbis::blocksize_1</definition>
+        <argsstring></argsstring>
+        <name>blocksize_1</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" line="414" column="20" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="414" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structstb__vorbis_1a07469e02f33bb619f925ee9b5ee996fd" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int stb_vorbis::codebook_count</definition>
+        <argsstring></argsstring>
+        <name>codebook_count</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" line="415" column="8" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="415" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structstb__vorbis_1a50e480817f823077fe9c75fbd829a4b6" prot="public" static="no" mutable="no">
+        <type><ref refid="structCodebook" kindref="compound">Codebook</ref> *</type>
+        <definition>Codebook* stb_vorbis::codebooks</definition>
+        <argsstring></argsstring>
+        <name>codebooks</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" line="416" column="13" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="416" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structstb__vorbis_1aaa6b74d8c87becdb6025efdd9cd5ec6a" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int stb_vorbis::floor_count</definition>
+        <argsstring></argsstring>
+        <name>floor_count</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" line="417" column="8" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="417" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structstb__vorbis_1a638a36f2a4f5b450c1b69afd5e2c0089" prot="public" static="no" mutable="no">
+        <type>uint16</type>
+        <definition>uint16 stb_vorbis::floor_types[64]</definition>
+        <argsstring>[64]</argsstring>
+        <name>floor_types</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" line="418" column="11" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="418" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structstb__vorbis_1a1129cdb237063f7be2068a5196407dd5" prot="public" static="no" mutable="no">
+        <type><ref refid="unionFloor" kindref="compound">Floor</ref> *</type>
+        <definition>Floor* stb_vorbis::floor_config</definition>
+        <argsstring></argsstring>
+        <name>floor_config</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" line="419" column="10" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="419" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structstb__vorbis_1ac2103bb2e30d29b68ba3cd85679b8ac0" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int stb_vorbis::residue_count</definition>
+        <argsstring></argsstring>
+        <name>residue_count</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" line="420" column="8" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="420" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structstb__vorbis_1ac6bb3f030ccdeacd23ad3bacbdca2a3d" prot="public" static="no" mutable="no">
+        <type>uint16</type>
+        <definition>uint16 stb_vorbis::residue_types[64]</definition>
+        <argsstring>[64]</argsstring>
+        <name>residue_types</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" line="421" column="11" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="421" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structstb__vorbis_1a5514e4826d244f216448e5c3839c78b2" prot="public" static="no" mutable="no">
+        <type><ref refid="structResidue" kindref="compound">Residue</ref> *</type>
+        <definition>Residue* stb_vorbis::residue_config</definition>
+        <argsstring></argsstring>
+        <name>residue_config</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" line="422" column="12" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="422" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structstb__vorbis_1aed8cabfd2e35742f337e6ded1eb26951" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int stb_vorbis::mapping_count</definition>
+        <argsstring></argsstring>
+        <name>mapping_count</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" line="423" column="8" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="423" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structstb__vorbis_1accf685d27ba4ea9f3cab74df173871bc" prot="public" static="no" mutable="no">
+        <type><ref refid="structMapping" kindref="compound">Mapping</ref> *</type>
+        <definition>Mapping* stb_vorbis::mapping</definition>
+        <argsstring></argsstring>
+        <name>mapping</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" line="424" column="12" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="424" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structstb__vorbis_1af91c34d59c47301e40a83d9ee1017274" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int stb_vorbis::mode_count</definition>
+        <argsstring></argsstring>
+        <name>mode_count</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" line="425" column="8" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="425" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structstb__vorbis_1adf9aaee5832e512b5efe0a0d99b02894" prot="public" static="no" mutable="no">
+        <type><ref refid="structMode" kindref="compound">Mode</ref></type>
+        <definition>Mode stb_vorbis::mode_config[64]</definition>
+        <argsstring>[64]</argsstring>
+        <name>mode_config</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" line="426" column="9" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="426" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structstb__vorbis_1ac6b09b0d2d48f1d49cbe0b482daeaead" prot="public" static="no" mutable="no">
+        <type>uint32</type>
+        <definition>uint32 stb_vorbis::total_samples</definition>
+        <argsstring></argsstring>
+        <name>total_samples</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" line="428" column="11" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="428" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structstb__vorbis_1a55c99dc6b4222ca849a884e9dcef890f" prot="public" static="no" mutable="no">
+        <type>float *</type>
+        <definition>float* stb_vorbis::channel_buffers[STB_VORBIS_MAX_CHANNELS]</definition>
+        <argsstring>[STB_VORBIS_MAX_CHANNELS]</argsstring>
+        <name>channel_buffers</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" line="431" column="10" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="431" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structstb__vorbis_1aca71a981ab130d51a27b30451ac2ae6f" prot="public" static="no" mutable="no">
+        <type>float *</type>
+        <definition>float* stb_vorbis::outputs[STB_VORBIS_MAX_CHANNELS]</definition>
+        <argsstring>[STB_VORBIS_MAX_CHANNELS]</argsstring>
+        <name>outputs</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" line="432" column="10" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="432" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structstb__vorbis_1a00c9f41a45acaa1dfe85a3c02d215728" prot="public" static="no" mutable="no">
+        <type>float *</type>
+        <definition>float* stb_vorbis::previous_window[STB_VORBIS_MAX_CHANNELS]</definition>
+        <argsstring>[STB_VORBIS_MAX_CHANNELS]</argsstring>
+        <name>previous_window</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" line="434" column="10" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="434" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structstb__vorbis_1a61473d87688517c64ab951538ae1f14f" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int stb_vorbis::previous_length</definition>
+        <argsstring></argsstring>
+        <name>previous_length</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" line="435" column="8" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="435" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structstb__vorbis_1a70c300d807fef43284883a75ad70e2a4" prot="public" static="no" mutable="no">
+        <type>int16 *</type>
+        <definition>int16* stb_vorbis::finalY[STB_VORBIS_MAX_CHANNELS]</definition>
+        <argsstring>[STB_VORBIS_MAX_CHANNELS]</argsstring>
+        <name>finalY</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" line="438" column="10" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="438" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structstb__vorbis_1a02d0be708a62def848df1b4c20402983" prot="public" static="no" mutable="no">
+        <type>uint32</type>
+        <definition>uint32 stb_vorbis::current_loc</definition>
+        <argsstring></argsstring>
+        <name>current_loc</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" line="443" column="11" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="443" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structstb__vorbis_1a22ce054c836820c3b8381d6c8fa610ed" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int stb_vorbis::current_loc_valid</definition>
+        <argsstring></argsstring>
+        <name>current_loc_valid</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" line="444" column="11" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="444" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structstb__vorbis_1a1dbabeed4f6505a76789914f16772975" prot="public" static="no" mutable="no">
+        <type>float *</type>
+        <definition>float* stb_vorbis::A[2]</definition>
+        <argsstring>[2]</argsstring>
+        <name>A</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" line="449" column="10" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="449" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structstb__vorbis_1ad11922956a823e4954c3778b2231fac3" prot="public" static="no" mutable="no">
+        <type>float *</type>
+        <definition>float * stb_vorbis::B[2]</definition>
+        <argsstring>[2]</argsstring>
+        <name>B</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" line="449" column="11" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="449" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structstb__vorbis_1a24d929ad328049cddb34951233c8ee74" prot="public" static="no" mutable="no">
+        <type>float *</type>
+        <definition>float * stb_vorbis::C[2]</definition>
+        <argsstring>[2]</argsstring>
+        <name>C</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" line="449" column="12" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="449" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structstb__vorbis_1a4437be2f348106017c23ffc1ebc57980" prot="public" static="no" mutable="no">
+        <type>float *</type>
+        <definition>float* stb_vorbis::window[2]</definition>
+        <argsstring>[2]</argsstring>
+        <name>window</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" line="450" column="10" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="450" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structstb__vorbis_1a7619bd93c5c9d8e1fbe5f172ddca1797" prot="public" static="no" mutable="no">
+        <type>uint16 *</type>
+        <definition>uint16* stb_vorbis::bit_reverse[2]</definition>
+        <argsstring>[2]</argsstring>
+        <name>bit_reverse</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" line="451" column="11" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="451" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structstb__vorbis_1a0055b5f33f79dbf348bbc8f9fbc71fcd" prot="public" static="no" mutable="no">
+        <type>uint32</type>
+        <definition>uint32 stb_vorbis::serial</definition>
+        <argsstring></argsstring>
+        <name>serial</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" line="454" column="11" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="454" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structstb__vorbis_1a1d215573f8b91a85a9775fa38d81760c" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int stb_vorbis::last_page</definition>
+        <argsstring></argsstring>
+        <name>last_page</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" line="455" column="8" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="455" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structstb__vorbis_1a476faf256a4ab1ee16d023df98856793" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int stb_vorbis::segment_count</definition>
+        <argsstring></argsstring>
+        <name>segment_count</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" line="456" column="8" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="456" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structstb__vorbis_1af828a5828c027cbb1c8ad7346e3ce569" prot="public" static="no" mutable="no">
+        <type>uint8</type>
+        <definition>uint8 stb_vorbis::segments[255]</definition>
+        <argsstring>[255]</argsstring>
+        <name>segments</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" line="457" column="10" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="457" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structstb__vorbis_1a3814f8a612a2e8e38a26233b0dc96e3e" prot="public" static="no" mutable="no">
+        <type>uint8</type>
+        <definition>uint8 stb_vorbis::page_flag</definition>
+        <argsstring></argsstring>
+        <name>page_flag</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" line="458" column="10" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="458" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structstb__vorbis_1a5c1b07b922bd3187c184e1fd0a5c02c1" prot="public" static="no" mutable="no">
+        <type>uint8</type>
+        <definition>uint8 stb_vorbis::bytes_in_seg</definition>
+        <argsstring></argsstring>
+        <name>bytes_in_seg</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" line="459" column="10" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="459" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structstb__vorbis_1a40e499876074750d9aa66fb21cffe2e8" prot="public" static="no" mutable="no">
+        <type>uint8</type>
+        <definition>uint8 stb_vorbis::first_decode</definition>
+        <argsstring></argsstring>
+        <name>first_decode</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" line="460" column="10" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="460" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structstb__vorbis_1adce7311d3a011237e89487b8ffd3be1c" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int stb_vorbis::next_seg</definition>
+        <argsstring></argsstring>
+        <name>next_seg</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" line="461" column="8" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="461" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structstb__vorbis_1a28cbcd18e6bd3f2749814b40505cab63" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int stb_vorbis::last_seg</definition>
+        <argsstring></argsstring>
+        <name>last_seg</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" line="462" column="8" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="462" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structstb__vorbis_1afe2aa2e9d9536a1f8eed69da2d59888d" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int stb_vorbis::last_seg_which</definition>
+        <argsstring></argsstring>
+        <name>last_seg_which</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" line="463" column="8" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="463" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structstb__vorbis_1a54a0daf5db3dc593cdff97a6df20fc3b" prot="public" static="no" mutable="no">
+        <type>uint32</type>
+        <definition>uint32 stb_vorbis::acc</definition>
+        <argsstring></argsstring>
+        <name>acc</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" line="464" column="11" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="464" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structstb__vorbis_1a4aa9d73a234428a6194cd37b8c0be4e0" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int stb_vorbis::valid_bits</definition>
+        <argsstring></argsstring>
+        <name>valid_bits</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" line="465" column="8" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="465" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structstb__vorbis_1a3328726a6d040dbc75a5d2e0f34232c3" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int stb_vorbis::packet_bytes</definition>
+        <argsstring></argsstring>
+        <name>packet_bytes</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" line="466" column="8" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="466" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structstb__vorbis_1abf4405ff473eed0c4a8bf23cb064f1aa" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int stb_vorbis::end_seg_with_known_loc</definition>
+        <argsstring></argsstring>
+        <name>end_seg_with_known_loc</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" line="467" column="8" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="467" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structstb__vorbis_1ab4f2b28e26cb9f9a060a7b7855f12ece" prot="public" static="no" mutable="no">
+        <type>uint32</type>
+        <definition>uint32 stb_vorbis::known_loc_for_packet</definition>
+        <argsstring></argsstring>
+        <name>known_loc_for_packet</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" line="468" column="11" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="468" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structstb__vorbis_1adbacf2120eaa0099f886770c51d633d2" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int stb_vorbis::discard_samples_deferred</definition>
+        <argsstring></argsstring>
+        <name>discard_samples_deferred</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" line="469" column="8" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="469" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structstb__vorbis_1a6b955aa04bfd9f4a59bca3d8d027b592" prot="public" static="no" mutable="no">
+        <type>uint32</type>
+        <definition>uint32 stb_vorbis::samples_output</definition>
+        <argsstring></argsstring>
+        <name>samples_output</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" line="470" column="11" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="470" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structstb__vorbis_1a4d3ba492214db27970d9292a3d60b421" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int stb_vorbis::page_crc_tests</definition>
+        <argsstring></argsstring>
+        <name>page_crc_tests</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" line="473" column="8" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="473" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structstb__vorbis_1ac2972ae486c5a1bc59e1f0ebb3fa0739" prot="public" static="no" mutable="no">
+        <type><ref refid="structCRCscan" kindref="compound">CRCscan</ref></type>
+        <definition>CRCscan stb_vorbis::scan[STB_VORBIS_PUSHDATA_CRC_COUNT]</definition>
+        <argsstring>[STB_VORBIS_PUSHDATA_CRC_COUNT]</argsstring>
+        <name>scan</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" line="475" column="12" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="475" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structstb__vorbis_1af0bf960e2d513d207ee6a9f38eefe770" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int stb_vorbis::channel_buffer_start</definition>
+        <argsstring></argsstring>
+        <name>channel_buffer_start</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" line="479" column="8" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="479" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structstb__vorbis_1ab0c6866c39ae3cd00d5ede2dd5ff512c" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int stb_vorbis::channel_buffer_end</definition>
+        <argsstring></argsstring>
+        <name>channel_buffer_end</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" line="480" column="8" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="480" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="8">
+        <label>Floor</label>
+        <link refid="unionFloor"/>
+        <childnode refid="9" relation="usage">
+          <edgelabel>floor0</edgelabel>
+        </childnode>
+        <childnode refid="10" relation="usage">
+          <edgelabel>floor1</edgelabel>
+        </childnode>
+      </node>
+      <node id="4">
+        <label>MappingChannel</label>
+        <link refid="structMappingChannel"/>
+      </node>
+      <node id="5">
+        <label>ProbedPage</label>
+        <link refid="structProbedPage"/>
+      </node>
+      <node id="1">
+        <label>stb_vorbis</label>
+        <link refid="structstb__vorbis"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>mode_config</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>mapping</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>p_first</edgelabel>
+          <edgelabel>p_last</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>alloc</edgelabel>
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>scan</edgelabel>
+        </childnode>
+        <childnode refid="8" relation="usage">
+          <edgelabel>floor_config</edgelabel>
+        </childnode>
+        <childnode refid="11" relation="usage">
+          <edgelabel>residue_config</edgelabel>
+        </childnode>
+        <childnode refid="12" relation="usage">
+          <edgelabel>codebooks</edgelabel>
+        </childnode>
+      </node>
+      <node id="7">
+        <label>CRCscan</label>
+        <link refid="structCRCscan"/>
+      </node>
+      <node id="2">
+        <label>Mode</label>
+        <link refid="structMode"/>
+      </node>
+      <node id="3">
+        <label>Mapping</label>
+        <link refid="structMapping"/>
+        <childnode refid="4" relation="usage">
+          <edgelabel>chan</edgelabel>
+        </childnode>
+      </node>
+      <node id="11">
+        <label>Residue</label>
+        <link refid="structResidue"/>
+      </node>
+      <node id="6">
+        <label>stb_vorbis_alloc</label>
+        <link refid="structstb__vorbis__alloc"/>
+      </node>
+      <node id="12">
+        <label>Codebook</label>
+        <link refid="structCodebook"/>
+      </node>
+      <node id="9">
+        <label>Floor0</label>
+        <link refid="structFloor0"/>
+      </node>
+      <node id="10">
+        <label>Floor1</label>
+        <link refid="structFloor1"/>
+      </node>
+    </collaborationgraph>
+    <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" line="372" column="1" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="373" bodyend="481"/>
+    <listofallmembers>
+      <member refid="structstb__vorbis_1a1dbabeed4f6505a76789914f16772975" prot="public" virt="non-virtual"><scope>stb_vorbis</scope><name>A</name></member>
+      <member refid="structstb__vorbis_1a54a0daf5db3dc593cdff97a6df20fc3b" prot="public" virt="non-virtual"><scope>stb_vorbis</scope><name>acc</name></member>
+      <member refid="structstb__vorbis_1a0ecaff11857085f1cc89d7ca6dd8193c" prot="public" virt="non-virtual"><scope>stb_vorbis</scope><name>alloc</name></member>
+      <member refid="structstb__vorbis_1ad11922956a823e4954c3778b2231fac3" prot="public" virt="non-virtual"><scope>stb_vorbis</scope><name>B</name></member>
+      <member refid="structstb__vorbis_1a7619bd93c5c9d8e1fbe5f172ddca1797" prot="public" virt="non-virtual"><scope>stb_vorbis</scope><name>bit_reverse</name></member>
+      <member refid="structstb__vorbis_1aa3ef5c2b66889cd0d06856c04055055a" prot="public" virt="non-virtual"><scope>stb_vorbis</scope><name>blocksize</name></member>
+      <member refid="structstb__vorbis_1abb2b7e43b5f6b8c8d20f9ac22b4c0892" prot="public" virt="non-virtual"><scope>stb_vorbis</scope><name>blocksize_0</name></member>
+      <member refid="structstb__vorbis_1a62e62eea3fc36b1e2bed4e78e1cb7d5d" prot="public" virt="non-virtual"><scope>stb_vorbis</scope><name>blocksize_1</name></member>
+      <member refid="structstb__vorbis_1a5c1b07b922bd3187c184e1fd0a5c02c1" prot="public" virt="non-virtual"><scope>stb_vorbis</scope><name>bytes_in_seg</name></member>
+      <member refid="structstb__vorbis_1a24d929ad328049cddb34951233c8ee74" prot="public" virt="non-virtual"><scope>stb_vorbis</scope><name>C</name></member>
+      <member refid="structstb__vorbis_1ab0c6866c39ae3cd00d5ede2dd5ff512c" prot="public" virt="non-virtual"><scope>stb_vorbis</scope><name>channel_buffer_end</name></member>
+      <member refid="structstb__vorbis_1af0bf960e2d513d207ee6a9f38eefe770" prot="public" virt="non-virtual"><scope>stb_vorbis</scope><name>channel_buffer_start</name></member>
+      <member refid="structstb__vorbis_1a55c99dc6b4222ca849a884e9dcef890f" prot="public" virt="non-virtual"><scope>stb_vorbis</scope><name>channel_buffers</name></member>
+      <member refid="structstb__vorbis_1ad7f03b7568a58e7c92f3a867a1030df3" prot="public" virt="non-virtual"><scope>stb_vorbis</scope><name>channels</name></member>
+      <member refid="structstb__vorbis_1af5bffde87c285ec4189ac54f12c15c95" prot="public" virt="non-virtual"><scope>stb_vorbis</scope><name>close_on_free</name></member>
+      <member refid="structstb__vorbis_1a07469e02f33bb619f925ee9b5ee996fd" prot="public" virt="non-virtual"><scope>stb_vorbis</scope><name>codebook_count</name></member>
+      <member refid="structstb__vorbis_1a50e480817f823077fe9c75fbd829a4b6" prot="public" virt="non-virtual"><scope>stb_vorbis</scope><name>codebooks</name></member>
+      <member refid="structstb__vorbis_1a02d0be708a62def848df1b4c20402983" prot="public" virt="non-virtual"><scope>stb_vorbis</scope><name>current_loc</name></member>
+      <member refid="structstb__vorbis_1a22ce054c836820c3b8381d6c8fa610ed" prot="public" virt="non-virtual"><scope>stb_vorbis</scope><name>current_loc_valid</name></member>
+      <member refid="structstb__vorbis_1adbacf2120eaa0099f886770c51d633d2" prot="public" virt="non-virtual"><scope>stb_vorbis</scope><name>discard_samples_deferred</name></member>
+      <member refid="structstb__vorbis_1abf4405ff473eed0c4a8bf23cb064f1aa" prot="public" virt="non-virtual"><scope>stb_vorbis</scope><name>end_seg_with_known_loc</name></member>
+      <member refid="structstb__vorbis_1ad1527c6b0af4f69978444bb4ca326c40" prot="public" virt="non-virtual"><scope>stb_vorbis</scope><name>eof</name></member>
+      <member refid="structstb__vorbis_1af7f9c10235b589b2856025951af48590" prot="public" virt="non-virtual"><scope>stb_vorbis</scope><name>error</name></member>
+      <member refid="structstb__vorbis_1ab345e7bff2cbf3c100593c0d684cb3e7" prot="public" virt="non-virtual"><scope>stb_vorbis</scope><name>f</name></member>
+      <member refid="structstb__vorbis_1ab03f15c21c2b01934afaee49ae319991" prot="public" virt="non-virtual"><scope>stb_vorbis</scope><name>f_start</name></member>
+      <member refid="structstb__vorbis_1a70c300d807fef43284883a75ad70e2a4" prot="public" virt="non-virtual"><scope>stb_vorbis</scope><name>finalY</name></member>
+      <member refid="structstb__vorbis_1a810f0a8517e054b49a025e0fc2f47215" prot="public" virt="non-virtual"><scope>stb_vorbis</scope><name>first_audio_page_offset</name></member>
+      <member refid="structstb__vorbis_1a40e499876074750d9aa66fb21cffe2e8" prot="public" virt="non-virtual"><scope>stb_vorbis</scope><name>first_decode</name></member>
+      <member refid="structstb__vorbis_1a1129cdb237063f7be2068a5196407dd5" prot="public" virt="non-virtual"><scope>stb_vorbis</scope><name>floor_config</name></member>
+      <member refid="structstb__vorbis_1aaa6b74d8c87becdb6025efdd9cd5ec6a" prot="public" virt="non-virtual"><scope>stb_vorbis</scope><name>floor_count</name></member>
+      <member refid="structstb__vorbis_1a638a36f2a4f5b450c1b69afd5e2c0089" prot="public" virt="non-virtual"><scope>stb_vorbis</scope><name>floor_types</name></member>
+      <member refid="structstb__vorbis_1ab4f2b28e26cb9f9a060a7b7855f12ece" prot="public" virt="non-virtual"><scope>stb_vorbis</scope><name>known_loc_for_packet</name></member>
+      <member refid="structstb__vorbis_1a1d215573f8b91a85a9775fa38d81760c" prot="public" virt="non-virtual"><scope>stb_vorbis</scope><name>last_page</name></member>
+      <member refid="structstb__vorbis_1a28cbcd18e6bd3f2749814b40505cab63" prot="public" virt="non-virtual"><scope>stb_vorbis</scope><name>last_seg</name></member>
+      <member refid="structstb__vorbis_1afe2aa2e9d9536a1f8eed69da2d59888d" prot="public" virt="non-virtual"><scope>stb_vorbis</scope><name>last_seg_which</name></member>
+      <member refid="structstb__vorbis_1accf685d27ba4ea9f3cab74df173871bc" prot="public" virt="non-virtual"><scope>stb_vorbis</scope><name>mapping</name></member>
+      <member refid="structstb__vorbis_1aed8cabfd2e35742f337e6ded1eb26951" prot="public" virt="non-virtual"><scope>stb_vorbis</scope><name>mapping_count</name></member>
+      <member refid="structstb__vorbis_1adf9aaee5832e512b5efe0a0d99b02894" prot="public" virt="non-virtual"><scope>stb_vorbis</scope><name>mode_config</name></member>
+      <member refid="structstb__vorbis_1af91c34d59c47301e40a83d9ee1017274" prot="public" virt="non-virtual"><scope>stb_vorbis</scope><name>mode_count</name></member>
+      <member refid="structstb__vorbis_1adce7311d3a011237e89487b8ffd3be1c" prot="public" virt="non-virtual"><scope>stb_vorbis</scope><name>next_seg</name></member>
+      <member refid="structstb__vorbis_1aca71a981ab130d51a27b30451ac2ae6f" prot="public" virt="non-virtual"><scope>stb_vorbis</scope><name>outputs</name></member>
+      <member refid="structstb__vorbis_1afa758c897db7486ded07dcbecb73f130" prot="public" virt="non-virtual"><scope>stb_vorbis</scope><name>p_first</name></member>
+      <member refid="structstb__vorbis_1a87749dd522b1d8915663ee5aec24621d" prot="public" virt="non-virtual"><scope>stb_vorbis</scope><name>p_last</name></member>
+      <member refid="structstb__vorbis_1a3328726a6d040dbc75a5d2e0f34232c3" prot="public" virt="non-virtual"><scope>stb_vorbis</scope><name>packet_bytes</name></member>
+      <member refid="structstb__vorbis_1a4d3ba492214db27970d9292a3d60b421" prot="public" virt="non-virtual"><scope>stb_vorbis</scope><name>page_crc_tests</name></member>
+      <member refid="structstb__vorbis_1a3814f8a612a2e8e38a26233b0dc96e3e" prot="public" virt="non-virtual"><scope>stb_vorbis</scope><name>page_flag</name></member>
+      <member refid="structstb__vorbis_1a61473d87688517c64ab951538ae1f14f" prot="public" virt="non-virtual"><scope>stb_vorbis</scope><name>previous_length</name></member>
+      <member refid="structstb__vorbis_1a00c9f41a45acaa1dfe85a3c02d215728" prot="public" virt="non-virtual"><scope>stb_vorbis</scope><name>previous_window</name></member>
+      <member refid="structstb__vorbis_1af9af266b92087b80f8781088bf256875" prot="public" virt="non-virtual"><scope>stb_vorbis</scope><name>push_mode</name></member>
+      <member refid="structstb__vorbis_1a5514e4826d244f216448e5c3839c78b2" prot="public" virt="non-virtual"><scope>stb_vorbis</scope><name>residue_config</name></member>
+      <member refid="structstb__vorbis_1ac2103bb2e30d29b68ba3cd85679b8ac0" prot="public" virt="non-virtual"><scope>stb_vorbis</scope><name>residue_count</name></member>
+      <member refid="structstb__vorbis_1ac6bb3f030ccdeacd23ad3bacbdca2a3d" prot="public" virt="non-virtual"><scope>stb_vorbis</scope><name>residue_types</name></member>
+      <member refid="structstb__vorbis_1aea5df8cb01245c5a3658f2b48cd74ad1" prot="public" virt="non-virtual"><scope>stb_vorbis</scope><name>sample_rate</name></member>
+      <member refid="structstb__vorbis_1a6b955aa04bfd9f4a59bca3d8d027b592" prot="public" virt="non-virtual"><scope>stb_vorbis</scope><name>samples_output</name></member>
+      <member refid="structstb__vorbis_1ac2972ae486c5a1bc59e1f0ebb3fa0739" prot="public" virt="non-virtual"><scope>stb_vorbis</scope><name>scan</name></member>
+      <member refid="structstb__vorbis_1a476faf256a4ab1ee16d023df98856793" prot="public" virt="non-virtual"><scope>stb_vorbis</scope><name>segment_count</name></member>
+      <member refid="structstb__vorbis_1af828a5828c027cbb1c8ad7346e3ce569" prot="public" virt="non-virtual"><scope>stb_vorbis</scope><name>segments</name></member>
+      <member refid="structstb__vorbis_1a0055b5f33f79dbf348bbc8f9fbc71fcd" prot="public" virt="non-virtual"><scope>stb_vorbis</scope><name>serial</name></member>
+      <member refid="structstb__vorbis_1af6552029487a8eb38da473b0cc6a60c6" prot="public" virt="non-virtual"><scope>stb_vorbis</scope><name>setup_memory_required</name></member>
+      <member refid="structstb__vorbis_1a6aadcb733a64d7f658bf2cf6bf712d42" prot="public" virt="non-virtual"><scope>stb_vorbis</scope><name>setup_offset</name></member>
+      <member refid="structstb__vorbis_1a52b6994c72625b043f9ae3fa0bc40893" prot="public" virt="non-virtual"><scope>stb_vorbis</scope><name>setup_temp_memory_required</name></member>
+      <member refid="structstb__vorbis_1a575e27c795bb140e77927934f66fd4a1" prot="public" virt="non-virtual"><scope>stb_vorbis</scope><name>stream</name></member>
+      <member refid="structstb__vorbis_1abeabd54843572537ae54ebcddada358b" prot="public" virt="non-virtual"><scope>stb_vorbis</scope><name>stream_end</name></member>
+      <member refid="structstb__vorbis_1a5ebaa90b30f0a7db008b54107d06c8fb" prot="public" virt="non-virtual"><scope>stb_vorbis</scope><name>stream_len</name></member>
+      <member refid="structstb__vorbis_1a569b20e3272197b5747efc0909b6258d" prot="public" virt="non-virtual"><scope>stb_vorbis</scope><name>stream_start</name></member>
+      <member refid="structstb__vorbis_1a8ed60a85b7e09e19b5eee4068cd983f1" prot="public" virt="non-virtual"><scope>stb_vorbis</scope><name>temp_memory_required</name></member>
+      <member refid="structstb__vorbis_1af318950da58641c64c5f8fa85d8df1b9" prot="public" virt="non-virtual"><scope>stb_vorbis</scope><name>temp_offset</name></member>
+      <member refid="structstb__vorbis_1ac6b09b0d2d48f1d49cbe0b482daeaead" prot="public" virt="non-virtual"><scope>stb_vorbis</scope><name>total_samples</name></member>
+      <member refid="structstb__vorbis_1a4aa9d73a234428a6194cd37b8c0be4e0" prot="public" virt="non-virtual"><scope>stb_vorbis</scope><name>valid_bits</name></member>
+      <member refid="structstb__vorbis_1a4437be2f348106017c23ffc1ebc57980" prot="public" virt="non-virtual"><scope>stb_vorbis</scope><name>window</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

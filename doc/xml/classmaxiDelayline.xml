@@ -1,0 +1,171 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classmaxiDelayline" kind="class" language="C++" prot="public">
+    <compoundname>maxiDelayline</compoundname>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classmaxiDelayline_1ad9d531300facc70a3daab4205d40606d" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double maxiDelayline::frequency</definition>
+        <argsstring></argsstring>
+        <name>frequency</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="232" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="232" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiDelayline_1a229efedc874a64f90338599e1070e61d" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int maxiDelayline::phase</definition>
+        <argsstring></argsstring>
+        <name>phase</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="233" column="9" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="233" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiDelayline_1ab95fc1f40afd2a4a0ad69f75abcd4243" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double maxiDelayline::startphase</definition>
+        <argsstring></argsstring>
+        <name>startphase</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="234" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="234" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiDelayline_1a8d1642ea703b49ff6490aac0c1d17db0" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double maxiDelayline::endphase</definition>
+        <argsstring></argsstring>
+        <name>endphase</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="235" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="235" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiDelayline_1a6b7a325327184d97001dbddc7d5a0922" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double maxiDelayline::output</definition>
+        <argsstring></argsstring>
+        <name>output</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="236" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="236" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiDelayline_1a7ce16f84758d12bef1b5c3b11031b71c" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double maxiDelayline::memory[88200 *8]</definition>
+        <argsstring>[88200 *8]</argsstring>
+        <name>memory</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="237" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="237" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classmaxiDelayline_1a0d9cea62b787fb073593ea9eb905d803" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>maxiDelayline::maxiDelayline</definition>
+        <argsstring>()</argsstring>
+        <name>maxiDelayline</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="240" column="5" bodyfile="/home/ck84/src/Maximilian/src/maximilian.cpp" bodystart="415" bodyend="417"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiDelayline_1a262f9a52fc6d7c087caaae350779f956" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double maxiDelayline::dl</definition>
+        <argsstring>(double input, int size, double feedback)</argsstring>
+        <name>dl</name>
+        <param>
+          <type>double</type>
+          <declname>input</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>size</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>feedback</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="241" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.cpp" bodystart="420" bodyend="429"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiDelayline_1a8db792dd66742c0b91567efffd2fb09e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double maxiDelayline::dlFromPosition</definition>
+        <argsstring>(double input, int size, double feedback, int position)</argsstring>
+        <name>dlFromPosition</name>
+        <param>
+          <type>double</type>
+          <declname>input</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>size</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>feedback</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>position</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="242" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.cpp" bodystart="431" bodyend="439"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="230" column="1" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="231" bodyend="243"/>
+    <listofallmembers>
+      <member refid="classmaxiDelayline_1a262f9a52fc6d7c087caaae350779f956" prot="public" virt="non-virtual"><scope>maxiDelayline</scope><name>dl</name></member>
+      <member refid="classmaxiDelayline_1a8db792dd66742c0b91567efffd2fb09e" prot="public" virt="non-virtual"><scope>maxiDelayline</scope><name>dlFromPosition</name></member>
+      <member refid="classmaxiDelayline_1a8d1642ea703b49ff6490aac0c1d17db0" prot="private" virt="non-virtual"><scope>maxiDelayline</scope><name>endphase</name></member>
+      <member refid="classmaxiDelayline_1ad9d531300facc70a3daab4205d40606d" prot="private" virt="non-virtual"><scope>maxiDelayline</scope><name>frequency</name></member>
+      <member refid="classmaxiDelayline_1a0d9cea62b787fb073593ea9eb905d803" prot="public" virt="non-virtual"><scope>maxiDelayline</scope><name>maxiDelayline</name></member>
+      <member refid="classmaxiDelayline_1a7ce16f84758d12bef1b5c3b11031b71c" prot="private" virt="non-virtual"><scope>maxiDelayline</scope><name>memory</name></member>
+      <member refid="classmaxiDelayline_1a6b7a325327184d97001dbddc7d5a0922" prot="private" virt="non-virtual"><scope>maxiDelayline</scope><name>output</name></member>
+      <member refid="classmaxiDelayline_1a229efedc874a64f90338599e1070e61d" prot="private" virt="non-virtual"><scope>maxiDelayline</scope><name>phase</name></member>
+      <member refid="classmaxiDelayline_1ab95fc1f40afd2a4a0ad69f75abcd4243" prot="private" virt="non-virtual"><scope>maxiDelayline</scope><name>startphase</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

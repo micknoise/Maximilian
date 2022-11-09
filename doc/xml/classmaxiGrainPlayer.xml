@@ -1,0 +1,115 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classmaxiGrainPlayer" kind="class" language="C++" prot="public">
+    <compoundname>maxiGrainPlayer</compoundname>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classmaxiGrainPlayer_1a40e1b73133d6ce89822fc41674d5997c" prot="public" static="no" mutable="no">
+        <type>grainList</type>
+        <definition>grainList maxiGrainPlayer::grains</definition>
+        <argsstring></argsstring>
+        <name>grains</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiGrains.h" line="258" column="11" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiGrains.h" bodystart="258" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiGrainPlayer_1ad7fbe9921e27a79b85e75d5ad30d0cfb" prot="public" static="no" mutable="no">
+        <type><ref refid="classmaxiSample" kindref="compound">maxiSample</ref> *</type>
+        <definition>maxiSample* maxiGrainPlayer::sample</definition>
+        <argsstring></argsstring>
+        <name>sample</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiGrains.h" line="259" column="12" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiGrains.h" bodystart="259" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classmaxiGrainPlayer_1a428a655c5b1718ee2cca1467b8b20570" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>maxiGrainPlayer::maxiGrainPlayer</definition>
+        <argsstring>(maxiSample *sample)</argsstring>
+        <name>maxiGrainPlayer</name>
+        <param>
+          <type><ref refid="classmaxiSample" kindref="compound">maxiSample</ref> *</type>
+          <declname>sample</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiGrains.h" line="263" column="1" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiGrains.h" bodystart="263" bodyend="264"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiGrainPlayer_1a77fff4aa806d1111cd3089b055a1c9ab" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void maxiGrainPlayer::addGrain</definition>
+        <argsstring>(maxiGrainBase *g)</argsstring>
+        <name>addGrain</name>
+        <param>
+          <type><ref refid="classmaxiGrainBase" kindref="compound">maxiGrainBase</ref> *</type>
+          <declname>g</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiGrains.h" line="266" column="6" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiGrains.h" bodystart="266" bodyend="268"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiGrainPlayer_1a3f3dcd946a548a2d5c01b54cbfba3ab2" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double maxiGrainPlayer::play</definition>
+        <argsstring>()</argsstring>
+        <name>play</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiGrains.h" line="270" column="15" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiGrains.h" bodystart="270" bodyend="283"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="3">
+        <label>maxiTrigger</label>
+        <link refid="classmaxiTrigger"/>
+      </node>
+      <node id="2">
+        <label>maxiSample</label>
+        <link refid="classmaxiSample"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>zxTrig</edgelabel>
+        </childnode>
+      </node>
+      <node id="1">
+        <label>maxiGrainPlayer</label>
+        <link refid="classmaxiGrainPlayer"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>sample</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/ck84/src/Maximilian/src/libs/maxiGrains.h" line="256" column="1" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiGrains.h" bodystart="256" bodyend="284"/>
+    <listofallmembers>
+      <member refid="classmaxiGrainPlayer_1a77fff4aa806d1111cd3089b055a1c9ab" prot="public" virt="non-virtual"><scope>maxiGrainPlayer</scope><name>addGrain</name></member>
+      <member refid="classmaxiGrainPlayer_1a40e1b73133d6ce89822fc41674d5997c" prot="public" virt="non-virtual"><scope>maxiGrainPlayer</scope><name>grains</name></member>
+      <member refid="classmaxiGrainPlayer_1a428a655c5b1718ee2cca1467b8b20570" prot="public" virt="non-virtual"><scope>maxiGrainPlayer</scope><name>maxiGrainPlayer</name></member>
+      <member refid="classmaxiGrainPlayer_1a3f3dcd946a548a2d5c01b54cbfba3ab2" prot="public" virt="non-virtual"><scope>maxiGrainPlayer</scope><name>play</name></member>
+      <member refid="classmaxiGrainPlayer_1ad7fbe9921e27a79b85e75d5ad30d0cfb" prot="public" virt="non-virtual"><scope>maxiGrainPlayer</scope><name>sample</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

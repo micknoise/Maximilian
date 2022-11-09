@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classvectorTools" kind="class" language="C++" prot="public">
+    <compoundname>vectorTools</compoundname>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="classvectorTools_1ac8d7dbfb26a38850aa0118c368f8e995" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void vectorTools::clearVectorDbl</definition>
+        <argsstring>(vector&lt; double &gt; &amp;vecIn)</argsstring>
+        <name>clearVectorDbl</name>
+        <param>
+          <type>vector&lt; double &gt; &amp;</type>
+          <declname>vecIn</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.embind.cpp" line="26" column="13" bodyfile="/home/ck84/src/Maximilian/src/maximilian.embind.cpp" bodystart="26" bodyend="29"/>
+      </memberdef>
+      <memberdef kind="function" id="classvectorTools_1a62b66b30540f61aac10127cd701c9cdb" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void vectorTools::clearVectorFloat</definition>
+        <argsstring>(vector&lt; float &gt; &amp;vecIn)</argsstring>
+        <name>clearVectorFloat</name>
+        <param>
+          <type>vector&lt; float &gt; &amp;</type>
+          <declname>vecIn</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.embind.cpp" line="30" column="13" bodyfile="/home/ck84/src/Maximilian/src/maximilian.embind.cpp" bodystart="30" bodyend="33"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/ck84/src/Maximilian/src/maximilian.embind.cpp" line="23" column="1" bodyfile="/home/ck84/src/Maximilian/src/maximilian.embind.cpp" bodystart="24" bodyend="34"/>
+    <listofallmembers>
+      <member refid="classvectorTools_1ac8d7dbfb26a38850aa0118c368f8e995" prot="public" virt="non-virtual"><scope>vectorTools</scope><name>clearVectorDbl</name></member>
+      <member refid="classvectorTools_1a62b66b30540f61aac10127cd701c9cdb" prot="public" virt="non-virtual"><scope>vectorTools</scope><name>clearVectorFloat</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structMappingChannel" kind="struct" language="C++" prot="public">
+    <compoundname>MappingChannel</compoundname>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structMappingChannel_1afd6e4cb4de3874833192c5c67daaa272" prot="public" static="no" mutable="no">
+        <type>uint8</type>
+        <definition>uint8 MappingChannel::magnitude</definition>
+        <argsstring></argsstring>
+        <name>magnitude</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" line="333" column="10" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="333" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structMappingChannel_1a78fa29206ca367159792f11c1f604510" prot="public" static="no" mutable="no">
+        <type>uint8</type>
+        <definition>uint8 MappingChannel::angle</definition>
+        <argsstring></argsstring>
+        <name>angle</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" line="334" column="10" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="334" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structMappingChannel_1a293cfec33390fdd5cee99df910f2d694" prot="public" static="no" mutable="no">
+        <type>uint8</type>
+        <definition>uint8 MappingChannel::mux</definition>
+        <argsstring></argsstring>
+        <name>mux</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" line="335" column="10" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="335" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" line="331" column="1" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="332" bodyend="336"/>
+    <listofallmembers>
+      <member refid="structMappingChannel_1a78fa29206ca367159792f11c1f604510" prot="public" virt="non-virtual"><scope>MappingChannel</scope><name>angle</name></member>
+      <member refid="structMappingChannel_1afd6e4cb4de3874833192c5c67daaa272" prot="public" virt="non-virtual"><scope>MappingChannel</scope><name>magnitude</name></member>
+      <member refid="structMappingChannel_1a293cfec33390fdd5cee99df910f2d694" prot="public" virt="non-virtual"><scope>MappingChannel</scope><name>mux</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

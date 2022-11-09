@@ -1,0 +1,376 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classmaxiSnare" kind="class" language="C++" prot="public">
+    <compoundname>maxiSnare</compoundname>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classmaxiSnare_1a1d030a255e00cae1abdfe0e8e50a4797" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double maxiSnare::pitch</definition>
+        <argsstring></argsstring>
+        <name>pitch</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" line="71" column="12" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" bodystart="71" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiSnare_1ad8a8231a41bab74df15dd5077eff7c83" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double maxiSnare::output</definition>
+        <argsstring></argsstring>
+        <name>output</name>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" line="72" column="12" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" bodystart="72" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiSnare_1a69404cb1e568aa4d4fcb86a58c0a87bf" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double maxiSnare::outputD</definition>
+        <argsstring></argsstring>
+        <name>outputD</name>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" line="73" column="12" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" bodystart="73" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiSnare_1ac720f315f2f3d2e754145a58988633f6" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double maxiSnare::envOut</definition>
+        <argsstring></argsstring>
+        <name>envOut</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" line="74" column="12" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" bodystart="74" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiSnare_1aa9c548cde46031534a1ad3aa48a84524" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool maxiSnare::useDistortion</definition>
+        <argsstring></argsstring>
+        <name>useDistortion</name>
+        <initializer>= false</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" line="75" column="10" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" bodystart="75" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiSnare_1ad5e48c9cd5391b1f548fc821667a320e" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool maxiSnare::useLimiter</definition>
+        <argsstring></argsstring>
+        <name>useLimiter</name>
+        <initializer>= false</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" line="76" column="10" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" bodystart="76" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiSnare_1a9b5de281c1c25759fd90a228e335df5f" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool maxiSnare::useFilter</definition>
+        <argsstring></argsstring>
+        <name>useFilter</name>
+        <initializer>= true</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" line="77" column="10" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" bodystart="77" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiSnare_1af922b86b33f8b00891d629d169121de0" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double maxiSnare::distortion</definition>
+        <argsstring></argsstring>
+        <name>distortion</name>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" line="78" column="12" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" bodystart="78" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiSnare_1af9a3893843cf64e32f45149c82d25c7a" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool maxiSnare::inverse</definition>
+        <argsstring></argsstring>
+        <name>inverse</name>
+        <initializer>= false</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" line="79" column="10" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" bodystart="79" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiSnare_1a775f8611ae033589499875652448037a" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double maxiSnare::cutoff</definition>
+        <argsstring></argsstring>
+        <name>cutoff</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" line="80" column="12" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" bodystart="80" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiSnare_1afefaeddfd62c74bd731770cd74033a5d" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double maxiSnare::resonance</definition>
+        <argsstring></argsstring>
+        <name>resonance</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" line="81" column="12" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" bodystart="81" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiSnare_1abd61f275480a24eabcda8de0ffcde075" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double maxiSnare::gain</definition>
+        <argsstring></argsstring>
+        <name>gain</name>
+        <initializer>= 1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" line="82" column="12" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" bodystart="82" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiSnare_1a874cd12d44478384adeee2a8f9b22071" prot="public" static="no" mutable="no">
+        <type><ref refid="classmaxiOsc" kindref="compound">maxiOsc</ref></type>
+        <definition>maxiOsc maxiSnare::tone</definition>
+        <argsstring></argsstring>
+        <name>tone</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" line="83" column="13" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" bodystart="83" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiSnare_1af8a92cb2b33af3912a94072489a55ce1" prot="public" static="no" mutable="no">
+        <type><ref refid="classmaxiOsc" kindref="compound">maxiOsc</ref></type>
+        <definition>maxiOsc maxiSnare::noise</definition>
+        <argsstring></argsstring>
+        <name>noise</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" line="84" column="13" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" bodystart="84" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiSnare_1a08c3752b91580183c843548cba6f5c7b" prot="public" static="no" mutable="no">
+        <type><ref refid="classmaxiEnv" kindref="compound">maxiEnv</ref></type>
+        <definition>maxiEnv maxiSnare::envelope</definition>
+        <argsstring></argsstring>
+        <name>envelope</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" line="85" column="13" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" bodystart="85" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiSnare_1a21f52b2a36f2d7da15d56704a6d82252" prot="public" static="no" mutable="no">
+        <type><ref refid="classmaxiNonlinearity" kindref="compound">maxiDistortion</ref></type>
+        <definition>maxiDistortion maxiSnare::distort</definition>
+        <argsstring></argsstring>
+        <name>distort</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" line="86" column="20" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" bodystart="86" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiSnare_1a4ab35c6c28f6c9a6fd9b5f5802374887" prot="public" static="no" mutable="no">
+        <type><ref refid="classmaxiFilter" kindref="compound">maxiFilter</ref></type>
+        <definition>maxiFilter maxiSnare::filter</definition>
+        <argsstring></argsstring>
+        <name>filter</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" line="87" column="16" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" bodystart="87" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classmaxiSnare_1a20637047cf24c05e30e6469881e8f721" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>maxiSnare::maxiSnare</definition>
+        <argsstring>()</argsstring>
+        <name>maxiSnare</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" line="66" column="5" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiSynths.cpp" bodystart="93" bodyend="103"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiSnare_1a68b296293c71ec0eec147918ef003ddc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double maxiSnare::play</definition>
+        <argsstring>()</argsstring>
+        <name>play</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" line="67" column="12" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiSynths.cpp" bodystart="105" bodyend="156"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiSnare_1a529b9b83561331160ade8e01d824ced1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void maxiSnare::setPitch</definition>
+        <argsstring>(double pitch)</argsstring>
+        <name>setPitch</name>
+        <param>
+          <type>double</type>
+          <declname>pitch</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" line="68" column="10" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiSynths.cpp" bodystart="164" bodyend="168"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiSnare_1a9139ddf8c8e7a59ac5f01bf458539c0c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void maxiSnare::setRelease</definition>
+        <argsstring>(double releaseD)</argsstring>
+        <name>setRelease</name>
+        <param>
+          <type>double</type>
+          <declname>releaseD</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" line="69" column="10" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiSynths.cpp" bodystart="158" bodyend="162"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiSnare_1a7ed6bef588239c3cbbc878271ca6de6b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void maxiSnare::trigger</definition>
+        <argsstring>()</argsstring>
+        <name>trigger</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" line="70" column="10" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiSynths.cpp" bodystart="170" bodyend="174"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="5">
+        <label>maxiNonlinearity</label>
+        <link refid="classmaxiNonlinearity"/>
+      </node>
+      <node id="3">
+        <label>maxiFilter</label>
+        <link refid="classmaxiFilter"/>
+      </node>
+      <node id="2">
+        <label>maxiOsc</label>
+        <link refid="classmaxiOsc"/>
+      </node>
+      <node id="1">
+        <label>maxiSnare</label>
+        <link refid="classmaxiSnare"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>noise</edgelabel>
+          <edgelabel>tone</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>filter</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>envelope</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>distort</edgelabel>
+        </childnode>
+      </node>
+      <node id="4">
+        <label>maxiEnv</label>
+        <link refid="classmaxiEnv"/>
+      </node>
+    </collaborationgraph>
+    <location file="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" line="64" column="1" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" bodystart="64" bodyend="91"/>
+    <listofallmembers>
+      <member refid="classmaxiSnare_1a775f8611ae033589499875652448037a" prot="public" virt="non-virtual"><scope>maxiSnare</scope><name>cutoff</name></member>
+      <member refid="classmaxiSnare_1a21f52b2a36f2d7da15d56704a6d82252" prot="public" virt="non-virtual"><scope>maxiSnare</scope><name>distort</name></member>
+      <member refid="classmaxiSnare_1af922b86b33f8b00891d629d169121de0" prot="public" virt="non-virtual"><scope>maxiSnare</scope><name>distortion</name></member>
+      <member refid="classmaxiSnare_1a08c3752b91580183c843548cba6f5c7b" prot="public" virt="non-virtual"><scope>maxiSnare</scope><name>envelope</name></member>
+      <member refid="classmaxiSnare_1ac720f315f2f3d2e754145a58988633f6" prot="public" virt="non-virtual"><scope>maxiSnare</scope><name>envOut</name></member>
+      <member refid="classmaxiSnare_1a4ab35c6c28f6c9a6fd9b5f5802374887" prot="public" virt="non-virtual"><scope>maxiSnare</scope><name>filter</name></member>
+      <member refid="classmaxiSnare_1abd61f275480a24eabcda8de0ffcde075" prot="public" virt="non-virtual"><scope>maxiSnare</scope><name>gain</name></member>
+      <member refid="classmaxiSnare_1af9a3893843cf64e32f45149c82d25c7a" prot="public" virt="non-virtual"><scope>maxiSnare</scope><name>inverse</name></member>
+      <member refid="classmaxiSnare_1a20637047cf24c05e30e6469881e8f721" prot="public" virt="non-virtual"><scope>maxiSnare</scope><name>maxiSnare</name></member>
+      <member refid="classmaxiSnare_1af8a92cb2b33af3912a94072489a55ce1" prot="public" virt="non-virtual"><scope>maxiSnare</scope><name>noise</name></member>
+      <member refid="classmaxiSnare_1ad8a8231a41bab74df15dd5077eff7c83" prot="public" virt="non-virtual"><scope>maxiSnare</scope><name>output</name></member>
+      <member refid="classmaxiSnare_1a69404cb1e568aa4d4fcb86a58c0a87bf" prot="public" virt="non-virtual"><scope>maxiSnare</scope><name>outputD</name></member>
+      <member refid="classmaxiSnare_1a1d030a255e00cae1abdfe0e8e50a4797" prot="public" virt="non-virtual"><scope>maxiSnare</scope><name>pitch</name></member>
+      <member refid="classmaxiSnare_1a68b296293c71ec0eec147918ef003ddc" prot="public" virt="non-virtual"><scope>maxiSnare</scope><name>play</name></member>
+      <member refid="classmaxiSnare_1afefaeddfd62c74bd731770cd74033a5d" prot="public" virt="non-virtual"><scope>maxiSnare</scope><name>resonance</name></member>
+      <member refid="classmaxiSnare_1a529b9b83561331160ade8e01d824ced1" prot="public" virt="non-virtual"><scope>maxiSnare</scope><name>setPitch</name></member>
+      <member refid="classmaxiSnare_1a9139ddf8c8e7a59ac5f01bf458539c0c" prot="public" virt="non-virtual"><scope>maxiSnare</scope><name>setRelease</name></member>
+      <member refid="classmaxiSnare_1a874cd12d44478384adeee2a8f9b22071" prot="public" virt="non-virtual"><scope>maxiSnare</scope><name>tone</name></member>
+      <member refid="classmaxiSnare_1a7ed6bef588239c3cbbc878271ca6de6b" prot="public" virt="non-virtual"><scope>maxiSnare</scope><name>trigger</name></member>
+      <member refid="classmaxiSnare_1aa9c548cde46031534a1ad3aa48a84524" prot="public" virt="non-virtual"><scope>maxiSnare</scope><name>useDistortion</name></member>
+      <member refid="classmaxiSnare_1a9b5de281c1c25759fd90a228e335df5f" prot="public" virt="non-virtual"><scope>maxiSnare</scope><name>useFilter</name></member>
+      <member refid="classmaxiSnare_1ad5e48c9cd5391b1f548fc821667a320e" prot="public" virt="non-virtual"><scope>maxiSnare</scope><name>useLimiter</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,234 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classmaxiDattaroReverb" kind="class" language="C++" prot="public">
+    <compoundname>maxiDattaroReverb</compoundname>
+    <basecompoundref refid="classmaxiReverbBase" prot="private" virt="non-virtual">maxiReverbBase</basecompoundref>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classmaxiDattaroReverb_1ac468704903e6d7ecb7db0286c8170712" prot="private" static="no" mutable="no">
+        <type><ref refid="classmaxiReverbFilters" kindref="compound">maxiReverbFilters</ref></type>
+        <definition>maxiReverbFilters maxiDattaroReverb::maxiDelays[9]</definition>
+        <argsstring>[9]</argsstring>
+        <name>maxiDelays</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiReverb.h" line="151" column="23" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiReverb.h" bodystart="151" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiDattaroReverb_1a7bf8fd8ce6cd378ec56f7be032b8c6cd" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int maxiDattaroReverb::dattarotapspos[numdattarotappos]</definition>
+        <argsstring>[numdattarotappos]</argsstring>
+        <name>dattarotapspos</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiReverb.h" line="155" column="9" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiReverb.h" bodystart="155" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiDattaroReverb_1a86b55ba1fd8f0c0fde1446aefb0e618d" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double maxiDattaroReverb::dattorotap[numdattarotaps]</definition>
+        <argsstring>[numdattarotaps]</argsstring>
+        <name>dattorotap</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiReverb.h" line="156" column="12" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiReverb.h" bodystart="156" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiDattaroReverb_1a1b8bc38453bc506c8b53b03b67d126be" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int maxiDattaroReverb::maxideltimes[4]</definition>
+        <argsstring>[4]</argsstring>
+        <name>maxideltimes</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiReverb.h" line="157" column="9" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiReverb.h" bodystart="157" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiDattaroReverb_1ac5128cedc80a4ec049596aec9130377f" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double maxiDattaroReverb::dattorogains[5]</definition>
+        <argsstring>[5]</argsstring>
+        <name>dattorogains</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiReverb.h" line="158" column="12" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiReverb.h" bodystart="158" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiDattaroReverb_1a9231af95f897ca92630f3feb9ae2356e" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int maxiDattaroReverb::dattarofixdellengths[5]</definition>
+        <argsstring>[5]</argsstring>
+        <name>dattarofixdellengths</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiReverb.h" line="159" column="9" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiReverb.h" bodystart="159" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiDattaroReverb_1af58559320c30678fca624717cafe4bb1" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double maxiDattaroReverb::sigl</definition>
+        <argsstring></argsstring>
+        <name>sigl</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiReverb.h" line="160" column="12" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiReverb.h" bodystart="160" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiDattaroReverb_1a8df8301ee5eed67a19c50ad278200271" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double maxiDattaroReverb::sigr</definition>
+        <argsstring></argsstring>
+        <name>sigr</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiReverb.h" line="160" column="16" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiReverb.h" bodystart="160" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-static-attrib">
+      <memberdef kind="variable" id="classmaxiDattaroReverb_1ac7cd36f03a89078e56c58e36135962ce" prot="private" static="yes" mutable="no">
+        <type>const int</type>
+        <definition>const int maxiDattaroReverb::numdattarotappos</definition>
+        <argsstring></argsstring>
+        <name>numdattarotappos</name>
+        <initializer>= 14</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiReverb.h" line="152" column="22" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiReverb.h" bodystart="152" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiDattaroReverb_1ada5991dfb913384846a14beab4848987" prot="private" static="yes" mutable="no">
+        <type>const int</type>
+        <definition>const int maxiDattaroReverb::numdattarotaps</definition>
+        <argsstring></argsstring>
+        <name>numdattarotaps</name>
+        <initializer>= 14</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiReverb.h" line="153" column="22" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiReverb.h" bodystart="153" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classmaxiDattaroReverb_1a5a7f80a4cd7b9e025be697a2d89de642" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>maxiDattaroReverb::maxiDattaroReverb</definition>
+        <argsstring>()</argsstring>
+        <name>maxiDattaroReverb</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiReverb.h" line="148" column="5" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiReverb.cpp" bodystart="495" bodyend="540"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiDattaroReverb_1a828a9259a97b8428963c1a7d5b98f53b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double *</type>
+        <definition>double * maxiDattaroReverb::playStereo</definition>
+        <argsstring>(double input)</argsstring>
+        <name>playStereo</name>
+        <param>
+          <type>double</type>
+          <declname>input</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiReverb.h" line="149" column="12" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiReverb.cpp" bodystart="542" bodyend="602"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>maxiReverbBase</label>
+        <link refid="classmaxiReverbBase"/>
+      </node>
+      <node id="1">
+        <label>maxiDattaroReverb</label>
+        <link refid="classmaxiDattaroReverb"/>
+        <childnode refid="2" relation="private-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>maxiReverbBase</label>
+        <link refid="classmaxiReverbBase"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>earlyref</edgelabel>
+          <edgelabel>fArrayAllP</edgelabel>
+          <edgelabel>fArrayTwo</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>fArrayLP</edgelabel>
+        </childnode>
+      </node>
+      <node id="4">
+        <label>maxiFilter</label>
+        <link refid="classmaxiFilter"/>
+      </node>
+      <node id="3">
+        <label>maxiReverbFilters</label>
+        <link refid="classmaxiReverbFilters"/>
+      </node>
+      <node id="1">
+        <label>maxiDattaroReverb</label>
+        <link refid="classmaxiDattaroReverb"/>
+        <childnode refid="2" relation="private-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/ck84/src/Maximilian/src/libs/maxiReverb.h" line="146" column="1" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiReverb.h" bodystart="146" bodyend="162"/>
+    <listofallmembers>
+      <member refid="classmaxiDattaroReverb_1a9231af95f897ca92630f3feb9ae2356e" prot="private" virt="non-virtual"><scope>maxiDattaroReverb</scope><name>dattarofixdellengths</name></member>
+      <member refid="classmaxiDattaroReverb_1a7bf8fd8ce6cd378ec56f7be032b8c6cd" prot="private" virt="non-virtual"><scope>maxiDattaroReverb</scope><name>dattarotapspos</name></member>
+      <member refid="classmaxiDattaroReverb_1ac5128cedc80a4ec049596aec9130377f" prot="private" virt="non-virtual"><scope>maxiDattaroReverb</scope><name>dattorogains</name></member>
+      <member refid="classmaxiDattaroReverb_1a86b55ba1fd8f0c0fde1446aefb0e618d" prot="private" virt="non-virtual"><scope>maxiDattaroReverb</scope><name>dattorotap</name></member>
+      <member refid="classmaxiDattaroReverb_1a5a7f80a4cd7b9e025be697a2d89de642" prot="public" virt="non-virtual"><scope>maxiDattaroReverb</scope><name>maxiDattaroReverb</name></member>
+      <member refid="classmaxiDattaroReverb_1ac468704903e6d7ecb7db0286c8170712" prot="private" virt="non-virtual"><scope>maxiDattaroReverb</scope><name>maxiDelays</name></member>
+      <member refid="classmaxiDattaroReverb_1a1b8bc38453bc506c8b53b03b67d126be" prot="private" virt="non-virtual"><scope>maxiDattaroReverb</scope><name>maxideltimes</name></member>
+      <member refid="classmaxiDattaroReverb_1ac7cd36f03a89078e56c58e36135962ce" prot="private" virt="non-virtual"><scope>maxiDattaroReverb</scope><name>numdattarotappos</name></member>
+      <member refid="classmaxiDattaroReverb_1ada5991dfb913384846a14beab4848987" prot="private" virt="non-virtual"><scope>maxiDattaroReverb</scope><name>numdattarotaps</name></member>
+      <member refid="classmaxiDattaroReverb_1a828a9259a97b8428963c1a7d5b98f53b" prot="public" virt="non-virtual"><scope>maxiDattaroReverb</scope><name>playStereo</name></member>
+      <member refid="classmaxiDattaroReverb_1af58559320c30678fca624717cafe4bb1" prot="private" virt="non-virtual"><scope>maxiDattaroReverb</scope><name>sigl</name></member>
+      <member refid="classmaxiDattaroReverb_1a8df8301ee5eed67a19c50ad278200271" prot="private" virt="non-virtual"><scope>maxiDattaroReverb</scope><name>sigr</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

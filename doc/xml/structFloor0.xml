@@ -1,0 +1,113 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structFloor0" kind="struct" language="C++" prot="public">
+    <compoundname>Floor0</compoundname>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structFloor0_1a4f6f2873ce6067d00a46711f1a77cc64" prot="public" static="no" mutable="no">
+        <type>uint8</type>
+        <definition>uint8 Floor0::order</definition>
+        <argsstring></argsstring>
+        <name>order</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" line="290" column="10" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="290" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structFloor0_1a922586e1bbbe9c1729764ce4e9c58081" prot="public" static="no" mutable="no">
+        <type>uint16</type>
+        <definition>uint16 Floor0::rate</definition>
+        <argsstring></argsstring>
+        <name>rate</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" line="291" column="11" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="291" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structFloor0_1ad25748f935add45259c7739644c3dfde" prot="public" static="no" mutable="no">
+        <type>uint16</type>
+        <definition>uint16 Floor0::bark_map_size</definition>
+        <argsstring></argsstring>
+        <name>bark_map_size</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" line="292" column="11" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="292" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structFloor0_1a49a1999f7063382cf289e36f3f679281" prot="public" static="no" mutable="no">
+        <type>uint8</type>
+        <definition>uint8 Floor0::amplitude_bits</definition>
+        <argsstring></argsstring>
+        <name>amplitude_bits</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" line="293" column="10" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="293" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structFloor0_1a2c57037c224748b8bb5586f668a66903" prot="public" static="no" mutable="no">
+        <type>uint8</type>
+        <definition>uint8 Floor0::amplitude_offset</definition>
+        <argsstring></argsstring>
+        <name>amplitude_offset</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" line="294" column="10" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="294" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structFloor0_1ab72ef807e63af61f9e473752753b135a" prot="public" static="no" mutable="no">
+        <type>uint8</type>
+        <definition>uint8 Floor0::number_of_books</definition>
+        <argsstring></argsstring>
+        <name>number_of_books</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" line="295" column="10" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="295" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structFloor0_1a9c9a2f623bc164826e892f7d75c484f2" prot="public" static="no" mutable="no">
+        <type>uint8</type>
+        <definition>uint8 Floor0::book_list[16]</definition>
+        <argsstring>[16]</argsstring>
+        <name>book_list</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" line="296" column="10" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="296" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" line="288" column="1" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="289" bodyend="297"/>
+    <listofallmembers>
+      <member refid="structFloor0_1a49a1999f7063382cf289e36f3f679281" prot="public" virt="non-virtual"><scope>Floor0</scope><name>amplitude_bits</name></member>
+      <member refid="structFloor0_1a2c57037c224748b8bb5586f668a66903" prot="public" virt="non-virtual"><scope>Floor0</scope><name>amplitude_offset</name></member>
+      <member refid="structFloor0_1ad25748f935add45259c7739644c3dfde" prot="public" virt="non-virtual"><scope>Floor0</scope><name>bark_map_size</name></member>
+      <member refid="structFloor0_1a9c9a2f623bc164826e892f7d75c484f2" prot="public" virt="non-virtual"><scope>Floor0</scope><name>book_list</name></member>
+      <member refid="structFloor0_1ab72ef807e63af61f9e473752753b135a" prot="public" virt="non-virtual"><scope>Floor0</scope><name>number_of_books</name></member>
+      <member refid="structFloor0_1a4f6f2873ce6067d00a46711f1a77cc64" prot="public" virt="non-virtual"><scope>Floor0</scope><name>order</name></member>
+      <member refid="structFloor0_1a922586e1bbbe9c1729764ce4e9c58081" prot="public" virt="non-virtual"><scope>Floor0</scope><name>rate</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,114 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classmaxiFreeVerb" kind="class" language="C++" prot="public">
+    <compoundname>maxiFreeVerb</compoundname>
+    <basecompoundref refid="classmaxiReverbBase" prot="private" virt="non-virtual">maxiReverbBase</basecompoundref>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classmaxiFreeVerb_1a9a323df2facf7b65cf61ebf2b940240e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>maxiFreeVerb::maxiFreeVerb</definition>
+        <argsstring>()</argsstring>
+        <name>maxiFreeVerb</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiReverb.h" line="135" column="5" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiReverb.cpp" bodystart="411" bodyend="426"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiFreeVerb_1a295acbcebaa9ad1c6b4c18ed46dd8df9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double maxiFreeVerb::play</definition>
+        <argsstring>(double input)</argsstring>
+        <name>play</name>
+        <param>
+          <type>double</type>
+          <declname>input</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiReverb.h" line="136" column="12" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiReverb.cpp" bodystart="428" bodyend="436"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiFreeVerb_1a62007bea007795f885657e89a4f8265e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double maxiFreeVerb::play</definition>
+        <argsstring>(double input, double roomsize, double absorbtion)</argsstring>
+        <name>play</name>
+        <param>
+          <type>double</type>
+          <declname>input</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>roomsize</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>absorbtion</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiReverb.h" line="137" column="12" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiReverb.cpp" bodystart="438" bodyend="446"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>maxiReverbBase</label>
+        <link refid="classmaxiReverbBase"/>
+      </node>
+      <node id="1">
+        <label>maxiFreeVerb</label>
+        <link refid="classmaxiFreeVerb"/>
+        <childnode refid="2" relation="private-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>maxiReverbBase</label>
+        <link refid="classmaxiReverbBase"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>earlyref</edgelabel>
+          <edgelabel>fArrayAllP</edgelabel>
+          <edgelabel>fArrayTwo</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>fArrayLP</edgelabel>
+        </childnode>
+      </node>
+      <node id="4">
+        <label>maxiFilter</label>
+        <link refid="classmaxiFilter"/>
+      </node>
+      <node id="3">
+        <label>maxiReverbFilters</label>
+        <link refid="classmaxiReverbFilters"/>
+      </node>
+      <node id="1">
+        <label>maxiFreeVerb</label>
+        <link refid="classmaxiFreeVerb"/>
+        <childnode refid="2" relation="private-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/ck84/src/Maximilian/src/libs/maxiReverb.h" line="133" column="1" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiReverb.h" bodystart="133" bodyend="138"/>
+    <listofallmembers>
+      <member refid="classmaxiFreeVerb_1a9a323df2facf7b65cf61ebf2b940240e" prot="public" virt="non-virtual"><scope>maxiFreeVerb</scope><name>maxiFreeVerb</name></member>
+      <member refid="classmaxiFreeVerb_1a295acbcebaa9ad1c6b4c18ed46dd8df9" prot="public" virt="non-virtual"><scope>maxiFreeVerb</scope><name>play</name></member>
+      <member refid="classmaxiFreeVerb_1a62007bea007795f885657e89a4f8265e" prot="public" virt="non-virtual"><scope>maxiFreeVerb</scope><name>play</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

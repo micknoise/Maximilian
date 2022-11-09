@@ -1,0 +1,71 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structMode" kind="struct" language="C++" prot="public">
+    <compoundname>Mode</compoundname>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structMode_1abc3023110a01eb21ac915398246c5868" prot="public" static="no" mutable="no">
+        <type>uint8</type>
+        <definition>uint8 Mode::blockflag</definition>
+        <argsstring></argsstring>
+        <name>blockflag</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" line="349" column="10" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="349" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structMode_1a56d2ce10834c4f563f402359db99af9f" prot="public" static="no" mutable="no">
+        <type>uint8</type>
+        <definition>uint8 Mode::mapping</definition>
+        <argsstring></argsstring>
+        <name>mapping</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" line="350" column="10" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="350" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structMode_1a000084125ae3760f66182ab4adae705e" prot="public" static="no" mutable="no">
+        <type>uint16</type>
+        <definition>uint16 Mode::windowtype</definition>
+        <argsstring></argsstring>
+        <name>windowtype</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" line="351" column="11" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="351" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structMode_1a2f78100869ebed55b17f89e6a0202aac" prot="public" static="no" mutable="no">
+        <type>uint16</type>
+        <definition>uint16 Mode::transformtype</definition>
+        <argsstring></argsstring>
+        <name>transformtype</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" line="352" column="11" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="352" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" line="347" column="1" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="348" bodyend="353"/>
+    <listofallmembers>
+      <member refid="structMode_1abc3023110a01eb21ac915398246c5868" prot="public" virt="non-virtual"><scope>Mode</scope><name>blockflag</name></member>
+      <member refid="structMode_1a56d2ce10834c4f563f402359db99af9f" prot="public" virt="non-virtual"><scope>Mode</scope><name>mapping</name></member>
+      <member refid="structMode_1a2f78100869ebed55b17f89e6a0202aac" prot="public" virt="non-virtual"><scope>Mode</scope><name>transformtype</name></member>
+      <member refid="structMode_1a000084125ae3760f66182ab4adae705e" prot="public" virt="non-virtual"><scope>Mode</scope><name>windowtype</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

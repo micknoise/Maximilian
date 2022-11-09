@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="unionfloat__conv" kind="union" language="C++" prot="public">
+    <compoundname>float_conv</compoundname>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="unionfloat__conv_1a500605cabc18ae27268bcd0af4276c16" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float float_conv::f</definition>
+        <argsstring></argsstring>
+        <name>f</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" line="4726" column="13" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="4726" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="unionfloat__conv_1a9e1033bdaee2009f7d6ba9f529da0f8b" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int float_conv::i</definition>
+        <argsstring></argsstring>
+        <name>i</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" line="4727" column="11" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="4727" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" line="4725" column="4" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="4725" bodyend="4728"/>
+    <listofallmembers>
+      <member refid="unionfloat__conv_1a500605cabc18ae27268bcd0af4276c16" prot="public" virt="non-virtual"><scope>float_conv</scope><name>f</name></member>
+      <member refid="unionfloat__conv_1a9e1033bdaee2009f7d6ba9f529da0f8b" prot="public" virt="non-virtual"><scope>float_conv</scope><name>i</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

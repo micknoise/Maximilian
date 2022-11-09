@@ -1,0 +1,115 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classmaxiStep" kind="class" language="C++" prot="public">
+    <compoundname>maxiStep</compoundname>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classmaxiStep_1a426bfa6f9458e5097ab387666ae7eec5" prot="private" static="no" mutable="no">
+        <type><ref refid="classmaxiTrigger" kindref="compound">maxiTrigger</ref></type>
+        <definition>maxiTrigger maxiStep::trig</definition>
+        <argsstring></argsstring>
+        <name>trig</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1751" column="17" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1751" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiStep_1a22e71dbdcfa3fc0250df3acd7cd57946" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool maxiStep::first</definition>
+        <argsstring></argsstring>
+        <name>first</name>
+        <initializer>=true</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1752" column="10" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1752" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiStep_1aa931603ba181a586ec47294d3952f73d" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double maxiStep::index</definition>
+        <argsstring></argsstring>
+        <name>index</name>
+        <initializer>=0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1753" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1753" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classmaxiStep_1ad143357dd48dab980a065397d5c71294" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>maxiStep::maxiStep</definition>
+        <argsstring>()</argsstring>
+        <name>maxiStep</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1716" column="5" bodyfile="/home/ck84/src/Maximilian/src/maximilian.cpp" bodystart="1502" bodyend="1502"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiStep_1a0d3dfb1e2a7c48bc31da9c0ae3da1948" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double maxiStep::pull</definition>
+        <argsstring>(const double trigSig, DOUBLEARRAY_REF values, double step)</argsstring>
+        <name>pull</name>
+        <param>
+          <type>const double</type>
+          <declname>trigSig</declname>
+        </param>
+        <param>
+          <type>DOUBLEARRAY_REF</type>
+          <declname>values</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>step</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1717" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1717" bodyend="1744"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiStep_1a8b790d681ec903dd8b432d7fc0bb3427" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double maxiStep::getIndex</definition>
+        <argsstring>()</argsstring>
+        <name>getIndex</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1746" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1746" bodyend="1748"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1713" column="1" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1714" bodyend="1754"/>
+    <listofallmembers>
+      <member refid="classmaxiStep_1a22e71dbdcfa3fc0250df3acd7cd57946" prot="private" virt="non-virtual"><scope>maxiStep</scope><name>first</name></member>
+      <member refid="classmaxiStep_1a8b790d681ec903dd8b432d7fc0bb3427" prot="public" virt="non-virtual"><scope>maxiStep</scope><name>getIndex</name></member>
+      <member refid="classmaxiStep_1aa931603ba181a586ec47294d3952f73d" prot="private" virt="non-virtual"><scope>maxiStep</scope><name>index</name></member>
+      <member refid="classmaxiStep_1ad143357dd48dab980a065397d5c71294" prot="public" virt="non-virtual"><scope>maxiStep</scope><name>maxiStep</name></member>
+      <member refid="classmaxiStep_1a0d3dfb1e2a7c48bc31da9c0ae3da1948" prot="public" virt="non-virtual"><scope>maxiStep</scope><name>pull</name></member>
+      <member refid="classmaxiStep_1a426bfa6f9458e5097ab387666ae7eec5" prot="private" virt="non-virtual"><scope>maxiStep</scope><name>trig</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

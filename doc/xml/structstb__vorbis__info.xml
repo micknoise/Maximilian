@@ -1,0 +1,99 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structstb__vorbis__info" kind="struct" language="C++" prot="public">
+    <compoundname>stb_vorbis_info</compoundname>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structstb__vorbis__info_1a9ccd1991052734f88a4bd3743b749993" prot="public" static="no" mutable="no">
+        <type>unsigned int</type>
+        <definition>unsigned int stb_vorbis_info::sample_rate</definition>
+        <argsstring></argsstring>
+        <name>sample_rate</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.h" line="73" column="22" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.h" bodystart="73" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structstb__vorbis__info_1a074f6af8c99f6c583696d34bf4c7744a" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int stb_vorbis_info::channels</definition>
+        <argsstring></argsstring>
+        <name>channels</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.h" line="74" column="13" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.h" bodystart="74" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structstb__vorbis__info_1a3dd3e567beb2bb9d7d62dcca83f301fb" prot="public" static="no" mutable="no">
+        <type>unsigned int</type>
+        <definition>unsigned int stb_vorbis_info::setup_memory_required</definition>
+        <argsstring></argsstring>
+        <name>setup_memory_required</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.h" line="76" column="22" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.h" bodystart="76" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structstb__vorbis__info_1aec05c013773be9d8d52f9bb784bdc084" prot="public" static="no" mutable="no">
+        <type>unsigned int</type>
+        <definition>unsigned int stb_vorbis_info::setup_temp_memory_required</definition>
+        <argsstring></argsstring>
+        <name>setup_temp_memory_required</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.h" line="77" column="22" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.h" bodystart="77" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structstb__vorbis__info_1a2fe235656197249fc3a6b5e27ff2da82" prot="public" static="no" mutable="no">
+        <type>unsigned int</type>
+        <definition>unsigned int stb_vorbis_info::temp_memory_required</definition>
+        <argsstring></argsstring>
+        <name>temp_memory_required</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.h" line="78" column="22" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.h" bodystart="78" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structstb__vorbis__info_1ad07f41541db438dcdac6ca223c5876e9" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int stb_vorbis_info::max_frame_size</definition>
+        <argsstring></argsstring>
+        <name>max_frame_size</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.h" line="80" column="13" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.h" bodystart="80" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.h" line="71" column="5" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.h" bodystart="72" bodyend="81"/>
+    <listofallmembers>
+      <member refid="structstb__vorbis__info_1a074f6af8c99f6c583696d34bf4c7744a" prot="public" virt="non-virtual"><scope>stb_vorbis_info</scope><name>channels</name></member>
+      <member refid="structstb__vorbis__info_1ad07f41541db438dcdac6ca223c5876e9" prot="public" virt="non-virtual"><scope>stb_vorbis_info</scope><name>max_frame_size</name></member>
+      <member refid="structstb__vorbis__info_1a9ccd1991052734f88a4bd3743b749993" prot="public" virt="non-virtual"><scope>stb_vorbis_info</scope><name>sample_rate</name></member>
+      <member refid="structstb__vorbis__info_1a3dd3e567beb2bb9d7d62dcca83f301fb" prot="public" virt="non-virtual"><scope>stb_vorbis_info</scope><name>setup_memory_required</name></member>
+      <member refid="structstb__vorbis__info_1aec05c013773be9d8d52f9bb784bdc084" prot="public" virt="non-virtual"><scope>stb_vorbis_info</scope><name>setup_temp_memory_required</name></member>
+      <member refid="structstb__vorbis__info_1a2fe235656197249fc3a6b5e27ff2da82" prot="public" virt="non-virtual"><scope>stb_vorbis_info</scope><name>temp_memory_required</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

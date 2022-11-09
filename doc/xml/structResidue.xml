@@ -1,0 +1,113 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structResidue" kind="struct" language="C++" prot="public">
+    <compoundname>Residue</compoundname>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structResidue_1ad6316cbcc989ab6c2d85147cc7effeca" prot="public" static="no" mutable="no">
+        <type>uint32</type>
+        <definition>uint32 Residue::begin</definition>
+        <argsstring></argsstring>
+        <name>begin</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" line="323" column="11" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="323" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structResidue_1a79e5b0b56d8d18fbf350e8f9d7841f8e" prot="public" static="no" mutable="no">
+        <type>uint32</type>
+        <definition>uint32 Residue::end</definition>
+        <argsstring></argsstring>
+        <name>end</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" line="323" column="17" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="323" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structResidue_1a88f3f7afce7f7ef97a62c71e5b7fbf3b" prot="public" static="no" mutable="no">
+        <type>uint32</type>
+        <definition>uint32 Residue::part_size</definition>
+        <argsstring></argsstring>
+        <name>part_size</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" line="324" column="11" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="324" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structResidue_1a7990d602ad1221a4074bd3fb2b6396e4" prot="public" static="no" mutable="no">
+        <type>uint8</type>
+        <definition>uint8 Residue::classifications</definition>
+        <argsstring></argsstring>
+        <name>classifications</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" line="325" column="10" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="325" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structResidue_1a2162b2f7f3ac4358a2983f5d372741b1" prot="public" static="no" mutable="no">
+        <type>uint8</type>
+        <definition>uint8 Residue::classbook</definition>
+        <argsstring></argsstring>
+        <name>classbook</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" line="326" column="10" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="326" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structResidue_1a079f9b89fb84d8cec7829a640c0f0f85" prot="public" static="no" mutable="no">
+        <type>uint8 **</type>
+        <definition>uint8** Residue::classdata</definition>
+        <argsstring></argsstring>
+        <name>classdata</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" line="327" column="10" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="327" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structResidue_1ad8abf85a933f167664f1113b8c0b83a8" prot="public" static="no" mutable="no">
+        <type>int16(*</type>
+        <definition>int16(* Residue::residue_books)[8]</definition>
+        <argsstring>)[8]</argsstring>
+        <name>residue_books</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" line="328" column="4" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="328" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" line="321" column="1" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="322" bodyend="329"/>
+    <listofallmembers>
+      <member refid="structResidue_1ad6316cbcc989ab6c2d85147cc7effeca" prot="public" virt="non-virtual"><scope>Residue</scope><name>begin</name></member>
+      <member refid="structResidue_1a2162b2f7f3ac4358a2983f5d372741b1" prot="public" virt="non-virtual"><scope>Residue</scope><name>classbook</name></member>
+      <member refid="structResidue_1a079f9b89fb84d8cec7829a640c0f0f85" prot="public" virt="non-virtual"><scope>Residue</scope><name>classdata</name></member>
+      <member refid="structResidue_1a7990d602ad1221a4074bd3fb2b6396e4" prot="public" virt="non-virtual"><scope>Residue</scope><name>classifications</name></member>
+      <member refid="structResidue_1a79e5b0b56d8d18fbf350e8f9d7841f8e" prot="public" virt="non-virtual"><scope>Residue</scope><name>end</name></member>
+      <member refid="structResidue_1a88f3f7afce7f7ef97a62c71e5b7fbf3b" prot="public" virt="non-virtual"><scope>Residue</scope><name>part_size</name></member>
+      <member refid="structResidue_1ad8abf85a933f167664f1113b8c0b83a8" prot="public" virt="non-virtual"><scope>Residue</scope><name>residue_books</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

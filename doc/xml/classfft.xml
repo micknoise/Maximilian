@@ -1,0 +1,423 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classfft" kind="class" language="C++" prot="public">
+    <compoundname>fft</compoundname>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classfft_1a1d00a7e361c9a7b0ae2f596792776619" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int fft::n</definition>
+        <argsstring></argsstring>
+        <name>n</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/fft.h" line="56" column="5" bodyfile="/home/ck84/src/Maximilian/src/libs/fft.h" bodystart="56" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classfft_1a34dea5110a3a62de8ea5ae055c5ff41c" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int fft::half</definition>
+        <argsstring></argsstring>
+        <name>half</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/fft.h" line="57" column="5" bodyfile="/home/ck84/src/Maximilian/src/libs/fft.h" bodystart="57" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classfft_1a2239211f27a2dcb55bf756e9fdfe7973" prot="public" static="no" mutable="no">
+        <type>std::vector&lt; float &gt;</type>
+        <definition>std::vector&lt;float&gt; fft::in_real</definition>
+        <argsstring></argsstring>
+        <name>in_real</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/fft.h" line="60" column="17" bodyfile="/home/ck84/src/Maximilian/src/libs/fft.h" bodystart="60" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classfft_1aeb3940d59a6768b357ad3be1b6556a65" prot="public" static="no" mutable="no">
+        <type>std::vector&lt; float &gt;</type>
+        <definition>std::vector&lt;float&gt; fft::out_real</definition>
+        <argsstring></argsstring>
+        <name>out_real</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/fft.h" line="60" column="24" bodyfile="/home/ck84/src/Maximilian/src/libs/fft.h" bodystart="60" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classfft_1a8ee1adfaee727d134375fb1b633c782a" prot="public" static="no" mutable="no">
+        <type>std::vector&lt; float &gt;</type>
+        <definition>std::vector&lt;float&gt; fft::in_img</definition>
+        <argsstring></argsstring>
+        <name>in_img</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/fft.h" line="60" column="32" bodyfile="/home/ck84/src/Maximilian/src/libs/fft.h" bodystart="60" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classfft_1a80fcff2920c471e0d5e3ecaa06de144f" prot="public" static="no" mutable="no">
+        <type>std::vector&lt; float &gt;</type>
+        <definition>std::vector&lt;float&gt; fft::out_img</definition>
+        <argsstring></argsstring>
+        <name>out_img</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/fft.h" line="60" column="38" bodyfile="/home/ck84/src/Maximilian/src/libs/fft.h" bodystart="60" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classfft_1aff107582f4c46896359244ea8a73dc59" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>fft::fft</definition>
+        <argsstring>()</argsstring>
+        <name>fft</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/fft.h" line="51" column="5" bodyfile="/home/ck84/src/Maximilian/src/libs/fft.h" bodystart="51" bodyend="51"/>
+      </memberdef>
+      <memberdef kind="function" id="classfft_1ab4531c2bdfa47ffac54bc0a85ca34e6b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>fft::~fft</definition>
+        <argsstring>()</argsstring>
+        <name>~fft</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/fft.h" line="53" column="1" bodyfile="/home/ck84/src/Maximilian/src/libs/fft.cpp" bodystart="466" bodyend="478"/>
+      </memberdef>
+      <memberdef kind="function" id="classfft_1a85f972cbc315a441b7123239ae57372b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void fft::setup</definition>
+        <argsstring>(int fftSize)</argsstring>
+        <name>setup</name>
+        <param>
+          <type>int</type>
+          <declname>fftSize</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/fft.h" line="55" column="10" bodyfile="/home/ck84/src/Maximilian/src/libs/fft.cpp" bodystart="416" bodyend="438"/>
+      </memberdef>
+      <memberdef kind="function" id="classfft_1a1b71f81bff3292be422be61b6bb6d1ac" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>float *</type>
+        <definition>float * fft::getReal</definition>
+        <argsstring>()</argsstring>
+        <name>getReal</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/fft.h" line="62" column="12" bodyfile="/home/ck84/src/Maximilian/src/libs/fft.cpp" bodystart="480" bodyend="486"/>
+      </memberdef>
+      <memberdef kind="function" id="classfft_1af2bc442cb9f22ae9590c0b7a15ed602f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>float *</type>
+        <definition>float * fft::getImg</definition>
+        <argsstring>()</argsstring>
+        <name>getImg</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/fft.h" line="63" column="12" bodyfile="/home/ck84/src/Maximilian/src/libs/fft.cpp" bodystart="488" bodyend="494"/>
+      </memberdef>
+      <memberdef kind="function" id="classfft_1a4ecf11b3ecbd98bca9d13e7d95d08072" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void fft::calcFFT</definition>
+        <argsstring>(int start, float *data, float *window)</argsstring>
+        <name>calcFFT</name>
+        <param>
+          <type>int</type>
+          <declname>start</declname>
+        </param>
+        <param>
+          <type>float *</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>float *</type>
+          <declname>window</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/fft.h" line="85" column="10" bodyfile="/home/ck84/src/Maximilian/src/libs/fft.cpp" bodystart="496" bodyend="502"/>
+      </memberdef>
+      <memberdef kind="function" id="classfft_1abec56655e48513e6d9b8492b279b4c6d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void fft::cartToPol</definition>
+        <argsstring>(float *magnitude, float *phase)</argsstring>
+        <name>cartToPol</name>
+        <param>
+          <type>float *</type>
+          <declname>magnitude</declname>
+        </param>
+        <param>
+          <type>float *</type>
+          <declname>phase</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/fft.h" line="86" column="10" bodyfile="/home/ck84/src/Maximilian/src/libs/fft.cpp" bodystart="504" bodyend="512"/>
+      </memberdef>
+      <memberdef kind="function" id="classfft_1a90b4de8bea6e42d8de456cfc52c51e2e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void fft::powerSpectrum</definition>
+        <argsstring>(int start, float *data, float *window, float *magnitude, float *phase)</argsstring>
+        <name>powerSpectrum</name>
+        <param>
+          <type>int</type>
+          <declname>start</declname>
+        </param>
+        <param>
+          <type>float *</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>float *</type>
+          <declname>window</declname>
+        </param>
+        <param>
+          <type>float *</type>
+          <declname>magnitude</declname>
+        </param>
+        <param>
+          <type>float *</type>
+          <declname>phase</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/fft.h" line="87" column="6" bodyfile="/home/ck84/src/Maximilian/src/libs/fft.cpp" bodystart="516" bodyend="521"/>
+      </memberdef>
+      <memberdef kind="function" id="classfft_1ad55ccfd760da58250f61101bd928d878" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void fft::polToCart</definition>
+        <argsstring>(float *magnitude, float *phase)</argsstring>
+        <name>polToCart</name>
+        <param>
+          <type>float *</type>
+          <declname>magnitude</declname>
+        </param>
+        <param>
+          <type>float *</type>
+          <declname>phase</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/fft.h" line="89" column="10" bodyfile="/home/ck84/src/Maximilian/src/libs/fft.cpp" bodystart="587" bodyend="600"/>
+      </memberdef>
+      <memberdef kind="function" id="classfft_1afa8993d04b8d3b37c2207d692e1cd5c5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void fft::calcIFFT</definition>
+        <argsstring>(int start, float *finalOut, float *window)</argsstring>
+        <name>calcIFFT</name>
+        <param>
+          <type>int</type>
+          <declname>start</declname>
+        </param>
+        <param>
+          <type>float *</type>
+          <declname>finalOut</declname>
+        </param>
+        <param>
+          <type>float *</type>
+          <declname>window</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/fft.h" line="90" column="10" bodyfile="/home/ck84/src/Maximilian/src/libs/fft.cpp" bodystart="602" bodyend="607"/>
+      </memberdef>
+      <memberdef kind="function" id="classfft_1a6759ecb7fa01c614f7ccff7f9d47e417" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void fft::inverseFFTComplex</definition>
+        <argsstring>(int start, float *finalOut, float *window, float *real, float *imaginary)</argsstring>
+        <name>inverseFFTComplex</name>
+        <param>
+          <type>int</type>
+          <declname>start</declname>
+        </param>
+        <param>
+          <type>float *</type>
+          <declname>finalOut</declname>
+        </param>
+        <param>
+          <type>float *</type>
+          <declname>window</declname>
+        </param>
+        <param>
+          <type>float *</type>
+          <declname>real</declname>
+        </param>
+        <param>
+          <type>float *</type>
+          <declname>imaginary</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/fft.h" line="91" column="10" bodyfile="/home/ck84/src/Maximilian/src/libs/fft.cpp" bodystart="609" bodyend="615"/>
+      </memberdef>
+      <memberdef kind="function" id="classfft_1a1f8761adfa1e8ce2cd827c0edc0e50ae" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void fft::inversePowerSpectrum</definition>
+        <argsstring>(int start, float *finalOut, float *window, float *magnitude, float *phase)</argsstring>
+        <name>inversePowerSpectrum</name>
+        <param>
+          <type>int</type>
+          <declname>start</declname>
+        </param>
+        <param>
+          <type>float *</type>
+          <declname>finalOut</declname>
+        </param>
+        <param>
+          <type>float *</type>
+          <declname>window</declname>
+        </param>
+        <param>
+          <type>float *</type>
+          <declname>magnitude</declname>
+        </param>
+        <param>
+          <type>float *</type>
+          <declname>phase</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/fft.h" line="92" column="6" bodyfile="/home/ck84/src/Maximilian/src/libs/fft.cpp" bodystart="618" bodyend="621"/>
+      </memberdef>
+      <memberdef kind="function" id="classfft_1a59adb3580ebff4fc441995091ef29d31" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void fft::convToDB</definition>
+        <argsstring>(float *in, float *out)</argsstring>
+        <name>convToDB</name>
+        <param>
+          <type>float *</type>
+          <declname>in</declname>
+        </param>
+        <param>
+          <type>float *</type>
+          <declname>out</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/fft.h" line="93" column="6" bodyfile="/home/ck84/src/Maximilian/src/libs/fft.cpp" bodystart="523" bodyend="531"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="classfft_1a4120e020c5ac1a5c0a313f50632bc074" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void fft::genWindow</definition>
+        <argsstring>(int whichFunction, int NumSamples, float *window)</argsstring>
+        <name>genWindow</name>
+        <param>
+          <type>int</type>
+          <declname>whichFunction</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>NumSamples</declname>
+        </param>
+        <param>
+          <type>float *</type>
+          <declname>window</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/fft.h" line="95" column="13" bodyfile="/home/ck84/src/Maximilian/src/libs/fft.cpp" bodystart="387" bodyend="411"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/ck84/src/Maximilian/src/libs/fft.h" line="46" column="1" bodyfile="/home/ck84/src/Maximilian/src/libs/fft.h" bodystart="46" bodyend="97"/>
+    <listofallmembers>
+      <member refid="classfft_1a4ecf11b3ecbd98bca9d13e7d95d08072" prot="public" virt="non-virtual"><scope>fft</scope><name>calcFFT</name></member>
+      <member refid="classfft_1afa8993d04b8d3b37c2207d692e1cd5c5" prot="public" virt="non-virtual"><scope>fft</scope><name>calcIFFT</name></member>
+      <member refid="classfft_1abec56655e48513e6d9b8492b279b4c6d" prot="public" virt="non-virtual"><scope>fft</scope><name>cartToPol</name></member>
+      <member refid="classfft_1a59adb3580ebff4fc441995091ef29d31" prot="public" virt="non-virtual"><scope>fft</scope><name>convToDB</name></member>
+      <member refid="classfft_1aff107582f4c46896359244ea8a73dc59" prot="public" virt="non-virtual"><scope>fft</scope><name>fft</name></member>
+      <member refid="classfft_1a4120e020c5ac1a5c0a313f50632bc074" prot="public" virt="non-virtual"><scope>fft</scope><name>genWindow</name></member>
+      <member refid="classfft_1af2bc442cb9f22ae9590c0b7a15ed602f" prot="public" virt="non-virtual"><scope>fft</scope><name>getImg</name></member>
+      <member refid="classfft_1a1b71f81bff3292be422be61b6bb6d1ac" prot="public" virt="non-virtual"><scope>fft</scope><name>getReal</name></member>
+      <member refid="classfft_1a34dea5110a3a62de8ea5ae055c5ff41c" prot="public" virt="non-virtual"><scope>fft</scope><name>half</name></member>
+      <member refid="classfft_1a8ee1adfaee727d134375fb1b633c782a" prot="public" virt="non-virtual"><scope>fft</scope><name>in_img</name></member>
+      <member refid="classfft_1a2239211f27a2dcb55bf756e9fdfe7973" prot="public" virt="non-virtual"><scope>fft</scope><name>in_real</name></member>
+      <member refid="classfft_1a6759ecb7fa01c614f7ccff7f9d47e417" prot="public" virt="non-virtual"><scope>fft</scope><name>inverseFFTComplex</name></member>
+      <member refid="classfft_1a1f8761adfa1e8ce2cd827c0edc0e50ae" prot="public" virt="non-virtual"><scope>fft</scope><name>inversePowerSpectrum</name></member>
+      <member refid="classfft_1a1d00a7e361c9a7b0ae2f596792776619" prot="public" virt="non-virtual"><scope>fft</scope><name>n</name></member>
+      <member refid="classfft_1a80fcff2920c471e0d5e3ecaa06de144f" prot="public" virt="non-virtual"><scope>fft</scope><name>out_img</name></member>
+      <member refid="classfft_1aeb3940d59a6768b357ad3be1b6556a65" prot="public" virt="non-virtual"><scope>fft</scope><name>out_real</name></member>
+      <member refid="classfft_1ad55ccfd760da58250f61101bd928d878" prot="public" virt="non-virtual"><scope>fft</scope><name>polToCart</name></member>
+      <member refid="classfft_1a90b4de8bea6e42d8de456cfc52c51e2e" prot="public" virt="non-virtual"><scope>fft</scope><name>powerSpectrum</name></member>
+      <member refid="classfft_1a85f972cbc315a441b7123239ae57372b" prot="public" virt="non-virtual"><scope>fft</scope><name>setup</name></member>
+      <member refid="classfft_1ab4531c2bdfa47ffac54bc0a85ca34e6b" prot="public" virt="non-virtual"><scope>fft</scope><name>~fft</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

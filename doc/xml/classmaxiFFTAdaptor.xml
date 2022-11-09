@@ -1,0 +1,225 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classmaxiFFTAdaptor" kind="class" language="C++" prot="public">
+    <compoundname>maxiFFTAdaptor</compoundname>
+    <basecompoundref refid="classmaxiFFT" prot="public" virt="non-virtual">maxiFFT</basecompoundref>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classmaxiFFTAdaptor_1a8b761d757e7f0f029166ccfa8ff6b647" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void maxiFFTAdaptor::setup</definition>
+        <argsstring>(int fftSize, int hopSize, int windowSize)</argsstring>
+        <name>setup</name>
+        <param>
+          <type>int</type>
+          <declname>fftSize</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>hopSize</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>windowSize</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.embind.cpp" line="689" column="6" bodyfile="/home/ck84/src/Maximilian/src/maximilian.embind.cpp" bodystart="689" bodyend="691"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiFFTAdaptor_1aac48c3047968ce9c3a3d71abb3e51995" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool maxiFFTAdaptor::process</definition>
+        <argsstring>(float value, fftModes mode=maxiFFT::WITH_POLAR_CONVERSION)</argsstring>
+        <name>process</name>
+        <param>
+          <type>float</type>
+          <declname>value</declname>
+        </param>
+        <param>
+          <type>fftModes</type>
+          <declname>mode</declname>
+          <defval>maxiFFT::WITH_POLAR_CONVERSION</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.embind.cpp" line="692" column="6" bodyfile="/home/ck84/src/Maximilian/src/maximilian.embind.cpp" bodystart="692" bodyend="692"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiFFTAdaptor_1abc431fb732e65c622a53066926522aba" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int maxiFFTAdaptor::getNumBins</definition>
+        <argsstring>()</argsstring>
+        <name>getNumBins</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.embind.cpp" line="693" column="5" bodyfile="/home/ck84/src/Maximilian/src/maximilian.embind.cpp" bodystart="693" bodyend="693"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiFFTAdaptor_1a848d588714ffd190a541d1880d86efce" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int maxiFFTAdaptor::getFFTSize</definition>
+        <argsstring>()</argsstring>
+        <name>getFFTSize</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.embind.cpp" line="694" column="7" bodyfile="/home/ck84/src/Maximilian/src/maximilian.embind.cpp" bodystart="694" bodyend="694"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiFFTAdaptor_1aefc387fe4883a287a03ac686ae1cc438" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int maxiFFTAdaptor::getHopSize</definition>
+        <argsstring>()</argsstring>
+        <name>getHopSize</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.embind.cpp" line="695" column="7" bodyfile="/home/ck84/src/Maximilian/src/maximilian.embind.cpp" bodystart="695" bodyend="695"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiFFTAdaptor_1acedcba24c9c518fd111be0f5690b2a79" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int maxiFFTAdaptor::getWindowSize</definition>
+        <argsstring>()</argsstring>
+        <name>getWindowSize</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.embind.cpp" line="696" column="7" bodyfile="/home/ck84/src/Maximilian/src/maximilian.embind.cpp" bodystart="696" bodyend="696"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiFFTAdaptor_1a9f1754c7ffa9cef5b21234256e23743f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>float</type>
+        <definition>float maxiFFTAdaptor::spectralFlatness</definition>
+        <argsstring>()</argsstring>
+        <name>spectralFlatness</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.embind.cpp" line="699" column="7" bodyfile="/home/ck84/src/Maximilian/src/maximilian.embind.cpp" bodystart="699" bodyend="699"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiFFTAdaptor_1a5ed797f65e121314f6f9ef382bf552a7" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>float</type>
+        <definition>float maxiFFTAdaptor::spectralCentroid</definition>
+        <argsstring>()</argsstring>
+        <name>spectralCentroid</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.embind.cpp" line="700" column="7" bodyfile="/home/ck84/src/Maximilian/src/maximilian.embind.cpp" bodystart="700" bodyend="700"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiFFTAdaptor_1a10c4eda09b3fa35e01107e30466ae60d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>emscripten::val</type>
+        <definition>emscripten::val maxiFFTAdaptor::getMagnitudesAsJSArray</definition>
+        <argsstring>()</argsstring>
+        <name>getMagnitudesAsJSArray</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.embind.cpp" line="703" column="17" bodyfile="/home/ck84/src/Maximilian/src/maximilian.embind.cpp" bodystart="703" bodyend="703"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiFFTAdaptor_1ab3ab5f80153ba5afdba42c0f43a90b5f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>emscripten::val</type>
+        <definition>emscripten::val maxiFFTAdaptor::getMagnitudesDBAsJSArray</definition>
+        <argsstring>()</argsstring>
+        <name>getMagnitudesDBAsJSArray</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.embind.cpp" line="704" column="19" bodyfile="/home/ck84/src/Maximilian/src/maximilian.embind.cpp" bodystart="704" bodyend="704"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiFFTAdaptor_1a5d97bc31779e6de6fb68051dab70111d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>emscripten::val</type>
+        <definition>emscripten::val maxiFFTAdaptor::getPhasesAsJSArray</definition>
+        <argsstring>()</argsstring>
+        <name>getPhasesAsJSArray</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.embind.cpp" line="705" column="19" bodyfile="/home/ck84/src/Maximilian/src/maximilian.embind.cpp" bodystart="705" bodyend="705"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>maxiFFT</label>
+        <link refid="classmaxiFFT"/>
+      </node>
+      <node id="1">
+        <label>maxiFFTAdaptor</label>
+        <link refid="classmaxiFFTAdaptor"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>maxiFFT</label>
+        <link refid="classmaxiFFT"/>
+      </node>
+      <node id="1">
+        <label>maxiFFTAdaptor</label>
+        <link refid="classmaxiFFTAdaptor"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/ck84/src/Maximilian/src/maximilian.embind.cpp" line="686" column="1" bodyfile="/home/ck84/src/Maximilian/src/maximilian.embind.cpp" bodystart="686" bodyend="706"/>
+    <listofallmembers>
+      <member refid="classmaxiFFT_1a39a78d829e4d3b9b0d8e42951c39d456" prot="public" virt="non-virtual"><scope>maxiFFTAdaptor</scope><name>fftModes</name></member>
+      <member refid="classmaxiFFTAdaptor_1a848d588714ffd190a541d1880d86efce" prot="public" virt="non-virtual"><scope>maxiFFTAdaptor</scope><name>getFFTSize</name></member>
+      <member refid="classmaxiFFTAdaptor_1aefc387fe4883a287a03ac686ae1cc438" prot="public" virt="non-virtual"><scope>maxiFFTAdaptor</scope><name>getHopSize</name></member>
+      <member refid="classmaxiFFT_1a32d82332d73d209d6800a6b98f29d075" prot="public" virt="non-virtual"><scope>maxiFFTAdaptor</scope><name>getImag</name></member>
+      <member refid="classmaxiFFT_1a8c400c8d994f93a4b5788aba89347215" prot="public" virt="non-virtual"><scope>maxiFFTAdaptor</scope><name>getMagnitudes</name></member>
+      <member refid="classmaxiFFTAdaptor_1a10c4eda09b3fa35e01107e30466ae60d" prot="public" virt="non-virtual"><scope>maxiFFTAdaptor</scope><name>getMagnitudesAsJSArray</name></member>
+      <member refid="classmaxiFFT_1a39824d97a376fd3f275a940da3cf8b49" prot="public" virt="non-virtual"><scope>maxiFFTAdaptor</scope><name>getMagnitudesDB</name></member>
+      <member refid="classmaxiFFTAdaptor_1ab3ab5f80153ba5afdba42c0f43a90b5f" prot="public" virt="non-virtual"><scope>maxiFFTAdaptor</scope><name>getMagnitudesDBAsJSArray</name></member>
+      <member refid="classmaxiFFTAdaptor_1abc431fb732e65c622a53066926522aba" prot="public" virt="non-virtual"><scope>maxiFFTAdaptor</scope><name>getNumBins</name></member>
+      <member refid="classmaxiFFT_1ab58510ccd8e335dd915ae60a144a3361" prot="public" virt="non-virtual"><scope>maxiFFTAdaptor</scope><name>getPhases</name></member>
+      <member refid="classmaxiFFTAdaptor_1a5d97bc31779e6de6fb68051dab70111d" prot="public" virt="non-virtual"><scope>maxiFFTAdaptor</scope><name>getPhasesAsJSArray</name></member>
+      <member refid="classmaxiFFT_1a9f84e4abab7b2c239790fa3e28fda187" prot="public" virt="non-virtual"><scope>maxiFFTAdaptor</scope><name>getReal</name></member>
+      <member refid="classmaxiFFTAdaptor_1acedcba24c9c518fd111be0f5690b2a79" prot="public" virt="non-virtual"><scope>maxiFFTAdaptor</scope><name>getWindowSize</name></member>
+      <member refid="classmaxiFFT_1a62758694218a17af89c554ac395e3844" prot="public" virt="non-virtual"><scope>maxiFFTAdaptor</scope><name>maxiFFT</name></member>
+      <member refid="classmaxiFFT_1a39a78d829e4d3b9b0d8e42951c39d456a4d661677b4f3e00eaa9d1028ff9e1072" prot="public" virt="non-virtual"><scope>maxiFFTAdaptor</scope><name>NO_POLAR_CONVERSION</name></member>
+      <member refid="classmaxiFFTAdaptor_1aac48c3047968ce9c3a3d71abb3e51995" prot="public" virt="non-virtual"><scope>maxiFFTAdaptor</scope><name>process</name></member>
+      <member refid="classmaxiFFTAdaptor_1a8b761d757e7f0f029166ccfa8ff6b647" prot="public" virt="non-virtual"><scope>maxiFFTAdaptor</scope><name>setup</name></member>
+      <member refid="classmaxiFFTAdaptor_1a5ed797f65e121314f6f9ef382bf552a7" prot="public" virt="non-virtual"><scope>maxiFFTAdaptor</scope><name>spectralCentroid</name></member>
+      <member refid="classmaxiFFTAdaptor_1a9f1754c7ffa9cef5b21234256e23743f" prot="public" virt="non-virtual"><scope>maxiFFTAdaptor</scope><name>spectralFlatness</name></member>
+      <member refid="classmaxiFFT_1a39a78d829e4d3b9b0d8e42951c39d456a9dd9dc94bcf79da2fce3d9973deb64fc" prot="public" virt="non-virtual"><scope>maxiFFTAdaptor</scope><name>WITH_POLAR_CONVERSION</name></member>
+      <member refid="classmaxiFFT_1ae925880ce44fb43025338a9b37f01c0c" prot="public" virt="non-virtual"><scope>maxiFFTAdaptor</scope><name>~maxiFFT</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -131,6 +131,10 @@ public:
     // }
 };
 
+/**
+ * \class A variety of oscillators
+ */
+ 
 class CHEERP_EXPORT maxiOsc
 {
 
@@ -143,20 +147,39 @@ class CHEERP_EXPORT maxiOsc
 
 public:
     maxiOsc();
+    /*!Square wave oscillator
+    \param frequency in Hz */
     double square(double frequency);
+    /*!Sine wave oscillator
+    \param frequency in Hz */
     double sinewave(double frequency);
+    /*!Cosine wave oscillator
+    \param frequency in Hz */
     double coswave(double frequency);
+    /*!Saw wave oscillator \param frequency in Hz */
     double saw(double frequency);
+    /*!A ramp rising from 0 to 1 \param frequency in Hz */
     double phasor(double frequency);
+    /*!A ramp rising from 0 to 1 \param frequency in Hz 
+    \param startPhase the start point of the phasor (0-1)
+    \param endPhase the end point of the phasor (0-1)
+    */
     double phasorBetween(double frequency, double startphase, double endphase); //renamed to avoid overrides
+    /*!Triangle oscillator \param frequency in Hz */
     double triangle(double frequency);
+    /*!Pulse wave oscillator \param frequency in Hz \param duty Pulse width (0-1)*/
     double pulse(double frequency, double duty);
+    /*!Impulse generator \param frequency in Hz */
     double impulse(double frequency);
+    /*!Fast sine wave oscillator, generated from a wavetable with linear interpolation \param frequency in Hz */
     double sinebuf(double frequency);
+    /*!White noise generator*/
     double noise();
+    /*!Fast sine wave oscillator, generated from a wavetable with quadratic interpolation \param frequency in Hz */
     double sinebuf4(double frequency);
+    /*!Anti-aliases saw wave oscillator \param frequency in Hz */
     double sawn(double frequency);
-    double rect(double frequency, double duty);
+    /*!Set the phase of the oscillator \param phaseIn The phase, from 0 to 1*/
     void phaseReset(double phaseIn);
 };
 
@@ -218,6 +241,7 @@ public:
     double dl(double input, int size, double feedback);
     double dlFromPosition(double input, int size, double feedback, int position); //renamed to avoid overrides
 };
+
 
 class CHEERP_EXPORT maxiFilter
 {

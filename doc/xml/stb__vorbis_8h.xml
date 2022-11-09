@@ -1,0 +1,1167 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="stb__vorbis_8h" kind="file" language="C++">
+    <compoundname>stb_vorbis.h</compoundname>
+    <includes local="no">stdio.h</includes>
+    <includedby refid="maximilian_8embind_8cpp" local="yes">/home/ck84/src/Maximilian/src/maximilian.embind.cpp</includedby>
+    <includedby refid="stb__vorbis_8c" local="yes">/home/ck84/src/Maximilian/src/libs/stb_vorbis.c</includedby>
+    <incdepgraph>
+      <node id="1">
+        <label>/home/ck84/src/Maximilian/src/libs/stb_vorbis.h</label>
+        <link refid="stb__vorbis_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>stdio.h</label>
+      </node>
+    </incdepgraph>
+    <innerclass refid="structstb__vorbis__alloc" prot="public">stb_vorbis_alloc</innerclass>
+    <innerclass refid="structstb__vorbis__info" prot="public">stb_vorbis_info</innerclass>
+      <sectiondef kind="enum">
+      <memberdef kind="enum" id="stb__vorbis_8h_1a2827ae29a055de005d8769ef0e0cd644" prot="public" static="no" strong="no">
+        <type></type>
+        <name>STBVorbisError</name>
+        <enumvalue id="stb__vorbis_8h_1a2827ae29a055de005d8769ef0e0cd644a8fb17b5792b1463fe7e6152195d26f19" prot="public">
+          <name>VORBIS__no_error</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="stb__vorbis_8h_1a2827ae29a055de005d8769ef0e0cd644a03255ba6dfd62d6530c8f67e8bc04861" prot="public">
+          <name>VORBIS_need_more_data</name>
+          <initializer>=1</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="stb__vorbis_8h_1a2827ae29a055de005d8769ef0e0cd644a7f6a5d2c76b796bb56bcf5f41e183dde" prot="public">
+          <name>VORBIS_invalid_api_mixing</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="stb__vorbis_8h_1a2827ae29a055de005d8769ef0e0cd644a9f9f1fc7205e4745ebe278ee6dcff5a9" prot="public">
+          <name>VORBIS_outofmem</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="stb__vorbis_8h_1a2827ae29a055de005d8769ef0e0cd644a6d4bef85b593d569b17ec5f5eef8eccc" prot="public">
+          <name>VORBIS_feature_not_supported</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="stb__vorbis_8h_1a2827ae29a055de005d8769ef0e0cd644a5d8a45ddaddf102b73c40a1857826159" prot="public">
+          <name>VORBIS_too_many_channels</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="stb__vorbis_8h_1a2827ae29a055de005d8769ef0e0cd644aba12de4c5865bae04137ac7ddd5a9830" prot="public">
+          <name>VORBIS_file_open_failure</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="stb__vorbis_8h_1a2827ae29a055de005d8769ef0e0cd644a02fb188ec8eab3d98b0d804110a3afe1" prot="public">
+          <name>VORBIS_seek_without_length</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="stb__vorbis_8h_1a2827ae29a055de005d8769ef0e0cd644a27dd0deb7a2b9c1b4904e0a74ee2dbff" prot="public">
+          <name>VORBIS_unexpected_eof</name>
+          <initializer>=10</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="stb__vorbis_8h_1a2827ae29a055de005d8769ef0e0cd644a4a1160dd71b457811cb9d8d6ee0c37a6" prot="public">
+          <name>VORBIS_seek_invalid</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="stb__vorbis_8h_1a2827ae29a055de005d8769ef0e0cd644a72bb5f27569f3e6b64ccd6ef10abe242" prot="public">
+          <name>VORBIS_invalid_setup</name>
+          <initializer>=20</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="stb__vorbis_8h_1a2827ae29a055de005d8769ef0e0cd644ab391db45d817609255602c76b2ccf0c1" prot="public">
+          <name>VORBIS_invalid_stream</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="stb__vorbis_8h_1a2827ae29a055de005d8769ef0e0cd644a399244ebaba15c4c7fedfd8e7231adb0" prot="public">
+          <name>VORBIS_missing_capture_pattern</name>
+          <initializer>=30</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="stb__vorbis_8h_1a2827ae29a055de005d8769ef0e0cd644ad88a7e313975aa9bf140e4a8db5f5e53" prot="public">
+          <name>VORBIS_invalid_stream_structure_version</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="stb__vorbis_8h_1a2827ae29a055de005d8769ef0e0cd644a3b2e936724f1ac37d491b06325163d8b" prot="public">
+          <name>VORBIS_continued_packet_flag_invalid</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="stb__vorbis_8h_1a2827ae29a055de005d8769ef0e0cd644a295f6c7912e05a89ceb1a217d6705369" prot="public">
+          <name>VORBIS_incorrect_stream_serial_number</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="stb__vorbis_8h_1a2827ae29a055de005d8769ef0e0cd644a09cab39192d56d72b8ad2fb334593775" prot="public">
+          <name>VORBIS_invalid_first_page</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="stb__vorbis_8h_1a2827ae29a055de005d8769ef0e0cd644a07706341bbd7190ea2909e79d1922798" prot="public">
+          <name>VORBIS_bad_packet_type</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="stb__vorbis_8h_1a2827ae29a055de005d8769ef0e0cd644a555029d9dbfc200a2e5bd155089eb30c" prot="public">
+          <name>VORBIS_cant_find_last_page</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="stb__vorbis_8h_1a2827ae29a055de005d8769ef0e0cd644a08640b74e73325d965e69da1a2752c7a" prot="public">
+          <name>VORBIS_seek_failed</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.h" line="295" column="5" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.h" bodystart="296" bodyend="327"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="typedef">
+      <memberdef kind="typedef" id="stb__vorbis_8h_1ac67810bd2e7c1a2590015ef0ed708930" prot="public" static="no">
+        <type>struct <ref refid="structstb__vorbis" kindref="compound">stb_vorbis</ref></type>
+        <definition>typedef struct stb_vorbis stb_vorbis</definition>
+        <argsstring></argsstring>
+        <name>stb_vorbis</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.h" line="1" column="0" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.h" bodystart="69" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="stb__vorbis_8h_1a3a3b2986c40459438b26b2cf7747c171" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structstb__vorbis__info" kindref="compound">stb_vorbis_info</ref></type>
+        <definition>stb_vorbis_info stb_vorbis_get_info</definition>
+        <argsstring>(stb_vorbis *f)</argsstring>
+        <name>stb_vorbis_get_info</name>
+        <param>
+          <type><ref refid="structstb__vorbis" kindref="compound">stb_vorbis</ref> *</type>
+          <declname>f</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.h" line="84" column="28" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="3858" bodyend="3868" declfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.h" declline="84" declcolumn="28"/>
+      </memberdef>
+      <memberdef kind="function" id="stb__vorbis_8h_1abc16af7813a3c8320ff4dd5dd215cd0a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int stb_vorbis_get_error</definition>
+        <argsstring>(stb_vorbis *f)</argsstring>
+        <name>stb_vorbis_get_error</name>
+        <param>
+          <type><ref refid="structstb__vorbis" kindref="compound">stb_vorbis</ref> *</type>
+          <declname>f</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.h" line="87" column="16" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="3870" bodyend="3875" declfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.h" declline="87" declcolumn="16"/>
+      </memberdef>
+      <memberdef kind="function" id="stb__vorbis_8h_1ac4dca2244a6db648d2e6f3cbf6961e3e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void stb_vorbis_close</definition>
+        <argsstring>(stb_vorbis *f)</argsstring>
+        <name>stb_vorbis_close</name>
+        <param>
+          <type><ref refid="structstb__vorbis" kindref="compound">stb_vorbis</ref> *</type>
+          <declname>f</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.h" line="90" column="17" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="3824" bodyend="3829" declfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.h" declline="90" declcolumn="17"/>
+      </memberdef>
+      <memberdef kind="function" id="stb__vorbis_8h_1a9b01e61138433dce092f334f2a449b4f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int stb_vorbis_get_sample_offset</definition>
+        <argsstring>(stb_vorbis *f)</argsstring>
+        <name>stb_vorbis_get_sample_offset</name>
+        <param>
+          <type><ref refid="structstb__vorbis" kindref="compound">stb_vorbis</ref> *</type>
+          <declname>f</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.h" line="97" column="16" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="3850" bodyend="3856" declfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.h" declline="97" declcolumn="16"/>
+      </memberdef>
+      <memberdef kind="function" id="stb__vorbis_8h_1a91bf63ae7792007878687351cc9eb02b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>unsigned int</type>
+        <definition>unsigned int stb_vorbis_get_file_offset</definition>
+        <argsstring>(stb_vorbis *f)</argsstring>
+        <name>stb_vorbis_get_file_offset</name>
+        <param>
+          <type><ref refid="structstb__vorbis" kindref="compound">stb_vorbis</ref> *</type>
+          <declname>f</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.h" line="101" column="25" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="4088" bodyend="4097" declfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.h" declline="101" declcolumn="25"/>
+      </memberdef>
+      <memberdef kind="function" id="stb__vorbis_8h_1a3c36d29a36988e37fbb3f87308a0cb89" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structstb__vorbis" kindref="compound">stb_vorbis</ref> *</type>
+        <definition>stb_vorbis* stb_vorbis_open_pushdata</definition>
+        <argsstring>(unsigned char *datablock, int datablock_length_in_bytes, int *datablock_memory_consumed_in_bytes, int *error, stb_vorbis_alloc *alloc_buffer)</argsstring>
+        <name>stb_vorbis_open_pushdata</name>
+        <param>
+          <type>unsigned char *</type>
+          <declname>datablock</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>datablock_length_in_bytes</declname>
+        </param>
+        <param>
+          <type>int *</type>
+          <declname>datablock_memory_consumed_in_bytes</declname>
+        </param>
+        <param>
+          <type>int *</type>
+          <declname>error</declname>
+        </param>
+        <param>
+          <type><ref refid="structstb__vorbis__alloc" kindref="compound">stb_vorbis_alloc</ref> *</type>
+          <declname>alloc_buffer</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.h" line="114" column="23" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="4058" bodyend="4085" declfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.h" declline="114" declcolumn="23"/>
+      </memberdef>
+      <memberdef kind="function" id="stb__vorbis_8h_1a8e97c7630aacaf9e3f7ce8591741c544" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int stb_vorbis_decode_frame_pushdata</definition>
+        <argsstring>(stb_vorbis *f, unsigned char *datablock, int datablock_length_in_bytes, int *channels, float ***output, int *samples)</argsstring>
+        <name>stb_vorbis_decode_frame_pushdata</name>
+        <param>
+          <type><ref refid="structstb__vorbis" kindref="compound">stb_vorbis</ref> *</type>
+          <declname>f</declname>
+        </param>
+        <param>
+          <type>unsigned char *</type>
+          <declname>datablock</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>datablock_length_in_bytes</declname>
+        </param>
+        <param>
+          <type>int *</type>
+          <declname>channels</declname>
+        </param>
+        <param>
+          <type>float ***</type>
+          <declname>output</declname>
+        </param>
+        <param>
+          <type>int *</type>
+          <declname>samples</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.h" line="128" column="16" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="3988" bodyend="4056" declfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.h" declline="128" declcolumn="16"/>
+      </memberdef>
+      <memberdef kind="function" id="stb__vorbis_8h_1a30e9bdeec5be888c7b5090415e7dce42" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void stb_vorbis_flush_pushdata</definition>
+        <argsstring>(stb_vorbis *f)</argsstring>
+        <name>stb_vorbis_flush_pushdata</name>
+        <param>
+          <type><ref refid="structstb__vorbis" kindref="compound">stb_vorbis</ref> *</type>
+          <declname>f</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.h" line="156" column="17" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="3885" bodyend="3895" declfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.h" declline="156" declcolumn="17"/>
+      </memberdef>
+      <memberdef kind="function" id="stb__vorbis_8h_1a9d1f2b0d0fadfc03203846f4ad974b76" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int stb_vorbis_decode_filename</definition>
+        <argsstring>(char *filename, int *channels, short **output)</argsstring>
+        <name>stb_vorbis_decode_filename</name>
+        <param>
+          <type>char *</type>
+          <declname>filename</declname>
+        </param>
+        <param>
+          <type>int *</type>
+          <declname>channels</declname>
+        </param>
+        <param>
+          <type>short **</type>
+          <declname>output</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.h" line="181" column="16" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="4926" bodyend="4960" declfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.h" declline="181" declcolumn="16"/>
+      </memberdef>
+      <memberdef kind="function" id="stb__vorbis_8h_1a605407fa13644dc1938fe62cdd0e0801" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int stb_vorbis_decode_memory</definition>
+        <argsstring>(unsigned char *mem, int len, int *channels, short **output)</argsstring>
+        <name>stb_vorbis_decode_memory</name>
+        <param>
+          <type>unsigned char *</type>
+          <declname>mem</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>len</declname>
+        </param>
+        <param>
+          <type>int *</type>
+          <declname>channels</declname>
+        </param>
+        <param>
+          <type>short **</type>
+          <declname>output</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.h" line="183" column="16" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="4963" bodyend="4997" declfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.h" declline="183" declcolumn="16"/>
+      </memberdef>
+      <memberdef kind="function" id="stb__vorbis_8h_1a079ad38909791e6e3a3e2597b9d9f7ca" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structstb__vorbis" kindref="compound">stb_vorbis</ref> *</type>
+        <definition>stb_vorbis* stb_vorbis_open_memory</definition>
+        <argsstring>(unsigned char *data, int len, int *error, stb_vorbis_alloc *alloc_buffer)</argsstring>
+        <name>stb_vorbis_open_memory</name>
+        <param>
+          <type>unsigned char *</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>len</declname>
+        </param>
+        <param>
+          <type>int *</type>
+          <declname>error</declname>
+        </param>
+        <param>
+          <type><ref refid="structstb__vorbis__alloc" kindref="compound">stb_vorbis_alloc</ref> *</type>
+          <declname>alloc_buffer</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.h" line="189" column="24" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="4680" bodyend="4701" declfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.h" declline="189" declcolumn="24"/>
+      </memberdef>
+      <memberdef kind="function" id="stb__vorbis_8h_1a1050743a1a95de2e1f7a64fdb09fa079" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structstb__vorbis" kindref="compound">stb_vorbis</ref> *</type>
+        <definition>stb_vorbis* stb_vorbis_open_filename</definition>
+        <argsstring>(char *filename, int *error, stb_vorbis_alloc *alloc_buffer)</argsstring>
+        <name>stb_vorbis_open_filename</name>
+        <param>
+          <type>char *</type>
+          <declname>filename</declname>
+        </param>
+        <param>
+          <type>int *</type>
+          <declname>error</declname>
+        </param>
+        <param>
+          <type><ref refid="structstb__vorbis__alloc" kindref="compound">stb_vorbis_alloc</ref> *</type>
+          <declname>alloc_buffer</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.h" line="195" column="24" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="4670" bodyend="4677" declfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.h" declline="195" declcolumn="24"/>
+      </memberdef>
+      <memberdef kind="function" id="stb__vorbis_8h_1ad91469bbdcf66b4a3f924f50ba576f73" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structstb__vorbis" kindref="compound">stb_vorbis</ref> *</type>
+        <definition>stb_vorbis* stb_vorbis_open_file</definition>
+        <argsstring>(FILE *f, int close_handle_on_close, int *error, stb_vorbis_alloc *alloc_buffer)</argsstring>
+        <name>stb_vorbis_open_file</name>
+        <param>
+          <type>FILE *</type>
+          <declname>f</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>close_handle_on_close</declname>
+        </param>
+        <param>
+          <type>int *</type>
+          <declname>error</declname>
+        </param>
+        <param>
+          <type><ref refid="structstb__vorbis__alloc" kindref="compound">stb_vorbis_alloc</ref> *</type>
+          <declname>alloc_buffer</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.h" line="200" column="24" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="4660" bodyend="4668" declfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.h" declline="200" declcolumn="24"/>
+      </memberdef>
+      <memberdef kind="function" id="stb__vorbis_8h_1afa552af2d07514429338783685f9fa71" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structstb__vorbis" kindref="compound">stb_vorbis</ref> *</type>
+        <definition>stb_vorbis* stb_vorbis_open_file_section</definition>
+        <argsstring>(FILE *f, int close_handle_on_close, int *error, stb_vorbis_alloc *alloc_buffer, unsigned int len)</argsstring>
+        <name>stb_vorbis_open_file_section</name>
+        <param>
+          <type>FILE *</type>
+          <declname>f</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>close_handle_on_close</declname>
+        </param>
+        <param>
+          <type>int *</type>
+          <declname>error</declname>
+        </param>
+        <param>
+          <type><ref refid="structstb__vorbis__alloc" kindref="compound">stb_vorbis_alloc</ref> *</type>
+          <declname>alloc_buffer</declname>
+        </param>
+        <param>
+          <type>unsigned int</type>
+          <declname>len</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.h" line="210" column="24" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="4639" bodyend="4658" declfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.h" declline="210" declcolumn="24"/>
+      </memberdef>
+      <memberdef kind="function" id="stb__vorbis_8h_1a4c9ff20e01e6270e9cc3bf58f3248ef0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int stb_vorbis_seek_frame</definition>
+        <argsstring>(stb_vorbis *f, unsigned int sample_number)</argsstring>
+        <name>stb_vorbis_seek_frame</name>
+        <param>
+          <type><ref refid="structstb__vorbis" kindref="compound">stb_vorbis</ref> *</type>
+          <declname>f</declname>
+        </param>
+        <param>
+          <type>unsigned int</type>
+          <declname>sample_number</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.h" line="219" column="16" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="4511" bodyend="4514" declfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.h" declline="219" declcolumn="16"/>
+      </memberdef>
+      <memberdef kind="function" id="stb__vorbis_8h_1a2a1f6add009ac3e63ed57cabf9941566" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int stb_vorbis_seek</definition>
+        <argsstring>(stb_vorbis *f, unsigned int sample_number)</argsstring>
+        <name>stb_vorbis_seek</name>
+        <param>
+          <type><ref refid="structstb__vorbis" kindref="compound">stb_vorbis</ref> *</type>
+          <declname>f</declname>
+        </param>
+        <param>
+          <type>unsigned int</type>
+          <declname>sample_number</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.h" line="220" column="16" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="4516" bodyend="4519" declfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.h" declline="220" declcolumn="16"/>
+      </memberdef>
+      <memberdef kind="function" id="stb__vorbis_8h_1a080790a3dd3799c2907dc3e6af98b859" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void stb_vorbis_seek_start</definition>
+        <argsstring>(stb_vorbis *f)</argsstring>
+        <name>stb_vorbis_seek_start</name>
+        <param>
+          <type><ref refid="structstb__vorbis" kindref="compound">stb_vorbis</ref> *</type>
+          <declname>f</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.h" line="229" column="17" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="4521" bodyend="4529" declfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.h" declline="229" declcolumn="17"/>
+      </memberdef>
+      <memberdef kind="function" id="stb__vorbis_8h_1adb847e190ac0976bb84d78e00b8048b0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>unsigned int</type>
+        <definition>unsigned int stb_vorbis_stream_length_in_samples</definition>
+        <argsstring>(stb_vorbis *f)</argsstring>
+        <name>stb_vorbis_stream_length_in_samples</name>
+        <param>
+          <type><ref refid="structstb__vorbis" kindref="compound">stb_vorbis</ref> *</type>
+          <declname>f</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.h" line="233" column="25" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="4531" bodyend="4606" declfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.h" declline="233" declcolumn="25"/>
+      </memberdef>
+      <memberdef kind="function" id="stb__vorbis_8h_1a083b951dcf8c73812332bf2034de412b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>float</type>
+        <definition>float stb_vorbis_stream_length_in_seconds</definition>
+        <argsstring>(stb_vorbis *f)</argsstring>
+        <name>stb_vorbis_stream_length_in_seconds</name>
+        <param>
+          <type><ref refid="structstb__vorbis" kindref="compound">stb_vorbis</ref> *</type>
+          <declname>f</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.h" line="234" column="25" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="4608" bodyend="4611" declfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.h" declline="234" declcolumn="25"/>
+      </memberdef>
+      <memberdef kind="function" id="stb__vorbis_8h_1a3b2691d598485e0c5e1b4ac56173a0ce" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int stb_vorbis_get_frame_float</definition>
+        <argsstring>(stb_vorbis *f, int *channels, float ***output)</argsstring>
+        <name>stb_vorbis_get_frame_float</name>
+        <param>
+          <type><ref refid="structstb__vorbis" kindref="compound">stb_vorbis</ref> *</type>
+          <declname>f</declname>
+        </param>
+        <param>
+          <type>int *</type>
+          <declname>channels</declname>
+        </param>
+        <param>
+          <type>float ***</type>
+          <declname>output</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.h" line="237" column="16" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="4615" bodyend="4635" declfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.h" declline="237" declcolumn="16"/>
+      </memberdef>
+      <memberdef kind="function" id="stb__vorbis_8h_1a585f1c5ea5ca33d961891b8f5a1574a4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int stb_vorbis_get_frame_short_interleaved</definition>
+        <argsstring>(stb_vorbis *f, int num_c, short *buffer, int num_shorts)</argsstring>
+        <name>stb_vorbis_get_frame_short_interleaved</name>
+        <param>
+          <type><ref refid="structstb__vorbis" kindref="compound">stb_vorbis</ref> *</type>
+          <declname>f</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>num_c</declname>
+        </param>
+        <param>
+          <type>short *</type>
+          <declname>buffer</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>num_shorts</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.h" line="248" column="16" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="4872" bodyend="4883" declfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.h" declline="248" declcolumn="16"/>
+      </memberdef>
+      <memberdef kind="function" id="stb__vorbis_8h_1a2887b05a26e310a9c5e370b2ab30fbae" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int stb_vorbis_get_frame_short</definition>
+        <argsstring>(stb_vorbis *f, int num_c, short **buffer, int num_samples)</argsstring>
+        <name>stb_vorbis_get_frame_short</name>
+        <param>
+          <type><ref refid="structstb__vorbis" kindref="compound">stb_vorbis</ref> *</type>
+          <declname>f</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>num_c</declname>
+        </param>
+        <param>
+          <type>short **</type>
+          <declname>buffer</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>num_samples</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.h" line="249" column="16" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="4836" bodyend="4844" declfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.h" declline="249" declcolumn="16"/>
+      </memberdef>
+      <memberdef kind="function" id="stb__vorbis_8h_1a5117081109b12a483b44bb395be8ead7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int stb_vorbis_get_samples_float_interleaved</definition>
+        <argsstring>(stb_vorbis *f, int channels, float *buffer, int num_floats)</argsstring>
+        <name>stb_vorbis_get_samples_float_interleaved</name>
+        <param>
+          <type><ref refid="structstb__vorbis" kindref="compound">stb_vorbis</ref> *</type>
+          <declname>f</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>channels</declname>
+        </param>
+        <param>
+          <type>float *</type>
+          <declname>buffer</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>num_floats</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.h" line="274" column="16" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="5000" bodyend="5023" declfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.h" declline="274" declcolumn="16"/>
+      </memberdef>
+      <memberdef kind="function" id="stb__vorbis_8h_1a35ba8d6c02ebe1de4741d2603b554de6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int stb_vorbis_get_samples_float</definition>
+        <argsstring>(stb_vorbis *f, int channels, float **buffer, int num_samples)</argsstring>
+        <name>stb_vorbis_get_samples_float</name>
+        <param>
+          <type><ref refid="structstb__vorbis" kindref="compound">stb_vorbis</ref> *</type>
+          <declname>f</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>channels</declname>
+        </param>
+        <param>
+          <type>float **</type>
+          <declname>buffer</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>num_samples</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.h" line="275" column="16" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="5025" bodyend="5047" declfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.h" declline="275" declcolumn="16"/>
+      </memberdef>
+      <memberdef kind="function" id="stb__vorbis_8h_1ade776d535501af37f599e05ff289f3fe" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int stb_vorbis_get_samples_short_interleaved</definition>
+        <argsstring>(stb_vorbis *f, int channels, short *buffer, int num_shorts)</argsstring>
+        <name>stb_vorbis_get_samples_short_interleaved</name>
+        <param>
+          <type><ref refid="structstb__vorbis" kindref="compound">stb_vorbis</ref> *</type>
+          <declname>f</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>channels</declname>
+        </param>
+        <param>
+          <type>short *</type>
+          <declname>buffer</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>num_shorts</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.h" line="282" column="16" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="4885" bodyend="4904" declfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.h" declline="282" declcolumn="16"/>
+      </memberdef>
+      <memberdef kind="function" id="stb__vorbis_8h_1a871c4b38fe90aa7f7dd26ecc1fc93a3b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int stb_vorbis_get_samples_short</definition>
+        <argsstring>(stb_vorbis *f, int channels, short **buffer, int num_samples)</argsstring>
+        <name>stb_vorbis_get_samples_short</name>
+        <param>
+          <type><ref refid="structstb__vorbis" kindref="compound">stb_vorbis</ref> *</type>
+          <declname>f</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>channels</declname>
+        </param>
+        <param>
+          <type>short **</type>
+          <declname>buffer</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>num_samples</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.h" line="283" column="16" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="4906" bodyend="4923" declfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.h" declline="283" declcolumn="16"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/>stb_vorbis.h</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/>oggdecode</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/>Created<sp/>by<sp/>Michael<sp/>Grierson<sp/>on<sp/>04/04/2012.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/>Copyright<sp/>(c)<sp/>2012<sp/>goldsmiths<sp/>college.<sp/>All<sp/>rights<sp/>reserved.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/>HEADER<sp/>BEGINS<sp/>HERE</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>STB_VORBIS_INCLUDE_STB_VORBIS_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>STB_VORBIS_INCLUDE_STB_VORBIS_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>defined(STB_VORBIS_NO_CRT)<sp/>&amp;&amp;<sp/>!defined(STB_VORBIS_NO_STDIO)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>STB_VORBIS_NO_STDIO<sp/>1</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>STB_VORBIS_NO_STDIO</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdio.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;C&quot;</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Individual<sp/>stb_vorbis*<sp/>handles<sp/>are<sp/>not<sp/>thread-safe;<sp/>you<sp/>cannot<sp/>decode<sp/>from</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>them<sp/>from<sp/>multiple<sp/>threads<sp/>at<sp/>the<sp/>same<sp/>time.<sp/>However,<sp/>you<sp/>can<sp/>have<sp/>multiple</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>stb_vorbis*<sp/>handles<sp/>and<sp/>decode<sp/>from<sp/>them<sp/>independently<sp/>in<sp/>multiple<sp/>thrads.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>normally<sp/>stb_vorbis<sp/>uses<sp/>malloc()<sp/>to<sp/>allocate<sp/>memory<sp/>at<sp/>startup,</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>and<sp/>alloca()<sp/>to<sp/>allocate<sp/>temporary<sp/>memory<sp/>during<sp/>a<sp/>frame<sp/>on<sp/>the</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>stack.<sp/>(Memory<sp/>consumption<sp/>will<sp/>depend<sp/>on<sp/>the<sp/>amount<sp/>of<sp/>setup</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>data<sp/>in<sp/>the<sp/>file<sp/>and<sp/>how<sp/>you<sp/>set<sp/>the<sp/>compile<sp/>flags<sp/>for<sp/>speed</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>vs.<sp/>size.<sp/>In<sp/>my<sp/>test<sp/>files<sp/>the<sp/>maximal-size<sp/>usage<sp/>is<sp/>~150KB.)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>You<sp/>can<sp/>modify<sp/>the<sp/>wrapper<sp/>functions<sp/>in<sp/>the<sp/>source<sp/>(setup_malloc,</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>setup_temp_malloc,<sp/>temp_malloc)<sp/>to<sp/>change<sp/>this<sp/>behavior,<sp/>or<sp/>you</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>can<sp/>use<sp/>a<sp/>simpler<sp/>allocation<sp/>model:<sp/>you<sp/>pass<sp/>in<sp/>a<sp/>buffer<sp/>from</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>which<sp/>stb_vorbis<sp/>will<sp/>allocate<sp/>_all_<sp/>its<sp/>memory<sp/>(including<sp/>the</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>temp<sp/>memory).<sp/>&quot;open&quot;<sp/>may<sp/>fail<sp/>with<sp/>a<sp/>VORBIS_outofmem<sp/>if<sp/>you</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>do<sp/>not<sp/>pass<sp/>in<sp/>enough<sp/>data;<sp/>there<sp/>is<sp/>no<sp/>way<sp/>to<sp/>determine<sp/>how</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>much<sp/>you<sp/>do<sp/>need<sp/>except<sp/>to<sp/>succeed<sp/>(at<sp/>which<sp/>point<sp/>you<sp/>can</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>query<sp/>get_info<sp/>to<sp/>find<sp/>the<sp/>exact<sp/>amount<sp/>required.<sp/>yes<sp/>I<sp/>know</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>this<sp/>is<sp/>lame).</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>If<sp/>you<sp/>pass<sp/>in<sp/>a<sp/>non-NULL<sp/>buffer<sp/>of<sp/>the<sp/>type<sp/>below,<sp/>allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>will<sp/>occur<sp/>from<sp/>it<sp/>as<sp/>described<sp/>above.<sp/>Otherwise<sp/>just<sp/>pass<sp/>NULL</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>to<sp/>use<sp/>malloc()/alloca()</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="59"><highlight class="normal"></highlight></codeline>
+<codeline lineno="60" refid="structstb__vorbis__alloc" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*alloc_buffer;</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/>alloc_buffer_length_in_bytes;</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/>}<sp/><ref refid="structstb__vorbis__alloc" kindref="compound">stb_vorbis_alloc</ref>;</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"></highlight></codeline>
+<codeline lineno="66"><highlight class="normal"></highlight></codeline>
+<codeline lineno="68"><highlight class="normal"></highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structstb__vorbis" kindref="compound">stb_vorbis</ref><sp/><ref refid="structstb__vorbis" kindref="compound">stb_vorbis</ref>;</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"></highlight></codeline>
+<codeline lineno="71" refid="structstb__vorbis__info" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>sample_rate;</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>channels;</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"></highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>setup_memory_required;</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>setup_temp_memory_required;</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>temp_memory_required;</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"></highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>max_frame_size;</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/>}<sp/><ref refid="structstb__vorbis__info" kindref="compound">stb_vorbis_info</ref>;</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"></highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>get<sp/>general<sp/>information<sp/>about<sp/>the<sp/>file</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/><ref refid="structstb__vorbis__info" kindref="compound">stb_vorbis_info</ref><sp/>stb_vorbis_get_info(<ref refid="structstb__vorbis" kindref="compound">stb_vorbis</ref><sp/>*f);</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"></highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>get<sp/>the<sp/>last<sp/>error<sp/>detected<sp/>(clears<sp/>it,<sp/>too)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>stb_vorbis_get_error(<ref refid="structstb__vorbis" kindref="compound">stb_vorbis</ref><sp/>*f);</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"></highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>close<sp/>an<sp/>ogg<sp/>vorbis<sp/>file<sp/>and<sp/>free<sp/>all<sp/>memory<sp/>in<sp/>use</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>stb_vorbis_close(<ref refid="structstb__vorbis" kindref="compound">stb_vorbis</ref><sp/>*f);</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"></highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>this<sp/>function<sp/>returns<sp/>the<sp/>offset<sp/>(in<sp/>samples)<sp/>from<sp/>the<sp/>beginning<sp/>of<sp/>the</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>file<sp/>that<sp/>will<sp/>be<sp/>returned<sp/>by<sp/>the<sp/>next<sp/>decode,<sp/>if<sp/>it<sp/>is<sp/>known,<sp/>or<sp/>-1</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>otherwise.<sp/>after<sp/>a<sp/>flush_pushdata()<sp/>call,<sp/>this<sp/>may<sp/>take<sp/>a<sp/>while<sp/>before</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>it<sp/>becomes<sp/>valid<sp/>again.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>NOT<sp/>WORKING<sp/>YET<sp/>after<sp/>a<sp/>seek<sp/>with<sp/>PULLDATA<sp/>API</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>stb_vorbis_get_sample_offset(<ref refid="structstb__vorbis" kindref="compound">stb_vorbis</ref><sp/>*f);</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"></highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>returns<sp/>the<sp/>current<sp/>seek<sp/>point<sp/>within<sp/>the<sp/>file,<sp/>or<sp/>offset<sp/>from<sp/>the<sp/>beginning</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>of<sp/>the<sp/>memory<sp/>buffer.<sp/>In<sp/>pushdata<sp/>mode<sp/>it<sp/>returns<sp/>0.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>stb_vorbis_get_file_offset(<ref refid="structstb__vorbis" kindref="compound">stb_vorbis</ref><sp/>*f);</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"></highlight></codeline>
+<codeline lineno="104"><highlight class="normal"></highlight></codeline>
+<codeline lineno="105"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>STB_VORBIS_NO_PUSHDATA_API</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="106"><highlight class="normal"></highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>this<sp/>API<sp/>allows<sp/>you<sp/>to<sp/>get<sp/>blocks<sp/>of<sp/>data<sp/>from<sp/>any<sp/>source<sp/>and<sp/>hand</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>them<sp/>to<sp/>stb_vorbis.<sp/>you<sp/>have<sp/>to<sp/>buffer<sp/>them;<sp/>stb_vorbis<sp/>will<sp/>tell</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>you<sp/>how<sp/>much<sp/>it<sp/>used,<sp/>and<sp/>you<sp/>have<sp/>to<sp/>give<sp/>it<sp/>the<sp/>rest<sp/>next<sp/>time;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>and<sp/>stb_vorbis<sp/>may<sp/>not<sp/>have<sp/>enough<sp/>data<sp/>to<sp/>work<sp/>with<sp/>and<sp/>you<sp/>will</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>need<sp/>to<sp/>give<sp/>it<sp/>the<sp/>same<sp/>data<sp/>again<sp/>PLUS<sp/>more.<sp/>Note<sp/>that<sp/>the<sp/>Vorbis</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>specification<sp/>does<sp/>not<sp/>bound<sp/>the<sp/>size<sp/>of<sp/>an<sp/>individual<sp/>frame.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="113"><highlight class="normal"></highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/><ref refid="structstb__vorbis" kindref="compound">stb_vorbis</ref><sp/>*stb_vorbis_open_pushdata(</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*datablock,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>datablock_length_in_bytes,</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>*datablock_memory_consumed_in_bytes,</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>*error,</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structstb__vorbis__alloc" kindref="compound">stb_vorbis_alloc</ref><sp/>*alloc_buffer);</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>create<sp/>a<sp/>vorbis<sp/>decoder<sp/>by<sp/>passing<sp/>in<sp/>the<sp/>initial<sp/>data<sp/>block<sp/>containing</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/>the<sp/>ogg&amp;vorbis<sp/>headers<sp/>(you<sp/>don&apos;t<sp/>need<sp/>to<sp/>do<sp/>parse<sp/>them,<sp/>just<sp/>provide</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/>the<sp/>first<sp/>N<sp/>bytes<sp/>of<sp/>the<sp/>file--you&apos;re<sp/>told<sp/>if<sp/>it&apos;s<sp/>not<sp/>enough,<sp/>see<sp/>below)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>on<sp/>success,<sp/>returns<sp/>an<sp/>stb_vorbis<sp/>*,<sp/>does<sp/>not<sp/>set<sp/>error,<sp/>returns<sp/>the<sp/>amount<sp/>of</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/>data<sp/>parsed/consumed<sp/>on<sp/>this<sp/>call<sp/>in<sp/>*datablock_memory_consumed_in_bytes;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>on<sp/>failure,<sp/>returns<sp/>NULL<sp/>on<sp/>error<sp/>and<sp/>sets<sp/>*error,<sp/>does<sp/>not<sp/>change<sp/>*datablock_memory_consumed</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>if<sp/>returns<sp/>NULL<sp/>and<sp/>*error<sp/>is<sp/>VORBIS_need_more_data,<sp/>then<sp/>the<sp/>input<sp/>block<sp/>was</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/><sp/><sp/>incomplete<sp/>and<sp/>you<sp/>need<sp/>to<sp/>pass<sp/>in<sp/>a<sp/>larger<sp/>block<sp/>from<sp/>the<sp/>start<sp/>of<sp/>the<sp/>file</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="127"><highlight class="normal"></highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>stb_vorbis_decode_frame_pushdata(</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structstb__vorbis" kindref="compound">stb_vorbis</ref><sp/>*f,<sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*datablock,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>datablock_length_in_bytes,</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>*channels,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>place<sp/>to<sp/>write<sp/>number<sp/>of<sp/>float<sp/>*<sp/>buffers</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>***output,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>place<sp/>to<sp/>write<sp/>float<sp/>**<sp/>array<sp/>of<sp/>float<sp/>*<sp/>buffers</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="132"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>*samples<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>place<sp/>to<sp/>write<sp/>number<sp/>of<sp/>output<sp/>samples</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>);</highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>decode<sp/>a<sp/>frame<sp/>of<sp/>audio<sp/>sample<sp/>data<sp/>if<sp/>possible<sp/>from<sp/>the<sp/>passed-in<sp/>data<sp/>block</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>return<sp/>value:<sp/>number<sp/>of<sp/>bytes<sp/>we<sp/>used<sp/>from<sp/>datablock</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>possible<sp/>cases:</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/>0<sp/>bytes<sp/>used,<sp/>0<sp/>samples<sp/>output<sp/>(need<sp/>more<sp/>data)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="139"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/>N<sp/>bytes<sp/>used,<sp/>0<sp/>samples<sp/>output<sp/>(resynching<sp/>the<sp/>stream,<sp/>keep<sp/>going)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="140"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/>N<sp/>bytes<sp/>used,<sp/>M<sp/>samples<sp/>output<sp/>(one<sp/>frame<sp/>of<sp/>data)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="141"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>note<sp/>that<sp/>after<sp/>opening<sp/>a<sp/>file,<sp/>you<sp/>will<sp/>ALWAYS<sp/>get<sp/>one<sp/>N-bytes,0-sample</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="142"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>frame,<sp/>because<sp/>Vorbis<sp/>always<sp/>&quot;discards&quot;<sp/>the<sp/>first<sp/>frame.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="143"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="144"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Note<sp/>that<sp/>on<sp/>resynch,<sp/>stb_vorbis<sp/>will<sp/>rarely<sp/>consume<sp/>all<sp/>of<sp/>the<sp/>buffer,</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="145"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>instead<sp/>only<sp/>datablock_length_in_bytes-3<sp/>or<sp/>less.<sp/>This<sp/>is<sp/>because<sp/>it<sp/>wants</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="146"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>to<sp/>avoid<sp/>missing<sp/>parts<sp/>of<sp/>a<sp/>page<sp/>header<sp/>if<sp/>they<sp/>cross<sp/>a<sp/>datablock<sp/>boundary,</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="147"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>without<sp/>writing<sp/>state-machiney<sp/>code<sp/>to<sp/>record<sp/>a<sp/>partial<sp/>detection.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="148"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="149"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>The<sp/>number<sp/>of<sp/>channels<sp/>returned<sp/>are<sp/>stored<sp/>in<sp/>*channels<sp/>(which<sp/>can<sp/>be</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="150"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>NULL--it<sp/>is<sp/>always<sp/>the<sp/>same<sp/>as<sp/>the<sp/>number<sp/>of<sp/>channels<sp/>reported<sp/>by</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="151"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>get_info).<sp/>*output<sp/>will<sp/>contain<sp/>an<sp/>array<sp/>of<sp/>float*<sp/>buffers,<sp/>one<sp/>per</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="152"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>channel.<sp/>In<sp/>other<sp/>words,<sp/>(*output)[0][0]<sp/>contains<sp/>the<sp/>first<sp/>sample<sp/>from</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="153"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>the<sp/>first<sp/>channel,<sp/>and<sp/>(*output)[1][0]<sp/>contains<sp/>the<sp/>first<sp/>sample<sp/>from</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="154"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>the<sp/>second<sp/>channel.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="155"><highlight class="normal"></highlight></codeline>
+<codeline lineno="156"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>stb_vorbis_flush_pushdata(<ref refid="structstb__vorbis" kindref="compound">stb_vorbis</ref><sp/>*f);</highlight></codeline>
+<codeline lineno="157"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>inform<sp/>stb_vorbis<sp/>that<sp/>your<sp/>next<sp/>datablock<sp/>will<sp/>not<sp/>be<sp/>contiguous<sp/>with</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="158"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>previous<sp/>ones<sp/>(e.g.<sp/>you&apos;ve<sp/>seeked<sp/>in<sp/>the<sp/>data);<sp/>future<sp/>attempts<sp/>to<sp/>decode</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="159"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>frames<sp/>will<sp/>cause<sp/>stb_vorbis<sp/>to<sp/>resynchronize<sp/>(as<sp/>noted<sp/>above),<sp/>and</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="160"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>once<sp/>it<sp/>sees<sp/>a<sp/>valid<sp/>Ogg<sp/>page<sp/>(typically<sp/>4-8KB,<sp/>as<sp/>large<sp/>as<sp/>64KB),<sp/>it</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="161"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>will<sp/>begin<sp/>decoding<sp/>the<sp/>_next_<sp/>frame.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="162"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="163"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>if<sp/>you<sp/>want<sp/>to<sp/>seek<sp/>using<sp/>pushdata,<sp/>you<sp/>need<sp/>to<sp/>seek<sp/>in<sp/>your<sp/>file,<sp/>then</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="164"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>call<sp/>stb_vorbis_flush_pushdata(),<sp/>then<sp/>start<sp/>calling<sp/>decoding,<sp/>then<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="165"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>decoding<sp/>is<sp/>returning<sp/>you<sp/>data,<sp/>call<sp/>stb_vorbis_get_sample_offset,<sp/>and</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="166"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>if<sp/>you<sp/>don&apos;t<sp/>like<sp/>the<sp/>result,<sp/>seek<sp/>your<sp/>file<sp/>again<sp/>and<sp/>repeat.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="167"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="168"><highlight class="normal"></highlight></codeline>
+<codeline lineno="169"><highlight class="normal"></highlight></codeline>
+<codeline lineno="171"><highlight class="normal"></highlight></codeline>
+<codeline lineno="172"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>STB_VORBIS_NO_PULLDATA_API</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="173"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>This<sp/>API<sp/>assumes<sp/>stb_vorbis<sp/>is<sp/>allowed<sp/>to<sp/>pull<sp/>data<sp/>from<sp/>a<sp/>source--</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="174"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>either<sp/>a<sp/>block<sp/>of<sp/>memory<sp/>containing<sp/>the<sp/>_entire_<sp/>vorbis<sp/>stream,<sp/>or<sp/>a</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="175"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>FILE<sp/>*<sp/>that<sp/>you<sp/>or<sp/>it<sp/>create,<sp/>or<sp/>possibly<sp/>some<sp/>other<sp/>reading<sp/>mechanism</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="176"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>if<sp/>you<sp/>go<sp/>modify<sp/>the<sp/>source<sp/>to<sp/>replace<sp/>the<sp/>FILE<sp/>*<sp/>case<sp/>with<sp/>some<sp/>kind</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="177"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>of<sp/>callback<sp/>to<sp/>your<sp/>code.<sp/>(But<sp/>if<sp/>you<sp/>don&apos;t<sp/>support<sp/>seeking,<sp/>you<sp/>may</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="178"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>just<sp/>want<sp/>to<sp/>go<sp/>ahead<sp/>and<sp/>use<sp/>pushdata.)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="179"><highlight class="normal"></highlight></codeline>
+<codeline lineno="180"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>!defined(STB_VORBIS_NO_STDIO)<sp/>&amp;&amp;<sp/>!defined(STB_VORBIS_NO_INTEGER_CONVERSION)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="181"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>stb_vorbis_decode_filename(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*filename,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>*channels,<sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/>**output);</highlight></codeline>
+<codeline lineno="182"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="183"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>stb_vorbis_decode_memory(</highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*mem,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>len,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>*channels,<sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/>**output);</highlight></codeline>
+<codeline lineno="184"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>decode<sp/>an<sp/>entire<sp/>file<sp/>and<sp/>output<sp/>the<sp/>data<sp/>interleaved<sp/>into<sp/>a<sp/>malloc()ed</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="185"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>buffer<sp/>stored<sp/>in<sp/>*output.<sp/>The<sp/>return<sp/>value<sp/>is<sp/>the<sp/>number<sp/>of<sp/>samples</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="186"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>decoded,<sp/>or<sp/>-1<sp/>if<sp/>the<sp/>file<sp/>could<sp/>not<sp/>be<sp/>opened<sp/>or<sp/>was<sp/>not<sp/>an<sp/>ogg<sp/>vorbis<sp/>file.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="187"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>When<sp/>you&apos;re<sp/>done<sp/>with<sp/>it,<sp/>just<sp/>free()<sp/>the<sp/>pointer<sp/>returned<sp/>in<sp/>*output.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="188"><highlight class="normal"></highlight></codeline>
+<codeline lineno="189"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/><ref refid="structstb__vorbis" kindref="compound">stb_vorbis</ref><sp/>*<sp/>stb_vorbis_open_memory(</highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*data,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>len,</highlight></codeline>
+<codeline lineno="190"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>*error,<sp/><ref refid="structstb__vorbis__alloc" kindref="compound">stb_vorbis_alloc</ref><sp/>*alloc_buffer);</highlight></codeline>
+<codeline lineno="191"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>create<sp/>an<sp/>ogg<sp/>vorbis<sp/>decoder<sp/>from<sp/>an<sp/>ogg<sp/>vorbis<sp/>stream<sp/>in<sp/>memory<sp/>(note</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="192"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>this<sp/>must<sp/>be<sp/>the<sp/>entire<sp/>stream!).<sp/>on<sp/>failure,<sp/>returns<sp/>NULL<sp/>and<sp/>sets<sp/>*error</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="193"><highlight class="normal"></highlight></codeline>
+<codeline lineno="194"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>STB_VORBIS_NO_STDIO</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="195"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/><ref refid="structstb__vorbis" kindref="compound">stb_vorbis</ref><sp/>*<sp/>stb_vorbis_open_filename(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*filename,</highlight></codeline>
+<codeline lineno="196"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>*error,<sp/><ref refid="structstb__vorbis__alloc" kindref="compound">stb_vorbis_alloc</ref><sp/>*alloc_buffer);</highlight></codeline>
+<codeline lineno="197"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>create<sp/>an<sp/>ogg<sp/>vorbis<sp/>decoder<sp/>from<sp/>a<sp/>filename<sp/>via<sp/>fopen().<sp/>on<sp/>failure,</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="198"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>returns<sp/>NULL<sp/>and<sp/>sets<sp/>*error<sp/>(possibly<sp/>to<sp/>VORBIS_file_open_failure).</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="199"><highlight class="normal"></highlight></codeline>
+<codeline lineno="200"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/><ref refid="structstb__vorbis" kindref="compound">stb_vorbis</ref><sp/>*<sp/>stb_vorbis_open_file(FILE<sp/>*f,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>close_handle_on_close,</highlight></codeline>
+<codeline lineno="201"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>*error,<sp/><ref refid="structstb__vorbis__alloc" kindref="compound">stb_vorbis_alloc</ref><sp/>*alloc_buffer);</highlight></codeline>
+<codeline lineno="202"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>create<sp/>an<sp/>ogg<sp/>vorbis<sp/>decoder<sp/>from<sp/>an<sp/>open<sp/>FILE<sp/>*,<sp/>looking<sp/>for<sp/>a<sp/>stream<sp/>at</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="203"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>the<sp/>_current_<sp/>seek<sp/>point<sp/>(ftell).<sp/>on<sp/>failure,<sp/>returns<sp/>NULL<sp/>and<sp/>sets<sp/>*error.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="204"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>note<sp/>that<sp/>stb_vorbis<sp/>must<sp/>&quot;own&quot;<sp/>this<sp/>stream;<sp/>if<sp/>you<sp/>seek<sp/>it<sp/>in<sp/>between</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="205"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>calls<sp/>to<sp/>stb_vorbis,<sp/>it<sp/>will<sp/>become<sp/>confused.<sp/>Morever,<sp/>if<sp/>you<sp/>attempt<sp/>to</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="206"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>perform<sp/>stb_vorbis_seek_*()<sp/>operations<sp/>on<sp/>this<sp/>file,<sp/>it<sp/>will<sp/>assume<sp/>it</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="207"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>owns<sp/>the<sp/>_entire_<sp/>rest<sp/>of<sp/>the<sp/>file<sp/>after<sp/>the<sp/>start<sp/>point.<sp/>Use<sp/>the<sp/>next</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="208"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>function,<sp/>stb_vorbis_open_file_section(),<sp/>to<sp/>limit<sp/>it.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="209"><highlight class="normal"></highlight></codeline>
+<codeline lineno="210"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/><ref refid="structstb__vorbis" kindref="compound">stb_vorbis</ref><sp/>*<sp/>stb_vorbis_open_file_section(FILE<sp/>*f,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>close_handle_on_close,</highlight></codeline>
+<codeline lineno="211"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>*error,<sp/><ref refid="structstb__vorbis__alloc" kindref="compound">stb_vorbis_alloc</ref><sp/>*alloc_buffer,<sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>len);</highlight></codeline>
+<codeline lineno="212"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>create<sp/>an<sp/>ogg<sp/>vorbis<sp/>decoder<sp/>from<sp/>an<sp/>open<sp/>FILE<sp/>*,<sp/>looking<sp/>for<sp/>a<sp/>stream<sp/>at</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="213"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>the<sp/>_current_<sp/>seek<sp/>point<sp/>(ftell);<sp/>the<sp/>stream<sp/>will<sp/>be<sp/>of<sp/>length<sp/>&apos;len&apos;<sp/>bytes.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="214"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>on<sp/>failure,<sp/>returns<sp/>NULL<sp/>and<sp/>sets<sp/>*error.<sp/>note<sp/>that<sp/>stb_vorbis<sp/>must<sp/>&quot;own&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="215"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>this<sp/>stream;<sp/>if<sp/>you<sp/>seek<sp/>it<sp/>in<sp/>between<sp/>calls<sp/>to<sp/>stb_vorbis,<sp/>it<sp/>will<sp/>become</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="216"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>confused.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="217"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="218"><highlight class="normal"></highlight></codeline>
+<codeline lineno="219"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>stb_vorbis_seek_frame(<ref refid="structstb__vorbis" kindref="compound">stb_vorbis</ref><sp/>*f,<sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>sample_number);</highlight></codeline>
+<codeline lineno="220"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>stb_vorbis_seek(<ref refid="structstb__vorbis" kindref="compound">stb_vorbis</ref><sp/>*f,<sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>sample_number);</highlight></codeline>
+<codeline lineno="221"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>NOT<sp/>WORKING<sp/>YET</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="222"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>these<sp/>functions<sp/>seek<sp/>in<sp/>the<sp/>Vorbis<sp/>file<sp/>to<sp/>(approximately)<sp/>&apos;sample_number&apos;.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="223"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>after<sp/>calling<sp/>seek_frame(),<sp/>the<sp/>next<sp/>call<sp/>to<sp/>get_frame_*()<sp/>will<sp/>include</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="224"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>the<sp/>specified<sp/>sample.<sp/>after<sp/>calling<sp/>stb_vorbis_seek(),<sp/>the<sp/>next<sp/>call<sp/>to</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="225"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>stb_vorbis_get_samples_*<sp/>will<sp/>start<sp/>with<sp/>the<sp/>specified<sp/>sample.<sp/>If<sp/>you</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="226"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>do<sp/>not<sp/>need<sp/>to<sp/>seek<sp/>to<sp/>EXACTLY<sp/>the<sp/>target<sp/>sample<sp/>when<sp/>using<sp/>get_samples_*,</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="227"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>you<sp/>can<sp/>also<sp/>use<sp/>seek_frame().</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="228"><highlight class="normal"></highlight></codeline>
+<codeline lineno="229"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>stb_vorbis_seek_start(<ref refid="structstb__vorbis" kindref="compound">stb_vorbis</ref><sp/>*f);</highlight></codeline>
+<codeline lineno="230"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>this<sp/>function<sp/>is<sp/>equivalent<sp/>to<sp/>stb_vorbis_seek(f,0),<sp/>but<sp/>it</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="231"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>actually<sp/>works</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="232"><highlight class="normal"></highlight></codeline>
+<codeline lineno="233"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>stb_vorbis_stream_length_in_samples(<ref refid="structstb__vorbis" kindref="compound">stb_vorbis</ref><sp/>*f);</highlight></codeline>
+<codeline lineno="234"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>stb_vorbis_stream_length_in_seconds(<ref refid="structstb__vorbis" kindref="compound">stb_vorbis</ref><sp/>*f);</highlight></codeline>
+<codeline lineno="235"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>these<sp/>functions<sp/>return<sp/>the<sp/>total<sp/>length<sp/>of<sp/>the<sp/>vorbis<sp/>stream</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="236"><highlight class="normal"></highlight></codeline>
+<codeline lineno="237"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>stb_vorbis_get_frame_float(<ref refid="structstb__vorbis" kindref="compound">stb_vorbis</ref><sp/>*f,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>*channels,<sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>***output);</highlight></codeline>
+<codeline lineno="238"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>decode<sp/>the<sp/>next<sp/>frame<sp/>and<sp/>return<sp/>the<sp/>number<sp/>of<sp/>samples.<sp/>the<sp/>number<sp/>of</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="239"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>channels<sp/>returned<sp/>are<sp/>stored<sp/>in<sp/>*channels<sp/>(which<sp/>can<sp/>be<sp/>NULL--it<sp/>is<sp/>always</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="240"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>the<sp/>same<sp/>as<sp/>the<sp/>number<sp/>of<sp/>channels<sp/>reported<sp/>by<sp/>get_info).<sp/>*output<sp/>will</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="241"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>contain<sp/>an<sp/>array<sp/>of<sp/>float*<sp/>buffers,<sp/>one<sp/>per<sp/>channel.<sp/>These<sp/>outputs<sp/>will</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="242"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>be<sp/>overwritten<sp/>on<sp/>the<sp/>next<sp/>call<sp/>to<sp/>stb_vorbis_get_frame_*.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="243"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="244"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>You<sp/>generally<sp/>should<sp/>not<sp/>intermix<sp/>calls<sp/>to<sp/>stb_vorbis_get_frame_*()</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="245"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>and<sp/>stb_vorbis_get_samples_*(),<sp/>since<sp/>the<sp/>latter<sp/>calls<sp/>the<sp/>former.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="246"><highlight class="normal"></highlight></codeline>
+<codeline lineno="247"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>STB_VORBIS_NO_INTEGER_CONVERSION</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="248"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>stb_vorbis_get_frame_short_interleaved(<ref refid="structstb__vorbis" kindref="compound">stb_vorbis</ref><sp/>*f,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>num_c,<sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/>*buffer,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>num_shorts);</highlight></codeline>
+<codeline lineno="249"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>stb_vorbis_get_frame_short<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(<ref refid="structstb__vorbis" kindref="compound">stb_vorbis</ref><sp/>*f,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>num_c,<sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/>**buffer,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>num_samples);</highlight></codeline>
+<codeline lineno="250"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="251"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>decode<sp/>the<sp/>next<sp/>frame<sp/>and<sp/>return<sp/>the<sp/>number<sp/>of<sp/>samples<sp/>per<sp/>channel.<sp/>the</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="252"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>data<sp/>is<sp/>coerced<sp/>to<sp/>the<sp/>number<sp/>of<sp/>channels<sp/>you<sp/>request<sp/>according<sp/>to<sp/>the</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="253"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>channel<sp/>coercion<sp/>rules<sp/>(see<sp/>below).<sp/>You<sp/>must<sp/>pass<sp/>in<sp/>the<sp/>size<sp/>of<sp/>your</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="254"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>buffer(s)<sp/>so<sp/>that<sp/>stb_vorbis<sp/>will<sp/>not<sp/>overwrite<sp/>the<sp/>end<sp/>of<sp/>the<sp/>buffer.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="255"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>The<sp/>maximum<sp/>buffer<sp/>size<sp/>needed<sp/>can<sp/>be<sp/>gotten<sp/>from<sp/>get_info();<sp/>however,</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="256"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>the<sp/>Vorbis<sp/>I<sp/>specification<sp/>implies<sp/>an<sp/>absolute<sp/>maximum<sp/>of<sp/>4096<sp/>samples</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="257"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>per<sp/>channel.<sp/>Note<sp/>that<sp/>for<sp/>interleaved<sp/>data,<sp/>you<sp/>pass<sp/>in<sp/>the<sp/>number<sp/>of</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="258"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>shorts<sp/>(the<sp/>size<sp/>of<sp/>your<sp/>array),<sp/>but<sp/>the<sp/>return<sp/>value<sp/>is<sp/>the<sp/>number<sp/>of</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="259"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>samples<sp/>per<sp/>channel,<sp/>not<sp/>the<sp/>total<sp/>number<sp/>of<sp/>samples.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="260"><highlight class="normal"></highlight></codeline>
+<codeline lineno="261"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Channel<sp/>coercion<sp/>rules:</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="262"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/>Let<sp/>M<sp/>be<sp/>the<sp/>number<sp/>of<sp/>channels<sp/>requested,<sp/>and<sp/>N<sp/>the<sp/>number<sp/>of<sp/>channels<sp/>present,</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="263"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/>and<sp/>Cn<sp/>be<sp/>the<sp/>nth<sp/>channel;<sp/>let<sp/>stereo<sp/>L<sp/>be<sp/>the<sp/>sum<sp/>of<sp/>all<sp/>L<sp/>and<sp/>center<sp/>channels,</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="264"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/>and<sp/>stereo<sp/>R<sp/>be<sp/>the<sp/>sum<sp/>of<sp/>all<sp/>R<sp/>and<sp/>center<sp/>channels<sp/>(channel<sp/>assignment<sp/>from<sp/>the</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="265"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/>vorbis<sp/>spec).</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="266"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>M<sp/><sp/><sp/><sp/>N<sp/><sp/><sp/><sp/><sp/><sp/><sp/>output</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="267"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>1<sp/><sp/><sp/><sp/>k<sp/><sp/><sp/><sp/><sp/><sp/>sum(Ck)<sp/>for<sp/>all<sp/>k</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="268"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>2<sp/><sp/><sp/><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/>stereo<sp/>L,<sp/>stereo<sp/>R</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="269"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>k<sp/><sp/><sp/><sp/>l<sp/><sp/><sp/><sp/><sp/><sp/>k<sp/>&gt;<sp/>l,<sp/>the<sp/>first<sp/>l<sp/>channels,<sp/>then<sp/>0s</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="270"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>k<sp/><sp/><sp/><sp/>l<sp/><sp/><sp/><sp/><sp/><sp/>k<sp/>&lt;=<sp/>l,<sp/>the<sp/>first<sp/>k<sp/>channels</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="271"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/>Note<sp/>that<sp/>this<sp/>is<sp/>not<sp/>_good_<sp/>surround<sp/>etc.<sp/>mixing<sp/>at<sp/>all!<sp/>It&apos;s<sp/>just<sp/>so</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="272"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/>you<sp/>get<sp/>something<sp/>useful.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="273"><highlight class="normal"></highlight></codeline>
+<codeline lineno="274"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>stb_vorbis_get_samples_float_interleaved(<ref refid="structstb__vorbis" kindref="compound">stb_vorbis</ref><sp/>*f,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>channels,<sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>*buffer,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>num_floats);</highlight></codeline>
+<codeline lineno="275"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>stb_vorbis_get_samples_float(<ref refid="structstb__vorbis" kindref="compound">stb_vorbis</ref><sp/>*f,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>channels,<sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>**buffer,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>num_samples);</highlight></codeline>
+<codeline lineno="276"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>gets<sp/>num_samples<sp/>samples,<sp/>not<sp/>necessarily<sp/>on<sp/>a<sp/>frame<sp/>boundary--this<sp/>requires</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="277"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>buffering<sp/>so<sp/>you<sp/>have<sp/>to<sp/>supply<sp/>the<sp/>buffers.<sp/>DOES<sp/>NOT<sp/>APPLY<sp/>THE<sp/>COERCION<sp/>RULES.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="278"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Returns<sp/>the<sp/>number<sp/>of<sp/>samples<sp/>stored<sp/>per<sp/>channel;<sp/>it<sp/>may<sp/>be<sp/>less<sp/>than<sp/>requested</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="279"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>at<sp/>the<sp/>end<sp/>of<sp/>the<sp/>file.<sp/>If<sp/>there<sp/>are<sp/>no<sp/>more<sp/>samples<sp/>in<sp/>the<sp/>file,<sp/>returns<sp/>0.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="280"><highlight class="normal"></highlight></codeline>
+<codeline lineno="281"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>STB_VORBIS_NO_INTEGER_CONVERSION</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="282"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>stb_vorbis_get_samples_short_interleaved(<ref refid="structstb__vorbis" kindref="compound">stb_vorbis</ref><sp/>*f,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>channels,<sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/>*buffer,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>num_shorts);</highlight></codeline>
+<codeline lineno="283"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>stb_vorbis_get_samples_short(<ref refid="structstb__vorbis" kindref="compound">stb_vorbis</ref><sp/>*f,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>channels,<sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/>**buffer,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>num_samples);</highlight></codeline>
+<codeline lineno="284"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="285"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>gets<sp/>num_samples<sp/>samples,<sp/>not<sp/>necessarily<sp/>on<sp/>a<sp/>frame<sp/>boundary--this<sp/>requires</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="286"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>buffering<sp/>so<sp/>you<sp/>have<sp/>to<sp/>supply<sp/>the<sp/>buffers.<sp/>Applies<sp/>the<sp/>coercion<sp/>rules<sp/>above</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="287"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>to<sp/>produce<sp/>&apos;channels&apos;<sp/>channels.<sp/>Returns<sp/>the<sp/>number<sp/>of<sp/>samples<sp/>stored<sp/>per<sp/>channel;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="288"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>it<sp/>may<sp/>be<sp/>less<sp/>than<sp/>requested<sp/>at<sp/>the<sp/>end<sp/>of<sp/>the<sp/>file.<sp/>If<sp/>there<sp/>are<sp/>no<sp/>more</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="289"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>samples<sp/>in<sp/>the<sp/>file,<sp/>returns<sp/>0.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="290"><highlight class="normal"></highlight></codeline>
+<codeline lineno="291"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="292"><highlight class="normal"></highlight></codeline>
+<codeline lineno="294"><highlight class="normal"></highlight></codeline>
+<codeline lineno="295"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">enum</highlight><highlight class="normal"><sp/>STBVorbisError</highlight></codeline>
+<codeline lineno="296"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="297"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>VORBIS__no_error,</highlight></codeline>
+<codeline lineno="298"><highlight class="normal"></highlight></codeline>
+<codeline lineno="299"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>VORBIS_need_more_data=1,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>not<sp/>a<sp/>real<sp/>error</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="300"><highlight class="normal"></highlight></codeline>
+<codeline lineno="301"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>VORBIS_invalid_api_mixing,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>can&apos;t<sp/>mix<sp/>API<sp/>modes</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="302"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>VORBIS_outofmem,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>not<sp/>enough<sp/>memory</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="303"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>VORBIS_feature_not_supported,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>uses<sp/>floor<sp/>0</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="304"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>VORBIS_too_many_channels,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>STB_VORBIS_MAX_CHANNELS<sp/>is<sp/>too<sp/>small</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="305"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>VORBIS_file_open_failure,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>fopen()<sp/>failed</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="306"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>VORBIS_seek_without_length,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>can&apos;t<sp/>seek<sp/>in<sp/>unknown-length<sp/>file</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="307"><highlight class="normal"></highlight></codeline>
+<codeline lineno="308"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>VORBIS_unexpected_eof=10,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>file<sp/>is<sp/>truncated?</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="309"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>VORBIS_seek_invalid,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>seek<sp/>past<sp/>EOF</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="310"><highlight class="normal"></highlight></codeline>
+<codeline lineno="311"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>decoding<sp/>errors<sp/>(corrupt/invalid<sp/>stream)<sp/>--<sp/>you<sp/>probably</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="312"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>don&apos;t<sp/>care<sp/>about<sp/>the<sp/>exact<sp/>details<sp/>of<sp/>these</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="313"><highlight class="normal"></highlight></codeline>
+<codeline lineno="314"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>vorbis<sp/>errors:</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="315"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>VORBIS_invalid_setup=20,</highlight></codeline>
+<codeline lineno="316"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>VORBIS_invalid_stream,</highlight></codeline>
+<codeline lineno="317"><highlight class="normal"></highlight></codeline>
+<codeline lineno="318"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>ogg<sp/>errors:</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="319"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>VORBIS_missing_capture_pattern=30,</highlight></codeline>
+<codeline lineno="320"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>VORBIS_invalid_stream_structure_version,</highlight></codeline>
+<codeline lineno="321"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>VORBIS_continued_packet_flag_invalid,</highlight></codeline>
+<codeline lineno="322"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>VORBIS_incorrect_stream_serial_number,</highlight></codeline>
+<codeline lineno="323"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>VORBIS_invalid_first_page,</highlight></codeline>
+<codeline lineno="324"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>VORBIS_bad_packet_type,</highlight></codeline>
+<codeline lineno="325"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>VORBIS_cant_find_last_page,</highlight></codeline>
+<codeline lineno="326"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>VORBIS_seek_failed,</highlight></codeline>
+<codeline lineno="327"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="328"><highlight class="normal"></highlight></codeline>
+<codeline lineno="329"><highlight class="normal"></highlight></codeline>
+<codeline lineno="330"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="331"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="332"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="333"><highlight class="normal"></highlight></codeline>
+<codeline lineno="334"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">//<sp/>STB_VORBIS_INCLUDE_STB_VORBIS_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="335"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="336"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/>HEADER<sp/>ENDS<sp/>HERE</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="337"><highlight class="normal"></highlight><highlight class="comment">//</highlight></codeline>
+    </programlisting>
+    <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.h"/>
+  </compounddef>
+</doxygen>

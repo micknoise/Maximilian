@@ -1,0 +1,239 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structCodebook" kind="struct" language="C++" prot="public">
+    <compoundname>Codebook</compoundname>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structCodebook_1af2c97899a7fc32b58c0e05d2c357fbd4" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int Codebook::dimensions</definition>
+        <argsstring></argsstring>
+        <name>dimensions</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" line="267" column="8" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="267" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structCodebook_1a3b75d1bd874ad98d552c15c547d5fc6a" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int Codebook::entries</definition>
+        <argsstring></argsstring>
+        <name>entries</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" line="267" column="19" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="267" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structCodebook_1a5f692a0d4af17c8ea3b085a21b8e3ef9" prot="public" static="no" mutable="no">
+        <type>uint8 *</type>
+        <definition>uint8* Codebook::codeword_lengths</definition>
+        <argsstring></argsstring>
+        <name>codeword_lengths</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" line="268" column="10" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="268" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structCodebook_1a045762c79343b6153ec1978136f1feaa" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float Codebook::minimum_value</definition>
+        <argsstring></argsstring>
+        <name>minimum_value</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" line="269" column="11" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="269" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structCodebook_1a5f68e4a9acd173f69425233d995c37ed" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float Codebook::delta_value</definition>
+        <argsstring></argsstring>
+        <name>delta_value</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" line="270" column="11" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="270" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structCodebook_1a229d0699f42bd26a99b37845aaab75eb" prot="public" static="no" mutable="no">
+        <type>uint8</type>
+        <definition>uint8 Codebook::value_bits</definition>
+        <argsstring></argsstring>
+        <name>value_bits</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" line="271" column="11" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="271" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structCodebook_1addaf4509eb971e141389d6fefe3509c4" prot="public" static="no" mutable="no">
+        <type>uint8</type>
+        <definition>uint8 Codebook::lookup_type</definition>
+        <argsstring></argsstring>
+        <name>lookup_type</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" line="272" column="11" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="272" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structCodebook_1a44cedf17428b52f1df2f62a46c3af880" prot="public" static="no" mutable="no">
+        <type>uint8</type>
+        <definition>uint8 Codebook::sequence_p</definition>
+        <argsstring></argsstring>
+        <name>sequence_p</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" line="273" column="11" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="273" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structCodebook_1ab777487c6199ae81d2384f6acc113cf2" prot="public" static="no" mutable="no">
+        <type>uint8</type>
+        <definition>uint8 Codebook::sparse</definition>
+        <argsstring></argsstring>
+        <name>sparse</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" line="274" column="11" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="274" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structCodebook_1abf078c998edfa8432087a5df96810c24" prot="public" static="no" mutable="no">
+        <type>uint32</type>
+        <definition>uint32 Codebook::lookup_values</definition>
+        <argsstring></argsstring>
+        <name>lookup_values</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" line="275" column="11" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="275" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structCodebook_1a6d20dcddba93d3df6f6c9f3c1fbcf8fd" prot="public" static="no" mutable="no">
+        <type>codetype *</type>
+        <definition>codetype* Codebook::multiplicands</definition>
+        <argsstring></argsstring>
+        <name>multiplicands</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" line="276" column="13" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="276" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structCodebook_1a451075bbaced9845ae13a07f4696360a" prot="public" static="no" mutable="no">
+        <type>uint32 *</type>
+        <definition>uint32* Codebook::codewords</definition>
+        <argsstring></argsstring>
+        <name>codewords</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" line="277" column="11" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="277" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structCodebook_1a5c6cba3f39227170f8f7806d0756b47f" prot="public" static="no" mutable="no">
+        <type>int16</type>
+        <definition>int16 Codebook::fast_huffman[FAST_HUFFMAN_TABLE_SIZE]</definition>
+        <argsstring>[FAST_HUFFMAN_TABLE_SIZE]</argsstring>
+        <name>fast_huffman</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" line="279" column="12" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="279" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structCodebook_1a4823cd33a7bc61b11af9ce1c2b6e569d" prot="public" static="no" mutable="no">
+        <type>uint32 *</type>
+        <definition>uint32* Codebook::sorted_codewords</definition>
+        <argsstring></argsstring>
+        <name>sorted_codewords</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" line="283" column="11" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="283" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structCodebook_1afd7e12e75d4a9ca547dd19590c888238" prot="public" static="no" mutable="no">
+        <type>int *</type>
+        <definition>int* Codebook::sorted_values</definition>
+        <argsstring></argsstring>
+        <name>sorted_values</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" line="284" column="11" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="284" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structCodebook_1a1833700bf5f00815e1f0f8b3ebb77045" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int Codebook::sorted_entries</definition>
+        <argsstring></argsstring>
+        <name>sorted_entries</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" line="285" column="12" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="285" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" line="265" column="1" bodyfile="/home/ck84/src/Maximilian/src/libs/stb_vorbis.c" bodystart="266" bodyend="286"/>
+    <listofallmembers>
+      <member refid="structCodebook_1a5f692a0d4af17c8ea3b085a21b8e3ef9" prot="public" virt="non-virtual"><scope>Codebook</scope><name>codeword_lengths</name></member>
+      <member refid="structCodebook_1a451075bbaced9845ae13a07f4696360a" prot="public" virt="non-virtual"><scope>Codebook</scope><name>codewords</name></member>
+      <member refid="structCodebook_1a5f68e4a9acd173f69425233d995c37ed" prot="public" virt="non-virtual"><scope>Codebook</scope><name>delta_value</name></member>
+      <member refid="structCodebook_1af2c97899a7fc32b58c0e05d2c357fbd4" prot="public" virt="non-virtual"><scope>Codebook</scope><name>dimensions</name></member>
+      <member refid="structCodebook_1a3b75d1bd874ad98d552c15c547d5fc6a" prot="public" virt="non-virtual"><scope>Codebook</scope><name>entries</name></member>
+      <member refid="structCodebook_1a5c6cba3f39227170f8f7806d0756b47f" prot="public" virt="non-virtual"><scope>Codebook</scope><name>fast_huffman</name></member>
+      <member refid="structCodebook_1addaf4509eb971e141389d6fefe3509c4" prot="public" virt="non-virtual"><scope>Codebook</scope><name>lookup_type</name></member>
+      <member refid="structCodebook_1abf078c998edfa8432087a5df96810c24" prot="public" virt="non-virtual"><scope>Codebook</scope><name>lookup_values</name></member>
+      <member refid="structCodebook_1a045762c79343b6153ec1978136f1feaa" prot="public" virt="non-virtual"><scope>Codebook</scope><name>minimum_value</name></member>
+      <member refid="structCodebook_1a6d20dcddba93d3df6f6c9f3c1fbcf8fd" prot="public" virt="non-virtual"><scope>Codebook</scope><name>multiplicands</name></member>
+      <member refid="structCodebook_1a44cedf17428b52f1df2f62a46c3af880" prot="public" virt="non-virtual"><scope>Codebook</scope><name>sequence_p</name></member>
+      <member refid="structCodebook_1a4823cd33a7bc61b11af9ce1c2b6e569d" prot="public" virt="non-virtual"><scope>Codebook</scope><name>sorted_codewords</name></member>
+      <member refid="structCodebook_1a1833700bf5f00815e1f0f8b3ebb77045" prot="public" virt="non-virtual"><scope>Codebook</scope><name>sorted_entries</name></member>
+      <member refid="structCodebook_1afd7e12e75d4a9ca547dd19590c888238" prot="public" virt="non-virtual"><scope>Codebook</scope><name>sorted_values</name></member>
+      <member refid="structCodebook_1ab777487c6199ae81d2384f6acc113cf2" prot="public" virt="non-virtual"><scope>Codebook</scope><name>sparse</name></member>
+      <member refid="structCodebook_1a229d0699f42bd26a99b37845aaab75eb" prot="public" virt="non-virtual"><scope>Codebook</scope><name>value_bits</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

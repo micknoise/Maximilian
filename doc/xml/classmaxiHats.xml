@@ -1,0 +1,376 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classmaxiHats" kind="class" language="C++" prot="public">
+    <compoundname>maxiHats</compoundname>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classmaxiHats_1a0c80fd764b39a2eb68fd84a2d3b58f92" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double maxiHats::pitch</definition>
+        <argsstring></argsstring>
+        <name>pitch</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" line="101" column="12" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" bodystart="101" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiHats_1a798b91e0d4b0653d4384d927a8c3c4b8" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double maxiHats::output</definition>
+        <argsstring></argsstring>
+        <name>output</name>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" line="102" column="12" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" bodystart="102" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiHats_1a6d0c8821c20d5e62fdce21ff962225d8" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double maxiHats::outputD</definition>
+        <argsstring></argsstring>
+        <name>outputD</name>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" line="103" column="12" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" bodystart="103" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiHats_1a3549ae2d043dc706ae6daf250f0d4677" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double maxiHats::envOut</definition>
+        <argsstring></argsstring>
+        <name>envOut</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" line="104" column="12" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" bodystart="104" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiHats_1abd987ce11b482426026368dab3edf002" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool maxiHats::useDistortion</definition>
+        <argsstring></argsstring>
+        <name>useDistortion</name>
+        <initializer>= false</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" line="105" column="10" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" bodystart="105" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiHats_1a4d4e0ca13649a1c493551e572ee82283" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool maxiHats::useLimiter</definition>
+        <argsstring></argsstring>
+        <name>useLimiter</name>
+        <initializer>= false</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" line="106" column="10" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" bodystart="106" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiHats_1a9ed1abb91a8c41c9efefa975ad455d2e" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool maxiHats::useFilter</definition>
+        <argsstring></argsstring>
+        <name>useFilter</name>
+        <initializer>= false</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" line="107" column="10" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" bodystart="107" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiHats_1a8a83079032a1e7959e68610fb1569915" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double maxiHats::distortion</definition>
+        <argsstring></argsstring>
+        <name>distortion</name>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" line="108" column="12" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" bodystart="108" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiHats_1a9b6f61eabfa71254efd7829b5e28bdd1" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool maxiHats::inverse</definition>
+        <argsstring></argsstring>
+        <name>inverse</name>
+        <initializer>= false</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" line="109" column="10" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" bodystart="109" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiHats_1af20ce615df50325049eda89860406e50" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double maxiHats::cutoff</definition>
+        <argsstring></argsstring>
+        <name>cutoff</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" line="110" column="12" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" bodystart="110" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiHats_1a10b329b274fd31d3d9f64b97626fbc8f" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double maxiHats::resonance</definition>
+        <argsstring></argsstring>
+        <name>resonance</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" line="111" column="12" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" bodystart="111" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiHats_1a08af67c7b109dafc426bf8f30118c716" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double maxiHats::gain</definition>
+        <argsstring></argsstring>
+        <name>gain</name>
+        <initializer>= 1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" line="112" column="12" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" bodystart="112" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiHats_1a2d18dd54ca2207397fa1e3127adc15a5" prot="public" static="no" mutable="no">
+        <type><ref refid="classmaxiOsc" kindref="compound">maxiOsc</ref></type>
+        <definition>maxiOsc maxiHats::tone</definition>
+        <argsstring></argsstring>
+        <name>tone</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" line="113" column="13" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" bodystart="113" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiHats_1a4c6c4743666bb7ff8ac9a9f36dd55c9b" prot="public" static="no" mutable="no">
+        <type><ref refid="classmaxiOsc" kindref="compound">maxiOsc</ref></type>
+        <definition>maxiOsc maxiHats::noise</definition>
+        <argsstring></argsstring>
+        <name>noise</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" line="114" column="13" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" bodystart="114" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiHats_1ab011046e1f718883981e2a1f78039215" prot="public" static="no" mutable="no">
+        <type><ref refid="classmaxiEnv" kindref="compound">maxiEnv</ref></type>
+        <definition>maxiEnv maxiHats::envelope</definition>
+        <argsstring></argsstring>
+        <name>envelope</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" line="115" column="13" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" bodystart="115" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiHats_1ae6d5356bdc5ad7c28989f5f60a31157e" prot="public" static="no" mutable="no">
+        <type><ref refid="classmaxiNonlinearity" kindref="compound">maxiDistortion</ref></type>
+        <definition>maxiDistortion maxiHats::distort</definition>
+        <argsstring></argsstring>
+        <name>distort</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" line="116" column="20" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" bodystart="116" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiHats_1ae46cec177bad59335f287a97fcdc9719" prot="public" static="no" mutable="no">
+        <type><ref refid="classmaxiSVF" kindref="compound">maxiSVF</ref></type>
+        <definition>maxiSVF maxiHats::filter</definition>
+        <argsstring></argsstring>
+        <name>filter</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" line="117" column="13" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" bodystart="117" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classmaxiHats_1a0b880429ac55fc5476007e9463d0efd6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>maxiHats::maxiHats</definition>
+        <argsstring>()</argsstring>
+        <name>maxiHats</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" line="96" column="5" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiSynths.cpp" bodystart="176" bodyend="188"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiHats_1a4fe2653e4c6abc39570a9b6c9dbca41c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double maxiHats::play</definition>
+        <argsstring>()</argsstring>
+        <name>play</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" line="97" column="12" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiSynths.cpp" bodystart="190" bodyend="241"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiHats_1a8ea0bf64dc0b6bb532055662c4d26eca" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void maxiHats::setPitch</definition>
+        <argsstring>(double pitch)</argsstring>
+        <name>setPitch</name>
+        <param>
+          <type>double</type>
+          <declname>pitch</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" line="98" column="10" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiSynths.cpp" bodystart="249" bodyend="253"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiHats_1aee9e40b2e0c705fea0919acaecc4586d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void maxiHats::setRelease</definition>
+        <argsstring>(double releaseD)</argsstring>
+        <name>setRelease</name>
+        <param>
+          <type>double</type>
+          <declname>releaseD</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" line="99" column="10" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiSynths.cpp" bodystart="243" bodyend="247"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiHats_1a09d2bc4108ae1accab7d145df75fc8ec" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void maxiHats::trigger</definition>
+        <argsstring>()</argsstring>
+        <name>trigger</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" line="100" column="10" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiSynths.cpp" bodystart="255" bodyend="259"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="5">
+        <label>maxiNonlinearity</label>
+        <link refid="classmaxiNonlinearity"/>
+      </node>
+      <node id="2">
+        <label>maxiOsc</label>
+        <link refid="classmaxiOsc"/>
+      </node>
+      <node id="3">
+        <label>maxiEnv</label>
+        <link refid="classmaxiEnv"/>
+      </node>
+      <node id="1">
+        <label>maxiHats</label>
+        <link refid="classmaxiHats"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>noise</edgelabel>
+          <edgelabel>tone</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>envelope</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>filter</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>distort</edgelabel>
+        </childnode>
+      </node>
+      <node id="4">
+        <label>maxiSVF</label>
+        <link refid="classmaxiSVF"/>
+      </node>
+    </collaborationgraph>
+    <location file="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" line="93" column="1" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" bodystart="93" bodyend="120"/>
+    <listofallmembers>
+      <member refid="classmaxiHats_1af20ce615df50325049eda89860406e50" prot="public" virt="non-virtual"><scope>maxiHats</scope><name>cutoff</name></member>
+      <member refid="classmaxiHats_1ae6d5356bdc5ad7c28989f5f60a31157e" prot="public" virt="non-virtual"><scope>maxiHats</scope><name>distort</name></member>
+      <member refid="classmaxiHats_1a8a83079032a1e7959e68610fb1569915" prot="public" virt="non-virtual"><scope>maxiHats</scope><name>distortion</name></member>
+      <member refid="classmaxiHats_1ab011046e1f718883981e2a1f78039215" prot="public" virt="non-virtual"><scope>maxiHats</scope><name>envelope</name></member>
+      <member refid="classmaxiHats_1a3549ae2d043dc706ae6daf250f0d4677" prot="public" virt="non-virtual"><scope>maxiHats</scope><name>envOut</name></member>
+      <member refid="classmaxiHats_1ae46cec177bad59335f287a97fcdc9719" prot="public" virt="non-virtual"><scope>maxiHats</scope><name>filter</name></member>
+      <member refid="classmaxiHats_1a08af67c7b109dafc426bf8f30118c716" prot="public" virt="non-virtual"><scope>maxiHats</scope><name>gain</name></member>
+      <member refid="classmaxiHats_1a9b6f61eabfa71254efd7829b5e28bdd1" prot="public" virt="non-virtual"><scope>maxiHats</scope><name>inverse</name></member>
+      <member refid="classmaxiHats_1a0b880429ac55fc5476007e9463d0efd6" prot="public" virt="non-virtual"><scope>maxiHats</scope><name>maxiHats</name></member>
+      <member refid="classmaxiHats_1a4c6c4743666bb7ff8ac9a9f36dd55c9b" prot="public" virt="non-virtual"><scope>maxiHats</scope><name>noise</name></member>
+      <member refid="classmaxiHats_1a798b91e0d4b0653d4384d927a8c3c4b8" prot="public" virt="non-virtual"><scope>maxiHats</scope><name>output</name></member>
+      <member refid="classmaxiHats_1a6d0c8821c20d5e62fdce21ff962225d8" prot="public" virt="non-virtual"><scope>maxiHats</scope><name>outputD</name></member>
+      <member refid="classmaxiHats_1a0c80fd764b39a2eb68fd84a2d3b58f92" prot="public" virt="non-virtual"><scope>maxiHats</scope><name>pitch</name></member>
+      <member refid="classmaxiHats_1a4fe2653e4c6abc39570a9b6c9dbca41c" prot="public" virt="non-virtual"><scope>maxiHats</scope><name>play</name></member>
+      <member refid="classmaxiHats_1a10b329b274fd31d3d9f64b97626fbc8f" prot="public" virt="non-virtual"><scope>maxiHats</scope><name>resonance</name></member>
+      <member refid="classmaxiHats_1a8ea0bf64dc0b6bb532055662c4d26eca" prot="public" virt="non-virtual"><scope>maxiHats</scope><name>setPitch</name></member>
+      <member refid="classmaxiHats_1aee9e40b2e0c705fea0919acaecc4586d" prot="public" virt="non-virtual"><scope>maxiHats</scope><name>setRelease</name></member>
+      <member refid="classmaxiHats_1a2d18dd54ca2207397fa1e3127adc15a5" prot="public" virt="non-virtual"><scope>maxiHats</scope><name>tone</name></member>
+      <member refid="classmaxiHats_1a09d2bc4108ae1accab7d145df75fc8ec" prot="public" virt="non-virtual"><scope>maxiHats</scope><name>trigger</name></member>
+      <member refid="classmaxiHats_1abd987ce11b482426026368dab3edf002" prot="public" virt="non-virtual"><scope>maxiHats</scope><name>useDistortion</name></member>
+      <member refid="classmaxiHats_1a9ed1abb91a8c41c9efefa975ad455d2e" prot="public" virt="non-virtual"><scope>maxiHats</scope><name>useFilter</name></member>
+      <member refid="classmaxiHats_1a4d4e0ca13649a1c493551e572ee82283" prot="public" virt="non-virtual"><scope>maxiHats</scope><name>useLimiter</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,96 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classmaxiFreeVerbStereo" kind="class" language="C++" prot="public">
+    <compoundname>maxiFreeVerbStereo</compoundname>
+    <basecompoundref refid="classmaxiReverbBase" prot="private" virt="non-virtual">maxiReverbBase</basecompoundref>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classmaxiFreeVerbStereo_1a71b6dae8ae8dbb6963506d87684b0306" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>maxiFreeVerbStereo::maxiFreeVerbStereo</definition>
+        <argsstring>()</argsstring>
+        <name>maxiFreeVerbStereo</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiReverb.h" line="142" column="5" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiReverb.cpp" bodystart="451" bodyend="475"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiFreeVerbStereo_1a3c6ce749ef5f62cd1ccb8f2c5f39c2dc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double *</type>
+        <definition>double * maxiFreeVerbStereo::playStereo</definition>
+        <argsstring>(double input, double roomsize, double absorbtion)</argsstring>
+        <name>playStereo</name>
+        <param>
+          <type>double</type>
+          <declname>input</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>roomsize</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>absorbtion</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiReverb.h" line="143" column="12" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiReverb.cpp" bodystart="477" bodyend="491"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>maxiReverbBase</label>
+        <link refid="classmaxiReverbBase"/>
+      </node>
+      <node id="1">
+        <label>maxiFreeVerbStereo</label>
+        <link refid="classmaxiFreeVerbStereo"/>
+        <childnode refid="2" relation="private-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>maxiReverbBase</label>
+        <link refid="classmaxiReverbBase"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>earlyref</edgelabel>
+          <edgelabel>fArrayAllP</edgelabel>
+          <edgelabel>fArrayTwo</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>fArrayLP</edgelabel>
+        </childnode>
+      </node>
+      <node id="4">
+        <label>maxiFilter</label>
+        <link refid="classmaxiFilter"/>
+      </node>
+      <node id="3">
+        <label>maxiReverbFilters</label>
+        <link refid="classmaxiReverbFilters"/>
+      </node>
+      <node id="1">
+        <label>maxiFreeVerbStereo</label>
+        <link refid="classmaxiFreeVerbStereo"/>
+        <childnode refid="2" relation="private-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/ck84/src/Maximilian/src/libs/maxiReverb.h" line="140" column="1" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiReverb.h" bodystart="140" bodyend="144"/>
+    <listofallmembers>
+      <member refid="classmaxiFreeVerbStereo_1a71b6dae8ae8dbb6963506d87684b0306" prot="public" virt="non-virtual"><scope>maxiFreeVerbStereo</scope><name>maxiFreeVerbStereo</name></member>
+      <member refid="classmaxiFreeVerbStereo_1a3c6ce749ef5f62cd1ccb8f2c5f39c2dc" prot="public" virt="non-virtual"><scope>maxiFreeVerbStereo</scope><name>playStereo</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

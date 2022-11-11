@@ -1065,11 +1065,14 @@ private:
     double freq, res;
 };
 
-//based on http://www.earlevel.com/main/2011/01/02/biquad-formulas/ and https://ccrma.stanford.edu/~jos/fp/Direct_Form_II.html
+/** Biquad filters
+ * based on http://www.earlevel.com/main/2011/01/02/biquad-formulas/ and https://ccrma.stanford.edu/~jos/fp/Direct_Form_II.html
+ */
 class CHEERP_EXPORT maxiBiquad
 {
 public:
     maxiBiquad();
+    /*! A variety of filter types*/
     enum filterTypes
     {
         LOWPASS,
@@ -1080,6 +1083,8 @@ public:
         LOWSHELF,
         HIGHSHELF
     };
+
+    /*! Process a signal through the filter \param input A signal*/
     inline double play(double input)
     {
         v[0] = input - (b1 * v[1]) - (b2 * v[2]);
@@ -1088,6 +1093,13 @@ public:
         v[1] = v[0];
         return y;
     }
+
+    /** Configure the filter
+     * \param filtType  The type of filter, set from maxiBiquad::filterTypes
+     * \param cutoff The filter cutoff frequency in Hz
+     * \param Q The resonance of the filter
+     * \param peakGain The gain of the filter (only used for PEAK, HIGHSHELF and LOWSHELF)
+     */
     inline void set(filterTypes filtType, double cutoff, double Q, double peakGain)
     {
         double norm = 0;
@@ -1734,12 +1746,20 @@ private:
 
 };
 
-//pull sequential values from an array
+/**
+ * Pull sequential values from an array
+ */
 class CHEERP_EXPORT maxiStep
 {
 public:
     maxiStep();
-    double pull(const double trigSig, DOUBLEARRAY_REF values, double step)
+    /**
+     * Take values from the array when triggered
+     * \param trigSig A signal to trigger a new value on a positive zero crossing
+     * \param values An array of values
+     * \step The amount that the array index should increase after pulling a new value.  This wraps around to zero at the end of the array
+     */
+    double pull(const double trigSig, DOUBLEARRAY values, double step)
     {
         if (trig.onZX(trigSig))
         {
@@ -1768,6 +1788,7 @@ public:
         return value;
     }
 
+    /*! Get the current array index*/
     double getIndex() {
         return index;
     }
@@ -1782,7 +1803,7 @@ class CHEERP_EXPORT maxiRatioSeq
 {
 public:
     maxiRatioSeq();
-    double playTrig(double phase, DOUBLEARRAY_REF times)
+    double playTrig(double phase, DOUBLEARRAY times)
     {
         if (first) {
             first=false;
@@ -1866,13 +1887,18 @@ private:
     double holdCounter = 0;
 };
 
+
+/**
+ * An envelope generator. 
+ */
 class CHEERP_EXPORT maxiEnvGen {
     public:
 
-        static const double HOLD = -99;
+        static constexpr double HOLD = -46692;
 
         maxiEnvGen();
 
+        /*! Get the latest value of the envelope \param trigger A positive zero crossing (or constant 1) starts the envelope*/
         double play(double trigger) {
             switch(state) {
                 case WAITING:
@@ -1880,6 +1906,7 @@ class CHEERP_EXPORT maxiEnvGen {
                     if (trigDetector.onZX(trigger)) {
                         if (F64_ARRAY_SIZE(stages) > 0) {
                             state = TRIGGERED;
+                            nxcHappened = false;
                         }else{
                             break;
                         }
@@ -1892,47 +1919,106 @@ class CHEERP_EXPORT maxiEnvGen {
                 {
                     //calculate the current value of the envelope
                     envStage *currStage = &stages[phase];
-                    envval = maxiMap::linlin(pow(currStage->currentlevel,currStage->curve), 0, 1, 
-                        currStage->startlevel, 
-                        currStage->endlevel);
-                    currStage->counter++;
-                    // cout << currStage->counter << endl;
-                    //move to the next phase?
-                    if (currStage->counter == currStage->length) {
-                       cout <<"next" << endl;
-                        currStage->counter=0;
-                        currStage->currentlevel=0;
-                        phase++;
-                        if (phase == F64_ARRAY_SIZE(stages)) {
-                            if (loop) {
+                    //check if the trigger went -ve yet? (used for hold function)
+                    if (holdDetector.onZX(-trigger)) {
+                        nxcHappened = true;
+                    }
+                    if (currStage->hold) {
+                        state = playStates::HOLDING;
+                    }else{
+                        envval = maxiMap::linlin(pow(currStage->currentlevel,currStage->curve), 0, 1, 
+                            currStage->startlevel, 
+                            currStage->endlevel);
+                        currStage->counter++;
+                        // cout << currStage->counter << endl;
+                        //move to the next phase?
+                        if (currStage->counter == currStage->length) {
+                            currStage->counter=0;
+                            currStage->currentlevel=0;
+                            phase++;
+                        
+                        }else{
+                            //calc next bit of current phase
+                            currStage->currentlevel += currStage->gradient;
+                            // cout << currStage.currentlevel << endl;
+                        }
+                        if (retrigger) {
+                            if (retriggerDetector.onZX(trigger)) {
                                 reset();
-                            }else{
-                                resetAndArm();
                             }
                         }
-                    }else{
-                        //calc next bit of current phase
-                        currStage->currentlevel += currStage->gradient;
-                        // cout << currStage.currentlevel << endl;
+                        break;
+                    }
+                }
+                case HOLDING:
+                {
+                    //wait for negative zero crossing
+                    //envval remains unchanged
+                    if (holdDetector.onZX(-trigger)) {
+                        nxcHappened = true;
+
+                    }
+                    if (nxcHappened) {
+                        state = playStates::TRIGGERED;
+                        phase++;
+                    }
+                    if (retrigger) {
+                        if (retriggerDetector.onZX(trigger)) {
+                            reset();
+                        }
                     }
                     break;
                 }
             }
+            if (phase == F64_ARRAY_SIZE(stages)) {
+                if (loop) {
+                    reset();
+                }else{
+                    resetAndArm();
+                }
+            }
+
             return envval;
         }
 
-        bool setup(DOUBLEARRAY levels, DOUBLEARRAY times, DOUBLEARRAY curves, bool looping) {
+        /**
+         * Configure the envelope generator
+         * \param levels An array of levels
+         * \param times An array of times between the levels, in milliseconds.  To make the envelope hold until the first negative zero crossing, use maxiEnvGen::HOLD as the time. Only one hold segment is allowed.
+         * \param curves An array of exponential curve values to shape each segment (1 = straight, 2= squared, 0.5 = square root etc)
+         * \param looping True if the envelope should infinitely repeat
+         * \param allowRetrigger Set to true if the envelope should allow retriggering before it is finished, or false if the envelope should always reach the end before being allowed to restart
+         * Example C++ usage  env.setup({0,1,0},{100,400}, {0.5,1}, false).
+         * levels should be one element longer than times and curves
+         * \returns True if the configuration was successful
+         */
+        bool setup(DOUBLEARRAY levels, DOUBLEARRAY times, DOUBLEARRAY curves, bool looping, bool allowRetrigger = false) {
             if ((F64_ARRAY_SIZE(levels) == F64_ARRAY_SIZE(times)+1) && (F64_ARRAY_SIZE(levels) == F64_ARRAY_SIZE(curves) + 1)) {
                 stages.clear();
                 double accumulatedTime = 0;
+                bool holdAlready = 0;
                 for(size_t i=0; i < F64_ARRAY_SIZE(times); i++) {
                     envStage stage;
                     stage.startlevel = F64_ARRAY_AT(levels,i);
                     stage.endlevel = F64_ARRAY_AT(levels,i+1);
-                    double len = ((F64_ARRAY_AT(times,i) / 1000.0) * maxiSettings::sampleRate) + accumulatedTime;
-                    stage.length = static_cast<size_t>(floor(len));
-                    accumulatedTime = len - stage.length;
-                    stage.gradient = 1.0 / stage.length;
+                    double stageTime = F64_ARRAY_AT(times,i);
+                    if (stageTime == maxiEnvGen::HOLD) {
+                        if (!holdAlready) {
+                            stage.length = 0;
+                            stage.hold = 1;
+                            stage.gradient=0;
+                            holdAlready = 1;
+                        }else{
+                            cout << "maxiEnv::setup - only one hold section allowed\n";
+                            return 0;
+                        }
+                    }else{
+                        double len = ((stageTime / 1000.0) * maxiSettings::sampleRate) + accumulatedTime;
+                        stage.length = static_cast<size_t>(floor(len));
+                        accumulatedTime = len - stage.length;
+                        stage.gradient = 1.0 / stage.length;
+                        stage.hold=0;
+                    }
                     stage.curve = F64_ARRAY_AT(curves,i);
                     stage.counter=0;
                     stage.currentlevel = 0;
@@ -1940,6 +2026,7 @@ class CHEERP_EXPORT maxiEnvGen {
                     cout << "Stage " << stage.startlevel << "\t" << stage.endlevel << "\t" << stage.length << "\t" << stage.gradient << "\t" << stage.curve << endl;
                 }
                 loop = looping;
+                retrigger = allowRetrigger;
                 resetAndArm();
                 return 1;
             }else{
@@ -1948,20 +2035,41 @@ class CHEERP_EXPORT maxiEnvGen {
             }
         }
 
+        /*!Restart the envelope immeadiately*/
         void reset() {
+            envStage *currStage = &stages[phase];
+            currStage->counter = 0;
+            currStage->currentlevel = 0;
             phase=0;
+            state = TRIGGERED;
         }
 
+        /*!Stop the envelope and wait for a new trigger to start it*/
         void resetAndArm() {
             reset();
             state = WAITING;
+        }
+
+        bool setLevel(size_t index, size_t value) {
+            bool error = 0;
+            if (index < stages.size()) {
+                stages[index].startlevel = value;
+                if (index > 0){
+                    stages[index-1].endlevel = value;
+                }
+            }else{
+                error = 1;
+            }
+            return error;
         }
 
     private:
         size_t phase=0;
         double envval = 0;        
         bool loop = false;
-        enum playStates {WAITING, TRIGGERED} state;
+        bool retrigger = false;
+        enum playStates {WAITING, TRIGGERED, HOLDING} state;
+        bool nxcHappened;
         struct envStage {
             double startlevel;
             double endlevel;
@@ -1970,10 +2078,34 @@ class CHEERP_EXPORT maxiEnvGen {
             double curve;
             size_t length;
             size_t counter;
+            bool hold;
         };
         vector<envStage> stages;
 
         maxiTrigger trigDetector;
+        maxiTrigger holdDetector;
+        maxiTrigger retriggerDetector;
 };
 
+
+/**
+ * Poll values to stdout at regular intervals
+ */
+class maxiPoll {
+    public:
+        /**
+         * \param val The value to poll
+         * \param frequency How often to print this value (Hz)
+         * \param txt Additional text to br printed before the value
+         * \returns the value being polled, so this can used as a pass-through function e.g. filter.play(obj.poll(osc.saw(2)),0.5)
+         */
+        double poll(double val, double frequency=4, string txt="") {
+            if (imp.impulse(frequency)) {
+                cout << txt << val << endl;
+            }
+            return val;
+        }
+    private:
+        maxiOsc imp;
+};
 #endif

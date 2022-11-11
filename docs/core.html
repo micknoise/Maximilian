@@ -48,6 +48,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#effects">Effects</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#analysis">Analysis</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#sequencing">Sequencing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#utility-functions">Utility Functions</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="extended.html">Extended</a></li>
@@ -292,6 +293,58 @@
 </div>
 </dd></dl>
 
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv410maxiEnvGen">
+<span id="_CPPv310maxiEnvGen"></span><span id="_CPPv210maxiEnvGen"></span><span id="maxiEnvGen"></span><span class="target" id="classmaxiEnvGen"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">maxiEnvGen</span></span></span><a class="headerlink" href="#_CPPv410maxiEnvGen" title="Permalink to this definition"></a><br /></dt>
+<dd><p>An envelope generator. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10maxiEnvGen4playEd">
+<span id="_CPPv3N10maxiEnvGen4playEd"></span><span id="_CPPv2N10maxiEnvGen4playEd"></span><span id="maxiEnvGen::play__double"></span><span class="target" id="classmaxiEnvGen_1a96e2ba32a6c33be15cadbaece6181c45"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">play</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">trigger</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10maxiEnvGen4playEd" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Get the latest value of the envelope</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>trigger</strong> – A positive zero crossing (or constant 1) starts the envelope </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10maxiEnvGen5setupE11DOUBLEARRAY11DOUBLEARRAY11DOUBLEARRAYbb">
+<span id="_CPPv3N10maxiEnvGen5setupE11DOUBLEARRAY11DOUBLEARRAY11DOUBLEARRAYbb"></span><span id="_CPPv2N10maxiEnvGen5setupE11DOUBLEARRAY11DOUBLEARRAY11DOUBLEARRAYbb"></span><span id="maxiEnvGen::setup__DOUBLEARRAY.DOUBLEARRAY.DOUBLEARRAY.b.b"></span><span class="target" id="classmaxiEnvGen_1ab0a6e01b809090475d41072fd33cc8e2"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">setup</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">DOUBLEARRAY</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">levels</span></span>, <span class="n"><span class="pre">DOUBLEARRAY</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">times</span></span>, <span class="n"><span class="pre">DOUBLEARRAY</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">curves</span></span>, <span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">looping</span></span>, <span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">allowRetrigger</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">false</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10maxiEnvGen5setupE11DOUBLEARRAY11DOUBLEARRAY11DOUBLEARRAYbb" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Configure the envelope generator </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>levels</strong> – An array of levels </p></li>
+<li><p><strong>times</strong> – An array of times between the levels, in milliseconds. To make the envelope hold until the first negative zero crossing, use maxiEnvGen::HOLD as the time. Only one hold segment is allowed. </p></li>
+<li><p><strong>curves</strong> – An array of exponential curve values to shape each segment (1 = straight, 2= squared, 0.5 = square root etc) </p></li>
+<li><p><strong>looping</strong> – True if the envelope should infinitely repeat </p></li>
+<li><p><strong>allowRetrigger</strong> – Set to true if the envelope should allow retriggering before it is finished, or false if the envelope should always reach the end before being allowed to restart Example C++ usage env.setup({0,1,0},{100,400}, {0.5,1}, false). levels should be one element longer than times and curves </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>True if the configuration was successful </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10maxiEnvGen5resetEv">
+<span id="_CPPv3N10maxiEnvGen5resetEv"></span><span id="_CPPv2N10maxiEnvGen5resetEv"></span><span id="maxiEnvGen::reset"></span><span class="target" id="classmaxiEnvGen_1a0a4c8291678ffd7b78a272871be940e8"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">reset</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10maxiEnvGen5resetEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Restart the envelope immeadiately </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10maxiEnvGen11resetAndArmEv">
+<span id="_CPPv3N10maxiEnvGen11resetAndArmEv"></span><span id="_CPPv2N10maxiEnvGen11resetAndArmEv"></span><span id="maxiEnvGen::resetAndArm"></span><span class="target" id="classmaxiEnvGen_1a2c39708258a5c71a40530d7473024b27"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">resetAndArm</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10maxiEnvGen11resetAndArmEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Stop the envelope and wait for a new trigger to start it </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
 </section>
 <section id="filters">
 <h2>Filters<a class="headerlink" href="#filters" title="Permalink to this heading"></a></h2>
@@ -338,6 +391,87 @@
 <li><p><strong>bpmix</strong> – the amount of bandpass pass filtering (0-1) </p></li>
 <li><p><strong>hpmix</strong> – the amount of high pass filtering (0-1) </p></li>
 <li><p><strong>notchmix</strong> – the amount of notch filtering (0-1) </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv410maxiBiquad">
+<span id="_CPPv310maxiBiquad"></span><span id="_CPPv210maxiBiquad"></span><span id="maxiBiquad"></span><span class="target" id="classmaxiBiquad"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">maxiBiquad</span></span></span><a class="headerlink" href="#_CPPv410maxiBiquad" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Biquad filters based on <a class="reference external" href="http://www.earlevel.com/main/2011/01/02/biquad-formulas/">http://www.earlevel.com/main/2011/01/02/biquad-formulas/</a> and <a class="reference external" href="https://ccrma.stanford.edu/~jos/fp/Direct_Form_II.html">https://ccrma.stanford.edu/~jos/fp/Direct_Form_II.html</a> </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-types">Public Types</p>
+<dl class="cpp enum">
+<dt class="sig sig-object cpp" id="_CPPv4N10maxiBiquad11filterTypesE">
+<span id="_CPPv3N10maxiBiquad11filterTypesE"></span><span id="_CPPv2N10maxiBiquad11filterTypesE"></span><span class="target" id="classmaxiBiquad_1afdc6a07de436e1eb9b56d07e56de98c2"></span><span class="k"><span class="pre">enum</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">filterTypes</span></span></span><a class="headerlink" href="#_CPPv4N10maxiBiquad11filterTypesE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>A variety of filter types </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N10maxiBiquad11filterTypes7LOWPASSE">
+<span id="_CPPv3N10maxiBiquad11filterTypes7LOWPASSE"></span><span id="_CPPv2N10maxiBiquad11filterTypes7LOWPASSE"></span><span class="target" id="classmaxiBiquad_1afdc6a07de436e1eb9b56d07e56de98c2ab12b6b727fb8ce70410a06a721d0326a"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">LOWPASS</span></span></span><a class="headerlink" href="#_CPPv4N10maxiBiquad11filterTypes7LOWPASSE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N10maxiBiquad11filterTypes8HIGHPASSE">
+<span id="_CPPv3N10maxiBiquad11filterTypes8HIGHPASSE"></span><span id="_CPPv2N10maxiBiquad11filterTypes8HIGHPASSE"></span><span class="target" id="classmaxiBiquad_1afdc6a07de436e1eb9b56d07e56de98c2a86955103441dd37cb1f704d5e3cac234"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">HIGHPASS</span></span></span><a class="headerlink" href="#_CPPv4N10maxiBiquad11filterTypes8HIGHPASSE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N10maxiBiquad11filterTypes8BANDPASSE">
+<span id="_CPPv3N10maxiBiquad11filterTypes8BANDPASSE"></span><span id="_CPPv2N10maxiBiquad11filterTypes8BANDPASSE"></span><span class="target" id="classmaxiBiquad_1afdc6a07de436e1eb9b56d07e56de98c2a60625ec3a18e510b032d5a2bd072ae99"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">BANDPASS</span></span></span><a class="headerlink" href="#_CPPv4N10maxiBiquad11filterTypes8BANDPASSE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N10maxiBiquad11filterTypes5NOTCHE">
+<span id="_CPPv3N10maxiBiquad11filterTypes5NOTCHE"></span><span id="_CPPv2N10maxiBiquad11filterTypes5NOTCHE"></span><span class="target" id="classmaxiBiquad_1afdc6a07de436e1eb9b56d07e56de98c2a50f53f0e198cdedd044144d4097e3e29"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">NOTCH</span></span></span><a class="headerlink" href="#_CPPv4N10maxiBiquad11filterTypes5NOTCHE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N10maxiBiquad11filterTypes4PEAKE">
+<span id="_CPPv3N10maxiBiquad11filterTypes4PEAKE"></span><span id="_CPPv2N10maxiBiquad11filterTypes4PEAKE"></span><span class="target" id="classmaxiBiquad_1afdc6a07de436e1eb9b56d07e56de98c2a97ccbd1a53a437d1b3ca46cd07b5e850"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PEAK</span></span></span><a class="headerlink" href="#_CPPv4N10maxiBiquad11filterTypes4PEAKE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N10maxiBiquad11filterTypes8LOWSHELFE">
+<span id="_CPPv3N10maxiBiquad11filterTypes8LOWSHELFE"></span><span id="_CPPv2N10maxiBiquad11filterTypes8LOWSHELFE"></span><span class="target" id="classmaxiBiquad_1afdc6a07de436e1eb9b56d07e56de98c2a370fb7faddd90af12dbdd8dc152e1478"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">LOWSHELF</span></span></span><a class="headerlink" href="#_CPPv4N10maxiBiquad11filterTypes8LOWSHELFE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N10maxiBiquad11filterTypes9HIGHSHELFE">
+<span id="_CPPv3N10maxiBiquad11filterTypes9HIGHSHELFE"></span><span id="_CPPv2N10maxiBiquad11filterTypes9HIGHSHELFE"></span><span class="target" id="classmaxiBiquad_1afdc6a07de436e1eb9b56d07e56de98c2abbf497f0dd07907392446d2bdaffbfdf"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">HIGHSHELF</span></span></span><a class="headerlink" href="#_CPPv4N10maxiBiquad11filterTypes9HIGHSHELFE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10maxiBiquad4playEd">
+<span id="_CPPv3N10maxiBiquad4playEd"></span><span id="_CPPv2N10maxiBiquad4playEd"></span><span id="maxiBiquad::play__double"></span><span class="target" id="classmaxiBiquad_1ac601f5a099d4517a1e9eac04f9ebd371"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">play</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">input</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10maxiBiquad4playEd" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Process a signal through the filter</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>input</strong> – A signal </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10maxiBiquad3setE11filterTypesddd">
+<span id="_CPPv3N10maxiBiquad3setE11filterTypesddd"></span><span id="_CPPv2N10maxiBiquad3setE11filterTypesddd"></span><span id="maxiBiquad::set__filterTypes.double.double.double"></span><span class="target" id="classmaxiBiquad_1a2e86cf2367c1b6fc1e089cf324c7ff6f"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">set</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4N10maxiBiquad11filterTypesE" title="maxiBiquad::filterTypes"><span class="n"><span class="pre">filterTypes</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">filtType</span></span>, <span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">cutoff</span></span>, <span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">Q</span></span>, <span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">peakGain</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10maxiBiquad3setE11filterTypesddd" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Configure the filter </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filtType</strong> – The type of filter, set from <a class="reference internal" href="#classmaxiBiquad_1afdc6a07de436e1eb9b56d07e56de98c2"><span class="std std-ref">maxiBiquad::filterTypes</span></a> </p></li>
+<li><p><strong>cutoff</strong> – The filter cutoff frequency in Hz </p></li>
+<li><p><strong>Q</strong> – The resonance of the filter </p></li>
+<li><p><strong>peakGain</strong> – The gain of the filter (only used for PEAK, HIGHSHELF and LOWSHELF) </p></li>
 </ul>
 </dd>
 </dl>
@@ -460,6 +594,64 @@
 </section>
 <section id="sequencing">
 <h2>Sequencing<a class="headerlink" href="#sequencing" title="Permalink to this heading"></a></h2>
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv48maxiStep">
+<span id="_CPPv38maxiStep"></span><span id="_CPPv28maxiStep"></span><span id="maxiStep"></span><span class="target" id="classmaxiStep"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">maxiStep</span></span></span><a class="headerlink" href="#_CPPv48maxiStep" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Pull sequential values from an array </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N8maxiStep4pullEKd11DOUBLEARRAYd">
+<span id="_CPPv3N8maxiStep4pullEKd11DOUBLEARRAYd"></span><span id="_CPPv2N8maxiStep4pullEKd11DOUBLEARRAYd"></span><span id="maxiStep::pull__doubleC.DOUBLEARRAY.double"></span><span class="target" id="classmaxiStep_1a86b0a93a6367bf5cce8f653368538341"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">pull</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">trigSig</span></span>, <span class="n"><span class="pre">DOUBLEARRAY</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">values</span></span>, <span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">step</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8maxiStep4pullEKd11DOUBLEARRAYd" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Take values from the array when triggered </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>trigSig</strong> – A signal to trigger a new value on a positive zero crossing </p></li>
+<li><p><strong>values</strong> – An array of values \step The amount that the array index should increase after pulling a new value. This wraps around to zero at the end of the array </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N8maxiStep8getIndexEv">
+<span id="_CPPv3N8maxiStep8getIndexEv"></span><span id="_CPPv2N8maxiStep8getIndexEv"></span><span id="maxiStep::getIndex"></span><span class="target" id="classmaxiStep_1a8b790d681ec903dd8b432d7fc0bb3427"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">getIndex</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8maxiStep8getIndexEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Get the current array index </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+</section>
+<section id="utility-functions">
+<h2>Utility Functions<a class="headerlink" href="#utility-functions" title="Permalink to this heading"></a></h2>
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv48maxiPoll">
+<span id="_CPPv38maxiPoll"></span><span id="_CPPv28maxiPoll"></span><span id="maxiPoll"></span><span class="target" id="classmaxiPoll"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">maxiPoll</span></span></span><a class="headerlink" href="#_CPPv48maxiPoll" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Poll values to stdout at regular intervals </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N8maxiPoll4pollEdd6string">
+<span id="_CPPv3N8maxiPoll4pollEdd6string"></span><span id="_CPPv2N8maxiPoll4pollEdd6string"></span><span id="maxiPoll::poll__double.double.string"></span><span class="target" id="classmaxiPoll_1a7fbdcadf18c378ebdb25d05dffa7110f"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">poll</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">val</span></span>, <span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">frequency</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">4</span></span>, <span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">txt</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="s"><span class="pre">&quot;&quot;</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8maxiPoll4pollEdd6string" title="Permalink to this definition"></a><br /></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>val</strong> – The value to poll </p></li>
+<li><p><strong>frequency</strong> – How often to print this value (Hz) </p></li>
+<li><p><strong>txt</strong> – Additional text to br printed before the value </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>the value being polled, so this can used as a pass-through function e.g. filter.play(obj.poll(osc.saw(2)),0.5) </p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</dd></dl>
+
 </section>
 </section>
 

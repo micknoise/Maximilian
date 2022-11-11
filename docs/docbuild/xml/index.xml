@@ -48,6 +48,7 @@
     <member refid="structmaxiEnvGen_1_1envStage_1a1e6ee1b5337bb8ae15268c19b83e093c" kind="variable"><name>curve</name></member>
     <member refid="structmaxiEnvGen_1_1envStage_1ae339ad68633f35596a2e22e1e2e62417" kind="variable"><name>length</name></member>
     <member refid="structmaxiEnvGen_1_1envStage_1af3033e4966c66ac23b2444dd044ef6a1" kind="variable"><name>counter</name></member>
+    <member refid="structmaxiEnvGen_1_1envStage_1a1b32d6f5cf21a2f1baf14cdb6ac2b874" kind="variable"><name>hold</name></member>
   </compound>
   <compound refid="classfft" kind="class"><name>fft</name>
     <member refid="classfft_1a1d00a7e361c9a7b0ae2f596792776619" kind="variable"><name>n</name></member>
@@ -370,18 +371,24 @@
     <member refid="classmaxiEnvGen_1a46dedc7b67cf4db2dc15bba5b7fe22fa" kind="enum"><name>playStates</name></member>
     <member refid="classmaxiEnvGen_1a46dedc7b67cf4db2dc15bba5b7fe22faaf6c403b61f8984b8fd68f497435650af" kind="enumvalue"><name>WAITING</name></member>
     <member refid="classmaxiEnvGen_1a46dedc7b67cf4db2dc15bba5b7fe22faa67c65a2f30fd0e230543db35433a5617" kind="enumvalue"><name>TRIGGERED</name></member>
-    <member refid="classmaxiEnvGen_1a4ffbf8f0cbdb655a3c4be143247102ee" kind="variable"><name>HOLD</name></member>
+    <member refid="classmaxiEnvGen_1a46dedc7b67cf4db2dc15bba5b7fe22faad06f5d383ba12d84a0396f0413df414d" kind="enumvalue"><name>HOLDING</name></member>
+    <member refid="classmaxiEnvGen_1a007fd039e939e100e70fcc70b7baeadb" kind="variable"><name>HOLD</name></member>
     <member refid="classmaxiEnvGen_1aab42d69c1586d17c29317072b3e7d923" kind="variable"><name>phase</name></member>
     <member refid="classmaxiEnvGen_1aad509e6fb210ee1d63dab3d07d43c234" kind="variable"><name>envval</name></member>
     <member refid="classmaxiEnvGen_1a6f20d77026844bf56caaf5c646ad2d35" kind="variable"><name>loop</name></member>
+    <member refid="classmaxiEnvGen_1a23b499b768fc3b54cae180c4d337ce28" kind="variable"><name>retrigger</name></member>
     <member refid="classmaxiEnvGen_1a0c2f865a3be04e6c44b7290665edc4c8" kind="variable"><name>state</name></member>
+    <member refid="classmaxiEnvGen_1a78edf3df821fbdc83cdbae6e342a7e54" kind="variable"><name>nxcHappened</name></member>
     <member refid="classmaxiEnvGen_1a78fbe3e6f522c7b705d3a9c646d899a5" kind="variable"><name>stages</name></member>
     <member refid="classmaxiEnvGen_1a66f99c8835b4fbe13b21c208f01dd001" kind="variable"><name>trigDetector</name></member>
+    <member refid="classmaxiEnvGen_1ac9be69cebca74ef534a81c56bda12342" kind="variable"><name>holdDetector</name></member>
+    <member refid="classmaxiEnvGen_1af806bc8de65f16543987c67aacc30bd5" kind="variable"><name>retriggerDetector</name></member>
     <member refid="classmaxiEnvGen_1abbcca25fc3f12a44a9f7b50127f1ea6b" kind="function"><name>maxiEnvGen</name></member>
     <member refid="classmaxiEnvGen_1a96e2ba32a6c33be15cadbaece6181c45" kind="function"><name>play</name></member>
-    <member refid="classmaxiEnvGen_1ac85e7157b82ad49590d2eacb2b756e93" kind="function"><name>setup</name></member>
+    <member refid="classmaxiEnvGen_1ab0a6e01b809090475d41072fd33cc8e2" kind="function"><name>setup</name></member>
     <member refid="classmaxiEnvGen_1a0a4c8291678ffd7b78a272871be940e8" kind="function"><name>reset</name></member>
     <member refid="classmaxiEnvGen_1a2c39708258a5c71a40530d7473024b27" kind="function"><name>resetAndArm</name></member>
+    <member refid="classmaxiEnvGen_1ace37d8526fd643904daab4601672aa14" kind="function"><name>setLevel</name></member>
   </compound>
   <compound refid="classmaxiFFT" kind="class"><name>maxiFFT</name>
     <member refid="classmaxiFFT_1a39a78d829e4d3b9b0d8e42951c39d456" kind="enum"><name>fftModes</name></member>
@@ -759,6 +766,10 @@
     <member refid="classmaxiPitchShift_1a375e0662264c6fde3e16bd18b433f0ef" kind="function"><name>setSample</name></member>
     <member refid="classmaxiPitchShift_1a0046fd841c54f9fd185c0178faa8ef8c" kind="function"><name>play</name></member>
   </compound>
+  <compound refid="classmaxiPoll" kind="class"><name>maxiPoll</name>
+    <member refid="classmaxiPoll_1a0fe8a5a2b3755bf37d18308400784034" kind="variable"><name>imp</name></member>
+    <member refid="classmaxiPoll_1a7fbdcadf18c378ebdb25d05dffa7110f" kind="function"><name>poll</name></member>
+  </compound>
   <compound refid="classmaxiPolyBLEP" kind="class"><name>maxiPolyBLEP</name>
     <member refid="classmaxiPolyBLEP_1a6adb656a95c88c2ae9e9b4b1a4dc6b42" kind="typedef"><name>Waveform</name></member>
     <member refid="classmaxiPolyBLEP_1adcd5288632a895bf3a1962b4b94976ae" kind="variable"><name>blep</name></member>
@@ -773,7 +784,7 @@
     <member refid="classmaxiRatioSeq_1a1e7594900723abec57ccd6e66b0b111b" kind="variable"><name>lengthOfValues</name></member>
     <member refid="classmaxiRatioSeq_1aa08b6faa8e6ec0807651c8bcfcac322b" kind="variable"><name>first</name></member>
     <member refid="classmaxiRatioSeq_1ac3968640e6c24dc2dbaca1f7ee335dfa" kind="function"><name>maxiRatioSeq</name></member>
-    <member refid="classmaxiRatioSeq_1ab7646f4ff28a83904b71c3c55c4064f2" kind="function"><name>playTrig</name></member>
+    <member refid="classmaxiRatioSeq_1a507ce4732d83f6ed512e1797b03c6483" kind="function"><name>playTrig</name></member>
     <member refid="classmaxiRatioSeq_1aec432d4351d64a53325aed2e8dc7ea46" kind="function"><name>playValues</name></member>
   </compound>
   <compound refid="classmaxiReverbBase" kind="class"><name>maxiReverbBase</name>
@@ -996,7 +1007,7 @@
     <member refid="classmaxiStep_1a22e71dbdcfa3fc0250df3acd7cd57946" kind="variable"><name>first</name></member>
     <member refid="classmaxiStep_1aa931603ba181a586ec47294d3952f73d" kind="variable"><name>index</name></member>
     <member refid="classmaxiStep_1ad143357dd48dab980a065397d5c71294" kind="function"><name>maxiStep</name></member>
-    <member refid="classmaxiStep_1a0d3dfb1e2a7c48bc31da9c0ae3da1948" kind="function"><name>pull</name></member>
+    <member refid="classmaxiStep_1a86b0a93a6367bf5cce8f653368538341" kind="function"><name>pull</name></member>
     <member refid="classmaxiStep_1a8b790d681ec903dd8b432d7fc0bb3427" kind="function"><name>getIndex</name></member>
   </compound>
   <compound refid="classmaxiStretch" kind="class"><name>maxiStretch</name>

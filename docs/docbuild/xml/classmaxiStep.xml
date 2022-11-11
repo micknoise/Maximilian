@@ -14,7 +14,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1758" column="17" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1758" bodyend="-1"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1776" column="17" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1776" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classmaxiStep_1a22e71dbdcfa3fc0250df3acd7cd57946" prot="private" static="no" mutable="no">
         <type>bool</type>
@@ -28,7 +28,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1759" column="10" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1759" bodyend="-1"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1777" column="10" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1777" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classmaxiStep_1aa931603ba181a586ec47294d3952f73d" prot="private" static="no" mutable="no">
         <type>double</type>
@@ -42,7 +42,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1760" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1760" bodyend="-1"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1778" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1778" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
@@ -57,7 +57,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1723" column="5" bodyfile="/home/ck84/src/Maximilian/src/maximilian.cpp" bodystart="1502" bodyend="1502"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1741" column="5" bodyfile="/home/ck84/src/Maximilian/src/maximilian.cpp" bodystart="1502" bodyend="1502"/>
       </memberdef>
       <memberdef kind="function" id="classmaxiStep_1a0d3dfb1e2a7c48bc31da9c0ae3da1948" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>double</type>
@@ -82,7 +82,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1724" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1724" bodyend="1751"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1742" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1742" bodyend="1769"/>
       </memberdef>
       <memberdef kind="function" id="classmaxiStep_1a8b790d681ec903dd8b432d7fc0bb3427" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>double</type>
@@ -95,14 +95,14 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1753" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1753" bodyend="1755"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1771" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1771" bodyend="1773"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1720" column="1" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1721" bodyend="1761"/>
+    <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1738" column="1" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1739" bodyend="1779"/>
     <listofallmembers>
       <member refid="classmaxiStep_1a22e71dbdcfa3fc0250df3acd7cd57946" prot="private" virt="non-virtual"><scope>maxiStep</scope><name>first</name></member>
       <member refid="classmaxiStep_1a8b790d681ec903dd8b432d7fc0bb3427" prot="public" virt="non-virtual"><scope>maxiStep</scope><name>getIndex</name></member>

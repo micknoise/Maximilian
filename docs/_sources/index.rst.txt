@@ -8,10 +8,12 @@ Welcome to Maximilian's documentation!
 ======================================
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 3
    :caption: Contents:
 
    install
+   core
+   extended
 
 
 
@@ -21,37 +23,3 @@ Indices and tables
 * :ref:`genindex`
 * :ref:`search`
 
-Generators
-==========
-
-
-   
-.. doxygenclass:: maxiOsc
-   :project: maximilian
-   :members:
-
-
-.. doxygenclass:: maxiPolyBLEP
-   :project: maximilian
-   :members:
-
-
-Signal Processors
-=================
-
-
-Analysis
-========
-
-.. doxygenclass:: maxiZeroCrossingDetector
-   :project: maximilian
-   :members:
-
-
-
-Sequencing
-==========
-
-
-Undocumented
-============

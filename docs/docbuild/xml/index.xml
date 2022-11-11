@@ -678,19 +678,6 @@
     <member refid="classmaxiMap_1a4cb165b90b1c9c99aa607df31bf59929" kind="function"><name>explin</name></member>
     <member refid="classmaxiMap_1a04c77c190b34b097762fdc5fa32f385b" kind="function"><name>clamp</name></member>
   </compound>
-  <compound refid="classmaxiMath" kind="class"><name>maxiMath</name>
-    <member refid="classmaxiMath_1ae68566b6406f52a110a44048b0aaa1de" kind="function"><name>add</name></member>
-    <member refid="classmaxiMath_1a3f722827690e668492694258cb7faf63" kind="function"><name>div</name></member>
-    <member refid="classmaxiMath_1af1c37faa5d0b6f306f0235c6b5c92878" kind="function"><name>mul</name></member>
-    <member refid="classmaxiMath_1a2afbfee700bc4e2357d8a46b65b51f8a" kind="function"><name>sub</name></member>
-    <member refid="classmaxiMath_1aa3db167e5156fe1ecdd4c9e6f78fa5be" kind="function"><name>gt</name></member>
-    <member refid="classmaxiMath_1a6b177cef8201509678f1628b6bec77af" kind="function"><name>lt</name></member>
-    <member refid="classmaxiMath_1a87a160d1c03da56bb49f19b6fd50df32" kind="function"><name>gte</name></member>
-    <member refid="classmaxiMath_1a70fbbed9afac2cb9bc778a7d71f2998d" kind="function"><name>lte</name></member>
-    <member refid="classmaxiMath_1adefa6d668d06572fa0e55d3ef5cf031c" kind="function"><name>mod</name></member>
-    <member refid="classmaxiMath_1aa8aa9591c5ae4d4096fb415ff8abc819" kind="function"><name>abs</name></member>
-    <member refid="classmaxiMath_1ac5f8fb11a6a3e8ce300c203149443a65" kind="function"><name>xpowy</name></member>
-  </compound>
   <compound refid="classmaxiMFCCAdaptor" kind="class"><name>maxiMFCCAdaptor</name>
     <member refid="classmaxiMFCCAdaptor_1aba9751489b050de7b4e3c21a7ae399fb" kind="function"><name>setup</name></member>
     <member refid="classmaxiMFCCAdaptor_1a32d617db99c6008348d7a331a79b5d3e" kind="function"><name>mfcc</name></member>

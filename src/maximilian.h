@@ -796,19 +796,36 @@ private:
 };
 
 //needs oversampling
+/**
+ * Various ways to distort signals
+ */
 class CHEERP_EXPORT maxiNonlinearity
 {
 public:
     maxiNonlinearity();
-    /*atan distortion, see http://www.musicdsp.org/showArchiveComment.php?ArchiveID=104*/
+    /** atan distortion, see http://www.musicdsp.org/showArchiveComment.php?ArchiveID=104
+    * \param in A signal
+    * \param shape from 1 (soft clipping) to infinity (hard clipping)
+    */ 
     double atanDist(const double in, const double shape);
-    /*shape from 1 (soft clipping) to infinity (hard clipping)*/
+    /** Faster but 'lower quality' version of atan distortion
+     * \param in A signal
+     * \param shape from 1 (soft clipping) to infinity (hard clipping)
+    */
     double fastAtanDist(const double in, const double shape);
+    /** Cliping with nicer harmonics \param x A signal*/
     double softclip(double x);
+    /** Cliping with nastier harmonics \param x A signal*/
     double hardclip(double x);
-    //asymmetric clipping: chose the shape of curves for both positive and negative values of x
-    //try it here https://www.desmos.com/calculator/to6eixatsa
+    /**
+     * asymmetric clipping: chose the shape of curves for both positive and negative values of x
+     * try it here https://www.desmos.com/calculator/to6eixatsa
+     * \param x A signal
+     * \param a Exponent for the positive curve
+     * \param b Exponent for the negative curve
+     */
     double asymclip(double x, double a, double b);
+    /*! Fast atan distortion \param x A signal */
     double fastatan(double x);
 };
 
@@ -977,21 +994,16 @@ public:
     }
 };
 
-/*
+/**
  State Variable Filter
 
  algorithm from  http://www.cytomic.com/files/dsp/SvfLinearTrapOptimised.pdf
  usage:
- either set the parameters separately as required (to save CPU)
 
  filter.setCutoff(param1);
  filter.setResonance(param2);
 
  w = filter.play(w, 0.0, 1.0, 0.0, 0.0);
-
- or set everything together at once
-
- w = filter.setCutoff(param1).setResonance(param2).play(w, 0.0, 1.0, 0.0, 0.0);
 
  */
 class maxiSVF
@@ -999,19 +1011,25 @@ class maxiSVF
 public:
     maxiSVF() : v0z(0), v1(0), v2(0) { setParams(1000, 1); }
 
-    //20 < cutoff < 20000
+    /*!Set the cutoff frequency \param cutoff Cuttoff frequency (20 < cutoff < 20000)*/
     inline void setCutoff(double cutoff)
     {
         setParams(cutoff, res);
     }
 
-    //from 0 upwards, starts to ring from 2-3ish, cracks a bit around 10
+    /*! Set the resonance of the filter \param q From 0 upwards, starts to ring from 2-3ish, cracks a bit around 10*/
     inline void setResonance(double q)
     {
         setParams(freq, q);
     }
 
-    //run the filter, and get a mixture of lowpass, bandpass, highpass and notch outputs
+    /**run the filter, and get a mixture of lowpass, bandpass, highpass and notch outputs
+     *\param w The signal to be filtered
+     \param lpmix the amount of low pass filtering (0-1) 
+     \param bpmix the amount of bandpass pass filtering (0-1) 
+     \param hpmix the amount of high pass filtering (0-1) 
+     \param notchmix the amount of notch filtering (0-1) 
+    */
     inline double play(double w, double lpmix, double bpmix, double hpmix, double notchmix)
     {
         double low, band, high, notch;
@@ -1282,54 +1300,54 @@ private:
     }
 };
 
-class maxiMath
-{
-public:
-    static double add(double x, double y)
-    {
-        return x + y;
-    };
-    static double div(double x, double y)
-    {
-        return x / y;
-    };
-    static double mul(double x, double y)
-    {
-        return x * y;
-    };
-    static double sub(double x, double y)
-    {
-        return x - y;
-    };
-    static double gt(double x, double y)
-    {
-        return x > y;
-    }
-    static double lt(double x, double y)
-    {
-        return x < y;
-    }
-    static double gte(double x, double y)
-    {
-        return x >= y;
-    }
-    static double lte(double x, double y)
-    {
-        return x <= y;
-    }
-    static double mod(double x, double y)
-    {
-        return fmod(x, y);
-    }
-    static double abs(double x)
-    {
-        return fabs(x);
-    }
-    static double xpowy(double x, double y)
-    {
-        return pow(x, y);
-    }
-};
+// class maxiMath
+// {
+// public:
+//     static double add(double x, double y)
+//     {
+//         return x + y;
+//     };
+//     static double div(double x, double y)
+//     {
+//         return x / y;
+//     };
+//     static double mul(double x, double y)
+//     {
+//         return x * y;
+//     };
+//     static double sub(double x, double y)
+//     {
+//         return x - y;
+//     };
+//     static double gt(double x, double y)
+//     {
+//         return x > y;
+//     }
+//     static double lt(double x, double y)
+//     {
+//         return x < y;
+//     }
+//     static double gte(double x, double y)
+//     {
+//         return x >= y;
+//     }
+//     static double lte(double x, double y)
+//     {
+//         return x <= y;
+//     }
+//     static double mod(double x, double y)
+//     {
+//         return fmod(x, y);
+//     }
+//     static double abs(double x)
+//     {
+//         return fabs(x);
+//     }
+//     static double xpowy(double x, double y)
+//     {
+//         return pow(x, y);
+//     }
+// };
 
 //https://tutorials.siam.org/dsweb/cotutorial/index.php?s=3&p=0
 //https://www.complexity-explorables.org/explorables/ride-my-kuramotocycle/
@@ -1852,7 +1870,7 @@ class CHEERP_EXPORT maxiEnvGen {
     public:
 
         static const double HOLD = -99;
-        
+
         maxiEnvGen();
 
         double play(double trigger) {

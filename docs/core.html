@@ -44,7 +44,8 @@
 <li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Core</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#generators">Generators</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#signal-processors">Signal Processors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#filters">Filters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#effects">Effects</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#analysis">Analysis</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#sequencing">Sequencing</a></li>
 </ul>
@@ -292,8 +293,147 @@
 </dd></dl>
 
 </section>
-<section id="signal-processors">
-<h2>Signal Processors<a class="headerlink" href="#signal-processors" title="Permalink to this heading"></a></h2>
+<section id="filters">
+<h2>Filters<a class="headerlink" href="#filters" title="Permalink to this heading"></a></h2>
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv47maxiSVF">
+<span id="_CPPv37maxiSVF"></span><span id="_CPPv27maxiSVF"></span><span id="maxiSVF"></span><span class="target" id="classmaxiSVF"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">maxiSVF</span></span></span><a class="headerlink" href="#_CPPv47maxiSVF" title="Permalink to this definition"></a><br /></dt>
+<dd><p>State Variable Filter</p>
+<p>algorithm from <a class="reference external" href="http://www.cytomic.com/files/dsp/SvfLinearTrapOptimised.pdf">http://www.cytomic.com/files/dsp/SvfLinearTrapOptimised.pdf</a> usage:</p>
+<p>filter.setCutoff(param1); filter.setResonance(param2);</p>
+<p>w = filter.play(w, 0.0, 1.0, 0.0, 0.0); </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N7maxiSVF9setCutoffEd">
+<span id="_CPPv3N7maxiSVF9setCutoffEd"></span><span id="_CPPv2N7maxiSVF9setCutoffEd"></span><span id="maxiSVF::setCutoff__double"></span><span class="target" id="classmaxiSVF_1a2ef7577baa3fe7f6357f9e2ad297ca2c"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">setCutoff</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">cutoff</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N7maxiSVF9setCutoffEd" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Set the cutoff frequency</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>cutoff</strong> – Cuttoff frequency (20 &lt; cutoff &lt; 20000) </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N7maxiSVF12setResonanceEd">
+<span id="_CPPv3N7maxiSVF12setResonanceEd"></span><span id="_CPPv2N7maxiSVF12setResonanceEd"></span><span id="maxiSVF::setResonance__double"></span><span class="target" id="classmaxiSVF_1afd0a82425008a52ee08a8f1f53607bd8"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">setResonance</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">q</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N7maxiSVF12setResonanceEd" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Set the resonance of the filter</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>q</strong> – From 0 upwards, starts to ring from 2-3ish, cracks a bit around 10 </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N7maxiSVF4playEddddd">
+<span id="_CPPv3N7maxiSVF4playEddddd"></span><span id="_CPPv2N7maxiSVF4playEddddd"></span><span id="maxiSVF::play__double.double.double.double.double"></span><span class="target" id="classmaxiSVF_1a09f66ad10878865f3254b735313df947"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">play</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">w</span></span>, <span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">lpmix</span></span>, <span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">bpmix</span></span>, <span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">hpmix</span></span>, <span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">notchmix</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N7maxiSVF4playEddddd" title="Permalink to this definition"></a><br /></dt>
+<dd><p>run the filter, and get a mixture of lowpass, bandpass, highpass and notch outputs </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>w</strong> – The signal to be filtered </p></li>
+<li><p><strong>lpmix</strong> – the amount of low pass filtering (0-1) </p></li>
+<li><p><strong>bpmix</strong> – the amount of bandpass pass filtering (0-1) </p></li>
+<li><p><strong>hpmix</strong> – the amount of high pass filtering (0-1) </p></li>
+<li><p><strong>notchmix</strong> – the amount of notch filtering (0-1) </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+</section>
+<section id="effects">
+<h2>Effects<a class="headerlink" href="#effects" title="Permalink to this heading"></a></h2>
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv416maxiNonlinearity">
+<span id="_CPPv316maxiNonlinearity"></span><span id="_CPPv216maxiNonlinearity"></span><span id="maxiNonlinearity"></span><span class="target" id="classmaxiNonlinearity"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">maxiNonlinearity</span></span></span><a class="headerlink" href="#_CPPv416maxiNonlinearity" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Various ways to distort signals </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N16maxiNonlinearity8atanDistEKdKd">
+<span id="_CPPv3N16maxiNonlinearity8atanDistEKdKd"></span><span id="_CPPv2N16maxiNonlinearity8atanDistEKdKd"></span><span id="maxiNonlinearity::atanDist__doubleC.doubleC"></span><span class="target" id="classmaxiNonlinearity_1a7768ef4e151832457efe388109ff8145"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">atanDist</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">in</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">shape</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N16maxiNonlinearity8atanDistEKdKd" title="Permalink to this definition"></a><br /></dt>
+<dd><p>atan distortion, see <a class="reference external" href="http://www.musicdsp.org/showArchiveComment.php?ArchiveID=104">http://www.musicdsp.org/showArchiveComment.php?ArchiveID=104</a> </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>in</strong> – A signal </p></li>
+<li><p><strong>shape</strong> – from 1 (soft clipping) to infinity (hard clipping) </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N16maxiNonlinearity12fastAtanDistEKdKd">
+<span id="_CPPv3N16maxiNonlinearity12fastAtanDistEKdKd"></span><span id="_CPPv2N16maxiNonlinearity12fastAtanDistEKdKd"></span><span id="maxiNonlinearity::fastAtanDist__doubleC.doubleC"></span><span class="target" id="classmaxiNonlinearity_1a7925d5eeeac8953db220c2ed121b323e"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fastAtanDist</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">in</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">shape</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N16maxiNonlinearity12fastAtanDistEKdKd" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Faster but ‘lower quality’ version of atan distortion </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>in</strong> – A signal </p></li>
+<li><p><strong>shape</strong> – from 1 (soft clipping) to infinity (hard clipping) </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N16maxiNonlinearity8softclipEd">
+<span id="_CPPv3N16maxiNonlinearity8softclipEd"></span><span id="_CPPv2N16maxiNonlinearity8softclipEd"></span><span id="maxiNonlinearity::softclip__double"></span><span class="target" id="classmaxiNonlinearity_1af31dae57b366bf898eaee24f06d146f6"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">softclip</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">x</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N16maxiNonlinearity8softclipEd" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Cliping with nicer harmonics</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>x</strong> – A signal </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N16maxiNonlinearity8hardclipEd">
+<span id="_CPPv3N16maxiNonlinearity8hardclipEd"></span><span id="_CPPv2N16maxiNonlinearity8hardclipEd"></span><span id="maxiNonlinearity::hardclip__double"></span><span class="target" id="classmaxiNonlinearity_1ad256eefc5e3cfbe70ad22cf105e187cc"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">hardclip</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">x</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N16maxiNonlinearity8hardclipEd" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Cliping with nastier harmonics</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>x</strong> – A signal </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N16maxiNonlinearity8asymclipEddd">
+<span id="_CPPv3N16maxiNonlinearity8asymclipEddd"></span><span id="_CPPv2N16maxiNonlinearity8asymclipEddd"></span><span id="maxiNonlinearity::asymclip__double.double.double"></span><span class="target" id="classmaxiNonlinearity_1aa8e54b18b54b7dca2f0bfb0171e038cd"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">asymclip</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">x</span></span>, <span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">a</span></span>, <span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">b</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N16maxiNonlinearity8asymclipEddd" title="Permalink to this definition"></a><br /></dt>
+<dd><p>asymmetric clipping: chose the shape of curves for both positive and negative values of x try it here <a class="reference external" href="https://www.desmos.com/calculator/to6eixatsa">https://www.desmos.com/calculator/to6eixatsa</a> </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> – A signal </p></li>
+<li><p><strong>a</strong> – Exponent for the positive curve </p></li>
+<li><p><strong>b</strong> – Exponent for the negative curve </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N16maxiNonlinearity8fastatanEd">
+<span id="_CPPv3N16maxiNonlinearity8fastatanEd"></span><span id="_CPPv2N16maxiNonlinearity8fastatanEd"></span><span id="maxiNonlinearity::fastatan__double"></span><span class="target" id="classmaxiNonlinearity_1a010c469f179b4bbca35755219063b217"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fastatan</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">x</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N16maxiNonlinearity8fastatanEd" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Fast atan distortion</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>x</strong> – A signal </p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</dd></dl>
+
 </section>
 <section id="analysis">
 <h2>Analysis<a class="headerlink" href="#analysis" title="Permalink to this heading"></a></h2>

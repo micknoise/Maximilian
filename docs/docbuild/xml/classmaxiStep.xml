@@ -2,6 +2,7 @@
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="classmaxiStep" kind="class" language="C++" prot="public">
     <compoundname>maxiStep</compoundname>
+    <includes refid="maximilian_8h" local="no">maximilian.h</includes>
       <sectiondef kind="private-attrib">
       <memberdef kind="variable" id="classmaxiStep_1a426bfa6f9458e5097ab387666ae7eec5" prot="private" static="no" mutable="no">
         <type><ref refid="classmaxiTrigger" kindref="compound">maxiTrigger</ref></type>
@@ -14,7 +15,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1776" column="17" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1776" bodyend="-1"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1797" column="17" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1797" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classmaxiStep_1a22e71dbdcfa3fc0250df3acd7cd57946" prot="private" static="no" mutable="no">
         <type>bool</type>
@@ -28,7 +29,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1777" column="10" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1777" bodyend="-1"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1798" column="10" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1798" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classmaxiStep_1aa931603ba181a586ec47294d3952f73d" prot="private" static="no" mutable="no">
         <type>double</type>
@@ -42,7 +43,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1778" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1778" bodyend="-1"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1799" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1799" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
@@ -57,19 +58,19 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1741" column="5" bodyfile="/home/ck84/src/Maximilian/src/maximilian.cpp" bodystart="1502" bodyend="1502"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1755" column="5" bodyfile="/home/ck84/src/Maximilian/src/maximilian.cpp" bodystart="1502" bodyend="1502"/>
       </memberdef>
-      <memberdef kind="function" id="classmaxiStep_1a0d3dfb1e2a7c48bc31da9c0ae3da1948" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="classmaxiStep_1a86b0a93a6367bf5cce8f653368538341" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>double</type>
         <definition>double maxiStep::pull</definition>
-        <argsstring>(const double trigSig, DOUBLEARRAY_REF values, double step)</argsstring>
+        <argsstring>(const double trigSig, DOUBLEARRAY values, double step)</argsstring>
         <name>pull</name>
         <param>
           <type>const double</type>
           <declname>trigSig</declname>
         </param>
         <param>
-          <type>DOUBLEARRAY_REF</type>
+          <type>DOUBLEARRAY</type>
           <declname>values</declname>
         </param>
         <param>
@@ -79,10 +80,28 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
+<para>Take values from the array when triggered <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>trigSig</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="classA" kindref="compound">A</ref> signal to trigger a new value on a positive zero crossing </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>values</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>An array of values \step The amount that the array index should increase after pulling a new value. This wraps around to zero at the end of the array </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1742" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1742" bodyend="1769"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1762" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1762" bodyend="1789"/>
       </memberdef>
       <memberdef kind="function" id="classmaxiStep_1a8b790d681ec903dd8b432d7fc0bb3427" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>double</type>
@@ -92,23 +111,25 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
+<para>Get the current array index </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1771" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1771" bodyend="1773"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1792" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1792" bodyend="1794"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
+<para>Pull sequential values from an array </para>
     </detaileddescription>
-    <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1738" column="1" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1739" bodyend="1779"/>
+    <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1752" column="1" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1753" bodyend="1800"/>
     <listofallmembers>
       <member refid="classmaxiStep_1a22e71dbdcfa3fc0250df3acd7cd57946" prot="private" virt="non-virtual"><scope>maxiStep</scope><name>first</name></member>
       <member refid="classmaxiStep_1a8b790d681ec903dd8b432d7fc0bb3427" prot="public" virt="non-virtual"><scope>maxiStep</scope><name>getIndex</name></member>
       <member refid="classmaxiStep_1aa931603ba181a586ec47294d3952f73d" prot="private" virt="non-virtual"><scope>maxiStep</scope><name>index</name></member>
       <member refid="classmaxiStep_1ad143357dd48dab980a065397d5c71294" prot="public" virt="non-virtual"><scope>maxiStep</scope><name>maxiStep</name></member>
-      <member refid="classmaxiStep_1a0d3dfb1e2a7c48bc31da9c0ae3da1948" prot="public" virt="non-virtual"><scope>maxiStep</scope><name>pull</name></member>
+      <member refid="classmaxiStep_1a86b0a93a6367bf5cce8f653368538341" prot="public" virt="non-virtual"><scope>maxiStep</scope><name>pull</name></member>
       <member refid="classmaxiStep_1a426bfa6f9458e5097ab387666ae7eec5" prot="private" virt="non-virtual"><scope>maxiStep</scope><name>trig</name></member>
     </listofallmembers>
   </compounddef>

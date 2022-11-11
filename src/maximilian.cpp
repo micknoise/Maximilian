@@ -1502,3 +1502,4 @@ maxiZXToPulse::maxiZXToPulse() {}
 maxiStep::maxiStep() {}
 maxiSelect::maxiSelect() {}
 maxiSelectX::maxiSelectX() {}
+maxiEnvGen::maxiEnvGen() {}

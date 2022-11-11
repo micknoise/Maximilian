@@ -1,55 +1,25 @@
-//Envelopes allow you to shape the sound. The basic idea is that a sound has the following shape
-// Attack: This is how long it takes to fade up to maximum volume
-// Decay: This is how long it takes to reach the sustain level.
-// Sustain: This is the sustain level
-// Release: This is how long it takes to fade out.
+//Envelopes allow you to shape the sound. 
 
 #include "maximilian.h"
 #include "maxiPolyBLEP.h"
 
 maxiPolyBLEP osc1;//
-// int CurrentCount;//
-// double myOscOutput,myCurrentVolume;//
-maxiEnv myEnvelope;
+maxiOsc imp;
+maxiEnvGen myEnv;
 
 
-void setup() {//some inits
-    
-    osc1.setWaveform(maxiPolyBLEP::Waveform::SAWTOOTH);
 
-    //Timing is in ms
+void setup() {
     
-    // myEnvelope.setAttack(0);
-    // myEnvelope.setDecay(1);  // Needs to be at least 1
-    // myEnvelope.setSustain(1);
-    // myEnvelope.setRelease(1000);
-    
+    osc1.setWaveform(maxiPolyBLEP::Waveform::MODIFIED_SQUARE);
+
+    myEnv.setup({0,1,0.1},{10,200},{1,1.3}, false);    
 }
 
 void play(double *output) {
     
-    // //notice that we feed in a value of 1. to create an envelope shape we can apply later.
-    // myCurrentVolume=myEnvelope.adsr(1.,myEnvelope.trigger);
-    
-    // CurrentCount=myCounter.phasorBetween(1, 1, 9);//phasor can take three arguments; frequency, start value and end value.
-    
-    // // You'll notice that these 'if' statements don't require curly braces "{}".
-    // // This is because there is only one outcome if the statement is true.
-    
-    // if (CurrentCount==1) myEnvelope.trigger=1; //trigger the envelope
-    
-    // else myEnvelope.trigger=0;//release the envelope to make it fade out only if it's been triggered
-    
-    // if (CurrentCount<5)
-        
-    //     myOscOutput=mySwitchableOsc.sawn(CurrentCount*100);
-    
-    // else if (CurrentCount>=5)//and the 'else' bit.
-        
-    //     myOscOutput=mySwitchableOsc.sinewave(CurrentCount*50);//one osc object can produce whichever waveform you want.
-    
-    
-    output[0] = osc1.play(100);
+    double env = myEnv.play(imp.impulse(3));
+    output[0] = osc1.play(20 + (env*2000));
     output[1] = output[0];
     
 }

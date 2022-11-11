@@ -38,6 +38,18 @@ Signal Processors
 =================
 
 
+Analysis
+========
+
+.. doxygenclass:: maxiZeroCrossingDetector
+   :project: maximilian
+   :members:
+
+
 
 Sequencing
 ==========
+
+
+Undocumented
+============

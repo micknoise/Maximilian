@@ -27,7 +27,7 @@ class CHEERP_EXPORT myClass {
 
 We use doxygen to build xml documentation from comments in the C++ source code, and then use sphinx and breathe to build this into a website
 
-The files are in the ``doc/docbuild`` folder.
+The files are in the ``docs/docbuild`` folder.
 
 You will need to install doxygen, and then
 

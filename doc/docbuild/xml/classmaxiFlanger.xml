@@ -1,0 +1,99 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classmaxiFlanger" kind="class" language="C++" prot="public">
+    <compoundname>maxiFlanger</compoundname>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classmaxiFlanger_1af740169b488721e1aaa33ebe4d1ff566" prot="public" static="no" mutable="no">
+        <type><ref refid="classmaxiDelayline" kindref="compound">maxiDelayline</ref></type>
+        <definition>maxiDelayline maxiFlanger::dl</definition>
+        <argsstring></argsstring>
+        <name>dl</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="888" column="19" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="888" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiFlanger_1ac41402f65bd2fea8d4f574c44c289c98" prot="public" static="no" mutable="no">
+        <type><ref refid="classmaxiOsc" kindref="compound">maxiOsc</ref></type>
+        <definition>maxiOsc maxiFlanger::lfo</definition>
+        <argsstring></argsstring>
+        <name>lfo</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="889" column="13" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="889" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classmaxiFlanger_1abb001b4066237c99e69c983b638d4943" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double maxiFlanger::flange</definition>
+        <argsstring>(const double input, const unsigned int delay, const double feedback, const double speed, const double depth)</argsstring>
+        <name>flange</name>
+        <param>
+          <type>const double</type>
+          <declname>input</declname>
+        </param>
+        <param>
+          <type>const unsigned int</type>
+          <declname>delay</declname>
+        </param>
+        <param>
+          <type>const double</type>
+          <declname>feedback</declname>
+        </param>
+        <param>
+          <type>const double</type>
+          <declname>speed</declname>
+        </param>
+        <param>
+          <type>const double</type>
+          <declname>depth</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="887" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="892" bodyend="901"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="3">
+        <label>maxiDelayline</label>
+        <link refid="classmaxiDelayline"/>
+      </node>
+      <node id="2">
+        <label>maxiOsc</label>
+        <link refid="classmaxiOsc"/>
+      </node>
+      <node id="1">
+        <label>maxiFlanger</label>
+        <link refid="classmaxiFlanger"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>lfo</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>dl</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="880" column="1" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="881" bodyend="890"/>
+    <listofallmembers>
+      <member refid="classmaxiFlanger_1af740169b488721e1aaa33ebe4d1ff566" prot="public" virt="non-virtual"><scope>maxiFlanger</scope><name>dl</name></member>
+      <member refid="classmaxiFlanger_1abb001b4066237c99e69c983b638d4943" prot="public" virt="non-virtual"><scope>maxiFlanger</scope><name>flange</name></member>
+      <member refid="classmaxiFlanger_1ac41402f65bd2fea8d4f574c44c289c98" prot="public" virt="non-virtual"><scope>maxiFlanger</scope><name>lfo</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,82 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classmaxiCounter" kind="class" language="C++" prot="public">
+    <compoundname>maxiCounter</compoundname>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classmaxiCounter_1a2bdc51d02ad76ff5d9e0ead47b237331" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double maxiCounter::value</definition>
+        <argsstring></argsstring>
+        <name>value</name>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1632" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1632" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiCounter_1aebe28e7412d449e33850314c972fe60e" prot="private" static="no" mutable="no">
+        <type><ref refid="classmaxiTrigger" kindref="compound">maxiTrigger</ref></type>
+        <definition>maxiTrigger maxiCounter::inctrig</definition>
+        <argsstring></argsstring>
+        <name>inctrig</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1633" column="17" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1633" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiCounter_1acc04385cda4e780ecf54640d084f55e1" prot="private" static="no" mutable="no">
+        <type><ref refid="classmaxiTrigger" kindref="compound">maxiTrigger</ref></type>
+        <definition>maxiTrigger maxiCounter::rstrig</definition>
+        <argsstring></argsstring>
+        <name>rstrig</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1633" column="25" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1633" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classmaxiCounter_1aec77792df4bbae4a7b40a5e536936b01" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double maxiCounter::count</definition>
+        <argsstring>(double incTrigger, double resetTrigger)</argsstring>
+        <name>count</name>
+        <param>
+          <type>double</type>
+          <declname>incTrigger</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>resetTrigger</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1618" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1618" bodyend="1629"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1615" column="1" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1616" bodyend="1634"/>
+    <listofallmembers>
+      <member refid="classmaxiCounter_1aec77792df4bbae4a7b40a5e536936b01" prot="public" virt="non-virtual"><scope>maxiCounter</scope><name>count</name></member>
+      <member refid="classmaxiCounter_1aebe28e7412d449e33850314c972fe60e" prot="private" virt="non-virtual"><scope>maxiCounter</scope><name>inctrig</name></member>
+      <member refid="classmaxiCounter_1acc04385cda4e780ecf54640d084f55e1" prot="private" virt="non-virtual"><scope>maxiCounter</scope><name>rstrig</name></member>
+      <member refid="classmaxiCounter_1a2bdc51d02ad76ff5d9e0ead47b237331" prot="private" virt="non-virtual"><scope>maxiCounter</scope><name>value</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

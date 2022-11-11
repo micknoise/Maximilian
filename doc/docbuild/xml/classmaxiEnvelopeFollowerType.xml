@@ -1,0 +1,178 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classmaxiEnvelopeFollowerType" kind="class" language="C++" prot="public">
+    <compoundname>maxiEnvelopeFollowerType</compoundname>
+    <templateparamlist>
+      <param>
+        <type>typename T</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classmaxiEnvelopeFollowerType_1a86178618a6872182b3b05d0ca2772365" prot="private" static="no" mutable="no">
+        <type>T</type>
+        <definition>T maxiEnvelopeFollowerType&lt; T &gt;::attack</definition>
+        <argsstring></argsstring>
+        <name>attack</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="961" column="7" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="961" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiEnvelopeFollowerType_1ab453ef0a4b17e07463288f516d98048e" prot="private" static="no" mutable="no">
+        <type>T</type>
+        <definition>T maxiEnvelopeFollowerType&lt; T &gt;::release</definition>
+        <argsstring></argsstring>
+        <name>release</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="961" column="14" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="961" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiEnvelopeFollowerType_1abdccad01846d4ba655620197afb2e948" prot="private" static="no" mutable="no">
+        <type>T</type>
+        <definition>T maxiEnvelopeFollowerType&lt; T &gt;::env</definition>
+        <argsstring></argsstring>
+        <name>env</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="961" column="22" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="961" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classmaxiEnvelopeFollowerType_1aca684979dbec940fb5873a2d159da268" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>maxiEnvelopeFollowerType&lt; T &gt;::maxiEnvelopeFollowerType</definition>
+        <argsstring>()</argsstring>
+        <name>maxiEnvelopeFollowerType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="933" column="5" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="933" bodyend="938"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiEnvelopeFollowerType_1a0dbcb21a6ec67af1f578bc02406e545c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void maxiEnvelopeFollowerType&lt; T &gt;::setAttack</definition>
+        <argsstring>(T attackMS)</argsstring>
+        <name>setAttack</name>
+        <param>
+          <type>T</type>
+          <declname>attackMS</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="939" column="10" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="939" bodyend="942"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiEnvelopeFollowerType_1a4f7523a710504ccb6ebb676a40973042" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void maxiEnvelopeFollowerType&lt; T &gt;::setRelease</definition>
+        <argsstring>(T releaseMS)</argsstring>
+        <name>setRelease</name>
+        <param>
+          <type>T</type>
+          <declname>releaseMS</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="943" column="10" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="943" bodyend="946"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiEnvelopeFollowerType_1aed976469bf66319eba47b2f4b3f5f9ff" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>T</type>
+        <definition>T maxiEnvelopeFollowerType&lt; T &gt;::play</definition>
+        <argsstring>(T input)</argsstring>
+        <name>play</name>
+        <param>
+          <type>T</type>
+          <declname>input</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="947" column="14" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="947" bodyend="955"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiEnvelopeFollowerType_1ab01a98e89905a199f13297a202c900a1" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void maxiEnvelopeFollowerType&lt; T &gt;::reset</definition>
+        <argsstring>()</argsstring>
+        <name>reset</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="956" column="10" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="956" bodyend="956"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiEnvelopeFollowerType_1a94ddb75bd4450a2dc12560d91064660f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>T</type>
+        <definition>T maxiEnvelopeFollowerType&lt; T &gt;::getEnv</definition>
+        <argsstring>()</argsstring>
+        <name>getEnv</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="957" column="14" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="957" bodyend="957"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiEnvelopeFollowerType_1a8effe4bba33c650dca0d24fd014fda9e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void maxiEnvelopeFollowerType&lt; T &gt;::setEnv</definition>
+        <argsstring>(T val)</argsstring>
+        <name>setEnv</name>
+        <param>
+          <type>T</type>
+          <declname>val</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="958" column="17" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="958" bodyend="958"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="930" column="1" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="931" bodyend="962"/>
+    <listofallmembers>
+      <member refid="classmaxiEnvelopeFollowerType_1a86178618a6872182b3b05d0ca2772365" prot="private" virt="non-virtual"><scope>maxiEnvelopeFollowerType</scope><name>attack</name></member>
+      <member refid="classmaxiEnvelopeFollowerType_1abdccad01846d4ba655620197afb2e948" prot="private" virt="non-virtual"><scope>maxiEnvelopeFollowerType</scope><name>env</name></member>
+      <member refid="classmaxiEnvelopeFollowerType_1a94ddb75bd4450a2dc12560d91064660f" prot="public" virt="non-virtual"><scope>maxiEnvelopeFollowerType</scope><name>getEnv</name></member>
+      <member refid="classmaxiEnvelopeFollowerType_1aca684979dbec940fb5873a2d159da268" prot="public" virt="non-virtual"><scope>maxiEnvelopeFollowerType</scope><name>maxiEnvelopeFollowerType</name></member>
+      <member refid="classmaxiEnvelopeFollowerType_1aed976469bf66319eba47b2f4b3f5f9ff" prot="public" virt="non-virtual"><scope>maxiEnvelopeFollowerType</scope><name>play</name></member>
+      <member refid="classmaxiEnvelopeFollowerType_1ab453ef0a4b17e07463288f516d98048e" prot="private" virt="non-virtual"><scope>maxiEnvelopeFollowerType</scope><name>release</name></member>
+      <member refid="classmaxiEnvelopeFollowerType_1ab01a98e89905a199f13297a202c900a1" prot="public" virt="non-virtual"><scope>maxiEnvelopeFollowerType</scope><name>reset</name></member>
+      <member refid="classmaxiEnvelopeFollowerType_1a0dbcb21a6ec67af1f578bc02406e545c" prot="public" virt="non-virtual"><scope>maxiEnvelopeFollowerType</scope><name>setAttack</name></member>
+      <member refid="classmaxiEnvelopeFollowerType_1a8effe4bba33c650dca0d24fd014fda9e" prot="public" virt="non-virtual"><scope>maxiEnvelopeFollowerType</scope><name>setEnv</name></member>
+      <member refid="classmaxiEnvelopeFollowerType_1a4f7523a710504ccb6ebb676a40973042" prot="public" virt="non-virtual"><scope>maxiEnvelopeFollowerType</scope><name>setRelease</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

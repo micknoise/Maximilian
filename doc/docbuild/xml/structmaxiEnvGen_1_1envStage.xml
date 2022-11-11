@@ -1,0 +1,113 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structmaxiEnvGen_1_1envStage" kind="struct" language="C++" prot="private">
+    <compoundname>maxiEnvGen::envStage</compoundname>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structmaxiEnvGen_1_1envStage_1a56fd531bfb6b9a0264a4d19256b9d35f" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double maxiEnvGen::envStage::startlevel</definition>
+        <argsstring></argsstring>
+        <name>startlevel</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1948" column="20" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1948" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structmaxiEnvGen_1_1envStage_1a32d3016791fa1387d700ba122eefebe1" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double maxiEnvGen::envStage::endlevel</definition>
+        <argsstring></argsstring>
+        <name>endlevel</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1949" column="20" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1949" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structmaxiEnvGen_1_1envStage_1a0cdbfeefb164ef187a53df2daa56bfd0" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double maxiEnvGen::envStage::currentlevel</definition>
+        <argsstring></argsstring>
+        <name>currentlevel</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1950" column="20" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1950" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structmaxiEnvGen_1_1envStage_1adf3cd75bced67f7ae4f7b7c338ba9e90" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double maxiEnvGen::envStage::gradient</definition>
+        <argsstring></argsstring>
+        <name>gradient</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1951" column="20" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1951" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structmaxiEnvGen_1_1envStage_1a1e6ee1b5337bb8ae15268c19b83e093c" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double maxiEnvGen::envStage::curve</definition>
+        <argsstring></argsstring>
+        <name>curve</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1952" column="20" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1952" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structmaxiEnvGen_1_1envStage_1ae339ad68633f35596a2e22e1e2e62417" prot="public" static="no" mutable="no">
+        <type>size_t</type>
+        <definition>size_t maxiEnvGen::envStage::length</definition>
+        <argsstring></argsstring>
+        <name>length</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1953" column="20" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1953" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structmaxiEnvGen_1_1envStage_1af3033e4966c66ac23b2444dd044ef6a1" prot="public" static="no" mutable="no">
+        <type>size_t</type>
+        <definition>size_t maxiEnvGen::envStage::counter</definition>
+        <argsstring></argsstring>
+        <name>counter</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1954" column="20" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1954" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1947" column="9" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1947" bodyend="1955"/>
+    <listofallmembers>
+      <member refid="structmaxiEnvGen_1_1envStage_1af3033e4966c66ac23b2444dd044ef6a1" prot="public" virt="non-virtual"><scope>maxiEnvGen::envStage</scope><name>counter</name></member>
+      <member refid="structmaxiEnvGen_1_1envStage_1a0cdbfeefb164ef187a53df2daa56bfd0" prot="public" virt="non-virtual"><scope>maxiEnvGen::envStage</scope><name>currentlevel</name></member>
+      <member refid="structmaxiEnvGen_1_1envStage_1a1e6ee1b5337bb8ae15268c19b83e093c" prot="public" virt="non-virtual"><scope>maxiEnvGen::envStage</scope><name>curve</name></member>
+      <member refid="structmaxiEnvGen_1_1envStage_1a32d3016791fa1387d700ba122eefebe1" prot="public" virt="non-virtual"><scope>maxiEnvGen::envStage</scope><name>endlevel</name></member>
+      <member refid="structmaxiEnvGen_1_1envStage_1adf3cd75bced67f7ae4f7b7c338ba9e90" prot="public" virt="non-virtual"><scope>maxiEnvGen::envStage</scope><name>gradient</name></member>
+      <member refid="structmaxiEnvGen_1_1envStage_1ae339ad68633f35596a2e22e1e2e62417" prot="public" virt="non-virtual"><scope>maxiEnvGen::envStage</scope><name>length</name></member>
+      <member refid="structmaxiEnvGen_1_1envStage_1a56fd531bfb6b9a0264a4d19256b9d35f" prot="public" virt="non-virtual"><scope>maxiEnvGen::envStage</scope><name>startlevel</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

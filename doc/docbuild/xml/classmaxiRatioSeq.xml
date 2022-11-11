@@ -1,0 +1,139 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classmaxiRatioSeq" kind="class" language="C++" prot="public">
+    <compoundname>maxiRatioSeq</compoundname>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classmaxiRatioSeq_1a7d6e7feb8cf9716f120fe51ef28f0916" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double maxiRatioSeq::prevPhase</definition>
+        <argsstring></argsstring>
+        <name>prevPhase</name>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1821" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1821" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiRatioSeq_1ad821351f382ee1d5c7b13c280c9b1b3b" prot="private" static="no" mutable="no">
+        <type>size_t</type>
+        <definition>size_t maxiRatioSeq::counter</definition>
+        <argsstring></argsstring>
+        <name>counter</name>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1822" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1822" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiRatioSeq_1a1e7594900723abec57ccd6e66b0b111b" prot="private" static="no" mutable="no">
+        <type>size_t</type>
+        <definition>size_t maxiRatioSeq::lengthOfValues</definition>
+        <argsstring></argsstring>
+        <name>lengthOfValues</name>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1823" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1823" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiRatioSeq_1aa08b6faa8e6ec0807651c8bcfcac322b" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool maxiRatioSeq::first</definition>
+        <argsstring></argsstring>
+        <name>first</name>
+        <initializer>=true</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1824" column="10" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1824" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classmaxiRatioSeq_1ac3968640e6c24dc2dbaca1f7ee335dfa" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>maxiRatioSeq::maxiRatioSeq</definition>
+        <argsstring>()</argsstring>
+        <name>maxiRatioSeq</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1766" column="5" bodyfile="/home/ck84/src/Maximilian/src/maximilian.cpp" bodystart="1493" bodyend="1493"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiRatioSeq_1ab7646f4ff28a83904b71c3c55c4064f2" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double maxiRatioSeq::playTrig</definition>
+        <argsstring>(double phase, DOUBLEARRAY_REF times)</argsstring>
+        <name>playTrig</name>
+        <param>
+          <type>double</type>
+          <declname>phase</declname>
+        </param>
+        <param>
+          <type>DOUBLEARRAY_REF</type>
+          <declname>times</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1767" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1767" bodyend="1797"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiRatioSeq_1aec432d4351d64a53325aed2e8dc7ea46" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double maxiRatioSeq::playValues</definition>
+        <argsstring>(double phase, DOUBLEARRAY_REF times, DOUBLEARRAY_REF values)</argsstring>
+        <name>playValues</name>
+        <param>
+          <type>double</type>
+          <declname>phase</declname>
+        </param>
+        <param>
+          <type>DOUBLEARRAY_REF</type>
+          <declname>times</declname>
+        </param>
+        <param>
+          <type>DOUBLEARRAY_REF</type>
+          <declname>values</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1799" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1799" bodyend="1818"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1763" column="1" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1764" bodyend="1825"/>
+    <listofallmembers>
+      <member refid="classmaxiRatioSeq_1ad821351f382ee1d5c7b13c280c9b1b3b" prot="private" virt="non-virtual"><scope>maxiRatioSeq</scope><name>counter</name></member>
+      <member refid="classmaxiRatioSeq_1aa08b6faa8e6ec0807651c8bcfcac322b" prot="private" virt="non-virtual"><scope>maxiRatioSeq</scope><name>first</name></member>
+      <member refid="classmaxiRatioSeq_1a1e7594900723abec57ccd6e66b0b111b" prot="private" virt="non-virtual"><scope>maxiRatioSeq</scope><name>lengthOfValues</name></member>
+      <member refid="classmaxiRatioSeq_1ac3968640e6c24dc2dbaca1f7ee335dfa" prot="public" virt="non-virtual"><scope>maxiRatioSeq</scope><name>maxiRatioSeq</name></member>
+      <member refid="classmaxiRatioSeq_1ab7646f4ff28a83904b71c3c55c4064f2" prot="public" virt="non-virtual"><scope>maxiRatioSeq</scope><name>playTrig</name></member>
+      <member refid="classmaxiRatioSeq_1aec432d4351d64a53325aed2e8dc7ea46" prot="public" virt="non-virtual"><scope>maxiRatioSeq</scope><name>playValues</name></member>
+      <member refid="classmaxiRatioSeq_1a7d6e7feb8cf9716f120fe51ef28f0916" prot="private" virt="non-virtual"><scope>maxiRatioSeq</scope><name>prevPhase</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

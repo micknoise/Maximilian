@@ -99,3 +99,6 @@ You can install the ofxMaxim addon by copying the ofxMaxim/ofxMaxim folder into 
 Important: when using Maximilian on OSX, link against the Accelerate framework.
 
 
+
+
+

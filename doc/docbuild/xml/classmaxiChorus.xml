@@ -1,0 +1,135 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classmaxiChorus" kind="class" language="C++" prot="public">
+    <compoundname>maxiChorus</compoundname>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classmaxiChorus_1ae138bde7afc3c3f6e1a54b42524f6f54" prot="public" static="no" mutable="no">
+        <type><ref refid="classmaxiDelayline" kindref="compound">maxiDelayline</ref></type>
+        <definition>maxiDelayline maxiChorus::dl</definition>
+        <argsstring></argsstring>
+        <name>dl</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="911" column="19" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="911" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiChorus_1a1ff3d07194588ff2d5b48a098a5da0e1" prot="public" static="no" mutable="no">
+        <type><ref refid="classmaxiDelayline" kindref="compound">maxiDelayline</ref></type>
+        <definition>maxiDelayline maxiChorus::dl2</definition>
+        <argsstring></argsstring>
+        <name>dl2</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="911" column="22" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="911" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiChorus_1a97644319912aa6c5194b568724cefcbd" prot="public" static="no" mutable="no">
+        <type><ref refid="classmaxiOsc" kindref="compound">maxiOsc</ref></type>
+        <definition>maxiOsc maxiChorus::lfo</definition>
+        <argsstring></argsstring>
+        <name>lfo</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="912" column="13" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="912" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiChorus_1a27236616faf3d9e6d3a325b8fc34c1c9" prot="public" static="no" mutable="no">
+        <type><ref refid="classmaxiFilter" kindref="compound">maxiFilter</ref></type>
+        <definition>maxiFilter maxiChorus::lopass</definition>
+        <argsstring></argsstring>
+        <name>lopass</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="913" column="16" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="913" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classmaxiChorus_1ae6b12ddc4d9bbe3eebc5ac5825fd86a2" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double maxiChorus::chorus</definition>
+        <argsstring>(const double input, const unsigned int delay, const double feedback, const double speed, const double depth)</argsstring>
+        <name>chorus</name>
+        <param>
+          <type>const double</type>
+          <declname>input</declname>
+        </param>
+        <param>
+          <type>const unsigned int</type>
+          <declname>delay</declname>
+        </param>
+        <param>
+          <type>const double</type>
+          <declname>feedback</declname>
+        </param>
+        <param>
+          <type>const double</type>
+          <declname>speed</declname>
+        </param>
+        <param>
+          <type>const double</type>
+          <declname>depth</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="910" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="916" bodyend="927"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="3">
+        <label>maxiDelayline</label>
+        <link refid="classmaxiDelayline"/>
+      </node>
+      <node id="4">
+        <label>maxiFilter</label>
+        <link refid="classmaxiFilter"/>
+      </node>
+      <node id="2">
+        <label>maxiOsc</label>
+        <link refid="classmaxiOsc"/>
+      </node>
+      <node id="1">
+        <label>maxiChorus</label>
+        <link refid="classmaxiChorus"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>lfo</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>dl</edgelabel>
+          <edgelabel>dl2</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>lopass</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="903" column="1" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="904" bodyend="914"/>
+    <listofallmembers>
+      <member refid="classmaxiChorus_1ae6b12ddc4d9bbe3eebc5ac5825fd86a2" prot="public" virt="non-virtual"><scope>maxiChorus</scope><name>chorus</name></member>
+      <member refid="classmaxiChorus_1ae138bde7afc3c3f6e1a54b42524f6f54" prot="public" virt="non-virtual"><scope>maxiChorus</scope><name>dl</name></member>
+      <member refid="classmaxiChorus_1a1ff3d07194588ff2d5b48a098a5da0e1" prot="public" virt="non-virtual"><scope>maxiChorus</scope><name>dl2</name></member>
+      <member refid="classmaxiChorus_1a97644319912aa6c5194b568724cefcbd" prot="public" virt="non-virtual"><scope>maxiChorus</scope><name>lfo</name></member>
+      <member refid="classmaxiChorus_1a27236616faf3d9e6d3a325b8fc34c1c9" prot="public" virt="non-virtual"><scope>maxiChorus</scope><name>lopass</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

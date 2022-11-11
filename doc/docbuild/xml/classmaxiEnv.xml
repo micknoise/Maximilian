@@ -1,0 +1,458 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classmaxiEnv" kind="class" language="C++" prot="public">
+    <compoundname>maxiEnv</compoundname>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classmaxiEnv_1a368aba81ea0424c3747010fd4db75c4d" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double maxiEnv::input</definition>
+        <argsstring></argsstring>
+        <name>input</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="701" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="701" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiEnv_1a13b5f38dd4cca4daad0942e103cd57b4" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double maxiEnv::output</definition>
+        <argsstring></argsstring>
+        <name>output</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="702" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="702" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiEnv_1ac542f5f35bc23639319a7d7ad1a2afb4" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double maxiEnv::attack</definition>
+        <argsstring></argsstring>
+        <name>attack</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="703" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="703" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiEnv_1a88030e15b2f914791738ba7f150ba821" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double maxiEnv::decay</definition>
+        <argsstring></argsstring>
+        <name>decay</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="704" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="704" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiEnv_1a91a68d3de063b6748c14bb11d962dccd" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double maxiEnv::sustain</definition>
+        <argsstring></argsstring>
+        <name>sustain</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="705" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="705" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiEnv_1a99699c2e65566d2556762b4581bc7858" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double maxiEnv::release</definition>
+        <argsstring></argsstring>
+        <name>release</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="706" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="706" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiEnv_1a28b9d48fd698ee0854d0b8c12caae718" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double maxiEnv::amplitude</definition>
+        <argsstring></argsstring>
+        <name>amplitude</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="707" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="707" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiEnv_1ac84da2e23317b70cfd371d0a013d6035" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int maxiEnv::trigger</definition>
+        <argsstring></argsstring>
+        <name>trigger</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="719" column="9" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="719" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiEnv_1a04d64b2ed2103cb364caf4c0601b36ab" prot="public" static="no" mutable="no">
+        <type>long</type>
+        <definition>long maxiEnv::holdtime</definition>
+        <argsstring></argsstring>
+        <name>holdtime</name>
+        <initializer>= 1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="721" column="10" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="721" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiEnv_1a29a2537ae86acf21379f1a505e7c26d8" prot="public" static="no" mutable="no">
+        <type>long</type>
+        <definition>long maxiEnv::holdcount</definition>
+        <argsstring></argsstring>
+        <name>holdcount</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="722" column="10" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="722" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiEnv_1af2b0992d8c34592a4c7496f968098135" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int maxiEnv::attackphase</definition>
+        <argsstring></argsstring>
+        <name>attackphase</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="723" column="9" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="723" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiEnv_1a6c0a710a41a8dcf7ac312c2cfc443d1a" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int maxiEnv::decayphase</definition>
+        <argsstring></argsstring>
+        <name>decayphase</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="723" column="21" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="723" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiEnv_1a138a7943ae49fdf5b1a5b93d8fd71c7d" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int maxiEnv::sustainphase</definition>
+        <argsstring></argsstring>
+        <name>sustainphase</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="723" column="32" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="723" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiEnv_1ab8470aa15f3c7d9645efa898d4466f0b" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int maxiEnv::holdphase</definition>
+        <argsstring></argsstring>
+        <name>holdphase</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="723" column="45" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="723" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiEnv_1ac8a99a7436b8ee471c2822b0071e1087" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int maxiEnv::releasephase</definition>
+        <argsstring></argsstring>
+        <name>releasephase</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="723" column="55" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="723" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classmaxiEnv_1adc5ddbeeeb0ae4d9e7dc06e79da7efe3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double maxiEnv::ar</definition>
+        <argsstring>(double input, double attack=1, double release=0.9, long holdtime=1, int trigger=0)</argsstring>
+        <name>ar</name>
+        <param>
+          <type>double</type>
+          <declname>input</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>attack</declname>
+          <defval>1</defval>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>release</declname>
+          <defval>0.9</defval>
+        </param>
+        <param>
+          <type>long</type>
+          <declname>holdtime</declname>
+          <defval>1</defval>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>trigger</declname>
+          <defval>0</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="698" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.cpp" bodystart="1299" bodyend="1338"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiEnv_1a45181a9de1849d2e05b460390c225b78" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double maxiEnv::adsr</definition>
+        <argsstring>(double input, double attack=1, double decay=0.99, double sustain=0.125, double release=0.9, long holdtime=1, int trigger=0)</argsstring>
+        <name>adsr</name>
+        <param>
+          <type>double</type>
+          <declname>input</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>attack</declname>
+          <defval>1</defval>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>decay</declname>
+          <defval>0.99</defval>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>sustain</declname>
+          <defval>0.125</defval>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>release</declname>
+          <defval>0.9</defval>
+        </param>
+        <param>
+          <type>long</type>
+          <declname>holdtime</declname>
+          <defval>1</defval>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>trigger</declname>
+          <defval>0</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="699" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.cpp" bodystart="1342" bodyend="1393"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiEnv_1ae4375fd36d430f25c180311b32611b70" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double maxiEnv::adsr</definition>
+        <argsstring>(double input, int trigger)</argsstring>
+        <name>adsr</name>
+        <param>
+          <type>double</type>
+          <declname>input</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>trigger</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="700" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.cpp" bodystart="1395" bodyend="1446"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiEnv_1afce1557b6d7807f910a77fa401d21ece" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void maxiEnv::setRelease</definition>
+        <argsstring>(double releaseMS)</argsstring>
+        <name>setRelease</name>
+        <param>
+          <type>double</type>
+          <declname>releaseMS</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="709" column="10" bodyfile="/home/ck84/src/Maximilian/src/maximilian.cpp" bodystart="1449" bodyend="1451"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiEnv_1adbffda6eac85c062b7c6256bd83fb173" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void maxiEnv::setDecay</definition>
+        <argsstring>(double decayMS)</argsstring>
+        <name>setDecay</name>
+        <param>
+          <type>double</type>
+          <declname>decayMS</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="710" column="10" bodyfile="/home/ck84/src/Maximilian/src/maximilian.cpp" bodystart="1454" bodyend="1456"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiEnv_1adac1de568badf634d07de1495618427d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void maxiEnv::setAttack</definition>
+        <argsstring>(double attackMS)</argsstring>
+        <name>setAttack</name>
+        <param>
+          <type>double</type>
+          <declname>attackMS</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="713" column="10" bodyfile="/home/ck84/src/Maximilian/src/maximilian.cpp" bodystart="1459" bodyend="1461"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiEnv_1a0b00ff81372f6a5065f39cf18cff8aac" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void maxiEnv::setAttackMS</definition>
+        <argsstring>(double attackMS)</argsstring>
+        <name>setAttackMS</name>
+        <param>
+          <type>double</type>
+          <declname>attackMS</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="715" column="10" bodyfile="/home/ck84/src/Maximilian/src/maximilian.cpp" bodystart="1465" bodyend="1467"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiEnv_1ab2e39d52b413ac21ce1a118db86e2945" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void maxiEnv::setSustain</definition>
+        <argsstring>(double sustainL)</argsstring>
+        <name>setSustain</name>
+        <param>
+          <type>double</type>
+          <declname>sustainL</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="717" column="10" bodyfile="/home/ck84/src/Maximilian/src/maximilian.cpp" bodystart="1472" bodyend="1474"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiEnv_1aa46e5789a122d60dc7b06d5b81919226" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int maxiEnv::getTrigger</definition>
+        <argsstring>() const</argsstring>
+        <name>getTrigger</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="727" column="9" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="727" bodyend="730"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiEnv_1aeb81d0cf8d66bfabb54d27f8dd27e9ed" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void maxiEnv::setTrigger</definition>
+        <argsstring>(int trigger)</argsstring>
+        <name>setTrigger</name>
+        <param>
+          <type>int</type>
+          <declname>trigger</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="732" column="10" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="732" bodyend="735"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="694" column="1" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="695" bodyend="738"/>
+    <listofallmembers>
+      <member refid="classmaxiEnv_1a45181a9de1849d2e05b460390c225b78" prot="public" virt="non-virtual"><scope>maxiEnv</scope><name>adsr</name></member>
+      <member refid="classmaxiEnv_1ae4375fd36d430f25c180311b32611b70" prot="public" virt="non-virtual"><scope>maxiEnv</scope><name>adsr</name></member>
+      <member refid="classmaxiEnv_1a28b9d48fd698ee0854d0b8c12caae718" prot="public" virt="non-virtual"><scope>maxiEnv</scope><name>amplitude</name></member>
+      <member refid="classmaxiEnv_1adc5ddbeeeb0ae4d9e7dc06e79da7efe3" prot="public" virt="non-virtual"><scope>maxiEnv</scope><name>ar</name></member>
+      <member refid="classmaxiEnv_1ac542f5f35bc23639319a7d7ad1a2afb4" prot="public" virt="non-virtual"><scope>maxiEnv</scope><name>attack</name></member>
+      <member refid="classmaxiEnv_1af2b0992d8c34592a4c7496f968098135" prot="public" virt="non-virtual"><scope>maxiEnv</scope><name>attackphase</name></member>
+      <member refid="classmaxiEnv_1a88030e15b2f914791738ba7f150ba821" prot="public" virt="non-virtual"><scope>maxiEnv</scope><name>decay</name></member>
+      <member refid="classmaxiEnv_1a6c0a710a41a8dcf7ac312c2cfc443d1a" prot="public" virt="non-virtual"><scope>maxiEnv</scope><name>decayphase</name></member>
+      <member refid="classmaxiEnv_1aa46e5789a122d60dc7b06d5b81919226" prot="public" virt="non-virtual"><scope>maxiEnv</scope><name>getTrigger</name></member>
+      <member refid="classmaxiEnv_1a29a2537ae86acf21379f1a505e7c26d8" prot="public" virt="non-virtual"><scope>maxiEnv</scope><name>holdcount</name></member>
+      <member refid="classmaxiEnv_1ab8470aa15f3c7d9645efa898d4466f0b" prot="public" virt="non-virtual"><scope>maxiEnv</scope><name>holdphase</name></member>
+      <member refid="classmaxiEnv_1a04d64b2ed2103cb364caf4c0601b36ab" prot="public" virt="non-virtual"><scope>maxiEnv</scope><name>holdtime</name></member>
+      <member refid="classmaxiEnv_1a368aba81ea0424c3747010fd4db75c4d" prot="public" virt="non-virtual"><scope>maxiEnv</scope><name>input</name></member>
+      <member refid="classmaxiEnv_1a13b5f38dd4cca4daad0942e103cd57b4" prot="public" virt="non-virtual"><scope>maxiEnv</scope><name>output</name></member>
+      <member refid="classmaxiEnv_1a99699c2e65566d2556762b4581bc7858" prot="public" virt="non-virtual"><scope>maxiEnv</scope><name>release</name></member>
+      <member refid="classmaxiEnv_1ac8a99a7436b8ee471c2822b0071e1087" prot="public" virt="non-virtual"><scope>maxiEnv</scope><name>releasephase</name></member>
+      <member refid="classmaxiEnv_1adac1de568badf634d07de1495618427d" prot="public" virt="non-virtual"><scope>maxiEnv</scope><name>setAttack</name></member>
+      <member refid="classmaxiEnv_1a0b00ff81372f6a5065f39cf18cff8aac" prot="public" virt="non-virtual"><scope>maxiEnv</scope><name>setAttackMS</name></member>
+      <member refid="classmaxiEnv_1adbffda6eac85c062b7c6256bd83fb173" prot="public" virt="non-virtual"><scope>maxiEnv</scope><name>setDecay</name></member>
+      <member refid="classmaxiEnv_1afce1557b6d7807f910a77fa401d21ece" prot="public" virt="non-virtual"><scope>maxiEnv</scope><name>setRelease</name></member>
+      <member refid="classmaxiEnv_1ab2e39d52b413ac21ce1a118db86e2945" prot="public" virt="non-virtual"><scope>maxiEnv</scope><name>setSustain</name></member>
+      <member refid="classmaxiEnv_1aeb81d0cf8d66bfabb54d27f8dd27e9ed" prot="public" virt="non-virtual"><scope>maxiEnv</scope><name>setTrigger</name></member>
+      <member refid="classmaxiEnv_1a91a68d3de063b6748c14bb11d962dccd" prot="public" virt="non-virtual"><scope>maxiEnv</scope><name>sustain</name></member>
+      <member refid="classmaxiEnv_1a138a7943ae49fdf5b1a5b93d8fd71c7d" prot="public" virt="non-virtual"><scope>maxiEnv</scope><name>sustainphase</name></member>
+      <member refid="classmaxiEnv_1ac84da2e23317b70cfd371d0a013d6035" prot="public" virt="non-virtual"><scope>maxiEnv</scope><name>trigger</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

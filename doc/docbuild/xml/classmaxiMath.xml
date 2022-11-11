@@ -1,0 +1,253 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classmaxiMath" kind="class" language="C++" prot="public">
+    <compoundname>maxiMath</compoundname>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="classmaxiMath_1ae68566b6406f52a110a44048b0aaa1de" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>static double maxiMath::add</definition>
+        <argsstring>(double x, double y)</argsstring>
+        <name>add</name>
+        <param>
+          <type>double</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>y</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1288" column="19" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1288" bodyend="1291"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiMath_1a3f722827690e668492694258cb7faf63" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>static double maxiMath::div</definition>
+        <argsstring>(double x, double y)</argsstring>
+        <name>div</name>
+        <param>
+          <type>double</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>y</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1292" column="19" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1292" bodyend="1295"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiMath_1af1c37faa5d0b6f306f0235c6b5c92878" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>static double maxiMath::mul</definition>
+        <argsstring>(double x, double y)</argsstring>
+        <name>mul</name>
+        <param>
+          <type>double</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>y</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1296" column="19" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1296" bodyend="1299"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiMath_1a2afbfee700bc4e2357d8a46b65b51f8a" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>static double maxiMath::sub</definition>
+        <argsstring>(double x, double y)</argsstring>
+        <name>sub</name>
+        <param>
+          <type>double</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>y</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1300" column="19" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1300" bodyend="1303"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiMath_1aa3db167e5156fe1ecdd4c9e6f78fa5be" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>static double maxiMath::gt</definition>
+        <argsstring>(double x, double y)</argsstring>
+        <name>gt</name>
+        <param>
+          <type>double</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>y</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1304" column="19" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1304" bodyend="1307"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiMath_1a6b177cef8201509678f1628b6bec77af" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>static double maxiMath::lt</definition>
+        <argsstring>(double x, double y)</argsstring>
+        <name>lt</name>
+        <param>
+          <type>double</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>y</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1308" column="19" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1308" bodyend="1311"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiMath_1a87a160d1c03da56bb49f19b6fd50df32" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>static double maxiMath::gte</definition>
+        <argsstring>(double x, double y)</argsstring>
+        <name>gte</name>
+        <param>
+          <type>double</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>y</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1312" column="19" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1312" bodyend="1315"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiMath_1a70fbbed9afac2cb9bc778a7d71f2998d" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>static double maxiMath::lte</definition>
+        <argsstring>(double x, double y)</argsstring>
+        <name>lte</name>
+        <param>
+          <type>double</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>y</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1316" column="19" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1316" bodyend="1319"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiMath_1adefa6d668d06572fa0e55d3ef5cf031c" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>static double maxiMath::mod</definition>
+        <argsstring>(double x, double y)</argsstring>
+        <name>mod</name>
+        <param>
+          <type>double</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>y</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1320" column="19" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1320" bodyend="1323"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiMath_1aa8aa9591c5ae4d4096fb415ff8abc819" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>static double maxiMath::abs</definition>
+        <argsstring>(double x)</argsstring>
+        <name>abs</name>
+        <param>
+          <type>double</type>
+          <declname>x</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1324" column="19" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1324" bodyend="1327"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiMath_1ac5f8fb11a6a3e8ce300c203149443a65" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>static double maxiMath::xpowy</definition>
+        <argsstring>(double x, double y)</argsstring>
+        <name>xpowy</name>
+        <param>
+          <type>double</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>y</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1328" column="19" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1328" bodyend="1331"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1285" column="1" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1286" bodyend="1332"/>
+    <listofallmembers>
+      <member refid="classmaxiMath_1aa8aa9591c5ae4d4096fb415ff8abc819" prot="public" virt="non-virtual"><scope>maxiMath</scope><name>abs</name></member>
+      <member refid="classmaxiMath_1ae68566b6406f52a110a44048b0aaa1de" prot="public" virt="non-virtual"><scope>maxiMath</scope><name>add</name></member>
+      <member refid="classmaxiMath_1a3f722827690e668492694258cb7faf63" prot="public" virt="non-virtual"><scope>maxiMath</scope><name>div</name></member>
+      <member refid="classmaxiMath_1aa3db167e5156fe1ecdd4c9e6f78fa5be" prot="public" virt="non-virtual"><scope>maxiMath</scope><name>gt</name></member>
+      <member refid="classmaxiMath_1a87a160d1c03da56bb49f19b6fd50df32" prot="public" virt="non-virtual"><scope>maxiMath</scope><name>gte</name></member>
+      <member refid="classmaxiMath_1a6b177cef8201509678f1628b6bec77af" prot="public" virt="non-virtual"><scope>maxiMath</scope><name>lt</name></member>
+      <member refid="classmaxiMath_1a70fbbed9afac2cb9bc778a7d71f2998d" prot="public" virt="non-virtual"><scope>maxiMath</scope><name>lte</name></member>
+      <member refid="classmaxiMath_1adefa6d668d06572fa0e55d3ef5cf031c" prot="public" virt="non-virtual"><scope>maxiMath</scope><name>mod</name></member>
+      <member refid="classmaxiMath_1af1c37faa5d0b6f306f0235c6b5c92878" prot="public" virt="non-virtual"><scope>maxiMath</scope><name>mul</name></member>
+      <member refid="classmaxiMath_1a2afbfee700bc4e2357d8a46b65b51f8a" prot="public" virt="non-virtual"><scope>maxiMath</scope><name>sub</name></member>
+      <member refid="classmaxiMath_1ac5f8fb11a6a3e8ce300c203149443a65" prot="public" virt="non-virtual"><scope>maxiMath</scope><name>xpowy</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

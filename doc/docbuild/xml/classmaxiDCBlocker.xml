@@ -1,0 +1,81 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classmaxiDCBlocker" kind="class" language="C++" prot="public">
+    <compoundname>maxiDCBlocker</compoundname>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classmaxiDCBlocker_1a90b61bbbe0580065f1d98fa10b9f665e" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double maxiDCBlocker::xm1</definition>
+        <argsstring></argsstring>
+        <name>xm1</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="970" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="970" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiDCBlocker_1a49f22e1a1228352e3f9a1958dae9e2ca" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double maxiDCBlocker::ym1</definition>
+        <argsstring></argsstring>
+        <name>ym1</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="970" column="16" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="970" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classmaxiDCBlocker_1aabe3ab57a828c9edb9fe033aed25cd94" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>maxiDCBlocker::maxiDCBlocker</definition>
+        <argsstring>()</argsstring>
+        <name>maxiDCBlocker</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="971" column="5" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="971" bodyend="971"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiDCBlocker_1a2dc9eb8772f131e4161c157d5f8cdeb7" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double maxiDCBlocker::play</definition>
+        <argsstring>(double input, double R)</argsstring>
+        <name>play</name>
+        <param>
+          <type>double</type>
+          <declname>input</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>R</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="972" column="19" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="972" bodyend="977"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="967" column="1" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="968" bodyend="978"/>
+    <listofallmembers>
+      <member refid="classmaxiDCBlocker_1aabe3ab57a828c9edb9fe033aed25cd94" prot="public" virt="non-virtual"><scope>maxiDCBlocker</scope><name>maxiDCBlocker</name></member>
+      <member refid="classmaxiDCBlocker_1a2dc9eb8772f131e4161c157d5f8cdeb7" prot="public" virt="non-virtual"><scope>maxiDCBlocker</scope><name>play</name></member>
+      <member refid="classmaxiDCBlocker_1a90b61bbbe0580065f1d98fa10b9f665e" prot="public" virt="non-virtual"><scope>maxiDCBlocker</scope><name>xm1</name></member>
+      <member refid="classmaxiDCBlocker_1a49f22e1a1228352e3f9a1958dae9e2ca" prot="public" virt="non-virtual"><scope>maxiDCBlocker</scope><name>ym1</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

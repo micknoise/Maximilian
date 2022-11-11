@@ -1,0 +1,101 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classmaxiTrigger" kind="class" language="C++" prot="public">
+    <compoundname>maxiTrigger</compoundname>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classmaxiTrigger_1acc1c4efbd08f839b15e70ac423605c9e" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double maxiTrigger::previousValue</definition>
+        <argsstring></argsstring>
+        <name>previousValue</name>
+        <initializer>= 1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="432" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="432" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiTrigger_1abe55478c63ce26695112dea9a8800587" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool maxiTrigger::firstTrigger</definition>
+        <argsstring></argsstring>
+        <name>firstTrigger</name>
+        <initializer>= 1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="433" column="10" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="433" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classmaxiTrigger_1aa796f17d541d7687704024888a9e03eb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>maxiTrigger::maxiTrigger</definition>
+        <argsstring>()</argsstring>
+        <name>maxiTrigger</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="405" column="5" bodyfile="/home/ck84/src/Maximilian/src/maximilian.cpp" bodystart="1494" bodyend="1494"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiTrigger_1a0698eef58cbfc97a42ab20dbb88a2a50" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double maxiTrigger::onZX</definition>
+        <argsstring>(double input)</argsstring>
+        <name>onZX</name>
+        <param>
+          <type>double</type>
+          <declname>input</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="407" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="407" bodyend="417"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiTrigger_1a443b416d526c83c3a36280704050f1d9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double maxiTrigger::onChanged</definition>
+        <argsstring>(double input, double tolerance)</argsstring>
+        <name>onChanged</name>
+        <param>
+          <type>double</type>
+          <declname>input</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>tolerance</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="420" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="420" bodyend="429"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="402" column="1" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="403" bodyend="434"/>
+    <listofallmembers>
+      <member refid="classmaxiTrigger_1abe55478c63ce26695112dea9a8800587" prot="private" virt="non-virtual"><scope>maxiTrigger</scope><name>firstTrigger</name></member>
+      <member refid="classmaxiTrigger_1aa796f17d541d7687704024888a9e03eb" prot="public" virt="non-virtual"><scope>maxiTrigger</scope><name>maxiTrigger</name></member>
+      <member refid="classmaxiTrigger_1a443b416d526c83c3a36280704050f1d9" prot="public" virt="non-virtual"><scope>maxiTrigger</scope><name>onChanged</name></member>
+      <member refid="classmaxiTrigger_1a0698eef58cbfc97a42ab20dbb88a2a50" prot="public" virt="non-virtual"><scope>maxiTrigger</scope><name>onZX</name></member>
+      <member refid="classmaxiTrigger_1acc1c4efbd08f839b15e70ac423605c9e" prot="private" virt="non-virtual"><scope>maxiTrigger</scope><name>previousValue</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

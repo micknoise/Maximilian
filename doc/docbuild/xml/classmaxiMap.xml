@@ -1,0 +1,159 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classmaxiMap" kind="class" language="C++" prot="public">
+    <compoundname>maxiMap</compoundname>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classmaxiMap_1a0e5aa77e1f1f29c80f198d0b59f1e1f8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>maxiMap::maxiMap</definition>
+        <argsstring>()</argsstring>
+        <name>maxiMap</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="618" column="5" bodyfile="/home/ck84/src/Maximilian/src/maximilian.cpp" bodystart="1495" bodyend="1495"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="classmaxiMap_1af089e2f99ff54e37dca21ecbbeede950" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>static double maxiMap::linlin</definition>
+        <argsstring>(double val, double inMin, double inMax, double outMin, double outMax)</argsstring>
+        <name>linlin</name>
+        <param>
+          <type>double</type>
+          <declname>val</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>inMin</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>inMax</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>outMin</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>outMax</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="619" column="26" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="619" bodyend="623"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiMap_1acdcf4bc4384d39b3ed2e259002434f92" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>static double maxiMap::linexp</definition>
+        <argsstring>(double val, double inMin, double inMax, double outMin, double outMax)</argsstring>
+        <name>linexp</name>
+        <param>
+          <type>double</type>
+          <declname>val</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>inMin</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>inMax</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>outMin</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>outMax</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="625" column="26" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="625" bodyend="630"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiMap_1a4cb165b90b1c9c99aa607df31bf59929" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>static double maxiMap::explin</definition>
+        <argsstring>(double val, double inMin, double inMax, double outMin, double outMax)</argsstring>
+        <name>explin</name>
+        <param>
+          <type>double</type>
+          <declname>val</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>inMin</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>inMax</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>outMin</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>outMax</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="632" column="26" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="632" bodyend="637"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiMap_1a04c77c190b34b097762fdc5fa32f385b" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>static double maxiMap::clamp</definition>
+        <argsstring>(double v, const double low, const double high)</argsstring>
+        <name>clamp</name>
+        <param>
+          <type>double</type>
+          <declname>v</declname>
+        </param>
+        <param>
+          <type>const double</type>
+          <declname>low</declname>
+        </param>
+        <param>
+          <type>const double</type>
+          <declname>high</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="640" column="26" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="640" bodyend="651"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="615" column="1" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="616" bodyend="652"/>
+    <listofallmembers>
+      <member refid="classmaxiMap_1a04c77c190b34b097762fdc5fa32f385b" prot="public" virt="non-virtual"><scope>maxiMap</scope><name>clamp</name></member>
+      <member refid="classmaxiMap_1a4cb165b90b1c9c99aa607df31bf59929" prot="public" virt="non-virtual"><scope>maxiMap</scope><name>explin</name></member>
+      <member refid="classmaxiMap_1acdcf4bc4384d39b3ed2e259002434f92" prot="public" virt="non-virtual"><scope>maxiMap</scope><name>linexp</name></member>
+      <member refid="classmaxiMap_1af089e2f99ff54e37dca21ecbbeede950" prot="public" virt="non-virtual"><scope>maxiMap</scope><name>linlin</name></member>
+      <member refid="classmaxiMap_1a0e5aa77e1f1f29c80f198d0b59f1e1f8" prot="public" virt="non-virtual"><scope>maxiMap</scope><name>maxiMap</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

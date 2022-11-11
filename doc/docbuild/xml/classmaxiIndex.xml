@@ -1,0 +1,86 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classmaxiIndex" kind="class" language="C++" prot="public">
+    <compoundname>maxiIndex</compoundname>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classmaxiIndex_1a1442f0dce5124c1106987423cbf03252" prot="private" static="no" mutable="no">
+        <type><ref refid="classmaxiTrigger" kindref="compound">maxiTrigger</ref></type>
+        <definition>maxiTrigger maxiIndex::trig</definition>
+        <argsstring></argsstring>
+        <name>trig</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1659" column="17" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1659" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiIndex_1ab34ebe55122ac7809ca6ae587e176bda" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double maxiIndex::value</definition>
+        <argsstring></argsstring>
+        <name>value</name>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1660" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1660" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classmaxiIndex_1a928b38a933ebe29c0c4963f8007d455e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>maxiIndex::maxiIndex</definition>
+        <argsstring>()</argsstring>
+        <name>maxiIndex</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1639" column="5" bodyfile="/home/ck84/src/Maximilian/src/maximilian.cpp" bodystart="1500" bodyend="1500"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiIndex_1ac8f956dad0d87d2b93c8da9d72386658" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double maxiIndex::pull</definition>
+        <argsstring>(const double trigSig, double indexSig, DOUBLEARRAY_REF _values)</argsstring>
+        <name>pull</name>
+        <param>
+          <type>const double</type>
+          <declname>trigSig</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>indexSig</declname>
+        </param>
+        <param>
+          <type>DOUBLEARRAY_REF</type>
+          <declname>_values</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1640" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1640" bodyend="1656"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1636" column="1" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1637" bodyend="1661"/>
+    <listofallmembers>
+      <member refid="classmaxiIndex_1a928b38a933ebe29c0c4963f8007d455e" prot="public" virt="non-virtual"><scope>maxiIndex</scope><name>maxiIndex</name></member>
+      <member refid="classmaxiIndex_1ac8f956dad0d87d2b93c8da9d72386658" prot="public" virt="non-virtual"><scope>maxiIndex</scope><name>pull</name></member>
+      <member refid="classmaxiIndex_1a1442f0dce5124c1106987423cbf03252" prot="private" virt="non-virtual"><scope>maxiIndex</scope><name>trig</name></member>
+      <member refid="classmaxiIndex_1ab34ebe55122ac7809ca6ae587e176bda" prot="private" virt="non-virtual"><scope>maxiIndex</scope><name>value</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -14,7 +14,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1659" column="17" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1659" bodyend="-1"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1677" column="17" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1677" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classmaxiIndex_1ab34ebe55122ac7809ca6ae587e176bda" prot="private" static="no" mutable="no">
         <type>double</type>
@@ -28,7 +28,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1660" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1660" bodyend="-1"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1678" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1678" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
@@ -43,7 +43,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1639" column="5" bodyfile="/home/ck84/src/Maximilian/src/maximilian.cpp" bodystart="1500" bodyend="1500"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1657" column="5" bodyfile="/home/ck84/src/Maximilian/src/maximilian.cpp" bodystart="1500" bodyend="1500"/>
       </memberdef>
       <memberdef kind="function" id="classmaxiIndex_1ac8f956dad0d87d2b93c8da9d72386658" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>double</type>
@@ -68,14 +68,14 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1640" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1640" bodyend="1656"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1658" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1658" bodyend="1674"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1636" column="1" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1637" bodyend="1661"/>
+    <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1654" column="1" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1655" bodyend="1679"/>
     <listofallmembers>
       <member refid="classmaxiIndex_1a928b38a933ebe29c0c4963f8007d455e" prot="public" virt="non-virtual"><scope>maxiIndex</scope><name>maxiIndex</name></member>
       <member refid="classmaxiIndex_1ac8f956dad0d87d2b93c8da9d72386658" prot="public" virt="non-virtual"><scope>maxiIndex</scope><name>pull</name></member>

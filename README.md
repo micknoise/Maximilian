@@ -29,6 +29,10 @@ Maximilian is a cross-platform and multi-target audio synthesis and signal proce
 - example projects for Chromium-based browsers using the Web Audio API AudioWorklet (e.g. Chrome, Brave, Edge, Opera, Vivaldi)
 - will run on embedded systems (e.g. ESP32)
 
+### Documentation
+
+in [docs/index.html](docs/index.html)
+
 
 ### Basic Examples
 
@@ -97,6 +101,12 @@ In the ofxMaxim directory you will find examples to run in Windows, OSX and iOS,
 You can install the ofxMaxim addon by copying the ofxMaxim/ofxMaxim folder into your openframeworks addons directory.
 
 Important: when using Maximilian on OSX, link against the Accelerate framework.
+
+
+
+### Developer Notes
+
+[see developer_notes.md](developer_notes.md)
 
 
 

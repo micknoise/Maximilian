@@ -2,6 +2,7 @@
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="classmaxiNonlinearity" kind="class" language="C++" prot="public">
     <compoundname>maxiNonlinearity</compoundname>
+    <includes refid="maximilian_8h" local="no">maximilian.h</includes>
       <sectiondef kind="public-func">
       <memberdef kind="function" id="classmaxiNonlinearity_1aecf73b9fb6ccb5c196662387367d34f4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -14,7 +15,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="802" column="5" bodyfile="/home/ck84/src/Maximilian/src/maximilian.cpp" bodystart="1496" bodyend="1496"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="805" column="5" bodyfile="/home/ck84/src/Maximilian/src/maximilian.cpp" bodystart="1496" bodyend="1496"/>
       </memberdef>
       <memberdef kind="function" id="classmaxiNonlinearity_1a7768ef4e151832457efe388109ff8145" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>double</type>
@@ -32,10 +33,28 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
+<para>atan distortion, see <ulink url="http://www.musicdsp.org/showArchiveComment.php?ArchiveID=104">http://www.musicdsp.org/showArchiveComment.php?ArchiveID=104</ulink> <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="classA" kindref="compound">A</ref> signal </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>shape</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>from 1 (soft clipping) to infinity (hard clipping) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="804" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="864" bodyend="869"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="810" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="881" bodyend="886"/>
       </memberdef>
       <memberdef kind="function" id="classmaxiNonlinearity_1a7925d5eeeac8953db220c2ed121b323e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>double</type>
@@ -53,10 +72,28 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
+<para>Faster but &apos;lower quality&apos; version of atan distortion <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="classA" kindref="compound">A</ref> signal </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>shape</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>from 1 (soft clipping) to infinity (hard clipping) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="806" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="871" bodyend="876"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="815" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="888" bodyend="893"/>
       </memberdef>
       <memberdef kind="function" id="classmaxiNonlinearity_1af31dae57b366bf898eaee24f06d146f6" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>double</type>
@@ -70,10 +107,20 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
+<para>Cliping with nicer harmonics<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>x</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="classA" kindref="compound">A</ref> signal </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="807" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="842" bodyend="857"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="817" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="859" bodyend="874"/>
       </memberdef>
       <memberdef kind="function" id="classmaxiNonlinearity_1ad256eefc5e3cfbe70ad22cf105e187cc" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>double</type>
@@ -87,10 +134,20 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
+<para>Cliping with nastier harmonics<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>x</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="classA" kindref="compound">A</ref> signal </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="808" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="837" bodyend="841"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="819" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="854" bodyend="858"/>
       </memberdef>
       <memberdef kind="function" id="classmaxiNonlinearity_1aa8e54b18b54b7dca2f0bfb0171e038cd" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>double</type>
@@ -112,10 +169,36 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
+<para>asymmetric clipping: chose the shape of curves for both positive and negative values of x try it here <ulink url="https://www.desmos.com/calculator/to6eixatsa">https://www.desmos.com/calculator/to6eixatsa</ulink> <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>x</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="classA" kindref="compound">A</ref> signal </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>a</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Exponent for the positive curve </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>b</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Exponent for the negative curve </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="811" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="815" bodyend="835"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="827" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="832" bodyend="852"/>
       </memberdef>
       <memberdef kind="function" id="classmaxiNonlinearity_1a010c469f179b4bbca35755219063b217" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>double</type>
@@ -129,17 +212,28 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
+<para>Fast atan distortion<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>x</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="classA" kindref="compound">A</ref> signal </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="812" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="859" bodyend="862"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="829" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="876" bodyend="879"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
+<para>Various ways to distort signals </para>
     </detaileddescription>
-    <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="799" column="1" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="800" bodyend="813"/>
+    <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="802" column="1" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="803" bodyend="830"/>
     <listofallmembers>
       <member refid="classmaxiNonlinearity_1aa8e54b18b54b7dca2f0bfb0171e038cd" prot="public" virt="non-virtual"><scope>maxiNonlinearity</scope><name>asymclip</name></member>
       <member refid="classmaxiNonlinearity_1a7768ef4e151832457efe388109ff8145" prot="public" virt="non-virtual"><scope>maxiNonlinearity</scope><name>atanDist</name></member>

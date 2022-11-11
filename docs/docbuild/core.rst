@@ -14,9 +14,19 @@ Generators
    :members:
 
 
-Signal Processors
------------------
+Filters
+-------
 
+.. doxygenclass:: maxiSVF
+   :project: maximilian
+   :members:
+
+Effects
+-------
+
+.. doxygenclass:: maxiNonlinearity
+   :project: maximilian
+   :members:
 
 Analysis
 --------

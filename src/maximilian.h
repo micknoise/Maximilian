@@ -1996,29 +1996,19 @@ class CHEERP_EXPORT maxiEnvGen {
             if ((F64_ARRAY_SIZE(levels) == F64_ARRAY_SIZE(times)+1) && (F64_ARRAY_SIZE(levels) == F64_ARRAY_SIZE(curves) + 1)) {
                 stages.clear();
                 double accumulatedTime = 0;
-                bool holdAlready = 0;
+                containsHold =0;
                 for(size_t i=0; i < F64_ARRAY_SIZE(times); i++) {
                     envStage stage;
                     stage.startlevel = F64_ARRAY_AT(levels,i);
                     stage.endlevel = F64_ARRAY_AT(levels,i+1);
                     double stageTime = F64_ARRAY_AT(times,i);
                     if (stageTime == maxiEnvGen::HOLD) {
-                        if (!holdAlready) {
-                            stage.length = 0;
-                            stage.hold = 1;
-                            stage.gradient=0;
-                            holdAlready = 1;
-                        }else{
+                        if (containsHold) {
                             cout << "maxiEnv::setup - only one hold section allowed\n";
                             return 0;
                         }
-                    }else{
-                        double len = ((stageTime / 1000.0) * maxiSettings::sampleRate) + accumulatedTime;
-                        stage.length = static_cast<size_t>(floor(len));
-                        accumulatedTime = len - stage.length;
-                        stage.gradient = 1.0 / stage.length;
-                        stage.hold=0;
                     }
+                    accumulatedTime = setupSegmentTime(stageTime, stage, accumulatedTime);
                     stage.curve = F64_ARRAY_AT(curves,i);
                     stage.counter=0;
                     stage.currentlevel = 0;
@@ -2037,9 +2027,11 @@ class CHEERP_EXPORT maxiEnvGen {
 
         /*!Restart the envelope immeadiately*/
         void reset() {
-            envStage *currStage = &stages[phase];
-            currStage->counter = 0;
-            currStage->currentlevel = 0;
+            if (phase < stages.size()){
+                envStage *currStage = &stages[phase];
+                currStage->counter = 0;
+                currStage->currentlevel = 0;
+            }
             phase=0;
             state = TRIGGERED;
         }
@@ -2050,12 +2042,42 @@ class CHEERP_EXPORT maxiEnvGen {
             state = WAITING;
         }
 
-        bool setLevel(size_t index, size_t value) {
+        /** Set the level of a segment of the envelope \param index The index of the level \param value The new level*/
+        bool setLevel(size_t index, double value) {
             bool error = 0;
-            if (index < stages.size()) {
-                stages[index].startlevel = value;
-                if (index > 0){
+            if (index <= stages.size()) {
+                if (index == stages.size()) {
                     stages[index-1].endlevel = value;
+                }else{
+                    stages[index].startlevel = value;
+                    if (index > 0){
+                        stages[index-1].endlevel = value;
+                    }
+                }
+            }else{
+                error = 1;
+            }
+            return error;
+        }
+
+        /** Set the curve of a segment of the envelope \param index The index of the segment \param value The new curve value*/
+        bool setCurve(size_t index, double value) {
+            bool error=0;
+            if (index <= stages.size()) {
+                stages[index].curve = value;
+            }
+            return error;
+        }
+
+        /** Set the length of a segment of the envelope \param index The index of the segment \param value The new length (in ms)*/
+        bool setTime(size_t index, double value) {
+            bool error=0;
+            if (index <= stages.size()) {
+                if (value == maxiEnvGen::HOLD && containsHold) {
+                    error = 1;
+                }
+                if (!error) {
+                    setupSegmentTime(value, stages[index], 0);
                 }
             }else{
                 error = 1;
@@ -2070,6 +2092,7 @@ class CHEERP_EXPORT maxiEnvGen {
         bool retrigger = false;
         enum playStates {WAITING, TRIGGERED, HOLDING} state;
         bool nxcHappened;
+        bool containsHold;
         struct envStage {
             double startlevel;
             double endlevel;
@@ -2085,6 +2108,22 @@ class CHEERP_EXPORT maxiEnvGen {
         maxiTrigger trigDetector;
         maxiTrigger holdDetector;
         maxiTrigger retriggerDetector;
+
+        double setupSegmentTime(const double stageTime, envStage &stage, double accumulatedTime) {
+            if (stageTime == maxiEnvGen::HOLD) {
+                stage.length = 0;
+                stage.hold = 1;
+                stage.gradient=0;
+                containsHold = 1;
+            }else{
+                double len = ((stageTime / 1000.0) * maxiSettings::sampleRate) + accumulatedTime;
+                stage.length = static_cast<size_t>(floor(len));
+                accumulatedTime = len - stage.length;
+                stage.gradient = 1.0 / stage.length;
+                stage.hold=0;
+            }   
+            return accumulatedTime;         
+        }
 };
 
 

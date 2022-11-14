@@ -14,7 +14,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="2074" column="20" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="2074" bodyend="-1"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="2141" column="20" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="2141" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structmaxiEnvGen_1_1envStage_1a32d3016791fa1387d700ba122eefebe1" prot="public" static="no" mutable="no">
         <type>double</type>
@@ -27,7 +27,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="2075" column="20" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="2075" bodyend="-1"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="2142" column="20" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="2142" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structmaxiEnvGen_1_1envStage_1a0cdbfeefb164ef187a53df2daa56bfd0" prot="public" static="no" mutable="no">
         <type>double</type>
@@ -40,7 +40,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="2076" column="20" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="2076" bodyend="-1"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="2143" column="20" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="2143" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structmaxiEnvGen_1_1envStage_1adf3cd75bced67f7ae4f7b7c338ba9e90" prot="public" static="no" mutable="no">
         <type>double</type>
@@ -53,7 +53,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="2077" column="20" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="2077" bodyend="-1"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="2144" column="20" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="2144" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structmaxiEnvGen_1_1envStage_1a1e6ee1b5337bb8ae15268c19b83e093c" prot="public" static="no" mutable="no">
         <type>double</type>
@@ -66,7 +66,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="2078" column="20" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="2078" bodyend="-1"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="2145" column="20" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="2145" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structmaxiEnvGen_1_1envStage_1ae339ad68633f35596a2e22e1e2e62417" prot="public" static="no" mutable="no">
         <type>size_t</type>
@@ -79,7 +79,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="2079" column="20" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="2079" bodyend="-1"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="2146" column="20" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="2146" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structmaxiEnvGen_1_1envStage_1af3033e4966c66ac23b2444dd044ef6a1" prot="public" static="no" mutable="no">
         <type>size_t</type>
@@ -92,7 +92,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="2080" column="20" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="2080" bodyend="-1"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="2147" column="20" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="2147" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structmaxiEnvGen_1_1envStage_1a1b32d6f5cf21a2f1baf14cdb6ac2b874" prot="public" static="no" mutable="no">
         <type>bool</type>
@@ -105,14 +105,14 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="2081" column="18" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="2081" bodyend="-1"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="2148" column="18" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="2148" bodyend="-1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="2073" column="9" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="2073" bodyend="2082"/>
+    <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="2140" column="9" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="2140" bodyend="2149"/>
     <listofallmembers>
       <member refid="structmaxiEnvGen_1_1envStage_1af3033e4966c66ac23b2444dd044ef6a1" prot="public" virt="non-virtual"><scope>maxiEnvGen::envStage</scope><name>counter</name></member>
       <member refid="structmaxiEnvGen_1_1envStage_1a0cdbfeefb164ef187a53df2daa56bfd0" prot="public" virt="non-virtual"><scope>maxiEnvGen::envStage</scope><name>currentlevel</name></member>

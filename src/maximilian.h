@@ -2085,6 +2085,50 @@ class CHEERP_EXPORT maxiEnvGen {
             return error;
         }
 
+        /**
+         * Helper function to create a triangular envelope
+         * \param attack Rise time in ms
+         * \param release Fall time in ms
+         */
+        void setupAR(const double attack, const double release) {
+            setup({0,1,0}, {attack, release}, {1,1}, false, false);
+        }
+
+        /**
+         * Helper function to create a triangular(ish) envelope with sustain section at peak
+         * The sustain section will end when the trigger input drops below 0
+         * \param attack Rise time in ms
+         * \param release Fall time in ms
+         */
+        void setupASR(const double attack, const double release) {
+            setup({0,1,1,0}, {attack, maxiEnvGen::HOLD, release}, {1,1,1}, false, false);
+        }
+        /**
+         * Helper function to create an attack-decay-sustain-release envelope
+         * The sustain section will end when the trigger input drops below 0
+         * The envelope will rise from 0 to 1 in the attack segment, then drop to the sustain level before falling to 0.
+         * \param attack Rise time in ms
+         * \param decay Decay time in ms
+         * \param sustain Sustain level 
+         * \param release Fall time in ms
+         */
+        void setupADSR(const double attack, const double decay, const double sustain, const double release) {
+            setup({0,1,sustain,sustain,0}, {attack, decay, maxiEnvGen::HOLD, release}, {1,1,1,1}, false, false);
+        }
+
+        /*!Set the envelope to retrigger or not \param val True is the envelope should retrigger, false if not*/
+        void setRetrigger(const bool val) {
+            retrigger = val;
+        }
+        /*!Find out if the envelope retriggers*/
+        bool getRetrigger() {return retrigger;}
+        /*!Set the envelope to loop or not \param val True is the envelope should loop, false if not*/
+        void setLoop(const bool val) {
+            loop = val;
+        }
+        /*!Find out if the envelope loops */
+        bool getLoop() {return loop;}
+
     private:
         size_t phase=0;
         double envval = 0;        

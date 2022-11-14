@@ -342,6 +342,126 @@
 <dd><p>Stop the envelope and wait for a new trigger to start it </p>
 </dd></dl>
 
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10maxiEnvGen8setLevelE6size_td">
+<span id="_CPPv3N10maxiEnvGen8setLevelE6size_td"></span><span id="_CPPv2N10maxiEnvGen8setLevelE6size_td"></span><span id="maxiEnvGen::setLevel__s.double"></span><span class="target" id="classmaxiEnvGen_1a42b258340290e2d6c8ccddcf87198600"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">setLevel</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">index</span></span>, <span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">value</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10maxiEnvGen8setLevelE6size_td" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Set the level of a segment of the envelope</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>index</strong> – The index of the level</p></li>
+<li><p><strong>value</strong> – The new level </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10maxiEnvGen8setCurveE6size_td">
+<span id="_CPPv3N10maxiEnvGen8setCurveE6size_td"></span><span id="_CPPv2N10maxiEnvGen8setCurveE6size_td"></span><span id="maxiEnvGen::setCurve__s.double"></span><span class="target" id="classmaxiEnvGen_1adddbd06ed361eb21599fad5c0bad19c2"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">setCurve</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">index</span></span>, <span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">value</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10maxiEnvGen8setCurveE6size_td" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Set the curve of a segment of the envelope</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>index</strong> – The index of the segment</p></li>
+<li><p><strong>value</strong> – The new curve value </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10maxiEnvGen7setTimeE6size_td">
+<span id="_CPPv3N10maxiEnvGen7setTimeE6size_td"></span><span id="_CPPv2N10maxiEnvGen7setTimeE6size_td"></span><span id="maxiEnvGen::setTime__s.double"></span><span class="target" id="classmaxiEnvGen_1a796ee97222111ff69c96956d9127ed33"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">setTime</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">index</span></span>, <span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">value</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10maxiEnvGen7setTimeE6size_td" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Set the length of a segment of the envelope</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>index</strong> – The index of the segment</p></li>
+<li><p><strong>value</strong> – The new length (in ms) </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10maxiEnvGen7setupAREKdKd">
+<span id="_CPPv3N10maxiEnvGen7setupAREKdKd"></span><span id="_CPPv2N10maxiEnvGen7setupAREKdKd"></span><span id="maxiEnvGen::setupAR__doubleC.doubleC"></span><span class="target" id="classmaxiEnvGen_1a6147e310dbdbfab4269508ba25689f49"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">setupAR</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">attack</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">release</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10maxiEnvGen7setupAREKdKd" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Helper function to create a triangular envelope </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>attack</strong> – Rise time in ms </p></li>
+<li><p><strong>release</strong> – Fall time in ms </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10maxiEnvGen8setupASREKdKd">
+<span id="_CPPv3N10maxiEnvGen8setupASREKdKd"></span><span id="_CPPv2N10maxiEnvGen8setupASREKdKd"></span><span id="maxiEnvGen::setupASR__doubleC.doubleC"></span><span class="target" id="classmaxiEnvGen_1a74880edb5d611ab0f0838427cb2ac2bb"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">setupASR</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">attack</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">release</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10maxiEnvGen8setupASREKdKd" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Helper function to create a triangular(ish) envelope with sustain section at peak The sustain section will end when the trigger input drops below 0 </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>attack</strong> – Rise time in ms </p></li>
+<li><p><strong>release</strong> – Fall time in ms </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10maxiEnvGen9setupADSREKdKdKdKd">
+<span id="_CPPv3N10maxiEnvGen9setupADSREKdKdKdKd"></span><span id="_CPPv2N10maxiEnvGen9setupADSREKdKdKdKd"></span><span id="maxiEnvGen::setupADSR__doubleC.doubleC.doubleC.doubleC"></span><span class="target" id="classmaxiEnvGen_1af7d01608fa1a7e184922af2334cfbd20"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">setupADSR</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">attack</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">decay</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">sustain</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">release</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10maxiEnvGen9setupADSREKdKdKdKd" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Helper function to create an attack-decay-sustain-release envelope The sustain section will end when the trigger input drops below 0 The envelope will rise from 0 to 1 in the attack segment, then drop to the sustain level before falling to 0. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>attack</strong> – Rise time in ms </p></li>
+<li><p><strong>decay</strong> – Decay time in ms </p></li>
+<li><p><strong>sustain</strong> – Sustain level </p></li>
+<li><p><strong>release</strong> – Fall time in ms </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10maxiEnvGen12setRetriggerEKb">
+<span id="_CPPv3N10maxiEnvGen12setRetriggerEKb"></span><span id="_CPPv2N10maxiEnvGen12setRetriggerEKb"></span><span id="maxiEnvGen::setRetrigger__bC"></span><span class="target" id="classmaxiEnvGen_1a0c2ef3a75479c03c8b2da3b92463179b"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">setRetrigger</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">val</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10maxiEnvGen12setRetriggerEKb" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Set the envelope to retrigger or not</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>val</strong> – True is the envelope should retrigger, false if not </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10maxiEnvGen12getRetriggerEv">
+<span id="_CPPv3N10maxiEnvGen12getRetriggerEv"></span><span id="_CPPv2N10maxiEnvGen12getRetriggerEv"></span><span id="maxiEnvGen::getRetrigger"></span><span class="target" id="classmaxiEnvGen_1ab4efdf967063ed0fa6273a86802ccf86"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">getRetrigger</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10maxiEnvGen12getRetriggerEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Find out if the envelope retriggers </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10maxiEnvGen7setLoopEKb">
+<span id="_CPPv3N10maxiEnvGen7setLoopEKb"></span><span id="_CPPv2N10maxiEnvGen7setLoopEKb"></span><span id="maxiEnvGen::setLoop__bC"></span><span class="target" id="classmaxiEnvGen_1a2c15ef4a7b33ba598ecf4a74f159d158"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">setLoop</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">val</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10maxiEnvGen7setLoopEKb" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Set the envelope to loop or not</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>val</strong> – True is the envelope should loop, false if not </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10maxiEnvGen7getLoopEv">
+<span id="_CPPv3N10maxiEnvGen7getLoopEv"></span><span id="_CPPv2N10maxiEnvGen7getLoopEv"></span><span id="maxiEnvGen::getLoop"></span><span class="target" id="classmaxiEnvGen_1a048d75d16095cb694bb4609136196867"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">getLoop</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10maxiEnvGen7getLoopEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Find out if the envelope loops </p>
+</dd></dl>
+
 </div>
 </dd></dl>
 

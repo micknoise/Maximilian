@@ -1,5 +1,5 @@
 //Envelopes allow you to shape the sound. 
-//This example demonstrates the envelopes with hold segments.  You can trigger them with a square wave, and they will hold until the square wave returns to 0.
+//This example demonstrates how you can change envelope shape over time
 
 #include "maximilian.h"
 #include "maxiPolyBLEP.h"

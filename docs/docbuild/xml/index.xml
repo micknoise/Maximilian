@@ -379,6 +379,7 @@
     <member refid="classmaxiEnvGen_1a23b499b768fc3b54cae180c4d337ce28" kind="variable"><name>retrigger</name></member>
     <member refid="classmaxiEnvGen_1a0c2f865a3be04e6c44b7290665edc4c8" kind="variable"><name>state</name></member>
     <member refid="classmaxiEnvGen_1a78edf3df821fbdc83cdbae6e342a7e54" kind="variable"><name>nxcHappened</name></member>
+    <member refid="classmaxiEnvGen_1a191a795890bed925852eb0610563fbd6" kind="variable"><name>containsHold</name></member>
     <member refid="classmaxiEnvGen_1a78fbe3e6f522c7b705d3a9c646d899a5" kind="variable"><name>stages</name></member>
     <member refid="classmaxiEnvGen_1a66f99c8835b4fbe13b21c208f01dd001" kind="variable"><name>trigDetector</name></member>
     <member refid="classmaxiEnvGen_1ac9be69cebca74ef534a81c56bda12342" kind="variable"><name>holdDetector</name></member>
@@ -388,7 +389,17 @@
     <member refid="classmaxiEnvGen_1ab0a6e01b809090475d41072fd33cc8e2" kind="function"><name>setup</name></member>
     <member refid="classmaxiEnvGen_1a0a4c8291678ffd7b78a272871be940e8" kind="function"><name>reset</name></member>
     <member refid="classmaxiEnvGen_1a2c39708258a5c71a40530d7473024b27" kind="function"><name>resetAndArm</name></member>
-    <member refid="classmaxiEnvGen_1ace37d8526fd643904daab4601672aa14" kind="function"><name>setLevel</name></member>
+    <member refid="classmaxiEnvGen_1a42b258340290e2d6c8ccddcf87198600" kind="function"><name>setLevel</name></member>
+    <member refid="classmaxiEnvGen_1adddbd06ed361eb21599fad5c0bad19c2" kind="function"><name>setCurve</name></member>
+    <member refid="classmaxiEnvGen_1a796ee97222111ff69c96956d9127ed33" kind="function"><name>setTime</name></member>
+    <member refid="classmaxiEnvGen_1a6147e310dbdbfab4269508ba25689f49" kind="function"><name>setupAR</name></member>
+    <member refid="classmaxiEnvGen_1a74880edb5d611ab0f0838427cb2ac2bb" kind="function"><name>setupASR</name></member>
+    <member refid="classmaxiEnvGen_1af7d01608fa1a7e184922af2334cfbd20" kind="function"><name>setupADSR</name></member>
+    <member refid="classmaxiEnvGen_1a0c2ef3a75479c03c8b2da3b92463179b" kind="function"><name>setRetrigger</name></member>
+    <member refid="classmaxiEnvGen_1ab4efdf967063ed0fa6273a86802ccf86" kind="function"><name>getRetrigger</name></member>
+    <member refid="classmaxiEnvGen_1a2c15ef4a7b33ba598ecf4a74f159d158" kind="function"><name>setLoop</name></member>
+    <member refid="classmaxiEnvGen_1a048d75d16095cb694bb4609136196867" kind="function"><name>getLoop</name></member>
+    <member refid="classmaxiEnvGen_1aab20e4e1bbebffd5c393a56acb839d3d" kind="function"><name>setupSegmentTime</name></member>
   </compound>
   <compound refid="classmaxiFFT" kind="class"><name>maxiFFT</name>
     <member refid="classmaxiFFT_1a39a78d829e4d3b9b0d8e42951c39d456" kind="enum"><name>fftModes</name></member>

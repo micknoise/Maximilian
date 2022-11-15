@@ -60,5 +60,13 @@ Utility Functions
 .. doxygenclass:: maxiPoll
    :project: maximilian
    :members:
+   
+.. doxygenclass:: maxiConvert
+   :project: maximilian
+   :members:
+
+.. doxygenclass:: maxiRingBuf
+   :project: maximilian
+   :members:
 
 

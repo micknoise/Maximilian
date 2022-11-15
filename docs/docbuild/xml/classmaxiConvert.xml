@@ -1,0 +1,129 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classmaxiConvert" kind="class" language="C++" prot="public">
+    <compoundname>maxiConvert</compoundname>
+    <includes refid="maximilian_8h" local="no">maximilian.h</includes>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="classmaxiConvert_1a297c99035cb6a4727654133d792c22e1" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double convert::mtof</definition>
+        <argsstring>(int midinote)</argsstring>
+        <name>mtof</name>
+        <param>
+          <type>int</type>
+          <declname>midinote</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Convert from MIDI note number to frequency (Hz)<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>midinote</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="classA" kindref="compound">A</ref> MIDI note number </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="747" column="19" bodyfile="/home/ck84/src/Maximilian/src/maximilian.cpp" bodystart="1478" bodyend="1480"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiConvert_1a12c58703cdfb258875d7d1404cb33334" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>static double maxiConvert::msToSamps</definition>
+        <argsstring>(double timeMs)</argsstring>
+        <name>msToSamps</name>
+        <param>
+          <type>double</type>
+          <declname>timeMs</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Convert from milliseconds to samples<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>timeMs</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The number of milliseconds </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="750" column="19" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="750" bodyend="753"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiConvert_1a8048c8af50733d0ff5cadeae82955397" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>static double maxiConvert::ampToDbs</definition>
+        <argsstring>(double amp)</argsstring>
+        <name>ampToDbs</name>
+        <param>
+          <type>double</type>
+          <declname>amp</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Convert from amplitude to decibels<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>amp</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Amplitude </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="756" column="19" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="756" bodyend="758"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiConvert_1ab3caacc73f0a612e458181bd721dcc1f" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>static double maxiConvert::dbsToAmp</definition>
+        <argsstring>(double dbs)</argsstring>
+        <name>dbsToAmp</name>
+        <param>
+          <type>double</type>
+          <declname>dbs</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Convert from decibels to amplitude<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>dbs</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Decibels </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="760" column="19" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="760" bodyend="762"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>Conversion functions </para>
+    </detaileddescription>
+    <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="743" column="1" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="744" bodyend="763"/>
+    <listofallmembers>
+      <member refid="classmaxiConvert_1a8048c8af50733d0ff5cadeae82955397" prot="public" virt="non-virtual"><scope>maxiConvert</scope><name>ampToDbs</name></member>
+      <member refid="classmaxiConvert_1ab3caacc73f0a612e458181bd721dcc1f" prot="public" virt="non-virtual"><scope>maxiConvert</scope><name>dbsToAmp</name></member>
+      <member refid="classmaxiConvert_1a12c58703cdfb258875d7d1404cb33334" prot="public" virt="non-virtual"><scope>maxiConvert</scope><name>msToSamps</name></member>
+      <member refid="classmaxiConvert_1a297c99035cb6a4727654133d792c22e1" prot="public" virt="non-virtual"><scope>maxiConvert</scope><name>mtof</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

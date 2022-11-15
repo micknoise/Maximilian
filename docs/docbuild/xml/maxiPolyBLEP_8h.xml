@@ -26,19 +26,24 @@
         </childnode>
         <childnode refid="11" relation="include">
         </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>functional</label>
       </node>
       <node id="1">
         <label>/home/ck84/src/Maximilian/src/libs/maxiPolyBLEP.h</label>
         <link refid="maxiPolyBLEP_8h"/>
         <childnode refid="2" relation="include">
         </childnode>
-        <childnode refid="12" relation="include">
+        <childnode refid="13" relation="include">
         </childnode>
       </node>
       <node id="8">
         <label>cmath</label>
       </node>
-      <node id="11">
+      <node id="12">
         <label>numeric</label>
       </node>
       <node id="10">
@@ -47,7 +52,7 @@
       <node id="4">
         <label>fstream</label>
       </node>
-      <node id="12">
+      <node id="13">
         <label>PolyBLEP/PolyBLEP.h</label>
       </node>
       <node id="5">

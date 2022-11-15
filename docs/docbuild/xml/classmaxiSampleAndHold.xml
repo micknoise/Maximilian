@@ -15,7 +15,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="769" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="769" bodyend="-1"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="785" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="785" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classmaxiSampleAndHold_1a42aaf7c6fa6aeeafd2c98e402b80cd91" prot="private" static="no" mutable="no">
         <type>double</type>
@@ -29,7 +29,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="770" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="770" bodyend="-1"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="786" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="786" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classmaxiSampleAndHold_1acdf56b17166ef8b94074956d14db387b" prot="private" static="no" mutable="no">
         <type>bool</type>
@@ -43,7 +43,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="771" column="10" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="771" bodyend="-1"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="787" column="10" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="787" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
@@ -66,14 +66,14 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="754" column="19" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="754" bodyend="766"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="770" column="19" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="770" bodyend="782"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="751" column="1" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="752" bodyend="772"/>
+    <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="767" column="1" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="768" bodyend="788"/>
     <listofallmembers>
       <member refid="classmaxiSampleAndHold_1acdf56b17166ef8b94074956d14db387b" prot="private" virt="non-virtual"><scope>maxiSampleAndHold</scope><name>firstRun</name></member>
       <member refid="classmaxiSampleAndHold_1a42aaf7c6fa6aeeafd2c98e402b80cd91" prot="private" virt="non-virtual"><scope>maxiSampleAndHold</scope><name>holdValue</name></member>

@@ -29,35 +29,40 @@
         </childnode>
         <childnode refid="11" relation="include">
         </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>functional</label>
       </node>
       <node id="1">
         <label>/home/ck84/src/Maximilian/src/libs/maxiConvolve.h</label>
         <link refid="maxiConvolve_8h"/>
         <childnode refid="2" relation="include">
         </childnode>
-        <childnode refid="12" relation="include">
+        <childnode refid="13" relation="include">
         </childnode>
         <childnode refid="3" relation="include">
         </childnode>
-        <childnode refid="15" relation="include">
+        <childnode refid="16" relation="include">
         </childnode>
       </node>
       <node id="8">
         <label>cmath</label>
       </node>
-      <node id="11">
+      <node id="12">
         <label>numeric</label>
       </node>
       <node id="10">
         <label>cfloat</label>
       </node>
-      <node id="14">
+      <node id="15">
         <label>stddef.h</label>
       </node>
       <node id="4">
         <label>fstream</label>
       </node>
-      <node id="13">
+      <node id="14">
         <label>fft.h</label>
         <link refid="fft_8h_source"/>
         <childnode refid="9" relation="include">
@@ -66,12 +71,12 @@
       <node id="5">
         <label>string.h</label>
       </node>
-      <node id="12">
+      <node id="13">
         <label>maxiFFT.h</label>
         <link refid="maxiFFT_8h_source"/>
-        <childnode refid="13" relation="include">
-        </childnode>
         <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
         </childnode>
         <childnode refid="9" relation="include">
         </childnode>
@@ -88,7 +93,7 @@
       <node id="3">
         <label>iostream</label>
       </node>
-      <node id="15">
+      <node id="16">
         <label>deque</label>
       </node>
     </incdepgraph>

@@ -247,7 +247,7 @@
         <location file="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" line="170" column="9" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiSynths.h" bodystart="170" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classmaxiSampler_1a8d22549c7647340df986fcec31e1c2fe" prot="public" static="no" mutable="no">
-        <type><ref refid="classconvert" kindref="compound">convert</ref></type>
+        <type><ref refid="classmaxiConvert" kindref="compound">convert</ref></type>
         <definition>convert maxiSampler::mtof</definition>
         <argsstring></argsstring>
         <name>mtof</name>
@@ -666,15 +666,15 @@
         <label>maxiOsc</label>
         <link refid="classmaxiOsc"/>
       </node>
-      <node id="5">
+      <node id="6">
         <label>maxiEnv</label>
         <link refid="classmaxiEnv"/>
       </node>
-      <node id="7">
-        <label>convert</label>
-        <link refid="classconvert"/>
+      <node id="5">
+        <label>maxiConvert</label>
+        <link refid="classmaxiConvert"/>
       </node>
-      <node id="6">
+      <node id="7">
         <label>maxiSVF</label>
         <link refid="classmaxiSVF"/>
       </node>
@@ -691,13 +691,13 @@
           <edgelabel>LFO4</edgelabel>
         </childnode>
         <childnode refid="5" relation="usage">
-          <edgelabel>envelopes</edgelabel>
+          <edgelabel>mtof</edgelabel>
         </childnode>
         <childnode refid="6" relation="usage">
-          <edgelabel>filters</edgelabel>
+          <edgelabel>envelopes</edgelabel>
         </childnode>
         <childnode refid="7" relation="usage">
-          <edgelabel>mtof</edgelabel>
+          <edgelabel>filters</edgelabel>
         </childnode>
         <childnode refid="8" relation="usage">
           <edgelabel>distort</edgelabel>

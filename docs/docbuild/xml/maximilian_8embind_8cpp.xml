@@ -32,9 +32,14 @@
         </childnode>
         <childnode refid="13" relation="include">
         </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
       </node>
-      <node id="19">
+      <node id="20">
         <label>valarray</label>
+      </node>
+      <node id="13">
+        <label>functional</label>
       </node>
       <node id="3">
         <label>emscripten/bind.h</label>
@@ -48,27 +53,27 @@
         </childnode>
         <childnode refid="4" relation="include">
         </childnode>
-        <childnode refid="14" relation="include">
-        </childnode>
-        <childnode refid="17" relation="include">
+        <childnode refid="15" relation="include">
         </childnode>
         <childnode refid="18" relation="include">
         </childnode>
-        <childnode refid="20" relation="include">
+        <childnode refid="19" relation="include">
         </childnode>
         <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
         </childnode>
       </node>
       <node id="10">
         <label>cmath</label>
       </node>
-      <node id="13">
+      <node id="14">
         <label>numeric</label>
       </node>
-      <node id="21">
+      <node id="22">
         <label>libs/stb_vorbis.h</label>
         <link refid="stb__vorbis_8h_source"/>
-        <childnode refid="22" relation="include">
+        <childnode refid="23" relation="include">
         </childnode>
       </node>
       <node id="12">
@@ -77,13 +82,13 @@
       <node id="2">
         <label>emscripten.h</label>
       </node>
-      <node id="16">
+      <node id="17">
         <label>stddef.h</label>
       </node>
       <node id="6">
         <label>fstream</label>
       </node>
-      <node id="15">
+      <node id="16">
         <label>fft.h</label>
         <link refid="fft_8h_source"/>
         <childnode refid="11" relation="include">
@@ -92,17 +97,17 @@
       <node id="7">
         <label>string.h</label>
       </node>
-      <node id="14">
+      <node id="15">
         <label>libs/maxiFFT.h</label>
         <link refid="maxiFFT_8h_source"/>
-        <childnode refid="15" relation="include">
-        </childnode>
         <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
         </childnode>
         <childnode refid="11" relation="include">
         </childnode>
       </node>
-      <node id="20">
+      <node id="21">
         <label>libs/maxiClock.h</label>
         <link refid="maxiClock_8h_source"/>
         <childnode refid="4" relation="include">
@@ -111,12 +116,12 @@
       <node id="11">
         <label>vector</label>
       </node>
-      <node id="18">
+      <node id="19">
         <label>libs/maxiReverb.h</label>
         <link refid="maxiReverb_8h_source"/>
         <childnode refid="4" relation="include">
         </childnode>
-        <childnode refid="19" relation="include">
+        <childnode refid="20" relation="include">
         </childnode>
       </node>
       <node id="9">
@@ -128,10 +133,10 @@
       <node id="5">
         <label>iostream</label>
       </node>
-      <node id="22">
+      <node id="23">
         <label>stdio.h</label>
       </node>
-      <node id="17">
+      <node id="18">
         <label>libs/maxiMFCC.h</label>
         <link refid="maxiMFCC_8h_source"/>
         <childnode refid="9" relation="include">
@@ -542,10 +547,10 @@
 <codeline lineno="268"><highlight class="normal"></highlight><highlight class="preprocessor">#else</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="269"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.constructor&lt;&gt;()</highlight></codeline>
 <codeline lineno="270"><highlight class="normal">#endif</highlight></codeline>
-<codeline lineno="271"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.</highlight><highlight class="keyword">function</highlight><highlight class="normal">(</highlight><highlight class="stringliteral">&quot;mtof&quot;</highlight><highlight class="normal">,<sp/>&amp;convert::mtof)</highlight></codeline>
-<codeline lineno="272"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.class_function(</highlight><highlight class="stringliteral">&quot;mtof&quot;</highlight><highlight class="normal">,<sp/>&amp;convert::mtof)</highlight></codeline>
-<codeline lineno="273"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.function(</highlight><highlight class="stringliteral">&quot;msToSamps&quot;</highlight><highlight class="normal">,<sp/>&amp;convert::msToSamps)</highlight></codeline>
-<codeline lineno="274"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.class_function(</highlight><highlight class="stringliteral">&quot;msToSamps&quot;</highlight><highlight class="normal">,<sp/>&amp;convert::msToSamps)</highlight></codeline>
+<codeline lineno="271"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.</highlight><highlight class="keyword">function</highlight><highlight class="normal">(</highlight><highlight class="stringliteral">&quot;mtof&quot;</highlight><highlight class="normal">,<sp/>&amp;<ref refid="classmaxiConvert_1a297c99035cb6a4727654133d792c22e1" kindref="member">convert::mtof</ref>)</highlight></codeline>
+<codeline lineno="272"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.class_function(</highlight><highlight class="stringliteral">&quot;mtof&quot;</highlight><highlight class="normal">,<sp/>&amp;<ref refid="classmaxiConvert_1a297c99035cb6a4727654133d792c22e1" kindref="member">convert::mtof</ref>)</highlight></codeline>
+<codeline lineno="273"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.function(</highlight><highlight class="stringliteral">&quot;msToSamps&quot;</highlight><highlight class="normal">,<sp/>&amp;<ref refid="classmaxiConvert_1a12c58703cdfb258875d7d1404cb33334" kindref="member">convert::msToSamps</ref>)</highlight></codeline>
+<codeline lineno="274"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.class_function(</highlight><highlight class="stringliteral">&quot;msToSamps&quot;</highlight><highlight class="normal">,<sp/>&amp;<ref refid="classmaxiConvert_1a12c58703cdfb258875d7d1404cb33334" kindref="member">convert::msToSamps</ref>)</highlight></codeline>
 <codeline lineno="275"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/>.class_function(&quot;mtof&quot;,<sp/>&amp;convert::mtof)</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="276"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>;</highlight></codeline>
 <codeline lineno="277"><highlight class="normal"></highlight></codeline>

@@ -32,11 +32,16 @@
         </childnode>
         <childnode refid="12" relation="include">
         </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>functional</label>
       </node>
       <node id="9">
         <label>cmath</label>
       </node>
-      <node id="12">
+      <node id="13">
         <label>numeric</label>
       </node>
       <node id="1">
@@ -263,7 +268,7 @@
 <codeline lineno="168"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>gain<sp/>=<sp/>1;</highlight></codeline>
 <codeline lineno="169"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>voices;</highlight></codeline>
 <codeline lineno="170"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>currentVoice=0;</highlight></codeline>
-<codeline lineno="171"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classconvert" kindref="compound">convert</ref><sp/>mtof;</highlight></codeline>
+<codeline lineno="171"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classmaxiConvert" kindref="compound">convert</ref><sp/>mtof;</highlight></codeline>
 <codeline lineno="172"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classmaxiOsc" kindref="compound">maxiOsc</ref><sp/>LFO1;</highlight></codeline>
 <codeline lineno="173"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classmaxiOsc" kindref="compound">maxiOsc</ref><sp/>LFO2;</highlight></codeline>
 <codeline lineno="174"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classmaxiOsc" kindref="compound">maxiOsc</ref><sp/>LFO3;</highlight></codeline>

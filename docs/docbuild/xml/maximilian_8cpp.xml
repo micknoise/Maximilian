@@ -28,14 +28,19 @@
         </childnode>
         <childnode refid="11" relation="include">
         </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
       </node>
-      <node id="12">
+      <node id="11">
+        <label>functional</label>
+      </node>
+      <node id="13">
         <label>iterator</label>
       </node>
       <node id="8">
         <label>cmath</label>
       </node>
-      <node id="11">
+      <node id="12">
         <label>numeric</label>
       </node>
       <node id="10">
@@ -50,7 +55,7 @@
       <node id="9">
         <label>vector</label>
       </node>
-      <node id="13">
+      <node id="14">
         <label>sstream</label>
       </node>
       <node id="7">
@@ -69,9 +74,9 @@
         </childnode>
         <childnode refid="7" relation="include">
         </childnode>
-        <childnode refid="12" relation="include">
-        </childnode>
         <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
         </childnode>
       </node>
     </incdepgraph>
@@ -1646,7 +1651,7 @@
 <codeline lineno="1475"><highlight class="normal"></highlight></codeline>
 <codeline lineno="1476"><highlight class="normal"></highlight></codeline>
 <codeline lineno="1477"><highlight class="normal"></highlight></codeline>
-<codeline lineno="1478"><highlight class="normal"></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>convert::mtof(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>midinote)<sp/>{</highlight></codeline>
+<codeline lineno="1478"><highlight class="normal"></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="classmaxiConvert_1a297c99035cb6a4727654133d792c22e1" kindref="member">convert::mtof</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>midinote)<sp/>{</highlight></codeline>
 <codeline lineno="1479"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>mtofarray[midinote];</highlight></codeline>
 <codeline lineno="1480"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="1481"><highlight class="normal"></highlight></codeline>
@@ -1674,6 +1679,8 @@
 <codeline lineno="1503"><highlight class="normal">maxiSelect::maxiSelect()<sp/>{}</highlight></codeline>
 <codeline lineno="1504"><highlight class="normal">maxiSelectX::maxiSelectX()<sp/>{}</highlight></codeline>
 <codeline lineno="1505"><highlight class="normal">maxiEnvGen::maxiEnvGen()<sp/>{}</highlight></codeline>
+<codeline lineno="1506"><highlight class="normal">maxiRingBuf::maxiRingBuf()<sp/>{}</highlight></codeline>
+<codeline lineno="1507"><highlight class="normal">maxiPoll::maxiPoll()<sp/>{}</highlight></codeline>
     </programlisting>
     <location file="/home/ck84/src/Maximilian/src/maximilian.cpp"/>
   </compounddef>

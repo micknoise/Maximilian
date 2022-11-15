@@ -1503,3 +1503,5 @@ maxiStep::maxiStep() {}
 maxiSelect::maxiSelect() {}
 maxiSelectX::maxiSelectX() {}
 maxiEnvGen::maxiEnvGen() {}
+maxiRingBuf::maxiRingBuf() {}
+maxiPoll::maxiPoll() {}

@@ -25,11 +25,16 @@
         </childnode>
         <childnode refid="13" relation="include">
         </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>functional</label>
       </node>
       <node id="10">
         <label>cmath</label>
       </node>
-      <node id="13">
+      <node id="14">
         <label>numeric</label>
       </node>
       <node id="2">

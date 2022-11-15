@@ -1,0 +1,252 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classmaxiRingBuf" kind="class" language="C++" prot="public">
+    <compoundname>maxiRingBuf</compoundname>
+    <includes refid="maximilian_8h" local="no">maximilian.h</includes>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="classmaxiRingBuf_1a29f462121ecf26035d9523efa4232daa" prot="public" static="no">
+        <type>std::function&lt; double(double, double)&gt;</type>
+        <definition>using maxiRingBuf::reduceFunction =  std::function&lt;double(double, double)&gt;</definition>
+        <argsstring></argsstring>
+        <name>reduceFunction</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="2254" column="5" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="2254" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classmaxiRingBuf_1a928b47856a68401ddcfa791084813f5d" prot="private" static="no" mutable="no">
+        <type>DOUBLEARRAY</type>
+        <definition>DOUBLEARRAY maxiRingBuf::buf</definition>
+        <argsstring></argsstring>
+        <name>buf</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="2309" column="17" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="2309" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiRingBuf_1acd8bacf938234a164bfbfb6dcd24ac74" prot="private" static="no" mutable="no">
+        <type>size_t</type>
+        <definition>size_t maxiRingBuf::idx</definition>
+        <argsstring></argsstring>
+        <name>idx</name>
+        <initializer>=0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="2310" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="2310" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classmaxiRingBuf_1a25cef382951d67ed52a15f08ec567bdc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>maxiRingBuf::maxiRingBuf</definition>
+        <argsstring>()</argsstring>
+        <name>maxiRingBuf</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="2220" column="5" bodyfile="/home/ck84/src/Maximilian/src/maximilian.cpp" bodystart="1506" bodyend="1506"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiRingBuf_1af577d377112b3e7cf10aeb38cbbf977b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void maxiRingBuf::setup</definition>
+        <argsstring>(size_t N)</argsstring>
+        <name>setup</name>
+        <param>
+          <type>size_t</type>
+          <declname>N</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Allocate memory for the buffer<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>N</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The maximum length of the buffer </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="2223" column="10" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="2223" bodyend="2226"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiRingBuf_1acbb50ba3f6d06388276ac407500af474" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void maxiRingBuf::push</definition>
+        <argsstring>(double x)</argsstring>
+        <name>push</name>
+        <param>
+          <type>double</type>
+          <declname>x</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Add the latest value to the buffer<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>x</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="classA" kindref="compound">A</ref> value </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="2228" column="10" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="2228" bodyend="2235"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiRingBuf_1ab73fc50129d00cc859110984095e7ea9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t maxiRingBuf::size</definition>
+        <argsstring>()</argsstring>
+        <name>size</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The size of the buffer </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="2238" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="2238" bodyend="2238"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiRingBuf_1a37a316f7a7d30b80674f53dd2cdd83ed" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double maxiRingBuf::head</definition>
+        <argsstring>()</argsstring>
+        <name>head</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>the value at the front of the buffer </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="2241" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="2241" bodyend="2241"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiRingBuf_1a6b3245facdc13657159d487f93aa4851" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double maxiRingBuf::tail</definition>
+        <argsstring>(size_t N)</argsstring>
+        <name>tail</name>
+        <param>
+          <type>size_t</type>
+          <declname>N</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>the oldest value in the buffer, for a particular window size</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>N</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The size of the window, N &lt; the size of the buffer </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="2244" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="2244" bodyend="2252"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiRingBuf_1ab05fffc8720e0d8c7dc748299f2a5735" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double maxiRingBuf::reduce</definition>
+        <argsstring>(size_t N, reduceFunction func, double initval)</argsstring>
+        <name>reduce</name>
+        <param>
+          <type>size_t</type>
+          <declname>N</declname>
+        </param>
+        <param>
+          <type>reduceFunction</type>
+          <declname>func</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>initval</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Apply a function of the previous N values in the buffer <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>N</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The number of values in the window </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>func</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="classA" kindref="compound">A</ref> function in the form double func(double previousResult, double nextValue) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>initval</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The initial value to pass into the function (usually 0) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The last result of the function, after passing in all values from the window Example: this function will sum the values in the window: auto sumfunc = [](double val, double n) {return val + n;}; </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="2264" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="2264" bodyend="2284"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><ref refid="classA" kindref="compound">A</ref> ring buffer. This enables you to look at the last N values in a time series. </para>
+    </detaileddescription>
+    <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="2218" column="1" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="2218" bodyend="2311"/>
+    <listofallmembers>
+      <member refid="classmaxiRingBuf_1a928b47856a68401ddcfa791084813f5d" prot="private" virt="non-virtual"><scope>maxiRingBuf</scope><name>buf</name></member>
+      <member refid="classmaxiRingBuf_1a37a316f7a7d30b80674f53dd2cdd83ed" prot="public" virt="non-virtual"><scope>maxiRingBuf</scope><name>head</name></member>
+      <member refid="classmaxiRingBuf_1acd8bacf938234a164bfbfb6dcd24ac74" prot="private" virt="non-virtual"><scope>maxiRingBuf</scope><name>idx</name></member>
+      <member refid="classmaxiRingBuf_1a25cef382951d67ed52a15f08ec567bdc" prot="public" virt="non-virtual"><scope>maxiRingBuf</scope><name>maxiRingBuf</name></member>
+      <member refid="classmaxiRingBuf_1acbb50ba3f6d06388276ac407500af474" prot="public" virt="non-virtual"><scope>maxiRingBuf</scope><name>push</name></member>
+      <member refid="classmaxiRingBuf_1ab05fffc8720e0d8c7dc748299f2a5735" prot="public" virt="non-virtual"><scope>maxiRingBuf</scope><name>reduce</name></member>
+      <member refid="classmaxiRingBuf_1a29f462121ecf26035d9523efa4232daa" prot="public" virt="non-virtual"><scope>maxiRingBuf</scope><name>reduceFunction</name></member>
+      <member refid="classmaxiRingBuf_1af577d377112b3e7cf10aeb38cbbf977b" prot="public" virt="non-virtual"><scope>maxiRingBuf</scope><name>setup</name></member>
+      <member refid="classmaxiRingBuf_1ab73fc50129d00cc859110984095e7ea9" prot="public" virt="non-virtual"><scope>maxiRingBuf</scope><name>size</name></member>
+      <member refid="classmaxiRingBuf_1a6b3245facdc13657159d487f93aa4851" prot="public" virt="non-virtual"><scope>maxiRingBuf</scope><name>tail</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

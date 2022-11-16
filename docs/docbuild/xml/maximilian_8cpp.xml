@@ -1681,6 +1681,10 @@
 <codeline lineno="1505"><highlight class="normal">maxiEnvGen::maxiEnvGen()<sp/>{}</highlight></codeline>
 <codeline lineno="1506"><highlight class="normal">maxiRingBuf::maxiRingBuf()<sp/>{}</highlight></codeline>
 <codeline lineno="1507"><highlight class="normal">maxiPoll::maxiPoll()<sp/>{}</highlight></codeline>
+<codeline lineno="1508"><highlight class="normal">maxiRMS::maxiRMS()<sp/>{}</highlight></codeline>
+<codeline lineno="1509"><highlight class="normal">maxiZeroCrossingRate::maxiZeroCrossingRate()<sp/>{</highlight></codeline>
+<codeline lineno="1510"><highlight class="normal"><sp/><sp/><sp/><sp/>buf.<ref refid="classmaxiRingBuf_1af577d377112b3e7cf10aeb38cbbf977b" kindref="member">setup</ref>(maxiSettings::sampleRate);</highlight></codeline>
+<codeline lineno="1511"><highlight class="normal">}</highlight></codeline>
     </programlisting>
     <location file="/home/ck84/src/Maximilian/src/maximilian.cpp"/>
   </compounddef>

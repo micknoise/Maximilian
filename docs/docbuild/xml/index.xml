@@ -238,7 +238,8 @@
   </compound>
   <compound refid="classmaxiConvert" kind="class"><name>maxiConvert</name>
     <member refid="classmaxiConvert_1a297c99035cb6a4727654133d792c22e1" kind="function"><name>mtof</name></member>
-    <member refid="classmaxiConvert_1a12c58703cdfb258875d7d1404cb33334" kind="function"><name>msToSamps</name></member>
+    <member refid="classmaxiConvert_1acafb7f84fc30c76960a2b0025ad754b8" kind="function"><name>msToSamps</name></member>
+    <member refid="classmaxiConvert_1a3a38c2c0d8943dfba338e6eda687b0d3" kind="function"><name>sampsToMs</name></member>
     <member refid="classmaxiConvert_1a8048c8af50733d0ff5cadeae82955397" kind="function"><name>ampToDbs</name></member>
     <member refid="classmaxiConvert_1ab3caacc73f0a612e458181bd721dcc1f" kind="function"><name>dbsToAmp</name></member>
   </compound>
@@ -782,7 +783,7 @@
   <compound refid="classmaxiPoll" kind="class"><name>maxiPoll</name>
     <member refid="classmaxiPoll_1a0fe8a5a2b3755bf37d18308400784034" kind="variable"><name>imp</name></member>
     <member refid="classmaxiPoll_1abe2c3769f3082edf25aba08690c144b5" kind="function"><name>maxiPoll</name></member>
-    <member refid="classmaxiPoll_1a7fbdcadf18c378ebdb25d05dffa7110f" kind="function"><name>poll</name></member>
+    <member refid="classmaxiPoll_1a7e72b3804fef19771d40c2bb90b37ba8" kind="function"><name>poll</name></member>
   </compound>
   <compound refid="classmaxiPolyBLEP" kind="class"><name>maxiPolyBLEP</name>
     <member refid="classmaxiPolyBLEP_1a6adb656a95c88c2ae9e9b4b1a4dc6b42" kind="typedef"><name>Waveform</name></member>
@@ -878,6 +879,16 @@
     <member refid="classmaxiRingBuf_1a37a316f7a7d30b80674f53dd2cdd83ed" kind="function"><name>head</name></member>
     <member refid="classmaxiRingBuf_1a6b3245facdc13657159d487f93aa4851" kind="function"><name>tail</name></member>
     <member refid="classmaxiRingBuf_1ab05fffc8720e0d8c7dc748299f2a5735" kind="function"><name>reduce</name></member>
+  </compound>
+  <compound refid="classmaxiRMS" kind="class"><name>maxiRMS</name>
+    <member refid="classmaxiRMS_1aa17526b0eafff55f1b67243bd1028c9d" kind="variable"><name>buf</name></member>
+    <member refid="classmaxiRMS_1a968d2a343289f760ca71759605eb4736" kind="variable"><name>windowSize</name></member>
+    <member refid="classmaxiRMS_1a9e5baf180775229ab400a734796069f0" kind="variable"><name>runningRMS</name></member>
+    <member refid="classmaxiRMS_1a49564de84c2f37ab4e70aba7a8358f9c" kind="function"><name>maxiRMS</name></member>
+    <member refid="classmaxiRMS_1a83f8273f50317de69ddd4ee85643126b" kind="function"><name>setup</name></member>
+    <member refid="classmaxiRMS_1acb19557702eae3155ae190e1519c8fe6" kind="function"><name>setWindowSize</name></member>
+    <member refid="classmaxiRMS_1ab262cc704a1720a34b5aba4553bf905e" kind="function"><name>getWindowSize</name></member>
+    <member refid="classmaxiRMS_1a00cc4d4bf0c210f902b92a60be9386e2" kind="function"><name>play</name></member>
   </compound>
   <compound refid="classmaxiSample" kind="class"><name>maxiSample</name>
     <member refid="classmaxiSample_1a80a4798fadf7a3e7d190eb295850974c" kind="variable"><name>position</name></member>
@@ -1114,6 +1125,13 @@
     <member refid="classmaxiZeroCrossingDetector_1a0996fec932efc535c1e5698877519b0c" kind="variable"><name>previous_x</name></member>
     <member refid="classmaxiZeroCrossingDetector_1a6c104907ac40969661f66177f43634f0" kind="function"><name>maxiZeroCrossingDetector</name></member>
     <member refid="classmaxiZeroCrossingDetector_1aa7910490989a6a12655ee083fece2eeb" kind="function"><name>zx</name></member>
+  </compound>
+  <compound refid="classmaxiZeroCrossingRate" kind="class"><name>maxiZeroCrossingRate</name>
+    <member refid="classmaxiZeroCrossingRate_1a616cdb5e7b03011842799e7c01ba9d0b" kind="variable"><name>buf</name></member>
+    <member refid="classmaxiZeroCrossingRate_1a9b99e5d8642408ec950197a5ddcb2952" kind="variable"><name>runningCount</name></member>
+    <member refid="classmaxiZeroCrossingRate_1a39415db6effc658aefa6970e9a1fcf14" kind="variable"><name>zxd</name></member>
+    <member refid="classmaxiZeroCrossingRate_1a076fff105b5ec6bd46debd9c95603173" kind="function"><name>maxiZeroCrossingRate</name></member>
+    <member refid="classmaxiZeroCrossingRate_1a0d64e5805124f957b1c9c8b19024d477" kind="function"><name>play</name></member>
   </compound>
   <compound refid="classmaxiZXToPulse" kind="class"><name>maxiZXToPulse</name>
     <member refid="classmaxiZXToPulse_1a02e41dd1d7c6ef5fe3b9ae0b8c6a8043" kind="variable"><name>trig</name></member>

@@ -711,6 +711,69 @@
 </div>
 </dd></dl>
 
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv420maxiZeroCrossingRate">
+<span id="_CPPv320maxiZeroCrossingRate"></span><span id="_CPPv220maxiZeroCrossingRate"></span><span id="maxiZeroCrossingRate"></span><span class="target" id="classmaxiZeroCrossingRate"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">maxiZeroCrossingRate</span></span></span><a class="headerlink" href="#_CPPv420maxiZeroCrossingRate" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Calculate the zero crossing rate of a signal This is a fairly crude measure of frequency, which is confounded by complex waveforms and noise </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N20maxiZeroCrossingRate4playEd">
+<span id="_CPPv3N20maxiZeroCrossingRate4playEd"></span><span id="_CPPv2N20maxiZeroCrossingRate4playEd"></span><span id="maxiZeroCrossingRate::play__double"></span><span class="target" id="classmaxiZeroCrossingRate_1a0d64e5805124f957b1c9c8b19024d477"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">play</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">signal</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N20maxiZeroCrossingRate4playEd" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Calculate the zero cross rate</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>signal</strong> – a signal </p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>the zero crossing rate in Hz </p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv47maxiRMS">
+<span id="_CPPv37maxiRMS"></span><span id="_CPPv27maxiRMS"></span><span id="maxiRMS"></span><span class="target" id="classmaxiRMS"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">maxiRMS</span></span></span><a class="headerlink" href="#_CPPv47maxiRMS" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Calculate the Root Mean Square of a signal over a window of time This is a good measurement of the amount of power in a signal </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N7maxiRMS5setupEdd">
+<span id="_CPPv3N7maxiRMS5setupEdd"></span><span id="_CPPv2N7maxiRMS5setupEdd"></span><span id="maxiRMS::setup__double.double"></span><span class="target" id="classmaxiRMS_1a83f8273f50317de69ddd4ee85643126b"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">setup</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">maxLength</span></span>, <span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">windowSize</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N7maxiRMS5setupEdd" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Configure the analyser</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>maxLength</strong> – The maximum length of time to analyse (ms)</p></li>
+<li><p><strong>windowSize</strong> – The size of the window of time to analyse initially (ms, &lt;= maxLength) </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N7maxiRMS13setWindowSizeEd">
+<span id="_CPPv3N7maxiRMS13setWindowSizeEd"></span><span id="_CPPv2N7maxiRMS13setWindowSizeEd"></span><span id="maxiRMS::setWindowSize__double"></span><span class="target" id="classmaxiRMS_1acb19557702eae3155ae190e1519c8fe6"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">setWindowSize</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">newWindowSize</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N7maxiRMS13setWindowSizeEd" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Set the size of the analysis window</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>newWindowSize</strong> – the size of the analysis window (in ms). Large values will smooth out the measurement, and make it less responsive to transients </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N7maxiRMS13getWindowSizeEv">
+<span id="_CPPv3N7maxiRMS13getWindowSizeEv"></span><span id="_CPPv2N7maxiRMS13getWindowSizeEv"></span><span id="maxiRMS::getWindowSize"></span><span class="target" id="classmaxiRMS_1ab262cc704a1720a34b5aba4553bf905e"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">getWindowSize</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N7maxiRMS13getWindowSizeEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Find out the size of the analysis window (in ms) </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
 </section>
 <section id="sequencing">
 <h2>Sequencing<a class="headerlink" href="#sequencing" title="Permalink to this heading"></a></h2>
@@ -753,8 +816,8 @@
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
 <dl class="cpp function">
-<dt class="sig sig-object cpp" id="_CPPv4N8maxiPoll4pollEdd6string">
-<span id="_CPPv3N8maxiPoll4pollEdd6string"></span><span id="_CPPv2N8maxiPoll4pollEdd6string"></span><span id="maxiPoll::poll__double.double.string"></span><span class="target" id="classmaxiPoll_1a7fbdcadf18c378ebdb25d05dffa7110f"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">poll</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">val</span></span>, <span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">frequency</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">4</span></span>, <span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">txt</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="s"><span class="pre">&quot;&quot;</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8maxiPoll4pollEdd6string" title="Permalink to this definition"></a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N8maxiPoll4pollEdd6string6string">
+<span id="_CPPv3N8maxiPoll4pollEdd6string6string"></span><span id="_CPPv2N8maxiPoll4pollEdd6string6string"></span><span id="maxiPoll::poll__double.double.string.string"></span><span class="target" id="classmaxiPoll_1a7e72b3804fef19771d40c2bb90b37ba8"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">poll</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">val</span></span>, <span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">frequency</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">4</span></span>, <span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">txt</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="s"><span class="pre">&quot;&quot;</span></span>, <span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">end</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="s"><span class="pre">&quot;\n&quot;</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8maxiPoll4pollEdd6string6string" title="Permalink to this definition"></a><br /></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -791,11 +854,22 @@
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N11maxiConvert9msToSampsEd">
-<span id="_CPPv3N11maxiConvert9msToSampsEd"></span><span id="_CPPv2N11maxiConvert9msToSampsEd"></span><span id="maxiConvert::msToSamps__double"></span><span class="target" id="classmaxiConvert_1a12c58703cdfb258875d7d1404cb33334"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">msToSamps</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">timeMs</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N11maxiConvert9msToSampsEd" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv3N11maxiConvert9msToSampsEd"></span><span id="_CPPv2N11maxiConvert9msToSampsEd"></span><span id="maxiConvert::msToSamps__double"></span><span class="target" id="classmaxiConvert_1acafb7f84fc30c76960a2b0025ad754b8"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">msToSamps</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">timeMs</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N11maxiConvert9msToSampsEd" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Convert from milliseconds to samples</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>timeMs</strong> – The number of milliseconds </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N11maxiConvert9sampsToMsE6size_t">
+<span id="_CPPv3N11maxiConvert9sampsToMsE6size_t"></span><span id="_CPPv2N11maxiConvert9sampsToMsE6size_t"></span><span id="maxiConvert::sampsToMs__s"></span><span class="target" id="classmaxiConvert_1a3a38c2c0d8943dfba338e6eda687b0d3"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">sampsToMs</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">samples</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N11maxiConvert9sampsToMsE6size_t" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Convert from samples to milliseconds</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>samples</strong> – The number of samples </p>
 </dd>
 </dl>
 </dd></dl>

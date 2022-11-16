@@ -15,7 +15,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="821" column="5" bodyfile="/home/ck84/src/Maximilian/src/maximilian.cpp" bodystart="1496" bodyend="1496"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="947" column="5" bodyfile="/home/ck84/src/Maximilian/src/maximilian.cpp" bodystart="1496" bodyend="1496"/>
       </memberdef>
       <memberdef kind="function" id="classmaxiNonlinearity_1a7768ef4e151832457efe388109ff8145" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>double</type>
@@ -54,7 +54,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="826" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="897" bodyend="902"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="952" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1023" bodyend="1028"/>
       </memberdef>
       <memberdef kind="function" id="classmaxiNonlinearity_1a7925d5eeeac8953db220c2ed121b323e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>double</type>
@@ -93,7 +93,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="831" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="904" bodyend="909"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="957" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1030" bodyend="1035"/>
       </memberdef>
       <memberdef kind="function" id="classmaxiNonlinearity_1af31dae57b366bf898eaee24f06d146f6" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>double</type>
@@ -120,7 +120,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="833" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="875" bodyend="890"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="959" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1001" bodyend="1016"/>
       </memberdef>
       <memberdef kind="function" id="classmaxiNonlinearity_1ad256eefc5e3cfbe70ad22cf105e187cc" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>double</type>
@@ -147,7 +147,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="835" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="870" bodyend="874"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="961" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="996" bodyend="1000"/>
       </memberdef>
       <memberdef kind="function" id="classmaxiNonlinearity_1aa8e54b18b54b7dca2f0bfb0171e038cd" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>double</type>
@@ -198,7 +198,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="843" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="848" bodyend="868"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="969" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="974" bodyend="994"/>
       </memberdef>
       <memberdef kind="function" id="classmaxiNonlinearity_1a010c469f179b4bbca35755219063b217" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>double</type>
@@ -225,7 +225,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="845" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="892" bodyend="895"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="971" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1018" bodyend="1021"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -233,7 +233,7 @@
     <detaileddescription>
 <para>Various ways to distort signals </para>
     </detaileddescription>
-    <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="818" column="1" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="819" bodyend="846"/>
+    <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="944" column="1" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="945" bodyend="972"/>
     <listofallmembers>
       <member refid="classmaxiNonlinearity_1aa8e54b18b54b7dca2f0bfb0171e038cd" prot="public" virt="non-virtual"><scope>maxiNonlinearity</scope><name>asymclip</name></member>
       <member refid="classmaxiNonlinearity_1a7768ef4e151832457efe388109ff8145" prot="public" virt="non-virtual"><scope>maxiNonlinearity</scope><name>atanDist</name></member>

@@ -14,7 +14,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1902" column="17" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1902" bodyend="-1"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="2028" column="17" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="2028" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classmaxiZXToPulse_1a4b8fe37973bd6b4f4600d4b4bf03a546" prot="private" static="no" mutable="no">
         <type>double</type>
@@ -28,7 +28,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1903" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1903" bodyend="-1"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="2029" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="2029" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
@@ -43,7 +43,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1886" column="5" bodyfile="/home/ck84/src/Maximilian/src/maximilian.cpp" bodystart="1501" bodyend="1501"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="2012" column="5" bodyfile="/home/ck84/src/Maximilian/src/maximilian.cpp" bodystart="1501" bodyend="1501"/>
       </memberdef>
       <memberdef kind="function" id="classmaxiZXToPulse_1a4a1b68937cfe604af94c61682a7abf20" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>double</type>
@@ -64,14 +64,14 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1887" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1887" bodyend="1900"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="2013" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="2013" bodyend="2026"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1883" column="1" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1884" bodyend="1904"/>
+    <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="2009" column="1" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="2010" bodyend="2030"/>
     <listofallmembers>
       <member refid="classmaxiZXToPulse_1a4b8fe37973bd6b4f4600d4b4bf03a546" prot="private" virt="non-virtual"><scope>maxiZXToPulse</scope><name>holdCounter</name></member>
       <member refid="classmaxiZXToPulse_1ae60cd2a4ab1fdd6b5744c626b2d3a181" prot="public" virt="non-virtual"><scope>maxiZXToPulse</scope><name>maxiZXToPulse</name></member>

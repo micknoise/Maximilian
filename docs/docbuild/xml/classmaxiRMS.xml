@@ -1,0 +1,178 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classmaxiRMS" kind="class" language="C++" prot="public">
+    <compoundname>maxiRMS</compoundname>
+    <includes refid="maximilian_8h" local="no">maximilian.h</includes>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classmaxiRMS_1aa17526b0eafff55f1b67243bd1028c9d" prot="private" static="no" mutable="no">
+        <type><ref refid="classmaxiRingBuf" kindref="compound">maxiRingBuf</ref></type>
+        <definition>maxiRingBuf maxiRMS::buf</definition>
+        <argsstring></argsstring>
+        <name>buf</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="2379" column="21" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="2379" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiRMS_1a968d2a343289f760ca71759605eb4736" prot="private" static="no" mutable="no">
+        <type>size_t</type>
+        <definition>size_t maxiRMS::windowSize</definition>
+        <argsstring></argsstring>
+        <name>windowSize</name>
+        <initializer>=0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="2380" column="16" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="2380" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiRMS_1a9e5baf180775229ab400a734796069f0" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double maxiRMS::runningRMS</definition>
+        <argsstring></argsstring>
+        <name>runningRMS</name>
+        <initializer>=0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="2381" column="16" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="2381" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classmaxiRMS_1a49564de84c2f37ab4e70aba7a8358f9c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>maxiRMS::maxiRMS</definition>
+        <argsstring>()</argsstring>
+        <name>maxiRMS</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="2347" column="9" bodyfile="/home/ck84/src/Maximilian/src/maximilian.cpp" bodystart="1508" bodyend="1508"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiRMS_1a83f8273f50317de69ddd4ee85643126b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void maxiRMS::setup</definition>
+        <argsstring>(double maxLength, double windowSize)</argsstring>
+        <name>setup</name>
+        <param>
+          <type>double</type>
+          <declname>maxLength</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>windowSize</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Configure the analyser<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>maxLength</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The maximum length of time to analyse (ms)</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>windowSize</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The size of the window of time to analyse initially (ms, &lt;= maxLength) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="2350" column="14" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="2350" bodyend="2353"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiRMS_1acb19557702eae3155ae190e1519c8fe6" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void maxiRMS::setWindowSize</definition>
+        <argsstring>(double newWindowSize)</argsstring>
+        <name>setWindowSize</name>
+        <param>
+          <type>double</type>
+          <declname>newWindowSize</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Set the size of the analysis window<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>newWindowSize</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the size of the analysis window (in ms). Large values will smooth out the measurement, and make it less responsive to transients </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="2356" column="14" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="2356" bodyend="2362"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiRMS_1ab262cc704a1720a34b5aba4553bf905e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double maxiRMS::getWindowSize</definition>
+        <argsstring>()</argsstring>
+        <name>getWindowSize</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Find out the size of the analysis window (in ms) </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="2365" column="16" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="2365" bodyend="2367"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiRMS_1a00cc4d4bf0c210f902b92a60be9386e2" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double maxiRMS::play</definition>
+        <argsstring>(double signal)</argsstring>
+        <name>play</name>
+        <param>
+          <type>double</type>
+          <declname>signal</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="2370" column="16" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="2370" bodyend="2376"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>Calculate the Root Mean Square of a signal over a window of time This is a good measurement of the amount of power in a signal </para>
+    </detaileddescription>
+    <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="2345" column="1" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="2345" bodyend="2382"/>
+    <listofallmembers>
+      <member refid="classmaxiRMS_1aa17526b0eafff55f1b67243bd1028c9d" prot="private" virt="non-virtual"><scope>maxiRMS</scope><name>buf</name></member>
+      <member refid="classmaxiRMS_1ab262cc704a1720a34b5aba4553bf905e" prot="public" virt="non-virtual"><scope>maxiRMS</scope><name>getWindowSize</name></member>
+      <member refid="classmaxiRMS_1a49564de84c2f37ab4e70aba7a8358f9c" prot="public" virt="non-virtual"><scope>maxiRMS</scope><name>maxiRMS</name></member>
+      <member refid="classmaxiRMS_1a00cc4d4bf0c210f902b92a60be9386e2" prot="public" virt="non-virtual"><scope>maxiRMS</scope><name>play</name></member>
+      <member refid="classmaxiRMS_1a9e5baf180775229ab400a734796069f0" prot="private" virt="non-virtual"><scope>maxiRMS</scope><name>runningRMS</name></member>
+      <member refid="classmaxiRMS_1a83f8273f50317de69ddd4ee85643126b" prot="public" virt="non-virtual"><scope>maxiRMS</scope><name>setup</name></member>
+      <member refid="classmaxiRMS_1acb19557702eae3155ae190e1519c8fe6" prot="public" virt="non-virtual"><scope>maxiRMS</scope><name>setWindowSize</name></member>
+      <member refid="classmaxiRMS_1a968d2a343289f760ca71759605eb4736" prot="private" virt="non-virtual"><scope>maxiRMS</scope><name>windowSize</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

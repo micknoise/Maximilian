@@ -1505,3 +1505,7 @@ maxiSelectX::maxiSelectX() {}
 maxiEnvGen::maxiEnvGen() {}
 maxiRingBuf::maxiRingBuf() {}
 maxiPoll::maxiPoll() {}
+maxiRMS::maxiRMS() {}
+maxiZeroCrossingRate::maxiZeroCrossingRate() {
+	buf.setup(maxiSettings::sampleRate);
+}

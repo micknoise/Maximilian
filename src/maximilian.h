@@ -100,7 +100,7 @@ inline vector<double> convertArrayFromJS(DOUBLEARRAY_REF x)
 #define F64_ARRAY_SETFROM(to,from) to = from;
 #define F64_ARRAY_CLEAR(x) x.clear();
 #define F64_ARRAY_AT(x,i) x[i]
-#define LOG(x) cout << x << endl
+#define LOG(x) cout << x;
 #define F64_ARRAY_CREATE(len) std::vector<double>(len);
 #define F64_ARRAY_FILL(x, val) std::fill(x.begin(), x.end(), val);
 
@@ -335,6 +335,102 @@ public:
     void quad(double input, std::vector<double> &four, double x, double y);
     void ambisonic(double input, std::vector<double> &eight, double x, double y, double z);
 };
+
+/**
+ * A ring buffer. This enables you to look at the last N values in a time series.
+ */
+class CHEERP_EXPORT maxiRingBuf {
+public:
+    maxiRingBuf();
+
+    /*!Allocate memory for the buffer \param N The maximum length of the buffer*/
+    void setup(size_t N) {
+        buf = F64_ARRAY_CREATE(N);
+        F64_ARRAY_FILL(buf,0);
+    }
+    /*!Add the latest value to the buffer \param x A value*/
+    void push(double x) {
+        buf[idx] = x;
+        idx++;
+        if (idx==F64_ARRAY_SIZE(buf)) {
+            idx=0;
+        }
+    }
+    
+    /*! \returns The size of the buffer*/
+    size_t size() {return F64_ARRAY_SIZE(buf);}
+
+    /*! \returns the value at the front of the buffer*/
+    double head() {return idx == 0 ? buf[F64_ARRAY_SIZE(buf)-1] : buf[idx-1];}
+
+    /*! \returns the oldest value in the buffer, for a particular window size \param N The size of the window, N < the size of the buffer*/
+    double tail(size_t N) {
+        double val=0;
+        if (idx >= N) {
+            val = buf[idx-N];
+        }else{
+            size_t tailIdx = F64_ARRAY_SIZE(buf) - (N-idx);
+            val = buf[tailIdx];
+        }
+        return val;
+    }
+
+    using reduceFunction = std::function<double(double, double)>;
+    /**
+     * Apply a function of the previous N values in the buffer
+     * \param N The number of values in the window
+     * \param func A function in the form double func(double previousResult, double nextValue)
+     * \param initval The initial value to pass into the function (usually 0)
+     * \returns The last result of the function, after passing in all values from the window
+     * Example: this function will sum the values in the window: 
+     *     auto sumfunc = [](double val, double n) {return val + n;};
+     */
+    double reduce(size_t N, reduceFunction func, double initval) {
+        double val=0;
+        if (idx >= N) {
+            for(int i=idx-N; i < idx; i++) {
+                val = func(val, buf[i]);
+            }
+        }else{
+            //first chunk
+            for(int i=F64_ARRAY_SIZE(buf)-(N-idx); i < buf.size(); i++) {
+                val = func(val, buf[i]);
+            }
+            //second chunk
+            for(int i=0; i < idx; i++) {
+                val = func(val, buf[i]);
+            }
+        }
+        return val;
+    }
+
+    
+    // Col<T> getBuffer(size_t N) {
+    //     Col<T> currBuf(N);
+    //     int targidx=0;
+    //     int sizeToEnd = buf.size() - idx;
+    //     if (idx > N) {
+    //         for(int i=idx-N; i < idx; i++, targidx++) {
+    //             currBuf[targidx] = buf[i];
+    //         }
+    //     }else{
+    //         //first chunk
+    //         for(int i=buf.size()-(N-idx); i < buf.size(); i++, targidx++) {
+    //             currBuf[targidx] = buf[i];
+    //         }
+    //         //second chunk
+    //         for(int i=0; i < idx; i++, targidx++) {
+    //             currBuf[targidx] = buf[i];
+    //         }
+    //     }
+    //     return currBuf;
+    // }
+    
+private:
+    DOUBLEARRAY buf;
+    size_t idx=0;
+};
+
 
 //lagging with an exponential moving average
 //a lower alpha value gives a slower lag
@@ -747,9 +843,14 @@ public:
     static double mtof(int midinote);
 
     /*!Convert from milliseconds to samples \param timeMs The number of milliseconds*/
-    static double msToSamps(double timeMs)
+    static size_t msToSamps(double timeMs)
     {
-        return timeMs / 1000.0 * maxiSettings::sampleRate;
+        return static_cast<size_t>(timeMs / 1000.0 * maxiSettings::sampleRate);
+    }
+    /*!Convert from samples to milliseconds \param samples The number of samples*/
+    static double sampsToMs(size_t samples)
+    {
+        return samples / maxiSettings::sampleRate * 1000.0;
     }
 
     /*!Convert from amplitude to decibels \param amp Amplitude*/
@@ -809,6 +910,31 @@ public:
 
 private:
     double previous_x = 0;
+};
+
+/**
+ * Calculate the zero crossing rate of a signal
+ * This is a fairly crude measure of frequency, which is confounded by complex waveforms and noise
+ */
+class CHEERP_EXPORT maxiZeroCrossingRate {
+    public:
+        maxiZeroCrossingRate();
+        /*!Calculate the zero cross rate \param signal a signal \returns the zero crossing rate in Hz*/
+        double play(double signal) {
+            if (zxd.zx(signal)) {
+                buf.push(1);
+                runningCount++;
+            }else{
+                buf.push(0);
+            }
+            runningCount -= buf.tail(maxiSettings::sampleRate);
+            return runningCount;
+        }
+
+    private:
+        maxiRingBuf buf;
+        size_t runningCount=0;
+        maxiZeroCrossingDetector zxd;
 };
 
 //needs oversampling
@@ -2199,11 +2325,11 @@ class CHEERP_EXPORT maxiPoll {
          * \param txt Additional text to br printed before the value
          * \returns the value being polled, so this can used as a pass-through function e.g. filter.play(obj.poll(osc.saw(2)),0.5)
          */
-        double poll(double val, double frequency=4, string txt="") {
+        double poll(double val, double frequency=4, string txt="", string end="\n") {
             if (imp.impulse(frequency)) {
                 LOG(txt);
                 LOG(val);
-                LOG("\n");
+                LOG(end);
                 // cout << txt << val << endl;
             }
             return val;
@@ -2213,101 +2339,46 @@ class CHEERP_EXPORT maxiPoll {
 };
 
 /**
- * A ring buffer. This enables you to look at the last N values in a time series.
+ * Calculate the Root Mean Square of a signal over a window of time
+ * This is a good measurement of the amount of power in a signal
  */
-class CHEERP_EXPORT maxiRingBuf {
-public:
-    maxiRingBuf();
+class CHEERP_EXPORT maxiRMS {
+    public:
+        maxiRMS();
 
-    /*!Allocate memory for the buffer \param N The maximum length of the buffer*/
-    void setup(size_t N) {
-        buf = F64_ARRAY_CREATE(N);
-        F64_ARRAY_FILL(buf,0);
-    }
-    /*!Add the latest value to the buffer \param x A value*/
-    void push(double x) {
-        buf[idx] = x;
-        idx++;
-        cout << "s: " << F64_ARRAY_SIZE(buf) << endl;
-        if (idx==F64_ARRAY_SIZE(buf)) {
-            idx=0;
+        /*!Configure the analyser \param maxLength The maximum length of time to analyse (ms) \param windowSize The size of the window of time to analyse initially (ms, <= maxLength) */
+        void setup(double maxLength, double windowSize) {
+            buf.setup(maxiConvert::msToSamps(maxLength));
+            setWindowSize(windowSize);
         }
-    }
-    
-    /*! \returns The size of the buffer*/
-    size_t size() {return F64_ARRAY_SIZE(buf);}
 
-    /*! \returns the value at the front of the buffer*/
-    double head() {return idx == 0 ? buf[F64_ARRAY_SIZE(buf)-1] : buf[idx-1];}
-
-    /*! \returns the oldest value in the buffer, for a particular window size \param N The size of the window, N < the size of the buffer*/
-    double tail(size_t N) {
-        double val=0;
-        if (idx > N) {
-            val = buf[idx-N];
-        }else{
-            val = buf[F64_ARRAY_SIZE(buf) - (N-idx)];
+        /*!Set the size of the analysis window \param newWindowSize the size of the analysis window (in ms). Large values will smooth out the measurement, and make it less responsive to transients*/
+        void setWindowSize(double newWindowSize) {
+            size_t windowSizeInSamples = maxiConvert::msToSamps(newWindowSize);
+            if (windowSizeInSamples <= buf.size()) {
+                windowSize = windowSizeInSamples;
+            }
+            runningRMS = 0;
         }
-        return val;
-    }
 
-    using reduceFunction = std::function<double(double, double)>;
-    /**
-     * Apply a function of the previous N values in the buffer
-     * \param N The number of values in the window
-     * \param func A function in the form double func(double previousResult, double nextValue)
-     * \param initval The initial value to pass into the function (usually 0)
-     * \returns The last result of the function, after passing in all values from the window
-     * Example: this function will sum the values in the window: 
-     *     auto sumfunc = [](double val, double n) {return val + n;};
-     */
-    double reduce(size_t N, reduceFunction func, double initval) {
-        double val=0;
-        cout << "idx: " << idx << endl;
-        if (idx > N) {
-            for(int i=idx-N; i < idx; i++) {
-                val = func(val, buf[i]);
-            }
-        }else{
-            //first chunk
-            for(int i=buf.size()-(N-idx); i < buf.size(); i++) {
-                cout << buf[i] << endl;
-                val = func(val, buf[i]);
-            }
-            //second chunk
-            for(int i=0; i < idx; i++) {
-                cout << buf[i] << endl;
-                val = func(val, buf[i]);
-            }
+        /*!Find out the size of the analysis window (in ms)*/
+        double getWindowSize() {
+            return maxiConvert::sampsToMs(windowSize);
         }
-        return val;
-    }
 
-    
-    // Col<T> getBuffer(size_t N) {
-    //     Col<T> currBuf(N);
-    //     int targidx=0;
-    //     int sizeToEnd = buf.size() - idx;
-    //     if (idx > N) {
-    //         for(int i=idx-N; i < idx; i++, targidx++) {
-    //             currBuf[targidx] = buf[i];
-    //         }
-    //     }else{
-    //         //first chunk
-    //         for(int i=buf.size()-(N-idx); i < buf.size(); i++, targidx++) {
-    //             currBuf[targidx] = buf[i];
-    //         }
-    //         //second chunk
-    //         for(int i=0; i < idx; i++, targidx++) {
-    //             currBuf[targidx] = buf[i];
-    //         }
-    //     }
-    //     return currBuf;
-    // }
-    
-private:
-    DOUBLEARRAY buf;
-    size_t idx=0;
+        /*Analyse the signal \param signal a signal \returns RMS*/
+        double play(double signal) {
+            double sigPow2 = (signal * signal);
+            buf.push(sigPow2);
+            runningRMS += sigPow2;
+            runningRMS -= buf.tail(windowSize);
+            return sqrt(runningRMS/windowSize);
+        }
+
+    private:
+        maxiRingBuf buf;
+        size_t windowSize=0; // in samples
+        double runningRMS=0;
 };
 
 

@@ -35,9 +35,20 @@ Filters
 Effects
 -------
 
+.. doxygenclass:: maxiDelayline 
+   :project: maximilian
+   :members:
+
 .. doxygenclass:: maxiNonlinearity
    :project: maximilian
    :members:
+
+
+.. doxygenclass:: maxiSampleAndHold 
+   :project: maximilian
+   :members:
+  
+
 
 Analysis
 --------

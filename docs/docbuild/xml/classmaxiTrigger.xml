@@ -15,7 +15,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="528" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="528" bodyend="-1"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="549" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="549" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classmaxiTrigger_1abe55478c63ce26695112dea9a8800587" prot="private" static="no" mutable="no">
         <type>bool</type>
@@ -29,7 +29,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="529" column="10" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="529" bodyend="-1"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="550" column="10" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="550" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
@@ -44,7 +44,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="501" column="5" bodyfile="/home/ck84/src/Maximilian/src/maximilian.cpp" bodystart="1494" bodyend="1494"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="522" column="5" bodyfile="/home/ck84/src/Maximilian/src/maximilian.cpp" bodystart="1494" bodyend="1494"/>
       </memberdef>
       <memberdef kind="function" id="classmaxiTrigger_1a0698eef58cbfc97a42ab20dbb88a2a50" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>double</type>
@@ -61,7 +61,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="503" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="503" bodyend="513"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="524" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="524" bodyend="534"/>
       </memberdef>
       <memberdef kind="function" id="classmaxiTrigger_1a443b416d526c83c3a36280704050f1d9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>double</type>
@@ -82,14 +82,14 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="516" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="516" bodyend="525"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="537" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="537" bodyend="546"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="498" column="1" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="499" bodyend="530"/>
+    <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="519" column="1" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="520" bodyend="551"/>
     <listofallmembers>
       <member refid="classmaxiTrigger_1abe55478c63ce26695112dea9a8800587" prot="private" virt="non-virtual"><scope>maxiTrigger</scope><name>firstTrigger</name></member>
       <member refid="classmaxiTrigger_1aa796f17d541d7687704024888a9e03eb" prot="public" virt="non-virtual"><scope>maxiTrigger</scope><name>maxiTrigger</name></member>

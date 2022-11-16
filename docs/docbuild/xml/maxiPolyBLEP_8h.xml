@@ -108,7 +108,7 @@
 <codeline lineno="36" refid="classmaxiPolyBLEP_1a6adb656a95c88c2ae9e9b4b1a4dc6b42" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="classmaxiPolyBLEP_1a6adb656a95c88c2ae9e9b4b1a4dc6b42" kindref="member">Waveform</ref><sp/>=<sp/>PolyBLEP::Waveform;</highlight></codeline>
 <codeline lineno="37"><highlight class="normal"></highlight></codeline>
 <codeline lineno="39" refid="classmaxiPolyBLEP_1ab41c3fc1529f98d04a031b677a37018e" refkind="member"><highlight class="normal"><sp/><sp/><ref refid="classmaxiPolyBLEP_1ab41c3fc1529f98d04a031b677a37018e" kindref="member">maxiPolyBLEP</ref>()<sp/>{</highlight></codeline>
-<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/>blep.setSampleRate(maxiSettings::sampleRate);</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/>blep.setSampleRate(<ref refid="classmaxiSettings_1a69a0a3a7202358b401f8c75b0d711421" kindref="member">maxiSettings::sampleRate</ref>);</highlight></codeline>
 <codeline lineno="41"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
 <codeline lineno="42"><highlight class="normal"></highlight></codeline>
 <codeline lineno="47" refid="classmaxiPolyBLEP_1ae5c00dfb703b0ddacf2801fe0a91af8d" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="classmaxiPolyBLEP_1ae5c00dfb703b0ddacf2801fe0a91af8d" kindref="member">play</ref>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>freq)<sp/>{</highlight></codeline>

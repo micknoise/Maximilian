@@ -14,7 +14,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1361" column="5" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1361" bodyend="1361"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1386" column="5" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1386" bodyend="1386"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-static-func">
@@ -41,7 +41,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1362" column="19" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1362" bodyend="1374"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1387" column="19" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1387" bodyend="1399"/>
       </memberdef>
       <memberdef kind="function" id="classmaxiXFade_1a67205bfeb70b1bd1419b72a2ee451ab5" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>double</type>
@@ -66,14 +66,14 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1375" column="19" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1375" bodyend="1380"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1400" column="19" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1400" bodyend="1405"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1358" column="1" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1359" bodyend="1381"/>
+    <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1383" column="1" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1384" bodyend="1406"/>
     <listofallmembers>
       <member refid="classmaxiXFade_1afe3be162897f4ac47ede778ccb937f22" prot="public" virt="non-virtual"><scope>maxiXFade</scope><name>maxiXFade</name></member>
       <member refid="classmaxiXFade_1ac7c6c4025e0d5205dcb5fd68e58fe465" prot="public" virt="non-virtual"><scope>maxiXFade</scope><name>xfade</name></member>

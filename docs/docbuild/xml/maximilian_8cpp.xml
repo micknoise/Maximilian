@@ -231,7 +231,7 @@
 <codeline lineno="54"><highlight class="normal"></highlight></codeline>
 <codeline lineno="55"><highlight class="normal">maxiSettings::maxiSettings()<sp/>{}</highlight></codeline>
 <codeline lineno="56"><highlight class="normal"></highlight></codeline>
-<codeline lineno="57"><highlight class="normal"></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>maxiSettings::sampleRate<sp/>=<sp/>44100;</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/><ref refid="classmaxiSettings_1a69a0a3a7202358b401f8c75b0d711421" kindref="member">maxiSettings::sampleRate</ref><sp/>=<sp/>44100;</highlight></codeline>
 <codeline lineno="58"><highlight class="normal"></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>maxiSettings::channels<sp/>=<sp/>2;</highlight></codeline>
 <codeline lineno="59"><highlight class="normal"></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>maxiSettings::bufferSize<sp/>=<sp/>1024;</highlight></codeline>
 <codeline lineno="60"><highlight class="normal"></highlight></codeline>
@@ -406,7 +406,7 @@
 <codeline lineno="229"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//This<sp/>is<sp/>a<sp/>sinewave<sp/>oscillator</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="230"><highlight class="normal"><sp/><sp/><sp/><sp/>output=sin<sp/>(phase*(TWOPI));</highlight></codeline>
 <codeline lineno="231"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<sp/>phase<sp/>&gt;=<sp/>1.0<sp/>)<sp/>phase<sp/>-=<sp/>1.0;</highlight></codeline>
-<codeline lineno="232"><highlight class="normal"><sp/><sp/><sp/><sp/>phase<sp/>+=<sp/>(1./(maxiSettings::sampleRate/(frequency)));</highlight></codeline>
+<codeline lineno="232"><highlight class="normal"><sp/><sp/><sp/><sp/>phase<sp/>+=<sp/>(1./(<ref refid="classmaxiSettings_1a69a0a3a7202358b401f8c75b0d711421" kindref="member">maxiSettings::sampleRate</ref>/(frequency)));</highlight></codeline>
 <codeline lineno="233"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(output);</highlight></codeline>
 <codeline lineno="234"><highlight class="normal"></highlight></codeline>
 <codeline lineno="235"><highlight class="normal">}</highlight></codeline>
@@ -415,7 +415,7 @@
 <codeline lineno="238"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//This<sp/>is<sp/>a<sp/>sinewave<sp/>oscillator<sp/>that<sp/>uses<sp/>4<sp/>point<sp/>interpolation<sp/>on<sp/>a<sp/>514<sp/>point<sp/>buffer</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="239"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>remainder;</highlight></codeline>
 <codeline lineno="240"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>a,b,c,d,a1,a2,a3;</highlight></codeline>
-<codeline lineno="241"><highlight class="normal"><sp/><sp/><sp/><sp/>phase<sp/>+=<sp/>512./(maxiSettings::sampleRate/(frequency));</highlight></codeline>
+<codeline lineno="241"><highlight class="normal"><sp/><sp/><sp/><sp/>phase<sp/>+=<sp/>512./(<ref refid="classmaxiSettings_1a69a0a3a7202358b401f8c75b0d711421" kindref="member">maxiSettings::sampleRate</ref>/(frequency));</highlight></codeline>
 <codeline lineno="242"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<sp/>phase<sp/>&gt;=<sp/>511<sp/>)<sp/>phase<sp/>-=512;</highlight></codeline>
 <codeline lineno="243"><highlight class="normal"><sp/><sp/><sp/><sp/>remainder<sp/>=<sp/>phase<sp/>-<sp/>floor(phase);</highlight></codeline>
 <codeline lineno="244"><highlight class="normal"></highlight></codeline>
@@ -443,7 +443,7 @@
 <codeline lineno="266"><highlight class="normal"></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="classmaxiOsc_1af1ee1a5b8f291ac082edc56f4e192652" kindref="member">maxiOsc::sinebuf</ref>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>frequency)<sp/>{<sp/></highlight><highlight class="comment">//specify<sp/>the<sp/>frequency<sp/>of<sp/>the<sp/>oscillator<sp/>in<sp/>Hz<sp/>/<sp/>cps<sp/>etc.</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="267"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//This<sp/>is<sp/>a<sp/>sinewave<sp/>oscillator<sp/>that<sp/>uses<sp/>linear<sp/>interpolation<sp/>on<sp/>a<sp/>514<sp/>point<sp/>buffer</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="268"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>remainder;</highlight></codeline>
-<codeline lineno="269"><highlight class="normal"><sp/><sp/><sp/><sp/>phase<sp/>+=<sp/>512./(maxiSettings::sampleRate/(frequency*chandiv));</highlight></codeline>
+<codeline lineno="269"><highlight class="normal"><sp/><sp/><sp/><sp/>phase<sp/>+=<sp/>512./(<ref refid="classmaxiSettings_1a69a0a3a7202358b401f8c75b0d711421" kindref="member">maxiSettings::sampleRate</ref>/(frequency*chandiv));</highlight></codeline>
 <codeline lineno="270"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<sp/>phase<sp/>&gt;=<sp/>511<sp/>)<sp/>phase<sp/>-=512;</highlight></codeline>
 <codeline lineno="271"><highlight class="normal"><sp/><sp/><sp/><sp/>remainder<sp/>=<sp/>phase<sp/>-<sp/>floor(phase);</highlight></codeline>
 <codeline lineno="272"><highlight class="normal"><sp/><sp/><sp/><sp/>output<sp/>=<sp/>(double)<sp/>((1-remainder)<sp/>*<sp/>sineBuffer[1+<sp/>(long)<sp/>phase]<sp/>+<sp/>remainder<sp/>*<sp/>sineBuffer[2+(</highlight><highlight class="keywordtype">long</highlight><highlight class="normal">)<sp/>phase]);</highlight></codeline>
@@ -454,7 +454,7 @@
 <codeline lineno="277"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//This<sp/>is<sp/>a<sp/>cosine<sp/>oscillator</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="278"><highlight class="normal"><sp/><sp/><sp/><sp/>output=cos<sp/>(phase*(TWOPI));</highlight></codeline>
 <codeline lineno="279"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<sp/>phase<sp/>&gt;=<sp/>1.0<sp/>)<sp/>phase<sp/>-=<sp/>1.0;</highlight></codeline>
-<codeline lineno="280"><highlight class="normal"><sp/><sp/><sp/><sp/>phase<sp/>+=<sp/>(1./(maxiSettings::sampleRate/(frequency)));</highlight></codeline>
+<codeline lineno="280"><highlight class="normal"><sp/><sp/><sp/><sp/>phase<sp/>+=<sp/>(1./(<ref refid="classmaxiSettings_1a69a0a3a7202358b401f8c75b0d711421" kindref="member">maxiSettings::sampleRate</ref>/(frequency)));</highlight></codeline>
 <codeline lineno="281"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(output);</highlight></codeline>
 <codeline lineno="282"><highlight class="normal"></highlight></codeline>
 <codeline lineno="283"><highlight class="normal">}</highlight></codeline>
@@ -463,7 +463,7 @@
 <codeline lineno="286"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//This<sp/>produces<sp/>a<sp/>floating<sp/>point<sp/>linear<sp/>ramp<sp/>between<sp/>0<sp/>and<sp/>1<sp/>at<sp/>the<sp/>desired<sp/>frequency</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="287"><highlight class="normal"><sp/><sp/><sp/><sp/>output=phase;</highlight></codeline>
 <codeline lineno="288"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<sp/>phase<sp/>&gt;=<sp/>1.0<sp/>)<sp/>phase<sp/>-=<sp/>1.0;</highlight></codeline>
-<codeline lineno="289"><highlight class="normal"><sp/><sp/><sp/><sp/>phase<sp/>+=<sp/>(1./(maxiSettings::sampleRate/(frequency)));</highlight></codeline>
+<codeline lineno="289"><highlight class="normal"><sp/><sp/><sp/><sp/>phase<sp/>+=<sp/>(1./(<ref refid="classmaxiSettings_1a69a0a3a7202358b401f8c75b0d711421" kindref="member">maxiSettings::sampleRate</ref>/(frequency)));</highlight></codeline>
 <codeline lineno="290"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(output);</highlight></codeline>
 <codeline lineno="291"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="292"><highlight class="normal"></highlight></codeline>
@@ -472,7 +472,7 @@
 <codeline lineno="295"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(phase&lt;0.5)<sp/>output=-1;</highlight></codeline>
 <codeline lineno="296"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(phase&gt;0.5)<sp/>output=1;</highlight></codeline>
 <codeline lineno="297"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<sp/>phase<sp/>&gt;=<sp/>1.0<sp/>)<sp/>phase<sp/>-=<sp/>1.0;</highlight></codeline>
-<codeline lineno="298"><highlight class="normal"><sp/><sp/><sp/><sp/>phase<sp/>+=<sp/>(1./(maxiSettings::sampleRate/(frequency)));</highlight></codeline>
+<codeline lineno="298"><highlight class="normal"><sp/><sp/><sp/><sp/>phase<sp/>+=<sp/>(1./(<ref refid="classmaxiSettings_1a69a0a3a7202358b401f8c75b0d711421" kindref="member">maxiSettings::sampleRate</ref>/(frequency)));</highlight></codeline>
 <codeline lineno="299"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(output);</highlight></codeline>
 <codeline lineno="300"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="301"><highlight class="normal"></highlight></codeline>
@@ -481,7 +481,7 @@
 <codeline lineno="304"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(duty&lt;0.)<sp/>duty=0;</highlight></codeline>
 <codeline lineno="305"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(duty&gt;1.)<sp/>duty=1;</highlight></codeline>
 <codeline lineno="306"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<sp/>phase<sp/>&gt;=<sp/>1.0<sp/>)<sp/>phase<sp/>-=<sp/>1.0;</highlight></codeline>
-<codeline lineno="307"><highlight class="normal"><sp/><sp/><sp/><sp/>phase<sp/>+=<sp/>(1./(maxiSettings::sampleRate/(frequency)));</highlight></codeline>
+<codeline lineno="307"><highlight class="normal"><sp/><sp/><sp/><sp/>phase<sp/>+=<sp/>(1./(<ref refid="classmaxiSettings_1a69a0a3a7202358b401f8c75b0d711421" kindref="member">maxiSettings::sampleRate</ref>/(frequency)));</highlight></codeline>
 <codeline lineno="308"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(phase&lt;duty)<sp/>output=-1.;</highlight></codeline>
 <codeline lineno="309"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(phase&gt;duty)<sp/>output=1.;</highlight></codeline>
 <codeline lineno="310"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(output);</highlight></codeline>
@@ -489,7 +489,7 @@
 <codeline lineno="312"><highlight class="normal"></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="classmaxiOsc_1aba124622a61301d7763a5bf57a025a57" kindref="member">maxiOsc::impulse</ref>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>frequency)<sp/>{</highlight></codeline>
 <codeline lineno="313"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//this<sp/>is<sp/>an<sp/>impulse<sp/>generator</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="314"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<sp/>phase<sp/>&gt;=<sp/>1.0<sp/>)<sp/>phase<sp/>-=<sp/>1.0;</highlight></codeline>
-<codeline lineno="315"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>phaseInc<sp/>=<sp/>(1./(maxiSettings::sampleRate/(frequency)));</highlight></codeline>
+<codeline lineno="315"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>phaseInc<sp/>=<sp/>(1./(<ref refid="classmaxiSettings_1a69a0a3a7202358b401f8c75b0d711421" kindref="member">maxiSettings::sampleRate</ref>/(frequency)));</highlight></codeline>
 <codeline lineno="316"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>output<sp/>=<sp/>phase<sp/>&lt;<sp/>phaseInc<sp/>?<sp/>1.0<sp/>:<sp/>0.0;</highlight></codeline>
 <codeline lineno="317"><highlight class="normal"><sp/><sp/><sp/><sp/>phase<sp/>+=<sp/>phaseInc;</highlight></codeline>
 <codeline lineno="318"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>output;</highlight></codeline>
@@ -502,7 +502,7 @@
 <codeline lineno="325"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>phase=startphase;</highlight></codeline>
 <codeline lineno="326"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="327"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<sp/>phase<sp/>&gt;=<sp/>endphase<sp/>)<sp/>phase<sp/>=<sp/>startphase;</highlight></codeline>
-<codeline lineno="328"><highlight class="normal"><sp/><sp/><sp/><sp/>phase<sp/>+=<sp/>((endphase-startphase)/(maxiSettings::sampleRate/(frequency)));</highlight></codeline>
+<codeline lineno="328"><highlight class="normal"><sp/><sp/><sp/><sp/>phase<sp/>+=<sp/>((endphase-startphase)/(<ref refid="classmaxiSettings_1a69a0a3a7202358b401f8c75b0d711421" kindref="member">maxiSettings::sampleRate</ref>/(frequency)));</highlight></codeline>
 <codeline lineno="329"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(output);</highlight></codeline>
 <codeline lineno="330"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="331"><highlight class="normal"></highlight></codeline>
@@ -511,7 +511,7 @@
 <codeline lineno="334"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//Sawtooth<sp/>generator.<sp/>This<sp/>is<sp/>like<sp/>a<sp/>phasor<sp/>but<sp/>goes<sp/>between<sp/>-1<sp/>and<sp/>1</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="335"><highlight class="normal"><sp/><sp/><sp/><sp/>output=phase;</highlight></codeline>
 <codeline lineno="336"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<sp/>phase<sp/>&gt;=<sp/>1.0<sp/>)<sp/>phase<sp/>-=<sp/>2.0;</highlight></codeline>
-<codeline lineno="337"><highlight class="normal"><sp/><sp/><sp/><sp/>phase<sp/>+=<sp/>(1./(maxiSettings::sampleRate/(frequency)))<sp/>*<sp/>2.0;</highlight></codeline>
+<codeline lineno="337"><highlight class="normal"><sp/><sp/><sp/><sp/>phase<sp/>+=<sp/>(1./(<ref refid="classmaxiSettings_1a69a0a3a7202358b401f8c75b0d711421" kindref="member">maxiSettings::sampleRate</ref>/(frequency)))<sp/>*<sp/>2.0;</highlight></codeline>
 <codeline lineno="338"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(output);</highlight></codeline>
 <codeline lineno="339"><highlight class="normal"></highlight></codeline>
 <codeline lineno="340"><highlight class="normal">}</highlight></codeline>
@@ -519,7 +519,7 @@
 <codeline lineno="342"><highlight class="normal"></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="classmaxiOsc_1ae6ff9fadfe052e8fdfb800be94e748b9" kindref="member">maxiOsc::sawn</ref>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>frequency)<sp/>{</highlight></codeline>
 <codeline lineno="343"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//Bandlimited<sp/>sawtooth<sp/>generator.<sp/>Woohoo.</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="344"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<sp/>phase<sp/>&gt;=<sp/>0.5<sp/>)<sp/>phase<sp/>-=<sp/>1.0;</highlight></codeline>
-<codeline lineno="345"><highlight class="normal"><sp/><sp/><sp/><sp/>phase<sp/>+=<sp/>(1./(maxiSettings::sampleRate/(frequency)));</highlight></codeline>
+<codeline lineno="345"><highlight class="normal"><sp/><sp/><sp/><sp/>phase<sp/>+=<sp/>(1./(<ref refid="classmaxiSettings_1a69a0a3a7202358b401f8c75b0d711421" kindref="member">maxiSettings::sampleRate</ref>/(frequency)));</highlight></codeline>
 <codeline lineno="346"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>temp=(8820.22/frequency)*phase;</highlight></codeline>
 <codeline lineno="347"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(temp&lt;-0.5)<sp/>{</highlight></codeline>
 <codeline lineno="348"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>temp=-0.5;</highlight></codeline>
@@ -539,7 +539,7 @@
 <codeline lineno="362"><highlight class="normal"></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="classmaxiOsc_1ac846ac3de1a73c03b8d9afc0eba39df3" kindref="member">maxiOsc::triangle</ref>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>frequency)<sp/>{</highlight></codeline>
 <codeline lineno="363"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//This<sp/>is<sp/>a<sp/>triangle<sp/>wave.</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="364"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<sp/>phase<sp/>&gt;=<sp/>1.0<sp/>)<sp/>phase<sp/>-=<sp/>1.0;</highlight></codeline>
-<codeline lineno="365"><highlight class="normal"><sp/><sp/><sp/><sp/>phase<sp/>+=<sp/>(1./(maxiSettings::sampleRate/(frequency)));</highlight></codeline>
+<codeline lineno="365"><highlight class="normal"><sp/><sp/><sp/><sp/>phase<sp/>+=<sp/>(1./(<ref refid="classmaxiSettings_1a69a0a3a7202358b401f8c75b0d711421" kindref="member">maxiSettings::sampleRate</ref>/(frequency)));</highlight></codeline>
 <codeline lineno="366"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(phase<sp/>&lt;=<sp/>0.5<sp/>)<sp/>{</highlight></codeline>
 <codeline lineno="367"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>output<sp/>=(phase<sp/>-<sp/>0.25)<sp/>*<sp/>4;</highlight></codeline>
 <codeline lineno="368"><highlight class="normal"><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
@@ -559,9 +559,9 @@
 <codeline lineno="382"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>nextval=segments[valindex+2];</highlight></codeline>
 <codeline lineno="383"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>currentval=segments[valindex];</highlight></codeline>
 <codeline lineno="384"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(currentval-amplitude<sp/>&gt;<sp/>0.0000001<sp/>&amp;&amp;<sp/>valindex<sp/>&lt;<sp/>numberofsegments)<sp/>{</highlight></codeline>
-<codeline lineno="385"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>amplitude<sp/>+=<sp/>((currentval-startval)/(maxiSettings::sampleRate/period));</highlight></codeline>
+<codeline lineno="385"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>amplitude<sp/>+=<sp/>((currentval-startval)/(<ref refid="classmaxiSettings_1a69a0a3a7202358b401f8c75b0d711421" kindref="member">maxiSettings::sampleRate</ref>/period));</highlight></codeline>
 <codeline lineno="386"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(currentval-amplitude<sp/>&lt;<sp/>-0.0000001<sp/>&amp;&amp;<sp/>valindex<sp/>&lt;<sp/>numberofsegments)<sp/>{</highlight></codeline>
-<codeline lineno="387"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>amplitude<sp/>-=<sp/>(((currentval-startval)*(-1))/(maxiSettings::sampleRate/period));</highlight></codeline>
+<codeline lineno="387"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>amplitude<sp/>-=<sp/>(((currentval-startval)*(-1))/(<ref refid="classmaxiSettings_1a69a0a3a7202358b401f8c75b0d711421" kindref="member">maxiSettings::sampleRate</ref>/period));</highlight></codeline>
 <codeline lineno="388"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(valindex<sp/>&gt;numberofsegments-1)<sp/>{</highlight></codeline>
 <codeline lineno="389"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>valindex=numberofsegments-2;</highlight></codeline>
 <codeline lineno="390"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
@@ -594,7 +594,7 @@
 <codeline lineno="417"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="418"><highlight class="normal"></highlight></codeline>
 <codeline lineno="419"><highlight class="normal"></highlight></codeline>
-<codeline lineno="420"><highlight class="normal"></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>maxiDelayline::dl(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>input,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>size,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>feedback)<sp/><sp/>{</highlight></codeline>
+<codeline lineno="420"><highlight class="normal"></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="classmaxiDelayline_1a262f9a52fc6d7c087caaae350779f956" kindref="member">maxiDelayline::dl</ref>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>input,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>size,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>feedback)<sp/><sp/>{</highlight></codeline>
 <codeline lineno="421"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<sp/>phase<sp/>&gt;=size<sp/>)<sp/>{</highlight></codeline>
 <codeline lineno="422"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>phase<sp/>=<sp/>0;</highlight></codeline>
 <codeline lineno="423"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
@@ -605,7 +605,7 @@
 <codeline lineno="428"><highlight class="normal"></highlight></codeline>
 <codeline lineno="429"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="430"><highlight class="normal"></highlight></codeline>
-<codeline lineno="431"><highlight class="normal"></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>maxiDelayline::dlFromPosition(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>input,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>size,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>feedback,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>position)<sp/><sp/>{</highlight></codeline>
+<codeline lineno="431"><highlight class="normal"></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="classmaxiDelayline_1a8db792dd66742c0b91567efffd2fb09e" kindref="member">maxiDelayline::dlFromPosition</ref>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>input,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>size,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>feedback,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>position)<sp/><sp/>{</highlight></codeline>
 <codeline lineno="432"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<sp/>phase<sp/>&gt;=size<sp/>)<sp/>phase<sp/>=<sp/>0;</highlight></codeline>
 <codeline lineno="433"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<sp/>position<sp/>&gt;=size<sp/>)<sp/>position<sp/>=<sp/>0;</highlight></codeline>
 <codeline lineno="434"><highlight class="normal"><sp/><sp/><sp/><sp/>output=memory[position];</highlight></codeline>
@@ -632,9 +632,9 @@
 <codeline lineno="455"><highlight class="normal"></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>maxiFilter::lores(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>input,</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>cutoff1,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>resonance)<sp/>{</highlight></codeline>
 <codeline lineno="456"><highlight class="normal"><sp/><sp/><sp/><sp/>cutoff=cutoff1;</highlight></codeline>
 <codeline lineno="457"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(cutoff&lt;10)<sp/>cutoff=10;</highlight></codeline>
-<codeline lineno="458"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(cutoff&gt;(maxiSettings::sampleRate))<sp/>cutoff=(maxiSettings::sampleRate);</highlight></codeline>
+<codeline lineno="458"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(cutoff&gt;(<ref refid="classmaxiSettings_1a69a0a3a7202358b401f8c75b0d711421" kindref="member">maxiSettings::sampleRate</ref>))<sp/>cutoff=(<ref refid="classmaxiSettings_1a69a0a3a7202358b401f8c75b0d711421" kindref="member">maxiSettings::sampleRate</ref>);</highlight></codeline>
 <codeline lineno="459"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(resonance&lt;1.)<sp/>resonance<sp/>=<sp/>1.;</highlight></codeline>
-<codeline lineno="460"><highlight class="normal"><sp/><sp/><sp/><sp/>z=cos(TWOPI*cutoff/maxiSettings::sampleRate);</highlight></codeline>
+<codeline lineno="460"><highlight class="normal"><sp/><sp/><sp/><sp/>z=cos(TWOPI*cutoff/<ref refid="classmaxiSettings_1a69a0a3a7202358b401f8c75b0d711421" kindref="member">maxiSettings::sampleRate</ref>);</highlight></codeline>
 <codeline lineno="461"><highlight class="normal"><sp/><sp/><sp/><sp/>c=2-2*z;</highlight></codeline>
 <codeline lineno="462"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>r=(sqrt(2.0)*sqrt(-pow((z-1.0),3.0))+resonance*(z-1))/(resonance*(z-1));</highlight></codeline>
 <codeline lineno="463"><highlight class="normal"><sp/><sp/><sp/><sp/>x=x+(input-y)*c;</highlight></codeline>
@@ -648,9 +648,9 @@
 <codeline lineno="471"><highlight class="normal"></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>maxiFilter::hires(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>input,</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>cutoff1,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>resonance)<sp/>{</highlight></codeline>
 <codeline lineno="472"><highlight class="normal"><sp/><sp/><sp/><sp/>cutoff=cutoff1;</highlight></codeline>
 <codeline lineno="473"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(cutoff&lt;10)<sp/>cutoff=10;</highlight></codeline>
-<codeline lineno="474"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(cutoff&gt;(maxiSettings::sampleRate))<sp/>cutoff=(maxiSettings::sampleRate);</highlight></codeline>
+<codeline lineno="474"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(cutoff&gt;(<ref refid="classmaxiSettings_1a69a0a3a7202358b401f8c75b0d711421" kindref="member">maxiSettings::sampleRate</ref>))<sp/>cutoff=(<ref refid="classmaxiSettings_1a69a0a3a7202358b401f8c75b0d711421" kindref="member">maxiSettings::sampleRate</ref>);</highlight></codeline>
 <codeline lineno="475"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(resonance&lt;1.)<sp/>resonance<sp/>=<sp/>1.;</highlight></codeline>
-<codeline lineno="476"><highlight class="normal"><sp/><sp/><sp/><sp/>z=cos(TWOPI*cutoff/maxiSettings::sampleRate);</highlight></codeline>
+<codeline lineno="476"><highlight class="normal"><sp/><sp/><sp/><sp/>z=cos(TWOPI*cutoff/<ref refid="classmaxiSettings_1a69a0a3a7202358b401f8c75b0d711421" kindref="member">maxiSettings::sampleRate</ref>);</highlight></codeline>
 <codeline lineno="477"><highlight class="normal"><sp/><sp/><sp/><sp/>c=2-2*z;</highlight></codeline>
 <codeline lineno="478"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>r=(sqrt(2.0)*sqrt(-pow((z-1.0),3.0))+resonance*(z-1))/(resonance*(z-1));</highlight></codeline>
 <codeline lineno="479"><highlight class="normal"><sp/><sp/><sp/><sp/>x=x+(input-y)*c;</highlight></codeline>
@@ -663,9 +663,9 @@
 <codeline lineno="486"><highlight class="normal"></highlight><highlight class="comment">//This<sp/>works<sp/>a<sp/>bit.<sp/>Needs<sp/>attention.</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="487"><highlight class="normal"></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>maxiFilter::bandpass(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>input,</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>cutoff1,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>resonance)<sp/>{</highlight></codeline>
 <codeline lineno="488"><highlight class="normal"><sp/><sp/><sp/><sp/>cutoff=cutoff1;</highlight></codeline>
-<codeline lineno="489"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(cutoff&gt;(maxiSettings::sampleRate*0.5))<sp/>cutoff=(maxiSettings::sampleRate*0.5);</highlight></codeline>
+<codeline lineno="489"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(cutoff&gt;(<ref refid="classmaxiSettings_1a69a0a3a7202358b401f8c75b0d711421" kindref="member">maxiSettings::sampleRate</ref>*0.5))<sp/>cutoff=(<ref refid="classmaxiSettings_1a69a0a3a7202358b401f8c75b0d711421" kindref="member">maxiSettings::sampleRate</ref>*0.5);</highlight></codeline>
 <codeline lineno="490"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(resonance&gt;=1.)<sp/>resonance=0.999999;</highlight></codeline>
-<codeline lineno="491"><highlight class="normal"><sp/><sp/><sp/><sp/>z=cos(TWOPI*cutoff/maxiSettings::sampleRate);</highlight></codeline>
+<codeline lineno="491"><highlight class="normal"><sp/><sp/><sp/><sp/>z=cos(TWOPI*cutoff/<ref refid="classmaxiSettings_1a69a0a3a7202358b401f8c75b0d711421" kindref="member">maxiSettings::sampleRate</ref>);</highlight></codeline>
 <codeline lineno="492"><highlight class="normal"><sp/><sp/><sp/><sp/>inputs[0]<sp/>=<sp/>(1-resonance)*(sqrt(resonance*(resonance-4.0*pow(z,2.0)+2.0)+1));</highlight></codeline>
 <codeline lineno="493"><highlight class="normal"><sp/><sp/><sp/><sp/>inputs[1]<sp/>=<sp/>2*z*resonance;</highlight></codeline>
 <codeline lineno="494"><highlight class="normal"><sp/><sp/><sp/><sp/>inputs[2]<sp/>=<sp/>pow((resonance*-1),2);</highlight></codeline>
@@ -1011,7 +1011,7 @@
 <codeline lineno="834"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="835"><highlight class="normal"></highlight></codeline>
 <codeline lineno="836"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<sp/>pos<sp/>&gt;=<sp/>end<sp/>)<sp/>pos<sp/>=<sp/>start;</highlight></codeline>
-<codeline lineno="837"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pos<sp/>+=<sp/>((end-start)/((maxiSettings::sampleRate)/(frequency*chandiv)));</highlight></codeline>
+<codeline lineno="837"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pos<sp/>+=<sp/>((end-start)/((<ref refid="classmaxiSettings_1a69a0a3a7202358b401f8c75b0d711421" kindref="member">maxiSettings::sampleRate</ref>)/(frequency*chandiv)));</highlight></codeline>
 <codeline lineno="838"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>remainder<sp/>=<sp/>pos<sp/>-<sp/>floor(pos);</highlight></codeline>
 <codeline lineno="839"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/>posl<sp/>=<sp/>floor(pos);</highlight></codeline>
 <codeline lineno="840"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(posl+1&lt;amplen)<sp/>{</highlight></codeline>
@@ -1031,7 +1031,7 @@
 <codeline lineno="854"><highlight class="normal"><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
 <codeline lineno="855"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>frequency*=-1.;</highlight></codeline>
 <codeline lineno="856"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<sp/>pos<sp/>&lt;=<sp/>start<sp/>)<sp/>pos<sp/>=<sp/>end;</highlight></codeline>
-<codeline lineno="857"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pos<sp/>-=<sp/>((end-start)/(maxiSettings::sampleRate/(frequency*chandiv)));</highlight></codeline>
+<codeline lineno="857"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pos<sp/>-=<sp/>((end-start)/(<ref refid="classmaxiSettings_1a69a0a3a7202358b401f8c75b0d711421" kindref="member">maxiSettings::sampleRate</ref>/(frequency*chandiv)));</highlight></codeline>
 <codeline lineno="858"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>remainder<sp/>=<sp/>pos<sp/>-<sp/>floor(pos);</highlight></codeline>
 <codeline lineno="859"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/>posl<sp/>=<sp/>floor(pos);</highlight></codeline>
 <codeline lineno="860"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(posl-1&gt;=0)<sp/>{</highlight></codeline>
@@ -1063,7 +1063,7 @@
 <codeline lineno="886"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>position=start;</highlight></codeline>
 <codeline lineno="887"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="888"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<sp/>position<sp/>&gt;=<sp/>end<sp/>)<sp/>position<sp/>=<sp/>start;</highlight></codeline>
-<codeline lineno="889"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>position<sp/>+=<sp/>((end-start)/(maxiSettings::sampleRate/(frequency*chandiv)));</highlight></codeline>
+<codeline lineno="889"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>position<sp/>+=<sp/>((end-start)/(<ref refid="classmaxiSettings_1a69a0a3a7202358b401f8c75b0d711421" kindref="member">maxiSettings::sampleRate</ref>/(frequency*chandiv)));</highlight></codeline>
 <codeline lineno="890"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>remainder<sp/>=<sp/>position<sp/>-<sp/>floor(position);</highlight></codeline>
 <codeline lineno="891"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(position&gt;0)<sp/>{</highlight></codeline>
 <codeline lineno="892"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>a=F64_ARRAY_AT(amplitudes,(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal">)(floor(position))-1);</highlight></codeline>
@@ -1095,7 +1095,7 @@
 <codeline lineno="918"><highlight class="normal"><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
 <codeline lineno="919"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>frequency*=-1.;</highlight></codeline>
 <codeline lineno="920"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<sp/>position<sp/>&lt;=<sp/>start<sp/>)<sp/>position<sp/>=<sp/>end;</highlight></codeline>
-<codeline lineno="921"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>position<sp/>-=<sp/>((end-start)/(maxiSettings::sampleRate/(frequency*chandiv)));</highlight></codeline>
+<codeline lineno="921"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>position<sp/>-=<sp/>((end-start)/(<ref refid="classmaxiSettings_1a69a0a3a7202358b401f8c75b0d711421" kindref="member">maxiSettings::sampleRate</ref>/(frequency*chandiv)));</highlight></codeline>
 <codeline lineno="922"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>remainder<sp/>=<sp/>position<sp/>-<sp/>floor(position);</highlight></codeline>
 <codeline lineno="923"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(position&gt;start<sp/>&amp;&amp;<sp/>position<sp/>&lt;<sp/>end-1)<sp/>{</highlight></codeline>
 <codeline lineno="924"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>a=F64_ARRAY_AT(amplitudes,(</highlight><highlight class="keywordtype">long</highlight><highlight class="normal">)<sp/>position+1);</highlight></codeline>
@@ -1172,7 +1172,7 @@
 <codeline lineno="995"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>F64_ARRAY_AT(amplitudes,1+(</highlight><highlight class="keywordtype">long</highlight><highlight class="normal">)<sp/>position));</highlight><highlight class="comment">//linear<sp/>interpolation</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="996"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="997"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>output=0;</highlight></codeline>
-<codeline lineno="998"><highlight class="normal"><sp/><sp/><sp/><sp/>position=position+((speed*chandiv)/(maxiSettings::sampleRate/mySampleRate));</highlight></codeline>
+<codeline lineno="998"><highlight class="normal"><sp/><sp/><sp/><sp/>position=position+((speed*chandiv)/(<ref refid="classmaxiSettings_1a69a0a3a7202358b401f8c75b0d711421" kindref="member">maxiSettings::sampleRate</ref>/mySampleRate));</highlight></codeline>
 <codeline lineno="999"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(output);</highlight></codeline>
 <codeline lineno="1000"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="1001"><highlight class="normal"></highlight></codeline>
@@ -1227,7 +1227,7 @@
 <codeline lineno="1050"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="1051"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>output=0;</highlight></codeline>
 <codeline lineno="1052"><highlight class="normal"></highlight></codeline>
-<codeline lineno="1053"><highlight class="normal"><sp/><sp/><sp/><sp/>position=position+((speed*chandiv)/(maxiSettings::sampleRate/mySampleRate));</highlight></codeline>
+<codeline lineno="1053"><highlight class="normal"><sp/><sp/><sp/><sp/>position=position+((speed*chandiv)/(<ref refid="classmaxiSettings_1a69a0a3a7202358b401f8c75b0d711421" kindref="member">maxiSettings::sampleRate</ref>/mySampleRate));</highlight></codeline>
 <codeline lineno="1054"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>output;</highlight></codeline>
 <codeline lineno="1055"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="1056"><highlight class="normal"></highlight></codeline>
@@ -1455,11 +1455,11 @@
 <codeline lineno="1278"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="1279"><highlight class="normal"></highlight></codeline>
 <codeline lineno="1280"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>maxiDyn::setAttack(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>attackMS)<sp/>{</highlight></codeline>
-<codeline lineno="1281"><highlight class="normal"><sp/><sp/><sp/><sp/>attack<sp/>=<sp/>pow(<sp/>0.01,<sp/>1.0<sp/>/<sp/>(<sp/>attackMS<sp/>*<sp/>maxiSettings::sampleRate<sp/>*<sp/>0.001<sp/>)<sp/>);</highlight></codeline>
+<codeline lineno="1281"><highlight class="normal"><sp/><sp/><sp/><sp/>attack<sp/>=<sp/>pow(<sp/>0.01,<sp/>1.0<sp/>/<sp/>(<sp/>attackMS<sp/>*<sp/><ref refid="classmaxiSettings_1a69a0a3a7202358b401f8c75b0d711421" kindref="member">maxiSettings::sampleRate</ref><sp/>*<sp/>0.001<sp/>)<sp/>);</highlight></codeline>
 <codeline lineno="1282"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="1283"><highlight class="normal"></highlight></codeline>
 <codeline lineno="1284"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>maxiDyn::setRelease(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>releaseMS)<sp/>{</highlight></codeline>
-<codeline lineno="1285"><highlight class="normal"><sp/><sp/><sp/><sp/>release<sp/>=<sp/>pow(<sp/>0.01,<sp/>1.0<sp/>/<sp/>(<sp/>releaseMS<sp/>*<sp/>maxiSettings::sampleRate<sp/>*<sp/>0.001<sp/>)<sp/>);</highlight></codeline>
+<codeline lineno="1285"><highlight class="normal"><sp/><sp/><sp/><sp/>release<sp/>=<sp/>pow(<sp/>0.01,<sp/>1.0<sp/>/<sp/>(<sp/>releaseMS<sp/>*<sp/><ref refid="classmaxiSettings_1a69a0a3a7202358b401f8c75b0d711421" kindref="member">maxiSettings::sampleRate</ref><sp/>*<sp/>0.001<sp/>)<sp/>);</highlight></codeline>
 <codeline lineno="1286"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="1287"><highlight class="normal"></highlight></codeline>
 <codeline lineno="1288"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>maxiDyn::setThreshold(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>thresholdI)<sp/>{</highlight></codeline>
@@ -1624,23 +1624,23 @@
 <codeline lineno="1447"><highlight class="normal"></highlight></codeline>
 <codeline lineno="1448"><highlight class="normal"></highlight></codeline>
 <codeline lineno="1449"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>maxiEnv::setRelease(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>releaseMS)<sp/>{</highlight></codeline>
-<codeline lineno="1450"><highlight class="normal"><sp/><sp/><sp/><sp/>release<sp/>=<sp/>pow(<sp/>0.01,<sp/>1.0<sp/>/<sp/>(<sp/>releaseMS<sp/>*<sp/>maxiSettings::sampleRate<sp/>*<sp/>0.001<sp/>)<sp/>);</highlight></codeline>
+<codeline lineno="1450"><highlight class="normal"><sp/><sp/><sp/><sp/>release<sp/>=<sp/>pow(<sp/>0.01,<sp/>1.0<sp/>/<sp/>(<sp/>releaseMS<sp/>*<sp/><ref refid="classmaxiSettings_1a69a0a3a7202358b401f8c75b0d711421" kindref="member">maxiSettings::sampleRate</ref><sp/>*<sp/>0.001<sp/>)<sp/>);</highlight></codeline>
 <codeline lineno="1451"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="1452"><highlight class="normal"></highlight></codeline>
 <codeline lineno="1453"><highlight class="normal"></highlight></codeline>
 <codeline lineno="1454"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>maxiEnv::setDecay(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>decayMS)<sp/>{</highlight></codeline>
-<codeline lineno="1455"><highlight class="normal"><sp/><sp/><sp/><sp/>decay<sp/>=<sp/>pow(<sp/>0.01,<sp/>1.0<sp/>/<sp/>(<sp/>decayMS<sp/>*<sp/>maxiSettings::sampleRate<sp/>*<sp/>0.001<sp/>)<sp/>);</highlight></codeline>
+<codeline lineno="1455"><highlight class="normal"><sp/><sp/><sp/><sp/>decay<sp/>=<sp/>pow(<sp/>0.01,<sp/>1.0<sp/>/<sp/>(<sp/>decayMS<sp/>*<sp/><ref refid="classmaxiSettings_1a69a0a3a7202358b401f8c75b0d711421" kindref="member">maxiSettings::sampleRate</ref><sp/>*<sp/>0.001<sp/>)<sp/>);</highlight></codeline>
 <codeline lineno="1456"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="1457"><highlight class="normal"></highlight></codeline>
 <codeline lineno="1458"><highlight class="normal"></highlight><highlight class="comment">//old<sp/>method<sp/>-<sp/>depreacated</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="1459"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>maxiEnv::setAttack(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>attackMS)<sp/>{</highlight></codeline>
-<codeline lineno="1460"><highlight class="normal"><sp/><sp/><sp/><sp/>attack<sp/>=<sp/>1-pow(<sp/>0.01,<sp/>1.0<sp/>/<sp/>(<sp/>attackMS<sp/>*<sp/>maxiSettings::sampleRate<sp/>*<sp/>0.001<sp/>)<sp/>);</highlight></codeline>
+<codeline lineno="1460"><highlight class="normal"><sp/><sp/><sp/><sp/>attack<sp/>=<sp/>1-pow(<sp/>0.01,<sp/>1.0<sp/>/<sp/>(<sp/>attackMS<sp/>*<sp/><ref refid="classmaxiSettings_1a69a0a3a7202358b401f8c75b0d711421" kindref="member">maxiSettings::sampleRate</ref><sp/>*<sp/>0.001<sp/>)<sp/>);</highlight></codeline>
 <codeline lineno="1461"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="1462"><highlight class="normal"></highlight></codeline>
 <codeline lineno="1463"><highlight class="normal"></highlight><highlight class="comment">//new<sp/>method<sp/>-<sp/>in<sp/>MS</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="1464"><highlight class="normal"></highlight></codeline>
 <codeline lineno="1465"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>maxiEnv::setAttackMS(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>attackMS)<sp/>{</highlight></codeline>
-<codeline lineno="1466"><highlight class="normal"><sp/><sp/><sp/><sp/>attack<sp/>=<sp/>1.0<sp/>/<sp/>(attackMS<sp/>/1000.0<sp/>*<sp/><sp/>maxiSettings::sampleRate);</highlight></codeline>
+<codeline lineno="1466"><highlight class="normal"><sp/><sp/><sp/><sp/>attack<sp/>=<sp/>1.0<sp/>/<sp/>(attackMS<sp/>/1000.0<sp/>*<sp/><sp/><ref refid="classmaxiSettings_1a69a0a3a7202358b401f8c75b0d711421" kindref="member">maxiSettings::sampleRate</ref>);</highlight></codeline>
 <codeline lineno="1467"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="1468"><highlight class="normal"></highlight></codeline>
 <codeline lineno="1470"><highlight class="normal"></highlight></codeline>
@@ -1657,11 +1657,11 @@
 <codeline lineno="1481"><highlight class="normal"></highlight></codeline>
 <codeline lineno="1482"><highlight class="normal"></highlight></codeline>
 <codeline lineno="1483"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;&gt;<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>maxiEnvelopeFollower::setAttack(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>attackMS)<sp/>{</highlight></codeline>
-<codeline lineno="1484"><highlight class="normal"><sp/><sp/><sp/><sp/>attack<sp/>=<sp/>pow(<sp/>0.01,<sp/>1.0<sp/>/<sp/>(<sp/>attackMS<sp/>*<sp/>maxiSettings::sampleRate<sp/>*<sp/>0.001<sp/>)<sp/>);</highlight></codeline>
+<codeline lineno="1484"><highlight class="normal"><sp/><sp/><sp/><sp/>attack<sp/>=<sp/>pow(<sp/>0.01,<sp/>1.0<sp/>/<sp/>(<sp/>attackMS<sp/>*<sp/><ref refid="classmaxiSettings_1a69a0a3a7202358b401f8c75b0d711421" kindref="member">maxiSettings::sampleRate</ref><sp/>*<sp/>0.001<sp/>)<sp/>);</highlight></codeline>
 <codeline lineno="1485"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="1486"><highlight class="normal"></highlight></codeline>
 <codeline lineno="1487"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;&gt;<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>maxiEnvelopeFollower::setRelease(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>releaseMS)<sp/>{</highlight></codeline>
-<codeline lineno="1488"><highlight class="normal"><sp/><sp/><sp/><sp/>release<sp/>=<sp/>pow(<sp/>0.01,<sp/>1.0<sp/>/<sp/>(<sp/>releaseMS<sp/>*<sp/>maxiSettings::sampleRate<sp/>*<sp/>0.001<sp/>)<sp/>);</highlight></codeline>
+<codeline lineno="1488"><highlight class="normal"><sp/><sp/><sp/><sp/>release<sp/>=<sp/>pow(<sp/>0.01,<sp/>1.0<sp/>/<sp/>(<sp/>releaseMS<sp/>*<sp/><ref refid="classmaxiSettings_1a69a0a3a7202358b401f8c75b0d711421" kindref="member">maxiSettings::sampleRate</ref><sp/>*<sp/>0.001<sp/>)<sp/>);</highlight></codeline>
 <codeline lineno="1489"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="1490"><highlight class="normal"></highlight></codeline>
 <codeline lineno="1491"><highlight class="normal"></highlight></codeline>
@@ -1683,7 +1683,7 @@
 <codeline lineno="1507"><highlight class="normal">maxiPoll::maxiPoll()<sp/>{}</highlight></codeline>
 <codeline lineno="1508"><highlight class="normal">maxiRMS::maxiRMS()<sp/>{}</highlight></codeline>
 <codeline lineno="1509"><highlight class="normal">maxiZeroCrossingRate::maxiZeroCrossingRate()<sp/>{</highlight></codeline>
-<codeline lineno="1510"><highlight class="normal"><sp/><sp/><sp/><sp/>buf.<ref refid="classmaxiRingBuf_1af577d377112b3e7cf10aeb38cbbf977b" kindref="member">setup</ref>(maxiSettings::sampleRate);</highlight></codeline>
+<codeline lineno="1510"><highlight class="normal"><sp/><sp/><sp/><sp/>buf.<ref refid="classmaxiRingBuf_1af577d377112b3e7cf10aeb38cbbf977b" kindref="member">setup</ref>(<ref refid="classmaxiSettings_1a69a0a3a7202358b401f8c75b0d711421" kindref="member">maxiSettings::sampleRate</ref>);</highlight></codeline>
 <codeline lineno="1511"><highlight class="normal">}</highlight></codeline>
     </programlisting>
     <location file="/home/ck84/src/Maximilian/src/maximilian.cpp"/>

@@ -2,6 +2,7 @@
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="classmaxiSampleAndHold" kind="class" language="C++" prot="public">
     <compoundname>maxiSampleAndHold</compoundname>
+    <includes refid="maximilian_8h" local="no">maximilian.h</includes>
       <sectiondef kind="private-attrib">
       <memberdef kind="variable" id="classmaxiSampleAndHold_1a087e0514a178f653ede1da2d10e17a9c" prot="private" static="no" mutable="no">
         <type>double</type>
@@ -15,7 +16,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="886" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="886" bodyend="-1"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="911" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="911" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classmaxiSampleAndHold_1a42aaf7c6fa6aeeafd2c98e402b80cd91" prot="private" static="no" mutable="no">
         <type>double</type>
@@ -29,7 +30,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="887" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="887" bodyend="-1"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="912" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="912" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classmaxiSampleAndHold_1acdf56b17166ef8b94074956d14db387b" prot="private" static="no" mutable="no">
         <type>bool</type>
@@ -43,7 +44,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="888" column="10" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="888" bodyend="-1"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="913" column="10" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="913" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
@@ -63,17 +64,38 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
+<para>Process a signal<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>sigIn</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>a signal</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>holdTimeMs</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The length of the sampling period </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>the sampled signal </para>
+</simplesect>
+</para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="871" column="19" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="871" bodyend="883"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="896" column="19" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="896" bodyend="908"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
+<para>Sample and hold effect: samples the input signal periodically and outputs that value </para>
     </detaileddescription>
-    <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="868" column="1" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="869" bodyend="889"/>
+    <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="892" column="1" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="893" bodyend="914"/>
     <listofallmembers>
       <member refid="classmaxiSampleAndHold_1acdf56b17166ef8b94074956d14db387b" prot="private" virt="non-virtual"><scope>maxiSampleAndHold</scope><name>firstRun</name></member>
       <member refid="classmaxiSampleAndHold_1a42aaf7c6fa6aeeafd2c98e402b80cd91" prot="private" virt="non-virtual"><scope>maxiSampleAndHold</scope><name>holdValue</name></member>

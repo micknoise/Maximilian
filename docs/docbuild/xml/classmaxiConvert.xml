@@ -29,7 +29,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="843" column="19" bodyfile="/home/ck84/src/Maximilian/src/maximilian.cpp" bodystart="1478" bodyend="1480"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="864" column="19" bodyfile="/home/ck84/src/Maximilian/src/maximilian.cpp" bodystart="1478" bodyend="1480"/>
       </memberdef>
       <memberdef kind="function" id="classmaxiConvert_1acafb7f84fc30c76960a2b0025ad754b8" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>size_t</type>
@@ -56,7 +56,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="846" column="19" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="846" bodyend="849"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="867" column="19" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="867" bodyend="870"/>
       </memberdef>
       <memberdef kind="function" id="classmaxiConvert_1a3a38c2c0d8943dfba338e6eda687b0d3" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>double</type>
@@ -83,7 +83,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="851" column="19" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="851" bodyend="854"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="872" column="19" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="872" bodyend="875"/>
       </memberdef>
       <memberdef kind="function" id="classmaxiConvert_1a8048c8af50733d0ff5cadeae82955397" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>double</type>
@@ -110,7 +110,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="857" column="19" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="857" bodyend="859"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="878" column="19" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="878" bodyend="880"/>
       </memberdef>
       <memberdef kind="function" id="classmaxiConvert_1ab3caacc73f0a612e458181bd721dcc1f" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>double</type>
@@ -137,7 +137,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="861" column="19" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="861" bodyend="863"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="882" column="19" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="882" bodyend="884"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -145,7 +145,7 @@
     <detaileddescription>
 <para>Conversion functions </para>
     </detaileddescription>
-    <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="839" column="1" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="840" bodyend="864"/>
+    <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="860" column="1" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="861" bodyend="885"/>
     <listofallmembers>
       <member refid="classmaxiConvert_1a8048c8af50733d0ff5cadeae82955397" prot="public" virt="non-virtual"><scope>maxiConvert</scope><name>ampToDbs</name></member>
       <member refid="classmaxiConvert_1ab3caacc73f0a612e458181bd721dcc1f" prot="public" virt="non-virtual"><scope>maxiConvert</scope><name>dbsToAmp</name></member>

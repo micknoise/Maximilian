@@ -15,7 +15,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1939" column="17" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1939" bodyend="-1"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1964" column="17" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1964" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classmaxiStep_1a22e71dbdcfa3fc0250df3acd7cd57946" prot="private" static="no" mutable="no">
         <type>bool</type>
@@ -29,7 +29,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1940" column="10" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1940" bodyend="-1"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1965" column="10" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1965" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classmaxiStep_1aa931603ba181a586ec47294d3952f73d" prot="private" static="no" mutable="no">
         <type>double</type>
@@ -43,7 +43,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1941" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1941" bodyend="-1"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1966" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1966" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
@@ -58,7 +58,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1897" column="5" bodyfile="/home/ck84/src/Maximilian/src/maximilian.cpp" bodystart="1502" bodyend="1502"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1922" column="5" bodyfile="/home/ck84/src/Maximilian/src/maximilian.cpp" bodystart="1502" bodyend="1502"/>
       </memberdef>
       <memberdef kind="function" id="classmaxiStep_1a86b0a93a6367bf5cce8f653368538341" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>double</type>
@@ -93,7 +93,7 @@
 <parametername>values</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>An array of values \step The amount that the array index should increase after pulling a new value. This wraps around to zero at the end of the array </para>
+<para>An array of values \step The amount that the array index should increase after pulling a new value. <ref refid="classThis" kindref="compound">This</ref> wraps around to zero at the end of the array </para>
 </parameterdescription>
 </parameteritem>
 </parameterlist>
@@ -101,7 +101,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1904" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1904" bodyend="1931"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1929" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1929" bodyend="1956"/>
       </memberdef>
       <memberdef kind="function" id="classmaxiStep_1a8b790d681ec903dd8b432d7fc0bb3427" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>double</type>
@@ -115,7 +115,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1934" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1934" bodyend="1936"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1959" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1959" bodyend="1961"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -123,7 +123,7 @@
     <detaileddescription>
 <para>Pull sequential values from an array </para>
     </detaileddescription>
-    <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1894" column="1" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1895" bodyend="1942"/>
+    <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1919" column="1" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1920" bodyend="1967"/>
     <listofallmembers>
       <member refid="classmaxiStep_1a22e71dbdcfa3fc0250df3acd7cd57946" prot="private" virt="non-virtual"><scope>maxiStep</scope><name>first</name></member>
       <member refid="classmaxiStep_1a8b790d681ec903dd8b432d7fc0bb3427" prot="public" virt="non-virtual"><scope>maxiStep</scope><name>getIndex</name></member>

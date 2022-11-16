@@ -14,7 +14,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1070" column="19" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1070" bodyend="-1"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1095" column="19" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1095" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classmaxiChorus_1a1ff3d07194588ff2d5b48a098a5da0e1" prot="public" static="no" mutable="no">
         <type><ref refid="classmaxiDelayline" kindref="compound">maxiDelayline</ref></type>
@@ -27,7 +27,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1070" column="22" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1070" bodyend="-1"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1095" column="22" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1095" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classmaxiChorus_1a97644319912aa6c5194b568724cefcbd" prot="public" static="no" mutable="no">
         <type><ref refid="classmaxiOsc" kindref="compound">maxiOsc</ref></type>
@@ -40,7 +40,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1071" column="13" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1071" bodyend="-1"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1096" column="13" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1096" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classmaxiChorus_1a27236616faf3d9e6d3a325b8fc34c1c9" prot="public" static="no" mutable="no">
         <type><ref refid="classmaxiFilter" kindref="compound">maxiFilter</ref></type>
@@ -53,7 +53,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1072" column="16" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1072" bodyend="-1"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1097" column="16" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1097" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
@@ -88,7 +88,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1069" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1075" bodyend="1086"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1094" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1100" bodyend="1111"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -123,7 +123,7 @@
         </childnode>
       </node>
     </collaborationgraph>
-    <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1062" column="1" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1063" bodyend="1073"/>
+    <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1087" column="1" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1088" bodyend="1098"/>
     <listofallmembers>
       <member refid="classmaxiChorus_1ae6b12ddc4d9bbe3eebc5ac5825fd86a2" prot="public" virt="non-virtual"><scope>maxiChorus</scope><name>chorus</name></member>
       <member refid="classmaxiChorus_1ae138bde7afc3c3f6e1a54b42524f6f54" prot="public" virt="non-virtual"><scope>maxiChorus</scope><name>dl</name></member>

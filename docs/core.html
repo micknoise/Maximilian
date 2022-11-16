@@ -604,6 +604,46 @@
 <section id="effects">
 <h2>Effects<a class="headerlink" href="#effects" title="Permalink to this heading"></a></h2>
 <dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv413maxiDelayline">
+<span id="_CPPv313maxiDelayline"></span><span id="_CPPv213maxiDelayline"></span><span id="maxiDelayline"></span><span class="target" id="classmaxiDelayline"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">maxiDelayline</span></span></span><a class="headerlink" href="#_CPPv413maxiDelayline" title="Permalink to this definition"></a><br /></dt>
+<dd><p>A delay line </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N13maxiDelayline2dlEdid">
+<span id="_CPPv3N13maxiDelayline2dlEdid"></span><span id="_CPPv2N13maxiDelayline2dlEdid"></span><span id="maxiDelayline::dl__double.i.double"></span><span class="target" id="classmaxiDelayline_1a262f9a52fc6d7c087caaae350779f956"></span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">dl</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">input</span></span>, <span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">size</span></span>, <span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">feedback</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N13maxiDelayline2dlEdid" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Apply a delay to a signal</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>input</strong> – a signal,</p></li>
+<li><p><strong>size</strong> – the size of the delay in samples</p></li>
+<li><p><strong>feedback</strong> – the amount of feedback </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N13maxiDelayline14dlFromPositionEdidi">
+<span id="_CPPv3N13maxiDelayline14dlFromPositionEdidi"></span><span id="_CPPv2N13maxiDelayline14dlFromPositionEdidi"></span><span id="maxiDelayline::dlFromPosition__double.i.double.i"></span><span class="target" id="classmaxiDelayline_1a8db792dd66742c0b91567efffd2fb09e"></span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">dlFromPosition</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">input</span></span>, <span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">size</span></span>, <span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">feedback</span></span>, <span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">position</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N13maxiDelayline14dlFromPositionEdidi" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Apply a delay to a signal, reading from a specific position in the buffer </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>input</strong> – a signal,</p></li>
+<li><p><strong>size</strong> – the size of the delay in samples</p></li>
+<li><p><strong>feedback</strong> – the amount of feedback </p></li>
+<li><p><strong>position</strong> – the position in the buffer (in samples) </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="cpp class">
 <dt class="sig sig-object cpp" id="_CPPv416maxiNonlinearity">
 <span id="_CPPv316maxiNonlinearity"></span><span id="_CPPv216maxiNonlinearity"></span><span id="maxiNonlinearity"></span><span class="target" id="classmaxiNonlinearity"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">maxiNonlinearity</span></span></span><a class="headerlink" href="#_CPPv416maxiNonlinearity" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Various ways to distort signals </p>
@@ -681,6 +721,32 @@
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>x</strong> – A signal </p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv417maxiSampleAndHold">
+<span id="_CPPv317maxiSampleAndHold"></span><span id="_CPPv217maxiSampleAndHold"></span><span id="maxiSampleAndHold"></span><span class="target" id="classmaxiSampleAndHold"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">maxiSampleAndHold</span></span></span><a class="headerlink" href="#_CPPv417maxiSampleAndHold" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Sample and hold effect: samples the input signal periodically and outputs that value </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N17maxiSampleAndHold3sahEdd">
+<span id="_CPPv3N17maxiSampleAndHold3sahEdd"></span><span id="_CPPv2N17maxiSampleAndHold3sahEdd"></span><span id="maxiSampleAndHold::sah__double.double"></span><span class="target" id="classmaxiSampleAndHold_1a5271ce0f72e21dc33469cd73abf5985f"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">sah</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">sigIn</span></span>, <span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">holdTimeMs</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N17maxiSampleAndHold3sahEdd" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Process a signal</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>sigIn</strong> – a signal</p></li>
+<li><p><strong>holdTimeMs</strong> – The length of the sampling period </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>the sampled signal </p>
 </dd>
 </dl>
 </dd></dl>

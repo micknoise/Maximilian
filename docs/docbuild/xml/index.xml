@@ -1248,6 +1248,8 @@
     <member refid="structstb__vorbis__info_1a2fe235656197249fc3a6b5e27ff2da82" kind="variable"><name>temp_memory_required</name></member>
     <member refid="structstb__vorbis__info_1ad07f41541db438dcdac6ca223c5876e9" kind="variable"><name>max_frame_size</name></member>
   </compound>
+  <compound refid="classThis" kind="class"><name>This</name>
+  </compound>
   <compound refid="structtriangleNZWinFunctor" kind="struct"><name>triangleNZWinFunctor</name>
     <member refid="structtriangleNZWinFunctor_1abd0e5d698518f906d4b2ed720c3b1908" kind="function"><name>operator()</name></member>
   </compound>

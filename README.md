@@ -27,7 +27,7 @@ Maximilian is a cross-platform and multi-target audio synthesis and signal proce
 - example projects for Windows and MacOS, susing command line and OpenFrameworks environments
 - example projects for Firefox and Chromium-based browsers using the Web Audio API ScriptProcessorNode (deprecated!)
 - example projects for Chromium-based browsers using the Web Audio API AudioWorklet (e.g. Chrome, Brave, Edge, Opera, Vivaldi)
-- will run on embedded systems (e.g. ESP32)
+- will run on embedded systems (e.g. ESP32, Pi Pico)
 
 ### Documentation
 

@@ -605,7 +605,7 @@ public:
 //     //    int    myDataSize;
     short myChannels;
     int mySampleRate;
-    inline long getLength() { return F64_ARRAY_SIZE(amplitudes); };
+    inline size_t getLength() { return F64_ARRAY_SIZE(amplitudes); };
     // void setLength(unsigned long numSamples);
     short myBitsPerSample;
     maxiTrigger zxTrig;
@@ -2407,4 +2407,25 @@ class CHEERP_EXPORT maxiRMS {
 };
 
 
+
+class CHEERP_EXPORT maxiDynamics {
+
+    public:
+        maxiDynamics() {
+            inputPeak = [](double sig) {
+                return sig;
+            };
+        }
+        double play(double sig, double control) {
+            return sig;
+        }
+
+    private:
+        maxiEnvGen arEnv;
+        maxiDelayline lookAheadDelay;
+        maxiRMS rms;
+        std::function<double(double)> inputPeak;        
+
+
+};
 #endif

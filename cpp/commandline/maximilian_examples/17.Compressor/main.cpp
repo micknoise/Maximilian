@@ -9,8 +9,8 @@ void setup() {//some inits
     
     beats.load("../../../beat2.wav");//load in your samples. Provide the full path to a wav file.
     
-    dyn.setAttack(40);
-    dyn.setRelease(300);
+    dyn.setAttack(400);
+    dyn.setRelease(400);
     
 }
 
@@ -21,8 +21,8 @@ void play(double *output) {//this is where the magic happens. Very slow magic.
     //arguments are input,ratio,threshold,attack,release
 
     double out=beats.play();
-    out = osc1.saw(100) * (osc2.phasor(0.5) > 0.5);
-    out = dyn.play(out, out, -10, 10, 30);
+    double oscs = osc1.saw(300);// * (osc2.phasor(0.5) > 0.5);
+    out = dyn.play(oscs, out, -12, 4, 10);
     
     
     output[0]=out;

@@ -2413,11 +2413,88 @@ class CHEERP_EXPORT maxiDynamics {
     public:
         maxiDynamics() {
             inputPeak = [](double sig) {
-                return sig;
+                return abs(sig);
             };
+
+            rms.setup(50,50); //TODO: adjust this
+            inputRMS = [&](double sig) {
+                return rms.play(sig);
+            };
+
+            inputAnalyser = inputRMS;
+            arEnv.setupASR(10,10);
+            arEnv.setRetrigger(false);
         }
-        double play(double sig, double control) {
+
+        double envToRatio(double envVal, double ratio) {
+            double envRatio = 1;
+            if (ratio > 1) {
+                envRatio = 1 + ((ratio-1) * envVal);
+            }else {
+                envRatio = 1 - ((1-ratio) * envVal);
+            }
+            return envRatio;
+        }
+
+        double play(double sig, double control, double threshold, double ratio, double knee) {
+            double controlDB = maxiConvert::ampToDbs(inputAnalyser(control));
+            double outDB = maxiConvert::ampToDbs(sig);
+            if (ratio > 0) {
+                if (knee > 0) {
+                    double lowKnee = threshold - (knee/2.0);
+                    double highKnee = threshold  +(knee/2.0);
+                    //attack/release
+                    double envRatio = 1;
+                    if (controlDB >= lowKnee) {
+                        double envVal = arEnv.play(1);
+                        envRatio = envToRatio(envVal, ratio);
+                        cout << "on: " << envVal << endl;
+                    }else {
+                        double envVal = arEnv.play(-1);
+                        cout << "off: " << envVal << endl;
+                    }
+                    if ((controlDB >= lowKnee) && (controlDB < highKnee)) {
+                        double kneeHighOut = ((highKnee - threshold) / envRatio) + threshold;
+                        double kneeRange = (kneeHighOut - lowKnee);
+                        double t = (controlDB - lowKnee) / knee;
+                        //bezier on x only
+                        double kneex = (2 * (1-t) * t * 0.85) + (t*t);
+                        outDB = lowKnee + (kneex * kneeRange);
+                        cout << "k";
+                    }
+                    else if (controlDB >= highKnee) {
+                        outDB = ((controlDB - threshold) / envRatio) + threshold;
+                        cout << "o";
+                    }
+                }
+                else {
+                    //no knee
+                    if (controlDB > threshold) {
+                        cout << "c";
+                        double envVal = arEnv.play(1);
+                        double envRatio = envToRatio(envVal, ratio);
+                        cout << "on: " << envVal << endl;
+                        outDB = ((controlDB - threshold) / envRatio) + threshold;  
+                    }else {
+                        double envVal = arEnv.play(-1);
+                        cout << "off: " << envVal << endl;
+                    }
+                }
+            }  
+            double outAmp = maxiConvert::dbsToAmp(outDB);
+            if (outAmp > 0) {
+                sig = sig * (control / outAmp);
+            }else{
+                sig = 0.0;
+            }
             return sig;
+        }
+
+        void setAttack(double attack) {
+            arEnv.setTime(0, attack);
+        }
+        void setRelease(double attack) {
+            arEnv.setTime(2, attack);
         }
 
     private:
@@ -2425,7 +2502,9 @@ class CHEERP_EXPORT maxiDynamics {
         maxiDelayline lookAheadDelay;
         maxiRMS rms;
         std::function<double(double)> inputPeak;        
-
+        std::function<double(double)> inputRMS;        
+        std::function<double(double)> inputAnalyser;
+        maxiPoll poll;
 
 };
 #endif

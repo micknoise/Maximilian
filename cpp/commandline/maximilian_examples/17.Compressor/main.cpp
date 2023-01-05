@@ -3,18 +3,14 @@
 maxiSample beats; //We give our sample a name. It's called beats this time. We could have loads of them, but they have to have different names.
 maxiDyn compressor; //this is a compressor
 maxiDynamics dyn;
+maxiOsc osc1, osc2;
 
 void setup() {//some inits
     
     beats.load("../../../beat2.wav");//load in your samples. Provide the full path to a wav file.
-    cout << "Summary:\n" << beats.getSummary() << endl;//get info on samples if you like.
     
-    // compressor.setAttack(100);
-    // compressor.setRelease(300);
-    // compressor.setThreshold(0.25);
-    // compressor.setRatio(5);
-    
-    //you can set these any time you like.
+    dyn.setAttack(40);
+    dyn.setRelease(300);
     
 }
 
@@ -24,8 +20,9 @@ void play(double *output) {//this is where the magic happens. Very slow magic.
     //here, we're just compressing the file in real-time
     //arguments are input,ratio,threshold,attack,release
 
-    double out=0;
-    out = beats.play();
+    double out=beats.play();
+    out = osc1.saw(100) * (osc2.phasor(0.5) > 0.5);
+    out = dyn.play(out, out, -10, 10, 30);
     
     
     output[0]=out;

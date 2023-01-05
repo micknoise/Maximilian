@@ -426,26 +426,6 @@ public:
     }
 
     
-    // Col<T> getBuffer(size_t N) {
-    //     Col<T> currBuf(N);
-    //     int targidx=0;
-    //     int sizeToEnd = buf.size() - idx;
-    //     if (idx > N) {
-    //         for(int i=idx-N; i < idx; i++, targidx++) {
-    //             currBuf[targidx] = buf[i];
-    //         }
-    //     }else{
-    //         //first chunk
-    //         for(int i=buf.size()-(N-idx); i < buf.size(); i++, targidx++) {
-    //             currBuf[targidx] = buf[i];
-    //         }
-    //         //second chunk
-    //         for(int i=0; i < idx; i++, targidx++) {
-    //             currBuf[targidx] = buf[i];
-    //         }
-    //     }
-    //     return currBuf;
-    // }
     
 private:
     DOUBLEARRAY buf;
@@ -550,46 +530,6 @@ private:
     bool firstTrigger = 1;
 };
 
-// class DualModeF64Array {
-
-// public:
-// #ifdef CHEERP
-//     client::Float64Array *data = new client::Float64Array(1);
-// #else
-//     std::vector<double> data;
-// #endif
-
-//     size_t size() {
-// #ifdef CHEERP
-//         return data->get_length();
-// #else
-//         return data.size();
-// #endif
-
-//     }
-
-//     void clear() {
-// #ifdef CHEERP
-//         data->fill(0);
-// #else
-//         data.clear();
-// #endif
-
-//     }
-
-// #ifdef CHEERP
-//     void setFrom(client::Float64Array *newdata) {
-//         data = new client::Float64Array(newdata);
-//     }
-// #else
-//     void setFrom(std::vector<double> &newdata) {
-//         data = newdata;
-//     }
-// #endif
-
-
-
-// };
 
 class CHEERP_EXPORT maxiSample
 {
@@ -794,18 +734,6 @@ public:
     long holdtime;
     long holdcount;
     int attackphase, holdphase, releasephase;
-
-    // ------------------------------------------------
-    // getters/setters
-    //	int getTrigger() const{
-    //		return trigger;
-    //	}
-
-    //	void setTrigger(int trigger){
-    //		this->trigger = trigger;
-    //	}
-
-    // ------------------------------------------------
 };
 
 class maxiEnv
@@ -1478,55 +1406,6 @@ private:
         lineComplete = false;
     }
 };
-
-// class maxiMath
-// {
-// public:
-//     static double add(double x, double y)
-//     {
-//         return x + y;
-//     };
-//     static double div(double x, double y)
-//     {
-//         return x / y;
-//     };
-//     static double mul(double x, double y)
-//     {
-//         return x * y;
-//     };
-//     static double sub(double x, double y)
-//     {
-//         return x - y;
-//     };
-//     static double gt(double x, double y)
-//     {
-//         return x > y;
-//     }
-//     static double lt(double x, double y)
-//     {
-//         return x < y;
-//     }
-//     static double gte(double x, double y)
-//     {
-//         return x >= y;
-//     }
-//     static double lte(double x, double y)
-//     {
-//         return x <= y;
-//     }
-//     static double mod(double x, double y)
-//     {
-//         return fmod(x, y);
-//     }
-//     static double abs(double x)
-//     {
-//         return fabs(x);
-//     }
-//     static double xpowy(double x, double y)
-//     {
-//         return pow(x, y);
-//     }
-// };
 
 //https://tutorials.siam.org/dsweb/cotutorial/index.php?s=3&p=0
 //https://www.complexity-explorables.org/explorables/ride-my-kuramotocycle/

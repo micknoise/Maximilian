@@ -43,6 +43,7 @@
 <li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="core.html">Core</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Extended</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#oscillators">Oscillators</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#spectral-analysis-and-processing">Spectral Analysis and Processing</a></li>
 </ul>
 </li>
@@ -74,6 +75,56 @@
              
   <section id="extended">
 <h1>Extended<a class="headerlink" href="#extended" title="Permalink to this heading"></a></h1>
+<section id="oscillators">
+<h2>Oscillators<a class="headerlink" href="#oscillators" title="Permalink to this heading"></a></h2>
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv412maxiPolyBLEP">
+<span id="_CPPv312maxiPolyBLEP"></span><span id="_CPPv212maxiPolyBLEP"></span><span id="maxiPolyBLEP"></span><span class="target" id="classmaxiPolyBLEP"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">maxiPolyBLEP</span></span></span><a class="headerlink" href="#_CPPv412maxiPolyBLEP" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Anti-aliased oscillators; </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-types">Public Types</p>
+<dl class="cpp type">
+<dt class="sig sig-object cpp" id="_CPPv4N12maxiPolyBLEP8WaveformE">
+<span id="_CPPv3N12maxiPolyBLEP8WaveformE"></span><span id="_CPPv2N12maxiPolyBLEP8WaveformE"></span><span class="target" id="classmaxiPolyBLEP_1a6adb656a95c88c2ae9e9b4b1a4dc6b42"></span><span class="k"><span class="pre">using</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Waveform</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">PolyBLEP</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">Waveform</span></span><a class="headerlink" href="#_CPPv4N12maxiPolyBLEP8WaveformE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Waveform types: SINE, COSINE, TRIANGLE, SQUARE, RECTANGLE, SAWTOOTH, RAMP, MODIFIED_TRIANGLE, MODIFIED_SQUARE, HALF_WAVE_RECTIFIED_SINE, FULL_WAVE_RECTIFIED_SINE, TRIANGULAR_PULSE, TRAPEZOID_FIXED, TRAPEZOID_VARIABLE </p>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N12maxiPolyBLEP12maxiPolyBLEPEv">
+<span id="_CPPv3N12maxiPolyBLEP12maxiPolyBLEPEv"></span><span id="_CPPv2N12maxiPolyBLEP12maxiPolyBLEPEv"></span><span id="maxiPolyBLEP::maxiPolyBLEP"></span><span class="target" id="classmaxiPolyBLEP_1ab41c3fc1529f98d04a031b677a37018e"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">maxiPolyBLEP</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N12maxiPolyBLEP12maxiPolyBLEPEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Constructor </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N12maxiPolyBLEP4playEd">
+<span id="_CPPv3N12maxiPolyBLEP4playEd"></span><span id="_CPPv2N12maxiPolyBLEP4playEd"></span><span id="maxiPolyBLEP::play__double"></span><span class="target" id="classmaxiPolyBLEP_1ae5c00dfb703b0ddacf2801fe0a91af8d"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">play</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">freq</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N12maxiPolyBLEP4playEd" title="Permalink to this definition"></a><br /></dt>
+<dd><p>play the oscillator </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>freq</strong> – frequency in Hz </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N12maxiPolyBLEP11setWaveformE8Waveform">
+<span id="_CPPv3N12maxiPolyBLEP11setWaveformE8Waveform"></span><span id="_CPPv2N12maxiPolyBLEP11setWaveformE8Waveform"></span><span id="maxiPolyBLEP::setWaveform__Waveform"></span><span class="target" id="classmaxiPolyBLEP_1a88cc2d36108a59e58788faa6a46e4519"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">setWaveform</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4N12maxiPolyBLEP8WaveformE" title="maxiPolyBLEP::Waveform"><span class="n"><span class="pre">Waveform</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">waveform</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N12maxiPolyBLEP11setWaveformE8Waveform" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Set the waveform type </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N12maxiPolyBLEP13setPulseWidthEd">
+<span id="_CPPv3N12maxiPolyBLEP13setPulseWidthEd"></span><span id="_CPPv2N12maxiPolyBLEP13setPulseWidthEd"></span><span id="maxiPolyBLEP::setPulseWidth__double"></span><span class="target" id="classmaxiPolyBLEP_1a0538958437a77d7a41833446b7ea0fa8"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">setPulseWidth</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">pw</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N12maxiPolyBLEP13setPulseWidthEd" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Change the pulse width (0 &lt;= pw &lt;= 1) </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+</section>
 <section id="spectral-analysis-and-processing">
 <h2>Spectral Analysis and Processing<a class="headerlink" href="#spectral-analysis-and-processing" title="Permalink to this heading"></a></h2>
 </section>

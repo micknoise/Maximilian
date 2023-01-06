@@ -2,6 +2,7 @@
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="classmaxiLine" kind="class" language="C++" prot="public">
     <compoundname>maxiLine</compoundname>
+    <includes refid="maximilian_8h" local="no">maximilian.h</includes>
       <sectiondef kind="private-attrib">
       <memberdef kind="variable" id="classmaxiLine_1a9078884a2c19917d51fcfc0ace25fd0e" prot="private" static="no" mutable="no">
         <type>double</type>
@@ -15,7 +16,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1393" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1393" bodyend="-1"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1560" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1560" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classmaxiLine_1a53bc2909f7093a0d809443c589531922" prot="private" static="no" mutable="no">
         <type>double</type>
@@ -29,7 +30,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1394" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1394" bodyend="-1"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1561" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1561" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classmaxiLine_1a5434f7d815894aec5beb4b1dab7d6d6a" prot="private" static="no" mutable="no">
         <type>double</type>
@@ -43,7 +44,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1395" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1395" bodyend="-1"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1562" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1562" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classmaxiLine_1ac732dee0ef6fd6e3a6f90557e8a6e12d" prot="private" static="no" mutable="no">
         <type>double</type>
@@ -57,7 +58,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1396" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1396" bodyend="-1"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1563" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1563" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classmaxiLine_1ae69e0c02b975dabda5e511a67dbb6d95" prot="private" static="no" mutable="no">
         <type>double</type>
@@ -71,7 +72,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1397" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1397" bodyend="-1"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1564" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1564" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classmaxiLine_1a12e346de3e9f20c01b1ce72ed7f9325d" prot="private" static="no" mutable="no">
         <type>double</type>
@@ -85,7 +86,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1398" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1398" bodyend="-1"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1565" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1565" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classmaxiLine_1a5fe3b4decfc220b486fabf512412d431" prot="private" static="no" mutable="no">
         <type>bool</type>
@@ -99,7 +100,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1399" column="10" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1399" bodyend="-1"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1566" column="10" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1566" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classmaxiLine_1a512584b9043b53057384cb5a37b3f2ac" prot="private" static="no" mutable="no">
         <type>double</type>
@@ -113,7 +114,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1400" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1400" bodyend="-1"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1567" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1567" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classmaxiLine_1af0274c645622fd1fe3076562024adf8c" prot="private" static="no" mutable="no">
         <type>double</type>
@@ -127,7 +128,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1401" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1401" bodyend="-1"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1568" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1568" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classmaxiLine_1a6791cb0013e24d978237e80e6ead40c7" prot="private" static="no" mutable="no">
         <type>bool</type>
@@ -141,7 +142,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1402" column="10" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1402" bodyend="-1"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1569" column="10" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1569" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
@@ -156,7 +157,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1339" column="5" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1339" bodyend="1339"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1493" column="5" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1493" bodyend="1493"/>
       </memberdef>
       <memberdef kind="function" id="classmaxiLine_1ae892e5ffc0bda8df5b938b71c01aaa76" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>double</type>
@@ -170,10 +171,20 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
+<para>Generate a line, when a trigger is received<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>trigger</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>a signal </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1340" column="19" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1340" bodyend="1371"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1495" column="19" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1495" bodyend="1526"/>
       </memberdef>
       <memberdef kind="function" id="classmaxiLine_1a21ab66a82caff8b9a10169daadf78b86" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
@@ -199,10 +210,46 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
+<para>Setup the line before it is triggered <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>start</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the starting value of the line </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>end</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the ending value of the line </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>durationMs</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the duration of the line (in milliseconds) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>isOneShot</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>true is the line should not play once, or false if it should loop </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>a signal </para>
+</simplesect>
+</para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1372" column="17" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1372" bodyend="1382"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1536" column="17" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1536" bodyend="1546"/>
       </memberdef>
       <memberdef kind="function" id="classmaxiLine_1ad15bb57d04e581a50f4b401a12359b39" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
@@ -216,10 +263,20 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>0</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>or less to protect the generator from triggering, more than 0 to enable it to be triggered </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1383" column="17" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1383" bodyend="1386"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1549" column="17" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1549" bodyend="1552"/>
       </memberdef>
       <memberdef kind="function" id="classmaxiLine_1a4f6a012fe20ff2230877e2ada9f83499" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>bool</type>
@@ -229,10 +286,13 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
+<para><simplesect kind="return"><para>true if the line generator has finished </para>
+</simplesect>
+</para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1387" column="17" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1387" bodyend="1390"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1554" column="17" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1554" bodyend="1557"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="private-func">
@@ -247,14 +307,15 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1403" column="10" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1403" bodyend="1407"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1570" column="10" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1570" bodyend="1574"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
+<para><ref refid="classA" kindref="compound">A</ref> line generator (you can also use <ref refid="classmaxiEnvGen" kindref="compound">maxiEnvGen</ref>) </para>
     </detaileddescription>
-    <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1336" column="1" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1337" bodyend="1408"/>
+    <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1490" column="1" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1491" bodyend="1575"/>
     <listofallmembers>
       <member refid="classmaxiLine_1a5434f7d815894aec5beb4b1dab7d6d6a" prot="private" virt="non-virtual"><scope>maxiLine</scope><name>inc</name></member>
       <member refid="classmaxiLine_1a4f6a012fe20ff2230877e2ada9f83499" prot="public" virt="non-virtual"><scope>maxiLine</scope><name>isLineComplete</name></member>

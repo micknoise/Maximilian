@@ -2,6 +2,7 @@
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="classmaxiCounter" kind="class" language="C++" prot="public">
     <compoundname>maxiCounter</compoundname>
+    <includes refid="maximilian_8h" local="no">maximilian.h</includes>
       <sectiondef kind="private-attrib">
       <memberdef kind="variable" id="classmaxiCounter_1a2bdc51d02ad76ff5d9e0ead47b237331" prot="private" static="no" mutable="no">
         <type>double</type>
@@ -15,7 +16,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1708" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1708" bodyend="-1"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1883" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1883" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classmaxiCounter_1aebe28e7412d449e33850314c972fe60e" prot="private" static="no" mutable="no">
         <type><ref refid="classmaxiTrigger" kindref="compound">maxiTrigger</ref></type>
@@ -28,7 +29,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1709" column="17" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1709" bodyend="-1"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1884" column="17" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1884" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classmaxiCounter_1acc04385cda4e780ecf54640d084f55e1" prot="private" static="no" mutable="no">
         <type><ref refid="classmaxiTrigger" kindref="compound">maxiTrigger</ref></type>
@@ -41,7 +42,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1709" column="25" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1709" bodyend="-1"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1884" column="25" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1884" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
@@ -61,17 +62,38 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
+<para>Increase each time a trigger is received <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>incTrigger</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>a signal that triggers the counter to increment </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>resetTrigger</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>a signal that resets the counter to zero </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>the number of triggers received since the beginning or the last reset </para>
+</simplesect>
+</para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1694" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1694" bodyend="1705"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1869" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1869" bodyend="1880"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
+<para>Count triggers </para>
     </detaileddescription>
-    <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1691" column="1" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1692" bodyend="1710"/>
+    <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1861" column="1" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1862" bodyend="1885"/>
     <listofallmembers>
       <member refid="classmaxiCounter_1aec77792df4bbae4a7b40a5e536936b01" prot="public" virt="non-virtual"><scope>maxiCounter</scope><name>count</name></member>
       <member refid="classmaxiCounter_1aebe28e7412d449e33850314c972fe60e" prot="private" virt="non-virtual"><scope>maxiCounter</scope><name>inctrig</name></member>

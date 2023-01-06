@@ -2,6 +2,7 @@
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="classmaxiDCBlocker" kind="class" language="C++" prot="public">
     <compoundname>maxiDCBlocker</compoundname>
+    <includes refid="maximilian_8h" local="no">maximilian.h</includes>
       <sectiondef kind="public-attrib">
       <memberdef kind="variable" id="classmaxiDCBlocker_1a90b61bbbe0580065f1d98fa10b9f665e" prot="public" static="no" mutable="no">
         <type>double</type>
@@ -14,7 +15,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1082" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1082" bodyend="-1"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1232" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1232" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classmaxiDCBlocker_1a49f22e1a1228352e3f9a1958dae9e2ca" prot="public" static="no" mutable="no">
         <type>double</type>
@@ -27,7 +28,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1082" column="16" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1082" bodyend="-1"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1232" column="16" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1232" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
@@ -42,7 +43,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1083" column="5" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1083" bodyend="1083"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1233" column="5" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1233" bodyend="1233"/>
       </memberdef>
       <memberdef kind="function" id="classmaxiDCBlocker_1a2dc9eb8772f131e4161c157d5f8cdeb7" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>double</type>
@@ -60,17 +61,36 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
+<para>Remove DC from a signal<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>input</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>a signal</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>R</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the sensitivity (0-1) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1084" column="19" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1084" bodyend="1089"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1235" column="19" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1235" bodyend="1240"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
+<para><ref refid="classA" kindref="compound">A</ref> simple high pass filter to block DC </para>
     </detaileddescription>
-    <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1079" column="1" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1080" bodyend="1090"/>
+    <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1229" column="1" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1230" bodyend="1241"/>
     <listofallmembers>
       <member refid="classmaxiDCBlocker_1aabe3ab57a828c9edb9fe033aed25cd94" prot="public" virt="non-virtual"><scope>maxiDCBlocker</scope><name>maxiDCBlocker</name></member>
       <member refid="classmaxiDCBlocker_1a2dc9eb8772f131e4161c157d5f8cdeb7" prot="public" virt="non-virtual"><scope>maxiDCBlocker</scope><name>play</name></member>

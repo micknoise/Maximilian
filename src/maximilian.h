@@ -259,7 +259,7 @@ public:
 
 
 /**
- * A delay line
+ * \class A delay line
  */
 class CHEERP_EXPORT maxiDelayline
 {
@@ -281,7 +281,9 @@ public:
     double dlFromPosition(double input, int size, double feedback, int position); //renamed to avoid overrides
 };
 
-
+/**
+* A selection of filters
+*/
 class CHEERP_EXPORT maxiFilter
 {
 private:
@@ -300,29 +302,60 @@ public:
     maxiFilter();
     double cutoff;
     double resonance;
+    /** A resonant low pass filter
+    * \param input A signal
+    * \param cutoff1 The cutoff frequency (in Hz)
+    * \param resonance The amount of resonance
+    */
     double lores(double input, double cutoff1, double resonance);
+    /** A resonant high pass filter
+    * \param input A signal
+    * \param cutoff1 The cutoff frequency (in Hz)
+    * \param resonance The amount of resonance
+    */
     double hires(double input, double cutoff1, double resonance);
+
+    /** A resonant band pass filter
+    * \param input A signal
+    * \param cutoff1 The cutoff frequency (in Hz)
+    * \param resonance The amount of resonance
+    */
     double bandpass(double input, double cutoff1, double resonance);
+
+    /** A simple low pass filter
+    * \param input A signal
+    * \param cutoff1 The cutoff frequency (between 0 and 1)
+    */
     double lopass(double input, double cutoff);
+
+    /** A simple low pass filter
+    * \param input A signal
+    * \param cutoff1 The cutoff frequency (between 0 and 1)
+    */
     double hipass(double input, double cutoff);
 
     // ------------------------------------------------
     // getters/setters
+
+    /*!\Sets the cutoff frequency \param cut The cutoff frequency*/
     void setCutoff(double cut)
     {
         cutoff = cut;
     }
 
+    /*!\Sets the resonance \param res The resonance*/
     void setResonance(double res)
     {
         resonance = res;
     }
 
+    /*!\returns the cutoff value*/
     double getCutoff()
     {
         return cutoff;
     }
 
+    /*!\returns the resonance value*/
     double getResonance()
     {
         return resonance;
@@ -330,6 +363,10 @@ public:
     // ------------------------------------------------
 };
 
+
+/**
+ * Functions for multichannel panning 
+ */
 class maxiMix
 {
     double input;
@@ -352,8 +389,30 @@ public:
     //	double *ambisonic(double input,double eight[8],double x,double y, double z);
 
     // should return or just be void function
+    /**
+     * Stereo panning
+     * \param input A mono signal
+     * \param two A vector (size 2) into which the signal is panned in-place
+     * \param x The panning level (0 to 1)
+     */
     void stereo(double input, std::vector<double> &two, double x);
+
+    /**
+     * Quadraphonic panning
+     * \param input A mono signal
+     * \param four A vector (size 4) into which the signal is panned
+     * \param x Left-right panning level (0 to 1)
+     * \param y Forward-backward panning level (0 to 1)
+     */
     void quad(double input, std::vector<double> &four, double x, double y);
+    /**
+     * Ambisonic panning
+     * \param input A mono signal
+     * \param eight A vector (size 8) into which the signal is panned
+     * \param x Left-right panning level (0 to 1)
+     * \param y Forward-backward panning level (0 to 1)
+     * \param z Up-down panning level (0 to 1)
+     */
     void ambisonic(double input, std::vector<double> &eight, double x, double y, double z);
 };
 
@@ -496,11 +555,15 @@ public:
     }
 };
 
+/**
+ * Generator triggers (a single 1 in a stream of 0s) according to certain conditions
+ */
+
 class CHEERP_EXPORT maxiTrigger
 {
 public:
     maxiTrigger();
-    //zerocrossing
+    /*! Generate a trigger when a signal transitions from <=0 to above 0 \param input A signal*/
     double onZX(double input)
     {
         double isZX = 0.0;
@@ -513,7 +576,7 @@ public:
         return isZX;
     }
 
-    //change detector
+    /*! Generate a trigger when a signal changes beyond a certain amount \param input A signal \param tolerance The amount of chance allowed before a trigger is generated*/
     double onChanged(double input, double tolerance)
     {
         double changed = 0;
@@ -531,6 +594,9 @@ private:
 };
 
 
+/**
+ * A sampler
+ */
 class CHEERP_EXPORT maxiSample
 {
 
@@ -542,11 +608,10 @@ private:
     // DualModeF64Array test;
 
 public:
-//     //    int    myDataSize;
     short myChannels;
     int mySampleRate;
+    /*!\returns The length of the sample, in samples*/
     inline size_t getLength() { return F64_ARRAY_SIZE(amplitudes); };
-    // void setLength(unsigned long numSamples);
     short myBitsPerSample;
     maxiTrigger zxTrig;
 
@@ -556,6 +621,7 @@ public:
     maxiSample();
 
 #ifndef CHEERP
+    /*! Use the = operator to copy from one sample to another \param source another maxiSample instance*/
     maxiSample &operator=(const maxiSample &source)
     {
         if (this == &source)
@@ -576,13 +642,16 @@ public:
     int myByteRate;
     short myBlockAlign;
 
+    /*! Load a mono channel from a file in wav format \param fileName the file name \param channel the index of the channel to read*/
     bool load(string fileName, int channel = 0);
+    /*! Save the file */
     bool save();
+    /*! Save the file, specifying a file name \param filename The file name*/
     bool save(string filename);
     // read a wav file into this class
     bool read();
 
-    // return a printable summary of the wav file
+    /*! \returns a printable summary of the wav file */
     string getSummary();
 
 #endif
@@ -591,8 +660,11 @@ public:
     int setSampleFromOggBlob(vector<unsigned char> &oggBlob, int channel = 0);
 #endif
     // -------------------------
+
+    /*! Check if the sample is loaded \returns true if the sample is ready to play*/
     bool isReady() {return F64_ARRAY_SIZE(amplitudes) > 1;}
 
+    /*! Set the sample from an external array \param _sampleData An double array (JS) or vector (C++) of data*/
     void setSample(DOUBLEARRAY_REF _sampleData)
     {
         // NORMALISE_ARRAY_TYPE(_sampleData, sampleData)
@@ -603,17 +675,32 @@ public:
         position = F64_ARRAY_SIZE(amplitudes) - 1;
     }
 
+    /*! Set the sample from an external array, and set the sample rate 
+     * \param _sampleData An double array (JS) or vector (C++) of data
+     * \param sampleRate the sample rate
+     */
     void setSampleAndRate(DOUBLEARRAY_REF _sampleData, int sampleRate)
     {
         setSample(_sampleData);
         mySampleRate = sampleRate;
     }
 
+    /*! Clear the sample data*/
     void clear() { F64_ARRAY_CLEAR(amplitudes) }
     // // -------------------------
 
+
+    /*! Trigger the sample from the start*/
     void trigger();
 
+    /**
+     * Record into the sample buffer
+     * \param newSample a signal
+     * \param recordEnabled set to true to record into the loop
+     * \param recordMix the balance between existing sample and the new signal (1 = overdub, 0=no recording, 0.5=equal mix)
+     * \param start the loop start point (0-1)
+     * \param end the loop end point (0-1)
+     */
     void loopRecord(double newSample, const bool recordEnabled, const double recordMix, double start, double end)
     {
         loopRecordLag.addSample(recordEnabled);
@@ -631,54 +718,98 @@ public:
             recordPosition = start * F64_ARRAY_SIZE(amplitudes);
     }
 
+    /*! Reset the sample to play from the start*/
     void reset() {position=0;}
 
+    /*! Play the sample, with no modification */
     double play();
 
+    /*! Play the sample, providing a phasor to control the position \param pha a phasor signal (from 0 to 1)*/
     double playWithPhasor(double pha);
     bool phasorFirst=1;
     double phasorPrev=0;
 
+    /*! Play the sample in a loop \param start start position (0-1) \param end end position (0-1)*/
     double playLoop(double start, double end); // start and end are between 0.0 and 1.0
 
+    /*! Play the sample once and stop*/
     double playOnce();
+
+    /*! Play the sample when a trigger is received \param trigger a signal*/
     double playOnZX(double trigger);
+
+    /*! Play the sample when a trigger is received, at a modified speed \param trigger a signal \param speed the speed multiplier (1=no change, 2=double etc)*/
     double playOnZXAtSpeed(double trig, double speed); //API CHANGE
+    /*! Play the sample when a trigger is received, at a modified speed from a specific position \param trigger a signal \param speed the speed multiplier (1=no change, 2=double etc) \param offset the start position (0-1)*/
     double playOnZXAtSpeedFromOffset(double trig, double speed, double offset); //API CHANGE
+    /*! Play the sample when a trigger is received, at a modified speed beween two positions \param trigger a signal \param speed the speed multiplier (1=no change, 2=double etc) \param offset the start position (0-1) \param length the length of the segment (0-1)*/
     double playOnZXAtSpeedBetweenPoints(double trig, double speed, double offset, double length); //API CHANGE
 
+    /*! Loop the sample, and set the playback position to a specific point when a trigger is received \param trigger a signal \param position the position to move to when a trigger is recevied*/
     double loopSetPosOnZX(double trigger, double position); // position between 0 and 1.0
 
+    /*! Play the samples once, at a modified speed \param speed a speed multiplier*/
     double playOnceAtSpeed(double speed); //API CHANGE
 
+    /*! Set the playback position \param newPos (0-1)*/
     void setPosition(double newPos); // between 0.0 and 1.0
 
+    /*! Play from the start to a specific position \param end the end point (0-1)*/
     double playUntil(double end);
+    /*! Play from the start to a specific position, at a modified speed \param end the end point (0-1) \param speed a speed multiplier*/    
     double playUntilAtSpeed(double end, double speed);
 
+    /*! Play at a modified speed \param speed a speed multiplier*/
     double playAtSpeed(double speed); //API CHANGE
 
+
+    /*! Play at a modified speed between two points, from a position \param frequency the playback pitch (in Hz) \param start the start point (in samples) \param end the end point (in samples) \param pos the starting position (in samples)*/
     double playAtSpeedBetweenPointsFromPos(double frequency, double start, double end, double pos); //API CHANGE
 
+    /*! Play at a modified speed between two points \param frequency the playback pitch (in Hz) \param start the start point (in samples) \param end the end point (in samples)*/
     double playAtSpeedBetweenPoints(double frequency, double start, double end); //API CHANGE
 
+    /*! Play at a modified speed between two points, using quadratic interpolation \param frequency the playback pitch (in Hz) \param start the start point (in samples) \param end the end point (in samples)*/
     double play4(double frequency, double start, double end);
 
 
-    void normalise(double maxLevel);                                                               //0 < maxLevel < 1.0
+    /*! Normalise the sample buffer \param maxLevel the maximum absolute level*/
+    void normalise(double maxLevel);                                            
+
+    /*! Trim the sample buffer to remove silence from the ends \param alpha the sensitivity \param threshold the value above which to start trimming \param trimStart true if the start should be trimmed \param trimEnd true if the end should be trimmed */
     void autoTrim(float alpha, float threshold, bool trimStart, bool trimEnd); //alpha of lag filter (lower == slower reaction), threshold to mark start and end, < 32767
 };
 
+/**
+ * Various mapping functions
+ */
 class CHEERP_EXPORT maxiMap
 {
 public:
     maxiMap();
+
+    /** Map from one range to another, linearly
+     * \param val a signal
+     * \param inMin the lowest expected value of the signal
+     * \param inMax the highest expected value of the signal
+     * \param outMin the lowest value in the new range of the signal
+     * \param outMax the highest value in the new range of the signal
+     * \returns a signal
+     */
     static double inline linlin(double val, double inMin, double inMax, double outMin, double outMax)
     {
         val = max(min(val, inMax), inMin);
         return ((val - inMin) / (inMax - inMin) * (outMax - outMin)) + outMin;
     }
 
+    /** Map from one range to another, converting from linear to expontial - useful from mapping control values to frequencies etc
+     * \param val a signal
+     * \param inMin the lowest expected value of the signal
+     * \param inMax the highest expected value of the signal
+     * \param outMin the lowest value in the new range of the signal
+     * \param outMax the highest value in the new range of the signal
+     * \returns a signal
+     */
     static double inline linexp(double val, double inMin, double inMax, double outMin, double outMax)
     {
         //clipping
@@ -686,6 +817,14 @@ public:
         return pow((outMax / outMin), (val - inMin) / (inMax - inMin)) * outMin;
     }
 
+    /** Map from one range to another, converting from an exponential value to a linear one
+     * \param val a signal
+     * \param inMin the lowest expected value of the signal
+     * \param inMax the highest expected value of the signal
+     * \param outMin the lowest value in the new range of the signal
+     * \param outMax the highest value in the new range of the signal
+     * \returns a signal
+     */
     static double inline explin(double val, double inMin, double inMax, double outMin, double outMax)
     {
         //clipping
@@ -693,7 +832,12 @@ public:
         return (log(val / inMin) / log(inMax / inMin) * (outMax - outMin)) + outMin;
     }
 
-    //replacing the templated version
+    /** Restrict a signal to upper and lower bounds 
+     * \param v a signal
+     * \param low the lowest value
+     * \param high the highest value
+     * \returns a signal
+     */
     static double inline clamp(double v, const double low, const double high)
     {
         if (v > high)
@@ -708,6 +852,7 @@ public:
     }
 };
 
+/* The class is deprecated, use maxiDynamics instead */
 class maxiDyn
 {
 
@@ -735,6 +880,8 @@ public:
     long holdcount;
     int attackphase, holdphase, releasephase;
 };
+
+/* The class is deprecated, use maxiEnvGen instead */
 
 class maxiEnv
 {
@@ -1076,17 +1223,21 @@ private:
 typedef maxiEnvelopeFollowerType<double> maxiEnvelopeFollower;
 typedef maxiEnvelopeFollowerType<float> maxiEnvelopeFollowerF;
 
+/**
+ * A simple high pass filter to block DC
+ */
 class maxiDCBlocker
 {
 public:
     double xm1, ym1;
     maxiDCBlocker() : xm1(0), ym1(0) {}
+    /*! Remove DC from a signal \param input a signal \param R the sensitivity (0-1) */
     inline double play(double input, double R)
     {
         ym1 = input - xm1 + R * ym1;
         xm1 = input;
         return ym1;
-    }
+    }   
 };
 
 /**
@@ -1333,10 +1484,14 @@ public:
     }
 };
 
+/**
+ * A line generator (you can also use maxiEnvGen)
+ */
 class maxiLine
 {
 public:
     maxiLine() {}
+    /*! Generate a line, when a trigger is received \param trigger a signal*/
     inline double play(double trigger)
     {
         if (!lineComplete)
@@ -1369,6 +1524,15 @@ public:
         }
         return lineValue;
     }
+
+    /** Setup the line before it is triggered 
+     * \param start the starting value of the line
+     * \param end the ending value of the line
+     * \param durationMs the duration of the line (in milliseconds)
+     * \param isOneShot true is the line should not play once, or false if it should loop
+     * \returns a signal
+     */
+
     inline void prepare(double start, double end, double durationMs, bool isOneShot)
     {
         lineValue = lineStart;
@@ -1380,10 +1544,13 @@ public:
         oneShot = isOneShot;
         reset();
     }
+
+    /*! \param 0 or less to protect the generator from triggering, more than 0 to enable it to be triggered*/
     inline void triggerEnable(double on)
     {
         trigEnable = on > 0.0;
     }
+    /*! \returns true if the line generator has finished*/
     inline bool isLineComplete()
     {
         return lineComplete;
@@ -1688,9 +1855,17 @@ public:
     // maxiBits::bitsig t=0;
 };
 
+/**
+ * Count triggers
+ */
 class maxiCounter
 {
 public:
+    /** Increase each time a trigger is received
+     * \param incTrigger a signal that triggers the counter to increment 
+     * \param resetTrigger a signal that resets the counter to zero
+     * \returns the number of triggers received since the beginning or the last reset
+     */
     double count(double incTrigger, double resetTrigger)
     {
         if (inctrig.onZX(incTrigger))

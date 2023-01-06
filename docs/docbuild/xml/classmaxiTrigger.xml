@@ -2,6 +2,7 @@
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="classmaxiTrigger" kind="class" language="C++" prot="public">
     <compoundname>maxiTrigger</compoundname>
+    <includes refid="maximilian_8h" local="no">maximilian.h</includes>
       <sectiondef kind="private-attrib">
       <memberdef kind="variable" id="classmaxiTrigger_1acc1c4efbd08f839b15e70ac423605c9e" prot="private" static="no" mutable="no">
         <type>double</type>
@@ -15,7 +16,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="529" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="529" bodyend="-1"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="592" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="592" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classmaxiTrigger_1abe55478c63ce26695112dea9a8800587" prot="private" static="no" mutable="no">
         <type>bool</type>
@@ -29,7 +30,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="530" column="10" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="530" bodyend="-1"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="593" column="10" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="593" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
@@ -44,7 +45,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="502" column="5" bodyfile="/home/ck84/src/Maximilian/src/maximilian.cpp" bodystart="1514" bodyend="1514"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="565" column="5" bodyfile="/home/ck84/src/Maximilian/src/maximilian.cpp" bodystart="1514" bodyend="1514"/>
       </memberdef>
       <memberdef kind="function" id="classmaxiTrigger_1a0698eef58cbfc97a42ab20dbb88a2a50" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>double</type>
@@ -58,10 +59,20 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
+<para>Generate a trigger when a signal transitions from &lt;=0 to above 0<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>input</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="classA" kindref="compound">A</ref> signal </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="504" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="504" bodyend="514"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="567" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="567" bodyend="577"/>
       </memberdef>
       <memberdef kind="function" id="classmaxiTrigger_1a443b416d526c83c3a36280704050f1d9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>double</type>
@@ -79,17 +90,36 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
+<para>Generate a trigger when a signal changes beyond a certain amount<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>input</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="classA" kindref="compound">A</ref> signal</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>tolerance</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The amount of chance allowed before a trigger is generated </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="517" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="517" bodyend="526"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="580" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="580" bodyend="589"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
+<para>Generator triggers (a single 1 in a stream of 0s) according to certain conditions </para>
     </detaileddescription>
-    <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="499" column="1" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="500" bodyend="531"/>
+    <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="562" column="1" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="563" bodyend="594"/>
     <listofallmembers>
       <member refid="classmaxiTrigger_1abe55478c63ce26695112dea9a8800587" prot="private" virt="non-virtual"><scope>maxiTrigger</scope><name>firstTrigger</name></member>
       <member refid="classmaxiTrigger_1aa796f17d541d7687704024888a9e03eb" prot="public" virt="non-virtual"><scope>maxiTrigger</scope><name>maxiTrigger</name></member>

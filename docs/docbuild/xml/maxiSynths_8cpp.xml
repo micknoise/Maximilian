@@ -136,7 +136,7 @@
 <codeline lineno="43"><highlight class="normal"></highlight></codeline>
 <codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(useFilter)<sp/>{</highlight></codeline>
 <codeline lineno="45"><highlight class="normal"></highlight></codeline>
-<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>output=filter.lores(output,<sp/>cutoff,<sp/>resonance);</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>output=filter.<ref refid="classmaxiFilter_1aa5547847ba00fa1018978769ea76c693" kindref="member">lores</ref>(output,<sp/>cutoff,<sp/>resonance);</highlight></codeline>
 <codeline lineno="47"><highlight class="normal"></highlight></codeline>
 <codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="49"><highlight class="normal"></highlight></codeline>
@@ -218,7 +218,7 @@
 <codeline lineno="125"><highlight class="normal"></highlight></codeline>
 <codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(useFilter)<sp/>{</highlight></codeline>
 <codeline lineno="127"><highlight class="normal"></highlight></codeline>
-<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>output=filter.lores(output,<sp/>cutoff,<sp/>resonance);</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>output=filter.<ref refid="classmaxiFilter_1aa5547847ba00fa1018978769ea76c693" kindref="member">lores</ref>(output,<sp/>cutoff,<sp/>resonance);</highlight></codeline>
 <codeline lineno="129"><highlight class="normal"></highlight></codeline>
 <codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="131"><highlight class="normal"></highlight></codeline>
@@ -389,7 +389,7 @@
 <codeline lineno="296"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>envOut[i]=envelopes[i].adsr(envOutGain[i],envelopes[i].trigger);</highlight></codeline>
 <codeline lineno="297"><highlight class="normal"></highlight></codeline>
 <codeline lineno="298"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(envOut[i]&gt;0.)<sp/>{</highlight></codeline>
-<codeline lineno="299"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>outputs[i]=samples[i].play4(pitchRatios[(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal">)pitch[i]+originalPitch]*((1./samples[i].getLength())*<ref refid="classmaxiSettings_1a69a0a3a7202358b401f8c75b0d711421" kindref="member">maxiSettings::sampleRate</ref>),0,samples[i].getLength())*envOut[i];</highlight></codeline>
+<codeline lineno="299"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>outputs[i]=samples[i].<ref refid="classmaxiSample_1a9fc13e53377f8c656353d76792030c71" kindref="member">play4</ref>(pitchRatios[(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal">)pitch[i]+originalPitch]*((1./samples[i].getLength())*<ref refid="classmaxiSettings_1a69a0a3a7202358b401f8c75b0d711421" kindref="member">maxiSettings::sampleRate</ref>),0,samples[i].getLength())*envOut[i];</highlight></codeline>
 <codeline lineno="300"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>output+=outputs[i]/voices;</highlight></codeline>
 <codeline lineno="301"><highlight class="normal"></highlight></codeline>
 <codeline lineno="302"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(envelopes[i].trigger==1<sp/>&amp;&amp;<sp/>!sustain)<sp/>{</highlight></codeline>
@@ -408,13 +408,13 @@
 <codeline lineno="315"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(setall)<sp/>{</highlight></codeline>
 <codeline lineno="316"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i=0;i&lt;voices;i++)<sp/>{</highlight></codeline>
 <codeline lineno="317"><highlight class="normal"></highlight></codeline>
-<codeline lineno="318"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>samples[i].load(inFile);</highlight></codeline>
+<codeline lineno="318"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>samples[i].<ref refid="classmaxiSample_1a68c12e14649369d0657eca87a2a2929f" kindref="member">load</ref>(inFile);</highlight></codeline>
 <codeline lineno="319"><highlight class="normal"></highlight></codeline>
 <codeline lineno="320"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="321"><highlight class="normal"></highlight></codeline>
 <codeline lineno="322"><highlight class="normal"><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
 <codeline lineno="323"><highlight class="normal"></highlight></codeline>
-<codeline lineno="324"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>samples[currentVoice].load(inFile);</highlight></codeline>
+<codeline lineno="324"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>samples[currentVoice].<ref refid="classmaxiSample_1a68c12e14649369d0657eca87a2a2929f" kindref="member">load</ref>(inFile);</highlight></codeline>
 <codeline lineno="325"><highlight class="normal"></highlight></codeline>
 <codeline lineno="326"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="327"><highlight class="normal"></highlight></codeline>
@@ -557,13 +557,13 @@
 <codeline lineno="464"><highlight class="normal"></highlight></codeline>
 <codeline lineno="465"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i=0;i&lt;voices;i++)<sp/>{</highlight></codeline>
 <codeline lineno="466"><highlight class="normal"></highlight></codeline>
-<codeline lineno="467"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>samples[i].setPosition(positionD);</highlight></codeline>
+<codeline lineno="467"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>samples[i].<ref refid="classmaxiSample_1a678ec42067934e9db35a5c68f8d5ab13" kindref="member">setPosition</ref>(positionD);</highlight></codeline>
 <codeline lineno="468"><highlight class="normal"></highlight></codeline>
 <codeline lineno="469"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="470"><highlight class="normal"></highlight></codeline>
 <codeline lineno="471"><highlight class="normal"><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
 <codeline lineno="472"><highlight class="normal"></highlight></codeline>
-<codeline lineno="473"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>samples[currentVoice].setPosition(positionD);</highlight></codeline>
+<codeline lineno="473"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>samples[currentVoice].<ref refid="classmaxiSample_1a678ec42067934e9db35a5c68f8d5ab13" kindref="member">setPosition</ref>(positionD);</highlight></codeline>
 <codeline lineno="474"><highlight class="normal"></highlight></codeline>
 <codeline lineno="475"><highlight class="normal"></highlight></codeline>
 <codeline lineno="476"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
@@ -574,7 +574,7 @@
 <codeline lineno="481"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>maxiSampler::trigger()<sp/>{</highlight></codeline>
 <codeline lineno="482"><highlight class="normal"></highlight></codeline>
 <codeline lineno="483"><highlight class="normal"><sp/><sp/><sp/><sp/>envelopes[currentVoice].trigger=1;</highlight></codeline>
-<codeline lineno="484"><highlight class="normal"><sp/><sp/><sp/><sp/>samples[currentVoice].trigger();</highlight></codeline>
+<codeline lineno="484"><highlight class="normal"><sp/><sp/><sp/><sp/>samples[currentVoice].<ref refid="classmaxiSample_1a4c47dacfbb6514804501968dca4f0293" kindref="member">trigger</ref>();</highlight></codeline>
 <codeline lineno="485"><highlight class="normal"><sp/><sp/><sp/><sp/>currentVoice++;</highlight></codeline>
 <codeline lineno="486"><highlight class="normal"><sp/><sp/><sp/><sp/>currentVoice=currentVoice%voices;</highlight></codeline>
 <codeline lineno="487"><highlight class="normal"></highlight></codeline>

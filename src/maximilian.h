@@ -2309,7 +2309,10 @@ class CHEERP_EXPORT maxiDynamics {
                 return rms.play(sig);
             };
 
+            //default RMS
             inputAnalyser = inputRMS;
+
+            //setup envelopes
             arEnvHigh.setupASR(10,10);
             arEnvHigh.setRetrigger(false);
             arEnvLow.setupASR(10,10);
@@ -2318,22 +2321,27 @@ class CHEERP_EXPORT maxiDynamics {
             lookAheadDelay.setup(maxiSettings::sampleRate * 1); //max 1s
         }
 
-        double envToRatio(double envVal, double ratio) {
-            double envRatio = 1;
-            if (ratio > 1) {
-                envRatio = 1 + ((ratio-1) * envVal);
-            }else {
-                envRatio = 1 - ((1-ratio) * envVal);
-            }
-            return envRatio;
-        }
 
+        /**
+         * This functions compands the signal, providing download compression or upward expansion above an upper thresold, and
+         * upward compression or downward expansion below a lower threshold.
+         * \param sig The input signal to be companded
+         * \param control This signal is used to trigger the compander. Use it for sidechaining, or if no sidechain is needed, use the same signal for this and the input signal
+         * \param thresholdHigh The high threshold, in Dbs
+         * \param ratioHigh The ratio for companding above the high threshold
+         * \param kneeHigh The size of the knee for companding above the high threshold (in Dbs)
+         * \param thresholdLow The low threshold, in Dbs
+         * \param ratioLow The ratio for companding below the low threshold
+         * \param kneeLow The size of the knee for companding below the low threshold (in Dbs)
+         * \returns a companded signal
+         */
         double play(double sig, double control, 
             double thresholdHigh, double ratioHigh, double kneeHigh,
             double thresholdLow, double ratioLow, double kneeLow
         ) {
             double controlDB = maxiConvert::ampToDbs(inputAnalyser(control));
             double outDB = maxiConvert::ampToDbs(sig);
+            //companding above the high threshold
             if (ratioHigh > 0) {
                 if (kneeHigh > 0) {
                     double lowerKnee = thresholdHigh - (kneeHigh/2.0);
@@ -2370,6 +2378,7 @@ class CHEERP_EXPORT maxiDynamics {
                     }
                 }
             }  
+            //companding below the low threshold
             if (ratioLow > 0) {
                 if (kneeLow > 0) {
                     double lowerKnee = thresholdLow - (kneeLow/2.0);
@@ -2406,6 +2415,7 @@ class CHEERP_EXPORT maxiDynamics {
                     }
                 }
             }  
+            //scale the signal according to the amount of compansion on the control signal
             double outAmp = maxiConvert::dbsToAmp(outDB);
             double sigOut = 0;
             if (outAmp > 0) {
@@ -2420,43 +2430,110 @@ class CHEERP_EXPORT maxiDynamics {
             return sigOut;
         }
 
+        /**
+         * Compress a signal (using downward compression)
+         * \param sig The input signal to be compressed
+         * \param threshold The threshold, in Dbs
+         * \param ratio The compression ratio (>1 provides compression, <1 provides expansion)
+         * \param knee The size of the knee (in Dbs)
+         * \returns a compressed signal
+         */
         double compress(double sig, double threshold, double ratio, double knee) {
             return play(sig, sig, threshold, ratio, knee, 0, 0, 0);
         }
+        /**
+         * Compress a signal with sidechaining (using downward compression)
+         * \param sig The input signal to be compressed
+         * \param control The sidechain signal
+         * \param threshold The threshold, in Dbs
+         * \param ratio The compression ratio (>1 provides compression, <1 provides expansion)
+         * \param knee The size of the knee (in Dbs)
+         * \returns a compressed signal
+         */
         double sidechainCompress(double sig, double control, double threshold, double ratio, double knee) {
             return play(sig, control, threshold, ratio, knee, 0, 0, 0);
         }
+        /**
+         * Compand a signal, using detection above a threshold (provides downward compression or upward expansion)
+         * \param sig The input signal to be compressed
+         * \param control The sidechain signal
+         * \param threshold The threshold, in Dbs
+         * \param ratio The compression ratio (>1 provides compression, <1 provides expansion)
+         * \param knee The size of the knee (in Dbs)
+         * \returns a companded signal
+         */
         double compandAbove(double sig, double control, double threshold, double ratio, double knee) {
             return play(sig, control, threshold, ratio, knee, 0, 0, 0);
         }
+        /**
+         * Compand a signal, using detection below a threshold (provides upward compression or downward expansion)
+         * \param sig The input signal to be compressed
+         * \param control The sidechain signal
+         * \param threshold The threshold, in Dbs
+         * \param ratio The compression ratio (>1 provides compression, <1 provides expansion)
+         * \param knee The size of the knee (in Dbs)
+         * \returns a companded signal
+         */
         double compandBelow(double sig, double control, double threshold, double ratio, double knee) {
             return play(sig, control, 0, 0, 0, threshold, ratio, knee);
         }
 
-
+        /**
+         * Set the attack time for the high threshold. This is the amount of time over which the ratio moves from 1 to its full value, following the input analyser going over the threshold.
+         * \param attack The attack time (in milliseconds)
+         */
         void setAttackHigh(double attack) {
             arEnvHigh.setTime(0, attack);
         }
+        /**
+         * Set the release time for the high threshold. This is the amount of time over which the ratio moves from its full value to 1, following the input analyser going under the threshold.
+         * \param release The release time (in milliseconds)
+         */
         void setReleaseHigh(double release) {
             arEnvHigh.setTime(2, release);
         }
+        /**
+         * Set the attack time for the low threshold. This is the amount of time over which the ratio moves from 1 to its full value, following the input analyser going under the threshold.
+         * \param attack The attack time (in milliseconds)
+         */
         void setAttackLow(double attack) {
             arEnvLow.setTime(0, attack);
         }
+        /**
+         * Set the release time for the low threshold. This is the amount of time over which the ratio moves from its full value to 1, following the input analyser going over the threshold.
+         * \param release The release time (in milliseconds)
+         */
         void setReleaseLow(double release) {
             arEnvLow.setTime(2, release);
         }
+
+        /**
+         * The look ahead creates a delay on the input signal, meaning that that the signal is compressed according to event that have already happened in the control signal.  This can be useful for limiting and catching fast transients.
+         * \param length The amount of time the compressor looks ahead (in milliseconds)
+         */
         void setLookAhead(double length) {
             lookAheadSize = maxiConvert::msToSamps(length);
             lookAheadSize = min(lookAheadSize, lookAheadDelay.size());
         }
+        /**
+         * \returns the look ahead time (in milliseconds)
+         */
         double getLookAhead() {
             return maxiConvert::sampsToMs(lookAheadSize);
         }
+
+        /**
+         * Set the size of the RMS window.  Longer times give a slower response
+         * \param winSize The size of the window (in milliseconds)
+         */
         void setRMSWindowSize(double winSize) {
             rms.setWindowSize(min(winSize, 500.0));
         }
 
+        /**
+         * Set the method by which the compressor analyses the control input
+         * \mode maxiDynamics::PEAK for peak analysis, maxiDynamics::RMS for rms analysis
+         */
         void setInputAnalyser(ANALYSERS mode) {
             if (mode == PEAK) {
                 inputAnalyser = inputPeak;
@@ -2475,6 +2552,17 @@ class CHEERP_EXPORT maxiDynamics {
         std::function<double(double)> inputRMS;        
         std::function<double(double)> inputAnalyser;
         maxiPoll poll;
+
+        //mapping from attack/release envelope to ratio
+        double envToRatio(double envVal, double ratio) {
+            double envRatio = 1;
+            if (ratio > 1) {
+                envRatio = 1 + ((ratio-1) * envVal);
+            }else {
+                envRatio = 1 - ((1-ratio) * envVal);
+            }
+            return envRatio;
+        }
 
 };
 #endif

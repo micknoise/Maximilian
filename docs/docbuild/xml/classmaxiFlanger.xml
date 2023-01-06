@@ -14,7 +14,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1072" column="19" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1072" bodyend="-1"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1000" column="19" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1000" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classmaxiFlanger_1ac41402f65bd2fea8d4f574c44c289c98" prot="public" static="no" mutable="no">
         <type><ref refid="classmaxiOsc" kindref="compound">maxiOsc</ref></type>
@@ -27,7 +27,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1073" column="13" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1073" bodyend="-1"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1001" column="13" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1001" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
@@ -62,7 +62,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1071" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1076" bodyend="1085"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="999" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1004" bodyend="1013"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -89,7 +89,7 @@
         </childnode>
       </node>
     </collaborationgraph>
-    <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1064" column="1" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1065" bodyend="1074"/>
+    <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="992" column="1" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="993" bodyend="1002"/>
     <listofallmembers>
       <member refid="classmaxiFlanger_1af740169b488721e1aaa33ebe4d1ff566" prot="public" virt="non-virtual"><scope>maxiFlanger</scope><name>dl</name></member>
       <member refid="classmaxiFlanger_1abb001b4066237c99e69c983b638d4943" prot="public" virt="non-virtual"><scope>maxiFlanger</scope><name>flange</name></member>

@@ -31,6 +31,13 @@ Filters
    :members:
 
 
+Dynamics
+--------
+
+.. doxygenclass:: maxiDynamics
+   :project: maximilian
+   :members:
+
 
 Effects
 -------

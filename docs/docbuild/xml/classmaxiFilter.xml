@@ -174,7 +174,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="300" column="5" bodyfile="/home/ck84/src/Maximilian/src/maximilian.cpp" bodystart="1497" bodyend="1497"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="300" column="5" bodyfile="/home/ck84/src/Maximilian/src/maximilian.cpp" bodystart="1517" bodyend="1517"/>
       </memberdef>
       <memberdef kind="function" id="classmaxiFilter_1aa5547847ba00fa1018978769ea76c693" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>double</type>

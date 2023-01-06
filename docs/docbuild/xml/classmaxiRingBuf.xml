@@ -30,7 +30,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="451" column="17" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="451" bodyend="-1"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="431" column="17" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="431" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classmaxiRingBuf_1acd8bacf938234a164bfbfb6dcd24ac74" prot="private" static="no" mutable="no">
         <type>size_t</type>
@@ -44,7 +44,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="452" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="452" bodyend="-1"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="432" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="432" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
@@ -59,7 +59,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="365" column="5" bodyfile="/home/ck84/src/Maximilian/src/maximilian.cpp" bodystart="1506" bodyend="1506"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="365" column="5" bodyfile="/home/ck84/src/Maximilian/src/maximilian.cpp" bodystart="1526" bodyend="1526"/>
       </memberdef>
       <memberdef kind="function" id="classmaxiRingBuf_1af577d377112b3e7cf10aeb38cbbf977b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
@@ -235,7 +235,7 @@
     <detaileddescription>
 <para><ref refid="classA" kindref="compound">A</ref> ring buffer. <ref refid="classThis" kindref="compound">This</ref> enables you to look at the last N values in a time series. </para>
     </detaileddescription>
-    <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="363" column="1" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="363" bodyend="453"/>
+    <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="363" column="1" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="363" bodyend="433"/>
     <listofallmembers>
       <member refid="classmaxiRingBuf_1a928b47856a68401ddcfa791084813f5d" prot="private" virt="non-virtual"><scope>maxiRingBuf</scope><name>buf</name></member>
       <member refid="classmaxiRingBuf_1a37a316f7a7d30b80674f53dd2cdd83ed" prot="public" virt="non-virtual"><scope>maxiRingBuf</scope><name>head</name></member>

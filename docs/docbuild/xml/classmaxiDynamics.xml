@@ -1,0 +1,832 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classmaxiDynamics" kind="class" language="C++" prot="public">
+    <compoundname>maxiDynamics</compoundname>
+    <includes refid="maximilian_8h" local="no">maximilian.h</includes>
+      <sectiondef kind="public-type">
+      <memberdef kind="enum" id="classmaxiDynamics_1a796f4e6f35e94bf422f380511d7e45bc" prot="public" static="no" strong="no">
+        <type></type>
+        <name>ANALYSERS</name>
+        <enumvalue id="classmaxiDynamics_1a796f4e6f35e94bf422f380511d7e45bcafb9db0a60123c6c325d3ab6b5c4d03b4" prot="public">
+          <name>PEAK</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classmaxiDynamics_1a796f4e6f35e94bf422f380511d7e45bca0fe36abab9e6d294775e31c20e7051e8" prot="public">
+          <name>RMS</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="2299" column="9" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="2299" bodyend="2299"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classmaxiDynamics_1a31fbbbe66c9725dfdce41062cd2d7f93" prot="private" static="no" mutable="no">
+        <type><ref refid="classmaxiEnvGen" kindref="compound">maxiEnvGen</ref></type>
+        <definition>maxiEnvGen maxiDynamics::arEnvHigh</definition>
+        <argsstring></argsstring>
+        <name>arEnvHigh</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="2547" column="20" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="2547" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiDynamics_1a49b727297e7e1789971e695d1aba203c" prot="private" static="no" mutable="no">
+        <type><ref refid="classmaxiEnvGen" kindref="compound">maxiEnvGen</ref></type>
+        <definition>maxiEnvGen maxiDynamics::arEnvLow</definition>
+        <argsstring></argsstring>
+        <name>arEnvLow</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="2547" column="30" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="2547" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiDynamics_1a338f1b76174fe356f5dbee07f3eb1253" prot="private" static="no" mutable="no">
+        <type><ref refid="classmaxiRingBuf" kindref="compound">maxiRingBuf</ref></type>
+        <definition>maxiRingBuf maxiDynamics::lookAheadDelay</definition>
+        <argsstring></argsstring>
+        <name>lookAheadDelay</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="2548" column="21" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="2548" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiDynamics_1a0182bf23f7ad0f7dec3b62eddf5dfce8" prot="private" static="no" mutable="no">
+        <type>size_t</type>
+        <definition>size_t maxiDynamics::lookAheadSize</definition>
+        <argsstring></argsstring>
+        <name>lookAheadSize</name>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="2549" column="16" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="2549" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiDynamics_1a5442a365d2dce8f09b065de059dc0790" prot="private" static="no" mutable="no">
+        <type><ref refid="classmaxiRMS" kindref="compound">maxiRMS</ref></type>
+        <definition>maxiRMS maxiDynamics::rms</definition>
+        <argsstring></argsstring>
+        <name>rms</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="2550" column="17" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="2550" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiDynamics_1abac65fadf5537d8348c10ed9be354566" prot="private" static="no" mutable="no">
+        <type>std::function&lt; double(double)&gt;</type>
+        <definition>std::function&lt;double(double)&gt; maxiDynamics::inputPeak</definition>
+        <argsstring></argsstring>
+        <name>inputPeak</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="2551" column="23" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="2551" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiDynamics_1a0cd47de3a0a28e25d551b050b1c5620b" prot="private" static="no" mutable="no">
+        <type>std::function&lt; double(double)&gt;</type>
+        <definition>std::function&lt;double(double)&gt; maxiDynamics::inputRMS</definition>
+        <argsstring></argsstring>
+        <name>inputRMS</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="2552" column="23" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="2552" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiDynamics_1a3603acb350dddaa261497655027bb00e" prot="private" static="no" mutable="no">
+        <type>std::function&lt; double(double)&gt;</type>
+        <definition>std::function&lt;double(double)&gt; maxiDynamics::inputAnalyser</definition>
+        <argsstring></argsstring>
+        <name>inputAnalyser</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="2553" column="23" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="2553" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiDynamics_1a54d8d7add3f6380aecbd6f899dfa0cf6" prot="private" static="no" mutable="no">
+        <type><ref refid="classmaxiPoll" kindref="compound">maxiPoll</ref></type>
+        <definition>maxiPoll maxiDynamics::poll</definition>
+        <argsstring></argsstring>
+        <name>poll</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="2554" column="18" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="2554" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classmaxiDynamics_1a1538c8e70adeabff05e7a7dc5251dc5e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>maxiDynamics::maxiDynamics</definition>
+        <argsstring>()</argsstring>
+        <name>maxiDynamics</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="2301" column="9" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="2301" bodyend="2322"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiDynamics_1a79a4f30d45aabb964405fde5aaa6829c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double maxiDynamics::play</definition>
+        <argsstring>(double sig, double control, double thresholdHigh, double ratioHigh, double kneeHigh, double thresholdLow, double ratioLow, double kneeLow)</argsstring>
+        <name>play</name>
+        <param>
+          <type>double</type>
+          <declname>sig</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>control</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>thresholdHigh</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>ratioHigh</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>kneeHigh</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>thresholdLow</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>ratioLow</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>kneeLow</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><ref refid="classThis" kindref="compound">This</ref> functions compands the signal, providing download compression or upward expansion above an upper thresold, and upward compression or downward expansion below a lower threshold. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>sig</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The input signal to be companded </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>control</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="classThis" kindref="compound">This</ref> signal is used to trigger the compander. Use it for sidechaining, or if no sidechain is needed, use the same signal for this and the input signal </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>thresholdHigh</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The high threshold, in Dbs </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>ratioHigh</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The ratio for companding above the high threshold </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>kneeHigh</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The size of the knee for companding above the high threshold (in Dbs) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>thresholdLow</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The low threshold, in Dbs </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>ratioLow</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The ratio for companding below the low threshold </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>kneeLow</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The size of the knee for companding below the low threshold (in Dbs) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>a companded signal </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="2338" column="16" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="2338" bodyend="2431"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiDynamics_1a14785d18672ec3c94481e1bd8bc6ed7d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double maxiDynamics::compress</definition>
+        <argsstring>(double sig, double threshold, double ratio, double knee)</argsstring>
+        <name>compress</name>
+        <param>
+          <type>double</type>
+          <declname>sig</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>threshold</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>ratio</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>knee</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Compress a signal (using downward compression) <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>sig</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The input signal to be compressed </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>threshold</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The threshold, in Dbs </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>ratio</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The compression ratio (&gt;1 provides compression, &lt;1 provides expansion) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>knee</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The size of the knee (in Dbs) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>a compressed signal </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="2441" column="16" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="2441" bodyend="2443"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiDynamics_1a37af4d24f186e53efbad57903a028056" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double maxiDynamics::sidechainCompress</definition>
+        <argsstring>(double sig, double control, double threshold, double ratio, double knee)</argsstring>
+        <name>sidechainCompress</name>
+        <param>
+          <type>double</type>
+          <declname>sig</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>control</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>threshold</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>ratio</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>knee</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Compress a signal with sidechaining (using downward compression) <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>sig</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The input signal to be compressed </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>control</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The sidechain signal </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>threshold</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The threshold, in Dbs </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>ratio</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The compression ratio (&gt;1 provides compression, &lt;1 provides expansion) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>knee</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The size of the knee (in Dbs) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>a compressed signal </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="2453" column="16" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="2453" bodyend="2455"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiDynamics_1a3512c121bbf43b379205616ec07e6584" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double maxiDynamics::compandAbove</definition>
+        <argsstring>(double sig, double control, double threshold, double ratio, double knee)</argsstring>
+        <name>compandAbove</name>
+        <param>
+          <type>double</type>
+          <declname>sig</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>control</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>threshold</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>ratio</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>knee</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Compand a signal, using detection above a threshold (provides downward compression or upward expansion) <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>sig</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The input signal to be compressed </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>control</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The sidechain signal </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>threshold</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The threshold, in Dbs </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>ratio</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The compression ratio (&gt;1 provides compression, &lt;1 provides expansion) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>knee</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The size of the knee (in Dbs) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>a companded signal </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="2465" column="16" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="2465" bodyend="2467"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiDynamics_1a14133dec6e29ea14f8b1e96dbe8aadec" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double maxiDynamics::compandBelow</definition>
+        <argsstring>(double sig, double control, double threshold, double ratio, double knee)</argsstring>
+        <name>compandBelow</name>
+        <param>
+          <type>double</type>
+          <declname>sig</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>control</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>threshold</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>ratio</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>knee</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Compand a signal, using detection below a threshold (provides upward compression or downward expansion) <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>sig</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The input signal to be compressed </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>control</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The sidechain signal </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>threshold</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The threshold, in Dbs </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>ratio</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The compression ratio (&gt;1 provides compression, &lt;1 provides expansion) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>knee</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The size of the knee (in Dbs) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>a companded signal </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="2477" column="16" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="2477" bodyend="2479"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiDynamics_1a0273d2650b89b9479a4f2edc6c6199fe" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void maxiDynamics::setAttackHigh</definition>
+        <argsstring>(double attack)</argsstring>
+        <name>setAttackHigh</name>
+        <param>
+          <type>double</type>
+          <declname>attack</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Set the attack time for the high threshold. <ref refid="classThis" kindref="compound">This</ref> is the amount of time over which the ratio moves from 1 to its full value, following the input analyser going over the threshold. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>attack</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The attack time (in milliseconds) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="2485" column="14" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="2485" bodyend="2487"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiDynamics_1a404880950607546bc14b42841114a658" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void maxiDynamics::setReleaseHigh</definition>
+        <argsstring>(double release)</argsstring>
+        <name>setReleaseHigh</name>
+        <param>
+          <type>double</type>
+          <declname>release</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Set the release time for the high threshold. <ref refid="classThis" kindref="compound">This</ref> is the amount of time over which the ratio moves from its full value to 1, following the input analyser going under the threshold. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>release</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The release time (in milliseconds) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="2492" column="14" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="2492" bodyend="2494"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiDynamics_1aa76adf63dbc2787b4b371ec5004a046d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void maxiDynamics::setAttackLow</definition>
+        <argsstring>(double attack)</argsstring>
+        <name>setAttackLow</name>
+        <param>
+          <type>double</type>
+          <declname>attack</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Set the attack time for the low threshold. <ref refid="classThis" kindref="compound">This</ref> is the amount of time over which the ratio moves from 1 to its full value, following the input analyser going under the threshold. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>attack</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The attack time (in milliseconds) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="2499" column="14" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="2499" bodyend="2501"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiDynamics_1a3a12966b1242cd305e1ae1f469ec8b73" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void maxiDynamics::setReleaseLow</definition>
+        <argsstring>(double release)</argsstring>
+        <name>setReleaseLow</name>
+        <param>
+          <type>double</type>
+          <declname>release</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Set the release time for the low threshold. <ref refid="classThis" kindref="compound">This</ref> is the amount of time over which the ratio moves from its full value to 1, following the input analyser going over the threshold. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>release</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The release time (in milliseconds) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="2506" column="14" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="2506" bodyend="2508"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiDynamics_1a82b54fa78fd19796049ebe33f798b4c2" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void maxiDynamics::setLookAhead</definition>
+        <argsstring>(double length)</argsstring>
+        <name>setLookAhead</name>
+        <param>
+          <type>double</type>
+          <declname>length</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>The look ahead creates a delay on the input signal, meaning that that the signal is compressed according to event that have already happened in the control signal. <ref refid="classThis" kindref="compound">This</ref> can be useful for limiting and catching fast transients. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>length</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The amount of time the compressor looks ahead (in milliseconds) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="2514" column="14" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="2514" bodyend="2517"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiDynamics_1a120d14fe57e3174e02ba9983c4f605a0" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double maxiDynamics::getLookAhead</definition>
+        <argsstring>()</argsstring>
+        <name>getLookAhead</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>the look ahead time (in milliseconds) </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="2521" column="16" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="2521" bodyend="2523"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiDynamics_1afa1ab43b86ed583064a4d09fc2fcc56f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void maxiDynamics::setRMSWindowSize</definition>
+        <argsstring>(double winSize)</argsstring>
+        <name>setRMSWindowSize</name>
+        <param>
+          <type>double</type>
+          <declname>winSize</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Set the size of the RMS window. Longer times give a slower response <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>winSize</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The size of the window (in milliseconds) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="2529" column="14" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="2529" bodyend="2531"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiDynamics_1a90493175c8e190322d1da6ca20f3403c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void maxiDynamics::setInputAnalyser</definition>
+        <argsstring>(ANALYSERS mode)</argsstring>
+        <name>setInputAnalyser</name>
+        <param>
+          <type>ANALYSERS</type>
+          <declname>mode</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Set the method by which the compressor analyses the control input \mode maxiDynamics::PEAK for peak analysis, maxiDynamics::RMS for rms analysis </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="2537" column="14" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="2537" bodyend="2543"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classmaxiDynamics_1a99762094c82160d0d35181e2c901c8c9" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double maxiDynamics::envToRatio</definition>
+        <argsstring>(double envVal, double ratio)</argsstring>
+        <name>envToRatio</name>
+        <param>
+          <type>double</type>
+          <declname>envVal</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>ratio</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="2557" column="16" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="2557" bodyend="2565"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>The class provides a range of dynamics processing: downward and upward compression, downward and upward expansion, sidechaining, attack and release, lookahead and peak or RMS detection </para>
+    </detaileddescription>
+    <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="2295" column="1" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="2295" bodyend="2567"/>
+    <listofallmembers>
+      <member refid="classmaxiDynamics_1a796f4e6f35e94bf422f380511d7e45bc" prot="public" virt="non-virtual"><scope>maxiDynamics</scope><name>ANALYSERS</name></member>
+      <member refid="classmaxiDynamics_1a31fbbbe66c9725dfdce41062cd2d7f93" prot="private" virt="non-virtual"><scope>maxiDynamics</scope><name>arEnvHigh</name></member>
+      <member refid="classmaxiDynamics_1a49b727297e7e1789971e695d1aba203c" prot="private" virt="non-virtual"><scope>maxiDynamics</scope><name>arEnvLow</name></member>
+      <member refid="classmaxiDynamics_1a3512c121bbf43b379205616ec07e6584" prot="public" virt="non-virtual"><scope>maxiDynamics</scope><name>compandAbove</name></member>
+      <member refid="classmaxiDynamics_1a14133dec6e29ea14f8b1e96dbe8aadec" prot="public" virt="non-virtual"><scope>maxiDynamics</scope><name>compandBelow</name></member>
+      <member refid="classmaxiDynamics_1a14785d18672ec3c94481e1bd8bc6ed7d" prot="public" virt="non-virtual"><scope>maxiDynamics</scope><name>compress</name></member>
+      <member refid="classmaxiDynamics_1a99762094c82160d0d35181e2c901c8c9" prot="private" virt="non-virtual"><scope>maxiDynamics</scope><name>envToRatio</name></member>
+      <member refid="classmaxiDynamics_1a120d14fe57e3174e02ba9983c4f605a0" prot="public" virt="non-virtual"><scope>maxiDynamics</scope><name>getLookAhead</name></member>
+      <member refid="classmaxiDynamics_1a3603acb350dddaa261497655027bb00e" prot="private" virt="non-virtual"><scope>maxiDynamics</scope><name>inputAnalyser</name></member>
+      <member refid="classmaxiDynamics_1abac65fadf5537d8348c10ed9be354566" prot="private" virt="non-virtual"><scope>maxiDynamics</scope><name>inputPeak</name></member>
+      <member refid="classmaxiDynamics_1a0cd47de3a0a28e25d551b050b1c5620b" prot="private" virt="non-virtual"><scope>maxiDynamics</scope><name>inputRMS</name></member>
+      <member refid="classmaxiDynamics_1a338f1b76174fe356f5dbee07f3eb1253" prot="private" virt="non-virtual"><scope>maxiDynamics</scope><name>lookAheadDelay</name></member>
+      <member refid="classmaxiDynamics_1a0182bf23f7ad0f7dec3b62eddf5dfce8" prot="private" virt="non-virtual"><scope>maxiDynamics</scope><name>lookAheadSize</name></member>
+      <member refid="classmaxiDynamics_1a1538c8e70adeabff05e7a7dc5251dc5e" prot="public" virt="non-virtual"><scope>maxiDynamics</scope><name>maxiDynamics</name></member>
+      <member refid="classmaxiDynamics_1a796f4e6f35e94bf422f380511d7e45bcafb9db0a60123c6c325d3ab6b5c4d03b4" prot="public" virt="non-virtual"><scope>maxiDynamics</scope><name>PEAK</name></member>
+      <member refid="classmaxiDynamics_1a79a4f30d45aabb964405fde5aaa6829c" prot="public" virt="non-virtual"><scope>maxiDynamics</scope><name>play</name></member>
+      <member refid="classmaxiDynamics_1a54d8d7add3f6380aecbd6f899dfa0cf6" prot="private" virt="non-virtual"><scope>maxiDynamics</scope><name>poll</name></member>
+      <member refid="classmaxiDynamics_1a796f4e6f35e94bf422f380511d7e45bca0fe36abab9e6d294775e31c20e7051e8" prot="public" virt="non-virtual"><scope>maxiDynamics</scope><name>RMS</name></member>
+      <member refid="classmaxiDynamics_1a5442a365d2dce8f09b065de059dc0790" prot="private" virt="non-virtual"><scope>maxiDynamics</scope><name>rms</name></member>
+      <member refid="classmaxiDynamics_1a0273d2650b89b9479a4f2edc6c6199fe" prot="public" virt="non-virtual"><scope>maxiDynamics</scope><name>setAttackHigh</name></member>
+      <member refid="classmaxiDynamics_1aa76adf63dbc2787b4b371ec5004a046d" prot="public" virt="non-virtual"><scope>maxiDynamics</scope><name>setAttackLow</name></member>
+      <member refid="classmaxiDynamics_1a90493175c8e190322d1da6ca20f3403c" prot="public" virt="non-virtual"><scope>maxiDynamics</scope><name>setInputAnalyser</name></member>
+      <member refid="classmaxiDynamics_1a82b54fa78fd19796049ebe33f798b4c2" prot="public" virt="non-virtual"><scope>maxiDynamics</scope><name>setLookAhead</name></member>
+      <member refid="classmaxiDynamics_1a404880950607546bc14b42841114a658" prot="public" virt="non-virtual"><scope>maxiDynamics</scope><name>setReleaseHigh</name></member>
+      <member refid="classmaxiDynamics_1a3a12966b1242cd305e1ae1f469ec8b73" prot="public" virt="non-virtual"><scope>maxiDynamics</scope><name>setReleaseLow</name></member>
+      <member refid="classmaxiDynamics_1afa1ab43b86ed583064a4d09fc2fcc56f" prot="public" virt="non-virtual"><scope>maxiDynamics</scope><name>setRMSWindowSize</name></member>
+      <member refid="classmaxiDynamics_1a37af4d24f186e53efbad57903a028056" prot="public" virt="non-virtual"><scope>maxiDynamics</scope><name>sidechainCompress</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -314,6 +314,35 @@
     <member refid="classmaxiDyn_1a9fa27ebd698d7c741db1ddbd1d7b4e90" kind="function"><name>setThreshold</name></member>
     <member refid="classmaxiDyn_1ab69d59318562559b868248b1193c6e82" kind="function"><name>setRatio</name></member>
   </compound>
+  <compound refid="classmaxiDynamics" kind="class"><name>maxiDynamics</name>
+    <member refid="classmaxiDynamics_1a796f4e6f35e94bf422f380511d7e45bc" kind="enum"><name>ANALYSERS</name></member>
+    <member refid="classmaxiDynamics_1a796f4e6f35e94bf422f380511d7e45bcafb9db0a60123c6c325d3ab6b5c4d03b4" kind="enumvalue"><name>PEAK</name></member>
+    <member refid="classmaxiDynamics_1a796f4e6f35e94bf422f380511d7e45bca0fe36abab9e6d294775e31c20e7051e8" kind="enumvalue"><name>RMS</name></member>
+    <member refid="classmaxiDynamics_1a31fbbbe66c9725dfdce41062cd2d7f93" kind="variable"><name>arEnvHigh</name></member>
+    <member refid="classmaxiDynamics_1a49b727297e7e1789971e695d1aba203c" kind="variable"><name>arEnvLow</name></member>
+    <member refid="classmaxiDynamics_1a338f1b76174fe356f5dbee07f3eb1253" kind="variable"><name>lookAheadDelay</name></member>
+    <member refid="classmaxiDynamics_1a0182bf23f7ad0f7dec3b62eddf5dfce8" kind="variable"><name>lookAheadSize</name></member>
+    <member refid="classmaxiDynamics_1a5442a365d2dce8f09b065de059dc0790" kind="variable"><name>rms</name></member>
+    <member refid="classmaxiDynamics_1abac65fadf5537d8348c10ed9be354566" kind="variable"><name>inputPeak</name></member>
+    <member refid="classmaxiDynamics_1a0cd47de3a0a28e25d551b050b1c5620b" kind="variable"><name>inputRMS</name></member>
+    <member refid="classmaxiDynamics_1a3603acb350dddaa261497655027bb00e" kind="variable"><name>inputAnalyser</name></member>
+    <member refid="classmaxiDynamics_1a54d8d7add3f6380aecbd6f899dfa0cf6" kind="variable"><name>poll</name></member>
+    <member refid="classmaxiDynamics_1a1538c8e70adeabff05e7a7dc5251dc5e" kind="function"><name>maxiDynamics</name></member>
+    <member refid="classmaxiDynamics_1a79a4f30d45aabb964405fde5aaa6829c" kind="function"><name>play</name></member>
+    <member refid="classmaxiDynamics_1a14785d18672ec3c94481e1bd8bc6ed7d" kind="function"><name>compress</name></member>
+    <member refid="classmaxiDynamics_1a37af4d24f186e53efbad57903a028056" kind="function"><name>sidechainCompress</name></member>
+    <member refid="classmaxiDynamics_1a3512c121bbf43b379205616ec07e6584" kind="function"><name>compandAbove</name></member>
+    <member refid="classmaxiDynamics_1a14133dec6e29ea14f8b1e96dbe8aadec" kind="function"><name>compandBelow</name></member>
+    <member refid="classmaxiDynamics_1a0273d2650b89b9479a4f2edc6c6199fe" kind="function"><name>setAttackHigh</name></member>
+    <member refid="classmaxiDynamics_1a404880950607546bc14b42841114a658" kind="function"><name>setReleaseHigh</name></member>
+    <member refid="classmaxiDynamics_1aa76adf63dbc2787b4b371ec5004a046d" kind="function"><name>setAttackLow</name></member>
+    <member refid="classmaxiDynamics_1a3a12966b1242cd305e1ae1f469ec8b73" kind="function"><name>setReleaseLow</name></member>
+    <member refid="classmaxiDynamics_1a82b54fa78fd19796049ebe33f798b4c2" kind="function"><name>setLookAhead</name></member>
+    <member refid="classmaxiDynamics_1a120d14fe57e3174e02ba9983c4f605a0" kind="function"><name>getLookAhead</name></member>
+    <member refid="classmaxiDynamics_1afa1ab43b86ed583064a4d09fc2fcc56f" kind="function"><name>setRMSWindowSize</name></member>
+    <member refid="classmaxiDynamics_1a90493175c8e190322d1da6ca20f3403c" kind="function"><name>setInputAnalyser</name></member>
+    <member refid="classmaxiDynamics_1a99762094c82160d0d35181e2c901c8c9" kind="function"><name>envToRatio</name></member>
+  </compound>
   <compound refid="classmaxiEnv" kind="class"><name>maxiEnv</name>
     <member refid="classmaxiEnv_1a368aba81ea0424c3747010fd4db75c4d" kind="variable"><name>input</name></member>
     <member refid="classmaxiEnv_1a13b5f38dd4cca4daad0942e103cd57b4" kind="variable"><name>output</name></member>
@@ -909,7 +938,7 @@
     <member refid="classmaxiSample_1a7eb38f0af4b6fed630991b09a1513d64" kind="variable"><name>myBlockAlign</name></member>
     <member refid="classmaxiSample_1ad583ab97de3e1ae648f7c04144a2202b" kind="variable"><name>phasorFirst</name></member>
     <member refid="classmaxiSample_1a9c8bf9646754528b511b4f91258afdb2" kind="variable"><name>phasorPrev</name></member>
-    <member refid="classmaxiSample_1a9b32955d8d70bd946b74919ac2703c56" kind="function"><name>getLength</name></member>
+    <member refid="classmaxiSample_1ad4d683ac579e9eb38305383eb9b4df5f" kind="function"><name>getLength</name></member>
     <member refid="classmaxiSample_1aec72b1120c5d696825cdd848da0a5271" kind="function"><name>DECLARE_F64_ARRAY</name></member>
     <member refid="classmaxiSample_1af48a45b854755f11c2a08e572532ffdb" kind="function"><name>maxiSample</name></member>
     <member refid="classmaxiSample_1a3be61f10965fbca8bc2440c5b22c1daa" kind="function"><name>operator=</name></member>

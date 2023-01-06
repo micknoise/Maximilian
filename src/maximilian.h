@@ -2425,6 +2425,20 @@ class CHEERP_EXPORT maxiDynamics {
             return sigOut;
         }
 
+        double compress(double sig, double threshold, double ratio, double knee) {
+            return play(sig, sig, threshold, ratio, knee, 0, 0, 0);
+        }
+        double sidechainCompress(double sig, double control, double threshold, double ratio, double knee) {
+            return play(sig, control, threshold, ratio, knee, 0, 0, 0);
+        }
+        double compandAbove(double sig, double control, double threshold, double ratio, double knee) {
+            return play(sig, control, threshold, ratio, knee, 0, 0, 0);
+        }
+        double compandBelow(double sig, double control, double threshold, double ratio, double knee) {
+            return play(sig, control, 0, 0, 0, threshold, ratio, knee);
+        }
+
+
         void setAttackHigh(double attack) {
             arEnvHigh.setTime(0, attack);
         }

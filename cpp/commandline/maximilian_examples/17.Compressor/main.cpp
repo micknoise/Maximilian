@@ -13,6 +13,8 @@ void setup() {//some inits
     dyn.setAttackLow(1);
     dyn.setReleaseLow(1);
     dyn.setLookAhead(2);
+    dyn.setRMSWindowSize(10);
+    dyn.setInputAnalyser(maxiDynamics::RMS);
 
     threshEnv.setup({0, -30, 0}, {10000,10000}, {1,1}, true);
     ratioEnv.setup({20,1,0.05}, {15000,15000}, {1,1}, true);

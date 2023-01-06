@@ -2286,16 +2286,25 @@ class CHEERP_EXPORT maxiRMS {
 };
 
 
+/**
+ * The class provides a range of dynamics processing: downward and upward compression, downward and upward expansion,
+ * sidechaining, attack and release, lookahead and peak or RMS detection
+ */
+
 
 class CHEERP_EXPORT maxiDynamics {
 
     public:
+
+        enum ANALYSERS {PEAK, RMS};
+        
         maxiDynamics() {
+            //define detector functions
             inputPeak = [](double sig) {
                 return abs(sig);
             };
 
-            rms.setup(50,50); //TODO: adjust this
+            rms.setup(500,50);
             inputRMS = [&](double sig) {
                 return rms.play(sig);
             };
@@ -2444,6 +2453,18 @@ class CHEERP_EXPORT maxiDynamics {
         double getLookAhead() {
             return maxiConvert::sampsToMs(lookAheadSize);
         }
+        void setRMSWindowSize(double winSize) {
+            rms.setWindowSize(min(winSize, 500.0));
+        }
+
+        void setInputAnalyser(ANALYSERS mode) {
+            if (mode == PEAK) {
+                inputAnalyser = inputPeak;
+            }else{
+                inputAnalyser = inputRMS;
+            }
+        }
+
 
     private:
         maxiEnvGen arEnvHigh, arEnvLow;

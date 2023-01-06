@@ -49,6 +49,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#effects">Effects</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#analysis">Analysis</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#sequencing">Sequencing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#multichannel">Multichannel</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#utility-functions">Utility Functions</a></li>
 </ul>
 </li>
@@ -248,47 +249,380 @@
 </dd></dl>
 
 <dl class="cpp class">
-<dt class="sig sig-object cpp" id="_CPPv412maxiPolyBLEP">
-<span id="_CPPv312maxiPolyBLEP"></span><span id="_CPPv212maxiPolyBLEP"></span><span id="maxiPolyBLEP"></span><span class="target" id="classmaxiPolyBLEP"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">maxiPolyBLEP</span></span></span><a class="headerlink" href="#_CPPv412maxiPolyBLEP" title="Permalink to this definition"></a><br /></dt>
-<dd><p>Anti-aliased oscillators; </p>
-<div class="breathe-sectiondef docutils container">
-<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-types">Public Types</p>
-<dl class="cpp type">
-<dt class="sig sig-object cpp" id="_CPPv4N12maxiPolyBLEP8WaveformE">
-<span id="_CPPv3N12maxiPolyBLEP8WaveformE"></span><span id="_CPPv2N12maxiPolyBLEP8WaveformE"></span><span class="target" id="classmaxiPolyBLEP_1a6adb656a95c88c2ae9e9b4b1a4dc6b42"></span><span class="k"><span class="pre">using</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Waveform</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">PolyBLEP</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">Waveform</span></span><a class="headerlink" href="#_CPPv4N12maxiPolyBLEP8WaveformE" title="Permalink to this definition"></a><br /></dt>
-<dd><p>Waveform types: SINE, COSINE, TRIANGLE, SQUARE, RECTANGLE, SAWTOOTH, RAMP, MODIFIED_TRIANGLE, MODIFIED_SQUARE, HALF_WAVE_RECTIFIED_SINE, FULL_WAVE_RECTIFIED_SINE, TRIANGULAR_PULSE, TRAPEZOID_FIXED, TRAPEZOID_VARIABLE </p>
-</dd></dl>
-
-</div>
+<dt class="sig sig-object cpp" id="_CPPv410maxiSample">
+<span id="_CPPv310maxiSample"></span><span id="_CPPv210maxiSample"></span><span id="maxiSample"></span><span class="target" id="classmaxiSample"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">maxiSample</span></span></span><a class="headerlink" href="#_CPPv410maxiSample" title="Permalink to this definition"></a><br /></dt>
+<dd><p>A sampler </p>
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
 <dl class="cpp function">
-<dt class="sig sig-object cpp" id="_CPPv4N12maxiPolyBLEP12maxiPolyBLEPEv">
-<span id="_CPPv3N12maxiPolyBLEP12maxiPolyBLEPEv"></span><span id="_CPPv2N12maxiPolyBLEP12maxiPolyBLEPEv"></span><span id="maxiPolyBLEP::maxiPolyBLEP"></span><span class="target" id="classmaxiPolyBLEP_1ab41c3fc1529f98d04a031b677a37018e"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">maxiPolyBLEP</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N12maxiPolyBLEP12maxiPolyBLEPEv" title="Permalink to this definition"></a><br /></dt>
-<dd><p>Constructor </p>
-</dd></dl>
-
-<dl class="cpp function">
-<dt class="sig sig-object cpp" id="_CPPv4N12maxiPolyBLEP4playEd">
-<span id="_CPPv3N12maxiPolyBLEP4playEd"></span><span id="_CPPv2N12maxiPolyBLEP4playEd"></span><span id="maxiPolyBLEP::play__double"></span><span class="target" id="classmaxiPolyBLEP_1ae5c00dfb703b0ddacf2801fe0a91af8d"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">play</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">freq</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N12maxiPolyBLEP4playEd" title="Permalink to this definition"></a><br /></dt>
-<dd><p>play the oscillator </p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>freq</strong> – frequency in Hz </p>
+<dt class="sig sig-object cpp" id="_CPPv4N10maxiSample9getLengthEv">
+<span id="_CPPv3N10maxiSample9getLengthEv"></span><span id="_CPPv2N10maxiSample9getLengthEv"></span><span id="maxiSample::getLength"></span><span class="target" id="classmaxiSample_1ad4d683ac579e9eb38305383eb9b4df5f"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">getLength</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10maxiSample9getLengthEv" title="Permalink to this definition"></a><br /></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The length of the sample, in samples </p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="cpp function">
-<dt class="sig sig-object cpp" id="_CPPv4N12maxiPolyBLEP11setWaveformE8Waveform">
-<span id="_CPPv3N12maxiPolyBLEP11setWaveformE8Waveform"></span><span id="_CPPv2N12maxiPolyBLEP11setWaveformE8Waveform"></span><span id="maxiPolyBLEP::setWaveform__Waveform"></span><span class="target" id="classmaxiPolyBLEP_1a88cc2d36108a59e58788faa6a46e4519"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">setWaveform</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4N12maxiPolyBLEP8WaveformE" title="maxiPolyBLEP::Waveform"><span class="n"><span class="pre">Waveform</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">waveform</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N12maxiPolyBLEP11setWaveformE8Waveform" title="Permalink to this definition"></a><br /></dt>
-<dd><p>Set the waveform type </p>
+<dt class="sig sig-object cpp" id="_CPPv4N10maxiSampleaSERK10maxiSample">
+<span id="_CPPv3N10maxiSampleaSERK10maxiSample"></span><span id="_CPPv2N10maxiSampleaSERK10maxiSample"></span><span id="maxiSample::assign-operator__maxiSampleCR"></span><span class="target" id="classmaxiSample_1a3be61f10965fbca8bc2440c5b22c1daa"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv410maxiSample" title="maxiSample"><span class="n"><span class="pre">maxiSample</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">=</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv410maxiSample" title="maxiSample"><span class="n"><span class="pre">maxiSample</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">source</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10maxiSampleaSERK10maxiSample" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Use the = operator to copy from one sample to another</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>source</strong> – another <a class="reference internal" href="#classmaxiSample"><span class="std std-ref">maxiSample</span></a> instance </p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="cpp function">
-<dt class="sig sig-object cpp" id="_CPPv4N12maxiPolyBLEP13setPulseWidthEd">
-<span id="_CPPv3N12maxiPolyBLEP13setPulseWidthEd"></span><span id="_CPPv2N12maxiPolyBLEP13setPulseWidthEd"></span><span id="maxiPolyBLEP::setPulseWidth__double"></span><span class="target" id="classmaxiPolyBLEP_1a0538958437a77d7a41833446b7ea0fa8"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">setPulseWidth</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">pw</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N12maxiPolyBLEP13setPulseWidthEd" title="Permalink to this definition"></a><br /></dt>
-<dd><p>Change the pulse width (0 &lt;= pw &lt;= 1) </p>
+<dt class="sig sig-object cpp" id="_CPPv4N10maxiSample4loadE6stringi">
+<span id="_CPPv3N10maxiSample4loadE6stringi"></span><span id="_CPPv2N10maxiSample4loadE6stringi"></span><span id="maxiSample::load__string.i"></span><span class="target" id="classmaxiSample_1a68c12e14649369d0657eca87a2a2929f"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">load</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">fileName</span></span>, <span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">channel</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10maxiSample4loadE6stringi" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Load a mono channel from a file in wav format</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>fileName</strong> – the file name</p></li>
+<li><p><strong>channel</strong> – the index of the channel to read </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10maxiSample4saveEv">
+<span id="_CPPv3N10maxiSample4saveEv"></span><span id="_CPPv2N10maxiSample4saveEv"></span><span id="maxiSample::save"></span><span class="target" id="classmaxiSample_1a74b554b7101576bfda87485ebc23bf50"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">save</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10maxiSample4saveEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Save the file </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10maxiSample4saveE6string">
+<span id="_CPPv3N10maxiSample4saveE6string"></span><span id="_CPPv2N10maxiSample4saveE6string"></span><span id="maxiSample::save__string"></span><span class="target" id="classmaxiSample_1ae28feb485fe1c5cd3d9303b9a610e3f3"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">save</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">filename</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10maxiSample4saveE6string" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Save the file, specifying a file name</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>filename</strong> – The file name </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10maxiSample10getSummaryEv">
+<span id="_CPPv3N10maxiSample10getSummaryEv"></span><span id="_CPPv2N10maxiSample10getSummaryEv"></span><span id="maxiSample::getSummary"></span><span class="target" id="classmaxiSample_1a87e0ccbe82846d466057f5387d40074c"></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">getSummary</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10maxiSample10getSummaryEv" title="Permalink to this definition"></a><br /></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>a printable summary of the wav file </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10maxiSample7isReadyEv">
+<span id="_CPPv3N10maxiSample7isReadyEv"></span><span id="_CPPv2N10maxiSample7isReadyEv"></span><span id="maxiSample::isReady"></span><span class="target" id="classmaxiSample_1acad0809020e1e4a4856e286c423fcdc1"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">isReady</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10maxiSample7isReadyEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Check if the sample is loaded </p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>true if the sample is ready to play </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10maxiSample9setSampleE15DOUBLEARRAY_REF">
+<span id="_CPPv3N10maxiSample9setSampleE15DOUBLEARRAY_REF"></span><span id="_CPPv2N10maxiSample9setSampleE15DOUBLEARRAY_REF"></span><span id="maxiSample::setSample__DOUBLEARRAY_REF"></span><span class="target" id="classmaxiSample_1a121b20a694166102d3d1f56b47e22816"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">setSample</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">DOUBLEARRAY_REF</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">_sampleData</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10maxiSample9setSampleE15DOUBLEARRAY_REF" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Set the sample from an external array</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>_sampleData</strong> – An double array (JS) or vector (C++) of data </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10maxiSample16setSampleAndRateE15DOUBLEARRAY_REFi">
+<span id="_CPPv3N10maxiSample16setSampleAndRateE15DOUBLEARRAY_REFi"></span><span id="_CPPv2N10maxiSample16setSampleAndRateE15DOUBLEARRAY_REFi"></span><span id="maxiSample::setSampleAndRate__DOUBLEARRAY_REF.i"></span><span class="target" id="classmaxiSample_1a64a0821a036614d095496aed6d674521"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">setSampleAndRate</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">DOUBLEARRAY_REF</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">_sampleData</span></span>, <span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">sampleRate</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10maxiSample16setSampleAndRateE15DOUBLEARRAY_REFi" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Set the sample from an external array, and set the sample rate </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>_sampleData</strong> – An double array (JS) or vector (C++) of data </p></li>
+<li><p><strong>sampleRate</strong> – the sample rate </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10maxiSample5clearEv">
+<span id="_CPPv3N10maxiSample5clearEv"></span><span id="_CPPv2N10maxiSample5clearEv"></span><span id="maxiSample::clear"></span><span class="target" id="classmaxiSample_1aec108418582368d630ef47d25f9fefea"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">clear</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10maxiSample5clearEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Clear the sample data </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10maxiSample7triggerEv">
+<span id="_CPPv3N10maxiSample7triggerEv"></span><span id="_CPPv2N10maxiSample7triggerEv"></span><span id="maxiSample::trigger"></span><span class="target" id="classmaxiSample_1a4c47dacfbb6514804501968dca4f0293"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">trigger</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10maxiSample7triggerEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Trigger the sample from the start </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10maxiSample10loopRecordEdKbKddd">
+<span id="_CPPv3N10maxiSample10loopRecordEdKbKddd"></span><span id="_CPPv2N10maxiSample10loopRecordEdKbKddd"></span><span id="maxiSample::loopRecord__double.bC.doubleC.double.double"></span><span class="target" id="classmaxiSample_1acb43b87dab432c7667ce91b0f2410d0c"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">loopRecord</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">newSample</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">recordEnabled</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">recordMix</span></span>, <span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">start</span></span>, <span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">end</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10maxiSample10loopRecordEdKbKddd" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Record into the sample buffer </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>newSample</strong> – a signal </p></li>
+<li><p><strong>recordEnabled</strong> – set to true to record into the loop </p></li>
+<li><p><strong>recordMix</strong> – the balance between existing sample and the new signal (1 = overdub, 0=no recording, 0.5=equal mix) </p></li>
+<li><p><strong>start</strong> – the loop start point (0-1) </p></li>
+<li><p><strong>end</strong> – the loop end point (0-1) </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10maxiSample5resetEv">
+<span id="_CPPv3N10maxiSample5resetEv"></span><span id="_CPPv2N10maxiSample5resetEv"></span><span id="maxiSample::reset"></span><span class="target" id="classmaxiSample_1a16e38d5c8b2b900c63b33faa5cb18748"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">reset</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10maxiSample5resetEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Reset the sample to play from the start </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10maxiSample4playEv">
+<span id="_CPPv3N10maxiSample4playEv"></span><span id="_CPPv2N10maxiSample4playEv"></span><span id="maxiSample::play"></span><span class="target" id="classmaxiSample_1a6b55dc845a7c469f694a05f284608a08"></span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">play</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10maxiSample4playEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Play the sample, with no modification </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10maxiSample14playWithPhasorEd">
+<span id="_CPPv3N10maxiSample14playWithPhasorEd"></span><span id="_CPPv2N10maxiSample14playWithPhasorEd"></span><span id="maxiSample::playWithPhasor__double"></span><span class="target" id="classmaxiSample_1a6ddf6d384be710ef24ecc6f51db7fa6a"></span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">playWithPhasor</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">pha</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10maxiSample14playWithPhasorEd" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Play the sample, providing a phasor to control the position</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>pha</strong> – a phasor signal (from 0 to 1) </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10maxiSample8playLoopEdd">
+<span id="_CPPv3N10maxiSample8playLoopEdd"></span><span id="_CPPv2N10maxiSample8playLoopEdd"></span><span id="maxiSample::playLoop__double.double"></span><span class="target" id="classmaxiSample_1a4f9b1bc00af98f9d11178ac8cfc87c11"></span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">playLoop</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">start</span></span>, <span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">end</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10maxiSample8playLoopEdd" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Play the sample in a loop</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>start</strong> – start position (0-1)</p></li>
+<li><p><strong>end</strong> – end position (0-1) </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10maxiSample8playOnceEv">
+<span id="_CPPv3N10maxiSample8playOnceEv"></span><span id="_CPPv2N10maxiSample8playOnceEv"></span><span id="maxiSample::playOnce"></span><span class="target" id="classmaxiSample_1ae9acd1c13f043387c395422dfe074ddb"></span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">playOnce</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10maxiSample8playOnceEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Play the sample once and stop </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10maxiSample8playOnZXEd">
+<span id="_CPPv3N10maxiSample8playOnZXEd"></span><span id="_CPPv2N10maxiSample8playOnZXEd"></span><span id="maxiSample::playOnZX__double"></span><span class="target" id="classmaxiSample_1addba352aea15b361b2c134088868e162"></span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">playOnZX</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">trigger</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10maxiSample8playOnZXEd" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Play the sample when a trigger is received</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>trigger</strong> – a signal </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10maxiSample15playOnZXAtSpeedEdd">
+<span id="_CPPv3N10maxiSample15playOnZXAtSpeedEdd"></span><span id="_CPPv2N10maxiSample15playOnZXAtSpeedEdd"></span><span id="maxiSample::playOnZXAtSpeed__double.double"></span><span class="target" id="classmaxiSample_1aabdceda1434c6b9fffa5ca67127685ea"></span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">playOnZXAtSpeed</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">trig</span></span>, <span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">speed</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10maxiSample15playOnZXAtSpeedEdd" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Play the sample when a trigger is received, at a modified speed</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>trigger</strong> – a signal</p></li>
+<li><p><strong>speed</strong> – the speed multiplier (1=no change, 2=double etc) </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10maxiSample25playOnZXAtSpeedFromOffsetEddd">
+<span id="_CPPv3N10maxiSample25playOnZXAtSpeedFromOffsetEddd"></span><span id="_CPPv2N10maxiSample25playOnZXAtSpeedFromOffsetEddd"></span><span id="maxiSample::playOnZXAtSpeedFromOffset__double.double.double"></span><span class="target" id="classmaxiSample_1acee703cdfa24a665698dc48be1295b07"></span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">playOnZXAtSpeedFromOffset</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">trig</span></span>, <span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">speed</span></span>, <span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">offset</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10maxiSample25playOnZXAtSpeedFromOffsetEddd" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Play the sample when a trigger is received, at a modified speed from a specific position</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>trigger</strong> – a signal</p></li>
+<li><p><strong>speed</strong> – the speed multiplier (1=no change, 2=double etc)</p></li>
+<li><p><strong>offset</strong> – the start position (0-1) </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10maxiSample28playOnZXAtSpeedBetweenPointsEdddd">
+<span id="_CPPv3N10maxiSample28playOnZXAtSpeedBetweenPointsEdddd"></span><span id="_CPPv2N10maxiSample28playOnZXAtSpeedBetweenPointsEdddd"></span><span id="maxiSample::playOnZXAtSpeedBetweenPoints__double.double.double.double"></span><span class="target" id="classmaxiSample_1a09b70b7f207dfd889c27f07dc1499b39"></span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">playOnZXAtSpeedBetweenPoints</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">trig</span></span>, <span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">speed</span></span>, <span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">offset</span></span>, <span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">length</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10maxiSample28playOnZXAtSpeedBetweenPointsEdddd" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Play the sample when a trigger is received, at a modified speed beween two positions</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>trigger</strong> – a signal</p></li>
+<li><p><strong>speed</strong> – the speed multiplier (1=no change, 2=double etc)</p></li>
+<li><p><strong>offset</strong> – the start position (0-1)</p></li>
+<li><p><strong>length</strong> – the length of the segment (0-1) </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10maxiSample14loopSetPosOnZXEdd">
+<span id="_CPPv3N10maxiSample14loopSetPosOnZXEdd"></span><span id="_CPPv2N10maxiSample14loopSetPosOnZXEdd"></span><span id="maxiSample::loopSetPosOnZX__double.double"></span><span class="target" id="classmaxiSample_1a0d58b0c957296ba0d8b06535616c1630"></span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">loopSetPosOnZX</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">trigger</span></span>, <span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">position</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10maxiSample14loopSetPosOnZXEdd" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Loop the sample, and set the playback position to a specific point when a trigger is received</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>trigger</strong> – a signal</p></li>
+<li><p><strong>position</strong> – the position to move to when a trigger is recevied </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10maxiSample15playOnceAtSpeedEd">
+<span id="_CPPv3N10maxiSample15playOnceAtSpeedEd"></span><span id="_CPPv2N10maxiSample15playOnceAtSpeedEd"></span><span id="maxiSample::playOnceAtSpeed__double"></span><span class="target" id="classmaxiSample_1ae2b6fbd44eae6df6b59461b96997cf9d"></span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">playOnceAtSpeed</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">speed</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10maxiSample15playOnceAtSpeedEd" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Play the samples once, at a modified speed</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>speed</strong> – a speed multiplier </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10maxiSample11setPositionEd">
+<span id="_CPPv3N10maxiSample11setPositionEd"></span><span id="_CPPv2N10maxiSample11setPositionEd"></span><span id="maxiSample::setPosition__double"></span><span class="target" id="classmaxiSample_1a678ec42067934e9db35a5c68f8d5ab13"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">setPosition</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">newPos</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10maxiSample11setPositionEd" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Set the playback position</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>newPos</strong> – (0-1) </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10maxiSample9playUntilEd">
+<span id="_CPPv3N10maxiSample9playUntilEd"></span><span id="_CPPv2N10maxiSample9playUntilEd"></span><span id="maxiSample::playUntil__double"></span><span class="target" id="classmaxiSample_1aea817557fc69ae5541b56ab8415f1664"></span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">playUntil</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">end</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10maxiSample9playUntilEd" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Play from the start to a specific position</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>end</strong> – the end point (0-1) </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10maxiSample16playUntilAtSpeedEdd">
+<span id="_CPPv3N10maxiSample16playUntilAtSpeedEdd"></span><span id="_CPPv2N10maxiSample16playUntilAtSpeedEdd"></span><span id="maxiSample::playUntilAtSpeed__double.double"></span><span class="target" id="classmaxiSample_1a69b3dc2950e4068fa66e709b4566b8ff"></span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">playUntilAtSpeed</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">end</span></span>, <span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">speed</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10maxiSample16playUntilAtSpeedEdd" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Play from the start to a specific position, at a modified speed</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>end</strong> – the end point (0-1)</p></li>
+<li><p><strong>speed</strong> – a speed multiplier </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10maxiSample11playAtSpeedEd">
+<span id="_CPPv3N10maxiSample11playAtSpeedEd"></span><span id="_CPPv2N10maxiSample11playAtSpeedEd"></span><span id="maxiSample::playAtSpeed__double"></span><span class="target" id="classmaxiSample_1ae5e0e29a78a0a614cda56c8b18c502b9"></span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">playAtSpeed</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">speed</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10maxiSample11playAtSpeedEd" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Play at a modified speed</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>speed</strong> – a speed multiplier </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10maxiSample31playAtSpeedBetweenPointsFromPosEdddd">
+<span id="_CPPv3N10maxiSample31playAtSpeedBetweenPointsFromPosEdddd"></span><span id="_CPPv2N10maxiSample31playAtSpeedBetweenPointsFromPosEdddd"></span><span id="maxiSample::playAtSpeedBetweenPointsFromPos__double.double.double.double"></span><span class="target" id="classmaxiSample_1a01ee0f3bd478bf1d68d5eef95eedaa0e"></span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">playAtSpeedBetweenPointsFromPos</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">frequency</span></span>, <span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">start</span></span>, <span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">end</span></span>, <span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">pos</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10maxiSample31playAtSpeedBetweenPointsFromPosEdddd" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Play at a modified speed between two points, from a position</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>frequency</strong> – the playback pitch (in Hz)</p></li>
+<li><p><strong>start</strong> – the start point (in samples)</p></li>
+<li><p><strong>end</strong> – the end point (in samples)</p></li>
+<li><p><strong>pos</strong> – the starting position (in samples) </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10maxiSample24playAtSpeedBetweenPointsEddd">
+<span id="_CPPv3N10maxiSample24playAtSpeedBetweenPointsEddd"></span><span id="_CPPv2N10maxiSample24playAtSpeedBetweenPointsEddd"></span><span id="maxiSample::playAtSpeedBetweenPoints__double.double.double"></span><span class="target" id="classmaxiSample_1a3c98528d31b07ef965cc35b2de854c3d"></span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">playAtSpeedBetweenPoints</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">frequency</span></span>, <span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">start</span></span>, <span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">end</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10maxiSample24playAtSpeedBetweenPointsEddd" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Play at a modified speed between two points</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>frequency</strong> – the playback pitch (in Hz)</p></li>
+<li><p><strong>start</strong> – the start point (in samples)</p></li>
+<li><p><strong>end</strong> – the end point (in samples) </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10maxiSample5play4Eddd">
+<span id="_CPPv3N10maxiSample5play4Eddd"></span><span id="_CPPv2N10maxiSample5play4Eddd"></span><span id="maxiSample::play4__double.double.double"></span><span class="target" id="classmaxiSample_1a9fc13e53377f8c656353d76792030c71"></span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">play4</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">frequency</span></span>, <span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">start</span></span>, <span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">end</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10maxiSample5play4Eddd" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Play at a modified speed between two points, using quadratic interpolation</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>frequency</strong> – the playback pitch (in Hz)</p></li>
+<li><p><strong>start</strong> – the start point (in samples)</p></li>
+<li><p><strong>end</strong> – the end point (in samples) </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10maxiSample9normaliseEd">
+<span id="_CPPv3N10maxiSample9normaliseEd"></span><span id="_CPPv2N10maxiSample9normaliseEd"></span><span id="maxiSample::normalise__double"></span><span class="target" id="classmaxiSample_1a05feb902469c2e54f5fa5086b9247609"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">normalise</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">maxLevel</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10maxiSample9normaliseEd" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Normalise the sample buffer</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>maxLevel</strong> – the maximum absolute level </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10maxiSample8autoTrimEffbb">
+<span id="_CPPv3N10maxiSample8autoTrimEffbb"></span><span id="_CPPv2N10maxiSample8autoTrimEffbb"></span><span id="maxiSample::autoTrim__float.float.b.b"></span><span class="target" id="classmaxiSample_1a63dadfb8b26acae6b002469223b3728c"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">autoTrim</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">alpha</span></span>, <span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">threshold</span></span>, <span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">trimStart</span></span>, <span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">trimEnd</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10maxiSample8autoTrimEffbb" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Trim the sample buffer to remove silence from the ends</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>alpha</strong> – the sensitivity</p></li>
+<li><p><strong>threshold</strong> – the value above which to start trimming</p></li>
+<li><p><strong>trimStart</strong> – true if the start should be trimmed</p></li>
+<li><p><strong>trimEnd</strong> – true if the end should be trimmed </p></li>
+</ul>
+</dd>
+</dl>
 </dd></dl>
 
 </div>
@@ -466,9 +800,192 @@
 </div>
 </dd></dl>
 
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv48maxiLine">
+<span id="_CPPv38maxiLine"></span><span id="_CPPv28maxiLine"></span><span id="maxiLine"></span><span class="target" id="classmaxiLine"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">maxiLine</span></span></span><a class="headerlink" href="#_CPPv48maxiLine" title="Permalink to this definition"></a><br /></dt>
+<dd><p>A line generator (you can also use <a class="reference internal" href="#classmaxiEnvGen"><span class="std std-ref">maxiEnvGen</span></a>) </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N8maxiLine4playEd">
+<span id="_CPPv3N8maxiLine4playEd"></span><span id="_CPPv2N8maxiLine4playEd"></span><span id="maxiLine::play__double"></span><span class="target" id="classmaxiLine_1ae892e5ffc0bda8df5b938b71c01aaa76"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">play</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">trigger</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8maxiLine4playEd" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Generate a line, when a trigger is received</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>trigger</strong> – a signal </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N8maxiLine7prepareEdddb">
+<span id="_CPPv3N8maxiLine7prepareEdddb"></span><span id="_CPPv2N8maxiLine7prepareEdddb"></span><span id="maxiLine::prepare__double.double.double.b"></span><span class="target" id="classmaxiLine_1a21ab66a82caff8b9a10169daadf78b86"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">prepare</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">start</span></span>, <span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">end</span></span>, <span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">durationMs</span></span>, <span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">isOneShot</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8maxiLine7prepareEdddb" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Setup the line before it is triggered </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>start</strong> – the starting value of the line </p></li>
+<li><p><strong>end</strong> – the ending value of the line </p></li>
+<li><p><strong>durationMs</strong> – the duration of the line (in milliseconds) </p></li>
+<li><p><strong>isOneShot</strong> – true is the line should not play once, or false if it should loop </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>a signal </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N8maxiLine13triggerEnableEd">
+<span id="_CPPv3N8maxiLine13triggerEnableEd"></span><span id="_CPPv2N8maxiLine13triggerEnableEd"></span><span id="maxiLine::triggerEnable__double"></span><span class="target" id="classmaxiLine_1ad15bb57d04e581a50f4b401a12359b39"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">triggerEnable</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">on</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8maxiLine13triggerEnableEd" title="Permalink to this definition"></a><br /></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>0</strong> – or less to protect the generator from triggering, more than 0 to enable it to be triggered </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N8maxiLine14isLineCompleteEv">
+<span id="_CPPv3N8maxiLine14isLineCompleteEv"></span><span id="_CPPv2N8maxiLine14isLineCompleteEv"></span><span id="maxiLine::isLineComplete"></span><span class="target" id="classmaxiLine_1a4f6a012fe20ff2230877e2ada9f83499"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">isLineComplete</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8maxiLine14isLineCompleteEv" title="Permalink to this definition"></a><br /></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>true if the line generator has finished </p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</dd></dl>
+
 </section>
 <section id="filters">
 <h2>Filters<a class="headerlink" href="#filters" title="Permalink to this heading"></a></h2>
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv410maxiFilter">
+<span id="_CPPv310maxiFilter"></span><span id="_CPPv210maxiFilter"></span><span id="maxiFilter"></span><span class="target" id="classmaxiFilter"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">maxiFilter</span></span></span><a class="headerlink" href="#_CPPv410maxiFilter" title="Permalink to this definition"></a><br /></dt>
+<dd><p>A selection of filters </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10maxiFilter5loresEddd">
+<span id="_CPPv3N10maxiFilter5loresEddd"></span><span id="_CPPv2N10maxiFilter5loresEddd"></span><span id="maxiFilter::lores__double.double.double"></span><span class="target" id="classmaxiFilter_1aa5547847ba00fa1018978769ea76c693"></span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">lores</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">input</span></span>, <span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">cutoff1</span></span>, <span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">resonance</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10maxiFilter5loresEddd" title="Permalink to this definition"></a><br /></dt>
+<dd><p>A resonant low pass filter </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>input</strong> – A signal </p></li>
+<li><p><strong>cutoff1</strong> – The cutoff frequency (in Hz) </p></li>
+<li><p><strong>resonance</strong> – The amount of resonance </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10maxiFilter5hiresEddd">
+<span id="_CPPv3N10maxiFilter5hiresEddd"></span><span id="_CPPv2N10maxiFilter5hiresEddd"></span><span id="maxiFilter::hires__double.double.double"></span><span class="target" id="classmaxiFilter_1af673a596c353096e978f92a01d26bd2c"></span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">hires</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">input</span></span>, <span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">cutoff1</span></span>, <span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">resonance</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10maxiFilter5hiresEddd" title="Permalink to this definition"></a><br /></dt>
+<dd><p>A resonant high pass filter </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>input</strong> – A signal </p></li>
+<li><p><strong>cutoff1</strong> – The cutoff frequency (in Hz) </p></li>
+<li><p><strong>resonance</strong> – The amount of resonance </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10maxiFilter8bandpassEddd">
+<span id="_CPPv3N10maxiFilter8bandpassEddd"></span><span id="_CPPv2N10maxiFilter8bandpassEddd"></span><span id="maxiFilter::bandpass__double.double.double"></span><span class="target" id="classmaxiFilter_1a5c9978649b13589cb7d9bbed581de95e"></span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">bandpass</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">input</span></span>, <span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">cutoff1</span></span>, <span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">resonance</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10maxiFilter8bandpassEddd" title="Permalink to this definition"></a><br /></dt>
+<dd><p>A resonant band pass filter </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>input</strong> – A signal </p></li>
+<li><p><strong>cutoff1</strong> – The cutoff frequency (in Hz) </p></li>
+<li><p><strong>resonance</strong> – The amount of resonance </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10maxiFilter6lopassEdd">
+<span id="_CPPv3N10maxiFilter6lopassEdd"></span><span id="_CPPv2N10maxiFilter6lopassEdd"></span><span id="maxiFilter::lopass__double.double"></span><span class="target" id="classmaxiFilter_1a5eba3705e0689f0e636b418b13639be5"></span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">lopass</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">input</span></span>, <span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">cutoff</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10maxiFilter6lopassEdd" title="Permalink to this definition"></a><br /></dt>
+<dd><p>A simple low pass filter </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>input</strong> – A signal </p></li>
+<li><p><strong>cutoff1</strong> – The cutoff frequency (between 0 and 1) </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10maxiFilter6hipassEdd">
+<span id="_CPPv3N10maxiFilter6hipassEdd"></span><span id="_CPPv2N10maxiFilter6hipassEdd"></span><span id="maxiFilter::hipass__double.double"></span><span class="target" id="classmaxiFilter_1a0a1139cb7a185a9f04f15dfad0d64ae4"></span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">hipass</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">input</span></span>, <span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">cutoff</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10maxiFilter6hipassEdd" title="Permalink to this definition"></a><br /></dt>
+<dd><p>A simple low pass filter </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>input</strong> – A signal </p></li>
+<li><p><strong>cutoff1</strong> – The cutoff frequency (between 0 and 1) </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10maxiFilter9setCutoffEd">
+<span id="_CPPv3N10maxiFilter9setCutoffEd"></span><span id="_CPPv2N10maxiFilter9setCutoffEd"></span><span id="maxiFilter::setCutoff__double"></span><span class="target" id="classmaxiFilter_1a2ec38065db7820aa86134499aea03ef2"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">setCutoff</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">cut</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10maxiFilter9setCutoffEd" title="Permalink to this definition"></a><br /></dt>
+<dd><p>\Sets the cutoff frequency</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>cut</strong> – The cutoff frequency </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10maxiFilter12setResonanceEd">
+<span id="_CPPv3N10maxiFilter12setResonanceEd"></span><span id="_CPPv2N10maxiFilter12setResonanceEd"></span><span id="maxiFilter::setResonance__double"></span><span class="target" id="classmaxiFilter_1ac290c098758f803976092859a2a11719"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">setResonance</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">res</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10maxiFilter12setResonanceEd" title="Permalink to this definition"></a><br /></dt>
+<dd><p>\Sets the resonance</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>res</strong> – The resonance </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10maxiFilter9getCutoffEv">
+<span id="_CPPv3N10maxiFilter9getCutoffEv"></span><span id="_CPPv2N10maxiFilter9getCutoffEv"></span><span id="maxiFilter::getCutoff"></span><span class="target" id="classmaxiFilter_1ad918cf90ff35d5ff46ea75b30a692607"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">getCutoff</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10maxiFilter9getCutoffEv" title="Permalink to this definition"></a><br /></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>the cutoff value </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10maxiFilter12getResonanceEv">
+<span id="_CPPv3N10maxiFilter12getResonanceEv"></span><span id="_CPPv2N10maxiFilter12getResonanceEv"></span><span id="maxiFilter::getResonance"></span><span class="target" id="classmaxiFilter_1a3df007f4905df3fbf93e3440ff035f47"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">getResonance</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10maxiFilter12getResonanceEv" title="Permalink to this definition"></a><br /></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>the resonance value </p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</dd></dl>
+
 <dl class="cpp class">
 <dt class="sig sig-object cpp" id="_CPPv47maxiSVF">
 <span id="_CPPv37maxiSVF"></span><span id="_CPPv27maxiSVF"></span><span id="maxiSVF"></span><span class="target" id="classmaxiSVF"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">maxiSVF</span></span></span><a class="headerlink" href="#_CPPv47maxiSVF" title="Permalink to this definition"></a><br /></dt>
@@ -593,6 +1110,29 @@
 <li><p><strong>cutoff</strong> – The filter cutoff frequency in Hz </p></li>
 <li><p><strong>Q</strong> – The resonance of the filter </p></li>
 <li><p><strong>peakGain</strong> – The gain of the filter (only used for PEAK, HIGHSHELF and LOWSHELF) </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv413maxiDCBlocker">
+<span id="_CPPv313maxiDCBlocker"></span><span id="_CPPv213maxiDCBlocker"></span><span id="maxiDCBlocker"></span><span class="target" id="classmaxiDCBlocker"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">maxiDCBlocker</span></span></span><a class="headerlink" href="#_CPPv413maxiDCBlocker" title="Permalink to this definition"></a><br /></dt>
+<dd><p>A simple high pass filter to block DC </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N13maxiDCBlocker4playEdd">
+<span id="_CPPv3N13maxiDCBlocker4playEdd"></span><span id="_CPPv2N13maxiDCBlocker4playEdd"></span><span id="maxiDCBlocker::play__double.double"></span><span class="target" id="classmaxiDCBlocker_1a2dc9eb8772f131e4161c157d5f8cdeb7"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">play</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">input</span></span>, <span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">R</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N13maxiDCBlocker4playEdd" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Remove DC from a signal</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>input</strong> – a signal</p></li>
+<li><p><strong>R</strong> – the sensitivity (0-1) </p></li>
 </ul>
 </dd>
 </dl>
@@ -803,8 +1343,7 @@
 <dl class="cpp class">
 <dt class="sig sig-object cpp" id="_CPPv413maxiDelayline">
 <span id="_CPPv313maxiDelayline"></span><span id="_CPPv213maxiDelayline"></span><span id="maxiDelayline"></span><span class="target" id="classmaxiDelayline"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">maxiDelayline</span></span></span><a class="headerlink" href="#_CPPv413maxiDelayline" title="Permalink to this definition"></a><br /></dt>
-<dd><p>A delay line </p>
-<div class="breathe-sectiondef docutils container">
+<dd><div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N13maxiDelayline2dlEdid">
@@ -1037,6 +1576,40 @@
 </div>
 </dd></dl>
 
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv411maxiTrigger">
+<span id="_CPPv311maxiTrigger"></span><span id="_CPPv211maxiTrigger"></span><span id="maxiTrigger"></span><span class="target" id="classmaxiTrigger"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">maxiTrigger</span></span></span><a class="headerlink" href="#_CPPv411maxiTrigger" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Generator triggers (a single 1 in a stream of 0s) according to certain conditions </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N11maxiTrigger4onZXEd">
+<span id="_CPPv3N11maxiTrigger4onZXEd"></span><span id="_CPPv2N11maxiTrigger4onZXEd"></span><span id="maxiTrigger::onZX__double"></span><span class="target" id="classmaxiTrigger_1a0698eef58cbfc97a42ab20dbb88a2a50"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">onZX</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">input</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N11maxiTrigger4onZXEd" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Generate a trigger when a signal transitions from &lt;=0 to above 0</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>input</strong> – A signal </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N11maxiTrigger9onChangedEdd">
+<span id="_CPPv3N11maxiTrigger9onChangedEdd"></span><span id="_CPPv2N11maxiTrigger9onChangedEdd"></span><span id="maxiTrigger::onChanged__double.double"></span><span class="target" id="classmaxiTrigger_1a443b416d526c83c3a36280704050f1d9"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">onChanged</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">input</span></span>, <span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">tolerance</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N11maxiTrigger9onChangedEdd" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Generate a trigger when a signal changes beyond a certain amount</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>input</strong> – A signal</p></li>
+<li><p><strong>tolerance</strong> – The amount of chance allowed before a trigger is generated </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</dd></dl>
+
 </section>
 <section id="sequencing">
 <h2>Sequencing<a class="headerlink" href="#sequencing" title="Permalink to this heading"></a></h2>
@@ -1069,9 +1642,182 @@
 </div>
 </dd></dl>
 
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv411maxiCounter">
+<span id="_CPPv311maxiCounter"></span><span id="_CPPv211maxiCounter"></span><span id="maxiCounter"></span><span class="target" id="classmaxiCounter"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">maxiCounter</span></span></span><a class="headerlink" href="#_CPPv411maxiCounter" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Count triggers </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N11maxiCounter5countEdd">
+<span id="_CPPv3N11maxiCounter5countEdd"></span><span id="_CPPv2N11maxiCounter5countEdd"></span><span id="maxiCounter::count__double.double"></span><span class="target" id="classmaxiCounter_1aec77792df4bbae4a7b40a5e536936b01"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">count</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">incTrigger</span></span>, <span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">resetTrigger</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N11maxiCounter5countEdd" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Increase each time a trigger is received </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>incTrigger</strong> – a signal that triggers the counter to increment </p></li>
+<li><p><strong>resetTrigger</strong> – a signal that resets the counter to zero </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>the number of triggers received since the beginning or the last reset </p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+</section>
+<section id="multichannel">
+<h2>Multichannel<a class="headerlink" href="#multichannel" title="Permalink to this heading"></a></h2>
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv47maxiMix">
+<span id="_CPPv37maxiMix"></span><span id="_CPPv27maxiMix"></span><span id="maxiMix"></span><span class="target" id="classmaxiMix"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">maxiMix</span></span></span><a class="headerlink" href="#_CPPv47maxiMix" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Functions for multichannel panning </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N7maxiMix6stereoEdRNSt6vectorIdEEd">
+<span id="_CPPv3N7maxiMix6stereoEdRNSt6vectorIdEEd"></span><span id="_CPPv2N7maxiMix6stereoEdRNSt6vectorIdEEd"></span><span id="maxiMix::stereo__double.std::vector:double:R.double"></span><span class="target" id="classmaxiMix_1a11318d7bbbc883ada570a07a0d0a1bab"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">stereo</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">input</span></span>, <span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><span class="kt"><span class="pre">double</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">two</span></span>, <span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">x</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N7maxiMix6stereoEdRNSt6vectorIdEEd" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Stereo panning </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>input</strong> – A mono signal </p></li>
+<li><p><strong>two</strong> – A vector (size 2) into which the signal is panned in-place </p></li>
+<li><p><strong>x</strong> – The panning level (0 to 1) </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N7maxiMix4quadEdRNSt6vectorIdEEdd">
+<span id="_CPPv3N7maxiMix4quadEdRNSt6vectorIdEEdd"></span><span id="_CPPv2N7maxiMix4quadEdRNSt6vectorIdEEdd"></span><span id="maxiMix::quad__double.std::vector:double:R.double.double"></span><span class="target" id="classmaxiMix_1ad57bfa7266b5638f0acdff028385650a"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">quad</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">input</span></span>, <span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><span class="kt"><span class="pre">double</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">four</span></span>, <span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">x</span></span>, <span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">y</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N7maxiMix4quadEdRNSt6vectorIdEEdd" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Quadraphonic panning </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>input</strong> – A mono signal </p></li>
+<li><p><strong>four</strong> – A vector (size 4) into which the signal is panned </p></li>
+<li><p><strong>x</strong> – Left-right panning level (0 to 1) </p></li>
+<li><p><strong>y</strong> – Forward-backward panning level (0 to 1) </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N7maxiMix9ambisonicEdRNSt6vectorIdEEddd">
+<span id="_CPPv3N7maxiMix9ambisonicEdRNSt6vectorIdEEddd"></span><span id="_CPPv2N7maxiMix9ambisonicEdRNSt6vectorIdEEddd"></span><span id="maxiMix::ambisonic__double.std::vector:double:R.double.double.double"></span><span class="target" id="classmaxiMix_1a328e0773ca68b2f41b06d63641a93aab"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ambisonic</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">input</span></span>, <span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><span class="kt"><span class="pre">double</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">eight</span></span>, <span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">x</span></span>, <span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">y</span></span>, <span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">z</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N7maxiMix9ambisonicEdRNSt6vectorIdEEddd" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Ambisonic panning </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>input</strong> – A mono signal </p></li>
+<li><p><strong>eight</strong> – A vector (size 8) into which the signal is panned </p></li>
+<li><p><strong>x</strong> – Left-right panning level (0 to 1) </p></li>
+<li><p><strong>y</strong> – Forward-backward panning level (0 to 1) </p></li>
+<li><p><strong>z</strong> – Up-down panning level (0 to 1) </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</dd></dl>
+
 </section>
 <section id="utility-functions">
 <h2>Utility Functions<a class="headerlink" href="#utility-functions" title="Permalink to this heading"></a></h2>
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv47maxiMap">
+<span id="_CPPv37maxiMap"></span><span id="_CPPv27maxiMap"></span><span id="maxiMap"></span><span class="target" id="classmaxiMap"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">maxiMap</span></span></span><a class="headerlink" href="#_CPPv47maxiMap" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Various mapping functions </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-static-functions">Public Static Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N7maxiMap6linlinEddddd">
+<span id="_CPPv3N7maxiMap6linlinEddddd"></span><span id="_CPPv2N7maxiMap6linlinEddddd"></span><span id="maxiMap::linlin__double.double.double.double.double"></span><span class="target" id="classmaxiMap_1af089e2f99ff54e37dca21ecbbeede950"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">linlin</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">val</span></span>, <span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">inMin</span></span>, <span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">inMax</span></span>, <span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">outMin</span></span>, <span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">outMax</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N7maxiMap6linlinEddddd" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Map from one range to another, linearly </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>val</strong> – a signal </p></li>
+<li><p><strong>inMin</strong> – the lowest expected value of the signal </p></li>
+<li><p><strong>inMax</strong> – the highest expected value of the signal </p></li>
+<li><p><strong>outMin</strong> – the lowest value in the new range of the signal </p></li>
+<li><p><strong>outMax</strong> – the highest value in the new range of the signal </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>a signal </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N7maxiMap6linexpEddddd">
+<span id="_CPPv3N7maxiMap6linexpEddddd"></span><span id="_CPPv2N7maxiMap6linexpEddddd"></span><span id="maxiMap::linexp__double.double.double.double.double"></span><span class="target" id="classmaxiMap_1acdcf4bc4384d39b3ed2e259002434f92"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">linexp</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">val</span></span>, <span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">inMin</span></span>, <span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">inMax</span></span>, <span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">outMin</span></span>, <span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">outMax</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N7maxiMap6linexpEddddd" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Map from one range to another, converting from linear to expontial - useful from mapping control values to frequencies etc </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>val</strong> – a signal </p></li>
+<li><p><strong>inMin</strong> – the lowest expected value of the signal </p></li>
+<li><p><strong>inMax</strong> – the highest expected value of the signal </p></li>
+<li><p><strong>outMin</strong> – the lowest value in the new range of the signal </p></li>
+<li><p><strong>outMax</strong> – the highest value in the new range of the signal </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>a signal </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N7maxiMap6explinEddddd">
+<span id="_CPPv3N7maxiMap6explinEddddd"></span><span id="_CPPv2N7maxiMap6explinEddddd"></span><span id="maxiMap::explin__double.double.double.double.double"></span><span class="target" id="classmaxiMap_1a4cb165b90b1c9c99aa607df31bf59929"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">explin</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">val</span></span>, <span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">inMin</span></span>, <span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">inMax</span></span>, <span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">outMin</span></span>, <span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">outMax</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N7maxiMap6explinEddddd" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Map from one range to another, converting from an exponential value to a linear one </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>val</strong> – a signal </p></li>
+<li><p><strong>inMin</strong> – the lowest expected value of the signal </p></li>
+<li><p><strong>inMax</strong> – the highest expected value of the signal </p></li>
+<li><p><strong>outMin</strong> – the lowest value in the new range of the signal </p></li>
+<li><p><strong>outMax</strong> – the highest value in the new range of the signal </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>a signal </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N7maxiMap5clampEdKdKd">
+<span id="_CPPv3N7maxiMap5clampEdKdKd"></span><span id="_CPPv2N7maxiMap5clampEdKdKd"></span><span id="maxiMap::clamp__double.doubleC.doubleC"></span><span class="target" id="classmaxiMap_1a04c77c190b34b097762fdc5fa32f385b"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">clamp</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">v</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">low</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">high</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N7maxiMap5clampEdKdKd" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Restrict a signal to upper and lower bounds </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>v</strong> – a signal </p></li>
+<li><p><strong>low</strong> – the lowest value </p></li>
+<li><p><strong>high</strong> – the highest value </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>a signal </p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</dd></dl>
+
 <dl class="cpp class">
 <dt class="sig sig-object cpp" id="_CPPv48maxiPoll">
 <span id="_CPPv38maxiPoll"></span><span id="_CPPv28maxiPoll"></span><span id="maxiPoll"></span><span class="target" id="classmaxiPoll"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">maxiPoll</span></span></span><a class="headerlink" href="#_CPPv48maxiPoll" title="Permalink to this definition"></a><br /></dt>

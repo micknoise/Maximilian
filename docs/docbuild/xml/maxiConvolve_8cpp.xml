@@ -160,7 +160,7 @@
 <codeline lineno="54"><highlight class="normal"></highlight></codeline>
 <codeline lineno="55"><highlight class="normal"></highlight></codeline>
 <codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classmaxiSample" kindref="compound">maxiSample</ref><sp/>impulseSample;</highlight></codeline>
-<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/>impulseSample.load(impulseFile);</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/>impulseSample.<ref refid="classmaxiSample_1a68c12e14649369d0657eca87a2a2929f" kindref="member">load</ref>(impulseFile);</highlight></codeline>
 <codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/>analyseImpulse(impulseSample,<sp/>impulseReal,<sp/>impulseImag);</highlight></codeline>
 <codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/>cout<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;Impulse<sp/>loaded,<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>impulseReal.size()<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;<sp/>frames\n&quot;</highlight><highlight class="normal">;</highlight></codeline>
 <codeline lineno="60"><highlight class="normal"></highlight></codeline>

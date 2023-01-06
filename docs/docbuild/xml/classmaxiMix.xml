@@ -2,6 +2,7 @@
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="classmaxiMix" kind="class" language="C++" prot="public">
     <compoundname>maxiMix</compoundname>
+    <includes refid="maximilian_8h" local="no">maximilian.h</includes>
       <sectiondef kind="private-attrib">
       <memberdef kind="variable" id="classmaxiMix_1aa20b4cc5fbb6d3096e9d85382d6c1bfa" prot="private" static="no" mutable="no">
         <type>double</type>
@@ -14,7 +15,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="335" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="335" bodyend="-1"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="372" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="372" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classmaxiMix_1a84eca1985c6d9fa3a9d3cb086fbd5a17" prot="private" static="no" mutable="no">
         <type>double</type>
@@ -27,7 +28,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="336" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="336" bodyend="-1"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="373" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="373" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classmaxiMix_1af2bd0ff442b02cbeac94365388bd8ced" prot="private" static="no" mutable="no">
         <type>double</type>
@@ -40,7 +41,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="337" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="337" bodyend="-1"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="374" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="374" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classmaxiMix_1a570e49722f7f90089387476074cae6de" prot="private" static="no" mutable="no">
         <type>double</type>
@@ -53,7 +54,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="338" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="338" bodyend="-1"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="375" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="375" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
@@ -77,10 +78,36 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
+<para>Stereo panning <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>input</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="classA" kindref="compound">A</ref> mono signal </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>two</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="classA" kindref="compound">A</ref> vector (size 2) into which the signal is panned in-place </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>x</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The panning level (0 to 1) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="355" column="10" bodyfile="/home/ck84/src/Maximilian/src/maximilian.cpp" bodystart="503" bodyend="509"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="398" column="10" bodyfile="/home/ck84/src/Maximilian/src/maximilian.cpp" bodystart="503" bodyend="509"/>
       </memberdef>
       <memberdef kind="function" id="classmaxiMix_1ad57bfa7266b5638f0acdff028385650a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -106,10 +133,44 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
+<para>Quadraphonic panning <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>input</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="classA" kindref="compound">A</ref> mono signal </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>four</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="classA" kindref="compound">A</ref> vector (size 4) into which the signal is panned </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>x</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Left-right panning level (0 to 1) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>y</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Forward-backward panning level (0 to 1) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="356" column="10" bodyfile="/home/ck84/src/Maximilian/src/maximilian.cpp" bodystart="512" bodyend="522"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="407" column="10" bodyfile="/home/ck84/src/Maximilian/src/maximilian.cpp" bodystart="512" bodyend="522"/>
       </memberdef>
       <memberdef kind="function" id="classmaxiMix_1a328e0773ca68b2f41b06d63641a93aab" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -139,17 +200,60 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
+<para>Ambisonic panning <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>input</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="classA" kindref="compound">A</ref> mono signal </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>eight</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="classA" kindref="compound">A</ref> vector (size 8) into which the signal is panned </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>x</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Left-right panning level (0 to 1) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>y</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Forward-backward panning level (0 to 1) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>z</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Up-down panning level (0 to 1) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="357" column="10" bodyfile="/home/ck84/src/Maximilian/src/maximilian.cpp" bodystart="525" bodyend="541"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="416" column="10" bodyfile="/home/ck84/src/Maximilian/src/maximilian.cpp" bodystart="525" bodyend="541"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
+<para>Functions for multichannel panning </para>
     </detaileddescription>
-    <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="333" column="1" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="334" bodyend="358"/>
+    <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="370" column="1" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="371" bodyend="417"/>
     <listofallmembers>
       <member refid="classmaxiMix_1a328e0773ca68b2f41b06d63641a93aab" prot="public" virt="non-virtual"><scope>maxiMix</scope><name>ambisonic</name></member>
       <member refid="classmaxiMix_1a570e49722f7f90089387476074cae6de" prot="private" virt="non-virtual"><scope>maxiMix</scope><name>eight</name></member>

@@ -16,7 +16,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="865" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="865" bodyend="-1"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1012" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1012" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
@@ -31,7 +31,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="850" column="5" bodyfile="/home/ck84/src/Maximilian/src/maximilian.cpp" bodystart="1519" bodyend="1519"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="997" column="5" bodyfile="/home/ck84/src/Maximilian/src/maximilian.cpp" bodystart="1519" bodyend="1519"/>
       </memberdef>
       <memberdef kind="function" id="classmaxiZeroCrossingDetector_1aa7910490989a6a12655ee083fece2eeb" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>bool</type>
@@ -58,7 +58,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="853" column="17" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="853" bodyend="862"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1000" column="17" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1000" bodyend="1009"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -66,7 +66,7 @@
     <detaileddescription>
 <para>Detect positive zero-crossings: the point in time when a signal transitions from 0 or less, to above zero </para>
     </detaileddescription>
-    <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="847" column="1" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="848" bodyend="866"/>
+    <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="994" column="1" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="995" bodyend="1013"/>
     <listofallmembers>
       <member refid="classmaxiZeroCrossingDetector_1a6c104907ac40969661f66177f43634f0" prot="public" virt="non-virtual"><scope>maxiZeroCrossingDetector</scope><name>maxiZeroCrossingDetector</name></member>
       <member refid="classmaxiZeroCrossingDetector_1a0996fec932efc535c1e5698877519b0c" prot="private" virt="non-virtual"><scope>maxiZeroCrossingDetector</scope><name>previous_x</name></member>

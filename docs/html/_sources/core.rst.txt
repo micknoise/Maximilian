@@ -9,7 +9,7 @@ Generators
    :project: maximilian
    :members:
 
-.. doxygenclass:: maxiPolyBLEP
+.. doxygenclass:: maxiSample
    :project: maximilian
    :members:
 
@@ -17,10 +17,19 @@ Generators
    :project: maximilian
    :members:
 
+.. doxygenclass:: maxiLine
+   :project: maximilian
+   :members:
+   
+
 
 
 Filters
 -------
+
+.. doxygenclass:: maxiFilter
+   :project: maximilian
+   :members:
 
 .. doxygenclass:: maxiSVF
    :project: maximilian
@@ -29,6 +38,11 @@ Filters
 .. doxygenclass:: maxiBiquad
    :project: maximilian
    :members:
+
+.. doxygenclass:: maxiDCBlocker
+   :project: maximilian
+   :members:
+   
 
 
 Dynamics
@@ -71,6 +85,10 @@ Analysis
 .. doxygenclass:: maxiRMS
    :project: maximilian
    :members:
+
+.. doxygenclass:: maxiTrigger
+   :project: maximilian
+   :members:
    
 
 Sequencing
@@ -80,9 +98,25 @@ Sequencing
    :project: maximilian
    :members:
 
+.. doxygenclass:: maxiCounter
+   :project: maximilian
+   :members:
+   
+
+Multichannel
+------------
+
+.. doxygenclass:: maxiMix
+   :project: maximilian
+   :members:
+
 
 Utility Functions
 -----------------
+
+.. doxygenclass:: maxiMap
+   :project: maximilian
+   :members:
 
 .. doxygenclass:: maxiPoll
    :project: maximilian

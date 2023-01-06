@@ -15,7 +15,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1435" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1435" bodyend="-1"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1602" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1602" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classmaxiKuramotoOscillator_1a0dab55da56fb508b02918194a27c1b53" prot="private" static="no" mutable="no">
         <type>double</type>
@@ -29,7 +29,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1436" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1436" bodyend="-1"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1603" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1603" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
@@ -44,7 +44,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1415" column="5" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1415" bodyend="1415"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1582" column="5" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1582" bodyend="1582"/>
       </memberdef>
       <memberdef kind="function" id="classmaxiKuramotoOscillator_1aaa1c665afa490b2cd45b116a23cd4ee5" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>double</type>
@@ -69,7 +69,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1416" column="19" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1416" bodyend="1430"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1583" column="19" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1583" bodyend="1597"/>
       </memberdef>
       <memberdef kind="function" id="classmaxiKuramotoOscillator_1a6e06188b46a440a5783291d2f0dc33b6" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
@@ -86,7 +86,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1431" column="17" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1431" bodyend="1431"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1598" column="17" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1598" bodyend="1598"/>
       </memberdef>
       <memberdef kind="function" id="classmaxiKuramotoOscillator_1af977c10b9b34a677d17d82b3ae432791" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>double</type>
@@ -99,14 +99,14 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1432" column="19" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1432" bodyend="1432"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1599" column="19" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1599" bodyend="1599"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1412" column="1" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1413" bodyend="1437"/>
+    <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1579" column="1" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1580" bodyend="1604"/>
     <listofallmembers>
       <member refid="classmaxiKuramotoOscillator_1a0dab55da56fb508b02918194a27c1b53" prot="private" virt="non-virtual"><scope>maxiKuramotoOscillator</scope><name>dt</name></member>
       <member refid="classmaxiKuramotoOscillator_1af977c10b9b34a677d17d82b3ae432791" prot="public" virt="non-virtual"><scope>maxiKuramotoOscillator</scope><name>getPhase</name></member>

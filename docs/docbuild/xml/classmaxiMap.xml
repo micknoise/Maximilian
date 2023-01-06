@@ -2,6 +2,7 @@
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="classmaxiMap" kind="class" language="C++" prot="public">
     <compoundname>maxiMap</compoundname>
+    <includes refid="maximilian_8h" local="no">maximilian.h</includes>
       <sectiondef kind="public-func">
       <memberdef kind="function" id="classmaxiMap_1a0e5aa77e1f1f29c80f198d0b59f1e1f8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -14,7 +15,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="675" column="5" bodyfile="/home/ck84/src/Maximilian/src/maximilian.cpp" bodystart="1515" bodyend="1515"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="789" column="5" bodyfile="/home/ck84/src/Maximilian/src/maximilian.cpp" bodystart="1515" bodyend="1515"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-static-func">
@@ -46,10 +47,54 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
+<para>Map from one range to another, linearly <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>val</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>a signal </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>inMin</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the lowest expected value of the signal </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>inMax</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the highest expected value of the signal </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>outMin</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the lowest value in the new range of the signal </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>outMax</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the highest value in the new range of the signal </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>a signal </para>
+</simplesect>
+</para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="676" column="26" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="676" bodyend="680"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="799" column="26" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="799" bodyend="803"/>
       </memberdef>
       <memberdef kind="function" id="classmaxiMap_1acdcf4bc4384d39b3ed2e259002434f92" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>double</type>
@@ -79,10 +124,54 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
+<para>Map from one range to another, converting from linear to expontial - useful from mapping control values to frequencies etc <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>val</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>a signal </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>inMin</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the lowest expected value of the signal </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>inMax</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the highest expected value of the signal </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>outMin</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the lowest value in the new range of the signal </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>outMax</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the highest value in the new range of the signal </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>a signal </para>
+</simplesect>
+</para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="682" column="26" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="682" bodyend="687"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="813" column="26" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="813" bodyend="818"/>
       </memberdef>
       <memberdef kind="function" id="classmaxiMap_1a4cb165b90b1c9c99aa607df31bf59929" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>double</type>
@@ -112,10 +201,54 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
+<para>Map from one range to another, converting from an exponential value to a linear one <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>val</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>a signal </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>inMin</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the lowest expected value of the signal </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>inMax</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the highest expected value of the signal </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>outMin</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the lowest value in the new range of the signal </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>outMax</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the highest value in the new range of the signal </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>a signal </para>
+</simplesect>
+</para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="689" column="26" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="689" bodyend="694"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="828" column="26" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="828" bodyend="833"/>
       </memberdef>
       <memberdef kind="function" id="classmaxiMap_1a04c77c190b34b097762fdc5fa32f385b" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>double</type>
@@ -137,17 +270,46 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
+<para>Restrict a signal to upper and lower bounds <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>v</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>a signal </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>low</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the lowest value </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>high</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the highest value </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>a signal </para>
+</simplesect>
+</para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="697" column="26" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="697" bodyend="708"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="841" column="26" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="841" bodyend="852"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
+<para>Various mapping functions </para>
     </detaileddescription>
-    <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="672" column="1" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="673" bodyend="709"/>
+    <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="786" column="1" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="787" bodyend="853"/>
     <listofallmembers>
       <member refid="classmaxiMap_1a04c77c190b34b097762fdc5fa32f385b" prot="public" virt="non-virtual"><scope>maxiMap</scope><name>clamp</name></member>
       <member refid="classmaxiMap_1a4cb165b90b1c9c99aa607df31bf59929" prot="public" virt="non-virtual"><scope>maxiMap</scope><name>explin</name></member>

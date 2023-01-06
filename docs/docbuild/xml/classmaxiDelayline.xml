@@ -2,7 +2,6 @@
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="classmaxiDelayline" kind="class" language="C++" prot="public">
     <compoundname>maxiDelayline</compoundname>
-    <includes refid="maximilian_8h" local="no">maximilian.h</includes>
       <sectiondef kind="private-attrib">
       <memberdef kind="variable" id="classmaxiDelayline_1ad9d531300facc70a3daab4205d40606d" prot="private" static="no" mutable="no">
         <type>double</type>
@@ -215,7 +214,6 @@
     <briefdescription>
     </briefdescription>
     <detaileddescription>
-<para><ref refid="classA" kindref="compound">A</ref> delay line </para>
     </detaileddescription>
     <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="264" column="1" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="265" bodyend="282"/>
     <listofallmembers>

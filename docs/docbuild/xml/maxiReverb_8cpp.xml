@@ -133,7 +133,7 @@
 <codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>used<sp/>for<sp/>freeverb<sp/>emulation</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>low<sp/>pass<sp/>between<sp/>delay<sp/>output<sp/>+<sp/>feedback</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/>delay_size<sp/>=<sp/>size;</highlight></codeline>
-<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/>output<sp/>=<sp/>input<sp/>+<sp/>(fb<sp/>*<sp/>mf.lopass(delay_line[delay_index],(1.0-cutoff)));</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/>output<sp/>=<sp/>input<sp/>+<sp/>(fb<sp/>*<sp/>mf.<ref refid="classmaxiFilter_1a5eba3705e0689f0e636b418b13639be5" kindref="member">lopass</ref>(delay_line[delay_index],(1.0-cutoff)));</highlight></codeline>
 <codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/>delay_line[delay_index]<sp/>=<sp/>output;</highlight></codeline>
 <codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/>delay_index<sp/>!=<sp/>delay_size<sp/>-<sp/>1<sp/>?<sp/>delay_index++<sp/>:<sp/>delay_index<sp/>=<sp/>0;</highlight></codeline>
 <codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>output;</highlight></codeline>

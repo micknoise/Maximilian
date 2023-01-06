@@ -2301,8 +2301,12 @@ class CHEERP_EXPORT maxiDynamics {
             };
 
             inputAnalyser = inputRMS;
-            arEnv.setupASR(10,10);
-            arEnv.setRetrigger(false);
+            arEnvHigh.setupASR(10,10);
+            arEnvHigh.setRetrigger(false);
+            arEnvLow.setupASR(10,10);
+            arEnvLow.setRetrigger(false);
+
+            lookAheadDelay.setup(maxiSettings::sampleRate * 1); //max 1s
         }
 
         double envToRatio(double envVal, double ratio) {
@@ -2315,70 +2319,136 @@ class CHEERP_EXPORT maxiDynamics {
             return envRatio;
         }
 
-        double play(double sig, double control, double threshold, double ratio, double knee) {
+        double play(double sig, double control, 
+            double thresholdHigh, double ratioHigh, double kneeHigh,
+            double thresholdLow, double ratioLow, double kneeLow
+        ) {
             double controlDB = maxiConvert::ampToDbs(inputAnalyser(control));
             double outDB = maxiConvert::ampToDbs(sig);
-            if (ratio > 0) {
-                if (knee > 0) {
-                    double lowKnee = threshold - (knee/2.0);
-                    double highKnee = threshold  +(knee/2.0);
+            if (ratioHigh > 0) {
+                if (kneeHigh > 0) {
+                    double lowerKnee = thresholdHigh - (kneeHigh/2.0);
+                    double higherKnee = thresholdHigh  +(kneeHigh/2.0);
                     //attack/release
                     double envRatio = 1;
-                    if (controlDB >= lowKnee) {
-                        double envVal = arEnv.play(1);
-                        envRatio = envToRatio(envVal, ratio);
+                    if (controlDB >= lowerKnee) {
+                        double envVal = arEnvHigh.play(1);
+                        envRatio = envToRatio(envVal, ratioHigh);
                         cout << "on: " << envVal << endl;
                     }else {
-                        double envVal = arEnv.play(-1);
+                        double envVal = arEnvHigh.play(-1);
                         cout << "off: " << envVal << endl;
                     }
-                    if ((controlDB >= lowKnee) && (controlDB < highKnee)) {
-                        double kneeHighOut = ((highKnee - threshold) / envRatio) + threshold;
-                        double kneeRange = (kneeHighOut - lowKnee);
-                        double t = (controlDB - lowKnee) / knee;
+                    if ((controlDB >= lowerKnee) && (controlDB < higherKnee)) {
+                        double kneeHighOut = ((higherKnee - thresholdHigh) / envRatio) + thresholdHigh;
+                        double kneeRange = (kneeHighOut - lowerKnee);
+                        double t = (controlDB - lowerKnee) / kneeHigh;
                         //bezier on x only
-                        double kneex = (2 * (1-t) * t * 0.85) + (t*t);
-                        outDB = lowKnee + (kneex * kneeRange);
+                        double curve =  ratioHigh > 1 ? 0.8 : 0.2;
+                        double kneex = (2 * (1-t) * t * curve) + (t*t);
+                        outDB = lowerKnee + (kneex * kneeRange);
                         cout << "k";
                     }
-                    else if (controlDB >= highKnee) {
-                        outDB = ((controlDB - threshold) / envRatio) + threshold;
+                    else if (controlDB >= higherKnee) {
+                        outDB = ((controlDB - thresholdHigh) / envRatio) + thresholdHigh;
                         cout << "o";
                     }
                 }
                 else {
                     //no knee
-                    if (controlDB > threshold) {
+                    if (controlDB > thresholdHigh) {
                         cout << "c";
-                        double envVal = arEnv.play(1);
-                        double envRatio = envToRatio(envVal, ratio);
+                        double envVal = arEnvHigh.play(1);
+                        double envRatio = envToRatio(envVal, ratioHigh);
                         cout << "on: " << envVal << endl;
-                        outDB = ((controlDB - threshold) / envRatio) + threshold;  
+                        outDB = ((controlDB - thresholdHigh) / envRatio) + thresholdHigh;  
                     }else {
-                        double envVal = arEnv.play(-1);
+                        double envVal = arEnvHigh.play(-1);
+                        cout << "off: " << envVal << endl;
+                    }
+                }
+            }  
+            if (ratioLow > 0) {
+                if (kneeLow > 0) {
+                    double lowerKnee = thresholdLow - (kneeLow/2.0);
+                    double higherKnee = thresholdLow  +(kneeLow/2.0);
+                    //attack/release
+                    double envRatio = 1;
+                    if (controlDB < lowerKnee) {
+                        double envVal = arEnvLow.play(1);
+                        envRatio = envToRatio(envVal, ratioLow);
+                        cout << "on: " << envVal << endl;
+                    }else {
+                        double envVal = arEnvLow.play(-1);
+                        cout << "off: " << envVal << endl;
+                    }
+                    if ((controlDB >= lowerKnee) && (controlDB < higherKnee)) {
+                        double kneeLowOut = thresholdLow - ((thresholdLow-lowerKnee) / ratioLow);
+                        double kneeRange = (higherKnee - kneeLowOut);
+                        double t = (controlDB - lowerKnee) / kneeLow;
+                        //bezier on x only
+                        double curve =  ratioLow > 1 ? 0.2 : 0.8;
+                        double kneex = (2 * (1-t) * t * curve) + (t*t);
+                        outDB = kneeLowOut + (kneex * kneeRange);
+                        cout << "k";
+                    }
+                    else if (controlDB < lowerKnee) {
+                        outDB = thresholdLow - ((thresholdLow-controlDB) / ratioLow);
+                        cout << "o";
+                    }
+                }
+                else {
+                    //no knee
+                    if (controlDB < thresholdLow) {
+                        cout << "c";
+                        double envVal = arEnvLow.play(1);
+                        double envRatio = envToRatio(envVal, ratioLow);
+                        cout << "on: " << envVal << endl;
+                        outDB = thresholdLow - ((thresholdLow-controlDB) / ratioLow);
+                    }else {
+                        double envVal = arEnvLow.play(-1);
                         cout << "off: " << envVal << endl;
                     }
                 }
             }  
             double outAmp = maxiConvert::dbsToAmp(outDB);
+            double sigOut = 0;
             if (outAmp > 0) {
-                sig = sig * (control / outAmp);
-            }else{
-                sig = 0.0;
+                if (lookAheadSize > 0) {
+                    lookAheadDelay.push(sig);
+                    sigOut = lookAheadDelay.tail(lookAheadSize);
+                }else{
+                    sigOut = sig;
+                }
+                sigOut = sigOut * (control / outAmp);
             }
-            return sig;
+            return sigOut;
         }
 
-        void setAttack(double attack) {
-            arEnv.setTime(0, attack);
+        void setAttackHigh(double attack) {
+            arEnvHigh.setTime(0, attack);
         }
-        void setRelease(double attack) {
-            arEnv.setTime(2, attack);
+        void setReleaseHigh(double release) {
+            arEnvHigh.setTime(2, release);
+        }
+        void setAttackLow(double attack) {
+            arEnvLow.setTime(0, attack);
+        }
+        void setReleaseLow(double release) {
+            arEnvLow.setTime(2, release);
+        }
+        void setLookAhead(double length) {
+            lookAheadSize = maxiConvert::msToSamps(length);
+            lookAheadSize = min(lookAheadSize, lookAheadDelay.size());
+        }
+        double getLookAhead() {
+            return maxiConvert::sampsToMs(lookAheadSize);
         }
 
     private:
-        maxiEnvGen arEnv;
-        maxiDelayline lookAheadDelay;
+        maxiEnvGen arEnvHigh, arEnvLow;
+        maxiRingBuf lookAheadDelay;
+        size_t lookAheadSize = 0;
         maxiRMS rms;
         std::function<double(double)> inputPeak;        
         std::function<double(double)> inputRMS;        

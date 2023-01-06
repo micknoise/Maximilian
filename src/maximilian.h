@@ -2334,10 +2334,8 @@ class CHEERP_EXPORT maxiDynamics {
                     if (controlDB >= lowerKnee) {
                         double envVal = arEnvHigh.play(1);
                         envRatio = envToRatio(envVal, ratioHigh);
-                        cout << "on: " << envVal << endl;
                     }else {
                         double envVal = arEnvHigh.play(-1);
-                        cout << "off: " << envVal << endl;
                     }
                     if ((controlDB >= lowerKnee) && (controlDB < higherKnee)) {
                         double kneeHighOut = ((higherKnee - thresholdHigh) / envRatio) + thresholdHigh;
@@ -2347,24 +2345,19 @@ class CHEERP_EXPORT maxiDynamics {
                         double curve =  ratioHigh > 1 ? 0.8 : 0.2;
                         double kneex = (2 * (1-t) * t * curve) + (t*t);
                         outDB = lowerKnee + (kneex * kneeRange);
-                        cout << "k";
                     }
                     else if (controlDB >= higherKnee) {
                         outDB = ((controlDB - thresholdHigh) / envRatio) + thresholdHigh;
-                        cout << "o";
                     }
                 }
                 else {
                     //no knee
                     if (controlDB > thresholdHigh) {
-                        cout << "c";
                         double envVal = arEnvHigh.play(1);
                         double envRatio = envToRatio(envVal, ratioHigh);
-                        cout << "on: " << envVal << endl;
                         outDB = ((controlDB - thresholdHigh) / envRatio) + thresholdHigh;  
                     }else {
                         double envVal = arEnvHigh.play(-1);
-                        cout << "off: " << envVal << endl;
                     }
                 }
             }  
@@ -2377,10 +2370,8 @@ class CHEERP_EXPORT maxiDynamics {
                     if (controlDB < lowerKnee) {
                         double envVal = arEnvLow.play(1);
                         envRatio = envToRatio(envVal, ratioLow);
-                        cout << "on: " << envVal << endl;
                     }else {
                         double envVal = arEnvLow.play(-1);
-                        cout << "off: " << envVal << endl;
                     }
                     if ((controlDB >= lowerKnee) && (controlDB < higherKnee)) {
                         double kneeLowOut = thresholdLow - ((thresholdLow-lowerKnee) / ratioLow);
@@ -2390,24 +2381,19 @@ class CHEERP_EXPORT maxiDynamics {
                         double curve =  ratioLow > 1 ? 0.2 : 0.8;
                         double kneex = (2 * (1-t) * t * curve) + (t*t);
                         outDB = kneeLowOut + (kneex * kneeRange);
-                        cout << "k";
                     }
                     else if (controlDB < lowerKnee) {
                         outDB = thresholdLow - ((thresholdLow-controlDB) / ratioLow);
-                        cout << "o";
                     }
                 }
                 else {
                     //no knee
                     if (controlDB < thresholdLow) {
-                        cout << "c";
                         double envVal = arEnvLow.play(1);
                         double envRatio = envToRatio(envVal, ratioLow);
-                        cout << "on: " << envVal << endl;
                         outDB = thresholdLow - ((thresholdLow-controlDB) / ratioLow);
                     }else {
                         double envVal = arEnvLow.play(-1);
-                        cout << "off: " << envVal << endl;
                     }
                 }
             }  

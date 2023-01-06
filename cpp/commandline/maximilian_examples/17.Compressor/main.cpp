@@ -2,6 +2,7 @@
 
 maxiSample beats; //We give our sample a name. It's called beats this time. We could have loads of them, but they have to have different names.
 maxiDynamics dyn;
+maxiEnvGen threshEnv, ratioEnv;
 
 void setup() {//some inits
     
@@ -12,6 +13,9 @@ void setup() {//some inits
     dyn.setAttackLow(1);
     dyn.setReleaseLow(1);
     dyn.setLookAhead(2);
+
+    threshEnv.setup({0, -30, 0}, {10000,10000}, {1,1}, true);
+    ratioEnv.setup({20,1,0.05}, {15000,15000}, {1,1}, true);
     
 }
 
@@ -19,11 +23,11 @@ void play(double *output) {//this is where the magic happens. Very slow magic.
     
     
     //here, we're just compressing the file in real-time
+    //the looping envelopes move the compressor through different threshold and ratio combinations
 
     double out=beats.play();
-    out = dyn.play(out, out, 
-        0, 0, 0, // above high thresh
-        -30, 100, 1 //below low thresh
+    out = dyn.compress(out,  
+        threshEnv.play(1), ratioEnv.play(1), 5
     );
     
     

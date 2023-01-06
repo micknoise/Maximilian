@@ -29,11 +29,11 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="747" column="19" bodyfile="/home/ck84/src/Maximilian/src/maximilian.cpp" bodystart="1478" bodyend="1480"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="792" column="19" bodyfile="/home/ck84/src/Maximilian/src/maximilian.cpp" bodystart="1498" bodyend="1500"/>
       </memberdef>
-      <memberdef kind="function" id="classmaxiConvert_1a12c58703cdfb258875d7d1404cb33334" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>double</type>
-        <definition>static double maxiConvert::msToSamps</definition>
+      <memberdef kind="function" id="classmaxiConvert_1acafb7f84fc30c76960a2b0025ad754b8" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>size_t</type>
+        <definition>static size_t maxiConvert::msToSamps</definition>
         <argsstring>(double timeMs)</argsstring>
         <name>msToSamps</name>
         <param>
@@ -56,7 +56,34 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="750" column="19" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="750" bodyend="753"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="795" column="19" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="795" bodyend="798"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiConvert_1a3a38c2c0d8943dfba338e6eda687b0d3" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>static double maxiConvert::sampsToMs</definition>
+        <argsstring>(size_t samples)</argsstring>
+        <name>sampsToMs</name>
+        <param>
+          <type>size_t</type>
+          <declname>samples</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Convert from samples to milliseconds<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>samples</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The number of samples </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="800" column="19" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="800" bodyend="803"/>
       </memberdef>
       <memberdef kind="function" id="classmaxiConvert_1a8048c8af50733d0ff5cadeae82955397" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>double</type>
@@ -83,7 +110,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="756" column="19" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="756" bodyend="758"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="806" column="19" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="806" bodyend="808"/>
       </memberdef>
       <memberdef kind="function" id="classmaxiConvert_1ab3caacc73f0a612e458181bd721dcc1f" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>double</type>
@@ -110,7 +137,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="760" column="19" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="760" bodyend="762"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="810" column="19" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="810" bodyend="812"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -118,12 +145,13 @@
     <detaileddescription>
 <para>Conversion functions </para>
     </detaileddescription>
-    <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="743" column="1" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="744" bodyend="763"/>
+    <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="788" column="1" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="789" bodyend="813"/>
     <listofallmembers>
       <member refid="classmaxiConvert_1a8048c8af50733d0ff5cadeae82955397" prot="public" virt="non-virtual"><scope>maxiConvert</scope><name>ampToDbs</name></member>
       <member refid="classmaxiConvert_1ab3caacc73f0a612e458181bd721dcc1f" prot="public" virt="non-virtual"><scope>maxiConvert</scope><name>dbsToAmp</name></member>
-      <member refid="classmaxiConvert_1a12c58703cdfb258875d7d1404cb33334" prot="public" virt="non-virtual"><scope>maxiConvert</scope><name>msToSamps</name></member>
+      <member refid="classmaxiConvert_1acafb7f84fc30c76960a2b0025ad754b8" prot="public" virt="non-virtual"><scope>maxiConvert</scope><name>msToSamps</name></member>
       <member refid="classmaxiConvert_1a297c99035cb6a4727654133d792c22e1" prot="public" virt="non-virtual"><scope>maxiConvert</scope><name>mtof</name></member>
+      <member refid="classmaxiConvert_1a3a38c2c0d8943dfba338e6eda687b0d3" prot="public" virt="non-virtual"><scope>maxiConvert</scope><name>sampsToMs</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

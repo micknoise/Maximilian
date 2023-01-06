@@ -15,7 +15,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="2212" column="17" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="2212" bodyend="-1"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="2242" column="17" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="2242" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
@@ -30,12 +30,12 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="2195" column="9" bodyfile="/home/ck84/src/Maximilian/src/maximilian.cpp" bodystart="1507" bodyend="1507"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="2225" column="9" bodyfile="/home/ck84/src/Maximilian/src/maximilian.cpp" bodystart="1527" bodyend="1527"/>
       </memberdef>
-      <memberdef kind="function" id="classmaxiPoll_1a7fbdcadf18c378ebdb25d05dffa7110f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="classmaxiPoll_1a7e72b3804fef19771d40c2bb90b37ba8" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>double</type>
         <definition>double maxiPoll::poll</definition>
-        <argsstring>(double val, double frequency=4, string txt=&quot;&quot;)</argsstring>
+        <argsstring>(double val, double frequency=4, string txt=&quot;&quot;, string end=&quot;\n&quot;)</argsstring>
         <name>poll</name>
         <param>
           <type>double</type>
@@ -50,6 +50,11 @@
           <type>string</type>
           <declname>txt</declname>
           <defval>&quot;&quot;</defval>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>end</declname>
+          <defval>&quot;\n&quot;</defval>
         </param>
         <briefdescription>
         </briefdescription>
@@ -85,7 +90,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="2202" column="16" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="2202" bodyend="2210"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="2232" column="16" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="2232" bodyend="2240"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -93,11 +98,11 @@
     <detaileddescription>
 <para>Poll values to stdout at regular intervals </para>
     </detaileddescription>
-    <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="2193" column="1" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="2193" bodyend="2213"/>
+    <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="2223" column="1" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="2223" bodyend="2243"/>
     <listofallmembers>
       <member refid="classmaxiPoll_1a0fe8a5a2b3755bf37d18308400784034" prot="private" virt="non-virtual"><scope>maxiPoll</scope><name>imp</name></member>
       <member refid="classmaxiPoll_1abe2c3769f3082edf25aba08690c144b5" prot="public" virt="non-virtual"><scope>maxiPoll</scope><name>maxiPoll</name></member>
-      <member refid="classmaxiPoll_1a7fbdcadf18c378ebdb25d05dffa7110f" prot="public" virt="non-virtual"><scope>maxiPoll</scope><name>poll</name></member>
+      <member refid="classmaxiPoll_1a7e72b3804fef19771d40c2bb90b37ba8" prot="public" virt="non-virtual"><scope>maxiPoll</scope><name>poll</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

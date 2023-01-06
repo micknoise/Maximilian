@@ -738,8 +738,11 @@ string maxiSample::getSummary()
 
 //This plays back at the correct speed. Always loops.
 double maxiSample::play() {
-    position++;
     output = F64_ARRAY_AT(amplitudes,(long)position);
+    position++;
+		if ((long) position >= F64_ARRAY_SIZE(amplitudes)) {
+			position = 0;
+		}
     return output;
 }
 
@@ -1051,6 +1054,23 @@ double maxiSample::playUntilAtSpeed(double end, double speed) {
 		output=0;
 
 	position=position+((speed*chandiv)/(maxiSettings::sampleRate/mySampleRate));
+	return output;
+}
+
+double maxiSample::playAtSpeed(double speed) {
+	double remainder = position - (long) position;
+	if ((long) position<F64_ARRAY_SIZE(amplitudes)) {
+		output = ((1-remainder) * F64_ARRAY_AT(amplitudes,1+ (long) position) + remainder * 
+		F64_ARRAY_AT(amplitudes,2+(long) position));//linear interpolation
+	}
+	else {
+		output=0;
+	}
+
+	position=position+((speed*chandiv)/(maxiSettings::sampleRate/mySampleRate));
+	if ((long) position >= F64_ARRAY_SIZE(amplitudes)) {
+		position -= F64_ARRAY_SIZE(amplitudes);
+	}
 	return output;
 }
 
@@ -1505,3 +1525,7 @@ maxiSelectX::maxiSelectX() {}
 maxiEnvGen::maxiEnvGen() {}
 maxiRingBuf::maxiRingBuf() {}
 maxiPoll::maxiPoll() {}
+maxiRMS::maxiRMS() {}
+maxiZeroCrossingRate::maxiZeroCrossingRate() {
+	buf.setup(maxiSettings::sampleRate);
+}

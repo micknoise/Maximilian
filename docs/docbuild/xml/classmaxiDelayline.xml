@@ -2,6 +2,7 @@
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="classmaxiDelayline" kind="class" language="C++" prot="public">
     <compoundname>maxiDelayline</compoundname>
+    <includes refid="maximilian_8h" local="no">maximilian.h</includes>
       <sectiondef kind="private-attrib">
       <memberdef kind="variable" id="classmaxiDelayline_1ad9d531300facc70a3daab4205d40606d" prot="private" static="no" mutable="no">
         <type>double</type>
@@ -14,7 +15,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="250" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="250" bodyend="-1"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="266" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="266" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classmaxiDelayline_1a229efedc874a64f90338599e1070e61d" prot="private" static="no" mutable="no">
         <type>int</type>
@@ -27,7 +28,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="251" column="9" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="251" bodyend="-1"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="267" column="9" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="267" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classmaxiDelayline_1ab95fc1f40afd2a4a0ad69f75abcd4243" prot="private" static="no" mutable="no">
         <type>double</type>
@@ -40,7 +41,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="252" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="252" bodyend="-1"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="268" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="268" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classmaxiDelayline_1a8d1642ea703b49ff6490aac0c1d17db0" prot="private" static="no" mutable="no">
         <type>double</type>
@@ -53,7 +54,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="253" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="253" bodyend="-1"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="269" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="269" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classmaxiDelayline_1a6b7a325327184d97001dbddc7d5a0922" prot="private" static="no" mutable="no">
         <type>double</type>
@@ -66,7 +67,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="254" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="254" bodyend="-1"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="270" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="270" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classmaxiDelayline_1a7ce16f84758d12bef1b5c3b11031b71c" prot="private" static="no" mutable="no">
         <type>double</type>
@@ -79,7 +80,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="255" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="255" bodyend="-1"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="271" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="271" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
@@ -94,7 +95,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="258" column="5" bodyfile="/home/ck84/src/Maximilian/src/maximilian.cpp" bodystart="415" bodyend="417"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="274" column="5" bodyfile="/home/ck84/src/Maximilian/src/maximilian.cpp" bodystart="415" bodyend="417"/>
       </memberdef>
       <memberdef kind="function" id="classmaxiDelayline_1a262f9a52fc6d7c087caaae350779f956" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>double</type>
@@ -116,10 +117,36 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
+<para>Apply a delay to a signal<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>input</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>a signal,</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>size</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the size of the delay in samples</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>feedback</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the amount of feedback </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="259" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.cpp" bodystart="420" bodyend="429"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="276" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.cpp" bodystart="420" bodyend="429"/>
       </memberdef>
       <memberdef kind="function" id="classmaxiDelayline_1a8db792dd66742c0b91567efffd2fb09e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>double</type>
@@ -145,17 +172,52 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
+<para>Apply a delay to a signal, reading from a specific position in the buffer <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>input</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>a signal,</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>size</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the size of the delay in samples</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>feedback</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the amount of feedback </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>position</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the position in the buffer (in samples) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="260" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.cpp" bodystart="431" bodyend="439"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="281" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.cpp" bodystart="431" bodyend="439"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
+<para><ref refid="classA" kindref="compound">A</ref> delay line </para>
     </detaileddescription>
-    <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="248" column="1" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="249" bodyend="261"/>
+    <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="264" column="1" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="265" bodyend="282"/>
     <listofallmembers>
       <member refid="classmaxiDelayline_1a262f9a52fc6d7c087caaae350779f956" prot="public" virt="non-virtual"><scope>maxiDelayline</scope><name>dl</name></member>
       <member refid="classmaxiDelayline_1a8db792dd66742c0b91567efffd2fb09e" prot="public" virt="non-virtual"><scope>maxiDelayline</scope><name>dlFromPosition</name></member>

@@ -2,6 +2,7 @@
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="classmaxiSettings" kind="class" language="C++" prot="public">
     <compoundname>maxiSettings</compoundname>
+    <includes refid="maximilian_8h" local="no">maximilian.h</includes>
       <sectiondef kind="public-static-attrib">
       <memberdef kind="variable" id="classmaxiSettings_1a69a0a3a7202358b401f8c75b0d711421" prot="public" static="yes" mutable="no">
         <type>size_t</type>
@@ -12,10 +13,11 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
+<para>The sample rate </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="116" column="19" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="116" bodyend="-1"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="121" column="19" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="121" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classmaxiSettings_1ab6a8dbecf67eeaa9c2e36f0de57061eb" prot="public" static="yes" mutable="no">
         <type>size_t</type>
@@ -29,7 +31,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="117" column="19" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="117" bodyend="-1"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="122" column="19" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="122" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classmaxiSettings_1ac15b6b6e3c382768434103a4541c0186" prot="public" static="yes" mutable="no">
         <type>size_t</type>
@@ -43,7 +45,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="118" column="19" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="118" bodyend="-1"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="123" column="19" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="123" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
@@ -58,7 +60,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="115" column="5" bodyfile="/home/ck84/src/Maximilian/src/maximilian.cpp" bodystart="55" bodyend="55"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="118" column="5" bodyfile="/home/ck84/src/Maximilian/src/maximilian.cpp" bodystart="55" bodyend="55"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-static-func">
@@ -82,10 +84,36 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
+<para>Configure Maximilian <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>initSampleRate</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the sample rate </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>initChannels</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the number of audio channels </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>initBufferSize</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the buffer size of your audio system </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="119" column="17" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="119" bodyend="124"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="130" column="17" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="130" bodyend="135"/>
       </memberdef>
       <memberdef kind="function" id="classmaxiSettings_1afa1436d2882113646dd1077fdd5449ba" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>size_t</type>
@@ -98,14 +126,15 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="138" column="19" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="138" bodyend="141"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="149" column="19" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="149" bodyend="152"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
+<para><ref refid="classThis" kindref="compound">This</ref> gives Maximilian essential information it needs </para>
     </detaileddescription>
-    <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="112" column="1" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="113" bodyend="150"/>
+    <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="115" column="1" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="116" bodyend="161"/>
     <listofallmembers>
       <member refid="classmaxiSettings_1ac15b6b6e3c382768434103a4541c0186" prot="public" virt="non-virtual"><scope>maxiSettings</scope><name>bufferSize</name></member>
       <member refid="classmaxiSettings_1ab6a8dbecf67eeaa9c2e36f0de57061eb" prot="public" virt="non-virtual"><scope>maxiSettings</scope><name>channels</name></member>

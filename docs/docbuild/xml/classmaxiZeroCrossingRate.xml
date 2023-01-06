@@ -1,0 +1,106 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classmaxiZeroCrossingRate" kind="class" language="C++" prot="public">
+    <compoundname>maxiZeroCrossingRate</compoundname>
+    <includes refid="maximilian_8h" local="no">maximilian.h</includes>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classmaxiZeroCrossingRate_1a616cdb5e7b03011842799e7c01ba9d0b" prot="private" static="no" mutable="no">
+        <type><ref refid="classmaxiRingBuf" kindref="compound">maxiRingBuf</ref></type>
+        <definition>maxiRingBuf maxiZeroCrossingRate::buf</definition>
+        <argsstring></argsstring>
+        <name>buf</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="888" column="21" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="888" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiZeroCrossingRate_1a9b99e5d8642408ec950197a5ddcb2952" prot="private" static="no" mutable="no">
+        <type>size_t</type>
+        <definition>size_t maxiZeroCrossingRate::runningCount</definition>
+        <argsstring></argsstring>
+        <name>runningCount</name>
+        <initializer>=0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="889" column="16" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="889" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiZeroCrossingRate_1a39415db6effc658aefa6970e9a1fcf14" prot="private" static="no" mutable="no">
+        <type><ref refid="classmaxiZeroCrossingDetector" kindref="compound">maxiZeroCrossingDetector</ref></type>
+        <definition>maxiZeroCrossingDetector maxiZeroCrossingRate::zxd</definition>
+        <argsstring></argsstring>
+        <name>zxd</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="890" column="34" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="890" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classmaxiZeroCrossingRate_1a076fff105b5ec6bd46debd9c95603173" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>maxiZeroCrossingRate::maxiZeroCrossingRate</definition>
+        <argsstring>()</argsstring>
+        <name>maxiZeroCrossingRate</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="874" column="9" bodyfile="/home/ck84/src/Maximilian/src/maximilian.cpp" bodystart="1529" bodyend="1531"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiZeroCrossingRate_1a0d64e5805124f957b1c9c8b19024d477" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double maxiZeroCrossingRate::play</definition>
+        <argsstring>(double signal)</argsstring>
+        <name>play</name>
+        <param>
+          <type>double</type>
+          <declname>signal</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Calculate the zero cross rate<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>signal</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>a signal </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>the zero crossing rate in Hz </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="876" column="16" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="876" bodyend="885"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>Calculate the zero crossing rate of a signal <ref refid="classThis" kindref="compound">This</ref> is a fairly crude measure of frequency, which is confounded by complex waveforms and noise </para>
+    </detaileddescription>
+    <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="872" column="1" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="872" bodyend="891"/>
+    <listofallmembers>
+      <member refid="classmaxiZeroCrossingRate_1a616cdb5e7b03011842799e7c01ba9d0b" prot="private" virt="non-virtual"><scope>maxiZeroCrossingRate</scope><name>buf</name></member>
+      <member refid="classmaxiZeroCrossingRate_1a076fff105b5ec6bd46debd9c95603173" prot="public" virt="non-virtual"><scope>maxiZeroCrossingRate</scope><name>maxiZeroCrossingRate</name></member>
+      <member refid="classmaxiZeroCrossingRate_1a0d64e5805124f957b1c9c8b19024d477" prot="public" virt="non-virtual"><scope>maxiZeroCrossingRate</scope><name>play</name></member>
+      <member refid="classmaxiZeroCrossingRate_1a9b99e5d8642408ec950197a5ddcb2952" prot="private" virt="non-virtual"><scope>maxiZeroCrossingRate</scope><name>runningCount</name></member>
+      <member refid="classmaxiZeroCrossingRate_1a39415db6effc658aefa6970e9a1fcf14" prot="private" virt="non-virtual"><scope>maxiZeroCrossingRate</scope><name>zxd</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

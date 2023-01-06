@@ -238,7 +238,8 @@
   </compound>
   <compound refid="classmaxiConvert" kind="class"><name>maxiConvert</name>
     <member refid="classmaxiConvert_1a297c99035cb6a4727654133d792c22e1" kind="function"><name>mtof</name></member>
-    <member refid="classmaxiConvert_1a12c58703cdfb258875d7d1404cb33334" kind="function"><name>msToSamps</name></member>
+    <member refid="classmaxiConvert_1acafb7f84fc30c76960a2b0025ad754b8" kind="function"><name>msToSamps</name></member>
+    <member refid="classmaxiConvert_1a3a38c2c0d8943dfba338e6eda687b0d3" kind="function"><name>sampsToMs</name></member>
     <member refid="classmaxiConvert_1a8048c8af50733d0ff5cadeae82955397" kind="function"><name>ampToDbs</name></member>
     <member refid="classmaxiConvert_1ab3caacc73f0a612e458181bd721dcc1f" kind="function"><name>dbsToAmp</name></member>
   </compound>
@@ -312,6 +313,35 @@
     <member refid="classmaxiDyn_1a5cb8377f070a1c29009bb2f5e10a372d" kind="function"><name>setRelease</name></member>
     <member refid="classmaxiDyn_1a9fa27ebd698d7c741db1ddbd1d7b4e90" kind="function"><name>setThreshold</name></member>
     <member refid="classmaxiDyn_1ab69d59318562559b868248b1193c6e82" kind="function"><name>setRatio</name></member>
+  </compound>
+  <compound refid="classmaxiDynamics" kind="class"><name>maxiDynamics</name>
+    <member refid="classmaxiDynamics_1a796f4e6f35e94bf422f380511d7e45bc" kind="enum"><name>ANALYSERS</name></member>
+    <member refid="classmaxiDynamics_1a796f4e6f35e94bf422f380511d7e45bcafb9db0a60123c6c325d3ab6b5c4d03b4" kind="enumvalue"><name>PEAK</name></member>
+    <member refid="classmaxiDynamics_1a796f4e6f35e94bf422f380511d7e45bca0fe36abab9e6d294775e31c20e7051e8" kind="enumvalue"><name>RMS</name></member>
+    <member refid="classmaxiDynamics_1a31fbbbe66c9725dfdce41062cd2d7f93" kind="variable"><name>arEnvHigh</name></member>
+    <member refid="classmaxiDynamics_1a49b727297e7e1789971e695d1aba203c" kind="variable"><name>arEnvLow</name></member>
+    <member refid="classmaxiDynamics_1a338f1b76174fe356f5dbee07f3eb1253" kind="variable"><name>lookAheadDelay</name></member>
+    <member refid="classmaxiDynamics_1a0182bf23f7ad0f7dec3b62eddf5dfce8" kind="variable"><name>lookAheadSize</name></member>
+    <member refid="classmaxiDynamics_1a5442a365d2dce8f09b065de059dc0790" kind="variable"><name>rms</name></member>
+    <member refid="classmaxiDynamics_1abac65fadf5537d8348c10ed9be354566" kind="variable"><name>inputPeak</name></member>
+    <member refid="classmaxiDynamics_1a0cd47de3a0a28e25d551b050b1c5620b" kind="variable"><name>inputRMS</name></member>
+    <member refid="classmaxiDynamics_1a3603acb350dddaa261497655027bb00e" kind="variable"><name>inputAnalyser</name></member>
+    <member refid="classmaxiDynamics_1a54d8d7add3f6380aecbd6f899dfa0cf6" kind="variable"><name>poll</name></member>
+    <member refid="classmaxiDynamics_1a1538c8e70adeabff05e7a7dc5251dc5e" kind="function"><name>maxiDynamics</name></member>
+    <member refid="classmaxiDynamics_1a79a4f30d45aabb964405fde5aaa6829c" kind="function"><name>play</name></member>
+    <member refid="classmaxiDynamics_1a14785d18672ec3c94481e1bd8bc6ed7d" kind="function"><name>compress</name></member>
+    <member refid="classmaxiDynamics_1a37af4d24f186e53efbad57903a028056" kind="function"><name>sidechainCompress</name></member>
+    <member refid="classmaxiDynamics_1a3512c121bbf43b379205616ec07e6584" kind="function"><name>compandAbove</name></member>
+    <member refid="classmaxiDynamics_1a14133dec6e29ea14f8b1e96dbe8aadec" kind="function"><name>compandBelow</name></member>
+    <member refid="classmaxiDynamics_1a0273d2650b89b9479a4f2edc6c6199fe" kind="function"><name>setAttackHigh</name></member>
+    <member refid="classmaxiDynamics_1a404880950607546bc14b42841114a658" kind="function"><name>setReleaseHigh</name></member>
+    <member refid="classmaxiDynamics_1aa76adf63dbc2787b4b371ec5004a046d" kind="function"><name>setAttackLow</name></member>
+    <member refid="classmaxiDynamics_1a3a12966b1242cd305e1ae1f469ec8b73" kind="function"><name>setReleaseLow</name></member>
+    <member refid="classmaxiDynamics_1a82b54fa78fd19796049ebe33f798b4c2" kind="function"><name>setLookAhead</name></member>
+    <member refid="classmaxiDynamics_1a120d14fe57e3174e02ba9983c4f605a0" kind="function"><name>getLookAhead</name></member>
+    <member refid="classmaxiDynamics_1afa1ab43b86ed583064a4d09fc2fcc56f" kind="function"><name>setRMSWindowSize</name></member>
+    <member refid="classmaxiDynamics_1a90493175c8e190322d1da6ca20f3403c" kind="function"><name>setInputAnalyser</name></member>
+    <member refid="classmaxiDynamics_1a99762094c82160d0d35181e2c901c8c9" kind="function"><name>envToRatio</name></member>
   </compound>
   <compound refid="classmaxiEnv" kind="class"><name>maxiEnv</name>
     <member refid="classmaxiEnv_1a368aba81ea0424c3747010fd4db75c4d" kind="variable"><name>input</name></member>
@@ -782,7 +812,7 @@
   <compound refid="classmaxiPoll" kind="class"><name>maxiPoll</name>
     <member refid="classmaxiPoll_1a0fe8a5a2b3755bf37d18308400784034" kind="variable"><name>imp</name></member>
     <member refid="classmaxiPoll_1abe2c3769f3082edf25aba08690c144b5" kind="function"><name>maxiPoll</name></member>
-    <member refid="classmaxiPoll_1a7fbdcadf18c378ebdb25d05dffa7110f" kind="function"><name>poll</name></member>
+    <member refid="classmaxiPoll_1a7e72b3804fef19771d40c2bb90b37ba8" kind="function"><name>poll</name></member>
   </compound>
   <compound refid="classmaxiPolyBLEP" kind="class"><name>maxiPolyBLEP</name>
     <member refid="classmaxiPolyBLEP_1a6adb656a95c88c2ae9e9b4b1a4dc6b42" kind="typedef"><name>Waveform</name></member>
@@ -879,6 +909,16 @@
     <member refid="classmaxiRingBuf_1a6b3245facdc13657159d487f93aa4851" kind="function"><name>tail</name></member>
     <member refid="classmaxiRingBuf_1ab05fffc8720e0d8c7dc748299f2a5735" kind="function"><name>reduce</name></member>
   </compound>
+  <compound refid="classmaxiRMS" kind="class"><name>maxiRMS</name>
+    <member refid="classmaxiRMS_1aa17526b0eafff55f1b67243bd1028c9d" kind="variable"><name>buf</name></member>
+    <member refid="classmaxiRMS_1a968d2a343289f760ca71759605eb4736" kind="variable"><name>windowSize</name></member>
+    <member refid="classmaxiRMS_1a9e5baf180775229ab400a734796069f0" kind="variable"><name>runningRMS</name></member>
+    <member refid="classmaxiRMS_1a49564de84c2f37ab4e70aba7a8358f9c" kind="function"><name>maxiRMS</name></member>
+    <member refid="classmaxiRMS_1a83f8273f50317de69ddd4ee85643126b" kind="function"><name>setup</name></member>
+    <member refid="classmaxiRMS_1acb19557702eae3155ae190e1519c8fe6" kind="function"><name>setWindowSize</name></member>
+    <member refid="classmaxiRMS_1ab262cc704a1720a34b5aba4553bf905e" kind="function"><name>getWindowSize</name></member>
+    <member refid="classmaxiRMS_1a00cc4d4bf0c210f902b92a60be9386e2" kind="function"><name>play</name></member>
+  </compound>
   <compound refid="classmaxiSample" kind="class"><name>maxiSample</name>
     <member refid="classmaxiSample_1a80a4798fadf7a3e7d190eb295850974c" kind="variable"><name>position</name></member>
     <member refid="classmaxiSample_1a7fc14ee1486241621330df33d8e155ff" kind="variable"><name>recordPosition</name></member>
@@ -898,7 +938,7 @@
     <member refid="classmaxiSample_1a7eb38f0af4b6fed630991b09a1513d64" kind="variable"><name>myBlockAlign</name></member>
     <member refid="classmaxiSample_1ad583ab97de3e1ae648f7c04144a2202b" kind="variable"><name>phasorFirst</name></member>
     <member refid="classmaxiSample_1a9c8bf9646754528b511b4f91258afdb2" kind="variable"><name>phasorPrev</name></member>
-    <member refid="classmaxiSample_1a9b32955d8d70bd946b74919ac2703c56" kind="function"><name>getLength</name></member>
+    <member refid="classmaxiSample_1ad4d683ac579e9eb38305383eb9b4df5f" kind="function"><name>getLength</name></member>
     <member refid="classmaxiSample_1aec72b1120c5d696825cdd848da0a5271" kind="function"><name>DECLARE_F64_ARRAY</name></member>
     <member refid="classmaxiSample_1af48a45b854755f11c2a08e572532ffdb" kind="function"><name>maxiSample</name></member>
     <member refid="classmaxiSample_1a3be61f10965fbca8bc2440c5b22c1daa" kind="function"><name>operator=</name></member>
@@ -1115,6 +1155,13 @@
     <member refid="classmaxiZeroCrossingDetector_1a6c104907ac40969661f66177f43634f0" kind="function"><name>maxiZeroCrossingDetector</name></member>
     <member refid="classmaxiZeroCrossingDetector_1aa7910490989a6a12655ee083fece2eeb" kind="function"><name>zx</name></member>
   </compound>
+  <compound refid="classmaxiZeroCrossingRate" kind="class"><name>maxiZeroCrossingRate</name>
+    <member refid="classmaxiZeroCrossingRate_1a616cdb5e7b03011842799e7c01ba9d0b" kind="variable"><name>buf</name></member>
+    <member refid="classmaxiZeroCrossingRate_1a9b99e5d8642408ec950197a5ddcb2952" kind="variable"><name>runningCount</name></member>
+    <member refid="classmaxiZeroCrossingRate_1a39415db6effc658aefa6970e9a1fcf14" kind="variable"><name>zxd</name></member>
+    <member refid="classmaxiZeroCrossingRate_1a076fff105b5ec6bd46debd9c95603173" kind="function"><name>maxiZeroCrossingRate</name></member>
+    <member refid="classmaxiZeroCrossingRate_1a0d64e5805124f957b1c9c8b19024d477" kind="function"><name>play</name></member>
+  </compound>
   <compound refid="classmaxiZXToPulse" kind="class"><name>maxiZXToPulse</name>
     <member refid="classmaxiZXToPulse_1a02e41dd1d7c6ef5fe3b9ae0b8c6a8043" kind="variable"><name>trig</name></member>
     <member refid="classmaxiZXToPulse_1a4b8fe37973bd6b4f4600d4b4bf03a546" kind="variable"><name>holdCounter</name></member>
@@ -1229,6 +1276,8 @@
     <member refid="structstb__vorbis__info_1aec05c013773be9d8d52f9bb784bdc084" kind="variable"><name>setup_temp_memory_required</name></member>
     <member refid="structstb__vorbis__info_1a2fe235656197249fc3a6b5e27ff2da82" kind="variable"><name>temp_memory_required</name></member>
     <member refid="structstb__vorbis__info_1ad07f41541db438dcdac6ca223c5876e9" kind="variable"><name>max_frame_size</name></member>
+  </compound>
+  <compound refid="classThis" kind="class"><name>This</name>
   </compound>
   <compound refid="structtriangleNZWinFunctor" kind="struct"><name>triangleNZWinFunctor</name>
     <member refid="structtriangleNZWinFunctor_1abd0e5d698518f906d4b2ed720c3b1908" kind="function"><name>operator()</name></member>

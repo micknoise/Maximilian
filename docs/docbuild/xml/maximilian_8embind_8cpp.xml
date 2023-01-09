@@ -596,7 +596,7 @@
 <codeline lineno="317"><highlight class="normal"></highlight><highlight class="preprocessor">#else</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="318"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.constructor&lt;&gt;()</highlight></codeline>
 <codeline lineno="319"><highlight class="normal">#endif</highlight></codeline>
-<codeline lineno="320"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.</highlight><highlight class="keyword">function</highlight><highlight class="normal">(</highlight><highlight class="stringliteral">&quot;flange&quot;</highlight><highlight class="normal">,<sp/>&amp;maxiFlanger::flange);</highlight></codeline>
+<codeline lineno="320"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.</highlight><highlight class="keyword">function</highlight><highlight class="normal">(</highlight><highlight class="stringliteral">&quot;flange&quot;</highlight><highlight class="normal">,<sp/>&amp;<ref refid="classmaxiFlanger_1abb001b4066237c99e69c983b638d4943" kindref="member">maxiFlanger::flange</ref>);</highlight></codeline>
 <codeline lineno="321"><highlight class="normal"></highlight></codeline>
 <codeline lineno="322"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>MAXI<sp/>CHORUS</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="323"><highlight class="normal"><sp/><sp/><sp/><sp/>class_&lt;maxiChorus&gt;(</highlight><highlight class="stringliteral">&quot;maxiChorus&quot;</highlight><highlight class="normal">)</highlight></codeline>
@@ -605,7 +605,7 @@
 <codeline lineno="326"><highlight class="normal"></highlight><highlight class="preprocessor">#else</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="327"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.constructor&lt;&gt;()</highlight></codeline>
 <codeline lineno="328"><highlight class="normal">#endif</highlight></codeline>
-<codeline lineno="329"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.</highlight><highlight class="keyword">function</highlight><highlight class="normal">(</highlight><highlight class="stringliteral">&quot;chorus&quot;</highlight><highlight class="normal">,<sp/>&amp;maxiChorus::chorus);</highlight></codeline>
+<codeline lineno="329"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.</highlight><highlight class="keyword">function</highlight><highlight class="normal">(</highlight><highlight class="stringliteral">&quot;chorus&quot;</highlight><highlight class="normal">,<sp/>&amp;<ref refid="classmaxiChorus_1ae6b12ddc4d9bbe3eebc5ac5825fd86a2" kindref="member">maxiChorus::chorus</ref>);</highlight></codeline>
 <codeline lineno="330"><highlight class="normal"></highlight></codeline>
 <codeline lineno="331"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>MAXI<sp/>ENVELOPE<sp/>FOLLOWER</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="332"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/>class_&lt;maxiEnvelopeFollowerType&lt;double&gt;&gt;(&quot;maxiEnvelopeFollower&quot;)</highlight><highlight class="normal"></highlight></codeline>

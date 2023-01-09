@@ -1136,6 +1136,9 @@ inline double maxiNonlinearity::fastAtanDist(const double in, const double shape
 
 using maxiDistortion = maxiNonlinearity; // backwards compatibility
 
+/**
+ * A flanger effect
+ */
 class maxiFlanger
 {
 public:
@@ -1143,6 +1146,16 @@ public:
     //feedback = 0 - 1
     //speed = lfo speed in Hz, 0.0001 - 10 sounds good
     //depth = 0 - 1
+    /**
+     * Apply a flanger effect to a signal
+     * \param input a signal
+     * \param delay the amount of delay (in milliseconds, recommended 1-1000)
+     * \param feedback the amount of feedback, 0-1
+     * \param speed the speed of the flanger LFO, in Hz
+     * \param depth the depth of the LFO, 0-1
+     * \returns the input signal, flanged
+     */
+
     double flange(const double input, const unsigned int delay, const double feedback, const double speed, const double depth);
     maxiDelayline dl;
     maxiOsc lfo;
@@ -1150,7 +1163,6 @@ public:
 
 inline double maxiFlanger::flange(const double input, const unsigned int delay, const double feedback, const double speed, const double depth)
 {
-    //todo: needs fixing
     double output;
     double lfoVal = lfo.triangle(speed);
     output = dl.dl(input, delay + (lfoVal * depth * delay) + 1, feedback);
@@ -1159,6 +1171,9 @@ inline double maxiFlanger::flange(const double input, const unsigned int delay, 
     return (output + input) / 2.0;
 }
 
+/**
+ * A chorus effect
+ */ 
 class maxiChorus
 {
 public:
@@ -1166,7 +1181,17 @@ public:
     //feedback = 0 - 1
     //speed = lfo speed in Hz, 0.0001 - 10 sounds good
     //depth = 0 - 1
+    /**
+     * Apply a chorus effect to a signal
+     * \param input a signal
+     * \param delay the amount of delay (in milliseconds, recommended 1-1000)
+     * \param feedback the amount of feedback, 0-1
+     * \param speed the speed of the chorus, in Hz
+     * \param depth the depth of the chorus effect, 0-1
+     * \returns the input signal with chorus applied
+     */
     double chorus(const double input, const unsigned int delay, const double feedback, const double speed, const double depth);
+private:
     maxiDelayline dl, dl2;
     maxiOsc lfo;
     maxiFilter lopass;
@@ -1174,7 +1199,6 @@ public:
 
 inline double maxiChorus::chorus(const double input, const unsigned int delay, const double feedback, const double speed, const double depth)
 {
-    //this needs fixing
     double output1, output2;
     double lfoVal = lfo.noise();
     lfoVal = lopass.lores(lfoVal, speed, 1.0) * 2.0;

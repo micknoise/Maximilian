@@ -1490,6 +1490,64 @@
 </div>
 </dd></dl>
 
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv410maxiChorus">
+<span id="_CPPv310maxiChorus"></span><span id="_CPPv210maxiChorus"></span><span id="maxiChorus"></span><span class="target" id="classmaxiChorus"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">maxiChorus</span></span></span><a class="headerlink" href="#_CPPv410maxiChorus" title="Permalink to this definition"></a><br /></dt>
+<dd><p>A chorus effect </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10maxiChorus6chorusEKdKjKdKdKd">
+<span id="_CPPv3N10maxiChorus6chorusEKdKjKdKdKd"></span><span id="_CPPv2N10maxiChorus6chorusEKdKjKdKdKd"></span><span id="maxiChorus::chorus__doubleC.unsigned-iC.doubleC.doubleC.doubleC"></span><span class="target" id="classmaxiChorus_1ae6b12ddc4d9bbe3eebc5ac5825fd86a2"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">chorus</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">input</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">unsigned</span></span><span class="w"> </span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">delay</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">feedback</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">speed</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">depth</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10maxiChorus6chorusEKdKjKdKdKd" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Apply a chorus effect to a signal </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>input</strong> – a signal </p></li>
+<li><p><strong>delay</strong> – the amount of delay (in milliseconds, recommended 1-1000) </p></li>
+<li><p><strong>feedback</strong> – the amount of feedback, 0-1 </p></li>
+<li><p><strong>speed</strong> – the speed of the chorus, in Hz </p></li>
+<li><p><strong>depth</strong> – the depth of the chorus effect, 0-1 </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>the input signal with chorus applied </p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv411maxiFlanger">
+<span id="_CPPv311maxiFlanger"></span><span id="_CPPv211maxiFlanger"></span><span id="maxiFlanger"></span><span class="target" id="classmaxiFlanger"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">maxiFlanger</span></span></span><a class="headerlink" href="#_CPPv411maxiFlanger" title="Permalink to this definition"></a><br /></dt>
+<dd><p>A flanger effect </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N11maxiFlanger6flangeEKdKjKdKdKd">
+<span id="_CPPv3N11maxiFlanger6flangeEKdKjKdKdKd"></span><span id="_CPPv2N11maxiFlanger6flangeEKdKjKdKdKd"></span><span id="maxiFlanger::flange__doubleC.unsigned-iC.doubleC.doubleC.doubleC"></span><span class="target" id="classmaxiFlanger_1abb001b4066237c99e69c983b638d4943"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">flange</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">input</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">unsigned</span></span><span class="w"> </span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">delay</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">feedback</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">speed</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">depth</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N11maxiFlanger6flangeEKdKjKdKdKd" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Apply a flanger effect to a signal </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>input</strong> – a signal </p></li>
+<li><p><strong>delay</strong> – the amount of delay (in milliseconds, recommended 1-1000) </p></li>
+<li><p><strong>feedback</strong> – the amount of feedback, 0-1 </p></li>
+<li><p><strong>speed</strong> – the speed of the flanger LFO, in Hz </p></li>
+<li><p><strong>depth</strong> – the depth of the LFO, 0-1 </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>the input signal, flanged </p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</dd></dl>
+
 </section>
 <section id="analysis">
 <h2>Analysis<a class="headerlink" href="#analysis" title="Permalink to this heading"></a></h2>

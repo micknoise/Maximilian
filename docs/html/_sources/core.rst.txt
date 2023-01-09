@@ -69,7 +69,13 @@ Effects
    :project: maximilian
    :members:
   
+.. doxygenclass:: maxiChorus 
+   :project: maximilian
+   :members:
 
+.. doxygenclass:: maxiFlanger 
+   :project: maximilian
+   :members:
 
 Analysis
 --------

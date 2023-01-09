@@ -63,7 +63,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1322" column="5" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1323" bodyend="1331"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1346" column="5" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1347" bodyend="1355"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="private-attrib">
@@ -79,7 +79,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1456" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1456" bodyend="-1"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1480" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1480" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classmaxiBiquad_1adc2f4d639491bcf40f6b8c3b2bef3312" prot="private" static="no" mutable="no">
         <type>double</type>
@@ -93,7 +93,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1456" column="16" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1456" bodyend="-1"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1480" column="16" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1480" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classmaxiBiquad_1ab88ef83eda3922f4ea106d127f5c10af" prot="private" static="no" mutable="no">
         <type>double</type>
@@ -107,7 +107,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1456" column="20" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1456" bodyend="-1"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1480" column="20" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1480" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classmaxiBiquad_1a07c4010ddef0b225eeafe0555ab9155f" prot="private" static="no" mutable="no">
         <type>double</type>
@@ -121,7 +121,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1456" column="24" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1456" bodyend="-1"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1480" column="24" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1480" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classmaxiBiquad_1a2caa62fbea534e39c7402cfade3f9f7b" prot="private" static="no" mutable="no">
         <type>double</type>
@@ -135,7 +135,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1456" column="28" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1456" bodyend="-1"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1480" column="28" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1480" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classmaxiBiquad_1a6eaa5fbfa05e9b44f846d47767370855" prot="private" static="no" mutable="no">
         <type><ref refid="classmaxiBiquad_1afdc6a07de436e1eb9b56d07e56de98c2" kindref="member">filterTypes</ref></type>
@@ -148,7 +148,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1457" column="17" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1457" bodyend="-1"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1481" column="17" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1481" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classmaxiBiquad_1ab9c22b756ba0e47111dcd23ec1dc983f" prot="private" static="no" mutable="no">
         <type>const double</type>
@@ -162,7 +162,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1458" column="18" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1458" bodyend="-1"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1482" column="18" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1482" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classmaxiBiquad_1ad09c05266b223978ee8f8c3ea37da7a8" prot="private" static="no" mutable="no">
         <type>double</type>
@@ -176,7 +176,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1459" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1459" bodyend="-1"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1483" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1483" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
@@ -191,7 +191,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1320" column="5" bodyfile="/home/ck84/src/Maximilian/src/maximilian.cpp" bodystart="1518" bodyend="1518"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1344" column="5" bodyfile="/home/ck84/src/Maximilian/src/maximilian.cpp" bodystart="1518" bodyend="1518"/>
       </memberdef>
       <memberdef kind="function" id="classmaxiBiquad_1ac601f5a099d4517a1e9eac04f9ebd371" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>double</type>
@@ -218,7 +218,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1334" column="19" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1334" bodyend="1341"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1358" column="19" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1358" bodyend="1365"/>
       </memberdef>
       <memberdef kind="function" id="classmaxiBiquad_1a2e86cf2367c1b6fc1e089cf324c7ff6f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
@@ -281,7 +281,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1349" column="17" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1349" bodyend="1453"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1373" column="17" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1373" bodyend="1477"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -289,7 +289,7 @@
     <detaileddescription>
 <para>Biquad filters based on <ulink url="http://www.earlevel.com/main/2011/01/02/biquad-formulas/">http://www.earlevel.com/main/2011/01/02/biquad-formulas/</ulink> and <ulink url="https://ccrma.stanford.edu/~jos/fp/Direct_Form_II.html">https://ccrma.stanford.edu/~jos/fp/Direct_Form_II.html</ulink> </para>
     </detaileddescription>
-    <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1317" column="1" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1318" bodyend="1460"/>
+    <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1341" column="1" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1342" bodyend="1484"/>
     <listofallmembers>
       <member refid="classmaxiBiquad_1a305b55a190a9d17bde442576c5a28631" prot="private" virt="non-virtual"><scope>maxiBiquad</scope><name>a0</name></member>
       <member refid="classmaxiBiquad_1adc2f4d639491bcf40f6b8c3b2bef3312" prot="private" virt="non-virtual"><scope>maxiBiquad</scope><name>a1</name></member>

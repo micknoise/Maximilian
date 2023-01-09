@@ -14,7 +14,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1721" column="22" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1721" bodyend="-1"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1745" column="22" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1745" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-static-func">
@@ -33,7 +33,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1727" column="19" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1727" bodyend="1727"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1751" column="19" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1751" bodyend="1751"/>
       </memberdef>
       <memberdef kind="function" id="classmaxiBits_1a5493df6844371967db3dc94f4742057e" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>bitsig</type>
@@ -54,7 +54,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1729" column="19" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1729" bodyend="1732"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1753" column="19" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1753" bodyend="1756"/>
       </memberdef>
       <memberdef kind="function" id="classmaxiBits_1a87e94e56e8b13930b5197687ab784b5b" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>bitsig</type>
@@ -75,7 +75,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1733" column="19" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1733" bodyend="1736"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1757" column="19" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1757" bodyend="1760"/>
       </memberdef>
       <memberdef kind="function" id="classmaxiBits_1ab9f256ed689a4afb3db869cdba0c4d91" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>bitsig</type>
@@ -96,7 +96,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1737" column="19" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1737" bodyend="1740"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1761" column="19" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1761" bodyend="1764"/>
       </memberdef>
       <memberdef kind="function" id="classmaxiBits_1ab7e629394b3ea1dd2a21329dd14038a1" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>bitsig</type>
@@ -121,7 +121,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1741" column="19" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1741" bodyend="1749"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1765" column="19" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1765" bodyend="1773"/>
       </memberdef>
       <memberdef kind="function" id="classmaxiBits_1a68a5ab3dfd03c19e341e262f8cf53483" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>bitsig</type>
@@ -142,7 +142,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1750" column="19" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1750" bodyend="1753"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1774" column="19" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1774" bodyend="1777"/>
       </memberdef>
       <memberdef kind="function" id="classmaxiBits_1a68a59391c97027199a5c18f640631707" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>bitsig</type>
@@ -163,7 +163,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1754" column="19" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1754" bodyend="1757"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1778" column="19" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1778" bodyend="1781"/>
       </memberdef>
       <memberdef kind="function" id="classmaxiBits_1a5c2fd59e61bf518c195bcae460d3fb7c" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>bitsig</type>
@@ -184,7 +184,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1758" column="19" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1758" bodyend="1761"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1782" column="19" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1782" bodyend="1785"/>
       </memberdef>
       <memberdef kind="function" id="classmaxiBits_1ad56aa7764b94b6d96e3fcdf7388415ee" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>bitsig</type>
@@ -201,7 +201,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1762" column="19" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1762" bodyend="1765"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1786" column="19" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1786" bodyend="1789"/>
       </memberdef>
       <memberdef kind="function" id="classmaxiBits_1a4c80304c6f8d6cf8ac4a3f573c680829" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>bitsig</type>
@@ -218,7 +218,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1766" column="19" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1766" bodyend="1769"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1790" column="19" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1790" bodyend="1793"/>
       </memberdef>
       <memberdef kind="function" id="classmaxiBits_1a943eb1de36a60a307c49f406c19e7ad2" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>bitsig</type>
@@ -235,7 +235,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1770" column="19" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1770" bodyend="1773"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1794" column="19" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1794" bodyend="1797"/>
       </memberdef>
       <memberdef kind="function" id="classmaxiBits_1a40abd33c218703ad243ee415ccc7cc9a" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>bitsig</type>
@@ -256,7 +256,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1774" column="19" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1774" bodyend="1777"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1798" column="19" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1798" bodyend="1801"/>
       </memberdef>
       <memberdef kind="function" id="classmaxiBits_1a71f124c0469536a688cd61fec84a8770" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>bitsig</type>
@@ -277,7 +277,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1778" column="19" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1778" bodyend="1781"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1802" column="19" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1802" bodyend="1805"/>
       </memberdef>
       <memberdef kind="function" id="classmaxiBits_1a5004c1c1f238a602b6a7d1ae5e5b8935" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>bitsig</type>
@@ -298,7 +298,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1782" column="19" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1782" bodyend="1785"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1806" column="19" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1806" bodyend="1809"/>
       </memberdef>
       <memberdef kind="function" id="classmaxiBits_1ac33222f89f8823b97ea36865f8e1621c" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>bitsig</type>
@@ -319,7 +319,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1786" column="19" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1786" bodyend="1789"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1810" column="19" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1810" bodyend="1813"/>
       </memberdef>
       <memberdef kind="function" id="classmaxiBits_1a3f43a257a5a6aabcebbaa2249e7a415b" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>bitsig</type>
@@ -340,7 +340,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1790" column="19" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1790" bodyend="1793"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1814" column="19" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1814" bodyend="1817"/>
       </memberdef>
       <memberdef kind="function" id="classmaxiBits_1ad73890a75409eab33e5c10c2da4116f1" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>bitsig</type>
@@ -361,7 +361,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1794" column="19" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1794" bodyend="1797"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1818" column="19" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1818" bodyend="1821"/>
       </memberdef>
       <memberdef kind="function" id="classmaxiBits_1a2350f3d2453d614c2e85e36ea2cbb648" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>bitsig</type>
@@ -382,7 +382,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1798" column="19" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1798" bodyend="1801"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1822" column="19" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1822" bodyend="1825"/>
       </memberdef>
       <memberdef kind="function" id="classmaxiBits_1a4e768617435d4233d84588849d6031e0" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>bitsig</type>
@@ -403,7 +403,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1802" column="19" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1802" bodyend="1805"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1826" column="19" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1826" bodyend="1829"/>
       </memberdef>
       <memberdef kind="function" id="classmaxiBits_1a993c47974642430d2a3abba548453aac" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>bitsig</type>
@@ -424,7 +424,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1806" column="19" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1806" bodyend="1809"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1830" column="19" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1830" bodyend="1833"/>
       </memberdef>
       <memberdef kind="function" id="classmaxiBits_1a0441c21f9bee2992a63b21578be50502" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>bitsig</type>
@@ -445,7 +445,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1810" column="19" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1810" bodyend="1818"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1834" column="19" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1834" bodyend="1842"/>
       </memberdef>
       <memberdef kind="function" id="classmaxiBits_1acdd9d5ed3d8d5246db9684224402eefa" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>bitsig</type>
@@ -462,7 +462,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1819" column="19" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1819" bodyend="1827"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1843" column="19" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1843" bodyend="1851"/>
       </memberdef>
       <memberdef kind="function" id="classmaxiBits_1ab8255d1601078df7948fa421a5f6e3e1" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>bitsig</type>
@@ -475,7 +475,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1829" column="19" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1829" bodyend="1833"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1853" column="19" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1853" bodyend="1857"/>
       </memberdef>
       <memberdef kind="function" id="classmaxiBits_1a9719c9e80d320a6b51d2ffbc769da70b" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>double</type>
@@ -492,7 +492,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1835" column="19" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1835" bodyend="1838"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1859" column="19" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1859" bodyend="1862"/>
       </memberdef>
       <memberdef kind="function" id="classmaxiBits_1a3bdca62be39720d7784bd79b5806c863" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>double</type>
@@ -509,7 +509,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1840" column="19" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1840" bodyend="1843"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1864" column="19" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1864" bodyend="1867"/>
       </memberdef>
       <memberdef kind="function" id="classmaxiBits_1a1562d7ed63736665f84de7d870032379" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>bitsig</type>
@@ -526,14 +526,14 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1845" column="19" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1845" bodyend="1850"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1869" column="19" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1869" bodyend="1874"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1718" column="1" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1719" bodyend="1856"/>
+    <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1742" column="1" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1743" bodyend="1880"/>
     <listofallmembers>
       <member refid="classmaxiBits_1a40abd33c218703ad243ee415ccc7cc9a" prot="public" virt="non-virtual"><scope>maxiBits</scope><name>add</name></member>
       <member refid="classmaxiBits_1a5493df6844371967db3dc94f4742057e" prot="public" virt="non-virtual"><scope>maxiBits</scope><name>at</name></member>

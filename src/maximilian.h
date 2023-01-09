@@ -1483,10 +1483,20 @@ private:
     double v[3] = {0, 0, 0};
 };
 
+/**
+ * Cross-fade between two signals, using equal-power panning
+ */
 class maxiXFade
 {
 public:
     maxiXFade() {}
+
+    /**
+     * Cross-fade between stereo signals
+     * \param ch1 a vector containing left and right components of channel 1 
+     * \param ch2 a vector containing left and right components of channel 2 
+     * \param xfader the cross-fader position, -1=100% ch1, 1=100% ch2, 0=an equal mix of both channels
+     */
     static vector<double> xfade(vector<double> &ch1, vector<double> &ch2, double xfader)
     {
         xfader = maxiMap::clamp(xfader, -1, 1);
@@ -1500,6 +1510,12 @@ public:
         }
         return output;
     }
+    /**
+     * Cross-fade between mono signals
+     * \param ch1 the signal for channel 1
+     * \param ch2 the signal for channel 2 
+     * \param xfader the cross-fader position, -1=100% ch1, 1=100% ch2, 0=an equal mix of both channels
+     */
     static double xfade(double ch1, double ch2, double xfader)
     {
         vector<double> vch1 = {ch1};
@@ -1598,12 +1614,27 @@ private:
     }
 };
 
-//https://tutorials.siam.org/dsweb/cotutorial/index.php?s=3&p=0
-//https://www.complexity-explorables.org/explorables/ride-my-kuramotocycle/
+/**
+ * A kuramoto oscillator
+ * 
+ * This is an adaptive oscillator that adjusts its own phase in relation to the phases of other kuramoto oscillators
+ * 
+ * For further info, see
+ * https://tutorials.siam.org/dsweb/cotutorial/index.php?s=3&p=0
+ * https://www.complexity-explorables.org/explorables/ride-my-kuramotocycle/
+ */
 class maxiKuramotoOscillator
 {
 public:
     maxiKuramotoOscillator() {}
+
+    /**
+     * Run the oscillator
+     * \param freq the intended frequency of the oscillator
+     * \param K the strengh of coupling between oscillators
+     * \param phases a vector of the phases of other kuramoto oscillators
+     * \returns the current amplitude of the oscillator
+     */
     inline double play(double freq, double K, std::vector<double> phases)
     {
 
@@ -1619,7 +1650,9 @@ public:
             phase += TWOPI;
         return phase;
     }
+    /*! Set the phase of the oscillator \param newPhase the phase, 0 - 2PI*/
     inline void setPhase(double newPhase) { phase = newPhase; }
+    /*! \returns the current phase of the oscillator*/
     inline double getPhase() { return phase; }
 
 private:
@@ -1627,15 +1660,21 @@ private:
     double dt = TWOPI / maxiSettings::sampleRate;
 };
 
-//a local group of oscillators
+/**
+ * This class managed a group of Kuramoto oscillators (see maxiKuramotoOscillator)
+ */
 class maxiKuramotoOscillatorSet
 {
 public:
+    /**
+     * \param N The number of oscillators in the group
+     */
     maxiKuramotoOscillatorSet(const size_t N)
     {
         oscs.resize(N);
         phases.resize(N);
     };
+    /*! Set the phases of all of the oscillators \param phases a vector of phases (all 0 - 2PI)*/
     void setPhases(const std::vector<double> &phases)
     {
         size_t iOsc = 0;
@@ -1646,21 +1685,30 @@ public:
         }
     }
 
+    /*! Set the phase of a single oscillator \param phase the phase, 0 - 2PI \param oscillatorIdx the index of the oscillator*/
     void setPhase(const double phase, const size_t oscillatorIdx)
     {
         oscs[oscillatorIdx].setPhase(phase);
     }
 
+    /*! Get the phase of a single oscillator \param i the index of the oscillator \returns the oscillator's phase*/
     double getPhase(size_t i)
     {
         return oscs[i].getPhase();
     }
 
+    /*! \returns the number of oscillators in the group*/
     size_t size()
     {
         return oscs.size();
     }
 
+    /**
+     * Run all of the oscillators
+     * \param freq the intended frequency
+     * \param K the coupling strength between oscillators
+     * \returns a mix of all of the oscillator signals in the group
+     */
     double play(double freq, double K)
     {
         double mix = 0.0;
@@ -1681,20 +1729,29 @@ protected:
     std::vector<double> phases;
 };
 
-//a single oscillator, updated according to phase information from remote oscillators
-//best guesses of the remote oscillators are maintained, and asynchronously updated
-//use case: a networked clock
+
+/**
+ * Run a group of kuramoto oscillators with asynchronous updates.  Instead of setting all of the phasors at once, you can set the phases or arbitrary individuals at abritrary times. This class updates the local oscillator according to best guesses of the phase of remote oscillators.
+ * This is useful if the other oscillators are not running on your computer, but are linked on a network. For example you could use this class for a shared network clock that is robust to timing jitter.
+ * 
+ */
 class maxiAsyncKuramotoOscillator : public maxiKuramotoOscillatorSet
 {
 public:
-    //1 local oscillator and N-1 remote oscillators
+    /*! \param N the number of oscillators in the group (including this one)*/
+
     maxiAsyncKuramotoOscillator(const size_t N) : maxiKuramotoOscillatorSet(N){};
 
+    /*! Set the phase of a single oscillator, probably in response to receiving this information over your network
+     * \param phase the phase, 0 - 2PI \param oscillatorIdx the index of the oscillator
+     */
     void setPhase(const double phase, const size_t oscillatorIdx)
     {
         oscs[oscillatorIdx].setPhase(phase);
         update = 1;
     }
+
+    /*! Set the phases of all of the oscillators \param phases a vector of phases (all 0 - 2PI)*/   
     void setPhases(const std::vector<double> &phases)
     {
         size_t iOsc = 0;
@@ -1706,6 +1763,13 @@ public:
         update = 1;
     }
 
+
+    /**
+     * Run all of the oscillators
+     * \param freq the intended frequency
+     * \param K the coupling strength between oscillators
+     * \returns a mix of all of the oscillator signals in the group
+     */
     double play(double freq, double K)
     {
         double mix = 0.0;
@@ -1725,11 +1789,13 @@ public:
         return mix / phases.size();
     }
 
+    /*! Get the phase of a single oscillator \param i the index of the oscillator \returns the oscillator's phase*/
     double getPhase(size_t i)
     {
         return maxiKuramotoOscillatorSet::getPhase(i);
     }
 
+    /*! \returns the number of oscillators in the group*/
     size_t size()
     {
         return maxiKuramotoOscillatorSet::size();

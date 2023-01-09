@@ -859,6 +859,227 @@
 </div>
 </dd></dl>
 
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv422maxiKuramotoOscillator">
+<span id="_CPPv322maxiKuramotoOscillator"></span><span id="_CPPv222maxiKuramotoOscillator"></span><span id="maxiKuramotoOscillator"></span><span class="target" id="classmaxiKuramotoOscillator"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">maxiKuramotoOscillator</span></span></span><a class="headerlink" href="#_CPPv422maxiKuramotoOscillator" title="Permalink to this definition"></a><br /></dt>
+<dd><p>A kuramoto oscillator</p>
+<p>This is an adaptive oscillator that adjusts its own phase in relation to the phases of other kuramoto oscillators</p>
+<p>For further info, see <a class="reference external" href="https://tutorials.siam.org/dsweb/cotutorial/index.php?s=3&amp;p=0">https://tutorials.siam.org/dsweb/cotutorial/index.php?s=3&amp;p=0</a> <a class="reference external" href="https://www.complexity-explorables.org/explorables/ride-my-kuramotocycle/">https://www.complexity-explorables.org/explorables/ride-my-kuramotocycle/</a> </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N22maxiKuramotoOscillator4playEddNSt6vectorIdEE">
+<span id="_CPPv3N22maxiKuramotoOscillator4playEddNSt6vectorIdEE"></span><span id="_CPPv2N22maxiKuramotoOscillator4playEddNSt6vectorIdEE"></span><span id="maxiKuramotoOscillator::play__double.double.std::vector:double:"></span><span class="target" id="classmaxiKuramotoOscillator_1aaa1c665afa490b2cd45b116a23cd4ee5"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">play</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">freq</span></span>, <span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">K</span></span>, <span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><span class="kt"><span class="pre">double</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">phases</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N22maxiKuramotoOscillator4playEddNSt6vectorIdEE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Run the oscillator </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>freq</strong> – the intended frequency of the oscillator </p></li>
+<li><p><strong>K</strong> – the strengh of coupling between oscillators </p></li>
+<li><p><strong>phases</strong> – a vector of the phases of other kuramoto oscillators </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>the current amplitude of the oscillator </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N22maxiKuramotoOscillator8setPhaseEd">
+<span id="_CPPv3N22maxiKuramotoOscillator8setPhaseEd"></span><span id="_CPPv2N22maxiKuramotoOscillator8setPhaseEd"></span><span id="maxiKuramotoOscillator::setPhase__double"></span><span class="target" id="classmaxiKuramotoOscillator_1a6e06188b46a440a5783291d2f0dc33b6"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">setPhase</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">newPhase</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N22maxiKuramotoOscillator8setPhaseEd" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Set the phase of the oscillator</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>newPhase</strong> – the phase, 0 - 2PI </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N22maxiKuramotoOscillator8getPhaseEv">
+<span id="_CPPv3N22maxiKuramotoOscillator8getPhaseEv"></span><span id="_CPPv2N22maxiKuramotoOscillator8getPhaseEv"></span><span id="maxiKuramotoOscillator::getPhase"></span><span class="target" id="classmaxiKuramotoOscillator_1af977c10b9b34a677d17d82b3ae432791"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">getPhase</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N22maxiKuramotoOscillator8getPhaseEv" title="Permalink to this definition"></a><br /></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>the current phase of the oscillator </p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv425maxiKuramotoOscillatorSet">
+<span id="_CPPv325maxiKuramotoOscillatorSet"></span><span id="_CPPv225maxiKuramotoOscillatorSet"></span><span id="maxiKuramotoOscillatorSet"></span><span class="target" id="classmaxiKuramotoOscillatorSet"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">maxiKuramotoOscillatorSet</span></span></span><a class="headerlink" href="#_CPPv425maxiKuramotoOscillatorSet" title="Permalink to this definition"></a><br /></dt>
+<dd><p>This class managed a group of Kuramoto oscillators (see <a class="reference internal" href="#classmaxiKuramotoOscillator"><span class="std std-ref">maxiKuramotoOscillator</span></a>) </p>
+<p>Subclassed by <a class="reference internal" href="#classmaxiAsyncKuramotoOscillator"><span class="std std-ref">maxiAsyncKuramotoOscillator</span></a></p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N25maxiKuramotoOscillatorSet25maxiKuramotoOscillatorSetEK6size_t">
+<span id="_CPPv3N25maxiKuramotoOscillatorSet25maxiKuramotoOscillatorSetEK6size_t"></span><span id="_CPPv2N25maxiKuramotoOscillatorSet25maxiKuramotoOscillatorSetEK6size_t"></span><span id="maxiKuramotoOscillatorSet::maxiKuramotoOscillatorSet__sC"></span><span class="target" id="classmaxiKuramotoOscillatorSet_1a73d5ecf3d6aedd36ba077b9fbaaae891"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">maxiKuramotoOscillatorSet</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">N</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N25maxiKuramotoOscillatorSet25maxiKuramotoOscillatorSetEK6size_t" title="Permalink to this definition"></a><br /></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>N</strong> – The number of oscillators in the group </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N25maxiKuramotoOscillatorSet9setPhasesERKNSt6vectorIdEE">
+<span id="_CPPv3N25maxiKuramotoOscillatorSet9setPhasesERKNSt6vectorIdEE"></span><span id="_CPPv2N25maxiKuramotoOscillatorSet9setPhasesERKNSt6vectorIdEE"></span><span id="maxiKuramotoOscillatorSet::setPhases__std::vector:double:CR"></span><span class="target" id="classmaxiKuramotoOscillatorSet_1a801c20b123abbd5447f98ca2d0d21c06"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">setPhases</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><span class="kt"><span class="pre">double</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">phases</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N25maxiKuramotoOscillatorSet9setPhasesERKNSt6vectorIdEE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Set the phases of all of the oscillators</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>phases</strong> – a vector of phases (all 0 - 2PI) </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N25maxiKuramotoOscillatorSet8setPhaseEKdK6size_t">
+<span id="_CPPv3N25maxiKuramotoOscillatorSet8setPhaseEKdK6size_t"></span><span id="_CPPv2N25maxiKuramotoOscillatorSet8setPhaseEKdK6size_t"></span><span id="maxiKuramotoOscillatorSet::setPhase__doubleC.sC"></span><span class="target" id="classmaxiKuramotoOscillatorSet_1afca0c47a523e883fd1e14b3c951776ac"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">setPhase</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">phase</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">oscillatorIdx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N25maxiKuramotoOscillatorSet8setPhaseEKdK6size_t" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Set the phase of a single oscillator</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>phase</strong> – the phase, 0 - 2PI</p></li>
+<li><p><strong>oscillatorIdx</strong> – the index of the oscillator </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N25maxiKuramotoOscillatorSet8getPhaseE6size_t">
+<span id="_CPPv3N25maxiKuramotoOscillatorSet8getPhaseE6size_t"></span><span id="_CPPv2N25maxiKuramotoOscillatorSet8getPhaseE6size_t"></span><span id="maxiKuramotoOscillatorSet::getPhase__s"></span><span class="target" id="classmaxiKuramotoOscillatorSet_1a3dc3360dd6f61813259389605f4756e9"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">getPhase</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">i</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N25maxiKuramotoOscillatorSet8getPhaseE6size_t" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Get the phase of a single oscillator</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>i</strong> – the index of the oscillator </p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>the oscillator’s phase </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N25maxiKuramotoOscillatorSet4sizeEv">
+<span id="_CPPv3N25maxiKuramotoOscillatorSet4sizeEv"></span><span id="_CPPv2N25maxiKuramotoOscillatorSet4sizeEv"></span><span id="maxiKuramotoOscillatorSet::size"></span><span class="target" id="classmaxiKuramotoOscillatorSet_1a82024e81b9af017de88c119924c9fb71"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">size</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N25maxiKuramotoOscillatorSet4sizeEv" title="Permalink to this definition"></a><br /></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>the number of oscillators in the group </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N25maxiKuramotoOscillatorSet4playEdd">
+<span id="_CPPv3N25maxiKuramotoOscillatorSet4playEdd"></span><span id="_CPPv2N25maxiKuramotoOscillatorSet4playEdd"></span><span id="maxiKuramotoOscillatorSet::play__double.double"></span><span class="target" id="classmaxiKuramotoOscillatorSet_1ad22aa34111c245897a3e64207879f03e"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">play</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">freq</span></span>, <span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">K</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N25maxiKuramotoOscillatorSet4playEdd" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Run all of the oscillators </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>freq</strong> – the intended frequency </p></li>
+<li><p><strong>K</strong> – the coupling strength between oscillators </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>a mix of all of the oscillator signals in the group </p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv427maxiAsyncKuramotoOscillator">
+<span id="_CPPv327maxiAsyncKuramotoOscillator"></span><span id="_CPPv227maxiAsyncKuramotoOscillator"></span><span id="maxiAsyncKuramotoOscillator"></span><span class="target" id="classmaxiAsyncKuramotoOscillator"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">maxiAsyncKuramotoOscillator</span></span></span><span class="w"> </span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="k"><span class="pre">public</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv425maxiKuramotoOscillatorSet" title="maxiKuramotoOscillatorSet"><span class="n"><span class="pre">maxiKuramotoOscillatorSet</span></span></a><a class="headerlink" href="#_CPPv427maxiAsyncKuramotoOscillator" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Run a group of kuramoto oscillators with asynchronous updates. Instead of setting all of the phasors at once, you can set the phases or arbitrary individuals at abritrary times. This class updates the local oscillator according to best guesses of the phase of remote oscillators. This is useful if the other oscillators are not running on your computer, but are linked on a network. For example you could use this class for a shared network clock that is robust to timing jitter. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N27maxiAsyncKuramotoOscillator27maxiAsyncKuramotoOscillatorEK6size_t">
+<span id="_CPPv3N27maxiAsyncKuramotoOscillator27maxiAsyncKuramotoOscillatorEK6size_t"></span><span id="_CPPv2N27maxiAsyncKuramotoOscillator27maxiAsyncKuramotoOscillatorEK6size_t"></span><span id="maxiAsyncKuramotoOscillator::maxiAsyncKuramotoOscillator__sC"></span><span class="target" id="classmaxiAsyncKuramotoOscillator_1a1ce7c58885d79bedf7a77bf4d9ab1894"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">maxiAsyncKuramotoOscillator</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">N</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N27maxiAsyncKuramotoOscillator27maxiAsyncKuramotoOscillatorEK6size_t" title="Permalink to this definition"></a><br /></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>N</strong> – the number of oscillators in the group (including this one) </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N27maxiAsyncKuramotoOscillator8setPhaseEKdK6size_t">
+<span id="_CPPv3N27maxiAsyncKuramotoOscillator8setPhaseEKdK6size_t"></span><span id="_CPPv2N27maxiAsyncKuramotoOscillator8setPhaseEKdK6size_t"></span><span id="maxiAsyncKuramotoOscillator::setPhase__doubleC.sC"></span><span class="target" id="classmaxiAsyncKuramotoOscillator_1a4c5cc7f8a4c98d4480a4eec4a3ba87d0"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">setPhase</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">phase</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">oscillatorIdx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N27maxiAsyncKuramotoOscillator8setPhaseEKdK6size_t" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Set the phase of a single oscillator, probably in response to receiving this information over your network </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>phase</strong> – the phase, 0 - 2PI</p></li>
+<li><p><strong>oscillatorIdx</strong> – the index of the oscillator </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N27maxiAsyncKuramotoOscillator9setPhasesERKNSt6vectorIdEE">
+<span id="_CPPv3N27maxiAsyncKuramotoOscillator9setPhasesERKNSt6vectorIdEE"></span><span id="_CPPv2N27maxiAsyncKuramotoOscillator9setPhasesERKNSt6vectorIdEE"></span><span id="maxiAsyncKuramotoOscillator::setPhases__std::vector:double:CR"></span><span class="target" id="classmaxiAsyncKuramotoOscillator_1a8b20fb8a1d59f6884592892134e64013"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">setPhases</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><span class="kt"><span class="pre">double</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">phases</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N27maxiAsyncKuramotoOscillator9setPhasesERKNSt6vectorIdEE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Set the phases of all of the oscillators</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>phases</strong> – a vector of phases (all 0 - 2PI) </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N27maxiAsyncKuramotoOscillator4playEdd">
+<span id="_CPPv3N27maxiAsyncKuramotoOscillator4playEdd"></span><span id="_CPPv2N27maxiAsyncKuramotoOscillator4playEdd"></span><span id="maxiAsyncKuramotoOscillator::play__double.double"></span><span class="target" id="classmaxiAsyncKuramotoOscillator_1a3ee1b988dcbf2cfb40e58aa8b58da6ad"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">play</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">freq</span></span>, <span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">K</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N27maxiAsyncKuramotoOscillator4playEdd" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Run all of the oscillators </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>freq</strong> – the intended frequency </p></li>
+<li><p><strong>K</strong> – the coupling strength between oscillators </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>a mix of all of the oscillator signals in the group </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N27maxiAsyncKuramotoOscillator8getPhaseE6size_t">
+<span id="_CPPv3N27maxiAsyncKuramotoOscillator8getPhaseE6size_t"></span><span id="_CPPv2N27maxiAsyncKuramotoOscillator8getPhaseE6size_t"></span><span id="maxiAsyncKuramotoOscillator::getPhase__s"></span><span class="target" id="classmaxiAsyncKuramotoOscillator_1a6b2a2e5c24008ece09c9c7ec03a975ed"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">getPhase</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">i</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N27maxiAsyncKuramotoOscillator8getPhaseE6size_t" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Get the phase of a single oscillator</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>i</strong> – the index of the oscillator </p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>the oscillator’s phase </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N27maxiAsyncKuramotoOscillator4sizeEv">
+<span id="_CPPv3N27maxiAsyncKuramotoOscillator4sizeEv"></span><span id="_CPPv2N27maxiAsyncKuramotoOscillator4sizeEv"></span><span id="maxiAsyncKuramotoOscillator::size"></span><span class="target" id="classmaxiAsyncKuramotoOscillator_1a2b890bd0d5bc44ec7a90ff43537682f3"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">size</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N27maxiAsyncKuramotoOscillator4sizeEv" title="Permalink to this definition"></a><br /></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>the number of oscillators in the group </p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</dd></dl>
+
 </section>
 <section id="filters">
 <h2>Filters<a class="headerlink" href="#filters" title="Permalink to this heading"></a></h2>
@@ -1778,6 +1999,45 @@
 <li><p><strong>x</strong> – Left-right panning level (0 to 1) </p></li>
 <li><p><strong>y</strong> – Forward-backward panning level (0 to 1) </p></li>
 <li><p><strong>z</strong> – Up-down panning level (0 to 1) </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv49maxiXFade">
+<span id="_CPPv39maxiXFade"></span><span id="_CPPv29maxiXFade"></span><span id="maxiXFade"></span><span class="target" id="classmaxiXFade"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">maxiXFade</span></span></span><a class="headerlink" href="#_CPPv49maxiXFade" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Cross-fade between two signals, using equal-power panning </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-static-functions">Public Static Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N9maxiXFade5xfadeER6vectorIdER6vectorIdEd">
+<span id="_CPPv3N9maxiXFade5xfadeER6vectorIdER6vectorIdEd"></span><span id="_CPPv2N9maxiXFade5xfadeER6vectorIdER6vectorIdEd"></span><span id="maxiXFade::xfade__vector:double:R.vector:double:R.double"></span><span class="target" id="classmaxiXFade_1ac7c6c4025e0d5205dcb5fd68e58fe465"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><span class="kt"><span class="pre">double</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">xfade</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><span class="kt"><span class="pre">double</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">ch1</span></span>, <span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><span class="kt"><span class="pre">double</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">ch2</span></span>, <span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">xfader</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N9maxiXFade5xfadeER6vectorIdER6vectorIdEd" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Cross-fade between stereo signals </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ch1</strong> – a vector containing left and right components of channel 1 </p></li>
+<li><p><strong>ch2</strong> – a vector containing left and right components of channel 2 </p></li>
+<li><p><strong>xfader</strong> – the cross-fader position, -1=100% ch1, 1=100% ch2, 0=an equal mix of both channels </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N9maxiXFade5xfadeEddd">
+<span id="_CPPv3N9maxiXFade5xfadeEddd"></span><span id="_CPPv2N9maxiXFade5xfadeEddd"></span><span id="maxiXFade::xfade__double.double.double"></span><span class="target" id="classmaxiXFade_1a67205bfeb70b1bd1419b72a2ee451ab5"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">xfade</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">ch1</span></span>, <span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">ch2</span></span>, <span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">xfader</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N9maxiXFade5xfadeEddd" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Cross-fade between mono signals </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ch1</strong> – the signal for channel 1 </p></li>
+<li><p><strong>ch2</strong> – the signal for channel 2 </p></li>
+<li><p><strong>xfader</strong> – the cross-fader position, -1=100% ch1, 1=100% ch2, 0=an equal mix of both channels </p></li>
 </ul>
 </dd>
 </dl>

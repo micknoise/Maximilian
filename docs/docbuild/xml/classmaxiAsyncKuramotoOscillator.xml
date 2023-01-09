@@ -3,6 +3,7 @@
   <compounddef id="classmaxiAsyncKuramotoOscillator" kind="class" language="C++" prot="public">
     <compoundname>maxiAsyncKuramotoOscillator</compoundname>
     <basecompoundref refid="classmaxiKuramotoOscillatorSet" prot="public" virt="non-virtual">maxiKuramotoOscillatorSet</basecompoundref>
+    <includes refid="maximilian_8h" local="no">maximilian.h</includes>
       <sectiondef kind="private-attrib">
       <memberdef kind="variable" id="classmaxiAsyncKuramotoOscillator_1a6b992da1939bcc8663f359cd06dd4037" prot="private" static="no" mutable="no">
         <type>bool</type>
@@ -16,7 +17,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1739" column="10" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1739" bodyend="-1"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1805" column="10" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1805" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
@@ -32,10 +33,20 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>N</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the number of oscillators in the group (including this one) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1691" column="5" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1691" bodyend="1691"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1743" column="5" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1743" bodyend="1743"/>
       </memberdef>
       <memberdef kind="function" id="classmaxiAsyncKuramotoOscillator_1a4c5cc7f8a4c98d4480a4eec4a3ba87d0" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
@@ -53,10 +64,28 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
+<para>Set the phase of a single oscillator, probably in response to receiving this information over your network <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>phase</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the phase, 0 - 2PI</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>oscillatorIdx</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the index of the oscillator </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1693" column="10" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1693" bodyend="1697"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1748" column="10" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1748" bodyend="1752"/>
       </memberdef>
       <memberdef kind="function" id="classmaxiAsyncKuramotoOscillator_1a8b20fb8a1d59f6884592892134e64013" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
@@ -70,10 +99,20 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
+<para>Set the phases of all of the oscillators<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>phases</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>a vector of phases (all 0 - 2PI) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1698" column="10" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1698" bodyend="1707"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1755" column="10" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1755" bodyend="1764"/>
       </memberdef>
       <memberdef kind="function" id="classmaxiAsyncKuramotoOscillator_1a3ee1b988dcbf2cfb40e58aa8b58da6ad" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>double</type>
@@ -91,10 +130,30 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
+<para>Run all of the oscillators <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>freq</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the intended frequency </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>K</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the coupling strength between oscillators </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>a mix of all of the oscillator signals in the group </para>
+</simplesect>
+</para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1709" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1709" bodyend="1726"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1773" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1773" bodyend="1790"/>
       </memberdef>
       <memberdef kind="function" id="classmaxiAsyncKuramotoOscillator_1a6b2a2e5c24008ece09c9c7ec03a975ed" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>double</type>
@@ -108,10 +167,22 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
+<para>Get the phase of a single oscillator<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>i</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the index of the oscillator </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>the oscillator&apos;s phase </para>
+</simplesect>
+</para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1728" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1728" bodyend="1731"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1793" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1793" bodyend="1796"/>
       </memberdef>
       <memberdef kind="function" id="classmaxiAsyncKuramotoOscillator_1a2b890bd0d5bc44ec7a90ff43537682f3" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>size_t</type>
@@ -121,15 +192,19 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
+<para><simplesect kind="return"><para>the number of oscillators in the group </para>
+</simplesect>
+</para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1733" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1733" bodyend="1736"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1799" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1799" bodyend="1802"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
+<para>Run a group of kuramoto oscillators with asynchronous updates. Instead of setting all of the phasors at once, you can set the phases or arbitrary individuals at abritrary times. <ref refid="classThis" kindref="compound">This</ref> class updates the local oscillator according to best guesses of the phase of remote oscillators. <ref refid="classThis" kindref="compound">This</ref> is useful if the other oscillators are not running on your computer, but are linked on a network. For example you could use this class for a shared network clock that is robust to timing jitter. </para>
     </detaileddescription>
     <inheritancegraph>
       <node id="2">
@@ -155,7 +230,7 @@
         </childnode>
       </node>
     </collaborationgraph>
-    <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1687" column="1" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1688" bodyend="1740"/>
+    <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1738" column="1" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1739" bodyend="1806"/>
     <listofallmembers>
       <member refid="classmaxiAsyncKuramotoOscillator_1a6b2a2e5c24008ece09c9c7ec03a975ed" prot="public" virt="non-virtual"><scope>maxiAsyncKuramotoOscillator</scope><name>getPhase</name></member>
       <member refid="classmaxiAsyncKuramotoOscillator_1a1ce7c58885d79bedf7a77bf4d9ab1894" prot="public" virt="non-virtual"><scope>maxiAsyncKuramotoOscillator</scope><name>maxiAsyncKuramotoOscillator</name></member>

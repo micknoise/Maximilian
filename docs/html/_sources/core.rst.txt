@@ -21,8 +21,17 @@ Generators
    :project: maximilian
    :members:
    
+.. doxygenclass:: maxiKuramotoOscillator
+   :project: maximilian
+   :members:
 
+.. doxygenclass:: maxiKuramotoOscillatorSet
+   :project: maximilian
+   :members:
 
+.. doxygenclass:: maxiAsyncKuramotoOscillator
+   :project: maximilian
+   :members:
 
 Filters
 -------
@@ -115,6 +124,12 @@ Multichannel
 .. doxygenclass:: maxiMix
    :project: maximilian
    :members:
+
+.. doxygenclass:: maxiXFade
+   :project: maximilian
+   :members:
+
+
 
 
 Utility Functions

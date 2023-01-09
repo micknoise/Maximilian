@@ -15,7 +15,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="2105" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="2105" bodyend="-1"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="2171" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="2171" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classmaxiRatioSeq_1ad821351f382ee1d5c7b13c280c9b1b3b" prot="private" static="no" mutable="no">
         <type>size_t</type>
@@ -29,7 +29,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="2106" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="2106" bodyend="-1"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="2172" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="2172" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classmaxiRatioSeq_1a1e7594900723abec57ccd6e66b0b111b" prot="private" static="no" mutable="no">
         <type>size_t</type>
@@ -43,7 +43,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="2107" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="2107" bodyend="-1"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="2173" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="2173" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classmaxiRatioSeq_1aa08b6faa8e6ec0807651c8bcfcac322b" prot="private" static="no" mutable="no">
         <type>bool</type>
@@ -57,7 +57,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="2108" column="10" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="2108" bodyend="-1"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="2174" column="10" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="2174" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
@@ -72,7 +72,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="2050" column="5" bodyfile="/home/ck84/src/Maximilian/src/maximilian.cpp" bodystart="1513" bodyend="1513"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="2116" column="5" bodyfile="/home/ck84/src/Maximilian/src/maximilian.cpp" bodystart="1513" bodyend="1513"/>
       </memberdef>
       <memberdef kind="function" id="classmaxiRatioSeq_1a507ce4732d83f6ed512e1797b03c6483" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>double</type>
@@ -93,7 +93,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="2051" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="2051" bodyend="2081"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="2117" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="2117" bodyend="2147"/>
       </memberdef>
       <memberdef kind="function" id="classmaxiRatioSeq_1aec432d4351d64a53325aed2e8dc7ea46" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>double</type>
@@ -118,14 +118,14 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="2083" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="2083" bodyend="2102"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="2149" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="2149" bodyend="2168"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="2047" column="1" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="2048" bodyend="2109"/>
+    <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="2113" column="1" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="2114" bodyend="2175"/>
     <listofallmembers>
       <member refid="classmaxiRatioSeq_1ad821351f382ee1d5c7b13c280c9b1b3b" prot="private" virt="non-virtual"><scope>maxiRatioSeq</scope><name>counter</name></member>
       <member refid="classmaxiRatioSeq_1aa08b6faa8e6ec0807651c8bcfcac322b" prot="private" virt="non-virtual"><scope>maxiRatioSeq</scope><name>first</name></member>

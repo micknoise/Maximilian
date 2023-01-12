@@ -116,6 +116,24 @@ Sequencing
 .. doxygenclass:: maxiCounter
    :project: maximilian
    :members:
+
+.. doxygenclass:: maxiZXToPulse
+   :project: maximilian
+   :members:
+   
+.. doxygenclass:: maxiRatioSeq
+   :project: maximilian
+   :members:
+
+.. doxygenclass:: maxiSelectX
+   :project: maximilian
+   :members:
+
+.. doxygenclass:: maxiIndex
+   :project: maximilian
+   :members:
+   
+
    
 
 Multichannel

@@ -1974,10 +1974,19 @@ private:
     maxiTrigger inctrig, rstrig;
 };
 
+/**
+ * Pull values from an array when a trigger is received, according to a modulateable index
+ */
 class CHEERP_EXPORT maxiIndex
 {
 public:
     maxiIndex();
+    /**
+     * \param trigSig a signal
+     * \param indexSig a normalised index into the array (0-1)
+     * \param _values an array of values or signals (modulateable)
+     * \returns the value at [indexSig] in the array, when a trigger is received in [trigSig]
+     */
     double pull(const double trigSig, double indexSig, DOUBLEARRAY_REF _values)
     {
         // double *__arrayStart = __builtin_cheerp_make_regular<double>(_values, 0);
@@ -2001,11 +2010,19 @@ private:
     double value = 0;
 };
 
-//read from an array of signals - like supercollider Select.ar
+/**
+ * Read from an array of signals - like supercollider Select.ar
+ */
 class CHEERP_EXPORT maxiSelect {
 public:
     maxiSelect();
 
+    /**
+     * \param index an index into the array
+     * \param values a modulateable array of values
+     * \param normalised if true, the index should be between 0 and 1, if false, then the index should be between 0 and length(values)-1
+     * \returns an item from the array of values, according to the floor or the index value
+     */
     double play(double index, DOUBLEARRAY_REF values, bool normalised) {
         auto arrayLen = F64_ARRAY_SIZE(values); 
 
@@ -2026,10 +2043,21 @@ private:
 
 };
 
-//read from an array of signals, linear interpolation between neighbours - like supercollider SelectX.ar
+/**
+ * Read from an array of signals or values, with linear interpolation between neighbours - like supercollider SelectX.ar
+ */
 class CHEERP_EXPORT maxiSelectX {
 public:
     maxiSelectX();
+
+    /**
+     * Read from an array with linear interpolation.  This can be useful for cross-fading across sets of signals.
+     * \param index an index into the array
+     * \param values a modulateable array of values
+     * \param normalised if true, the index should be between 0 and 1, if false, then the index should be between 0 and length(values)-1
+     * \returns an item from the array of values, according to the index, and interpolating between neighbouring values.\n
+     * e.g if values = {2,3} and normalised index = 0.5, then 2.5 will be returns
+     */
     double play(double index, DOUBLEARRAY_REF values, bool normalised) {
         auto arrayLen = F64_ARRAY_SIZE(values); 
 
@@ -2068,7 +2096,7 @@ public:
      * Take values from the array when triggered
      * \param trigSig A signal to trigger a new value on a positive zero crossing
      * \param values An array of values
-     * \step The amount that the array index should increase after pulling a new value.  This wraps around to zero at the end of the array
+     * \param step The amount that the array index should increase after pulling a new value.  This wraps around to zero at the end of the array
      */
     double pull(const double trigSig, DOUBLEARRAY values, double step)
     {
@@ -2110,10 +2138,28 @@ private:
     double index=0;
 };
 
+/**
+ * Sequence triggers and numbers, using a list of modulateable ratios to control timing.
+ */
 class CHEERP_EXPORT maxiRatioSeq
 {
 public:
     maxiRatioSeq();
+    /**
+     * Divide a phasor into periods according to a set o ratios, and send a trigger at the start of each period.\n
+     * Examples ratios: (assuming the phasor takes the length of one bar to cycle and 4/4 timing):\n
+     * {1,1,1,1} four crotchets\n
+     * {2,2,2,1,1} three crotchets then two quavers\n
+     * {4,4,4,1,1,1,1} three crotchets then four semi-quavers\n
+     * {3,3,2} two dotted crotchets then a crotchet\n
+     * {1} a semibrieve\n
+     * {3,3,3,1,1,1} three crotchets followed by a triplet\n
+     * {33,991,13,153} hmmm - well it might sound interesting?\n
+     * {maxiMap::linlin(osc.phasor(0.4),0,1,10,20),100} modulate the ratios\n
+     * \param phase a phasor signal, rising from 0 to 1 (you could use maxiOsc::phasor)\n
+     * \param times a list of time ratios.  The phasor will be divided up into these ratios, and a trigger will be returned at the start of each period\n
+     * \returns a trigger at the start of each period\n
+     */
     double playTrig(double phase, DOUBLEARRAY times)
     {
         if (first) {
@@ -2146,6 +2192,13 @@ public:
         return trig;
     }
 
+    /**
+     * Take values incrementally from a list, with timing controlled by ratios
+     * \param phase see playTrig
+     * \param times see playTrig
+     * \param values an array of numbers.  Each time a period starts, a number is returned from this list.  Values are taken incrementally and with looping. The contents and length of the list are modulateable.  This function is useful for sequencing pitches or controller values.
+     * \returns a value taken incrementally from the list of values, updated each time a new timing period begins (according to the list of ratios)
+     */
     double playValues(double phase, DOUBLEARRAY_REF times, DOUBLEARRAY_REF values)
     {
         // NORMALISE_ARRAY_TYPE(_times, times)
@@ -2174,11 +2227,19 @@ private:
     bool first=true;
 };
 
-
+/**
+ * Extend a trigger into a pulse. This is useful for making basic gates in sequences. Use maxiEnvGen for more advanced gate and envelope generation.
+ */ 
 class CHEERP_EXPORT maxiZXToPulse
 {
 public:
     maxiZXToPulse();
+    /**
+     * Extend a trigger into a pulse.
+     * \param input a signal
+     * \param holdTimeInSamples the length of the pulse in samples (use maxiConvert to get this value from milliseconds)
+     * \returns a pulse, triggered by a zero crossing in the input
+     */
     double play(double input, double holdTimeInSamples) {
         double output =0;
         

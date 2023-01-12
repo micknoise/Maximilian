@@ -2,6 +2,7 @@
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="classmaxiSelect" kind="class" language="C++" prot="public">
     <compoundname>maxiSelect</compoundname>
+    <includes refid="maximilian_8h" local="no">maximilian.h</includes>
       <sectiondef kind="public-func">
       <memberdef kind="function" id="classmaxiSelect_1a859410aa2737fae948c232ff1f15dfd8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -14,7 +15,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="2007" column="5" bodyfile="/home/ck84/src/Maximilian/src/maximilian.cpp" bodystart="1523" bodyend="1523"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="2018" column="5" bodyfile="/home/ck84/src/Maximilian/src/maximilian.cpp" bodystart="1523" bodyend="1523"/>
       </memberdef>
       <memberdef kind="function" id="classmaxiSelect_1a9ad34bda79f273fbdfa535403949978a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>double</type>
@@ -36,17 +37,46 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>index</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>an index into the array </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>values</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>a modulateable array of values </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>normalised</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>if true, the index should be between 0 and 1, if false, then the index should be between 0 and length(values)-1 </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>an item from the array of values, according to the floor or the index value </para>
+</simplesect>
+</para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="2009" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="2009" bodyend="2024"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="2026" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="2026" bodyend="2041"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
+<para>Read from an array of signals - like supercollider Select.ar </para>
     </detaileddescription>
-    <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="2005" column="1" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="2005" bodyend="2027"/>
+    <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="2016" column="1" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="2016" bodyend="2044"/>
     <listofallmembers>
       <member refid="classmaxiSelect_1a859410aa2737fae948c232ff1f15dfd8" prot="public" virt="non-virtual"><scope>maxiSelect</scope><name>maxiSelect</name></member>
       <member refid="classmaxiSelect_1a9ad34bda79f273fbdfa535403949978a" prot="public" virt="non-virtual"><scope>maxiSelect</scope><name>play</name></member>

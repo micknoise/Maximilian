@@ -2,6 +2,7 @@
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="classmaxiRatioSeq" kind="class" language="C++" prot="public">
     <compoundname>maxiRatioSeq</compoundname>
+    <includes refid="maximilian_8h" local="no">maximilian.h</includes>
       <sectiondef kind="private-attrib">
       <memberdef kind="variable" id="classmaxiRatioSeq_1a7d6e7feb8cf9716f120fe51ef28f0916" prot="private" static="no" mutable="no">
         <type>double</type>
@@ -15,7 +16,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="2171" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="2171" bodyend="-1"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="2224" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="2224" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classmaxiRatioSeq_1ad821351f382ee1d5c7b13c280c9b1b3b" prot="private" static="no" mutable="no">
         <type>size_t</type>
@@ -29,7 +30,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="2172" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="2172" bodyend="-1"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="2225" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="2225" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classmaxiRatioSeq_1a1e7594900723abec57ccd6e66b0b111b" prot="private" static="no" mutable="no">
         <type>size_t</type>
@@ -43,7 +44,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="2173" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="2173" bodyend="-1"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="2226" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="2226" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classmaxiRatioSeq_1aa08b6faa8e6ec0807651c8bcfcac322b" prot="private" static="no" mutable="no">
         <type>bool</type>
@@ -57,7 +58,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="2174" column="10" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="2174" bodyend="-1"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="2227" column="10" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="2227" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
@@ -72,7 +73,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="2116" column="5" bodyfile="/home/ck84/src/Maximilian/src/maximilian.cpp" bodystart="1513" bodyend="1513"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="2147" column="5" bodyfile="/home/ck84/src/Maximilian/src/maximilian.cpp" bodystart="1513" bodyend="1513"/>
       </memberdef>
       <memberdef kind="function" id="classmaxiRatioSeq_1a507ce4732d83f6ed512e1797b03c6483" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>double</type>
@@ -90,10 +91,43 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
+<para>Divide a phasor into periods according to a set o ratios, and send a trigger at the start of each period.<linebreak/>
+Examples ratios: (assuming the phasor takes the length of one bar to cycle and 4/4 timing):<linebreak/>
+{1,1,1,1} four crotchets<linebreak/>
+{2,2,2,1,1} three crotchets then two quavers<linebreak/>
+{4,4,4,1,1,1,1} three crotchets then four semi-quavers<linebreak/>
+{3,3,2} two dotted crotchets then a crotchet<linebreak/>
+{1} a semibrieve<linebreak/>
+{3,3,3,1,1,1} three crotchets followed by a triplet<linebreak/>
+{33,991,13,153} hmmm - well it might sound interesting?<linebreak/>
+{<ref refid="classmaxiMap_1af089e2f99ff54e37dca21ecbbeede950" kindref="member">maxiMap::linlin</ref>(osc.phasor(0.4),0,1,10,20),100} modulate the ratios<linebreak/>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>phase</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>a phasor signal, rising from 0 to 1 (you could use <ref refid="classmaxiOsc_1af6d7b7b4a167aa90d5bb54f2e2228da4" kindref="member">maxiOsc::phasor</ref>)<linebreak/>
+</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>times</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>a list of time ratios. The phasor will be divided up into these ratios, and a trigger will be returned at the start of each period<linebreak/>
+</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>a trigger at the start of each period<linebreak/>
+</para>
+</simplesect>
+</para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="2117" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="2117" bodyend="2147"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="2163" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="2163" bodyend="2193"/>
       </memberdef>
       <memberdef kind="function" id="classmaxiRatioSeq_1aec432d4351d64a53325aed2e8dc7ea46" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>double</type>
@@ -115,17 +149,46 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
+<para>Take values incrementally from a list, with timing controlled by ratios <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>phase</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>see playTrig </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>times</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>see playTrig </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>values</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>an array of numbers. Each time a period starts, a number is returned from this list. Values are taken incrementally and with looping. The contents and length of the list are modulateable. <ref refid="classThis" kindref="compound">This</ref> function is useful for sequencing pitches or controller values. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>a value taken incrementally from the list of values, updated each time a new timing period begins (according to the list of ratios) </para>
+</simplesect>
+</para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="2149" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="2149" bodyend="2168"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="2202" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="2202" bodyend="2221"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
+<para>Sequence triggers and numbers, using a list of modulateable ratios to control timing. </para>
     </detaileddescription>
-    <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="2113" column="1" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="2114" bodyend="2175"/>
+    <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="2144" column="1" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="2145" bodyend="2228"/>
     <listofallmembers>
       <member refid="classmaxiRatioSeq_1ad821351f382ee1d5c7b13c280c9b1b3b" prot="private" virt="non-virtual"><scope>maxiRatioSeq</scope><name>counter</name></member>
       <member refid="classmaxiRatioSeq_1aa08b6faa8e6ec0807651c8bcfcac322b" prot="private" virt="non-virtual"><scope>maxiRatioSeq</scope><name>first</name></member>

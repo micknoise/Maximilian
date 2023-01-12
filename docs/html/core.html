@@ -1906,7 +1906,8 @@
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>trigSig</strong> – A signal to trigger a new value on a positive zero crossing </p></li>
-<li><p><strong>values</strong> – An array of values \step The amount that the array index should increase after pulling a new value. This wraps around to zero at the end of the array </p></li>
+<li><p><strong>values</strong> – An array of values </p></li>
+<li><p><strong>step</strong> – The amount that the array index should increase after pulling a new value. This wraps around to zero at the end of the array </p></li>
 </ul>
 </dd>
 </dl>
@@ -1940,6 +1941,141 @@
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>the number of triggers received since the beginning or the last reset </p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv413maxiZXToPulse">
+<span id="_CPPv313maxiZXToPulse"></span><span id="_CPPv213maxiZXToPulse"></span><span id="maxiZXToPulse"></span><span class="target" id="classmaxiZXToPulse"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">maxiZXToPulse</span></span></span><a class="headerlink" href="#_CPPv413maxiZXToPulse" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Extend a trigger into a pulse. This is useful for making basic gates in sequences. Use <a class="reference internal" href="#classmaxiEnvGen"><span class="std std-ref">maxiEnvGen</span></a> for more advanced gate and envelope generation. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N13maxiZXToPulse4playEdd">
+<span id="_CPPv3N13maxiZXToPulse4playEdd"></span><span id="_CPPv2N13maxiZXToPulse4playEdd"></span><span id="maxiZXToPulse::play__double.double"></span><span class="target" id="classmaxiZXToPulse_1a4a1b68937cfe604af94c61682a7abf20"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">play</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">input</span></span>, <span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">holdTimeInSamples</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N13maxiZXToPulse4playEdd" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Extend a trigger into a pulse. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>input</strong> – a signal </p></li>
+<li><p><strong>holdTimeInSamples</strong> – the length of the pulse in samples (use <a class="reference internal" href="#classmaxiConvert"><span class="std std-ref">maxiConvert</span></a> to get this value from milliseconds) </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>a pulse, triggered by a zero crossing in the input </p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv412maxiRatioSeq">
+<span id="_CPPv312maxiRatioSeq"></span><span id="_CPPv212maxiRatioSeq"></span><span id="maxiRatioSeq"></span><span class="target" id="classmaxiRatioSeq"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">maxiRatioSeq</span></span></span><a class="headerlink" href="#_CPPv412maxiRatioSeq" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Sequence triggers and numbers, using a list of modulateable ratios to control timing. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N12maxiRatioSeq8playTrigEd11DOUBLEARRAY">
+<span id="_CPPv3N12maxiRatioSeq8playTrigEd11DOUBLEARRAY"></span><span id="_CPPv2N12maxiRatioSeq8playTrigEd11DOUBLEARRAY"></span><span id="maxiRatioSeq::playTrig__double.DOUBLEARRAY"></span><span class="target" id="classmaxiRatioSeq_1a507ce4732d83f6ed512e1797b03c6483"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">playTrig</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">phase</span></span>, <span class="n"><span class="pre">DOUBLEARRAY</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">times</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N12maxiRatioSeq8playTrigEd11DOUBLEARRAY" title="Permalink to this definition"></a><br /></dt>
+<dd><p><p>Divide a phasor into periods according to a set o ratios, and send a trigger at the start of each period.</p>
+<p>Examples ratios: (assuming the phasor takes the length of one bar to cycle and 4/4 timing):</p>
+<p>{1,1,1,1} four crotchets</p>
+<p>{2,2,2,1,1} three crotchets then two quavers</p>
+<p>{4,4,4,1,1,1,1} three crotchets then four semi-quavers</p>
+<p>{3,3,2} two dotted crotchets then a crotchet</p>
+<p>{1} a semibrieve</p>
+<p>{3,3,3,1,1,1} three crotchets followed by a triplet</p>
+<p>{33,991,13,153} hmmm - well it might sound interesting?</p>
+<p>{</p>
+<a class="reference internal" href="#classmaxiMap_1af089e2f99ff54e37dca21ecbbeede950"><span class="std std-ref">maxiMap::linlin</span></a>(osc.phasor(0.4),0,1,10,20),100} modulate the ratios</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>phase</strong> – a phasor signal, rising from 0 to 1 (you could use <a class="reference internal" href="#classmaxiOsc_1af6d7b7b4a167aa90d5bb54f2e2228da4"><span class="std std-ref">maxiOsc::phasor</span></a>)</p></li>
+<li><p><strong>times</strong> – a list of time ratios. The phasor will be divided up into these ratios, and a trigger will be returned at the start of each period</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>a trigger at the start of each period</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N12maxiRatioSeq10playValuesEd15DOUBLEARRAY_REF15DOUBLEARRAY_REF">
+<span id="_CPPv3N12maxiRatioSeq10playValuesEd15DOUBLEARRAY_REF15DOUBLEARRAY_REF"></span><span id="_CPPv2N12maxiRatioSeq10playValuesEd15DOUBLEARRAY_REF15DOUBLEARRAY_REF"></span><span id="maxiRatioSeq::playValues__double.DOUBLEARRAY_REF.DOUBLEARRAY_REF"></span><span class="target" id="classmaxiRatioSeq_1aec432d4351d64a53325aed2e8dc7ea46"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">playValues</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">phase</span></span>, <span class="n"><span class="pre">DOUBLEARRAY_REF</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">times</span></span>, <span class="n"><span class="pre">DOUBLEARRAY_REF</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">values</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N12maxiRatioSeq10playValuesEd15DOUBLEARRAY_REF15DOUBLEARRAY_REF" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Take values incrementally from a list, with timing controlled by ratios </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>phase</strong> – see playTrig </p></li>
+<li><p><strong>times</strong> – see playTrig </p></li>
+<li><p><strong>values</strong> – an array of numbers. Each time a period starts, a number is returned from this list. Values are taken incrementally and with looping. The contents and length of the list are modulateable. This function is useful for sequencing pitches or controller values. </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>a value taken incrementally from the list of values, updated each time a new timing period begins (according to the list of ratios) </p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv411maxiSelectX">
+<span id="_CPPv311maxiSelectX"></span><span id="_CPPv211maxiSelectX"></span><span id="maxiSelectX"></span><span class="target" id="classmaxiSelectX"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">maxiSelectX</span></span></span><a class="headerlink" href="#_CPPv411maxiSelectX" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Read from an array of signals or values, with linear interpolation between neighbours - like supercollider SelectX.ar </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N11maxiSelectX4playEd15DOUBLEARRAY_REFb">
+<span id="_CPPv3N11maxiSelectX4playEd15DOUBLEARRAY_REFb"></span><span id="_CPPv2N11maxiSelectX4playEd15DOUBLEARRAY_REFb"></span><span id="maxiSelectX::play__double.DOUBLEARRAY_REF.b"></span><span class="target" id="classmaxiSelectX_1a46f83b27aaf5152840cdfea3dd90eb54"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">play</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">index</span></span>, <span class="n"><span class="pre">DOUBLEARRAY_REF</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">values</span></span>, <span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">normalised</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N11maxiSelectX4playEd15DOUBLEARRAY_REFb" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Read from an array with linear interpolation. This can be useful for cross-fading across sets of signals. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>index</strong> – an index into the array </p></li>
+<li><p><strong>values</strong> – a modulateable array of values </p></li>
+<li><p><strong>normalised</strong> – if true, the index should be between 0 and 1, if false, then the index should be between 0 and length(values)-1 </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><p>an item from the array of values, according to the index, and interpolating between neighbouring values.</p>
+<p>e.g if values = {2,3} and normalised index = 0.5, then 2.5 will be returns</p>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv49maxiIndex">
+<span id="_CPPv39maxiIndex"></span><span id="_CPPv29maxiIndex"></span><span id="maxiIndex"></span><span class="target" id="classmaxiIndex"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">maxiIndex</span></span></span><a class="headerlink" href="#_CPPv49maxiIndex" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Pull values from an array when a trigger is received, according to a modulateable index </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N9maxiIndex4pullEKdd15DOUBLEARRAY_REF">
+<span id="_CPPv3N9maxiIndex4pullEKdd15DOUBLEARRAY_REF"></span><span id="_CPPv2N9maxiIndex4pullEKdd15DOUBLEARRAY_REF"></span><span id="maxiIndex::pull__doubleC.double.DOUBLEARRAY_REF"></span><span class="target" id="classmaxiIndex_1ac8f956dad0d87d2b93c8da9d72386658"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">pull</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">trigSig</span></span>, <span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">indexSig</span></span>, <span class="n"><span class="pre">DOUBLEARRAY_REF</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">_values</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N9maxiIndex4pullEKdd15DOUBLEARRAY_REF" title="Permalink to this definition"></a><br /></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>trigSig</strong> – a signal </p></li>
+<li><p><strong>indexSig</strong> – a normalised index into the array (0-1) </p></li>
+<li><p><strong>_values</strong> – an array of values or signals (modulateable) </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>the value at [indexSig] in the array, when a trigger is received in [trigSig] </p>
 </dd>
 </dl>
 </dd></dl>

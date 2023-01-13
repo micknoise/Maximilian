@@ -45,7 +45,7 @@ using namespace std;
 void maxiFFT::setup(int _fftSize, int _hopSize, int _windowSize) {
 	_fft.setup(_fftSize);
 	fftSize = _fftSize;
-  windowSize = _windowSize ? _windowSize : fftSize;
+  windowSize = _windowSize > fftSize ? _windowSize : fftSize;
 	bins = fftSize / 2;
 	hopSize = _hopSize;
   buffer.resize(fftSize,0);

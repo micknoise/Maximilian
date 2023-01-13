@@ -140,7 +140,7 @@
 <codeline lineno="40"><highlight class="normal"></highlight></codeline>
 <codeline lineno="42"><highlight class="comment">//F<sp/>F<sp/>T</highlight></codeline>
 <codeline lineno="44"><highlight class="comment"></highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="45"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>maxiFFT::setup(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>_fftSize,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>_hopSize,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>_windowSize)<sp/>{</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classmaxiFFT_1a55c5d78b8695554df202ae1972972e72" kindref="member">maxiFFT::setup</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>_fftSize,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>_hopSize,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>_windowSize)<sp/>{</highlight></codeline>
 <codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/>_fft.setup(_fftSize);</highlight></codeline>
 <codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/>fftSize<sp/>=<sp/>_fftSize;</highlight></codeline>
 <codeline lineno="48"><highlight class="normal"><sp/><sp/>windowSize<sp/>=<sp/>_windowSize<sp/>?<sp/>_windowSize<sp/>:<sp/>fftSize;</highlight></codeline>
@@ -160,7 +160,7 @@
 <codeline lineno="62"><highlight class="normal"></highlight></codeline>
 <codeline lineno="63"><highlight class="normal"></highlight></codeline>
 <codeline lineno="64"><highlight class="normal"></highlight></codeline>
-<codeline lineno="65"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>maxiFFT::process(</highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>value,<sp/>fftModes<sp/>mode)<sp/>{</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classmaxiFFT_1a2ff237a3a1725298c2490ea7025facfd" kindref="member">maxiFFT::process</ref>(</highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>value,<sp/>fftModes<sp/>mode)<sp/>{</highlight></codeline>
 <codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//add<sp/>value<sp/>to<sp/>buffer<sp/>at<sp/>current<sp/>pos</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/>buffer[pos++]<sp/>=<sp/>value;</highlight></codeline>
 <codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//if<sp/>buffer<sp/>full,<sp/>run<sp/>fft</highlight><highlight class="normal"></highlight></codeline>
@@ -208,9 +208,9 @@
 <codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>magnitudesDB;</highlight></codeline>
 <codeline lineno="111"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="112"><highlight class="normal"></highlight></codeline>
-<codeline lineno="113"><highlight class="normal"></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>maxiFFT::spectralFlatness()<sp/>{</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="classmaxiFFT_1acc4730e72661df8f14838358bfd626df" kindref="member">maxiFFT::spectralFlatness</ref>()<sp/>{</highlight></codeline>
 <codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>geometricMean=0,<sp/>arithmaticMean=0;</highlight></codeline>
-<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i=0;<sp/>i<sp/>&lt;<sp/>bins;<sp/>i++)<sp/>{</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>i=0;<sp/>i<sp/>&lt;<sp/>bins;<sp/>i++)<sp/>{</highlight></codeline>
 <codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(magnitudes[i]<sp/>!=<sp/>0)</highlight></codeline>
 <codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>geometricMean<sp/>+=<sp/>logf(magnitudes[i]);</highlight></codeline>
 <codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>arithmaticMean<sp/>+=<sp/>magnitudes[i];</highlight></codeline>
@@ -220,9 +220,9 @@
 <codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>arithmaticMean<sp/>!=0<sp/>?<sp/><sp/>geometricMean<sp/>/<sp/>arithmaticMean<sp/>:<sp/>0;</highlight></codeline>
 <codeline lineno="123"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="124"><highlight class="normal"></highlight></codeline>
-<codeline lineno="125"><highlight class="normal"></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>maxiFFT::spectralCentroid()<sp/>{</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="classmaxiFFT_1ad2e507e6b73fe2e9673221dfc664c1bf" kindref="member">maxiFFT::spectralCentroid</ref>()<sp/>{</highlight></codeline>
 <codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>x=0,<sp/>y=0;</highlight></codeline>
-<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i=0;<sp/>i<sp/>&lt;<sp/>bins;<sp/>i++)<sp/>{</highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>i=0;<sp/>i<sp/>&lt;<sp/>bins;<sp/>i++)<sp/>{</highlight></codeline>
 <codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>x<sp/>+=<sp/>fabs(magnitudes[i])<sp/>*<sp/>i;</highlight></codeline>
 <codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>y<sp/>+=<sp/>fabs(magnitudes[i]);</highlight></codeline>
 <codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
@@ -234,7 +234,7 @@
 <codeline lineno="136"><highlight class="normal"></highlight></codeline>
 <codeline lineno="138"><highlight class="comment">//I<sp/>N<sp/>V<sp/>E<sp/>R<sp/>S<sp/>E<sp/><sp/>F<sp/>F<sp/>T</highlight></codeline>
 <codeline lineno="140"><highlight class="comment"></highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="141"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>maxiIFFT::setup(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>_fftSize,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>_hopSize,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>_windowSize)<sp/>{</highlight></codeline>
+<codeline lineno="141"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classmaxiIFFT_1a8dda8264b352f5172c8eb60ccc9143da" kindref="member">maxiIFFT::setup</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>_fftSize,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>_hopSize,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>_windowSize)<sp/>{</highlight></codeline>
 <codeline lineno="142"><highlight class="normal"><sp/><sp/><sp/><sp/>_fft.setup(_fftSize);</highlight></codeline>
 <codeline lineno="143"><highlight class="normal"><sp/><sp/><sp/><sp/>fftSize<sp/>=<sp/>_fftSize;</highlight></codeline>
 <codeline lineno="144"><highlight class="normal"><sp/><sp/>windowSize<sp/>=<sp/>_windowSize<sp/>?<sp/>_windowSize<sp/>:<sp/>fftSize;</highlight></codeline>
@@ -247,19 +247,19 @@
 <codeline lineno="151"><highlight class="normal"><sp/><sp/><sp/><sp/>fft::genWindow(3,<sp/>windowSize,<sp/>&amp;window[0]);</highlight></codeline>
 <codeline lineno="152"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="153"><highlight class="normal"></highlight></codeline>
-<codeline lineno="154"><highlight class="normal"></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>maxiIFFT::process(vector&lt;float&gt;<sp/>&amp;mags,<sp/>vector&lt;float&gt;<sp/>&amp;phases,<sp/>fftModes<sp/>mode)<sp/>{</highlight></codeline>
+<codeline lineno="154"><highlight class="normal"></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="classmaxiIFFT_1a5f373344f87ac702547afab6000107a6" kindref="member">maxiIFFT::process</ref>(vector&lt;float&gt;<sp/>&amp;mags,<sp/>vector&lt;float&gt;<sp/>&amp;phases,<sp/>fftModes<sp/>mode)<sp/>{</highlight></codeline>
 <codeline lineno="155"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(0==pos)<sp/>{</highlight></codeline>
 <codeline lineno="156"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//do<sp/>ifft</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="157"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>memset(ifftOut,<sp/>0,<sp/>fftSize<sp/>*<sp/>sizeof(float));</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="158"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::fill(ifftOut.begin(),<sp/>ifftOut.end(),<sp/>0);</highlight></codeline>
 <codeline lineno="159"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>defined(__APPLE_CC__)<sp/>&amp;&amp;<sp/>!defined(_NO_VDSP)</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="160"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(mode<sp/>==<sp/>maxiIFFT::SPECTRUM)<sp/>{</highlight></codeline>
+<codeline lineno="160"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(mode<sp/>==<sp/><ref refid="classmaxiIFFT_1a394e1ad180d729f7079552a09028ed32ac59dd14bb5ac6e0d9c8186ccba223e70" kindref="member">maxiIFFT::SPECTRUM</ref>)<sp/>{</highlight></codeline>
 <codeline lineno="161"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_fft.inversePowerSpectrum_vdsp(0,<sp/>&amp;ifftOut[0],<sp/>&amp;window[0],<sp/>mags.data(),<sp/>phases.data());</highlight></codeline>
 <codeline lineno="162"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight><highlight class="keywordflow">else</highlight><highlight class="normal">{</highlight></codeline>
 <codeline lineno="163"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_fft.inverseFFTComplex_vdsp(0,<sp/>&amp;ifftOut[0],<sp/>&amp;window[0],<sp/>mags.data(),<sp/>phases.data());</highlight></codeline>
 <codeline lineno="164"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="165"><highlight class="normal"></highlight><highlight class="preprocessor">#else</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="166"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(mode<sp/>==<sp/>maxiIFFT::SPECTRUM)<sp/>{</highlight></codeline>
+<codeline lineno="166"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(mode<sp/>==<sp/><ref refid="classmaxiIFFT_1a394e1ad180d729f7079552a09028ed32ac59dd14bb5ac6e0d9c8186ccba223e70" kindref="member">maxiIFFT::SPECTRUM</ref>)<sp/>{</highlight></codeline>
 <codeline lineno="167"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_fft.inversePowerSpectrum(0,<sp/>&amp;ifftOut[0],<sp/>&amp;window[0],<sp/>mags.data(),<sp/>phases.data());</highlight></codeline>
 <codeline lineno="168"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight><highlight class="keywordflow">else</highlight><highlight class="normal">{</highlight></codeline>
 <codeline lineno="169"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_fft.inverseFFTComplex(0,<sp/>&amp;ifftOut[0],<sp/>&amp;window[0],<sp/>mags.data(),<sp/>phases.data());</highlight></codeline>
@@ -298,7 +298,7 @@
 <codeline lineno="204"><highlight class="comment"></highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="205"><highlight class="normal"></highlight></codeline>
 <codeline lineno="206"><highlight class="normal"></highlight></codeline>
-<codeline lineno="207"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>maxiFFTOctaveAnalyzer::setup(</highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>samplingRate,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>nBandsInTheFFT,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>nAveragesPerOctave){</highlight></codeline>
+<codeline lineno="207"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classmaxiFFTOctaveAnalyzer_1a8eabb4e0bb1e081536dd998121bfca4e" kindref="member">maxiFFTOctaveAnalyzer::setup</ref>(</highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>samplingRate,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>nBandsInTheFFT,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>nAveragesPerOctave){</highlight></codeline>
 <codeline lineno="208"><highlight class="normal"></highlight></codeline>
 <codeline lineno="209"><highlight class="normal"><sp/><sp/><sp/><sp/>samplingRate<sp/>=<sp/>samplingRate;</highlight></codeline>
 <codeline lineno="210"><highlight class="normal"><sp/><sp/><sp/><sp/>nSpectrum<sp/>=<sp/>nBandsInTheFFT;</highlight></codeline>
@@ -352,7 +352,7 @@
 <codeline lineno="258"><highlight class="normal"><sp/><sp/><sp/><sp/>linearEQSlope<sp/>=<sp/>0.0f;<sp/></highlight><highlight class="comment">//<sp/>unity<sp/>--<sp/>no<sp/>eq<sp/>by<sp/>default</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="259"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="260"><highlight class="normal"></highlight></codeline>
-<codeline lineno="261"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>maxiFFTOctaveAnalyzer::calculate(</highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>*<sp/>fftData){</highlight></codeline>
+<codeline lineno="261"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classmaxiFFTOctaveAnalyzer_1a6bc67c2593268b8b5659b8dad78e645b" kindref="member">maxiFFTOctaveAnalyzer::calculate</ref>(</highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>*<sp/>fftData){</highlight></codeline>
 <codeline lineno="262"><highlight class="normal"></highlight></codeline>
 <codeline lineno="263"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>last_avgidx<sp/>=<sp/>0;<sp/></highlight><highlight class="comment">//<sp/>tracks<sp/>when<sp/>we&apos;ve<sp/>crossed<sp/>into<sp/>a<sp/>new<sp/>averaging<sp/>bin,<sp/>so<sp/>store<sp/>current<sp/>average</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="264"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>sum<sp/>=<sp/>0.0f;<sp/></highlight><highlight class="comment">//<sp/>running<sp/>total<sp/>of<sp/>spectrum<sp/>data</highlight><highlight class="normal"></highlight></codeline>

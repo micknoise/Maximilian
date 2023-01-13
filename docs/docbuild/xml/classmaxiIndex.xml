@@ -2,6 +2,7 @@
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="classmaxiIndex" kind="class" language="C++" prot="public">
     <compoundname>maxiIndex</compoundname>
+    <includes refid="maximilian_8h" local="no">maximilian.h</includes>
       <sectiondef kind="private-attrib">
       <memberdef kind="variable" id="classmaxiIndex_1a1442f0dce5124c1106987423cbf03252" prot="private" static="no" mutable="no">
         <type><ref refid="classmaxiTrigger" kindref="compound">maxiTrigger</ref></type>
@@ -14,7 +15,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1910" column="17" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1910" bodyend="-1"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="2009" column="17" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="2009" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classmaxiIndex_1ab34ebe55122ac7809ca6ae587e176bda" prot="private" static="no" mutable="no">
         <type>double</type>
@@ -28,7 +29,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1911" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1911" bodyend="-1"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="2010" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="2010" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
@@ -43,7 +44,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1890" column="5" bodyfile="/home/ck84/src/Maximilian/src/maximilian.cpp" bodystart="1520" bodyend="1520"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1983" column="5" bodyfile="/home/ck84/src/Maximilian/src/maximilian.cpp" bodystart="1520" bodyend="1520"/>
       </memberdef>
       <memberdef kind="function" id="classmaxiIndex_1ac8f956dad0d87d2b93c8da9d72386658" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>double</type>
@@ -65,17 +66,46 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>trigSig</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>a signal </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>indexSig</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>a normalised index into the array (0-1) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>_values</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>an array of values or signals (modulateable) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>the value at [indexSig] in the array, when a trigger is received in [trigSig] </para>
+</simplesect>
+</para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1891" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1891" bodyend="1907"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1990" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1990" bodyend="2006"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
+<para>Pull values from an array when a trigger is received, according to a modulateable index </para>
     </detaileddescription>
-    <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1887" column="1" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1888" bodyend="1912"/>
+    <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1980" column="1" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1981" bodyend="2011"/>
     <listofallmembers>
       <member refid="classmaxiIndex_1a928b38a933ebe29c0c4963f8007d455e" prot="public" virt="non-virtual"><scope>maxiIndex</scope><name>maxiIndex</name></member>
       <member refid="classmaxiIndex_1ac8f956dad0d87d2b93c8da9d72386658" prot="public" virt="non-virtual"><scope>maxiIndex</scope><name>pull</name></member>

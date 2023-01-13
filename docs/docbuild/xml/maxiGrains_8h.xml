@@ -4,6 +4,7 @@
     <compoundname>maxiGrains.h</compoundname>
     <includes refid="maximilian_8h" local="yes">../maximilian.h</includes>
     <includes local="no">list</includes>
+    <includedby refid="maxiAtoms_8h" local="yes">/home/ck84/src/Maximilian/src/libs/maxiAtoms.h</includedby>
     <includedby refid="maxiGrains_8cpp" local="yes">/home/ck84/src/Maximilian/src/libs/maxiGrains.cpp</includedby>
     <includedby refid="maxim_8h" local="yes">/home/ck84/src/Maximilian/src/libs/maxim.h</includedby>
     <incdepgraph>
@@ -74,13 +75,21 @@
       </node>
     </incdepgraph>
     <invincdepgraph>
+      <node id="2">
+        <label>/home/ck84/src/Maximilian/src/libs/maxiAtoms.h</label>
+        <link refid="maxiAtoms_8h_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
       <node id="1">
         <label>/home/ck84/src/Maximilian/src/libs/maxiGrains.h</label>
         <link refid="maxiGrains_8h"/>
         <childnode refid="2" relation="include">
         </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
       </node>
-      <node id="2">
+      <node id="3">
         <label>/home/ck84/src/Maximilian/src/libs/maxim.h</label>
         <link refid="maxim_8h_source"/>
       </node>

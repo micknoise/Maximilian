@@ -2,6 +2,7 @@
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="classmaxiFlanger" kind="class" language="C++" prot="public">
     <compoundname>maxiFlanger</compoundname>
+    <includes refid="maximilian_8h" local="no">maximilian.h</includes>
       <sectiondef kind="public-attrib">
       <memberdef kind="variable" id="classmaxiFlanger_1af740169b488721e1aaa33ebe4d1ff566" prot="public" static="no" mutable="no">
         <type><ref refid="classmaxiDelayline" kindref="compound">maxiDelayline</ref></type>
@@ -14,7 +15,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1147" column="19" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1147" bodyend="-1"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1160" column="19" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1160" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classmaxiFlanger_1ac41402f65bd2fea8d4f574c44c289c98" prot="public" static="no" mutable="no">
         <type><ref refid="classmaxiOsc" kindref="compound">maxiOsc</ref></type>
@@ -27,7 +28,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1148" column="13" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1148" bodyend="-1"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1161" column="13" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1161" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
@@ -59,15 +60,60 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
+<para>Apply a flanger effect to a signal <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>input</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>a signal </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>delay</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the amount of delay (in milliseconds, recommended 1-1000) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>feedback</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the amount of feedback, 0-1 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>speed</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the speed of the flanger LFO, in Hz </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>depth</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the depth of the LFO, 0-1 </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>the input signal, flanged </para>
+</simplesect>
+</para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1146" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1151" bodyend="1160"/>
+        <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1159" column="12" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1164" bodyend="1172"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
+<para><ref refid="classA" kindref="compound">A</ref> flanger effect </para>
     </detaileddescription>
     <collaborationgraph>
       <node id="3">
@@ -89,7 +135,7 @@
         </childnode>
       </node>
     </collaborationgraph>
-    <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1139" column="1" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1140" bodyend="1149"/>
+    <location file="/home/ck84/src/Maximilian/src/maximilian.h" line="1142" column="1" bodyfile="/home/ck84/src/Maximilian/src/maximilian.h" bodystart="1143" bodyend="1162"/>
     <listofallmembers>
       <member refid="classmaxiFlanger_1af740169b488721e1aaa33ebe4d1ff566" prot="public" virt="non-virtual"><scope>maxiFlanger</scope><name>dl</name></member>
       <member refid="classmaxiFlanger_1abb001b4066237c99e69c983b638d4943" prot="public" virt="non-virtual"><scope>maxiFlanger</scope><name>flange</name></member>

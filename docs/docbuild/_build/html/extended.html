@@ -127,6 +127,303 @@
 </section>
 <section id="spectral-analysis-and-processing">
 <h2>Spectral Analysis and Processing<a class="headerlink" href="#spectral-analysis-and-processing" title="Permalink to this heading"></a></h2>
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv47maxiFFT">
+<span id="_CPPv37maxiFFT"></span><span id="_CPPv27maxiFFT"></span><span id="maxiFFT"></span><span class="target" id="classmaxiFFT"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">maxiFFT</span></span></span><a class="headerlink" href="#_CPPv47maxiFFT" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Fast fourier transform. For spectral audio process and machine listening. </p>
+<p>Subclassed by maxiFFTAdaptor</p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-types">Public Types</p>
+<dl class="cpp enum">
+<dt class="sig sig-object cpp" id="_CPPv4N7maxiFFT8fftModesE">
+<span id="_CPPv3N7maxiFFT8fftModesE"></span><span id="_CPPv2N7maxiFFT8fftModesE"></span><span class="target" id="classmaxiFFT_1a39a78d829e4d3b9b0d8e42951c39d456"></span><span class="k"><span class="pre">enum</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fftModes</span></span></span><a class="headerlink" href="#_CPPv4N7maxiFFT8fftModesE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>How to run the FFT - with or without polar conversion </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N7maxiFFT8fftModes19NO_POLAR_CONVERSIONE">
+<span id="_CPPv3N7maxiFFT8fftModes19NO_POLAR_CONVERSIONE"></span><span id="_CPPv2N7maxiFFT8fftModes19NO_POLAR_CONVERSIONE"></span><span class="target" id="classmaxiFFT_1a39a78d829e4d3b9b0d8e42951c39d456a4d661677b4f3e00eaa9d1028ff9e1072"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">NO_POLAR_CONVERSION</span></span></span><a class="headerlink" href="#_CPPv4N7maxiFFT8fftModes19NO_POLAR_CONVERSIONE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N7maxiFFT8fftModes21WITH_POLAR_CONVERSIONE">
+<span id="_CPPv3N7maxiFFT8fftModes21WITH_POLAR_CONVERSIONE"></span><span id="_CPPv2N7maxiFFT8fftModes21WITH_POLAR_CONVERSIONE"></span><span class="target" id="classmaxiFFT_1a39a78d829e4d3b9b0d8e42951c39d456a9dd9dc94bcf79da2fce3d9973deb64fc"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">WITH_POLAR_CONVERSION</span></span></span><a class="headerlink" href="#_CPPv4N7maxiFFT8fftModes21WITH_POLAR_CONVERSIONE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N7maxiFFT5setupEiii">
+<span id="_CPPv3N7maxiFFT5setupEiii"></span><span id="_CPPv2N7maxiFFT5setupEiii"></span><span id="maxiFFT::setup__i.i.i"></span><span class="target" id="classmaxiFFT_1a55c5d78b8695554df202ae1972972e72"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">setup</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">fftSize</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">1024</span></span>, <span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">hopSize</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">512</span></span>, <span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">windowSize</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N7maxiFFT5setupEiii" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Configure the FFT. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>fftSize</strong> – the FFT size. This must be a power of 2 </p></li>
+<li><p><strong>hopSize</strong> – the hop size </p></li>
+<li><p><strong>windowSize</strong> – the window size </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N7maxiFFT7processEf8fftModes">
+<span id="_CPPv3N7maxiFFT7processEf8fftModes"></span><span id="_CPPv2N7maxiFFT7processEf8fftModes"></span><span id="maxiFFT::process__float.fftModes"></span><span class="target" id="classmaxiFFT_1a2ff237a3a1725298c2490ea7025facfd"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">process</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">value</span></span>, <a class="reference internal" href="#_CPPv4N7maxiFFT8fftModesE" title="maxiFFT::fftModes"><span class="n"><span class="pre">fftModes</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">mode</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv47maxiFFT" title="maxiFFT"><span class="n"><span class="pre">maxiFFT</span></span></a><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">WITH_POLAR_CONVERSION</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N7maxiFFT7processEf8fftModes" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Analyse an audio signal with FFT </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>value</strong> – a signal </p></li>
+<li><p><strong>mode</strong> – see fftModes enumeration </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>true when the analysis has run (every [hopsize] samples) </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N7maxiFFT7getRealEv">
+<span id="_CPPv3N7maxiFFT7getRealEv"></span><span id="_CPPv2N7maxiFFT7getRealEv"></span><span id="maxiFFT::getReal"></span><span class="target" id="classmaxiFFT_1a9f84e4abab7b2c239790fa3e28fda187"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">getReal</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N7maxiFFT7getRealEv" title="Permalink to this definition"></a><br /></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>a pointer to an array of values containing the real components of the fft analysis </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N7maxiFFT7getImagEv">
+<span id="_CPPv3N7maxiFFT7getImagEv"></span><span id="_CPPv2N7maxiFFT7getImagEv"></span><span id="maxiFFT::getImag"></span><span class="target" id="classmaxiFFT_1a32d82332d73d209d6800a6b98f29d075"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">getImag</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N7maxiFFT7getImagEv" title="Permalink to this definition"></a><br /></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>a pointer to an array of values containing the imaginary components of the fft analysis </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N7maxiFFT13getMagnitudesEv">
+<span id="_CPPv3N7maxiFFT13getMagnitudesEv"></span><span id="_CPPv2N7maxiFFT13getMagnitudesEv"></span><span id="maxiFFT::getMagnitudes"></span><span class="target" id="classmaxiFFT_1a8c400c8d994f93a4b5788aba89347215"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><span class="kt"><span class="pre">float</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="n"><span class="pre">getMagnitudes</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N7maxiFFT13getMagnitudesEv" title="Permalink to this definition"></a><br /></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>a vector of magnitudes (assuming the FFT was calcuated with polar conversion) </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N7maxiFFT15getMagnitudesDBEv">
+<span id="_CPPv3N7maxiFFT15getMagnitudesDBEv"></span><span id="_CPPv2N7maxiFFT15getMagnitudesDBEv"></span><span id="maxiFFT::getMagnitudesDB"></span><span class="target" id="classmaxiFFT_1a39824d97a376fd3f275a940da3cf8b49"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><span class="kt"><span class="pre">float</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="n"><span class="pre">getMagnitudesDB</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N7maxiFFT15getMagnitudesDBEv" title="Permalink to this definition"></a><br /></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>a vector of magnitudes in decibels (assuming the FFT was calcuated with polar conversion) </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N7maxiFFT9getPhasesEv">
+<span id="_CPPv3N7maxiFFT9getPhasesEv"></span><span id="_CPPv2N7maxiFFT9getPhasesEv"></span><span id="maxiFFT::getPhases"></span><span class="target" id="classmaxiFFT_1ab58510ccd8e335dd915ae60a144a3361"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><span class="kt"><span class="pre">float</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="n"><span class="pre">getPhases</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N7maxiFFT9getPhasesEv" title="Permalink to this definition"></a><br /></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>a vector of phases (assuming the FFT was calcuated with polar conversion) </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N7maxiFFT10getNumBinsEv">
+<span id="_CPPv3N7maxiFFT10getNumBinsEv"></span><span id="_CPPv2N7maxiFFT10getNumBinsEv"></span><span id="maxiFFT::getNumBins"></span><span class="target" id="classmaxiFFT_1a97c55dd61176566046d08f271b7d07d1"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">getNumBins</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N7maxiFFT10getNumBinsEv" title="Permalink to this definition"></a><br /></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>the number of bins in the FFT analysis </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N7maxiFFT10getFFTSizeEv">
+<span id="_CPPv3N7maxiFFT10getFFTSizeEv"></span><span id="_CPPv2N7maxiFFT10getFFTSizeEv"></span><span id="maxiFFT::getFFTSize"></span><span class="target" id="classmaxiFFT_1a90ead4f2537038ee8d3c41c422c9a2dd"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">getFFTSize</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N7maxiFFT10getFFTSizeEv" title="Permalink to this definition"></a><br /></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>the FFT size </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N7maxiFFT10getHopSizeEv">
+<span id="_CPPv3N7maxiFFT10getHopSizeEv"></span><span id="_CPPv2N7maxiFFT10getHopSizeEv"></span><span id="maxiFFT::getHopSize"></span><span class="target" id="classmaxiFFT_1ab936471eb988b494f15b1a65c0c3b078"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">getHopSize</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N7maxiFFT10getHopSizeEv" title="Permalink to this definition"></a><br /></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>the hop size </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N7maxiFFT13getWindowSizeEv">
+<span id="_CPPv3N7maxiFFT13getWindowSizeEv"></span><span id="_CPPv2N7maxiFFT13getWindowSizeEv"></span><span id="maxiFFT::getWindowSize"></span><span class="target" id="classmaxiFFT_1abf8e62be027da6a697b325def45f09b5"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">getWindowSize</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N7maxiFFT13getWindowSizeEv" title="Permalink to this definition"></a><br /></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>the window size </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N7maxiFFT16spectralFlatnessEv">
+<span id="_CPPv3N7maxiFFT16spectralFlatnessEv"></span><span id="_CPPv2N7maxiFFT16spectralFlatnessEv"></span><span id="maxiFFT::spectralFlatness"></span><span class="target" id="classmaxiFFT_1acc4730e72661df8f14838358bfd626df"></span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">spectralFlatness</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N7maxiFFT16spectralFlatnessEv" title="Permalink to this definition"></a><br /></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>the spectral flatness of the most recent FFT calculation </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N7maxiFFT16spectralCentroidEv">
+<span id="_CPPv3N7maxiFFT16spectralCentroidEv"></span><span id="_CPPv2N7maxiFFT16spectralCentroidEv"></span><span id="maxiFFT::spectralCentroid"></span><span class="target" id="classmaxiFFT_1ad2e507e6b73fe2e9673221dfc664c1bf"></span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">spectralCentroid</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N7maxiFFT16spectralCentroidEv" title="Permalink to this definition"></a><br /></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>the spectral centroid of the most recent FFT calculation </p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv48maxiIFFT">
+<span id="_CPPv38maxiIFFT"></span><span id="_CPPv28maxiIFFT"></span><span id="maxiIFFT"></span><span class="target" id="classmaxiIFFT"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">maxiIFFT</span></span></span><a class="headerlink" href="#_CPPv48maxiIFFT" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Inverse FFT transform </p>
+<p>Subclassed by maxiIFFTAdaptor</p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-types">Public Types</p>
+<dl class="cpp enum">
+<dt class="sig sig-object cpp" id="_CPPv4N8maxiIFFT8fftModesE">
+<span id="_CPPv3N8maxiIFFT8fftModesE"></span><span id="_CPPv2N8maxiIFFT8fftModesE"></span><span class="target" id="classmaxiIFFT_1a394e1ad180d729f7079552a09028ed32"></span><span class="k"><span class="pre">enum</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fftModes</span></span></span><a class="headerlink" href="#_CPPv4N8maxiIFFT8fftModesE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Configure what kind of data is being given to the inverse FFT </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N8maxiIFFT8fftModes8SPECTRUME">
+<span id="_CPPv3N8maxiIFFT8fftModes8SPECTRUME"></span><span id="_CPPv2N8maxiIFFT8fftModes8SPECTRUME"></span><span class="target" id="classmaxiIFFT_1a394e1ad180d729f7079552a09028ed32ac59dd14bb5ac6e0d9c8186ccba223e70"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SPECTRUM</span></span></span><a class="headerlink" href="#_CPPv4N8maxiIFFT8fftModes8SPECTRUME" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Magnitudes and phases </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N8maxiIFFT8fftModes7COMPLEXE">
+<span id="_CPPv3N8maxiIFFT8fftModes7COMPLEXE"></span><span id="_CPPv2N8maxiIFFT8fftModes7COMPLEXE"></span><span class="target" id="classmaxiIFFT_1a394e1ad180d729f7079552a09028ed32ad76cfa6ff7070725b6441c7b90a71320"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">COMPLEX</span></span></span><a class="headerlink" href="#_CPPv4N8maxiIFFT8fftModes7COMPLEXE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Real and imaginary components </p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N8maxiIFFT5setupEiii">
+<span id="_CPPv3N8maxiIFFT5setupEiii"></span><span id="_CPPv2N8maxiIFFT5setupEiii"></span><span id="maxiIFFT::setup__i.i.i"></span><span class="target" id="classmaxiIFFT_1a8dda8264b352f5172c8eb60ccc9143da"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">setup</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">fftSize</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">1024</span></span>, <span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">hopSize</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">512</span></span>, <span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">windowSize</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8maxiIFFT5setupEiii" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Configure the Inverse FFT. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>fftSize</strong> – the FFT size. This must be a power of 2 </p></li>
+<li><p><strong>hopSize</strong> – the hop size </p></li>
+<li><p><strong>windowSize</strong> – the window size </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N8maxiIFFT7processERNSt6vectorIfEERNSt6vectorIfEE8fftModes">
+<span id="_CPPv3N8maxiIFFT7processERNSt6vectorIfEERNSt6vectorIfEE8fftModes"></span><span id="_CPPv2N8maxiIFFT7processERNSt6vectorIfEERNSt6vectorIfEE8fftModes"></span><span id="maxiIFFT::process__std::vector:float:R.std::vector:float:R.fftModes"></span><span class="target" id="classmaxiIFFT_1a5f373344f87ac702547afab6000107a6"></span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">process</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><span class="kt"><span class="pre">float</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">data1</span></span>, <span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><span class="kt"><span class="pre">float</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">data2</span></span>, <a class="reference internal" href="#_CPPv4N8maxiIFFT8fftModesE" title="maxiIFFT::fftModes"><span class="n"><span class="pre">fftModes</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">mode</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv48maxiIFFT" title="maxiIFFT"><span class="n"><span class="pre">maxiIFFT</span></span></a><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">SPECTRUM</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8maxiIFFT7processERNSt6vectorIfEERNSt6vectorIfEE8fftModes" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Run the inverse transform. Call this function at audio rate, but update the FFT information at FFT rate. See example 20. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data1</strong> – either magnitudes or real values </p></li>
+<li><p><strong>data2</strong> – either phases or imaginary values </p></li>
+<li><p><strong>mode</strong> – see fftModes </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>the most recent sample an audio signal, creates from the inverse transform of the FFT data </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N8maxiIFFT10getNumBinsEv">
+<span id="_CPPv3N8maxiIFFT10getNumBinsEv"></span><span id="_CPPv2N8maxiIFFT10getNumBinsEv"></span><span id="maxiIFFT::getNumBins"></span><span class="target" id="classmaxiIFFT_1add0820f1d745d08162ed397c7733387e"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">getNumBins</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8maxiIFFT10getNumBinsEv" title="Permalink to this definition"></a><br /></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>the number of fft bins </p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv421maxiFFTOctaveAnalyzer">
+<span id="_CPPv321maxiFFTOctaveAnalyzer"></span><span id="_CPPv221maxiFFTOctaveAnalyzer"></span><span id="maxiFFTOctaveAnalyzer"></span><span class="target" id="classmaxiFFTOctaveAnalyzer"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">maxiFFTOctaveAnalyzer</span></span></span><a class="headerlink" href="#_CPPv421maxiFFTOctaveAnalyzer" title="Permalink to this definition"></a><br /></dt>
+<dd><p>An octave analyser. It takes FFT magnitudes and remaps them into pitches </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N21maxiFFTOctaveAnalyzer5setupEfii">
+<span id="_CPPv3N21maxiFFTOctaveAnalyzer5setupEfii"></span><span id="_CPPv2N21maxiFFTOctaveAnalyzer5setupEfii"></span><span id="maxiFFTOctaveAnalyzer::setup__float.i.i"></span><span class="target" id="classmaxiFFTOctaveAnalyzer_1a8eabb4e0bb1e081536dd998121bfca4e"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">setup</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">samplingRate</span></span>, <span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">nBandsInTheFFT</span></span>, <span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">nAveragesPerOctave</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N21maxiFFTOctaveAnalyzer5setupEfii" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Setup the octave analyser </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>samplingRate</strong> – the sample rate </p></li>
+<li><p><strong>nBandsInTheFFT</strong> – the number of bins in the FFT </p></li>
+<li><p><strong>nAveragesPerOctave</strong> – how many frequency bands to split each octave into </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N21maxiFFTOctaveAnalyzer9calculateEPf">
+<span id="_CPPv3N21maxiFFTOctaveAnalyzer9calculateEPf"></span><span id="_CPPv2N21maxiFFTOctaveAnalyzer9calculateEPf"></span><span id="maxiFFTOctaveAnalyzer::calculate__floatP"></span><span class="target" id="classmaxiFFTOctaveAnalyzer_1a6bc67c2593268b8b5659b8dad78e645b"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">calculate</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">fftData</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N21maxiFFTOctaveAnalyzer9calculateEPf" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Run the analyser </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>fftData</strong> – a pointer to an array of fft magnitudes </p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N21maxiFFTOctaveAnalyzer9nAveragesE">
+<span id="_CPPv3N21maxiFFTOctaveAnalyzer9nAveragesE"></span><span id="_CPPv2N21maxiFFTOctaveAnalyzer9nAveragesE"></span><span id="maxiFFTOctaveAnalyzer::nAverages__i"></span><span class="target" id="classmaxiFFTOctaveAnalyzer_1a3ea76eb09d525f287747b8f72755454a"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">nAverages</span></span></span><a class="headerlink" href="#_CPPv4N21maxiFFTOctaveAnalyzer9nAveragesE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>the number of averages, after analysis </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N21maxiFFTOctaveAnalyzer8averagesE">
+<span id="_CPPv3N21maxiFFTOctaveAnalyzer8averagesE"></span><span id="_CPPv2N21maxiFFTOctaveAnalyzer8averagesE"></span><span id="maxiFFTOctaveAnalyzer::averages__floatP"></span><span class="target" id="classmaxiFFTOctaveAnalyzer_1af1a4206764e3ee7155706ecf3c4666aa"></span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">averages</span></span></span><a class="headerlink" href="#_CPPv4N21maxiFFTOctaveAnalyzer8averagesE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>An array of averages - the energy across the pitch spectrum </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
 </section>
 </section>
 

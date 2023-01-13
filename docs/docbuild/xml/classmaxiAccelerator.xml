@@ -1,0 +1,135 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classmaxiAccelerator" kind="class" language="C++" prot="public">
+    <compoundname>maxiAccelerator</compoundname>
+    <innerclass refid="structmaxiAccelerator_1_1queuedAtom" prot="private">maxiAccelerator::queuedAtom</innerclass>
+      <sectiondef kind="private-type">
+      <memberdef kind="typedef" id="classmaxiAccelerator_1a64c131e6b89a3eca9db71d01c032ee05" prot="private" static="no">
+        <type>list&lt; queuedAtom &gt;</type>
+        <definition>typedef list&lt;queuedAtom&gt; maxiAccelerator::queuedAtomList</definition>
+        <argsstring></argsstring>
+        <name>queuedAtomList</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiAtoms.h" line="62" column="14" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiAtoms.h" bodystart="62" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classmaxiAccelerator_1afc0b6e56a411bf2889e3fa4aaac508fe" prot="private" static="no" mutable="no">
+        <type>long</type>
+        <definition>long maxiAccelerator::sampleIdx</definition>
+        <argsstring></argsstring>
+        <name>sampleIdx</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiAtoms.h" line="56" column="6" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiAtoms.h" bodystart="56" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaxiAccelerator_1a1fd4e5bacdd302855172d458f8ff27a7" prot="private" static="no" mutable="no">
+        <type>queuedAtomList</type>
+        <definition>queuedAtomList maxiAccelerator::atomQueue</definition>
+        <argsstring></argsstring>
+        <name>atomQueue</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiAtoms.h" line="63" column="16" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiAtoms.h" bodystart="63" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classmaxiAccelerator_1a6930eec21df61778c758cc3e0ca6bbcf" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>maxiAccelerator::maxiAccelerator</definition>
+        <argsstring>()</argsstring>
+        <name>maxiAccelerator</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiAtoms.h" line="51" column="1" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiAtoms.cpp" bodystart="93" bodyend="95"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiAccelerator_1a01d43501dd0c4f67db20c5616ee3ee13" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void maxiAccelerator::addAtom</definition>
+        <argsstring>(flArr &amp;atom, unsigned int offset=0)</argsstring>
+        <name>addAtom</name>
+        <param>
+          <type>flArr &amp;</type>
+          <declname>atom</declname>
+        </param>
+        <param>
+          <type>unsigned int</type>
+          <declname>offset</declname>
+          <defval>0</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiAtoms.h" line="52" column="6" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiAtoms.cpp" bodystart="97" bodyend="103"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiAccelerator_1a9764747c838ceb3ee0364ab9db693237" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void maxiAccelerator::fillNextBuffer</definition>
+        <argsstring>(float *buffer, unsigned int bufferLength)</argsstring>
+        <name>fillNextBuffer</name>
+        <param>
+          <type>float *</type>
+          <declname>buffer</declname>
+        </param>
+        <param>
+          <type>unsigned int</type>
+          <declname>bufferLength</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiAtoms.h" line="53" column="6" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiAtoms.cpp" bodystart="105" bodyend="126"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaxiAccelerator_1a442badbbc7a9fa13e0eca08130ff109e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>long</type>
+        <definition>long maxiAccelerator::getSampleIdx</definition>
+        <argsstring>()</argsstring>
+        <name>getSampleIdx</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiAtoms.h" line="54" column="13" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiAtoms.h" bodystart="54" bodyend="54"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/ck84/src/Maximilian/src/libs/maxiAtoms.h" line="49" column="1" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiAtoms.h" bodystart="49" bodyend="64"/>
+    <listofallmembers>
+      <member refid="classmaxiAccelerator_1a01d43501dd0c4f67db20c5616ee3ee13" prot="public" virt="non-virtual"><scope>maxiAccelerator</scope><name>addAtom</name></member>
+      <member refid="classmaxiAccelerator_1a1fd4e5bacdd302855172d458f8ff27a7" prot="private" virt="non-virtual"><scope>maxiAccelerator</scope><name>atomQueue</name></member>
+      <member refid="classmaxiAccelerator_1a9764747c838ceb3ee0364ab9db693237" prot="public" virt="non-virtual"><scope>maxiAccelerator</scope><name>fillNextBuffer</name></member>
+      <member refid="classmaxiAccelerator_1a442badbbc7a9fa13e0eca08130ff109e" prot="public" virt="non-virtual"><scope>maxiAccelerator</scope><name>getSampleIdx</name></member>
+      <member refid="classmaxiAccelerator_1a6930eec21df61778c758cc3e0ca6bbcf" prot="public" virt="non-virtual"><scope>maxiAccelerator</scope><name>maxiAccelerator</name></member>
+      <member refid="classmaxiAccelerator_1a64c131e6b89a3eca9db71d01c032ee05" prot="private" virt="non-virtual"><scope>maxiAccelerator</scope><name>queuedAtomList</name></member>
+      <member refid="classmaxiAccelerator_1afc0b6e56a411bf2889e3fa4aaac508fe" prot="private" virt="non-virtual"><scope>maxiAccelerator</scope><name>sampleIdx</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1136,6 +1136,9 @@ inline double maxiNonlinearity::fastAtanDist(const double in, const double shape
 
 using maxiDistortion = maxiNonlinearity; // backwards compatibility
 
+/**
+ * A flanger effect
+ */
 class maxiFlanger
 {
 public:
@@ -1143,6 +1146,16 @@ public:
     //feedback = 0 - 1
     //speed = lfo speed in Hz, 0.0001 - 10 sounds good
     //depth = 0 - 1
+    /**
+     * Apply a flanger effect to a signal
+     * \param input a signal
+     * \param delay the amount of delay (in milliseconds, recommended 1-1000)
+     * \param feedback the amount of feedback, 0-1
+     * \param speed the speed of the flanger LFO, in Hz
+     * \param depth the depth of the LFO, 0-1
+     * \returns the input signal, flanged
+     */
+
     double flange(const double input, const unsigned int delay, const double feedback, const double speed, const double depth);
     maxiDelayline dl;
     maxiOsc lfo;
@@ -1150,7 +1163,6 @@ public:
 
 inline double maxiFlanger::flange(const double input, const unsigned int delay, const double feedback, const double speed, const double depth)
 {
-    //todo: needs fixing
     double output;
     double lfoVal = lfo.triangle(speed);
     output = dl.dl(input, delay + (lfoVal * depth * delay) + 1, feedback);
@@ -1159,6 +1171,9 @@ inline double maxiFlanger::flange(const double input, const unsigned int delay, 
     return (output + input) / 2.0;
 }
 
+/**
+ * A chorus effect
+ */ 
 class maxiChorus
 {
 public:
@@ -1166,7 +1181,17 @@ public:
     //feedback = 0 - 1
     //speed = lfo speed in Hz, 0.0001 - 10 sounds good
     //depth = 0 - 1
+    /**
+     * Apply a chorus effect to a signal
+     * \param input a signal
+     * \param delay the amount of delay (in milliseconds, recommended 1-1000)
+     * \param feedback the amount of feedback, 0-1
+     * \param speed the speed of the chorus, in Hz
+     * \param depth the depth of the chorus effect, 0-1
+     * \returns the input signal with chorus applied
+     */
     double chorus(const double input, const unsigned int delay, const double feedback, const double speed, const double depth);
+private:
     maxiDelayline dl, dl2;
     maxiOsc lfo;
     maxiFilter lopass;
@@ -1174,7 +1199,6 @@ public:
 
 inline double maxiChorus::chorus(const double input, const unsigned int delay, const double feedback, const double speed, const double depth)
 {
-    //this needs fixing
     double output1, output2;
     double lfoVal = lfo.noise();
     lfoVal = lopass.lores(lfoVal, speed, 1.0) * 2.0;
@@ -1459,10 +1483,20 @@ private:
     double v[3] = {0, 0, 0};
 };
 
+/**
+ * Cross-fade between two signals, using equal-power panning
+ */
 class maxiXFade
 {
 public:
     maxiXFade() {}
+
+    /**
+     * Cross-fade between stereo signals
+     * \param ch1 a vector containing left and right components of channel 1 
+     * \param ch2 a vector containing left and right components of channel 2 
+     * \param xfader the cross-fader position, -1=100% ch1, 1=100% ch2, 0=an equal mix of both channels
+     */
     static vector<double> xfade(vector<double> &ch1, vector<double> &ch2, double xfader)
     {
         xfader = maxiMap::clamp(xfader, -1, 1);
@@ -1476,6 +1510,12 @@ public:
         }
         return output;
     }
+    /**
+     * Cross-fade between mono signals
+     * \param ch1 the signal for channel 1
+     * \param ch2 the signal for channel 2 
+     * \param xfader the cross-fader position, -1=100% ch1, 1=100% ch2, 0=an equal mix of both channels
+     */
     static double xfade(double ch1, double ch2, double xfader)
     {
         vector<double> vch1 = {ch1};
@@ -1574,12 +1614,27 @@ private:
     }
 };
 
-//https://tutorials.siam.org/dsweb/cotutorial/index.php?s=3&p=0
-//https://www.complexity-explorables.org/explorables/ride-my-kuramotocycle/
+/**
+ * A kuramoto oscillator
+ * 
+ * This is an adaptive oscillator that adjusts its own phase in relation to the phases of other kuramoto oscillators
+ * 
+ * For further info, see
+ * https://tutorials.siam.org/dsweb/cotutorial/index.php?s=3&p=0
+ * https://www.complexity-explorables.org/explorables/ride-my-kuramotocycle/
+ */
 class maxiKuramotoOscillator
 {
 public:
     maxiKuramotoOscillator() {}
+
+    /**
+     * Run the oscillator
+     * \param freq the intended frequency of the oscillator
+     * \param K the strengh of coupling between oscillators
+     * \param phases a vector of the phases of other kuramoto oscillators
+     * \returns the current amplitude of the oscillator
+     */
     inline double play(double freq, double K, std::vector<double> phases)
     {
 
@@ -1595,7 +1650,9 @@ public:
             phase += TWOPI;
         return phase;
     }
+    /*! Set the phase of the oscillator \param newPhase the phase, 0 - 2PI*/
     inline void setPhase(double newPhase) { phase = newPhase; }
+    /*! \returns the current phase of the oscillator*/
     inline double getPhase() { return phase; }
 
 private:
@@ -1603,15 +1660,21 @@ private:
     double dt = TWOPI / maxiSettings::sampleRate;
 };
 
-//a local group of oscillators
+/**
+ * This class managed a group of Kuramoto oscillators (see maxiKuramotoOscillator)
+ */
 class maxiKuramotoOscillatorSet
 {
 public:
+    /**
+     * \param N The number of oscillators in the group
+     */
     maxiKuramotoOscillatorSet(const size_t N)
     {
         oscs.resize(N);
         phases.resize(N);
     };
+    /*! Set the phases of all of the oscillators \param phases a vector of phases (all 0 - 2PI)*/
     void setPhases(const std::vector<double> &phases)
     {
         size_t iOsc = 0;
@@ -1622,21 +1685,30 @@ public:
         }
     }
 
+    /*! Set the phase of a single oscillator \param phase the phase, 0 - 2PI \param oscillatorIdx the index of the oscillator*/
     void setPhase(const double phase, const size_t oscillatorIdx)
     {
         oscs[oscillatorIdx].setPhase(phase);
     }
 
+    /*! Get the phase of a single oscillator \param i the index of the oscillator \returns the oscillator's phase*/
     double getPhase(size_t i)
     {
         return oscs[i].getPhase();
     }
 
+    /*! \returns the number of oscillators in the group*/
     size_t size()
     {
         return oscs.size();
     }
 
+    /**
+     * Run all of the oscillators
+     * \param freq the intended frequency
+     * \param K the coupling strength between oscillators
+     * \returns a mix of all of the oscillator signals in the group
+     */
     double play(double freq, double K)
     {
         double mix = 0.0;
@@ -1657,20 +1729,29 @@ protected:
     std::vector<double> phases;
 };
 
-//a single oscillator, updated according to phase information from remote oscillators
-//best guesses of the remote oscillators are maintained, and asynchronously updated
-//use case: a networked clock
+
+/**
+ * Run a group of kuramoto oscillators with asynchronous updates.  Instead of setting all of the phasors at once, you can set the phases or arbitrary individuals at abritrary times. This class updates the local oscillator according to best guesses of the phase of remote oscillators.
+ * This is useful if the other oscillators are not running on your computer, but are linked on a network. For example you could use this class for a shared network clock that is robust to timing jitter.
+ * 
+ */
 class maxiAsyncKuramotoOscillator : public maxiKuramotoOscillatorSet
 {
 public:
-    //1 local oscillator and N-1 remote oscillators
+    /*! \param N the number of oscillators in the group (including this one)*/
+
     maxiAsyncKuramotoOscillator(const size_t N) : maxiKuramotoOscillatorSet(N){};
 
+    /*! Set the phase of a single oscillator, probably in response to receiving this information over your network
+     * \param phase the phase, 0 - 2PI \param oscillatorIdx the index of the oscillator
+     */
     void setPhase(const double phase, const size_t oscillatorIdx)
     {
         oscs[oscillatorIdx].setPhase(phase);
         update = 1;
     }
+
+    /*! Set the phases of all of the oscillators \param phases a vector of phases (all 0 - 2PI)*/   
     void setPhases(const std::vector<double> &phases)
     {
         size_t iOsc = 0;
@@ -1682,6 +1763,13 @@ public:
         update = 1;
     }
 
+
+    /**
+     * Run all of the oscillators
+     * \param freq the intended frequency
+     * \param K the coupling strength between oscillators
+     * \returns a mix of all of the oscillator signals in the group
+     */
     double play(double freq, double K)
     {
         double mix = 0.0;
@@ -1701,11 +1789,13 @@ public:
         return mix / phases.size();
     }
 
+    /*! Get the phase of a single oscillator \param i the index of the oscillator \returns the oscillator's phase*/
     double getPhase(size_t i)
     {
         return maxiKuramotoOscillatorSet::getPhase(i);
     }
 
+    /*! \returns the number of oscillators in the group*/
     size_t size()
     {
         return maxiKuramotoOscillatorSet::size();
@@ -1884,10 +1974,19 @@ private:
     maxiTrigger inctrig, rstrig;
 };
 
+/**
+ * Pull values from an array when a trigger is received, according to a modulateable index
+ */
 class CHEERP_EXPORT maxiIndex
 {
 public:
     maxiIndex();
+    /**
+     * \param trigSig a signal
+     * \param indexSig a normalised index into the array (0-1)
+     * \param _values an array of values or signals (modulateable)
+     * \returns the value at [indexSig] in the array, when a trigger is received in [trigSig]
+     */
     double pull(const double trigSig, double indexSig, DOUBLEARRAY_REF _values)
     {
         // double *__arrayStart = __builtin_cheerp_make_regular<double>(_values, 0);
@@ -1911,11 +2010,19 @@ private:
     double value = 0;
 };
 
-//read from an array of signals - like supercollider Select.ar
+/**
+ * Read from an array of signals - like supercollider Select.ar
+ */
 class CHEERP_EXPORT maxiSelect {
 public:
     maxiSelect();
 
+    /**
+     * \param index an index into the array
+     * \param values a modulateable array of values
+     * \param normalised if true, the index should be between 0 and 1, if false, then the index should be between 0 and length(values)-1
+     * \returns an item from the array of values, according to the floor or the index value
+     */
     double play(double index, DOUBLEARRAY_REF values, bool normalised) {
         auto arrayLen = F64_ARRAY_SIZE(values); 
 
@@ -1936,10 +2043,21 @@ private:
 
 };
 
-//read from an array of signals, linear interpolation between neighbours - like supercollider SelectX.ar
+/**
+ * Read from an array of signals or values, with linear interpolation between neighbours - like supercollider SelectX.ar
+ */
 class CHEERP_EXPORT maxiSelectX {
 public:
     maxiSelectX();
+
+    /**
+     * Read from an array with linear interpolation.  This can be useful for cross-fading across sets of signals.
+     * \param index an index into the array
+     * \param values a modulateable array of values
+     * \param normalised if true, the index should be between 0 and 1, if false, then the index should be between 0 and length(values)-1
+     * \returns an item from the array of values, according to the index, and interpolating between neighbouring values.\n
+     * e.g if values = {2,3} and normalised index = 0.5, then 2.5 will be returns
+     */
     double play(double index, DOUBLEARRAY_REF values, bool normalised) {
         auto arrayLen = F64_ARRAY_SIZE(values); 
 
@@ -1978,7 +2096,7 @@ public:
      * Take values from the array when triggered
      * \param trigSig A signal to trigger a new value on a positive zero crossing
      * \param values An array of values
-     * \step The amount that the array index should increase after pulling a new value.  This wraps around to zero at the end of the array
+     * \param step The amount that the array index should increase after pulling a new value.  This wraps around to zero at the end of the array
      */
     double pull(const double trigSig, DOUBLEARRAY values, double step)
     {
@@ -2020,10 +2138,28 @@ private:
     double index=0;
 };
 
+/**
+ * Sequence triggers and numbers, using a list of modulateable ratios to control timing.
+ */
 class CHEERP_EXPORT maxiRatioSeq
 {
 public:
     maxiRatioSeq();
+    /**
+     * Divide a phasor into periods according to a set o ratios, and send a trigger at the start of each period.\n
+     * Examples ratios: (assuming the phasor takes the length of one bar to cycle and 4/4 timing):\n
+     * {1,1,1,1} four crotchets\n
+     * {2,2,2,1,1} three crotchets then two quavers\n
+     * {4,4,4,1,1,1,1} three crotchets then four semi-quavers\n
+     * {3,3,2} two dotted crotchets then a crotchet\n
+     * {1} a semibrieve\n
+     * {3,3,3,1,1,1} three crotchets followed by a triplet\n
+     * {33,991,13,153} hmmm - well it might sound interesting?\n
+     * {maxiMap::linlin(osc.phasor(0.4),0,1,10,20),100} modulate the ratios\n
+     * \param phase a phasor signal, rising from 0 to 1 (you could use maxiOsc::phasor)\n
+     * \param times a list of time ratios.  The phasor will be divided up into these ratios, and a trigger will be returned at the start of each period\n
+     * \returns a trigger at the start of each period\n
+     */
     double playTrig(double phase, DOUBLEARRAY times)
     {
         if (first) {
@@ -2056,6 +2192,13 @@ public:
         return trig;
     }
 
+    /**
+     * Take values incrementally from a list, with timing controlled by ratios
+     * \param phase see playTrig
+     * \param times see playTrig
+     * \param values an array of numbers.  Each time a period starts, a number is returned from this list.  Values are taken incrementally and with looping. The contents and length of the list are modulateable.  This function is useful for sequencing pitches or controller values.
+     * \returns a value taken incrementally from the list of values, updated each time a new timing period begins (according to the list of ratios)
+     */
     double playValues(double phase, DOUBLEARRAY_REF times, DOUBLEARRAY_REF values)
     {
         // NORMALISE_ARRAY_TYPE(_times, times)
@@ -2084,11 +2227,19 @@ private:
     bool first=true;
 };
 
-
+/**
+ * Extend a trigger into a pulse. This is useful for making basic gates in sequences. Use maxiEnvGen for more advanced gate and envelope generation.
+ */ 
 class CHEERP_EXPORT maxiZXToPulse
 {
 public:
     maxiZXToPulse();
+    /**
+     * Extend a trigger into a pulse.
+     * \param input a signal
+     * \param holdTimeInSamples the length of the pulse in samples (use maxiConvert to get this value from milliseconds)
+     * \returns a pulse, triggered by a zero crossing in the input
+     */
     double play(double input, double holdTimeInSamples) {
         double output =0;
         

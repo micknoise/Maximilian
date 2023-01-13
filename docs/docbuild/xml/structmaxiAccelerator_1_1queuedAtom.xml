@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structmaxiAccelerator_1_1queuedAtom" kind="struct" language="C++" prot="private">
+    <compoundname>maxiAccelerator::queuedAtom</compoundname>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structmaxiAccelerator_1_1queuedAtom_1a0c776dc1747886a01ab21a631fab87fd" prot="public" static="no" mutable="no">
+        <type>flArr</type>
+        <definition>flArr maxiAccelerator::queuedAtom::atom</definition>
+        <argsstring></argsstring>
+        <name>atom</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiAtoms.h" line="58" column="7" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiAtoms.h" bodystart="58" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structmaxiAccelerator_1_1queuedAtom_1a0adda18b25812c2940e90f40c5ddd5d0" prot="public" static="no" mutable="no">
+        <type>long</type>
+        <definition>long maxiAccelerator::queuedAtom::startTime</definition>
+        <argsstring></argsstring>
+        <name>startTime</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiAtoms.h" line="59" column="6" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiAtoms.h" bodystart="59" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structmaxiAccelerator_1_1queuedAtom_1a938550e640cb9cf7bd186574e38d5b7c" prot="public" static="no" mutable="no">
+        <type>unsigned int</type>
+        <definition>unsigned int maxiAccelerator::queuedAtom::pos</definition>
+        <argsstring></argsstring>
+        <name>pos</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiAtoms.h" line="60" column="14" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiAtoms.h" bodystart="60" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/ck84/src/Maximilian/src/libs/maxiAtoms.h" line="57" column="1" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiAtoms.h" bodystart="57" bodyend="61"/>
+    <listofallmembers>
+      <member refid="structmaxiAccelerator_1_1queuedAtom_1a0c776dc1747886a01ab21a631fab87fd" prot="public" virt="non-virtual"><scope>maxiAccelerator::queuedAtom</scope><name>atom</name></member>
+      <member refid="structmaxiAccelerator_1_1queuedAtom_1a938550e640cb9cf7bd186574e38d5b7c" prot="public" virt="non-virtual"><scope>maxiAccelerator::queuedAtom</scope><name>pos</name></member>
+      <member refid="structmaxiAccelerator_1_1queuedAtom_1a0adda18b25812c2940e90f40c5ddd5d0" prot="public" virt="non-virtual"><scope>maxiAccelerator::queuedAtom</scope><name>startTime</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -21,8 +21,17 @@ Generators
    :project: maximilian
    :members:
    
+.. doxygenclass:: maxiKuramotoOscillator
+   :project: maximilian
+   :members:
 
+.. doxygenclass:: maxiKuramotoOscillatorSet
+   :project: maximilian
+   :members:
 
+.. doxygenclass:: maxiAsyncKuramotoOscillator
+   :project: maximilian
+   :members:
 
 Filters
 -------
@@ -69,7 +78,13 @@ Effects
    :project: maximilian
    :members:
   
+.. doxygenclass:: maxiChorus 
+   :project: maximilian
+   :members:
 
+.. doxygenclass:: maxiFlanger 
+   :project: maximilian
+   :members:
 
 Analysis
 --------
@@ -101,6 +116,24 @@ Sequencing
 .. doxygenclass:: maxiCounter
    :project: maximilian
    :members:
+
+.. doxygenclass:: maxiZXToPulse
+   :project: maximilian
+   :members:
+   
+.. doxygenclass:: maxiRatioSeq
+   :project: maximilian
+   :members:
+
+.. doxygenclass:: maxiSelectX
+   :project: maximilian
+   :members:
+
+.. doxygenclass:: maxiIndex
+   :project: maximilian
+   :members:
+   
+
    
 
 Multichannel
@@ -109,6 +142,12 @@ Multichannel
 .. doxygenclass:: maxiMix
    :project: maximilian
    :members:
+
+.. doxygenclass:: maxiXFade
+   :project: maximilian
+   :members:
+
+
 
 
 Utility Functions

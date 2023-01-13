@@ -1,0 +1,87 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classmaxiCollider" kind="class" language="C++" prot="public">
+    <compoundname>maxiCollider</compoundname>
+      <sectiondef kind="public-static-attrib">
+      <memberdef kind="variable" id="classmaxiCollider_1acc700aa4d43207ddc363ce86915de139" prot="public" static="yes" mutable="no">
+        <type><ref refid="classmaxiGrainWindowCache" kindref="compound">maxiGrainWindowCache</ref>&lt; <ref refid="structgaussianWinFunctor" kindref="compound">gaussianWinFunctor</ref> &gt;</type>
+        <definition>maxiGrainWindowCache&lt; gaussianWinFunctor &gt; maxiCollider::envCache</definition>
+        <argsstring></argsstring>
+        <name>envCache</name>
+        <initializer>= <ref refid="classmaxiGrainWindowCache" kindref="compound">maxiGrainWindowCache</ref>&lt;<ref refid="structgaussianWinFunctor" kindref="compound">gaussianWinFunctor</ref>&gt;()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiAtoms.h" line="44" column="33" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiAtoms.h" bodystart="44" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="classmaxiCollider_1af4717f71dc07f77818cb423b7d532a4e" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void maxiCollider::createGabor</definition>
+        <argsstring>(flArr &amp;atom, const float freq, const float sampleRate, const unsigned int length, float phase, const float kurtotis, const float amp)</argsstring>
+        <name>createGabor</name>
+        <param>
+          <type>flArr &amp;</type>
+          <declname>atom</declname>
+        </param>
+        <param>
+          <type>const float</type>
+          <declname>freq</declname>
+        </param>
+        <param>
+          <type>const float</type>
+          <declname>sampleRate</declname>
+        </param>
+        <param>
+          <type>const unsigned int</type>
+          <declname>length</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>phase</declname>
+        </param>
+        <param>
+          <type>const float</type>
+          <declname>kurtotis</declname>
+        </param>
+        <param>
+          <type>const float</type>
+          <declname>amp</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiAtoms.h" line="42" column="20" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiAtoms.cpp" bodystart="27" bodyend="89"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="2">
+        <label>maxiGrainWindowCache&lt; gaussianWinFunctor &gt;</label>
+        <link refid="classmaxiGrainWindowCache"/>
+      </node>
+      <node id="1">
+        <label>maxiCollider</label>
+        <link refid="classmaxiCollider"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>envCache</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/ck84/src/Maximilian/src/libs/maxiAtoms.h" line="40" column="1" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiAtoms.h" bodystart="40" bodyend="45"/>
+    <listofallmembers>
+      <member refid="classmaxiCollider_1af4717f71dc07f77818cb423b7d532a4e" prot="public" virt="non-virtual"><scope>maxiCollider</scope><name>createGabor</name></member>
+      <member refid="classmaxiCollider_1acc700aa4d43207ddc363ce86915de139" prot="public" virt="non-virtual"><scope>maxiCollider</scope><name>envCache</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -3,6 +3,7 @@
   <compounddef id="classmaxiIFFT" kind="class" language="C++" prot="public">
     <compoundname>maxiIFFT</compoundname>
     <derivedcompoundref refid="classmaxiIFFTAdaptor" prot="public" virt="non-virtual">maxiIFFTAdaptor</derivedcompoundref>
+    <includes refid="maxiFFT_8h" local="no">maxiFFT.h</includes>
       <sectiondef kind="public-type">
       <memberdef kind="enum" id="classmaxiIFFT_1a394e1ad180d729f7079552a09028ed32" prot="public" static="no" strong="no">
         <type></type>
@@ -13,6 +14,7 @@
           <briefdescription>
           </briefdescription>
           <detaileddescription>
+<para>Magnitudes and phases </para>
           </detaileddescription>
         </enumvalue>
         <enumvalue id="classmaxiIFFT_1a394e1ad180d729f7079552a09028ed32ad76cfa6ff7070725b6441c7b90a71320" prot="public">
@@ -21,15 +23,17 @@
           <briefdescription>
           </briefdescription>
           <detaileddescription>
+<para>Real and imaginary components </para>
           </detaileddescription>
         </enumvalue>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
+<para>Configure what kind of data is being given to the inverse FFT </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/libs/maxiFFT.h" line="89" column="3" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiFFT.h" bodystart="89" bodyend="89"/>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiFFT.h" line="121" column="3" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiFFT.h" bodystart="121" bodyend="123"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="private-attrib">
@@ -44,7 +48,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/libs/maxiFFT.h" line="99" column="17" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiFFT.h" bodystart="99" bodyend="-1"/>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiFFT.h" line="148" column="17" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiFFT.h" bodystart="148" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classmaxiIFFT_1a324cf5304db2305ab9396c169797e3f8" prot="private" static="no" mutable="no">
         <type>std::vector&lt; float &gt;</type>
@@ -57,7 +61,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/libs/maxiFFT.h" line="99" column="25" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiFFT.h" bodystart="99" bodyend="-1"/>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiFFT.h" line="148" column="25" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiFFT.h" bodystart="148" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classmaxiIFFT_1a7d730f3b6040c15acaac1897ea77e7b3" prot="private" static="no" mutable="no">
         <type>std::vector&lt; float &gt;</type>
@@ -70,7 +74,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/libs/maxiFFT.h" line="99" column="32" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiFFT.h" bodystart="99" bodyend="-1"/>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiFFT.h" line="148" column="32" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiFFT.h" bodystart="148" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classmaxiIFFT_1a9e63a6b38794d09fb5ac3d628c121e44" prot="private" static="no" mutable="no">
         <type>int</type>
@@ -83,7 +87,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/libs/maxiFFT.h" line="100" column="5" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiFFT.h" bodystart="100" bodyend="-1"/>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiFFT.h" line="149" column="5" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiFFT.h" bodystart="149" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classmaxiIFFT_1aeb27dcd565cb743a03653fed39375457" prot="private" static="no" mutable="no">
         <type>int</type>
@@ -96,7 +100,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/libs/maxiFFT.h" line="101" column="5" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiFFT.h" bodystart="101" bodyend="-1"/>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiFFT.h" line="150" column="5" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiFFT.h" bodystart="150" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classmaxiIFFT_1a56afe036520495dd20bcb79f4c72fa91" prot="private" static="no" mutable="no">
         <type>int</type>
@@ -109,7 +113,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/libs/maxiFFT.h" line="102" column="5" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiFFT.h" bodystart="102" bodyend="-1"/>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiFFT.h" line="151" column="5" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiFFT.h" bodystart="151" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classmaxiIFFT_1adeae5a0f22533d7a2857676f1e67e3e6" prot="private" static="no" mutable="no">
         <type>int</type>
@@ -122,7 +126,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/libs/maxiFFT.h" line="103" column="5" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiFFT.h" bodystart="103" bodyend="-1"/>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiFFT.h" line="152" column="5" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiFFT.h" bodystart="152" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classmaxiIFFT_1aa0c006b6fb984ba24a445b80f7cb54b3" prot="private" static="no" mutable="no">
         <type>float</type>
@@ -135,7 +139,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/libs/maxiFFT.h" line="104" column="7" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiFFT.h" bodystart="104" bodyend="-1"/>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiFFT.h" line="153" column="7" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiFFT.h" bodystart="153" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classmaxiIFFT_1a031206ddf64f74ddc329f6fa3dd93a31" prot="private" static="no" mutable="no">
         <type>int</type>
@@ -148,7 +152,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/libs/maxiFFT.h" line="105" column="5" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiFFT.h" bodystart="105" bodyend="-1"/>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiFFT.h" line="154" column="5" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiFFT.h" bodystart="154" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classmaxiIFFT_1aa6e1f80a5b81c48152675ca5e50a3888" prot="private" static="no" mutable="no">
         <type><ref refid="classfft" kindref="compound">fft</ref></type>
@@ -161,7 +165,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/libs/maxiFFT.h" line="106" column="5" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiFFT.h" bodystart="106" bodyend="-1"/>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiFFT.h" line="155" column="5" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiFFT.h" bodystart="155" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
@@ -176,7 +180,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/libs/maxiFFT.h" line="91" column="1" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiFFT.h" bodystart="91" bodyend="92"/>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiFFT.h" line="125" column="1" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiFFT.h" bodystart="125" bodyend="126"/>
       </memberdef>
       <memberdef kind="function" id="classmaxiIFFT_1a04ca68b229d7127878b5cdf88c972db2" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type></type>
@@ -189,7 +193,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/libs/maxiFFT.h" line="93" column="3" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiFFT.h" bodystart="93" bodyend="93"/>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiFFT.h" line="127" column="3" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiFFT.h" bodystart="127" bodyend="127"/>
       </memberdef>
       <memberdef kind="function" id="classmaxiIFFT_1a8dda8264b352f5172c8eb60ccc9143da" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -214,10 +218,36 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
+<para>Configure the Inverse FFT. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>fftSize</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the FFT size. <ref refid="classThis" kindref="compound">This</ref> must be a power of 2 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>hopSize</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the hop size </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>windowSize</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the window size </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/libs/maxiFFT.h" line="94" column="6" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiFFT.cpp" bodystart="141" bodyend="152"/>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiFFT.h" line="135" column="6" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiFFT.cpp" bodystart="141" bodyend="152"/>
       </memberdef>
       <memberdef kind="function" id="classmaxiIFFT_1a5f373344f87ac702547afab6000107a6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>float</type>
@@ -233,17 +263,45 @@
           <declname>data2</declname>
         </param>
         <param>
-          <type>fftModes</type>
+          <type><ref refid="classmaxiIFFT_1a394e1ad180d729f7079552a09028ed32" kindref="member">fftModes</ref></type>
           <declname>mode</declname>
-          <defval>maxiIFFT::SPECTRUM</defval>
+          <defval><ref refid="classmaxiIFFT_1a394e1ad180d729f7079552a09028ed32ac59dd14bb5ac6e0d9c8186ccba223e70" kindref="member">maxiIFFT::SPECTRUM</ref></defval>
         </param>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
+<para>Run the inverse transform. Call this function at audio rate, but update the FFT information at FFT rate. See example 20. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>data1</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>either magnitudes or real values </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>data2</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>either phases or imaginary values </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>mode</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>see fftModes </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>the most recent sample an audio signal, creates from the inverse transform of the FFT data </para>
+</simplesect>
+</para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/libs/maxiFFT.h" line="95" column="9" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiFFT.cpp" bodystart="154" bodyend="192"/>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiFFT.h" line="143" column="9" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiFFT.cpp" bodystart="154" bodyend="192"/>
       </memberdef>
       <memberdef kind="function" id="classmaxiIFFT_1add0820f1d745d08162ed397c7733387e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>int</type>
@@ -253,15 +311,19 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
+<para><simplesect kind="return"><para>the number of fft bins </para>
+</simplesect>
+</para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/ck84/src/Maximilian/src/libs/maxiFFT.h" line="96" column="7" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiFFT.h" bodystart="96" bodyend="96"/>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiFFT.h" line="145" column="7" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiFFT.h" bodystart="145" bodyend="145"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
+<para>Inverse FFT transform </para>
     </detaileddescription>
     <inheritancegraph>
       <node id="1">
@@ -275,7 +337,7 @@
         </childnode>
       </node>
     </inheritancegraph>
-    <location file="/home/ck84/src/Maximilian/src/libs/maxiFFT.h" line="86" column="1" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiFFT.h" bodystart="86" bodyend="107"/>
+    <location file="/home/ck84/src/Maximilian/src/libs/maxiFFT.h" line="117" column="1" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiFFT.h" bodystart="117" bodyend="156"/>
     <listofallmembers>
       <member refid="classmaxiIFFT_1aa6e1f80a5b81c48152675ca5e50a3888" prot="private" virt="non-virtual"><scope>maxiIFFT</scope><name>_fft</name></member>
       <member refid="classmaxiIFFT_1a56afe036520495dd20bcb79f4c72fa91" prot="private" virt="non-virtual"><scope>maxiIFFT</scope><name>bins</name></member>

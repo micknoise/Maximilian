@@ -14,6 +14,7 @@
     <includes local="no">numeric</includes>
     <includedby refid="maximilian_8cpp" local="yes">/home/ck84/src/Maximilian/src/maximilian.cpp</includedby>
     <includedby refid="maximilian_8embind_8cpp" local="yes">/home/ck84/src/Maximilian/src/maximilian.embind.cpp</includedby>
+    <includedby refid="maxiAtoms_8h" local="yes">/home/ck84/src/Maximilian/src/libs/maxiAtoms.h</includedby>
     <includedby refid="maxiClock_8h" local="yes">/home/ck84/src/Maximilian/src/libs/maxiClock.h</includedby>
     <includedby refid="maxiConvolve_8h" local="yes">/home/ck84/src/Maximilian/src/libs/maxiConvolve.h</includedby>
     <includedby refid="maxiFFT_8cpp" local="yes">/home/ck84/src/Maximilian/src/libs/maxiFFT.cpp</includedby>
@@ -84,9 +85,9 @@
         <link refid="maximilian_8h"/>
         <childnode refid="2" relation="include">
         </childnode>
-        <childnode refid="3" relation="include">
-        </childnode>
         <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
         </childnode>
         <childnode refid="6" relation="include">
         </childnode>
@@ -96,41 +97,51 @@
         </childnode>
         <childnode refid="9" relation="include">
         </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
       </node>
-      <node id="3">
+      <node id="2">
+        <label>/home/ck84/src/Maximilian/src/libs/maxiAtoms.h</label>
+        <link refid="maxiAtoms_8h_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
         <label>/home/ck84/src/Maximilian/src/libs/maxiConvolve.h</label>
         <link refid="maxiConvolve_8h_source"/>
       </node>
-      <node id="4">
+      <node id="6">
         <label>/home/ck84/src/Maximilian/src/libs/maxiGrains.h</label>
         <link refid="maxiGrains_8h_source"/>
-        <childnode refid="5" relation="include">
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
         </childnode>
       </node>
-      <node id="7">
+      <node id="8">
         <label>/home/ck84/src/Maximilian/src/libs/maxiPolyBLEP.h</label>
         <link refid="maxiPolyBLEP_8h_source"/>
       </node>
-      <node id="9">
+      <node id="10">
         <label>/home/ck84/src/Maximilian/src/libs/maxiSynths.h</label>
         <link refid="maxiSynths_8h_source"/>
       </node>
-      <node id="2">
+      <node id="4">
         <label>/home/ck84/src/Maximilian/src/libs/maxiClock.h</label>
         <link refid="maxiClock_8h_source"/>
       </node>
-      <node id="8">
+      <node id="9">
         <label>/home/ck84/src/Maximilian/src/libs/maxiReverb.h</label>
         <link refid="maxiReverb_8h_source"/>
       </node>
-      <node id="5">
+      <node id="3">
         <label>/home/ck84/src/Maximilian/src/libs/maxim.h</label>
         <link refid="maxim_8h_source"/>
       </node>
-      <node id="6">
+      <node id="7">
         <label>/home/ck84/src/Maximilian/src/libs/maxiMFCC.h</label>
         <link refid="maxiMFCC_8h_source"/>
-        <childnode refid="5" relation="include">
+        <childnode refid="3" relation="include">
         </childnode>
       </node>
     </invincdepgraph>

@@ -209,7 +209,7 @@
 <codeline lineno="103"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>sumImag[i]<sp/>/=<sp/>scale;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="104"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>ifft.process(sumReal,<sp/>sumImag,<sp/>maxiIFFT::COMPLEX);</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>ifft.process(sumReal,<sp/>sumImag,<sp/><ref refid="classmaxiIFFT_1a394e1ad180d729f7079552a09028ed32ad76cfa6ff7070725b6441c7b90a71320" kindref="member">maxiIFFT::COMPLEX</ref>);</highlight></codeline>
 <codeline lineno="107"><highlight class="normal">}</highlight></codeline>
     </programlisting>
     <location file="/home/ck84/src/Maximilian/src/libs/maxiConvolve.cpp"/>

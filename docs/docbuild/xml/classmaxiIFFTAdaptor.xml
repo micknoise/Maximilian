@@ -78,9 +78,9 @@
           <declname>data2</declname>
         </param>
         <param>
-          <type>fftModes</type>
+          <type><ref refid="classmaxiIFFT_1a394e1ad180d729f7079552a09028ed32" kindref="member">fftModes</ref></type>
           <declname>mode</declname>
-          <defval>maxiIFFT::SPECTRUM</defval>
+          <defval><ref refid="classmaxiIFFT_1a394e1ad180d729f7079552a09028ed32ac59dd14bb5ac6e0d9c8186ccba223e70" kindref="member">maxiIFFT::SPECTRUM</ref></defval>
         </param>
         <briefdescription>
         </briefdescription>

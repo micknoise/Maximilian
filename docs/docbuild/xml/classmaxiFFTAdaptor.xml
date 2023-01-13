@@ -39,7 +39,7 @@
           <declname>value</declname>
         </param>
         <param>
-          <type>fftModes</type>
+          <type><ref refid="classmaxiFFT_1a39a78d829e4d3b9b0d8e42951c39d456" kindref="member">fftModes</ref></type>
           <declname>mode</declname>
           <defval>maxiFFT::WITH_POLAR_CONVERSION</defval>
         </param>

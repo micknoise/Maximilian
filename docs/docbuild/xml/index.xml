@@ -126,6 +126,15 @@
     <member refid="structMappingChannel_1a78fa29206ca367159792f11c1f604510" kind="variable"><name>angle</name></member>
     <member refid="structMappingChannel_1a293cfec33390fdd5cee99df910f2d694" kind="variable"><name>mux</name></member>
   </compound>
+  <compound refid="classmaxiAccelerator" kind="class"><name>maxiAccelerator</name>
+    <member refid="classmaxiAccelerator_1a64c131e6b89a3eca9db71d01c032ee05" kind="typedef"><name>queuedAtomList</name></member>
+    <member refid="classmaxiAccelerator_1afc0b6e56a411bf2889e3fa4aaac508fe" kind="variable"><name>sampleIdx</name></member>
+    <member refid="classmaxiAccelerator_1a1fd4e5bacdd302855172d458f8ff27a7" kind="variable"><name>atomQueue</name></member>
+    <member refid="classmaxiAccelerator_1a6930eec21df61778c758cc3e0ca6bbcf" kind="function"><name>maxiAccelerator</name></member>
+    <member refid="classmaxiAccelerator_1a01d43501dd0c4f67db20c5616ee3ee13" kind="function"><name>addAtom</name></member>
+    <member refid="classmaxiAccelerator_1a9764747c838ceb3ee0364ab9db693237" kind="function"><name>fillNextBuffer</name></member>
+    <member refid="classmaxiAccelerator_1a442badbbc7a9fa13e0eca08130ff109e" kind="function"><name>getSampleIdx</name></member>
+  </compound>
   <compound refid="classmaxiAsyncKuramotoOscillator" kind="class"><name>maxiAsyncKuramotoOscillator</name>
     <member refid="classmaxiAsyncKuramotoOscillator_1a6b992da1939bcc8663f359cd06dd4037" kind="variable"><name>update</name></member>
     <member refid="classmaxiAsyncKuramotoOscillator_1a1ce7c58885d79bedf7a77bf4d9ab1894" kind="function"><name>maxiAsyncKuramotoOscillator</name></member>
@@ -134,6 +143,25 @@
     <member refid="classmaxiAsyncKuramotoOscillator_1a3ee1b988dcbf2cfb40e58aa8b58da6ad" kind="function"><name>play</name></member>
     <member refid="classmaxiAsyncKuramotoOscillator_1a6b2a2e5c24008ece09c9c7ec03a975ed" kind="function"><name>getPhase</name></member>
     <member refid="classmaxiAsyncKuramotoOscillator_1a2b890bd0d5bc44ec7a90ff43537682f3" kind="function"><name>size</name></member>
+  </compound>
+  <compound refid="structmaxiAtom" kind="struct"><name>maxiAtom</name>
+    <member refid="structmaxiAtom_1ac3285b8525e6518f683f6a9f9ff08b0b" kind="variable"><name>atomType</name></member>
+    <member refid="structmaxiAtom_1a7122aceb94307070523c24185cf3894b" kind="variable"><name>length</name></member>
+    <member refid="structmaxiAtom_1a66f467a60a01991bbeee9904c63f8bd3" kind="variable"><name>position</name></member>
+    <member refid="structmaxiAtom_1a38e773434c0a4226aea44ec92bd848de" kind="variable"><name>amp</name></member>
+    <member refid="structmaxiAtom_1a3172c38779235c8c1eb01784411cbf72" kind="function"><name>atomSortPositionAsc</name></member>
+  </compound>
+  <compound refid="classmaxiAtomBook" kind="class"><name>maxiAtomBook</name>
+    <member refid="classmaxiAtomBook_1abff951441da9de07687d24ac12441986" kind="typedef"><name>maxiAtomBookData</name></member>
+    <member refid="classmaxiAtomBook_1ae7e2f581b70d7ef8f1c679727c643b87" kind="variable"><name>numSamples</name></member>
+    <member refid="classmaxiAtomBook_1a8a8aff358e02a7b8413b86a23b17ed61" kind="variable"><name>sampleRate</name></member>
+    <member refid="classmaxiAtomBook_1ad4b305572e242e980a5e27909464601f" kind="variable"><name>atoms</name></member>
+    <member refid="classmaxiAtomBook_1a285f6e1fce6665c6182700cc8a50bc06" kind="function"><name>~maxiAtomBook</name></member>
+  </compound>
+  <compound refid="classmaxiAtomBookPlayer" kind="class"><name>maxiAtomBookPlayer</name>
+    <member refid="classmaxiAtomBookPlayer_1a142738016c4d79e5cc7f4bc99e1b1104" kind="variable"><name>atomIdx</name></member>
+    <member refid="classmaxiAtomBookPlayer_1a661d6844d9273850451c629af19abcf9" kind="function"><name>maxiAtomBookPlayer</name></member>
+    <member refid="classmaxiAtomBookPlayer_1ac7d2b102055fd68f8125ca9c916a0323" kind="function"><name>play</name></member>
   </compound>
   <compound refid="classmaxiBarkScaleAnalyser" kind="class"><name>maxiBarkScaleAnalyser</name>
     <member refid="classmaxiBarkScaleAnalyser_1afe5c37ca85470cc3674fdb9c18bf196d" kind="variable"><name>NUM_BARK_BANDS</name></member>
@@ -235,6 +263,10 @@
     <member refid="classmaxiClock_1ad1e0668133c2a6ba004466a7a7a7f9f4" kind="function"><name>getTick</name></member>
     <member refid="classmaxiClock_1a48060326c6822dc3c2162fcaccbf457e" kind="function"><name>getTicks</name></member>
     <member refid="classmaxiClock_1a6b6e845de25d57119938871143b75f51" kind="function"><name>isTick</name></member>
+  </compound>
+  <compound refid="classmaxiCollider" kind="class"><name>maxiCollider</name>
+    <member refid="classmaxiCollider_1acc700aa4d43207ddc363ce86915de139" kind="variable"><name>envCache</name></member>
+    <member refid="classmaxiCollider_1af4717f71dc07f77818cb423b7d532a4e" kind="function"><name>createGabor</name></member>
   </compound>
   <compound refid="classmaxiConvert" kind="class"><name>maxiConvert</name>
     <member refid="classmaxiConvert_1a297c99035cb6a4727654133d792c22e1" kind="function"><name>mtof</name></member>
@@ -537,6 +569,10 @@
   <compound refid="classmaxiFreeVerbStereo" kind="class"><name>maxiFreeVerbStereo</name>
     <member refid="classmaxiFreeVerbStereo_1a71b6dae8ae8dbb6963506d87684b0306" kind="function"><name>maxiFreeVerbStereo</name></member>
     <member refid="classmaxiFreeVerbStereo_1a3c6ce749ef5f62cd1ccb8f2c5f39c2dc" kind="function"><name>playStereo</name></member>
+  </compound>
+  <compound refid="structmaxiGaborAtom" kind="struct"><name>maxiGaborAtom</name>
+    <member refid="structmaxiGaborAtom_1a70db2f507463b82c052e23cf90c5bb4e" kind="variable"><name>frequency</name></member>
+    <member refid="structmaxiGaborAtom_1a640cc71fdb6ee43f252f2ae5ef00a424" kind="variable"><name>phase</name></member>
   </compound>
   <compound refid="classmaxiGrain" kind="class"><name>maxiGrain</name>
     <member refid="classmaxiGrain_1a1b291a339faf50d24824670f69ff3536" kind="variable"><name>sample</name></member>
@@ -1181,6 +1217,11 @@
     <member refid="structProbedPage_1ab4cb20df6b91f6f858c0e6a5281e400b" kind="variable"><name>first_decoded_sample</name></member>
     <member refid="structProbedPage_1ad0e2a35e768907ee5f1b7ef9fed20e81" kind="variable"><name>last_decoded_sample</name></member>
   </compound>
+  <compound refid="structmaxiAccelerator_1_1queuedAtom" kind="struct"><name>maxiAccelerator::queuedAtom</name>
+    <member refid="structmaxiAccelerator_1_1queuedAtom_1a0c776dc1747886a01ab21a631fab87fd" kind="variable"><name>atom</name></member>
+    <member refid="structmaxiAccelerator_1_1queuedAtom_1a0adda18b25812c2940e90f40c5ddd5d0" kind="variable"><name>startTime</name></member>
+    <member refid="structmaxiAccelerator_1_1queuedAtom_1a938550e640cb9cf7bd186574e38d5b7c" kind="variable"><name>pos</name></member>
+  </compound>
   <compound refid="structrectWinFunctor" kind="struct"><name>rectWinFunctor</name>
     <member refid="structrectWinFunctor_1ac64d88519b6ecdd1fb63f525b76cf2a0" kind="function"><name>operator()</name></member>
   </compound>
@@ -1317,6 +1358,9 @@
     <member refid="maxiAtoms_8cpp_1aef77381a2b5bc2599a891008cc8c59ce" kind="variable"><name>sineBuffer2</name></member>
   </compound>
   <compound refid="maxiAtoms_8h" kind="file"><name>maxiAtoms.h</name>
+    <member refid="maxiAtoms_8h_1ad9f3f6f7df59e66fab1a540f6af0a65c" kind="enum"><name>maxiAtomTypes</name></member>
+    <member refid="maxiAtoms_8h_1ad9f3f6f7df59e66fab1a540f6af0a65ca6c4fe162ea57e2524c9920ff7fb8e836" kind="enumvalue"><name>GABOR</name></member>
+    <member refid="maxiAtoms_8h_1ae2ccaab8e43d1e3f835b327feb10a31d" kind="typedef"><name>flArr</name></member>
   </compound>
   <compound refid="maxiBark_8cpp" kind="file"><name>maxiBark.cpp</name>
   </compound>

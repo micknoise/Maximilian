@@ -2,8 +2,94 @@
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="maxiAtoms_8h" kind="file" language="C++">
     <compoundname>maxiAtoms.h</compoundname>
+    <includes local="no">iostream</includes>
+    <includes refid="maximilian_8h" local="yes">../maximilian.h</includes>
+    <includes local="no">list</includes>
+    <includes local="no">vector</includes>
+    <includes refid="maxiGrains_8h" local="yes">maxiGrains.h</includes>
     <includedby refid="maxiAtoms_8cpp" local="yes">/home/ck84/src/Maximilian/src/libs/maxiAtoms.cpp</includedby>
     <includedby refid="maxim_8h" local="yes">/home/ck84/src/Maximilian/src/libs/maxim.h</includedby>
+    <incdepgraph>
+      <node id="13">
+        <label>list</label>
+      </node>
+      <node id="3">
+        <label>../maximilian.h</label>
+        <link refid="maximilian_8h_source"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>functional</label>
+      </node>
+      <node id="1">
+        <label>/home/ck84/src/Maximilian/src/libs/maxiAtoms.h</label>
+        <link refid="maxiAtoms_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+      </node>
+      <node id="14">
+        <label>maxiGrains.h</label>
+        <link refid="maxiGrains_8h_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>cmath</label>
+      </node>
+      <node id="12">
+        <label>numeric</label>
+      </node>
+      <node id="10">
+        <label>cfloat</label>
+      </node>
+      <node id="4">
+        <label>fstream</label>
+      </node>
+      <node id="5">
+        <label>string.h</label>
+      </node>
+      <node id="9">
+        <label>vector</label>
+      </node>
+      <node id="7">
+        <label>math.h</label>
+      </node>
+      <node id="6">
+        <label>cstdlib</label>
+      </node>
+      <node id="2">
+        <label>iostream</label>
+      </node>
+    </incdepgraph>
     <invincdepgraph>
       <node id="1">
         <label>/home/ck84/src/Maximilian/src/libs/maxiAtoms.h</label>
@@ -16,19 +102,143 @@
         <link refid="maxim_8h_source"/>
       </node>
     </invincdepgraph>
+    <innerclass refid="structmaxiAtom" prot="public">maxiAtom</innerclass>
+    <innerclass refid="structmaxiGaborAtom" prot="public">maxiGaborAtom</innerclass>
+    <innerclass refid="classmaxiCollider" prot="public">maxiCollider</innerclass>
+    <innerclass refid="classmaxiAccelerator" prot="public">maxiAccelerator</innerclass>
+    <innerclass refid="structmaxiAccelerator_1_1queuedAtom" prot="private">maxiAccelerator::queuedAtom</innerclass>
+    <innerclass refid="classmaxiAtomBook" prot="public">maxiAtomBook</innerclass>
+    <innerclass refid="classmaxiAtomBookPlayer" prot="public">maxiAtomBookPlayer</innerclass>
+      <sectiondef kind="enum">
+      <memberdef kind="enum" id="maxiAtoms_8h_1ad9f3f6f7df59e66fab1a540f6af0a65c" prot="public" static="no" strong="no">
+        <type></type>
+        <name>maxiAtomTypes</name>
+        <enumvalue id="maxiAtoms_8h_1ad9f3f6f7df59e66fab1a540f6af0a65ca6c4fe162ea57e2524c9920ff7fb8e836" prot="public">
+          <name>GABOR</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiAtoms.h" line="22" column="1" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiAtoms.h" bodystart="22" bodyend="24"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="typedef">
+      <memberdef kind="typedef" id="maxiAtoms_8h_1ae2ccaab8e43d1e3f835b327feb10a31d" prot="public" static="no">
+        <type>vector&lt; float &gt;</type>
+        <definition>typedef vector&lt;float&gt; flArr</definition>
+        <argsstring></argsstring>
+        <name>flArr</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiAtoms.h" line="20" column="16" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiAtoms.h" bodystart="20" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
     <programlisting>
-<codeline lineno="1"><highlight class="preprocessor">##<sp/>class<sp/>fft</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="2"><highlight class="normal"></highlight></codeline>
-<codeline lineno="3"><highlight class="normal"></highlight></codeline>
-<codeline lineno="4"><highlight class="normal"></highlight></codeline>
-<codeline lineno="5"><highlight class="normal">---</highlight></codeline>
-<codeline lineno="6"><highlight class="normal"></highlight></codeline>
-<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">######<sp/>API<sp/>documentation<sp/>generated<sp/>using<sp/>[Doxygenmd](https:</highlight><highlight class="comment">//github.com/d99kris/doxygenmd)</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="8"><highlight class="normal"></highlight></codeline>
+<codeline lineno="1"><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/>*<sp/><sp/>gabor.h</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"><sp/>*<sp/><sp/>mp</highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"><sp/>*<sp/><sp/>Created<sp/>by<sp/>Chris<sp/>on<sp/>01/11/2011.</highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/>*<sp/><sp/>Copyright<sp/>2011<sp/>Goldsmiths<sp/>Creative<sp/>Computing.<sp/>All<sp/>rights<sp/>reserved.</highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="8"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;iostream&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;../maximilian.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;list&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;vector&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;maxiGrains.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="keyword">using<sp/>namespace<sp/></highlight><highlight class="normal">std;</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/>vector&lt;float&gt;<sp/>flArr;</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="keyword">enum</highlight><highlight class="normal"><sp/>maxiAtomTypes<sp/>{</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/>GABOR</highlight></codeline>
+<codeline lineno="24"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight></codeline>
+<codeline lineno="26" refid="structmaxiAtom" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structmaxiAtom" kindref="compound">maxiAtom</ref><sp/>{</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/>maxiAtomTypes<sp/>atomType;</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>length;</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>position;</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>amp;</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>atomSortPositionAsc(<ref refid="structmaxiAtom" kindref="compound">maxiAtom</ref>*<sp/>a,<sp/><ref refid="structmaxiAtom" kindref="compound">maxiAtom</ref>*<sp/>b)<sp/>{</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>a-&gt;position<sp/>&lt;<sp/>b-&gt;position;}</highlight></codeline>
+<codeline lineno="32"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight></codeline>
+<codeline lineno="34" refid="structmaxiGaborAtom" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structmaxiGaborAtom" kindref="compound">maxiGaborAtom</ref><sp/>:<sp/><ref refid="structmaxiAtom" kindref="compound">maxiAtom</ref><sp/>{</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>frequency;</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>phase;</highlight></codeline>
+<codeline lineno="37"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight><highlight class="comment">//create<sp/>atoms</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="40" refid="classmaxiCollider" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classmaxiCollider" kindref="compound">maxiCollider</ref><sp/>{</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>createGabor(flArr<sp/>&amp;atom,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>freq,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>sampleRate,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>length,</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>phase,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>kurtotis,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>amp);</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="classmaxiGrainWindowCache" kindref="compound">maxiGrainWindowCache&lt;gaussianWinFunctor&gt;</ref><sp/>envCache;</highlight></codeline>
+<codeline lineno="45"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight><highlight class="comment">//queue<sp/>atoms<sp/>into<sp/>an<sp/>audio<sp/>stream</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="49" refid="classmaxiAccelerator" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classmaxiAccelerator" kindref="compound">maxiAccelerator</ref><sp/>{</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classmaxiAccelerator" kindref="compound">maxiAccelerator</ref>();</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>addAtom(flArr<sp/>&amp;atom,<sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>offset=0);</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>fillNextBuffer(</highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>*buffer,<sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>bufferLength);</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/>getSampleIdx(){</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>sampleIdx;}</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/>sampleIdx;</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal">queuedAtom<sp/>{</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>flArr<sp/>atom;</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/>startTime;</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>pos;</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/>list&lt;queuedAtom&gt;<sp/>queuedAtomList;</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/>queuedAtomList<sp/>atomQueue;</highlight></codeline>
+<codeline lineno="64"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"></highlight></codeline>
+<codeline lineno="66"><highlight class="normal"></highlight><highlight class="comment">/*load<sp/>a<sp/>book<sp/>in<sp/>MPTK<sp/>XML<sp/>format</highlight></codeline>
+<codeline lineno="67"><highlight class="comment"><sp/>http://mptk.irisa.fr/</highlight></codeline>
+<codeline lineno="68"><highlight class="comment"></highlight></codeline>
+<codeline lineno="69"><highlight class="comment"><sp/>how<sp/>to<sp/>create<sp/>a<sp/>book:</highlight></codeline>
+<codeline lineno="70"><highlight class="comment"><sp/>mpd<sp/>-n<sp/>1000<sp/>-R<sp/>10<sp/>-d<sp/>./dic_gabor_two_scales.xml<sp/>glockenspiel.wav<sp/>book.xml</highlight></codeline>
+<codeline lineno="71"><highlight class="comment">*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="72" refid="classmaxiAtomBook" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classmaxiAtomBook" kindref="compound">maxiAtomBook</ref><sp/>{</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/>~<ref refid="classmaxiAtomBook" kindref="compound">maxiAtomBook</ref>();</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/>vector&lt;maxiAtom*&gt;<sp/>maxiAtomBookData;</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>numSamples;</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>sampleRate;</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/>maxiAtomBookData<sp/>atoms;</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//commented<sp/>out<sp/>for<sp/>now,<sp/>need<sp/>to<sp/>resolve<sp/>tinyxml<sp/>linker<sp/>issues<sp/>-<sp/>we<sp/>need<sp/>tinyxml<sp/>in<sp/>the<sp/>distrib,<sp/>but<sp/>it<sp/>clashes<sp/>if<sp/>you<sp/>also<sp/>import<sp/>ofxXmlSettings</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="80"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/>static<sp/>bool<sp/>loadMPTKXmlBook(string<sp/>filename,<sp/>maxiAtomBook<sp/>&amp;book);</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="81"><highlight class="normal"></highlight></codeline>
+<codeline lineno="82"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"></highlight></codeline>
+<codeline lineno="84" refid="classmaxiAtomBookPlayer" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classmaxiAtomBookPlayer" kindref="compound">maxiAtomBookPlayer</ref><sp/>{</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classmaxiAtomBookPlayer" kindref="compound">maxiAtomBookPlayer</ref>();</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>play(<ref refid="classmaxiAtomBook" kindref="compound">maxiAtomBook</ref><sp/>&amp;book,<sp/><ref refid="classmaxiAccelerator" kindref="compound">maxiAccelerator</ref><sp/>&amp;atomStream,<sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>*output,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>bufferSize);</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>atomIdx;</highlight></codeline>
+<codeline lineno="90"><highlight class="normal">};</highlight></codeline>
     </programlisting>
     <location file="/home/ck84/src/Maximilian/src/libs/maxiAtoms.h"/>
   </compounddef>

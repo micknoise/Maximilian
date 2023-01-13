@@ -1,0 +1,108 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structmaxiAtom" kind="struct" language="C++" prot="public">
+    <compoundname>maxiAtom</compoundname>
+    <derivedcompoundref refid="structmaxiGaborAtom" prot="public" virt="non-virtual">maxiGaborAtom</derivedcompoundref>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structmaxiAtom_1ac3285b8525e6518f683f6a9f9ff08b0b" prot="public" static="no" mutable="no">
+        <type>maxiAtomTypes</type>
+        <definition>maxiAtomTypes maxiAtom::atomType</definition>
+        <argsstring></argsstring>
+        <name>atomType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiAtoms.h" line="27" column="15" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiAtoms.h" bodystart="27" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structmaxiAtom_1a7122aceb94307070523c24185cf3894b" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float maxiAtom::length</definition>
+        <argsstring></argsstring>
+        <name>length</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiAtoms.h" line="28" column="7" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiAtoms.h" bodystart="28" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structmaxiAtom_1a66f467a60a01991bbeee9904c63f8bd3" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float maxiAtom::position</definition>
+        <argsstring></argsstring>
+        <name>position</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiAtoms.h" line="29" column="7" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiAtoms.h" bodystart="29" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structmaxiAtom_1a38e773434c0a4226aea44ec92bd848de" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float maxiAtom::amp</definition>
+        <argsstring></argsstring>
+        <name>amp</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiAtoms.h" line="30" column="7" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiAtoms.h" bodystart="30" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="structmaxiAtom_1a3172c38779235c8c1eb01784411cbf72" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool maxiAtom::atomSortPositionAsc</definition>
+        <argsstring>(maxiAtom *a, maxiAtom *b)</argsstring>
+        <name>atomSortPositionAsc</name>
+        <param>
+          <type><ref refid="structmaxiAtom" kindref="compound">maxiAtom</ref> *</type>
+          <declname>a</declname>
+        </param>
+        <param>
+          <type><ref refid="structmaxiAtom" kindref="compound">maxiAtom</ref> *</type>
+          <declname>b</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiAtoms.h" line="31" column="13" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiAtoms.h" bodystart="31" bodyend="31"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>maxiAtom</label>
+        <link refid="structmaxiAtom"/>
+      </node>
+      <node id="2">
+        <label>maxiGaborAtom</label>
+        <link refid="structmaxiGaborAtom"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <location file="/home/ck84/src/Maximilian/src/libs/maxiAtoms.h" line="26" column="1" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiAtoms.h" bodystart="26" bodyend="32"/>
+    <listofallmembers>
+      <member refid="structmaxiAtom_1a38e773434c0a4226aea44ec92bd848de" prot="public" virt="non-virtual"><scope>maxiAtom</scope><name>amp</name></member>
+      <member refid="structmaxiAtom_1a3172c38779235c8c1eb01784411cbf72" prot="public" virt="non-virtual"><scope>maxiAtom</scope><name>atomSortPositionAsc</name></member>
+      <member refid="structmaxiAtom_1ac3285b8525e6518f683f6a9f9ff08b0b" prot="public" virt="non-virtual"><scope>maxiAtom</scope><name>atomType</name></member>
+      <member refid="structmaxiAtom_1a7122aceb94307070523c24185cf3894b" prot="public" virt="non-virtual"><scope>maxiAtom</scope><name>length</name></member>
+      <member refid="structmaxiAtom_1a66f467a60a01991bbeee9904c63f8bd3" prot="public" virt="non-virtual"><scope>maxiAtom</scope><name>position</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

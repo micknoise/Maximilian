@@ -1,0 +1,73 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structmaxiGaborAtom" kind="struct" language="C++" prot="public">
+    <compoundname>maxiGaborAtom</compoundname>
+    <basecompoundref refid="structmaxiAtom" prot="public" virt="non-virtual">maxiAtom</basecompoundref>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structmaxiGaborAtom_1a70db2f507463b82c052e23cf90c5bb4e" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float maxiGaborAtom::frequency</definition>
+        <argsstring></argsstring>
+        <name>frequency</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiAtoms.h" line="35" column="7" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiAtoms.h" bodystart="35" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structmaxiGaborAtom_1a640cc71fdb6ee43f252f2ae5ef00a424" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float maxiGaborAtom::phase</definition>
+        <argsstring></argsstring>
+        <name>phase</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ck84/src/Maximilian/src/libs/maxiAtoms.h" line="36" column="7" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiAtoms.h" bodystart="36" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>maxiAtom</label>
+        <link refid="structmaxiAtom"/>
+      </node>
+      <node id="1">
+        <label>maxiGaborAtom</label>
+        <link refid="structmaxiGaborAtom"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>maxiAtom</label>
+        <link refid="structmaxiAtom"/>
+      </node>
+      <node id="1">
+        <label>maxiGaborAtom</label>
+        <link refid="structmaxiGaborAtom"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/ck84/src/Maximilian/src/libs/maxiAtoms.h" line="34" column="1" bodyfile="/home/ck84/src/Maximilian/src/libs/maxiAtoms.h" bodystart="34" bodyend="37"/>
+    <listofallmembers>
+      <member refid="structmaxiAtom_1a38e773434c0a4226aea44ec92bd848de" prot="public" virt="non-virtual"><scope>maxiGaborAtom</scope><name>amp</name></member>
+      <member refid="structmaxiAtom_1a3172c38779235c8c1eb01784411cbf72" prot="public" virt="non-virtual"><scope>maxiGaborAtom</scope><name>atomSortPositionAsc</name></member>
+      <member refid="structmaxiAtom_1ac3285b8525e6518f683f6a9f9ff08b0b" prot="public" virt="non-virtual"><scope>maxiGaborAtom</scope><name>atomType</name></member>
+      <member refid="structmaxiGaborAtom_1a70db2f507463b82c052e23cf90c5bb4e" prot="public" virt="non-virtual"><scope>maxiGaborAtom</scope><name>frequency</name></member>
+      <member refid="structmaxiAtom_1a7122aceb94307070523c24185cf3894b" prot="public" virt="non-virtual"><scope>maxiGaborAtom</scope><name>length</name></member>
+      <member refid="structmaxiGaborAtom_1a640cc71fdb6ee43f252f2ae5ef00a424" prot="public" virt="non-virtual"><scope>maxiGaborAtom</scope><name>phase</name></member>
+      <member refid="structmaxiAtom_1a66f467a60a01991bbeee9904c63f8bd3" prot="public" virt="non-virtual"><scope>maxiGaborAtom</scope><name>position</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

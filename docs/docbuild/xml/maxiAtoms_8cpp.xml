@@ -7,9 +7,49 @@
     <includes local="no">fstream</includes>
     <includes local="yes">sineTable.h</includes>
     <incdepgraph>
+      <node id="14">
+        <label>list</label>
+      </node>
+      <node id="4">
+        <label>../maximilian.h</label>
+        <link refid="maximilian_8h_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>functional</label>
+      </node>
       <node id="2">
         <label>maxiAtoms.h</label>
         <link refid="maxiAtoms_8h_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
       </node>
       <node id="1">
         <label>/home/ck84/src/Maximilian/src/libs/maxiAtoms.cpp</label>
@@ -18,18 +58,47 @@
         </childnode>
         <childnode refid="3" relation="include">
         </childnode>
-        <childnode refid="4" relation="include">
-        </childnode>
         <childnode refid="5" relation="include">
         </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
       </node>
-      <node id="4">
+      <node id="15">
+        <label>maxiGrains.h</label>
+        <link refid="maxiGrains_8h_source"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>cmath</label>
+      </node>
+      <node id="13">
+        <label>numeric</label>
+      </node>
+      <node id="11">
+        <label>cfloat</label>
+      </node>
+      <node id="5">
         <label>fstream</label>
+      </node>
+      <node id="6">
+        <label>string.h</label>
+      </node>
+      <node id="10">
+        <label>vector</label>
+      </node>
+      <node id="8">
+        <label>math.h</label>
+      </node>
+      <node id="7">
+        <label>cstdlib</label>
       </node>
       <node id="3">
         <label>iostream</label>
       </node>
-      <node id="5">
+      <node id="16">
         <label>sineTable.h</label>
       </node>
     </incdepgraph>
@@ -252,7 +321,7 @@
 <codeline lineno="195"><highlight class="normal"><sp/><sp/><sp/><sp/>atomIdx<sp/>=<sp/>0;</highlight></codeline>
 <codeline lineno="196"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="197"><highlight class="normal"></highlight></codeline>
-<codeline lineno="198"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>maxiAtomBookPlayer::play(maxiAtomBook<sp/>&amp;book,<sp/>maxiAccelerator<sp/>&amp;atomStream,<sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>*output,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>bufferSize)<sp/>{</highlight></codeline>
+<codeline lineno="198"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>maxiAtomBookPlayer::play(<ref refid="classmaxiAtomBook" kindref="compound">maxiAtomBook</ref><sp/>&amp;book,<sp/><ref refid="classmaxiAccelerator" kindref="compound">maxiAccelerator</ref><sp/>&amp;atomStream,<sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>*output,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>bufferSize)<sp/>{</highlight></codeline>
 <codeline lineno="199"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//positions</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="200"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/>idx<sp/>=<sp/>atomStream.getSampleIdx();</highlight></codeline>
 <codeline lineno="201"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>loopedSamplePos<sp/>=<sp/>idx<sp/>%<sp/>book.numSamples;</highlight></codeline>
@@ -262,7 +331,7 @@
 <codeline lineno="205"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>atomIdx<sp/>=<sp/>0;</highlight></codeline>
 <codeline lineno="206"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
 <codeline lineno="207"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(atomIdx<sp/>&lt;<sp/>book.atoms.size())<sp/>{</highlight></codeline>
-<codeline lineno="208"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>maxiGaborAtom<sp/>*atom<sp/>=<sp/>(maxiGaborAtom*)<sp/>book.atoms[atomIdx];</highlight></codeline>
+<codeline lineno="208"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structmaxiGaborAtom" kindref="compound">maxiGaborAtom</ref><sp/>*atom<sp/>=<sp/>(<ref refid="structmaxiGaborAtom" kindref="compound">maxiGaborAtom</ref>*)<sp/>book.atoms[atomIdx];</highlight></codeline>
 <codeline lineno="209"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal">(atom-&gt;position<sp/>&lt;<sp/>(idx<sp/>+<sp/>bufferSize)<sp/>%<sp/>book.numSamples)<sp/>{</highlight></codeline>
 <codeline lineno="210"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>flArr<sp/>atomData;</highlight></codeline>
 <codeline lineno="211"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>maxiCollider::createGabor(atomData,<sp/><ref refid="classmaxiMap_1af089e2f99ff54e37dca21ecbbeede950" kindref="member">maxiMap::linlin</ref>(atom-&gt;frequency,<sp/>0.0,<sp/>1.0,<sp/>20,<sp/>20000),<sp/>44100,<sp/>atom-&gt;length,<sp/>atom-&gt;phase,<sp/>0.3,<sp/>atom-&gt;amp<sp/>/<sp/>40.0);</highlight></codeline>
@@ -270,7 +339,7 @@
 <codeline lineno="213"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>atomIdx++;</highlight></codeline>
 <codeline lineno="214"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(book.atoms.size()<sp/>==<sp/>atomIdx)</highlight></codeline>
 <codeline lineno="215"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="216"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>atom<sp/>=<sp/>(maxiGaborAtom*)<sp/>book.atoms[atomIdx];</highlight></codeline>
+<codeline lineno="216"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>atom<sp/>=<sp/>(<ref refid="structmaxiGaborAtom" kindref="compound">maxiGaborAtom</ref>*)<sp/>book.atoms[atomIdx];</highlight></codeline>
 <codeline lineno="217"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="218"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="219"><highlight class="normal">}</highlight></codeline>

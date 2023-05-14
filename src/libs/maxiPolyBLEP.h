@@ -59,6 +59,11 @@ public:
     blep.setPulseWidth(pw);
   }
 
+  /* Set sample rate */
+  void setSampleRate(double sampleRate) {
+    blep.setSampleRate(sampleRate);
+  }
+
 private:
   PolyBLEP blep = PolyBLEP(44100);
 

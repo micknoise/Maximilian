@@ -59,6 +59,11 @@ public:
     blep.setPulseWidth(pw);
   }
 
+  /* Sync modulatoin */
+  void sync(double phase) {
+    blep.sync(phase);
+  }
+
 private:
   PolyBLEP blep = PolyBLEP(44100);
 

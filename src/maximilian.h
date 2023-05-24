@@ -2316,6 +2316,7 @@ class CHEERP_EXPORT maxiEnvGen {
                         }
                         if (retrigger) {
                             if (retriggerDetector.onZX(trigger)) {
+                                nxcHappened = false;
                                 reset();
                             }
                         }
@@ -2336,6 +2337,7 @@ class CHEERP_EXPORT maxiEnvGen {
                     }
                     if (retrigger) {
                         if (retriggerDetector.onZX(trigger)) {
+                            nxcHappened = false;
                             reset();
                         }
                     }

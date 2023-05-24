@@ -59,7 +59,12 @@ public:
     blep.setPulseWidth(pw);
   }
 
-  /* Sync modulatoin */
+  /* Set sample rate */
+  void setSampleRate(double sampleRate) {
+    blep.setSampleRate(sampleRate);
+  }
+
+  /* Sync modulation */
   void sync(double phase) {
     blep.sync(phase);
   }

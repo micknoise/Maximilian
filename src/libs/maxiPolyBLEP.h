@@ -64,6 +64,11 @@ public:
     blep.setSampleRate(sampleRate);
   }
 
+  /* Sync modulation */
+  void sync(double phase) {
+    blep.sync(phase);
+  }
+
 private:
   PolyBLEP blep = PolyBLEP(44100);
 

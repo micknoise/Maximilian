@@ -39,6 +39,7 @@
 #include <fstream>
 #include <string.h>
 #include <cstdlib>
+#include <cstdint>
 #include <limits>
 #include "math.h"
 #include <cmath>

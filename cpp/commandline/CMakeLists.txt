@@ -17,9 +17,17 @@ if (LINUX)
   add_definitions(-D__LINUX_ALSA__)
 endif()
 
-if (OSX)
-  MESSAGE(STATUS "OSX build")
-  target_link_libraries(maximilian PUBLIC -lasound)
+if (APPLE)
+  MESSAGE(STATUS "Configuring for macOS build")
+
+  # Add macOS frameworks
+  target_link_libraries(maximilian PUBLIC 
+      "-framework CoreAudio"
+      "-framework CoreFoundation"
+      "-framework CoreMidi"
+  )
+
+  # Define a macOS-specific macro
   add_definitions(-D__MACOSX_CORE__)
-  #incomplete - need to add frameworks -framework CoreAudio -framework CoreFoundation
+
 endif()

@@ -455,7 +455,7 @@ double maxiFilter::hipass(double input, double cutoff) {
 double maxiFilter::lores(double input,double cutoff1, double resonance) {
 	cutoff=cutoff1;
 	if (cutoff<10) cutoff=10;
-	if (cutoff>(maxiSettings::sampleRate)) cutoff=(maxiSettings::sampleRate);
+	if (cutoff>(maxiSettings::sampleRate*0.5)) cutoff=(maxiSettings::sampleRate*0.5);
 	if (resonance<1.) resonance = 1.;
 	z=cos(TWOPI*cutoff/maxiSettings::sampleRate);
 	c=2-2*z;
@@ -471,7 +471,7 @@ double maxiFilter::lores(double input,double cutoff1, double resonance) {
 double maxiFilter::hires(double input,double cutoff1, double resonance) {
 	cutoff=cutoff1;
 	if (cutoff<10) cutoff=10;
-	if (cutoff>(maxiSettings::sampleRate)) cutoff=(maxiSettings::sampleRate);
+	if (cutoff>(maxiSettings::sampleRate*0.5)) cutoff=(maxiSettings::sampleRate*0.5);
 	if (resonance<1.) resonance = 1.;
 	z=cos(TWOPI*cutoff/maxiSettings::sampleRate);
 	c=2-2*z;

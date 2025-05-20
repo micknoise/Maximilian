@@ -825,8 +825,10 @@ static int lookup1_values(int entries, int dim)
    int r = (int) floor(exp((float) log((float) entries) / dim));
    if ((int) floor(pow((float) r+1, dim)) <= entries)   // (int) cast for MinGW warning;
       ++r;                                              // floor() to avoid _ftol() when non-CRT
-   assert(pow((float) r+1, dim) > entries);
-   assert((int) floor(pow((float) r, dim)) <= entries); // (int),floor() as above
+   if (pow((float) r+1, dim) <= entries)
+      return -1;
+   if ((int) floor(pow((float) r, dim)) > entries)
+      return -1;
    return r;
 }
 
@@ -1717,7 +1719,7 @@ static __forceinline void draw_line(float *output, int x0, int y0, int x1, int y
 #endif
    ady -= abs(base) * adx;
    if (x1 > n) x1 = n;
-   LINE_OP(output[x], inverse_db_table[y]);
+   LINE_OP(output[x], inverse_db_table[y&255]);
    for (++x; x < x1; ++x) {
       err += ady;
       if (err >= adx) {
@@ -1725,7 +1727,7 @@ static __forceinline void draw_line(float *output, int x0, int y0, int x1, int y
          y += sy;
       } else
          y += base;
-      LINE_OP(output[x], inverse_db_table[y]);
+      LINE_OP(output[x], inverse_db_table[y&255]);
    }
 }
 
@@ -2753,7 +2755,6 @@ static float *get_window(vorb *f, int len)
    len <<= 1;
    if (len == f->blocksize_0) return f->window[0];
    if (len == f->blocksize_1) return f->window[1];
-   assert(0);
    return NULL;
 }
 
@@ -3133,6 +3134,7 @@ static int vorbis_finish_frame(stb_vorbis *f, int len, int left, int right)
    if (f->previous_length) {
       int i,j, n = f->previous_length;
       float *w = get_window(f, n);
+      if (w == NULL) return 0;
       for (i=0; i < f->channels; ++i) {
          for (j=0; j < n; ++j)
             f->channel_buffers[i][left+j] =
@@ -3353,6 +3355,7 @@ static int start_decoder(vorb *f)
          while (current_entry < c->entries) {
             int limit = c->entries - current_entry;
             int n = get_bits(f, ilog(limit));
+            if (current_length >= 32) return error(f, VORBIS_invalid_setup);
             if (current_entry + n > (int) c->entries) { return error(f, VORBIS_invalid_setup); }
             memset(lengths + current_entry, current_length, n);
             current_entry += n;
@@ -3449,7 +3452,9 @@ static int start_decoder(vorb *f)
          c->value_bits = get_bits(f, 4)+1;
          c->sequence_p = get_bits(f,1);
          if (c->lookup_type == 1) {
-            c->lookup_values = lookup1_values(c->entries, c->dimensions);
+            int values = lookup1_values(c->entries, c->dimensions);
+            if (values < 0) return error(f, VORBIS_invalid_setup);
+            c->lookup_values = (uint32) values;
          } else {
             c->lookup_values = c->entries * c->dimensions;
          }
@@ -3582,6 +3587,9 @@ static int start_decoder(vorb *f)
             p[j].y = j;
          }
          qsort(p, g->values, sizeof(p[0]), point_compare);
+         for (j=0; j < g->values-1; ++j)
+            if (p[j].x == p[j+1].x)
+               return error(f, VORBIS_invalid_setup);
          for (j=0; j < g->values; ++j)
             g->sorted_order[j] = (uint8) p[j].y;
          // precompute the neighbors
@@ -3659,6 +3667,7 @@ static int start_decoder(vorb *f)
          max_submaps = m->submaps;
       if (get_bits(f,1)) {
          m->coupling_steps = get_bits(f,8)+1;
+         if (m->coupling_steps > f->channels) return error(f, VORBIS_invalid_setup);
          for (k=0; k < m->coupling_steps; ++k) {
             m->chan[k].magnitude = get_bits(f, ilog(f->channels)-1);
             m->chan[k].angle = get_bits(f, ilog(f->channels)-1);

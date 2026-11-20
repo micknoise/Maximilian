@@ -37,3 +37,7 @@ xcuserdata/
 /maximilianTestWindowsVS2010/maximilianTestWindowsVS2010/Debug
 
 /maximilianTestWindowsVS2015/.vs
+
+# Agent verification harness output (see agents/verify)
+agents/verify/build/
+agents/verify/.doccheck/
